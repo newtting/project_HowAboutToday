@@ -1,1 +1,0 @@
-taskkill /t /im javaw.exe /f
