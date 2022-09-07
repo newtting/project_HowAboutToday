@@ -19,8 +19,14 @@ public class MainController {
 
     @RequestMapping("/")
     @ResponseBody
-    public String basic(){
+    public String base(){
         return "{\"message\":\"hiAPI\"}";
+    }
+
+    @RequestMapping("/bye")
+    @ResponseBody
+    public String goodbye(){
+        return "{\"message\":\"byeBye~\"}";
     }
 
 }
