@@ -9,12 +9,12 @@
 -- DROP USER [user명]@[server명]; -- 유저 삭제
 -- ex) drop user gillog@localhost;
 
+
 create user 'phoenix'@'%' identified by 'a123';
-grant all privileges on *.* to 'phoenix'@'%';
-FLUSH PRIVILEGES;
-DROP USER  phoenix@'%';
 CREATE DATABASE how_about_today_db default CHARACTER SET UTF8;
 grant all privileges on how_about_today_db.* to 'phoenix'@'%';	-- 특정 DB에 대한 모든 권한주기
+FLUSH PRIVILEGES; -- 모든 권한 적용
+-- DROP USER  phoenix@'%'; -- 유저 삭제
 
 --  멤버
 CREATE TABLE T_MEMBER (
