@@ -48,7 +48,7 @@ ver 16.xx
 ### 6. React
 ver. 18.2.0
 #### Dependencies
-1. testing-library/jest-dom@5.16.5
+1. @testing-library/jest-dom@5.16.5
 2. @testing-library/react@13.4.0
 3. @testing-library/user-event@13.5.0
 4. http-proxy-middleware@2.0.6  <!-- 포트번호 proxy를 위한 미들웨어 -->
