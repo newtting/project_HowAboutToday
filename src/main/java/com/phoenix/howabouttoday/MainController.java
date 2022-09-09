@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 @Controller
 public class MainController {
-
-
     @RequestMapping("/hello")
     @ResponseBody
     public String hello(){
