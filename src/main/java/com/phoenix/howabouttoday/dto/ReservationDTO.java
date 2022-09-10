@@ -2,16 +2,12 @@ package com.phoenix.howabouttoday.dto;
 
 public class ReservationDTO {
 
-    private int memberNum;
-    private int accommodationNum;
-    private int reservationStatus;
-    private int orderNum;
-    private String orderDate;
-    private int reservationNum;
-    private String roomName;
-    private String useStartDate;
-    private String useEndDate;
-    private String vehicle;
-    private int price;
+    private int reserveNum;//예약 번호
+    private int orderNum;//결제 번호
+    private String orderDate;//결제일
+    private String vehicle;//차량, 도보 선택
+    private int orderPrice;//결제 금액
+    private int reserveStatus;//예약 상태
+    private String statusName;//
 
 }
