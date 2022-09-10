@@ -67,7 +67,7 @@ CREATE TABLE T_ACCOMMODATION (
   regionNum int NOT NULL,       -- 지역
   accomAddress varchar(200) NOT NULL,
   accomRating DECIMAL(2,1) NOT NULL,
-  accomRatingCount int NOT NULL,
+  totalreviewNum int NOT NULL,   -- 숙소의 총 리뷰 수
   latitude decimal(16,14) NOT NULL,	-- 위도
   longitude decimal(17,14) NOT NULL,	-- 경도
   lowPrice int NOT NULL,         -- 숙소의 모든 객실중에서 가장 낮은 가격
@@ -141,9 +141,7 @@ CREATE TABLE T_CART (
   memberNum int,
   accomNum int,
   roomNum int,
-  reserveStartDate datetime NOT NULL,
-  reserveEndDate datetime NOT NULL,
-  accomPrice int NOT NULL,
+  price int NOT NULL,
   CONSTRAINT FK_11 FOREIGN KEY (memberNum) REFERENCES T_MEMBER(memberNum)on delete cascade,
   CONSTRAINT FK_12 FOREIGN KEY (accomNum) REFERENCES T_ACCOMMODATION(accomNum)on delete cascade,
   CONSTRAINT FK_13 FOREIGN KEY (roomNum) REFERENCES T_ROOM(roomNum)on delete cascade
@@ -174,8 +172,8 @@ CREATE TABLE T_WISHLIST (
 
 -- 예약 상태
 CREATE TABLE T_RESERVATION_STATE (
-  reserveStatus int PRIMARY KEY,      --@@@
-  statusName varchar(20)      --@@@
+  reserveStatus int PRIMARY KEY,
+  orderStatus varchar(20)
 );
 -- 상태는 아마 3개정도? 뿐이겠지만 이렇게 나눠 놓는 게 추후에 상태가 추가 되면 더 구현에 좋을 것 같아서 테이블로 만들었습니다.
 
@@ -187,9 +185,9 @@ CREATE TABLE T_RESERVATION (
   reserveNum int PRIMARY KEY,
   orderNum int NOT NULL,
   orderDate datetime NOT NULL,
-  roomName varchar(50) NOT NULL,      --@@@
-  useStartDate datetime NOT NULL,      --@@@
-  useEndDate datetime NOT NULL,      --@@@
+  roomName varchar(50) NOT NULL,
+  useStartDate datetime NOT NULL,
+  useEndDate datetime NOT NULL,
   vehicle varchar(10) NOT NULL,
   price int NOT NULL,
   CONSTRAINT FK_16 FOREIGN KEY (memberNum) REFERENCES T_MEMBER(memberNum)on delete cascade,
