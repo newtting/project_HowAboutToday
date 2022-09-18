@@ -38,6 +38,7 @@ import PageAddListing7 from "containers/PageAddListing1/PageAddListing7";
 import PageAddListing8 from "containers/PageAddListing1/PageAddListing8";
 import PageAddListing9 from "containers/PageAddListing1/PageAddListing9";
 import PageAddListing10 from "containers/PageAddListing1/PageAddListing10";
+import PageAddListing11 from "containers/PageAddListing1/PageAddListing11";
 import PageHome2 from "containers/PageHome/PageHome2";
 import ListingRealEstateMapPage from "containers/ListingRealEstatePage/ListingRealEstateMapPage";
 import ListingRealEstatePage from "containers/ListingRealEstatePage/ListingRealEstatePage";
@@ -102,6 +103,8 @@ export const pages: Page[] = [
   { path: "/add-listing-8", component: PageAddListing8 },
   { path: "/add-listing-9", component: PageAddListing9 },
   { path: "/add-listing-10", component: PageAddListing10 },
+  { path: "/add-listing-11", component: PageAddListing11 },
+
   //
   { path: "/contact", component: PageContact },
   { path: "/about", component: PageAbout },

@@ -46,6 +46,7 @@ export interface LocationStates {
   "/add-listing-8"?: {};
   "/add-listing-9"?: {};
   "/add-listing-10"?: {};
+  "/add-listing-11"?: {};
   //
   "/author"?: {};
   "/search"?: {};
