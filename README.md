@@ -11,10 +11,8 @@
 ### 1. Intelli J
 ### 2. Visual Studio Code
 ### 3. JAVA
-### 4. NodeJS
-### 5. SpringBoot
-### 6. React
-### 7. MySql
+### 4. SpringBoot
+### 5. MySql
 
 ## 상세 개발환경
 ### 1. Intelli J
@@ -26,10 +24,7 @@ ver. Lastest(v.1.71 or Higher)
 ### 3. JAVA
 ver. 11
 
-### 4. NodeJS
-ver 16.xx
-
-### 5. SpringBoot
+### 4. SpringBoot
 - Project: Gradle
 - Language: Java
 - Version: 2.7.3
@@ -45,19 +40,7 @@ ver 16.xx
 7. Spring Data JPA SQL
 8. Spring Boot DevTools DEVELOPER TOOLS
 
-### 6. React
-ver. 18.2.0
-#### Dependencies
-1. @testing-library/jest-dom@5.16.5
-2. @testing-library/react@13.4.0
-3. @testing-library/user-event@13.5.0
-4. http-proxy-middleware@2.0.6  <!-- 포트번호 proxy를 위한 미들웨어 -->
-5. react-dom@18.2.0
-6. react-scripts@5.0.1
-7. react@18.2.0
-8. web-vitals@2.1.4   <!-- 성능측정 프로그램 -->
-
-7. MySql
+5. MySql
 ver. Lastest(Version: 8.0 or Higher)
 
 ## 설치 방법
@@ -74,10 +57,7 @@ ver. Lastest(Version: 8.0 or Higher)
 ### 3. 스프링부트 설치
 깃허브 Clone
 
-### 4. 노드 설치
-[설치](https://nodejs.org/ko/)
-
-### 5. VScode 설치
+### 4. VScode 설치
 [설치](https://code.visualstudio.com/)
 
 ## 실행방법
