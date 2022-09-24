@@ -19,18 +19,19 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'mysql:mysql-connector-java'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' //JPA
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' //Spring OAuth2 Client
+	implementation 'org.springframework.boot:spring-boot-starter-security' //Spring Security
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5' //Thymeleaf Spring Security
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' //Thymeleaf
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect' //Thymeleaf Layout
+	implementation 'org.springframework.boot:spring-boot-starter-web' //Web
+	compileOnly 'org.projectlombok:lombok' //Lombok
+	annotationProcessor 'org.projectlombok:lombok' //Lombok
+	developmentOnly 'org.springframework.boot:spring-boot-devtools' //Devtools
+	runtimeOnly 'mysql:mysql-connector-java' //mySQL
+	testImplementation 'org.springframework.boot:spring-boot-starter-test' //SpringBoot Starter Test
+	testImplementation 'org.springframework.security:spring-security-test' //Spring Security Test
 
 
 	//오라클로 테스트 하기 위한 dependencies
