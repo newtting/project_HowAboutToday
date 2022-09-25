@@ -92,11 +92,11 @@ public class AccomController {
 
     @GetMapping("hotel-single")
     public String getHotelSingle(){
-        return " hotel-single";
+        return "hotel-single";
     }
     @PostMapping("hotel-single")
     public String postHotelSingle(){
-        return " hotel-single";
+        return "hotel-single";
     }
 
     @GetMapping("index")
