@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class AccomController {
 
-    @GetMapping("about")
-    public String getAbout(){
-        return "about";
+    @GetMapping("home")
+    public String getIndex2(){
+        return "index2";
     }
-    @PostMapping("about")
-    public String postAbout(){
-        return "about";
+    @PostMapping("home")
+    public String postIndex2(){
+        return "index2";
     }
 
     @GetMapping("add-hotel")
@@ -32,6 +32,7 @@ public class AccomController {
         return "cart";
     }
     @PostMapping("cart")
+
     public String postCart(){
         return "cart";
     }
@@ -97,15 +98,6 @@ public class AccomController {
     @PostMapping("hotel-single")
     public String postHotelSingle(){
         return "hotel-single";
-    }
-
-    @GetMapping("index")
-    public String getIndex(){
-        return "index";
-    }
-    @PostMapping("index")
-    public String postIndex(){
-        return "index";
     }
 
     @GetMapping("payment-complete")

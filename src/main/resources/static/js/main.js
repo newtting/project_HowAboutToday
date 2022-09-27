@@ -77,7 +77,7 @@ Author Email:   contact@tecydevs.com
 
 
         /* ======= Preloader ======= */
-        preloader.delay('500').fadeOut(2000);
+        preloader.delay('0').fadeOut(0);
 
         /*=========== Header top bar menu ============*/
         $document.on('click', '.down-button', function () {
