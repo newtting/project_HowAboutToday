@@ -9,6 +9,42 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class Memberontroller {
 
+    @GetMapping("about")
+    public String getAbout(){
+        return "about";
+    }
+    @PostMapping("about")
+    public String postAbout(){
+        return "about";
+    }
+
+    @GetMapping("blog-grid")
+    public String getBlogGrid(){
+        return "blog-grid";
+    }
+    @PostMapping("blog-grid")
+    public String postBlogGrid(){
+        return "blog-grid";
+    }
+
+    @GetMapping("faq")
+    public String getFaq(){
+        return "faq";
+    }
+    @PostMapping("faq")
+    public String postFaq(){
+        return "faq";
+    }
+
+    @GetMapping("contact")
+    public String getContact(){
+        return "contact";
+    }
+    @PostMapping("contact")
+    public String postContact(){
+        return "contact";
+    }
+
     @GetMapping("user-dashboard")
     public String getUserDashboard(){
         return "user-dashboard";
