@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.dto;
+package com.phoenix.howabouttoday.board.dto;
 
 public class ReplyWriteDTO {
 

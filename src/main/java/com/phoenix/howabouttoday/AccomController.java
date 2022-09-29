@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.controller;
+package com.phoenix.howabouttoday;
 
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.dto;
+package com.phoenix.howabouttoday.reserve.dto;
 
 public class ReservationDTO {
 

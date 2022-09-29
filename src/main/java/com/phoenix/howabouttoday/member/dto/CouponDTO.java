@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.dto;
+package com.phoenix.howabouttoday.member.dto;
 
 public class CouponDTO {
 
