@@ -1,6 +1,6 @@
-package com.phoenix.howabouttoday.dto;
+package com.phoenix.howabouttoday.board.dto;
 
-public class ReviewUpdateDTO {
+public class ReviewWriteDTO {
 
     private int reviewNum;//리뷰 번호
     private double reviewRating;//리뷰 평점

@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.dto;
+package com.phoenix.howabouttoday.accom.dto;
 
 public class AccommodationDTO {
 
