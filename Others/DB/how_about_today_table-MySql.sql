@@ -97,7 +97,7 @@ CREATE TABLE T_ROOM (
   weekdayDiscount int NOT NULL,
   weekendPrice int NOT NULL,
   weekendDiscount int NOT NULL,
-  restStartTime datetime NOT NULL,
+  restStartTime datetime NOT NULL,other
   restEndTime datetime NOT NULL,
   roomInfo varchar(1000) NOT NULL,
   CONSTRAINT FK_26 FOREIGN KEY (accomNum) REFERENCES T_ACCOMMODATION(accomNum)on delete cascade
