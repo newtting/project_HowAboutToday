@@ -48,11 +48,11 @@ public class AccomController {
 
     @GetMapping("hotel-booking")
     public String getHotelBooking(){
-        return "hotel-booking";
+        return "hotel/hotel-booking";
     }
     @PostMapping("hotel-booking")
     public String postHotelBooking(){
-        return "hotel-booking";
+        return "hotel/hotel-booking";
     }
 
     @GetMapping("hotel-grid")
@@ -91,11 +91,11 @@ public class AccomController {
         return "hotel/hotel-sidebar";
     }
 
-    @GetMapping("hotel/hotel-single")
+    @GetMapping("hotel-single")
     public String getHotelSingle(){
         return "hotel/hotel-single";
     }
-    @PostMapping("hotel/hotel-single")
+    @PostMapping("hotel-single")
     public String postHotelSingle(){
         return "hotel/hotel-single";
     }
@@ -147,11 +147,11 @@ public class AccomController {
 
     @GetMapping("room-list")
     public String getRoomList(){
-        return "room-list";
+        return "room/room-list";
     }
     @PostMapping("room-list")
     public String postRoomList(){
-        return "room-list";
+        return "room/room-list";
     }
 
     @GetMapping("room-search-result")
