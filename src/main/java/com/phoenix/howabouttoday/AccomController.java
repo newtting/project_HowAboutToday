@@ -64,11 +64,11 @@ public class AccomController {
         return "hotel-grid";
     }
 
-    @GetMapping("hotel/hotel-list")
+    @GetMapping("hotel-list")
     public String getHotelList(){
         return "hotel/hotel-list";
     }
-    @PostMapping("hotel/hotel-list")
+    @PostMapping("hotel-list")
     public String postHotelList(){
         return "hotel/hotel-list";
     }
