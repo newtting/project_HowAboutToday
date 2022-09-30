@@ -64,13 +64,13 @@ public class AccomController {
         return "hotel-grid";
     }
 
-    @GetMapping("hotel-list")
+    @GetMapping("hotel/hotel-list")
     public String getHotelList(){
-        return "hotel-list";
+        return "hotel/hotel-list";
     }
-    @PostMapping("hotel-list")
+    @PostMapping("hotel/hotel-list")
     public String postHotelList(){
-        return "hotel-list";
+        return "hotel/hotel-list";
     }
 
     @GetMapping("hotel-search-result")
@@ -82,22 +82,22 @@ public class AccomController {
         return "hotel-search-result";
     }
 
-    @GetMapping("hotel-sidebar")
+    @GetMapping("hotel/hotel-sidebar")
     public String getHotelSidebar(){
-        return "hotel-sidebar";
+        return "hotel/hotel-sidebar";
     }
-    @PostMapping("hotel-sidebar")
+    @PostMapping("hotel/hotel-sidebar")
     public String postHotelSidebar(){
-        return "hotel-sidebar";
+        return "hotel/hotel-sidebar";
     }
 
-    @GetMapping("hotel-single")
+    @GetMapping("hotel/hotel-single")
     public String getHotelSingle(){
-        return "hotel-single";
+        return "hotel/hotel-single";
     }
-    @PostMapping("hotel-single")
+    @PostMapping("hotel/hotel-single")
     public String postHotelSingle(){
-        return "hotel-single";
+        return "hotel/hotel-single";
     }
 
     @GetMapping("payment-complete")
