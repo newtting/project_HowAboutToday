@@ -24,17 +24,21 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
        	
     	//인증되지 않은 모든 요청을 허락
-    	http.authorizeRequests().antMatchers("/**").permitAll()
-    	.and()
-    	.csrf().ignoringAntMatchers("/**")
-    	.disable().headers().frameOptions().disable();
-
+    	http
+			.authorizeRequests()
+				.antMatchers("/").hasRole("MEMBER")
+				.antMatchers("/**").permitAll()
+			.and()
+				.csrf()
+//					.ignoringAntMatchers("/**") // 특정 경로만 csrf token 검사 제외
+					.disable() // csrf 사용X
+				.headers().frameOptions().disable()
+			.and()
+				.formLogin()
+					.loginPage("/home");
    
         return http.build();
     }
-	
-	
-
 
 }
 
