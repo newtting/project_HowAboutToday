@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
-public class Memberontroller {
+public class MemberController {
 
     @GetMapping("recover")
     public String getRecover(){
@@ -63,13 +63,5 @@ public class Memberontroller {
         return "member/userdashboard/user-dashboard-settings";
     }
 
-    @GetMapping("user-dashboard-wishlist")
-    public String getUserDashboardWishList() {
-        return "member/userdashboard/user-dashboard-wishlist";
-    }
-    @PostMapping("user-dashboard-wishlist")
-    public String postUserDashboardWishList() {
-        return "member/userdashboard/user-dashboard-wishlist";
-    }
 
 }

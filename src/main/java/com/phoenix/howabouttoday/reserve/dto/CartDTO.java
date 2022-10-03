@@ -1,5 +1,8 @@
 package com.phoenix.howabouttoday.reserve.dto;
 
+import lombok.Data;
+
+@Data
 public class CartDTO {
 
     private String reserveStartDate;//예약 시작일

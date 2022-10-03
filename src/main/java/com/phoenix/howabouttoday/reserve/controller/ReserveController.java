@@ -9,15 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class ReserveController {
 
-    @GetMapping("cart")
-    public String getCart(){
-        return "reserve/cart";
-    }
-    @PostMapping("cart")
-    public String postCart(){
-        return "reserve/cart";
-    }
-
     @GetMapping("hotel-booking")
     public String getHotelBooking(){
         return "reserve/hotel-booking";
