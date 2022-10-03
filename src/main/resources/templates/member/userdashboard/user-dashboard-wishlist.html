@@ -25,13 +25,13 @@
         </div>
         <div class="sidebar-menu-wrap">
             <ul class="sidebar-menu list-items">
-                <li><a href="/user-dashboard"><i class="la la-dashboard mr-2 text-color"></i>[[대시보드]]</a></li>
-                <li><a href="/user-dashboard-booking"><i class="la la-shopping-cart mr-2 text-color-2"></i>[[|나의 결제내역|]]</a></li>
-                <li><a href="/user-dashboard-profile"><i class="la la-user mr-2 text-color-3"></i>[[|나의 정보|]]</a></li>
-                <li><a href="/user-dashboard-reviews"><i class="la la-star mr-2 text-color-4"></i>[[|나의 리뷰|]]</a></li>
-                <li class="page-active"><a href="/user-dashboard-wishlist"><i class="la la-heart mr-2"></i>[[|위시 리스트|]]</a></li>
-                <li><a href="/user-dashboard-settings"><i class="la la-cog mr-2 text-color-5"></i>[[|정보 수정|]]</a></li>
-                <li><a href="/home"><i class="la la-power-off mr-2 text-color-6"></i>[[로그아웃]]</a></li>
+                <li><a th:href="@{/user-dashboard}" href="/user-dashboard.html"><i class="la la-dashboard mr-2 text-color"></i>[[대시보드]]</a></li>
+                <li><a th:href="@{/user-dashboard-booking}" href="/user-dashboard-booking.html"><i class="la la-shopping-cart mr-2 text-color-2"></i>[[|나의 결제내역|]]</a></li>
+                <li><a th:href="@{/user-dashboard-profile}" href="/user-dashboard-profile.html"><i class="la la-user mr-2 text-color-3"></i>[[|나의 정보|]]</a></li>
+                <li><a th:href="@{/user-dashboard-reviews}" href="/user-dashboard-reviews.html"><i class="la la-star mr-2 text-color-4"></i>[[|나의 리뷰|]]</a></li>
+                <li class="page-active"><a th:href="@{/user-dashboard-wishlist}" href="/user-dashboard-wishlist.html"><i class="la la-heart mr-2"></i>[[|위시 리스트|]]</a></li>
+                <li><a th:href="@{/user-dashboard-settings}" href="/user-dashboard-settings.html"><i class="la la-cog mr-2 text-color-5"></i>[[|정보 수정|]]</a></li>
+                <li><a th:href="@{/home}" href="/home"><i class="la la-power-off mr-2 text-color-6"></i>[[로그아웃]]</a></li>
             </ul>
         </div><!-- end sidebar-menu-wrap -->
     </div>
@@ -52,7 +52,7 @@
                 <div class="col-lg-12">
                     <div class="menu-wrapper">
                         <div class="logo mr-5">
-                            <a href="/home"><img src="images/logo2.png" alt="logo"></a>
+                            <a th:href="@{/home}" href="/home"><img src="images/logo2.png" alt="logo"></a>
                             <div class="menu-toggler">
                                 <i class="la la-bars"></i>
                                 <i class="la la-times"></i>
@@ -121,13 +121,13 @@
                                                     </div><!-- end msg-body -->
                                                 </a>
                                             </div>
-                                            <a href="#" class="dropdown-item drop-reveal-btn text-center">View all</a>
+                                            <a href="#" class="dropdown-item drop-reveal-btn text-center">View all</a> <!-- 알림페이지 이동 -->
                                         </div><!-- end dropdown-menu -->
                                     </div>
                                 </div><!-- end notification-item -->
                                 <div class="notification-item">
                                     <div class="dropdown">
-                                        <a href="#" class="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a href="#" class="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <!-- 이게뭔지 모르겠네 -->
                                             <div class="d-flex align-items-center">
                                                 <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>
                                                 <span class="font-size-14 font-weight-bold" th:text="아무개님">회원 이름</span>
@@ -138,28 +138,28 @@
                                                 <h6 class="title text-uppercase">환영합니다</h6>
                                             </div>
                                             <div class="list-group drop-reveal-list user-drop-reveal-list">
-                                                <a href="user-dashboard-profile.html" class="list-group-item list-group-item-action">
+                                                <a th:href="@{/user-dashboard-profile}" href="user-dashboard-profile.html" class="list-group-item list-group-item-action">
                                                     <div class="msg-body">
                                                         <div class="msg-content">
                                                             <h3 class="title"><i class="la la-user mr-2"></i>[[|나의 정보|]]</h3>
                                                         </div>
                                                     </div><!-- end msg-body -->
                                                 </a>
-                                                <a href="user-dashboard-booking.html" class="list-group-item list-group-item-action">
+                                                <a th:href="@{/user-dashboard-booking}" href="user-dashboard-booking.html" class="list-group-item list-group-item-action">
                                                     <div class="msg-body">
                                                         <div class="msg-content">
                                                             <h3 class="title"><i class="la la-shopping-cart mr-2"></i>[[|나의 결제내역|]]</h3>
                                                         </div>
                                                     </div><!-- end msg-body -->
                                                 </a>
-                                                <a href="user-dashboard-reviews.html" class="list-group-item list-group-item-action">
+                                                <a th:href="@{/user-dashboard-reviews}" href="user-dashboard-reviews.html" class="list-group-item list-group-item-action">
                                                     <div class="msg-body">
                                                         <div class="msg-content">
                                                             <h3 class="title"><i class="la la-heart mr-2"></i>[[|나의 리뷰|]]</h3>
                                                         </div>
                                                     </div><!-- end msg-body -->
                                                 </a>
-                                                <a href="user-dashboard-settings.html" class="list-group-item list-group-item-action">
+                                                <a th:href="@{/user-dashboard-settings}" href="user-dashboard-settings.html" class="list-group-item list-group-item-action">
                                                     <div class="msg-body">
                                                         <div class="msg-content">
                                                             <h3 class="title"><i class="la la-gear mr-2"></i>[[|정보 수정|]]</h3>
@@ -167,7 +167,7 @@
                                                     </div><!-- end msg-body -->
                                                 </a>
                                                 <div class="section-block"></div>
-                                                <a href="/home" class="list-group-item list-group-item-action">
+                                                <a th:href="@{/home}" href="/home" class="list-group-item list-group-item-action">
                                                     <div class="msg-body">
                                                         <div class="msg-content">
                                                             <h3 class="title"><i class="la la-power-off mr-2"></i>[[|로그 아웃|]]</h3>
@@ -199,7 +199,7 @@
                     <div class="col-lg-6">
                         <div class="breadcrumb-list text-right">
                             <ul class="list-items"><!--뎁스 경로 -->
-                                <li><a href="/home" class="text-white" th:text="'메인'">Home</a></li>
+                                <li><a th:href="@{/home}" href="/home" class="text-white" th:text="'메인'">Home</a></li>
                                 <li th:text="'대시보드 '">Dashboard</li>
                                 <li th:text="'위시 리스트'">My Wishlist</li>
                             </ul>
@@ -222,7 +222,7 @@
                                     <div class="col-lg-4 responsive-column">
                                         <div class="card-item">
                                             <div class="card-img">
-                                                <a href="hotel-single.html" class="d-block">
+                                                <a th:href="@{/hotel-single}" href="hotel-single.html" class="d-block">
                                                     <img src="images/img1.jpg" alt="hotel-img">
                                                 </a>
                                                 <span class="badge" th:text="'오늘어떄 추천!'">베스트셀러 여부</span>
@@ -231,7 +231,7 @@
                                                 </div>
                                             </div>
                                             <div class="card-body">
-                                                <h3 class="card-title"><a href="hotel-single.html" th:text="'영진 호텔'">숙소 이름</a></h3>
+                                                <h3 class="card-title"><a th:href="@{/hotel-single}" href="hotel-single.html" th:text="'영진 호텔'">숙소 이름</a></h3>
                                                 <p class="card-meta" th:text="'강남구 테헤란로 삼원빌딩 4층'" >숙소 주소</p>
                                                 <div class="card-rating">
                                                     <span class="badge text-white" th:text="|4.4/5|">별점 수치</span>
@@ -321,21 +321,21 @@
                 </div><!-- end row -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <nav aria-label="Page navigation example">
+                        <nav aria-label="Page navigation example"> <!--페이징 -->
                             <ul class="pagination">
                                 <li class="page-item">
-                                    <a class="page-link page-link-nav" href="#" aria-label="Previous">
+                                    <a class="page-link page-link-nav" th:href="@{#}" href="#" aria-label="Previous"> <!--이전(페이징) -->
                                         <span aria-hidden="true"><i class="la la-angle-left"></i></span>
                                         <span class="sr-only">Previous</span>
                                     </a>
                                 </li>
                                 <li class="page-item"><a class="page-link page-link-nav" href="#">1</a></li>
                                 <li class="page-item active">
-                                    <a class="page-link page-link-nav" href="#">2 <span class="sr-only">(current)</span></a>
+                                    <a class="page-link page-link-nav" th:href="@{#}" href="#">2 <span class="sr-only">(current)</span></a>
                                 </li>
-                                <li class="page-item"><a class="page-link page-link-nav" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link page-link-nav" href="#">3</a></li> <!-- 다음(페이징) -->
                                 <li class="page-item">
-                                    <a class="page-link page-link-nav" href="#" aria-label="Next">
+                                    <a class="page-link page-link-nav" th:href="@{#}" href="#" aria-label="Next">
                                         <span aria-hidden="true"><i class="la la-angle-right"></i></span>
                                         <span class="sr-only">Next</span>
                                     </a>
