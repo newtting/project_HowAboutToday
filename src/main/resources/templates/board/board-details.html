@@ -144,7 +144,7 @@
 <!--                                        <a href="#">Home <i class="la la-angle-down"></i></a>-->
 <!--                                        <ul class="dropdown-menu-item">-->
 <!--                                            <li><a href="/home">Home - main</a></li>-->
-<!--                                            <li><a href="home.html">Home - Hotel</a></li>-->
+<!--                                            <li><a href="index2.html">Home - Hotel</a></li>-->
 <!--                                            <li><a href="index3.html">Home - Activity</a></li>-->
 <!--                                            <li><a href="index4.html">Home - Car</a></li>-->
 <!--                                            <li><a href="index5.html">Home - Cruise</a></li>-->
@@ -194,7 +194,7 @@
 <!--                                                </li>-->
 <!--                                                <li class="col-lg-3 mega-menu-item">-->
 <!--                                                    <ul>-->
-<!--                                                        <li><a href="board-details.html">career details<span class="badge bg-2 text-white">New</span></a></li>-->
+<!--                                                        <li><a href="career-details.html">career details<span class="badge bg-2 text-white">New</span></a></li>-->
 <!--                                                        <li><a href="user-profile.html">User profile</a></li>-->
 <!--                                                        <li><a href="become-local-expert.html">Become Local Expert</a></li>-->
 <!--                                                        <li><a href="contact.html">contact</a></li>-->
@@ -297,456 +297,122 @@
 <!-- ================================
     START BREADCRUMB AREA
 ================================= -->
-<section class="breadcrumb-area bread-bg-10">
-    <div class="breadcrumb-wrap">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-content text-center">
-                        <div class="section-heading">
-                            <h2 class="sec__title text-white">Room Search Result</h2>
-                        </div>
-                        <span class="arrow-blink">
-                            <i class="la la-arrow-down"></i>
-                        </span>
-                    </div><!-- end breadcrumb-content -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end breadcrumb-wrap -->
-    <div class="bread-svg-box">
-        <svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100 0 50 10 0 0 0 10 100 10"></polygon></svg>
-    </div><!-- end bread-svg -->
-</section><!-- end breadcrumb-area -->
+    <section class="breadcrumb-area breadcrumb-board">
+        <div class="breadcrumb-wrap">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-content text-center">
+                            <div class="section-heading">
+                                <h2 th:if="${(#request.getRequestURI).equals('/notice-details')}"
+                                    class="sec__title text-white">NOTICE</h2>
+                                <h2 th:if="${(#request.getRequestURI).equals('/event-details')}"
+                                    class="sec__title text-white">EVENT</h2>
+                                <h2 th:if="${(#request.getRequestURI).equals('/about-details')}"
+                                    class="sec__title text-white">ABOUT</h2>
+                            </div>
+                        </div><!-- end breadcrumb-content -->
+                    </div><!-- end col-lg-6 -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end breadcrumb-wrap -->
+        <div class="bread-svg-box">
+            <svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100 0 50 10 0 0 0 10 100 10"></polygon></svg>
+        </div><!-- end bread-svg -->
+    </section><!-- end breadcrumb-area -->
 <!-- ================================
     END BREADCRUMB AREA
 ================================= -->
 
 <!-- ================================
-    START CARD AREA
+    START JOB-DETAILS AREA
 ================================= -->
-<section class="card-area section--padding">
+<section class="job-details-area section--padding">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="filter-wrap margin-bottom-30px">
-                    <div class="filter-bar d-flex align-items-center justify-content-between">
-                        <div class="filter-bar-filter d-flex flex-wrap align-items-center">
-                            <div class="filter-option mr-5">
-                                <h3 class="title font-size-16">Result</h3>
-                            </div>
-                            <div class="filter-option mr-5">
-                                <h3 class="title font-size-16"><i class="la la-clock-o mr-1"></i>Date: <span class="text-color ml-2">04/28/2020 - 05/3/2020</span></h3>
-                            </div>
-                            <div class="filter-option mr-5">
-                                <h3 class="title font-size-16"><i class="la la-user mr-1"></i>Adults: <span class="text-color ml-2">1</span></h3>
-                            </div>
-                             <div class="filter-option mr-5">
-                                <h3 class="title font-size-16"><i class="la la-user mr-1"></i>Children: <span class="text-color ml-2">1</span></h3>
-                            </div>
-                        </div><!-- end filter-bar-filter -->
-                        <div class="btn-box">
-                            <a href="#" class="theme-btn theme-btn-transparent" data-toggle="modal" data-target="#modifyPopupForm">Modify</a>
-                        </div><!-- end btn-box -->
-                    </div><!-- end filter-bar -->
-                </div><!-- end filter-wrap -->
-            </div><!-- end col-lg-12 -->
-        </div><!-- end row -->
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="card-item room-card">
-                    <div class="card-img-carousel carousel-action carousel--action">
-                        <div class="card-img">
-                            <a href="room-details.html" class="d-block">
-                                <img src="images/img5.jpg" alt="hotel-img">
-                            </a>
+        <div class="row hwt-row-board">
+            <div class="col-lg-8 col-board">
+                <div class="form-box">
+                    <div class="form-title-wrap">
+                        <div class="author-bio">
+                            <th:block th:if="${(#request.getRequestURI).equals('/notice-details')}">
+                                <h3 class="title hwt-details-bold">오늘어때 서비스 정기점검 안내</h3></th:block>
+                            <h3 th:if="${(#request.getRequestURI).equals('/event-details')}"
+                                class="title hwt-details-bold">무이자 할부 카드로 결제 시 최대 8개월 무이자 혜택</h3>
+                            <h3 th:if="${(#request.getRequestURI).equals('/about-details')}"
+                                class="title hwt-details-bold">이용약관</h3>
                         </div>
-                         <div class="card-img">
-                            <a href="room-details.html" class="d-block">
-                                <img src="images/img29.jpg" alt="hotel-img">
-                            </a>
-                        </div>
-                         <div class="card-img">
-                            <a href="room-details.html" class="d-block">
-                                <img src="images/img30.jpg" alt="hotel-img">
+                        <div class="hwt-board-date">
+                            <th:block th:if="${(#request.getRequestURI).equals('/notice-details')}">
+                                <p>2022.10.01</p></th:block>
+                            <a th:if="${(#request.getRequestURI).equals('/event-details')}"
+                               href="event-details" class="author__title">
+                                <p>기간</p>
+                                <p>2022.10.01 - 2022.10.31</p>
                             </a>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="card-price pb-2">
+
+                    </div><!-- form-title-wrap -->
+                    <div class="form-content contact-form-action hwt-details-content">
+                        <th:block th:if="${(#request.getRequestURI).equals('/notice-details')}">
+                            <p>안녕하세요. 오늘어때입니다.</p>
+                            <p class="pb-4">더욱 안정적인 서비스 제공을 위한 정기점검을 안내드립니다.</p>
+                            <p class="hwt-details-bold pb-2">점검일시 안내</p>
+                            <p class="pb-4">▶ 2022년 10월 10일(월) 오전 3:00~10:00 (약 4시간 00분)</p>
+                            <p class="hwt-details-bold pb-2">점검범위 안내</p>
+                            <p>▶ 오늘어때 PC 웹페이지 서비스 전체 사용 불가</p>
+                            <p class="pb-2">서비스 이용에 불편을 드려 죄송합니다.</p>
+                            <p class="pb-2">빠른 점검과 안정된 서비스로 찾아 뵙겠습니다.</p>
+                            <p class="pb-4">감사합니다.</p>
+                        </th:block>
+                        <th:block th:if="${(#request.getRequestURI).equals('/event-details')}">
                             <p>
-                                <span class="price__from">From</span>
-                                <span class="price__num">$88.00</span>
+                                <img src="http://yaimg.yanolja.com/v5/2022/09/30/16/1280/63371d707b4757.65296788.png"><br>
+                                <img src="http://yaimg.yanolja.com/v5/2022/09/30/16/1280/63371d72a38ff8.58761767.png"><br>
+                                <img src="http://yaimg.yanolja.com/v5/2022/09/30/16/1280/63371d73393e14.46332604.png"><br>
+                                <a href="/around" target="_self">
+                                    <img src="http://yaimg.yanolja.com/v5/2022/09/30/16/1280/63371d73d19002.23894093.png">
+                                </a><br>
+                                <img src="http://yaimg.yanolja.com/v5/2022/09/30/16/1280/63371d742f9bd4.64446812.png"><br>
+                                <img src="http://yaimg.yanolja.com/v5/2022/09/30/16/1280/63371d74754f81.80205357.png"><br>
                             </p>
-                        </div>
-                        <h3 class="card-title font-size-26"><a href="room-details.html">Premium Lake View Room</a></h3>
-                        <p class="card-text pt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores commodi deleniti hic inventore laboriosam laborum molestias, non odit quaerat! Aperiam culpa facilis fuga impedit.</p>
-                        <div class="card-attributes pt-3 pb-4">
-                            <ul class="d-flex align-items-center">
-                                <li class="d-flex align-items-center"><i class="la la-bed"></i><span>2 Beds</span></li>
-                                <li class="d-flex align-items-center"><i class="la la-building"></i><span>24 ft<sup>2</sup></span></li>
-                                <li class="d-flex align-items-center"><i class="la la-bathtub"></i><span>2 Bathrooms</span></li>
-                            </ul>
-                        </div>
-                        <div class="card-btn">
-                            <a href="room-details.html" class="theme-btn theme-btn-transparent">Book Now</a>
-                        </div>
-                    </div>
-                </div><!-- end card-item -->
-                <div class="card-item room-card">
-                    <div class="card-img-carousel carousel-action carousel--action">
-                        <div class="card-img">
-                            <a href="room-details.html" class="d-block">
-                                <img src="images/img31.jpg" alt="hotel-img">
-                            </a>
-                        </div>
-                        <div class="card-img">
-                            <a href="room-details.html" class="d-block">
-                                <img src="images/img32.jpg" alt="hotel-img">
-                            </a>
-                        </div>
-                        <div class="card-img">
-                            <a href="room-details.html" class="d-block">
-                                <img src="images/img33.jpg" alt="hotel-img">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-price pb-2">
-                            <p>
-                                <span class="price__from">From</span>
-                                <span class="price__num">$45.00</span>
+                        </th:block>
+                        <th:block th:if="${(#request.getRequestURI).equals('/about-details')}">
+                            <p class="hwt-details-bold pb-2">제1장 총 칙</p>
+                            <p>제1조 (목적)</p>
+                            <p class="pb-4">이 약관(이하 “약관”이라 합니다)은 ㈜야놀자(이하 “회사”라 합니다)와 이용 고객(이하 “회원”이라 합니다)간에 회사가 제공하는 서비스(이하 “서비스”라 합니다)를 이용함에 있어 회원과 회사간의 권리, 의무 및 책임사항, 이용조건 및 절차 등 기본적인 사항을 규정함을 목적으로 합니다.
                             </p>
-                        </div>
-                        <h3 class="card-title font-size-26"><a href="room-details.html">Standard 2 Bed Male Dorm</a></h3>
-                        <p class="card-text pt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores commodi deleniti hic inventore laboriosam laborum molestias, non odit quaerat! Aperiam culpa facilis fuga impedit.</p>
-                        <div class="card-attributes pt-3 pb-4">
-                            <ul class="d-flex align-items-center">
-                                <li class="d-flex align-items-center"><i class="la la-bed"></i><span>2 Beds</span></li>
-                                <li class="d-flex align-items-center"><i class="la la-building"></i><span>24 ft<sup>2</sup></span></li>
-                                <li class="d-flex align-items-center"><i class="la la-bathtub"></i><span>2 Bathrooms</span></li>
-                            </ul>
-                        </div>
-                        <div class="card-btn">
-                            <a href="room-details.html" class="theme-btn theme-btn-transparent">Book Now</a>
-                        </div>
-                    </div>
-                </div><!-- end card-item -->
-                <div class="card-item room-card">
-                    <div class="card-img-carousel carousel-action carousel--action">
-                        <div class="card-img">
-                            <a href="room-details.html" class="d-block">
-                                <img src="images/img33.jpg" alt="hotel-img">
-                            </a>
-                        </div>
-                        <div class="card-img">
-                            <a href="room-details.html" class="d-block">
-                                <img src="images/img32.jpg" alt="hotel-img">
-                            </a>
-                        </div>
-                        <div class="card-img">
-                            <a href="room-details.html" class="d-block">
-                                <img src="images/img31.jpg" alt="hotel-img">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-price pb-2">
-                            <p>
-                                <span class="price__from">From</span>
-                                <span class="price__num">$145.00</span>
+                            <p class="hwt-details-bold pb-2">제2조 (용어의 정의)</p>
+                            <p class="pb-4">본 약관에서 사용되는 용어의 정의는 다음과 같습니다.</p>
+                            <p class="pb-2">(1) “서비스” : 회사가 제공하는 여가(숙박∙레저∙티켓∙클래스 등으로 이에 한정되지 않음) 관련 상품∙용역∙서비스 등(이하 “상품등”이라 합니다)에 대한 예약∙구매∙정보제공∙추천 등을 위한 온라인 플랫폼 서비스를 의미합니다. 서비스는 구현되는 장치나 단말기(PC, TV, 휴대형 단말기 등의 각종 유무선 장치를 포함하며 이에 한정되지 않음)와 상관 없이 야놀자 및 야놀자 관련 웹(Web)∙앱(App) 등의 제반 서비스를 의미하며, 회사가 공개한 API를 이용하여 제3자가 개발 또는 구축한 프로그램이나 서비스를 통하여 이용자에게 제공되는 경우를 포함합니다. 서비스는 여가 문화가 변하고 기술이 발전함에 따라 지속적으로 함께 변화∙성장해 나갑니다.
                             </p>
-                        </div>
-                        <h3 class="card-title font-size-26"><a href="room-details.html">Deluxe King Bed Private</a></h3>
-                        <p class="card-text pt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores commodi deleniti hic inventore laboriosam laborum molestias, non odit quaerat! Aperiam culpa facilis fuga impedit.</p>
-                        <div class="card-attributes pt-3 pb-4">
-                            <ul class="d-flex align-items-center">
-                                <li class="d-flex align-items-center"><i class="la la-bed"></i><span>2 Beds</span></li>
-                                <li class="d-flex align-items-center"><i class="la la-building"></i><span>24 ft<sup>2</sup></span></li>
-                                <li class="d-flex align-items-center"><i class="la la-bathtub"></i><span>2 Bathrooms</span></li>
-                            </ul>
-                        </div>
-                        <div class="card-btn">
-                            <a href="room-details.html" class="theme-btn theme-btn-transparent">Book Now</a>
-                        </div>
-                    </div>
-                </div><!-- end card-item -->
-                <div class="card-item room-card">
-                    <div class="card-img-carousel carousel-action carousel--action">
-                        <div class="card-img">
-                            <a href="room-details.html" class="d-block">
-                                <img src="images/img32.jpg" alt="hotel-img">
-                            </a>
-                        </div>
-                        <div class="card-img">
-                            <a href="room-details.html" class="d-block">
-                                <img src="images/img33.jpg" alt="hotel-img">
-                            </a>
-                        </div>
-                        <div class="card-img">
-                            <a href="room-details.html" class="d-block">
-                                <img src="images/img31.jpg" alt="hotel-img">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-price pb-2">
-                            <p>
-                                <span class="price__from">From</span>
-                                <span class="price__num">$145.00</span>
+                            <p class="pb-2">(2) “회원” : 서비스에 접속하여 본 약관에 따라 회사와 이용계약을 체결하고 회사가 제공하는 서비스를 이용하는 고객을 말하며, 회원계정(ID/PW)을 생성하지 않은 일반 고객(일명 비회원 고객)도 포함됩니다.
                             </p>
-                        </div>
-                        <h3 class="card-title font-size-26"><a href="room-details.html">Premium Lake View Suite</a></h3>
-                        <p class="card-text pt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores commodi deleniti hic inventore laboriosam laborum molestias, non odit quaerat! Aperiam culpa facilis fuga impedit.</p>
-                        <div class="card-attributes pt-3 pb-4">
-                            <ul class="d-flex align-items-center">
-                                <li class="d-flex align-items-center"><i class="la la-bed"></i><span>2 Beds</span></li>
-                                <li class="d-flex align-items-center"><i class="la la-building"></i><span>24 ft<sup>2</sup></span></li>
-                                <li class="d-flex align-items-center"><i class="la la-bathtub"></i><span>2 Bathrooms</span></li>
-                            </ul>
-                        </div>
-                        <div class="card-btn">
-                            <a href="room-details.html" class="theme-btn theme-btn-transparent">Book Now</a>
-                        </div>
-                    </div>
-                </div><!-- end card-item -->
-                <div class="card-item room-card">
-                    <div class="card-img-carousel carousel-action carousel--action">
-                        <div class="card-img">
-                            <a href="room-details.html" class="d-block">
-                                <img src="images/img31.jpg" alt="hotel-img">
-                            </a>
-                        </div>
-                        <div class="card-img">
-                            <a href="room-details.html" class="d-block">
-                                <img src="images/img32.jpg" alt="hotel-img">
-                            </a>
-                        </div>
-                        <div class="card-img">
-                            <a href="room-details.html" class="d-block">
-                                <img src="images/img33.jpg" alt="hotel-img">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-price pb-2">
-                            <p>
-                                <span class="price__from">From</span>
-                                <span class="price__num">$145.00</span>
+                            <p class="pb-2">(3) “판매자” : 회사가 제공하는 서비스를 이용하여 자신의 상품∙용역∙서비스 등을 판매하는 자를 의미하며, 회사로부터 예약∙판매 대행, 광고 서비스 등을 제공받는 자를 말합니다.
                             </p>
+                            <p class="pb-2">(4) “게시물” : 회원 및 이용 고객이 서비스에 게시 또는 등록하는 부호(URL 포함), 문자, 음성, 음향, 영상(동영상 포함), 이미지(사진 포함), 파일 등을 말합니다.
+                            </p>
+                            <p class="pb-4">(5) “쿠폰” : 회원이 서비스를 이용할 때 표시된 금액 또는 비율만큼 이용 금액을 할인 받을 수 있는 할인권∙우대권 등(온라인∙모바일∙오프라인 등 형태를 불문)를 말합니다. 쿠폰의 종류 및 내용은 회사의 정책에 따라 달라질 수 있습니다.
+                            </p>
+                        </th:block>
+                    </div><!-- end form-content -->
+                    <div class="form-bottom-wrap">
+                        <div class="hwt-details-bottom">
+                            <a th:if="${(#request.getRequestURI).equals('/notice-details')}"
+                               href="notice" class="author__title">목록</a>
+                            <a th:if="${(#request.getRequestURI).equals('/event-details')}"
+                               href="event" class="author__title">목록</a>
+                            <a th:if="${(#request.getRequestURI).equals('/about-details')}"
+                               href="about" class="author__title">목록</a>
                         </div>
-                        <h3 class="card-title font-size-26"><a href="room-details.html">Superior Room</a></h3>
-                        <p class="card-text pt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores commodi deleniti hic inventore laboriosam laborum molestias, non odit quaerat! Aperiam culpa facilis fuga impedit.</p>
-                        <div class="card-attributes pt-3 pb-4">
-                            <ul class="d-flex align-items-center">
-                                <li class="d-flex align-items-center"><i class="la la-bed"></i><span>2 Beds</span></li>
-                                <li class="d-flex align-items-center"><i class="la la-building"></i><span>24 ft<sup>2</sup></span></li>
-                                <li class="d-flex align-items-center"><i class="la la-bathtub"></i><span>2 Bathrooms</span></li>
-                            </ul>
-                        </div>
-                        <div class="card-btn">
-                            <a href="room-details.html" class="theme-btn theme-btn-transparent">Book Now</a>
-                        </div>
-                    </div>
-                </div><!-- end card-item -->
+                    </div><!-- form-bottom-wrap -->
+                </div><!-- end form-box -->
             </div><!-- end col-lg-8 -->
-            <div class="col-lg-4">
-                <div class="sidebar single-content-sidebar mt-0 mb-0" id="sidebar">
-                    <div class="sidebar-widget single-content-widget">
-                        <h3 class="title stroke-shape">Check Availability</h3>
-                        <div class="contact-form-action">
-                            <form action="#">
-                                <div class="input-box">
-                                    <label class="label-text">Check-in</label>
-                                    <div class="form-group">
-                                        <span class="la la-calendar form-icon"></span>
-                                        <input class="date-picker-single form-control" type="text" name="daterange-single" readonly>
-                                    </div>
-                                </div>
-                                 <div class="input-box">
-                                    <label class="label-text">Check-out</label>
-                                    <div class="form-group">
-                                        <span class="la la-calendar form-icon"></span>
-                                        <input class="date-picker-single form-control" type="text" name="daterange-single" readonly>
-                                    </div>
-                                </div>
-                                <div class="input-box">
-                                    <label class="label-text">Rooms</label>
-                                    <div class="form-group">
-                                        <div class="select-contain w-auto">
-                                            <select class="select-contain-select">
-                                                <option value="0">Select Rooms</option>
-                                                <option value="1" selected>1 Room</option>
-                                                <option value="2">2 Rooms</option>
-                                                <option value="3">3 Rooms</option>
-                                                <option value="4">4 Rooms</option>
-                                                <option value="5">5 Rooms</option>
-                                                <option value="6">6 Rooms</option>
-                                                <option value="7">7 Rooms</option>
-                                                <option value="8">8 Rooms</option>
-                                                <option value="9">9 Rooms</option>
-                                                <option value="10">10 Rooms</option>
-                                                <option value="11">11 Rooms</option>
-                                                <option value="12">12 Rooms</option>
-                                                <option value="13">13 Rooms</option>
-                                                <option value="14">14 Rooms</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="input-box">
-                                    <label class="label-text">Guests</label>
-                                    <div class="form-group">
-                                        <div class="dropdown dropdown-contain">
-                                            <a class="dropdown-toggle dropdown-btn" href="#" data-toggle="dropdown">
-                                                <span>Total Guests <span class="qtyTotal guestTotal">0</span></span>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-wrap">
-                                                <div class="dropdown-item">
-                                                    <div class="qty-box d-flex align-items-center justify-content-between">
-                                                        <label>Adults</label>
-                                                        <div class="qtyBtn d-flex align-items-center">
-                                                            <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                            <input type="text" name="qtyInput" value="0">
-                                                            <div class="qtyInc"><i class="la la-plus"></i></div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end dropdown-item -->
-                                                <div class="dropdown-item">
-                                                    <div class="qty-box d-flex align-items-center justify-content-between">
-                                                        <label>Children <span>2-12 years old</span></label>
-                                                        <div class="qtyBtn d-flex align-items-center">
-                                                            <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                            <input type="text" name="qtyInput" value="0">
-                                                            <div class="qtyInc"><i class="la la-plus"></i></div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end dropdown-item -->
-                                                 <div class="dropdown-item">
-                                                     <div class="qty-box d-flex align-items-center justify-content-between">
-                                                         <label>Infants <span>0-2 years old</span></label>
-                                                         <div class="qtyBtn d-flex align-items-center">
-                                                             <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                             <input type="text" name="qtyInput" value="0">
-                                                             <div class="qtyInc"><i class="la la-plus"></i></div>
-                                                         </div>
-                                                     </div><!-- end qty-box -->
-                                                </div><!-- end dropdown-item -->
-                                            </div>
-                                        </div><!-- end dropdown -->
-                                    </div>
-                                </div>
-                                <div class="btn-box pt-2">
-                                    <a href="#" class="theme-btn text-center w-100">Check Availability</a>
-                                </div>
-                            </form>
-                        </div>
-                    </div><!-- end sidebar-widget -->
-                </div><!-- end sidebar -->
-            </div><!-- end col-lg-4 -->
-        </div><!-- end row -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="btn-box mt-4 text-center">
-                    <button type="button" class="theme-btn"><i class="la la-refresh mr-1"></i>Load More</button>
-                    <p class="font-size-13 pt-2">Showing 1 - 5 of 124 Rooms</p>
-                </div><!-- end btn-box -->
-            </div><!-- end col-lg-12 -->
         </div><!-- end row -->
     </div><!-- end container -->
-</section><!-- end card-area -->
+</section><!-- end job-details-area -->
 <!-- ================================
-    END CARD AREA
-================================= -->
-
-<div class="section-block"></div>
-
-<!-- ================================
-    START INFO AREA
-================================= -->
-<section class="info-area info-bg padding-top-90px padding-bottom-70px">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 responsive-column">
-                <a href="#" class="icon-box icon-layout-2 d-flex">
-                    <div class="info-icon flex-shrink-0 bg-rgb text-color-2">
-                        <i class="la la-phone"></i>
-                    </div><!-- end info-icon-->
-                    <div class="info-content">
-                        <h4 class="info__title">Need Help? Contact us</h4>
-                        <p class="info__desc">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                        </p>
-                    </div><!-- end info-content -->
-                </a><!-- end icon-box -->
-            </div><!-- end col-lg-4 -->
-            <div class="col-lg-4 responsive-column">
-                <a href="#" class="icon-box icon-layout-2 d-flex">
-                    <div class="info-icon flex-shrink-0 bg-rgb-2 text-color-3">
-                        <i class="la la-money"></i>
-                    </div><!-- end info-icon-->
-                    <div class="info-content">
-                        <h4 class="info__title">Payments</h4>
-                        <p class="info__desc">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                        </p>
-                    </div><!-- end info-content -->
-                </a><!-- end icon-box -->
-            </div><!-- end col-lg-4 -->
-            <div class="col-lg-4 responsive-column">
-                <a href="#" class="icon-box icon-layout-2 d-flex">
-                    <div class="info-icon flex-shrink-0 bg-rgb-3 text-color-4">
-                        <i class="la la-times"></i>
-                    </div><!-- end info-icon-->
-                    <div class="info-content">
-                        <h4 class="info__title">Cancel Policy</h4>
-                        <p class="info__desc">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                        </p>
-                    </div><!-- end info-content -->
-                </a><!-- end icon-box -->
-            </div><!-- end col-lg-4 -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</section><!-- end info-area -->
-<!-- ================================
-    END INFO AREA
-================================= -->
-
-<!-- ================================
-    START CTA AREA
-================================= -->
-<section class="cta-area subscriber-area section-bg-2 padding-top-60px padding-bottom-60px">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-7">
-                <div class="section-heading">
-                    <p class="sec__desc text-white-50 pb-1">Newsletter sign up</p>
-                    <h2 class="sec__title font-size-30 text-white">Subscribe to Get Special Offers</h2>
-                </div><!-- end section-heading -->
-            </div><!-- end col-lg-7 -->
-            <div class="col-lg-5">
-                <div class="subscriber-box">
-                    <div class="contact-form-action">
-                        <form action="#">
-                            <div class="input-box">
-                                <label class="label-text text-white">Enter email address</label>
-                                <div class="form-group mb-0">
-                                    <span class="la la-envelope form-icon"></span>
-                                    <input class="form-control" type="email" name="email" placeholder="Email address">
-                                    <button class="theme-btn theme-btn-small submit-btn" type="submit">Subscribe</button>
-                                    <span class="font-size-14 pt-1 text-white-50"><i class="la la-lock mr-1"></i>Don't worry your information is safe with us.</span>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div><!-- end section-heading -->
-            </div><!-- end col-lg-5 -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</section><!-- end cta-area -->
-<!-- ================================
-    END CTA AREA
+    END JOB-DETAILS AREA
 ================================= -->
 
 <!-- ================================
@@ -783,19 +449,6 @@
 <!--            </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
 <!--            <div class="col-lg-3 responsive-column">-->
 <!--                <div class="footer-item">-->
-<!--                    <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Other Services</h4>-->
-<!--                    <ul class="list-items list&#45;&#45;items">-->
-<!--                        <li><a href="#">Investor Relations</a></li>-->
-<!--                        <li><a href="#">Trizen.com Rewards</a></li>-->
-<!--                        <li><a href="#">Partners</a></li>-->
-<!--                        <li><a href="#">List My Hotel</a></li>-->
-<!--                        <li><a href="#">All Hotels</a></li>-->
-<!--                        <li><a href="#">TV Ads</a></li>-->
-<!--                    </ul>-->
-<!--                </div>&lt;!&ndash; end footer-item &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
-<!--            <div class="col-lg-3 responsive-column">-->
-<!--                <div class="footer-item">-->
 <!--                    <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Other Links</h4>-->
 <!--                    <ul class="list-items list&#45;&#45;items">-->
 <!--                        <li><a href="#">USA Vacation Packages</a></li>-->
@@ -805,6 +458,25 @@
 <!--                        <li><a href="#">Create an Account</a></li>-->
 <!--                        <li><a href="#">Trizen Reviews</a></li>-->
 <!--                    </ul>-->
+<!--                </div>&lt;!&ndash; end footer-item &ndash;&gt;-->
+<!--            </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
+<!--            <div class="col-lg-3 responsive-column">-->
+<!--                <div class="footer-item">-->
+<!--                    <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Subscribe now</h4>-->
+<!--                    <p class="footer__desc pb-3">Subscribe for latest updates & promotions</p>-->
+<!--                    <div class="contact-form-action">-->
+<!--                        <form action="#">-->
+<!--                            <div class="input-box">-->
+<!--                                <label class="label-text">Enter email address</label>-->
+<!--                                <div class="form-group mb-0">-->
+<!--                                    <span class="la la-envelope form-icon"></span>-->
+<!--                                    <input class="form-control" type="email" name="email" placeholder="Email address">-->
+<!--                                    <button class="theme-btn theme-btn-small submit-btn" type="submit">Go</button>-->
+<!--                                    <span class="font-size-14 pt-1"><i class="la la-lock mr-1"></i>Your information is safe with us.</span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                    </div>-->
 <!--                </div>&lt;!&ndash; end footer-item &ndash;&gt;-->
 <!--            </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
 <!--        </div>&lt;!&ndash; end row &ndash;&gt;-->
@@ -987,91 +659,33 @@
 
 <!-- end modal-shared -->
 <div class="modal-popup">
-    <div class="modal fade" id="modifyPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal fade" id="sharePopupForm" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <div>
-                        <h5 class="modal-title title" id="exampleModalLongTitle3">Book Your Stay</h5>
-                    </div>
+                    <h5 class="modal-title title" id="exampleModalLongTitle4">Share this job</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="la la-close"></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="contact-form-action">
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-lg-6 col-sm-6">
-                                    <div class="input-box">
-                                        <label class="label-text">Check in</label>
-                                        <div class="form-group">
-                                            <span class="la la-calendar form-icon"></span>
-                                            <input class="date-picker-single form-control" type="text" name="daterange-single" readonly>
-                                        </div>
-                                    </div>
-                                </div><!-- end col-lg-6 -->
-                                 <div class="col-lg-6 col-sm-6">
-                                    <div class="input-box">
-                                        <label class="label-text">Check out</label>
-                                        <div class="form-group">
-                                            <span class="la la-calendar form-icon"></span>
-                                            <input class="date-picker-single form-control" type="text" name="daterange-single" readonly>
-                                        </div>
-                                    </div>
-                                </div><!-- end col-lg-6 -->
-                                <div class="col-lg-6 col-sm-6">
-                                    <div class="input-box">
-                                        <label class="label-text">Adults</label>
-                                        <div class="form-group">
-                                            <div class="select-contain w-auto">
-                                                <select class="select-contain-select">
-                                                    <option value="0">Select Adult</option>
-                                                    <option value="1" selected>1 Adult</option>
-                                                    <option value="2">2 Adults</option>
-                                                    <option value="3">3 Adults</option>
-                                                    <option value="4">4 Adults</option>
-                                                    <option value="5">5 Adults</option>
-                                                    <option value="6">6 Adults</option>
-                                                    <option value="7">7 Adults</option>
-                                                    <option value="8">8 Adults</option>
-                                                    <option value="9">9 Adults</option>
-                                                    <option value="10">10 Adults</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- end col-lg-6 -->
-                                <div class="col-lg-6 col-sm-6">
-                                    <div class="input-box">
-                                        <label class="label-text">Children</label>
-                                        <div class="form-group">
-                                            <div class="select-contain w-auto">
-                                                <select class="select-contain-select">
-                                                    <option value="0">Select Children</option>
-                                                    <option value="1" selected>1 Children</option>
-                                                    <option value="2">2 Children</option>
-                                                    <option value="3">3 Children</option>
-                                                    <option value="4">4 Children</option>
-                                                    <option value="5">5 Children</option>
-                                                    <option value="6">6 Children</option>
-                                                    <option value="7">7 Children</option>
-                                                    <option value="8">8 Children</option>
-                                                    <option value="9">9 Children</option>
-                                                    <option value="10">10 Children</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- end col-lg-6 -->
-                                <div class="col-lg-12">
-                                    <div class="btn-box pt-3">
-                                        <button type="button" class="theme-btn w-100">Check Availability</button>
-                                    </div>
-                                </div><!-- end col-lg-12 -->
-                            </div><!-- end row -->
-                        </form>
-                    </div><!-- end contact-form-action -->
+                    <div class="copy-to-clipboard-wrap">
+                        <div class="copy-to-clipboard">
+                            <div class="contact-form-action d-flex align-items-center">
+                                <span class="text-success-message">Copied!</span>
+                                <input type="text" class="form-control copy-input" value="https://www.trizen.com/share/101WxMB0oac1hVQQ==/">
+                                <div class="btn-box">
+                                    <button class="theme-btn theme-btn-light copy-text">Copy</button>
+                                </div>
+                            </div>
+                        </div><!-- end copy-to-clipboard -->
+                        <ul class="social-profile text-center">
+                            <li><a href="#"><i class="lab la-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="lab la-twitter"></i></a></li>
+                            <li><a href="#"><i class="lab la-instagram"></i></a></li>
+                            <li><a href="#"><i class="lab la-linkedin-in"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1091,7 +705,7 @@
 <!--<script src="js/jquery.countTo.min.js"></script>-->
 <!--<script src="js/animated-headline.js"></script>-->
 <!--<script src="js/jquery.ripples-min.js"></script>-->
-<!--<script src="js/quantity-input.js"></script>-->
+<!--<script src="js/jquery.multi-file.min.js"></script>-->
 <!--<script src="js/main.js"></script>-->
 <!--</body>-->
 <!--</html>-->

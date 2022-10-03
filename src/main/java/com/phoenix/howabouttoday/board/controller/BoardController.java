@@ -12,21 +12,39 @@ public class BoardController {
     // 공지사항
     @GetMapping("notice")
     public String getNotice(){
-        return "board/notice";
+        return "board/board";
     }
     @PostMapping("notice")
     public String postNotice(){
-        return "board/notice";
+        return "board/board";
+    }
+
+    @GetMapping("notice-details")
+    public String getNoticeDetails(){
+        return "board/board-details";
+    }
+    @PostMapping("notice-details")
+    public String postNoticeDetails(){
+        return "board/board-details";
     }
 
     // 이벤트
     @GetMapping("event")
     public String getEvent(){
-        return "board/event";
+        return "board/board";
     }
     @PostMapping("event")
     public String postEvent(){
-        return "board/event";
+        return "board/board";
+    }
+
+    @GetMapping("event-details")
+    public String getEventDetails(){
+        return "board/board-details";
+    }
+    @PostMapping("event-details")
+    public String postEventDetails(){
+        return "board/board-details";
     }
 
     // 자주 묻는 질문
@@ -57,6 +75,15 @@ public class BoardController {
     @PostMapping("about")
     public String postAbout(){
         return "board/about";
+    }
+
+    @GetMapping("about-details")
+    public String getAboutDetails(){
+        return "board/board-details";
+    }
+    @PostMapping("about-details")
+    public String postAboutDetails(){
+        return "board/board-details";
     }
 
 }
