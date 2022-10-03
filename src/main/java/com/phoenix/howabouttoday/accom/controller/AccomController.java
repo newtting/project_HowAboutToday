@@ -73,6 +73,75 @@ public class AccomController {
         return "accom/hotel/hotel-single";
     }
 
+    @GetMapping("motel-list")
+    public String getMotelList(){
+        return "accom/hotel/motel-list";
+    }
+    @PostMapping("motel-list")
+    public String postMotelList(){
+        return "accom/hotel/motel-list";
+    }
+
+    @GetMapping("motel-search-result")
+    public String getMotelSearchResult(){
+        return "accom/hotel/motel-search-result";
+    }
+    @PostMapping("motel-search-result")
+    public String postMotelSearchResult(){
+        return "accom/hotel/motel-search-result";
+    }
+
+    @GetMapping("motel-single")
+    public String getMotelSingle(){
+        return "accom/hotel/motel-single";
+    }
+    @PostMapping("motel-single")
+    public String postMotelSingle(){
+        return "accom/hotel/motel-single";
+    }
+
+    @GetMapping("pension-PoolVilla-list")
+    public String getPensionPoolVillaList(){
+        return "accom/hotel/pension-PoolVilla-list";
+    }
+    @PostMapping("pension-PoolVilla-list")
+    public String postPensionPoolVillaList(){
+        return "accom/hotel/pension-PoolVilla-list";
+    }
+
+    @GetMapping("pension-PoolVilla-single")
+    public String getPensionPoolVillaSingle(){
+        return "accom/hotel/pension-PoolVilla-single";
+    }
+    @PostMapping("pension-PoolVilla-single")
+    public String postPensionPoolVillaSingle(){
+        return "accom/hotel/pension-PoolVilla-single";
+    }
+
+    @GetMapping("pension-PoolVilla-result")
+    public String getPensionPoolVillaResult(){
+        return "accom/hotel/pension-PoolVilla-result";
+    }
+    @PostMapping("pension-PoolVilla-result")
+    public String postPensionPoolVillaResult(){
+        return "accom/hotel/pension-PoolVilla-result";
+    }
+
+    @GetMapping("guestHouse-Hanok-list")
+    public String getGuestHouseList(){ return "accom/hotel/guestHouse-Hanok-list";}
+    @PostMapping("guestHouse-Hanok-list")
+    public String postGuestHouseList(){ return "accom/hotel/guestHouse-Hanok-list";}
+
+    @GetMapping("guestHouse-Hanok-result")
+    public String getGuestHouseSingle(){ return "accom/hotel/guestHouse-Hanok-result";}
+    @PostMapping("guesthouse-Hanok-result")
+    public String postGuestHouseSingle(){ return "accom/hotel/guestHouse-Hanok-result";}
+
+    @GetMapping("guestHouse-Hanok-single")
+    public String getGuestHouseResult(){ return "accom/hotel/guestHouse-Hanok-single";}
+    @PostMapping("guestHouse-Hanok-single")
+    public String postGuestHouseResult(){ return "accom/hotel/guestHouse-Hanok-single";}
+
     @GetMapping("room-details")
     public String getRoomDetails(){
         return "accom/room/room-details";
