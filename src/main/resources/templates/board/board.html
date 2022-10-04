@@ -14,7 +14,8 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-content text-center">
                         <div class="section-heading">
-                            <h2 class="sec__title text-white">NOTICE</h2>
+                            <h2 th:if="${(#request.getRequestURI).equals('/notice')}" class="sec__title text-white">NOTICE</h2>
+                            <h2 th:if="${(#request.getRequestURI).equals('/event')}" class="sec__title text-white">EVENT</h2>
                         </div>
                     </div><!-- end breadcrumb-content -->
                 </div><!-- end col-lg-6 -->
@@ -35,131 +36,276 @@
 <section class="card-area section--padding">
     <div class="container">
         <div class="row hwt-row-board">
-            <div class="col-lg-4 responsive-column col-board">
-                <div class="card-item blog-card">
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <div class="author-content d-flex hwt-board-title">
-                            <div class="author-bio">
-                                <a href="#" class="author__title">오늘어때 고객센터 이용시간 안내</a>
-                            </div>
-                            <div class="hwt-board-date">
-                                <a href="#" class="author__title">
-                                    <p>2022.10.07</p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="post-share">
-                            <ul>
-                                <li>
-                                    <a href="notice">
-                                        <i class="la la-share icon-element hwt-icon"></i>
+            <th:block th:if="${(#request.getRequestURI).equals('/notice')}">
+                <div class="col-lg-4 responsive-column col-board">
+                    <div class="card-item blog-card">
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="author-content d-flex hwt-board-title">
+                                <div class="author-bio">
+                                    <a href="notice-details" class="author__title">오늘어때 고객센터 이용시간 안내</a>
+                                </div>
+                                <div class="hwt-board-date">
+                                    <a href="notice-details" class="author__title">
+                                        <p>2022.10.07</p>
                                     </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- end card-item -->
-            </div><!-- end col-lg-4 -->
-            <div class="col-lg-4 responsive-column col-board">
-                <div class="card-item blog-card">
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <div class="author-content d-flex hwt-board-title">
-                            <div class="author-bio">
-                                <a href="#" class="author__title">오늘어때 서비스 정기점검 안내</a>
+                                </div>
                             </div>
-                            <div class="hwt-board-date">
-                                <a href="#" class="author__title">
-                                    <p>2022.10.01</p>
-                                </a>
+                            <div class="post-share">
+                                <ul>
+                                    <li>
+                                        <a href="notice-details">
+                                            <i class="la la-share icon-element hwt-icon"></i>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="post-share">
-                            <ul>
-                                <li>
-                                    <a href="notice">
-                                        <i class="la la-share icon-element hwt-icon"></i>
+                    </div><!-- end card-item -->
+                </div><!-- end col-lg-4 -->
+                <div class="col-lg-4 responsive-column col-board">
+                    <div class="card-item blog-card">
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="author-content d-flex hwt-board-title">
+                                <div class="author-bio">
+                                    <a href="notice-details" class="author__title">오늘어때 서비스 정기점검 안내</a>
+                                </div>
+                                <div class="hwt-board-date">
+                                    <a href="notice-details" class="author__title">
+                                        <p>2022.10.01</p>
                                     </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- end card-item -->
-            </div><!-- end col-lg-4 -->
-            <div class="col-lg-4 responsive-column col-board">
-                <div class="card-item blog-card">
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <div class="author-content d-flex hwt-board-title">
-                            <div class="author-bio">
-                                <a href="#" class="author__title">오늘어때 포인트 정책 안내</a>
+                                </div>
                             </div>
-                            <div class="hwt-board-date">
-                                <a href="#" class="author__title">
-                                    <p>2022.09.25</p>
-                                </a>
+                            <div class="post-share">
+                                <ul>
+                                    <li>
+                                        <a href="notice-details">
+                                            <i class="la la-share icon-element hwt-icon"></i>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="post-share">
-                            <ul>
-                                <li>
-                                    <a href="notice">
-                                        <i class="la la-share icon-element hwt-icon"></i>
+                    </div><!-- end card-item -->
+                </div><!-- end col-lg-4 -->
+                <div class="col-lg-4 responsive-column col-board">
+                    <div class="card-item blog-card">
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="author-content d-flex hwt-board-title">
+                                <div class="author-bio">
+                                    <a href="notice-details" class="author__title">오늘어때 포인트 정책 안내</a>
+                                </div>
+                                <div class="hwt-board-date">
+                                    <a href="notice-details" class="author__title">
+                                        <p>2022.09.25</p>
                                     </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- end card-item -->
-            </div><!-- end col-lg-4 -->
-            <div class="col-lg-4 responsive-column col-board">
-                <div class="card-item blog-card">
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <div class="author-content d-flex hwt-board-title">
-                            <div class="author-bio">
-                                <a href="#" class="author__title">오늘어때 서비스 이용약관 안내</a>
+                                </div>
                             </div>
-                            <div class="hwt-board-date">
-                                <a href="#" class="author__title">
-                                    <p>2022.09.21</p>
-                                </a>
+                            <div class="post-share">
+                                <ul>
+                                    <li>
+                                        <a href="notice-details">
+                                            <i class="la la-share icon-element hwt-icon"></i>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="post-share">
-                            <ul>
-                                <li>
-                                    <a href="notice">
-                                        <i class="la la-share icon-element hwt-icon"></i>
+                    </div><!-- end card-item -->
+                </div><!-- end col-lg-4 -->
+                <div class="col-lg-4 responsive-column col-board">
+                    <div class="card-item blog-card">
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="author-content d-flex hwt-board-title">
+                                <div class="author-bio">
+                                    <a href="notice-details" class="author__title">오늘어때 서비스 이용약관 안내</a>
+                                </div>
+                                <div class="hwt-board-date">
+                                    <a href="notice-details" class="author__title">
+                                        <p>2022.09.21</p>
                                     </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- end card-item -->
-            </div><!-- end col-lg-4 -->
-            <div class="col-lg-4 responsive-column col-board">
-                <div class="card-item blog-card">
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <div class="author-content d-flex hwt-board-title">
-                            <div class="author-bio">
-                                <a href="#" class="author__title">오늘어때 개인정보 처리방침 안내</a>
+                                </div>
                             </div>
-                            <div class="hwt-board-date">
-                                <a href="#" class="author__title">
-                                    <p>2022.09.08</p>
-                                </a>
+                            <div class="post-share">
+                                <ul>
+                                    <li>
+                                        <a href="notice-details">
+                                            <i class="la la-share icon-element hwt-icon"></i>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="post-share">
-                            <ul>
-                                <li>
-                                    <a href="notice">
-                                        <i class="la la-share icon-element hwt-icon"></i>
+                    </div><!-- end card-item -->
+                </div><!-- end col-lg-4 -->
+                <div class="col-lg-4 responsive-column col-board">
+                    <div class="card-item blog-card">
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="author-content d-flex hwt-board-title">
+                                <div class="author-bio">
+                                    <a href="notice-details" class="author__title">오늘어때 개인정보 처리방침 안내</a>
+                                </div>
+                                <div class="hwt-board-date">
+                                    <a href="notice-details" class="author__title">
+                                        <p>2022.09.08</p>
                                     </a>
-                                </li>
-                            </ul>
+                                </div>
+                            </div>
+                            <div class="post-share">
+                                <ul>
+                                    <li>
+                                        <a href="notice-details">
+                                            <i class="la la-share icon-element hwt-icon"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </div><!-- end card-item -->
-            </div><!-- end col-lg-4 -->
+                    </div><!-- end card-item -->
+                </div><!-- end col-lg-4 -->
+            </th:block>
+
+            <th:block th:if="${(#request.getRequestURI).equals('/event')}">
+                <div class="col-lg-4 responsive-column col-board">
+                    <div class="card-item blog-card">
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="author-content d-flex hwt-board-title">
+                                <div class="author-bio">
+                                    <a href="event-details" class="author__title">
+                                        <p>무이자 할부 카드로 결제 시 최대 8개월 무이자 혜택</p>
+                                    </a>
+                                </div>
+                                <div class="hwt-board-date">
+                                    <a href="event-details" class="author__title">
+                                        <p>기간</p>
+                                        <p>2022.10.01 - 2022.10.31</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="post-share">
+                                <ul>
+                                    <li>
+                                        <a href="event-details">
+                                            <i class="la la-share icon-element hwt-icon"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- end card-item -->
+                </div><!-- end col-lg-4 -->
+                <div class="col-lg-4 responsive-column col-board">
+                    <div class="card-item blog-card">
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="author-content d-flex hwt-board-title">
+                                <div class="author-bio">
+                                    <a href="event-details" class="author__title">
+                                        <p>결제시 확인 필수! 10월 제휴 할인 혜택 모음</p>
+                                    </a>
+                                </div>
+                                <div class="hwt-board-date">
+                                    <a href="event-details" class="author__title">
+                                        <p>기간</p>
+                                        <p>2022.10.01 - 2022.10.31</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="post-share">
+                                <ul>
+                                    <li>
+                                        <a href="event-details">
+                                            <i class="la la-share icon-element hwt-icon"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- end card-item -->
+                </div><!-- end col-lg-4 -->
+                <div class="col-lg-4 responsive-column col-board">
+                    <div class="card-item blog-card">
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="author-content d-flex hwt-board-title">
+                                <div class="author-bio">
+                                    <a href="event-details" class="author__title">
+                                        <p>오늘어때 ESG 캠페인</p>
+                                    </a>
+                                </div>
+                                <div class="hwt-board-date">
+                                    <a href="event-details" class="author__title">
+                                        <p>기간</p>
+                                        <p>2022.10.06 - 2023.10.05</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="post-share">
+                                <ul>
+                                    <li>
+                                        <a href="event-details">
+                                            <i class="la la-share icon-element hwt-icon"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- end card-item -->
+                </div><!-- end col-lg-4 -->
+                <div class="col-lg-4 responsive-column col-board">
+                    <div class="card-item blog-card">
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="author-content d-flex hwt-board-title">
+                                <div class="author-bio">
+                                    <a href="event-details" class="author__title">
+                                        <p>오늘어때 리뉴얼 안내</p>
+                                    </a>
+                                </div>
+                                <div class="hwt-board-date">
+                                    <a href="event-details" class="author__title">
+                                        <p>기간</p>
+                                        <p>2022.09.30 - 2022.12.31</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="post-share">
+                                <ul>
+                                    <li>
+                                        <a href="event-details">
+                                            <i class="la la-share icon-element hwt-icon"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- end card-item -->
+                </div><!-- end col-lg-4 -->
+                <div class="col-lg-4 responsive-column col-board">
+                    <div class="card-item blog-card">
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="author-content d-flex hwt-board-title">
+                                <div class="author-bio">
+                                    <a href="event-details" class="author__title">
+                                        <p>장바구니 활용하기</p>
+                                    </a>
+                                </div>
+                                <div class="hwt-board-date">
+                                    <a href="event-details" class="author__title">
+                                        <p>기간</p>
+                                        <p>2022.09.30 - 2022.10.30</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="post-share">
+                                <ul>
+                                    <li>
+                                        <a href="event-details">
+                                            <i class="la la-share icon-element hwt-icon"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- end card-item -->
+                </div><!-- end col-lg-4 -->
+            </th:block>
         </div><!-- end row -->
         <div class="row">
             <div class="col-lg-12">
@@ -179,23 +325,23 @@
 <!-- ================================
     START CTA AREA
 ================================= -->
-    <section class="cta-area cta-bg-2 bg-fixed padding-top-60px padding-bottom-60px breadcrumb-board">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-7 hwt-col-left">
-                    <div class="section-heading">
-                        <h2 class="sec__title font-size-30 text-white">Contact Us</h2>
-                        <p class="sec__desc text-white pt-1 hwt-font-content">오늘어때에 대해 궁금한 점이 있으신가요?</p>
-                    </div><!-- end section-heading -->
-                </div><!-- end col-lg-7 -->
-                <div class="col-lg-5 hwt-col-right">
-                    <div class="btn-box btn--box text-right">
-                        <a href="contact" class="theme-btn border-0 hwt-btn-white">고객센터</a>
-                    </div><!-- end btn-box -->
-                </div><!-- end col-lg-5 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end cta-area -->
+<section class="cta-area cta-bg-2 bg-fixed padding-top-60px padding-bottom-60px breadcrumb-board">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 hwt-col-left">
+                <div class="section-heading">
+                    <h2 class="sec__title font-size-30 text-white">Contact Us</h2>
+                    <p class="sec__desc text-white pt-1 hwt-font-content">오늘어때에 대해 궁금한 점이 있으신가요?</p>
+                </div><!-- end section-heading -->
+            </div><!-- end col-lg-7 -->
+            <div class="col-lg-5 hwt-col-right">
+                <div class="btn-box btn--box text-right">
+                    <a href="contact" class="theme-btn border-0 hwt-btn-white">고객센터</a>
+                </div><!-- end btn-box -->
+            </div><!-- end col-lg-5 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end cta-area -->
 <!-- ================================
     END CTA AREA
 ================================= -->
