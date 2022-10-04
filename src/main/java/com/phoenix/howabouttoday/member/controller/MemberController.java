@@ -26,19 +26,9 @@ public class MemberController {
     public String postUserDashboard() {
         return "member/userdashboard/user-dashboard";
     }
-    private void addUsers(Model model) {
-        List<String> users = Arrays.asList(new String("₩ 90,000"),
-                new String("₩ 190,000"),
-                new String("₩ 150,000"));
 
-        model.addAttribute("users", users);
-    }
-
-   @GetMapping("user-dashboard-booking")
-    public String getUserDashboardBooking(Model model) {
-
-        addUsers(model);
-
+    @GetMapping("user-dashboard-booking")
+    public String getUserDashboardBooking() {
         return "member/userdashboard/user-dashboard-booking";
     }
     @PostMapping("user-dashboard-booking")
