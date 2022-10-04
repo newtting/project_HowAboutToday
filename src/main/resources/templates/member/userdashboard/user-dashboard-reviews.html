@@ -20,20 +20,20 @@
                     <img src="images/team8.jpg" alt="testimonial image">
                 </div>
                 <div class="author-bio">
-                    <h4 class="author__title">Ali Tufan</h4>
-                    <span class="author__meta">Member Since May 2017</span>
+                    <h4 class="author__title">이동우짱</h4>
+                    <span class="author__meta">2020년10월4일</span>
                 </div>
             </div>
         </div>
         <div class="sidebar-menu-wrap">
-            <ul class="sidebar-menu list-items">
-                <li><a href="/user-dashboard"><i class="la la-dashboard mr-2 text-color"></i>Dashboard</a></li>
-                <li><a href="user-dashboard-booking.html"><i class="la la-shopping-cart mr-2 text-color-2"></i>My Booking</a></li>
-                <li><a href="user-dashboard-profile.html"><i class="la la-user mr-2 text-color-3"></i>My Profile</a></li>
-                <li class="page-active"><a href="user-dashboard-reviews.html"><i class="la la-star mr-2"></i>My Reviews</a></li>
-                <li><a href="user-dashboard-wishlist.html"><i class="la la-heart mr-2 text-color-4"></i>Wishlist</a></li>
-                <li><a href="user-dashboard-settings.html"><i class="la la-cog mr-2 text-color-5"></i>Settings</a></li>
-                <li><a href="/home"><i class="la la-power-off mr-2 text-color-6"></i>Logout</a></li>
+            <ul class="sidebar-menu list-items"> <!-- 사이드바 영역 -->
+                <li><a th:href="@{/user-dashboard}" href="/user-dashboard.html"><i class="la la-dashboard mr-2 text-color"></i>[[대시보드]]</a></li>
+                <li><a th:href="@{/user-dashboard-booking}" href="/user-dashboard-booking.html"><i class="la la-shopping-cart mr-2 text-color-2"></i>[[|나의 결제내역|]]</a></li>
+                <li><a th:href="@{/user-dashboard-profile}" href="/user-dashboard-profile.html"><i class="la la-user mr-2 text-color-3"></i>[[|나의 정보|]]</a></li>
+                <li class="page-active"><a th:href="@{/user-dashboard-reviews}" href="/user-dashboard-reviews.html"><i class="la la-star mr-2 text-color-4"></i>[[|나의 리뷰|]]</a></li>
+                <li><a th:href="@{/user-dashboard-wishlist}" href="/user-dashboard-wishlist.html"><i class="la la-heart mr-2"></i>[[|위시 리스트|]]</a></li>
+                <li><a th:href="@{/user-dashboard-settings}" href="/user-dashboard-settings.html"><i class="la la-cog mr-2 text-color-5"></i>[[|정보 수정|]]</a></li>
+                <li><a th:href="@{/home}" href="/home"><i class="la la-power-off mr-2 text-color-6"></i>[[로그아웃]]</a></li>
             </ul>
         </div><!-- end sidebar-menu-wrap -->
     </div>
@@ -52,7 +52,7 @@
                 <div class="col-lg-12">
                     <div class="menu-wrapper">
                         <div class="logo mr-5">
-                            <a href="/home"><img src="images/logo2.png" alt="logo"></a>
+                            <a href="/home"><img src="images/hwt.png" alt="logo" style="width: 180px; height:  20px;"></a>
                             <div class="menu-toggler">
                                 <i class="la la-bars"></i>
                                 <i class="la la-times"></i>
@@ -65,7 +65,7 @@
                             <div class="contact-form-action">
                                 <form action="#">
                                     <div class="form-group mb-0">
-                                        <input class="form-control" type="text" name="text" placeholder="Search">
+                                        <input class="form-control" type="text" name="text" placeholder="검색">
                                         <button class="search-btn"><i class="la la-search"></i></button>
                                     </div>
                                 </form>
@@ -130,7 +130,7 @@
                                         <a href="#" class="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <div class="d-flex align-items-center">
                                                 <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>
-                                                <span class="font-size-14 font-weight-bold">Ali Tufan</span>
+                                                <span class="font-size-14 font-weight-bold">이동우짱</span>
                                             </div>
                                         </a>
                                         <div class="dropdown-menu dropdown-reveal dropdown-menu-md dropdown-menu-right">
@@ -155,7 +155,7 @@
                                                 <a href="user-dashboard-reviews.html" class="list-group-item list-group-item-action">
                                                     <div class="msg-body">
                                                         <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-heart mr-2"></i>My Reviews</h3>
+                                                            <h3 class="title"><i class="la la-heart mr-2"></i>나의 리뷰</h3>
                                                         </div>
                                                     </div><!-- end msg-body -->
                                                 </a>
@@ -192,16 +192,16 @@
                     <div class="col-lg-6">
                         <div class="breadcrumb-content">
                             <div class="section-heading">
-                                <h2 class="sec__title font-size-30 text-white">My Reviews</h2>
+                                <h2 class="sec__title font-size-30 text-white">나의 리뷰</h2>
                             </div>
                         </div><!-- end breadcrumb-content -->
                     </div><!-- end col-lg-6 -->
                     <div class="col-lg-6">
                         <div class="breadcrumb-list text-right">
                             <ul class="list-items">
-                                <li><a href="/home" class="text-white">Home</a></li>
-                                <li>Dashboard</li>
-                                <li>My Reviews</li>
+                                <li><a href="/home" class="text-white">홈으로</a></li>
+<!--                                <li>Dashboard</li>-->
+<!--                                <li>My Reviews</li>-->
                             </ul>
                         </div><!-- end breadcrumb-list -->
                     </div><!-- end col-lg-6 -->
@@ -214,8 +214,8 @@
                     <div class="col-lg-12">
                         <div class="form-box">
                             <div class="form-title-wrap">
-                                <h3 class="title">Reviews</h3>
-                                <p class="font-size-14">Showing 1 - 4 of 18 results</p>
+                                <h3 class="title">리뷰</h3>
+                                <p class="font-size-14">1 - 4페이지 18개의 결과</p>
                             </div>
                             <div class="form-content">
                                 <div class="comments-list">
@@ -346,8 +346,8 @@
                     <div class="col-lg-7">
                         <div class="copy-right padding-top-30px">
                             <p class="copy__desc">
-                                &copy; Copyright Trizen 2020. Made with
-                                <span class="la la-heart"></span> by <a href="https://themeforest.net/user/techydevs/portfolio">TechyDevs</a>
+                                &copy; HowAboutToday
+                                <span class="la la-heart"></span><a href="https://themeforest.net/user/techydevs/portfolio"></a>
                             </p>
                         </div><!-- end copy-right -->
                     </div><!-- end col-lg-7 -->

@@ -21,23 +21,23 @@
                 <div class="col-lg-12">
                     <div class="hero-content pb-5">
                         <div class="section-heading">
-                            <p class="sec__desc pb-2">Hotel stays, Dream getaways</p>
-                            <h2 class="sec__title">Find the Perfect Place to Stay <br> for Your Next Trip</h2>
+                            <p class="sec__desc pb-2">호텔, 모텔, 펜션 예약</p>
+                            <h2 class="sec__title">HOW ABOUT TODAY ?</h2>
                         </div>
                     </div><!-- end hero-content -->
-                    <div class="search-fields-container">
-                        <div class="contact-form-action">
+                    <div class="search-fields-container hwt-search-container">
+                        <div class="contact-form-action hwt-search">
                             <form action="#" class="row">
-                                <div class="col-lg-3 pr-0">
+                                <div class="col-lg-3 pr-0 hwt-search-element">
                                     <div class="input-box">
                                         <label class="label-text">지역 / 숙소 이름</label>
                                         <div class="form-group">
                                             <span class="la la-map-marker form-icon"></span>
-                                            <input class="form-control" type="text" placeholder="Enter City or property">
+                                            <input class="form-control" type="text" placeholder="지역 또는 숙소 이름을 입력하세요.">
                                         </div>
                                     </div>
                                 </div><!-- end col-lg-3 -->
-                                <div class="col-lg-3 pr-0">
+                                <div class="col-lg-3 pr-0 hwt-search-element">
                                     <div class="input-box">
                                         <label class="label-text">체크인 - 체크아웃</label>
                                         <div class="form-group">
@@ -52,9 +52,9 @@
                                         <div class="form-group">
                                             <div class="dropdown dropdown-contain gty-container">
                                                 <a class="dropdown-toggle dropdown-btn" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                                                    <span class="adult" data-text="Adult" data-text-multi="Adults">0 Adult</span>
+                                                    <span class="adult" data-text="성인" data-text-multi="성인">성인 0</span>
                                                     -
-                                                    <span class="children" data-text="Child" data-text-multi="Children">0 Children</span>
+                                                    <span class="children" data-text="아동" data-text-multi="아동">아동 0</span>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-wrap">
 <!--                                                    <div class="dropdown-item">-->
@@ -93,8 +93,8 @@
                                     </div>
                                 </div><!-- end col-lg-3 -->
                             </form>
-                            <div class="btn-box pt-2">
-                                <a href="room-search-result.html" class="theme-btn">Search Now</a>
+                            <div class="btn-box pt-2 hwt-search-btn">
+                                <a href="room-search-result.html" class="theme-btn hwt-btn-gray">검색</a>
                             </div>
                         </div>
                     </div>
@@ -107,62 +107,83 @@
     END HERO-WRAPPER AREA
 ================================= -->
 
+<div class="section-block"></div>
+
 <!-- ================================
     START INFO AREA
 ================================= -->
-<section class="info-area info-bg info-area2 padding-top-80px padding-bottom-45px">
+<section class="info-area info-bg info-area2 padding-top-80px padding-bottom-45px hwt-info">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box icon-layout-2 d-flex">
-                    <div class="info-icon flex-shrink-0 bg-rgb text-color-2">
-                        <i class="las la-radiation"></i>
-                    </div><!-- end info-icon-->
-                    <div class="info-content">
-                        <h4 class="info__title">Unique Atmosphere</h4>
-                        <p class="info__desc">
-                            Varius quam quisque id diam vel quam
-                        </p>
-                    </div><!-- end info-content -->
+        <div class="row hwt-row-board">
+            <div class="col-lg-12">
+                <div class="section-heading hwt-title">
+                    <p class="sec__title">바로가기</p>
+                </div><!-- end section-heading -->
+            </div><!-- end col-lg-12 -->
+        </div>
+        <div class="row hwt-row-icon">
+            <div class="col-lg-3 responsive-column hwt-col-icon">
+                <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                    <div class="hwt-iconbox-pointer">
+                        <a href="hotel-list">
+                            <div class="info-icon flex-shrink-0 bg-rgb text-color-2 hwt-info-icon">
+                                <!--                        <i class="las la-radiation"></i>-->
+                                <img src="images/icon/hotel.png" class="hwt-icon-element">
+                            </div><!-- end info-icon-->
+                            <div class="info-content">
+                                <!--                        <h4 class="info__title">Unique Atmosphere</h4>-->
+                                <p class="info__desc">호텔</p>
+                            </div><!-- end info-content -->
+                        </a>
+                    </div>
                 </div><!-- end icon-box -->
             </div><!-- end col-lg-3 -->
-             <div class="col-lg-3 responsive-column">
-                <div class="icon-box icon-layout-2 d-flex">
-                    <div class="info-icon flex-shrink-0 bg-rgb-2 text-color-3">
-                        <i class="la la-tree"></i>
-                    </div><!-- end info-icon-->
-                    <div class="info-content">
-                        <h4 class="info__title">Environment</h4>
-                        <p class="info__desc">
-                            Varius quam quisque id diam vel quam
-                        </p>
-                    </div><!-- end info-content -->
+            <div class="col-lg-3 responsive-column hwt-col-icon">
+                <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                    <div class="hwt-iconbox-pointer">
+                        <a href="motel-list">
+                            <div class="info-icon flex-shrink-0 bg-rgb-2 text-color-3 hwt-info-icon">
+                                <!--                        <i class="la la-tree"></i>-->
+                                <img src="images/icon/motel2.png" class="hwt-icon-element">
+                            </div><!-- end info-icon-->
+                            <div class="info-content">
+                                <!--                        <h4 class="info__title">Environment</h4>-->
+                                <p class="info__desc">모텔</p>
+                            </div><!-- end info-content -->
+                        </a>
+                    </div>
                 </div><!-- end icon-box -->
             </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box icon-layout-2 d-flex">
-                    <div class="info-icon flex-shrink-0 bg-rgb-3 text-color-4">
-                        <i class="las la-map-marked-alt"></i>
-                    </div><!-- end info-icon-->
-                    <div class="info-content">
-                        <h4 class="info__title">Great Location</h4>
-                        <p class="info__desc">
-                            Varius quam quisque id diam vel quam
-                        </p>
-                    </div><!-- end info-content -->
+            <div class="col-lg-3 responsive-column hwt-col-icon">
+                <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                    <div class="hwt-iconbox-pointer">
+                        <a href="pension-PoolVilla-list">
+                            <div class="info-icon flex-shrink-0 bg-rgb-3 text-color-4 hwt-info-icon">
+                                <!--                        <i class="las la-map-marked-alt"></i>-->
+                                <img src="images/icon/poolvilla.png" class="hwt-icon-element">
+                            </div><!-- end info-icon-->
+                            <div class="info-content">
+                                <!--                        <h4 class="info__title">Great Location</h4>-->
+                                <p class="info__desc">펜션/풀빌라</p>
+                            </div><!-- end info-content -->
+                        </a>
+                    </div>
                 </div><!-- end icon-box -->
             </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box icon-layout-2 d-flex">
-                    <div class="info-icon flex-shrink-0 bg-rgb-4 text-color-5">
-                        <i class="las la-bed"></i>
-                    </div><!-- end info-icon-->
-                    <div class="info-content">
-                        <h4 class="info__title">Homey Comfort</h4>
-                        <p class="info__desc">
-                            Varius quam quisque id diam vel quam
-                        </p>
-                    </div><!-- end info-content -->
+            <div class="col-lg-3 responsive-column hwt-col-icon">
+                <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                    <div class="hwt-iconbox-pointer">
+                        <a href="guestHouse-Hanok-list">
+                            <div class="info-icon flex-shrink-0 bg-rgb-4 text-color-5 hwt-info-icon">
+                                <!--                        <i class="las la-bed"></i>-->
+                                <img src="images/icon/hostel.png" class="hwt-icon-element">
+                            </div><!-- end info-icon-->
+                            <div class="info-content">
+                                <!--                        <h4 class="info__title">Homey Comfort</h4>-->
+                                <p class="info__desc">게하/한옥</p>
+                            </div><!-- end info-content -->
+                        </a>
+                    </div>
                 </div><!-- end icon-box -->
             </div><!-- end col-lg-3 -->
         </div><!-- end row -->
@@ -172,93 +193,96 @@
     END INFO AREA
 ================================= -->
 
+<div class="section-block hwt-section-block"></div>
+
 <!-- ================================
-    START ABOUT AREA
+    START INFO AREA 2
 ================================= -->
-<section class="about-area section--padding overflow-hidden">
+<section class="info-area info-bg info-area2 padding-top-80px padding-bottom-45px hwt-info2">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="about-content pr-5">
-                    <div class="section-heading">
-                        <h4 class="font-size-16 pb-2">Our Story</h4>
-                        <h2 class="sec__title">Atmosphere and Design</h2>
-                        <p class="sec__desc pt-4 pb-2">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
-                        <p class="sec__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus amet consectetur ipsa officia. Doloremque error porro sit soluta totam! A iste nobis vel voluptatem!</p>
-                    </div><!-- end section-heading -->
-                    <div class="btn-box pt-4">
-                        <a href="about.html" class="theme-btn">Read More <i class="la la-arrow-right ml-1"></i></a>
+        <div class="row hwt-row-icon">
+            <div class="col-lg-3 responsive-column hwt-col-icon">
+                <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                    <div class="hwt-iconbox-pointer">
+                        <a href="notice">
+                            <div class="info-icon flex-shrink-0 bg-rgb text-color-2 hwt-info-icon">
+                                <!--                        <i class="las la-radiation"></i>-->
+                                <img src="images/icon/notice.png" class="hwt-icon-element">
+                            </div><!-- end info-icon-->
+                            <div class="info-content">
+                                <!--                        <h4 class="info__title">Unique Atmosphere</h4>-->
+                                <p class="info__desc">공지사항</p>
+                            </div><!-- end info-content -->
+                        </a>
                     </div>
-                </div>
-            </div><!-- end col-lg-6 -->
-            <div class="col-lg-6">
-                <div class="image-box about-img-box">
-                    <img src="images/img5.jpg" alt="about-img" class="img__item img__item-1">
-                    <img src="images/tripadvisor.png" alt="about-img" class="img__item img__item-2">
-                </div>
-            </div><!-- end col-lg-6 -->
+                </div><!-- end icon-box -->
+            </div><!-- end col-lg-3 -->
+            <div class="col-lg-3 responsive-column hwt-col-icon">
+                <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                    <div class="hwt-iconbox-pointer">
+                        <a href="event">
+                            <div class="info-icon flex-shrink-0 bg-rgb-2 text-color-3 hwt-info-icon">
+                                <!--                        <i class="la la-tree"></i>-->
+                                <img src="images/icon/event.png" class="hwt-icon-element">
+                            </div><!-- end info-icon-->
+                            <div class="info-content">
+                                <!--                        <h4 class="info__title">Environment</h4>-->
+                                <p class="info__desc">이벤트</p>
+                            </div><!-- end info-content -->
+                        </a>
+                    </div>
+                </div><!-- end icon-box -->
+            </div><!-- end col-lg-3 -->
+            <div class="col-lg-3 responsive-column hwt-col-icon">
+                <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                    <div class="hwt-iconbox-pointer">
+                        <a href="faq">
+                            <div class="info-icon flex-shrink-0 bg-rgb-3 text-color-4 hwt-info-icon">
+                                <!--                        <i class="las la-map-marked-alt"></i>-->
+                                <img src="images/icon/faq.png" class="hwt-icon-element">
+                            </div><!-- end info-icon-->
+                            <div class="info-content">
+                                <!--                        <h4 class="info__title">Great Location</h4>-->
+                                <p class="info__desc">FAQ</p>
+                            </div><!-- end info-content -->
+                        </a>
+                    </div>
+                </div><!-- end icon-box -->
+            </div><!-- end col-lg-3 -->
+            <div class="col-lg-3 responsive-column hwt-col-icon">
+                <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                    <div class="hwt-iconbox-pointer">
+                        <a href="contact">
+                            <div class="info-icon flex-shrink-0 bg-rgb-4 text-color-5 hwt-info-icon">
+                                <!--                        <i class="las la-bed"></i>-->
+                                <img src="images/icon/contact.png" class="hwt-icon-element">
+                            </div><!-- end info-icon-->
+                            <div class="info-content">
+                                <!--                        <h4 class="info__title">Homey Comfort</h4>-->
+                                <p class="info__desc">고객센터</p>
+                            </div><!-- end info-content -->
+                        </a>
+                    </div>
+                </div><!-- end icon-box -->
+            </div><!-- end col-lg-3 -->
         </div><!-- end row -->
     </div><!-- end container -->
-</section>
+</section><!-- end info-area -->
 <!-- ================================
-    END ABOUT AREA
+    END INFO AREA
 ================================= -->
 
 <div class="section-block"></div>
 
 <!-- ================================
-    START ROOM TYPE AREA
+    START HOTEL AREA 2
 ================================= -->
-<section class="room-type-area section--padding">
+<section class="hotel-area section-bg padding-top-100px padding-bottom-100px overflow-hidden">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-heading text-center">
-                    <h2 class="sec__title">Find a Room Type</h2>
-                </div><!-- end section-heading -->
-            </div><!-- end col-lg-12 -->
-        </div><!-- end row -->
-        <div class="row padding-top-50px">
-            <div class="col-lg-6">
-                <div class="room-type-content">
-                    <div class="image-box">
-                        <a href="room-list.html" class="d-block">
-                            <img src="images/img27.jpg" alt="room type img" class="img__item">
-                            <div class="room-type-link">
-                                Dorm Beds <i class="la la-arrow-right ml-2"></i>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div><!-- end col-lg-6 -->
-            <div class="col-lg-6">
-                <div class="room-type-content">
-                    <div class="image-box">
-                        <a href="room-list.html" class="d-block">
-                            <img src="images/img28.jpg" alt="room type img" class="img__item">
-                            <div class="room-type-link">
-                                Private Room <i class="la la-arrow-right ml-2"></i>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div><!-- end col-lg-6 -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</section>
-<!-- ================================
-    END ROOM TYPE AREA
-================================= -->
-
-<!-- ================================
-    START HOTEL AREA
-================================= -->
-<section class="hotel-area section-bg padding-top-100px padding-bottom-200px overflow-hidden">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-heading text-center">
-                    <h2 class="sec__title line-height-55">Popular Hotel Destinations <br> You Might Like</h2>
+                    <h2 class="sec__title line-height-55">인기있는 숙소</h2>
                 </div><!-- end section-heading -->
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->
@@ -427,29 +451,75 @@
 ================================= -->
 
 <!-- ================================
+   START TESTIMONIAL AREA
+================================= -->
+<section class="testimonial-area section-bg section-padding padding-top-70px padding-bottom-70px">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4 hwt-col-left">
+                <div class="section-heading hwt-title">
+                    <p class="sec__title line-height-50">추천 여행지</p>
+                </div><!-- end section-heading -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-8">
+                <div class="testimonial-carousel carousel-action hwt-carousel">
+                    <div class="testimonial-card hwt-circle"
+                         style="background-image: url('https://yaimg.yanolja.com/v5/2022/05/16/15/62826b1c714e09.44266747.png')">
+                        <div class="testi-desc-box hwt-circle-text">
+                            <p class="testi__desc">부산</p>
+                        </div>
+                    </div><!-- end testimonial-card -->
+                    <div class="testimonial-card hwt-circle"
+                         style="background-image: url('https://yaimg.yanolja.com/v5/2022/05/16/15/62826af8189a81.32041133.png')">
+                        <div class="testi-desc-box hwt-circle-text">
+                            <p class="testi__desc">제주도</p>
+                        </div>
+                    </div><!-- end testimonial-card -->
+                    <div class="testimonial-card hwt-circle"
+                         style="background-image: url('https://yaimg.yanolja.com/v5/2022/05/16/15/62826af3d78366.88472574.png')">
+                        <div class="testi-desc-box hwt-circle-text">
+                            <p class="testi__desc">강원도</p>
+                        </div>
+                    </div><!-- end testimonial-card -->
+                </div><!-- end testimonial-carousel -->
+            </div><!-- end col-lg-8 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end testimonial-area -->
+<!-- ================================
+       START TESTIMONIAL AREA
+================================= -->
+
+<!-- ================================
     START DISCOUNT AREA
 ================================= -->
-<section class="discount-area">
+<section class="discount-area padding-top-120px padding-bottom-120px hwt-banner-wrap">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="discount-box">
+                <div class="discount-box hwt-banner">
                     <div class="discount-img">
-                        <img src="images/discount-hotel-img.jpg" alt="discount img">
+                        <img src="i" alt="discount img">
                     </div><!-- end discount-img -->
-                    <div class="discount-content">
+                    <div class="discount-content hwt-banner-content-wrap">
                         <div class="section-heading">
-                            <p class="sec__desc text-white">Hot deal, save 50%</p>
-                            <h2 class="sec__title mb-0 line-height-50 text-white">Discount 50% for the <br> First Booking</h2>
+                            <p class="sec__desc text-white">아직 회원이 아니신가요?</p>
+                            <h2 class="sec__title mb-0 line-height-50 text-white">신규 회원을 위한 <br> 50% 할인 쿠폰</h2>
                         </div><!-- end section-heading -->
-                        <div class="btn-box pt-4">
-                            <a href="#" class="theme-btn border-0">Learn More <i class="la la-arrow-right ml-1"></i></a>
+                        <div class="btn-box pt-4 hwt-banner-content-btn">
+                            <a href="#" class="theme-btn border-0 hwt-btn-white">쿠폰 받기 <i class="la la-arrow-right ml-1"></i></a>
                         </div>
                     </div><!-- end discount-content -->
-                    <div class="company-logo">
-                        <img src="images/logo2.png" alt="">
-                        <p class="text-white font-size-14 text-right">*Terms applied</p>
-                    </div><!-- end company-logo -->
+<!--                    <div class="company-logo">-->
+<!--                        <img src="images/logo2.png" alt="">-->
+<!--                        <p class="text-white font-size-14 text-right">*Terms applied</p>-->
+<!--                    </div>&lt;!&ndash; end company-logo &ndash;&gt;-->
+                    <div class="logo">
+                        <div class="menu-toggler">
+                            <i class="la la-bars"></i>
+                            <i class="la la-times"></i>
+                        </div><!-- end menu-toggler -->
+                    </div><!-- end logo -->
                 </div>
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->
@@ -459,294 +529,24 @@
     END DISCOUNT AREA
 ================================= -->
 
-<!-- ================================
-       START TESTIMONIAL AREA
-================================= -->
-<section class="testimonial-area section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-heading text-center mb-0">
-                    <h2 class="sec__title line-height-50">What Our Customers <br> are Saying Us?</h2>
-                </div><!-- end section-heading -->
-            </div><!-- end col-lg-12 -->
-        </div><!-- end row  -->
-        <div class="row padding-top-50px">
-            <div class="col-lg-12">
-                <div class="testimonial-carousel carousel-action">
-                    <div class="testimonial-card">
-                        <div class="testi-desc-box">
-                            <p class="testi__desc">Excepteur sint occaecat cupidatat non proident sunt in culpa officia deserunt mollit anim laborum sint occaecat cupidatat non proident. Occaecat cupidatat non proident des.</p>
-                        </div>
-                        <div class="author-content d-flex align-items-center">
-                            <div class="author-img">
-                                <img src="images/team8.jpg" alt="testimonial image">
-                            </div>
-                            <div class="author-bio">
-                                <h4 class="author__title">Leroy Bell</h4>
-                                <span class="author__meta">United States</span>
-                                <span class="ratings d-flex align-items-center">
-                                    <i class="la la-star"></i>
-                                    <i class="la la-star"></i>
-                                    <i class="la la-star"></i>
-                                    <i class="la la-star"></i>
-                                    <i class="la la-star"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div><!-- end testimonial-card -->
-                    <div class="testimonial-card">
-                        <div class="testi-desc-box">
-                            <p class="testi__desc">Excepteur sint occaecat cupidatat non proident sunt in culpa officia deserunt mollit anim laborum sint occaecat cupidatat non proident. Occaecat cupidatat non proident des.</p>
-                        </div>
-                        <div class="author-content d-flex align-items-center">
-                            <div class="author-img">
-                                <img src="images/team9.jpg" alt="testimonial image">
-                            </div>
-                            <div class="author-bio">
-                                <h4 class="author__title">Richard Pam</h4>
-                                <span class="author__meta">Canada</span>
-                                <span class="ratings d-flex align-items-center">
-                                    <i class="la la-star"></i>
-                                    <i class="la la-star"></i>
-                                    <i class="la la-star"></i>
-                                    <i class="la la-star"></i>
-                                    <i class="la la-star"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div><!-- end testimonial-card -->
-                    <div class="testimonial-card">
-                        <div class="testi-desc-box">
-                            <p class="testi__desc">Excepteur sint occaecat cupidatat non proident sunt in culpa officia deserunt mollit anim laborum sint occaecat cupidatat non proident. Occaecat cupidatat non proident des.</p>
-                        </div>
-                        <div class="author-content d-flex align-items-center">
-                            <div class="author-img">
-                                <img src="images/team10.jpg" alt="testimonial image">
-                            </div>
-                            <div class="author-bio">
-                                <h4 class="author__title">Luke Jacobs</h4>
-                                <span class="author__meta">Australia</span>
-                                <span class="ratings d-flex align-items-center">
-                                    <i class="la la-star"></i>
-                                    <i class="la la-star"></i>
-                                    <i class="la la-star"></i>
-                                    <i class="la la-star"></i>
-                                    <i class="la la-star"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div><!-- end testimonial-card -->
-                    <div class="testimonial-card">
-                        <div class="testi-desc-box">
-                            <p class="testi__desc">Excepteur sint occaecat cupidatat non proident sunt in culpa officia deserunt mollit anim laborum sint occaecat cupidatat non proident. Occaecat cupidatat non proident des.</p>
-                        </div>
-                        <div class="author-content d-flex align-items-center">
-                            <div class="author-img">
-                                <img src="images/team8.jpg" alt="testimonial image">
-                            </div>
-                            <div class="author-bio">
-                                <h4 class="author__title">Chulbul Panday</h4>
-                                <span class="author__meta">Italy</span>
-                                <span class="ratings d-flex align-items-center">
-                                    <i class="la la-star"></i>
-                                    <i class="la la-star"></i>
-                                    <i class="la la-star"></i>
-                                    <i class="la la-star"></i>
-                                    <i class="la la-star"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div><!-- end testimonial-card -->
-                </div><!-- end testimonial-carousel -->
-            </div><!-- end col-lg-12 -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</section><!-- end testimonial-area -->
-<!-- ================================
-       START TESTIMONIAL AREA
-================================= -->
-
 <div class="section-block"></div>
-
-<!-- ================================
-       START BLOG AREA
-================================= -->
-<section class="blog-area section--padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-heading text-center">
-                    <h2 class="sec__title">Recent Articles</h2>
-                </div><!-- end section-heading -->
-            </div><!-- end col-lg-12 -->
-        </div><!-- end row -->
-        <div class="row padding-top-50px">
-            <div class="col-lg-4 responsive-column">
-                <div class="card-item blog-card">
-                    <div class="card-img">
-                        <img src="images/img5.jpg" alt="blog-img">
-                        <div class="post-format icon-element">
-                            <i class="la la-photo"></i>
-                        </div>
-                        <div class="card-body">
-                            <div class="post-categories">
-                                <a href="#" class="badge">Travel</a>
-                                <a href="#" class="badge">lifestyle</a>
-                            </div>
-                            <h3 class="card-title line-height-26"><a href="blog-single.html">Best Scandinavian Accommodation – Treat Yourself</a></h3>
-                            <p class="card-meta">
-                                <span class="post__date"> 1 January, 2020</span>
-                                <span class="post-dot"></span>
-                                <span class="post__time">5 Mins read</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <div class="author-content d-flex align-items-center">
-                            <div class="author-img">
-                                <img src="images/small-team1.jpg" alt="testimonial image">
-                            </div>
-                            <div class="author-bio">
-                                <a href="#" class="author__title">Leroy Bell</a>
-                            </div>
-                        </div>
-                        <div class="post-share">
-                            <ul>
-                                <li>
-                                    <i class="la la-share icon-element"></i>
-                                    <ul class="post-share-dropdown d-flex align-items-center">
-                                        <li><a href="#"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#"><i class="lab la-instagram"></i></a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- end card-item -->
-            </div><!-- end col-lg-4 -->
-            <div class="col-lg-4 responsive-column">
-                <div class="card-item blog-card">
-                    <div class="card-img">
-                        <img src="images/img6.jpg" alt="blog-img">
-                        <div class="post-format icon-element">
-                            <i class="la la-play"></i>
-                        </div>
-                        <div class="card-body">
-                            <div class="post-categories">
-                                <a href="#" class="badge">Video</a>
-                            </div>
-                            <h3 class="card-title line-height-26"><a href="blog-single.html">Amazing Places to Stay in Norway</a></h3>
-                            <p class="card-meta">
-                                <span class="post__date"> 1 February, 2020</span>
-                                <span class="post-dot"></span>
-                                <span class="post__time">4 Mins read</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <div class="author-content d-flex align-items-center">
-                            <div class="author-img">
-                                <img src="images/small-team2.jpg" alt="testimonial image">
-                            </div>
-                            <div class="author-bio">
-                                <a href="#" class="author__title">Phillip Hunt</a>
-                            </div>
-                        </div>
-                        <div class="post-share">
-                            <ul>
-                                <li>
-                                    <i class="la la-share icon-element"></i>
-                                    <ul class="post-share-dropdown d-flex align-items-center">
-                                        <li><a href="#"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#"><i class="lab la-instagram"></i></a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- end card-item -->
-            </div><!-- end col-lg-4 -->
-            <div class="col-lg-4 responsive-column">
-                <div class="card-item blog-card">
-                    <div class="card-img">
-                        <img src="images/img7.jpg" alt="blog-img">
-                        <div class="post-format icon-element">
-                            <i class="la la-music"></i>
-                        </div>
-                        <div class="card-body">
-                            <div class="post-categories">
-                                <a href="#" class="badge">audio</a>
-                            </div>
-                            <h3 class="card-title line-height-26"><a href="blog-single.html">Feel Like Home on Your Business Trip</a></h3>
-                            <p class="card-meta">
-                                <span class="post__date"> 1 March, 2020</span>
-                                <span class="post-dot"></span>
-                                <span class="post__time">3 Mins read</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <div class="author-content d-flex align-items-center">
-                            <div class="author-img">
-                                <img src="images/small-team3.jpg" alt="testimonial image">
-                            </div>
-                            <div class="author-bio">
-                                <a href="#" class="author__title">Luke Jacobs</a>
-                            </div>
-                        </div>
-                        <div class="post-share">
-                            <ul>
-                                <li>
-                                    <i class="la la-share icon-element"></i>
-                                    <ul class="post-share-dropdown d-flex align-items-center">
-                                        <li><a href="#"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#"><i class="lab la-instagram"></i></a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- end card-item -->
-            </div><!-- end col-lg-4 -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</section><!-- end blog-area -->
-<!-- ================================
-       START BLOG AREA
-================================= -->
 
 <!-- ================================
     START CTA AREA
 ================================= -->
-<section class="cta-area subscriber-area section-bg-2 padding-top-60px padding-bottom-60px">
+<section class="cta-area cta-bg-2 bg-fixed padding-top-60px padding-bottom-60px breadcrumb-board">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-7">
+            <div class="col-lg-7 hwt-col-left">
                 <div class="section-heading">
-                    <p class="sec__desc text-white-50 pb-1">Newsletter Sign up</p>
-                    <h2 class="sec__title font-size-30 text-white">Subscribe to Get Special Offers</h2>
+                    <h2 class="sec__title font-size-30 text-white">Contact Us</h2>
+                    <p class="sec__desc text-white pt-1 hwt-font-content">오늘어때에 대해 궁금한 점이 있으신가요?</p>
                 </div><!-- end section-heading -->
             </div><!-- end col-lg-7 -->
-            <div class="col-lg-5">
-                <div class="subscriber-box">
-                    <div class="contact-form-action">
-                        <form action="#">
-                            <div class="input-box">
-                                <label class="label-text text-white">Enter email address</label>
-                                <div class="form-group mb-0">
-                                    <span class="la la-envelope form-icon"></span>
-                                    <input class="form-control" type="email" name="email" placeholder="Email address">
-                                    <button class="theme-btn theme-btn-small submit-btn" type="submit">Subscribe</button>
-                                    <span class="font-size-14 pt-1 text-white-50"><i class="la la-lock mr-1"></i>Don't worry your information is safe with us.</span>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div><!-- end section-heading -->
+            <div class="col-lg-5 hwt-col-right">
+                <div class="btn-box btn--box text-right">
+                    <a href="contact" class="theme-btn border-0 hwt-btn-white">고객센터</a>
+                </div><!-- end btn-box -->
             </div><!-- end col-lg-5 -->
         </div><!-- end row -->
     </div><!-- end container -->
@@ -860,8 +660,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div>
-                        <h5 class="modal-title title" id="exampleModalLongTitle">Sign Up</h5>
-                        <p class="font-size-14">Hello! Welcome Create a New Account</p>
+                        <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
+                        <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="la la-close"></span>
@@ -871,38 +671,38 @@
                     <div class="contact-form-action">
                         <form method="post">
                             <div class="input-box">
-                                <label class="label-text">Username</label>
+                                <label class="label-text">닉네임</label>
                                 <div class="form-group">
                                     <span class="la la-user form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="Type your username">
+                                    <input class="form-control" type="text" name="text" placeholder="닉네임">
                                 </div>
                             </div><!-- end input-box -->
                             <div class="input-box">
-                                <label class="label-text">Email Address</label>
+                                <label class="label-text">이메일 주소</label>
                                 <div class="form-group">
                                     <span class="la la-envelope form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="Type your email">
+                                    <input class="form-control" type="text" name="text" placeholder="how-about-today@hwt.com">
                                 </div>
                             </div><!-- end input-box -->
                             <div class="input-box">
-                                <label class="label-text">Password</label>
+                                <label class="label-text">패스워드</label>
                                 <div class="form-group">
                                     <span class="la la-lock form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="Type password">
+                                    <input class="form-control" type="text" name="text" placeholder="패스워드">
                                 </div>
                             </div><!-- end input-box -->
                             <div class="input-box">
-                                <label class="label-text">Repeat Password</label>
+                                <label class="label-text">패스워드 확인</label>
                                 <div class="form-group">
                                     <span class="la la-lock form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="Type again password">
+                                    <input class="form-control" type="text" name="text" placeholder="패스워드 재입력">
                                 </div>
                             </div><!-- end input-box -->
                             <div class="btn-box pt-3 pb-4">
-                                <button type="button" class="theme-btn w-100">Register Account</button>
+                                <button type="button" class="theme-btn w-100">회원가입</button>
                             </div>
                             <div class="action-box text-center">
-                                <p class="font-size-14">Or Sign up Using</p>
+                                <p class="font-size-14">SNS를 통한 회원가입</p>
                                 <ul class="social-profile py-3">
                                     <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
                                     <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
@@ -925,8 +725,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div>
-                        <h5 class="modal-title title" id="exampleModalLongTitle2">Login</h5>
-                        <p class="font-size-14">Hello! Welcome to your account</p>
+                        <h5 class="modal-title title" id="exampleModalLongTitle2">로그인</h5>
+                        <p class="font-size-14">안녕하세요! 로그인을 환영합니다.</p>
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="la la-close"></span>
@@ -936,33 +736,33 @@
                     <div class="contact-form-action">
                         <form method="post">
                             <div class="input-box">
-                                <label class="label-text">Username</label>
+                                <label class="label-text">이메일</label>
                                 <div class="form-group">
-                                    <span class="la la-user form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="Type your username">
+                                    <span class="la la-envelope form-icon"></span>
+                                    <input class="form-control" type="text" name="text" placeholder="how-about-today@hwt.com">
                                 </div>
                             </div><!-- end input-box -->
                             <div class="input-box">
-                                <label class="label-text">Password</label>
+                                <label class="label-text">패스워드</label>
                                 <div class="form-group mb-2">
                                     <span class="la la-lock form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="Type your password">
+                                    <input class="form-control" type="text" name="text" placeholder="패스워드">
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <div class="custom-checkbox mb-0">
-                                        <input type="checkbox" id="rememberchb">
-                                        <label for="rememberchb">Remember me</label>
-                                    </div>
+<!--                                    <div class="custom-checkbox mb-0">-->
+<!--                                        <input type="checkbox" id="rememberchb">-->
+<!--                                        <label for="rememberchb">Remember me</label>-->
+<!--                                    </div>-->
                                     <p class="forgot-password">
-                                        <a href="recover.html">Forgot Password?</a>
+                                        <a href="recover">비밀번호를 잊으셨나요?</a>
                                     </p>
                                 </div>
                             </div><!-- end input-box -->
                             <div class="btn-box pt-3 pb-4">
-                                <button type="button" class="theme-btn w-100">Login Account</button>
+                                <button type="button" class="theme-btn w-100">로그인</button>
                             </div>
                             <div class="action-box text-center">
-                                <p class="font-size-14">Or Login Using</p>
+                                <p class="font-size-14">SNS를 통한 로그인</p>
                                 <ul class="social-profile py-3">
                                     <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
                                     <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>

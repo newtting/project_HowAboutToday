@@ -2,8 +2,12 @@ package com.phoenix.howabouttoday.member.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,9 +30,18 @@ public class MemberController {
     public String postUserDashboard() {
         return "member/userdashboard/user-dashboard";
     }
+    private void addUsers(Model model) {
+        List<String> users = Arrays.asList(new String("₩ 90,000"),
+                new String("₩ 190,000"),
+                new String("₩ 150,000"));
 
-    @GetMapping("user-dashboard-booking")
-    public String getUserDashboardBooking() {
+        model.addAttribute("users", users);
+    }
+
+   @GetMapping("user-dashboard-booking")
+    public String getUserDashboardBooking(Model model) {
+
+        addUsers(model);
         return "member/userdashboard/user-dashboard-booking";
     }
     @PostMapping("user-dashboard-booking")

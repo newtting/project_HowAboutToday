@@ -4,6 +4,7 @@
       layout:decorate="layout/layout_user">
 
 <th:block layout:fragment="content">
+
 <!-- ================================
        START DASHBOARD NAV
 ================================= -->
@@ -15,7 +16,7 @@
         <div class="author-content">
             <div class="d-flex align-items-center">
                 <div class="author-img avatar-sm">
-                    <img src="images/team8.jpg" alt="testimonial image">
+                    <img src="images/user1.jpg" alt="testimonial image">
                 </div>
                 <div class="author-bio">
                     <h4 class="author__title" th:text="'아무개님'">회원 이름</h4>
@@ -24,7 +25,7 @@
             </div>
         </div>
         <div class="sidebar-menu-wrap">
-            <ul class="sidebar-menu list-items">
+            <ul class="sidebar-menu list-items"> <!-- 사이드바 영역 -->
                 <li><a th:href="@{/user-dashboard}" href="/user-dashboard.html"><i class="la la-dashboard mr-2 text-color"></i>[[대시보드]]</a></li>
                 <li><a th:href="@{/user-dashboard-booking}" href="/user-dashboard-booking.html"><i class="la la-shopping-cart mr-2 text-color-2"></i>[[|나의 결제내역|]]</a></li>
                 <li><a th:href="@{/user-dashboard-profile}" href="/user-dashboard-profile.html"><i class="la la-user mr-2 text-color-3"></i>[[|나의 정보|]]</a></li>
@@ -46,145 +47,10 @@
     START DASHBOARD AREA
 ================================= -->
 <section class="dashboard-area">
-    <div class="dashboard-nav">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="menu-wrapper">
-                        <div class="logo mr-5">
-                            <a th:href="@{/home}" href="/home"><img src="images/logo2.png" alt="logo"></a>
-                            <div class="menu-toggler">
-                                <i class="la la-bars"></i>
-                                <i class="la la-times"></i>
-                            </div><!-- end menu-toggler -->
-                            <div class="user-menu-open">
-                                <i class="la la-user"></i>
-                            </div><!-- end user-menu-open -->
-                        </div>
-                        <div class="dashboard-search-box">
-                            <div class="contact-form-action">
-                                <form action="#"> <!--검색 -->
-                                    <div class="form-group mb-0">
-                                        <input class="form-control" type="text" name="text" placeholder="검색">
-                                        <button class="search-btn"><i class="la la-search"></i></button>
-                                    </div>
-                                </form> <!--검색종료 -->
-                            </div>
-                        </div>
-                        <div class="nav-btn ml-auto">
-                            <div class="notification-wrap d-flex align-items-center">
-                                <div class="notification-item mr-2">
-                                    <div class="dropdown"> <!-- 알림창 -->
-                                        <a href="#" class="dropdown-toggle drop-reveal-toggle-icon" id="notificationDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="la la-bell"></i>
-                                            <span class="noti-count">4</span>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-reveal dropdown-menu-xl dropdown-menu-right">
-                                            <div class="dropdown-header drop-reveal-header">
-                                                <h6 class="title">You have <strong class="text-black">4</strong> notifications</h6>
-                                            </div>
-                                            <div class="list-group drop-reveal-list">
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="icon-element flex-shrink-0 mr-3 ml-0"><i class="la la-bell"></i></div>
-                                                        <div class="msg-content w-100">
-                                                            <h3 class="title pb-1">Your request has been sent</h3>
-                                                            <p class="msg-text">2 min ago</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="icon-element bg-2 flex-shrink-0 mr-3 ml-0"><i class="la la-check"></i></div>
-                                                        <div class="msg-content w-100">
-                                                            <h3 class="title pb-1">Your account has been created</h3>
-                                                            <p class="msg-text">1 day ago</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="icon-element bg-3 flex-shrink-0 mr-3 ml-0"><i class="la la-user"></i></div>
-                                                        <div class="msg-content w-100">
-                                                            <h3 class="title pb-1">Your account updated</h3>
-                                                            <p class="msg-text">2 hrs ago</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="icon-element bg-4 flex-shrink-0 mr-3 ml-0"><i class="la la-lock"></i></div>
-                                                        <div class="msg-content w-100">
-                                                            <h3 class="title pb-1">Your password changed</h3>
-                                                            <p class="msg-text">Yesterday</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                            </div>
-                                            <a href="#" class="dropdown-item drop-reveal-btn text-center">View all</a> <!-- 알림페이지 이동 -->
-                                        </div><!-- end dropdown-menu -->
-                                    </div>
-                                </div><!-- end notification-item -->
-                                <div class="notification-item">
-                                    <div class="dropdown">
-                                        <a href="#" class="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <!-- 이게뭔지 모르겠네 -->
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>
-                                                <span class="font-size-14 font-weight-bold" th:text="아무개님">회원 이름</span>
-                                            </div>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-reveal dropdown-menu-md dropdown-menu-right"><!-- 우측상단 드랍다운 -->
-                                            <div class="dropdown-item drop-reveal-header user-reveal-header">
-                                                <h6 class="title text-uppercase">환영합니다</h6>
-                                            </div>
-                                            <div class="list-group drop-reveal-list user-drop-reveal-list">
-                                                <a th:href="@{/user-dashboard-profile}" href="user-dashboard-profile.html" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-user mr-2"></i>[[|나의 정보|]]</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a th:href="@{/user-dashboard-booking}" href="user-dashboard-booking.html" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-shopping-cart mr-2"></i>[[|나의 결제내역|]]</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a th:href="@{/user-dashboard-reviews}" href="user-dashboard-reviews.html" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-heart mr-2"></i>[[|나의 리뷰|]]</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a th:href="@{/user-dashboard-settings}" href="user-dashboard-settings.html" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-gear mr-2"></i>[[|정보 수정|]]</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <div class="section-block"></div>
-                                                <a th:href="@{/home}" href="/home" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-power-off mr-2"></i>[[|로그 아웃|]]</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                            </div>
-                                        </div><!-- end dropdown-menu -->
-                                    </div>
-                                </div><!-- end notification-item -->
-                            </div>
-                        </div><!-- end nav-btn -->
-                    </div><!-- end menu-wrapper -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-        </div><!-- end container-fluid -->
-    </div><!-- end dashboard-nav -->
+
+<!-- 상단 네비게이터(헤더) 자리 -->
+
+<!-- 상단 네비게이터(헤더) 종료 -->
     <div class="dashboard-content-wrap">
         <div class="dashboard-bread dashboard--bread">
             <div class="container-fluid">
@@ -196,15 +62,7 @@
                             </div>
                         </div><!-- end breadcrumb-content -->
                     </div><!-- end col-lg-6 -->
-                    <div class="col-lg-6">
-                        <div class="breadcrumb-list text-right">
-                            <ul class="list-items"><!--뎁스 경로 -->
-                                <li><a th:href="@{/home}" href="/home" class="text-white" th:text="'메인'">Home</a></li>
-                                <li th:text="'대시보드 '">Dashboard</li>
-                                <li th:text="'위시 리스트'">My Wishlist</li>
-                            </ul>
-                        </div><!-- end breadcrumb-list -->
-                    </div><!-- end col-lg-6 -->
+
                 </div><!-- end row -->
             </div>
         </div><!-- end dashboard-bread -->
@@ -215,7 +73,7 @@
                         <div class="form-box">
                             <div class="form-title-wrap">
                                 <h3 class="title" th:text="'위시 리스트'">Wishlist</h3>
-                                <p class="font-size-14">Showing 1 - 6 of 28 results</p>
+                                <p class="font-size-14">1 - 6페이지  28개의 결과</p>
                             </div>
                             <div class="form-content pt-5 pb-0"><!--아이템카드 시작 -->
                                 <div class="row">
@@ -223,10 +81,10 @@
                                         <div class="card-item">
                                             <div class="card-img">
                                                 <a th:href="@{/hotel-single}" href="hotel-single.html" class="d-block">
-                                                    <img src="images/img1.jpg" alt="hotel-img">
+                                                    <img src="/images/room1.jpg" alt="hotel-img">
                                                 </a>
                                                 <span class="badge" th:text="'오늘어떄 추천!'">베스트셀러 여부</span>
-                                                <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Remove">
+                                                <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Remove"> <!--리무브구간 자바스크립트로 처리요함 -->
                                                     <i class="la la-heart"></i>
                                                 </div>
                                             </div>
@@ -248,6 +106,7 @@
                                                 </div>
                                             </div>
                                         </div><!-- end card-item -->
+
                                     </div><!-- end col-lg-4 -->
                                     <div class="col-lg-4 responsive-column">
                                         <div class="card-item car-card">
@@ -313,6 +172,7 @@
                                             </div>
                                         </div><!-- end card-item -->
                                     </div><!-- end col-lg-4 -->
+
                                     <!-- 아이템카드 종료 -->
                                 </div><!-- end row -->
                             </div>
@@ -345,26 +205,47 @@
                     </div><!-- end col-lg-12 -->
                 </div><!-- end row -->
                 <div class="border-top mt-5"></div>
-                <div class="row align-items-center">
-                    <div class="col-lg-7">
-                        <div class="copy-right padding-top-30px">
-                            <p class="copy__desc">
-                                &copy; Copyright Trizen 2020. Made with
-                                <span class="la la-heart"></span> by <a href="https://themeforest.net/user/techydevs/portfolio">TechyDevs</a>
-                            </p>
-                        </div><!-- end copy-right -->
-                    </div><!-- end col-lg-7 -->
-                    <div class="col-lg-5">
-                        <div class="copy-right-content text-right padding-top-30px">
-                            <ul class="social-profile">
-                                <li><a href="#"><i class="lab la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="lab la-twitter"></i></a></li>
-                                <li><a href="#"><i class="lab la-instagram"></i></a></li>
-                                <li><a href="#"><i class="lab la-linkedin-in"></i></a></li>
-                            </ul>
-                        </div><!-- end copy-right-content -->
-                    </div><!-- end col-lg-5 -->
-                </div><!-- end row -->
+<!--                <div class="row align-items-center">--><!-- 기존에있던 푸터 -->
+<!--                    <div class="col-lg-7">-->
+<!--                        <div class="copy-right padding-top-30px">-->
+<!--                            <p class="copy__desc">-->
+<!--                                &copy; Copyright Trizen 2020. Made with-->
+<!--                                <span class="la la-heart"></span> by <a href="https://themeforest.net/user/techydevs/portfolio">TechyDevs</a>-->
+<!--                            </p>-->
+<!--                        </div>&lt;!&ndash; end copy-right &ndash;&gt;-->
+<!--                    </div>&lt;!&ndash; end col-lg-7 &ndash;&gt;-->
+<!--                    <div class="col-lg-5">-->
+<!--                        <div class="copy-right-content text-right padding-top-30px">-->
+<!--                            <ul class="social-profile">-->
+<!--                                <li><a href="#"><i class="lab la-facebook-f"></i></a></li>-->
+<!--                                <li><a href="#"><i class="lab la-twitter"></i></a></li>-->
+<!--                                <li><a href="#"><i class="lab la-instagram"></i></a></li>-->
+<!--                                <li><a href="#"><i class="lab la-linkedin-in"></i></a></li>-->
+<!--                            </ul>-->
+<!--                        </div>&lt;!&ndash; end copy-right-content &ndash;&gt;-->
+<!--                    </div>&lt;!&ndash; end col-lg-5 &ndash;&gt;-->
+<!--                </div>&lt;!&ndash; end row &ndash;&gt;-->
+                <section class="footer-area section-lg padding-top-100px padding-bottom-30px">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 responsive-column col-footer">
+                                <div class="footer-item">
+                                    <div class="footer-logo padding-bottom-30px">
+                                        <a href="home" class="foot__logo"><img src="/images/hwt.png" width="250px" alt="logo"></a>
+                                    </div><!-- end logo -->
+                                    <p class="footer__desc">소중한 하루를 위한, 오늘어때</p>
+                                    <ul class="list-items pt-3">
+                                        <li>서울시 강남구 테헤란로 124</li>
+                                        <li>+02-1111-2222</li>
+                                        <li><a href="#">how-about-today@hwt.com</a></li>
+                                    </ul>
+                                </div><!-- end footer-item -->
+                            </div><!-- end col-lg-3 -->
+
+                        </div><!-- end row -->
+                    </div><!-- end container -->
+                    <div class="section-block mt-4"></div>
+                </section><!-- end footer-area -->
             </div><!-- end container-fluid -->
         </div><!-- end dashboard-main-content -->
     </div><!-- end dashboard-content-wrap -->
@@ -372,8 +253,121 @@
 <!-- ================================
     END DASHBOARD AREA
 ================================= -->
+<!-- -->
 
 
 </th:block>
 
 </html>
+<!-- 알림창 코드 -->
+<!--<div class="notification-item mr-2">&lt;!&ndash; 알림창 &ndash;&gt;-->
+<!--    <div class="dropdown">-->
+<!--        <a href="#" class="dropdown-toggle drop-reveal-toggle-icon" id="notificationDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--            <i class="la la-bell"></i>-->
+<!--            <span class="noti-count">4</span>-->
+<!--        </a>-->
+<!--        <div class="dropdown-menu dropdown-reveal dropdown-menu-xl dropdown-menu-right">-->
+<!--            <div class="dropdown-header drop-reveal-header">-->
+<!--                <h6 class="title">You have <strong class="text-black">4</strong> notifications</h6>-->
+<!--            </div>-->
+<!--            <div class="list-group drop-reveal-list">-->
+<!--                <a href="#" class="list-group-item list-group-item-action">-->
+<!--                    <div class="msg-body d-flex align-items-center">-->
+<!--                        <div class="icon-element flex-shrink-0 mr-3 ml-0"><i class="la la-bell"></i></div>-->
+<!--                        <div class="msg-content w-100">-->
+<!--                            <h3 class="title pb-1">Your request has been sent</h3>-->
+<!--                            <p class="msg-text">2 min ago</p>-->
+<!--                        </div>-->
+<!--                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                </a>-->
+<!--                <a href="#" class="list-group-item list-group-item-action">-->
+<!--                    <div class="msg-body d-flex align-items-center">-->
+<!--                        <div class="icon-element bg-2 flex-shrink-0 mr-3 ml-0"><i class="la la-check"></i></div>-->
+<!--                        <div class="msg-content w-100">-->
+<!--                            <h3 class="title pb-1">Your account has been created</h3>-->
+<!--                            <p class="msg-text">1 day ago</p>-->
+<!--                        </div>-->
+<!--                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                </a>-->
+<!--                <a href="#" class="list-group-item list-group-item-action">-->
+<!--                    <div class="msg-body d-flex align-items-center">-->
+<!--                        <div class="icon-element bg-3 flex-shrink-0 mr-3 ml-0"><i class="la la-user"></i></div>-->
+<!--                        <div class="msg-content w-100">-->
+<!--                            <h3 class="title pb-1">Your account updated</h3>-->
+<!--                            <p class="msg-text">2 hrs ago</p>-->
+<!--                        </div>-->
+<!--                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                </a>-->
+<!--                <a href="#" class="list-group-item list-group-item-action">-->
+<!--                    <div class="msg-body d-flex align-items-center">-->
+<!--                        <div class="icon-element bg-4 flex-shrink-0 mr-3 ml-0"><i class="la la-lock"></i></div>-->
+<!--                        <div class="msg-content w-100">-->
+<!--                            <h3 class="title pb-1">Your password changed</h3>-->
+<!--                            <p class="msg-text">Yesterday</p>-->
+<!--                        </div>-->
+<!--                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <a href="#" class="dropdown-item drop-reveal-btn text-center">View all</a> &lt;!&ndash; 알림페이지 이동 &ndash;&gt;-->
+<!--        </div>&lt;!&ndash; end dropdown-menu &ndash;&gt;-->
+<!--    </div>-->
+<!--</div>&lt;!&ndash; end notification-item &ndash;&gt;-->
+
+
+<!-- 우측상단 유저드랍다운 코드 -->
+<!--<div class="notification-wrap d-flex align-items-center">-->
+<!--    &lt;!&ndash; 기존 알림창 위치 &ndash;&gt;-->
+<!--    <div class="notification-item">-->
+<!--        <div class="dropdown">-->
+<!--            <a href="#" class="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> &lt;!&ndash; 이게뭔지 모르겠네 &ndash;&gt;-->
+<!--                <div class="d-flex align-items-center">-->
+<!--                    <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/user1.jpg" alt="team-img"></div>-->
+<!--                    <span class="font-size-14 font-weight-bold" th:text="아무개님">회원 이름</span>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--            <div class="dropdown-menu dropdown-reveal dropdown-menu-md dropdown-menu-right">&lt;!&ndash; 우측상단 드랍다운 &ndash;&gt;-->
+<!--                <div class="dropdown-item drop-reveal-header user-reveal-header">-->
+<!--                    <h6 class="title text-uppercase">환영합니다</h6>-->
+<!--                </div>-->
+<!--                <div class="list-group drop-reveal-list user-drop-reveal-list">-->
+<!--                    <a th:href="@{/user-dashboard-profile}" href="user-dashboard-profile.html" class="list-group-item list-group-item-action">-->
+<!--                        <div class="msg-body">-->
+<!--                            <div class="msg-content">-->
+<!--                                <h3 class="title"><i class="la la-user mr-2"></i>[[|나의 정보|]]</h3>-->
+<!--                            </div>-->
+<!--                        </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                    </a>-->
+<!--                    <a th:href="@{/user-dashboard-booking}" href="user-dashboard-booking.html" class="list-group-item list-group-item-action">-->
+<!--                        <div class="msg-body">-->
+<!--                            <div class="msg-content">-->
+<!--                                <h3 class="title"><i class="la la-shopping-cart mr-2"></i>[[|나의 결제내역|]]</h3>-->
+<!--                            </div>-->
+<!--                        </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                    </a>-->
+<!--                    <a th:href="@{/user-dashboard-reviews}" href="user-dashboard-reviews.html" class="list-group-item list-group-item-action">-->
+<!--                        <div class="msg-body">-->
+<!--                            <div class="msg-content">-->
+<!--                                <h3 class="title"><i class="la la-heart mr-2"></i>[[|나의 리뷰|]]</h3>-->
+<!--                            </div>-->
+<!--                        </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                    </a>-->
+<!--                    <a th:href="@{/user-dashboard-settings}" href="user-dashboard-settings.html" class="list-group-item list-group-item-action">-->
+<!--                        <div class="msg-body">-->
+<!--                            <div class="msg-content">-->
+<!--                                <h3 class="title"><i class="la la-gear mr-2"></i>[[|정보 수정|]]</h3>-->
+<!--                            </div>-->
+<!--                        </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                    </a>-->
+<!--                    <div class="section-block"></div>-->
+<!--                    <a th:href="@{/home}" href="/home" class="list-group-item list-group-item-action">-->
+<!--                        <div class="msg-body">-->
+<!--                            <div class="msg-content">-->
+<!--                                <h3 class="title"><i class="la la-power-off mr-2"></i>[[|로그 아웃|]]</h3>-->
+<!--                            </div>-->
+<!--                        </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>&lt;!&ndash; end dropdown-menu &ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>&lt;!&ndash; end notification-item &ndash;&gt;-->
+<!--</div>-->
