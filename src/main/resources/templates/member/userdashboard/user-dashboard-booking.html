@@ -27,13 +27,13 @@
         </div>
         <div class="sidebar-menu-wrap">
             <ul class="sidebar-menu list-items">
-                <li><a href="user-dashboard"><i class="la la-dashboard mr-2 text-color"></i>Dashboard</a></li>
-                <li class="page-active"><a href="user-dashboard-booking"><i class="la la-shopping-cart mr-2"></i>My Booking</a></li>
-                <li><a href="user-dashboard-profile"><i class="la la-user mr-2 text-color-2"></i>My Profile</a></li>
-                <li><a href="user-dashboard-reviews"><i class="la la-star mr-2 text-color-3"></i>My Reviews</a></li>
-                <li><a href="user-dashboard-wishlist"><i class="la la-heart mr-2 text-color-4"></i>Wishlist</a></li>
-                <li><a href="user-dashboard-settings"><i class="la la-cog mr-2 text-color-5"></i>Settings</a></li>
-                <li><a href="/home"><i class="la la-power-off mr-2 text-color-6"></i>Logout</a></li>
+                <li><a href="user-dashboard" ><i class="la la-dashboard mr-2 text-color" ></i><span th:text="#{sidebar_dashboard}">Dashboard</span></a></li>
+                <li class="page-active"><a href="user-dashboard-booking" ><i class="la la-shopping-cart mr-2"></i><span th:text="#{sidebar_myBooking}">My Booking</span></a></li>
+                <li><a href="user-dashboard-profile" ><i class="la la-user mr-2 text-color-2"></i><span th:text="#{sidebar_myProfile}">My Profile</span></a></li>
+                <li><a href="user-dashboard-reviews" ><i class="la la-star mr-2 text-color-3"></i><span th:text="#{sidebar_myReviews}">My Reviews</span></a></li>
+                <li><a href="user-dashboard-wishlist" ><i class="la la-heart mr-2 text-color-4"></i><span th:text="#{sidebar_wishList}">Wishlist</span></a></li>
+                <li><a href="user-dashboard-settings"><i class="la la-cog mr-2 text-color-5"></i><span th:text="#{sidebar_settings}">Settings</span></a></li>
+                <li><a href="/home"><i class="la la-power-off mr-2 text-color-6" ></i><span th:text="#{sidebar_logout}">Logout</span></a></li>
             </ul>
         </div><!-- end sidebar-menu-wrap -->
     </div>
@@ -148,7 +148,7 @@
                                                 <a href="user-dashboard-booking" class="list-group-item list-group-item-action">
                                                     <div class="msg-body">
                                                         <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-shopping-cart mr-2"></i>My Booking</h3>
+                                                            <h3 class="title" th:text="#{sidebar_myBooking}"><i class="la la-shopping-cart mr-2"></i>My Booking</h3>
                                                         </div>
                                                     </div><!-- end msg-body -->
                                                 </a>
@@ -192,7 +192,7 @@
                     <div class="col-lg-6">
                         <div class="breadcrumb-content">
                             <div class="section-heading">
-                                <h2 class="sec__title font-size-30 text-white">My Booking</h2>
+                                <h2 class="sec__title font-size-30 text-white" th:text="#{sidebar_myBooking}">My Booking</h2>
                             </div>
                         </div><!-- end breadcrumb-content -->
                     </div><!-- end col-lg-6 -->
@@ -217,10 +217,9 @@
                             <div class="form-title-wrap">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
-                                        <h3 class="title">Booking Results</h3>
-                                        <p class="font-size-14">Showing 1 to 7 of 17 entries</p>
+                                        <h3 class="title" th:text="#{booking_result}">Booking Results</h3>
                                     </div>
-                                    <span>Total Bookings <strong class="color-text">(17)</strong></span>
+                                    <span th:text="#{total_bookings}">Total Bookings <strong class="color-text">(17)</strong></span>
                                 </div>
                             </div>
                             <div class="form-content">
@@ -228,140 +227,36 @@
                                     <table class="table">
                                         <thead>
                                         <tr>
-                                            <th scope="col">Type</th>
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Location</th>
-                                            <th scope="col">Order Date</th>
-                                            <th scope="col">Execution Date</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Action</th>
+
+
+
+                                            <th scope="col" th:text="#{acco_type}">문제</th>
+                                            <th scope="col" th:text="#{acco_name}"></th>
+                                            <th scope="col" th:text="#{acco_location}"></th>
+                                            <th scope="col" th:text="#{acco_otherDate}"></th>
+                                            <th scope="col" th:text="#{acco_useDate}"></th>
+                                            <th scope="col" th:text="#{acco_price}"></th>
+                                            <th scope="col" th:text="#{acco_usedStatus}"></th>
+                                            <th scope="col" th:text="#{acco_cancel}"></th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <th scope="row"><i class="la la-plane mr-1 font-size-18"></i>Flight</th>
+                                        <tr th:each="user : ${users}">
+<!--                                            <th scope="row"><i class="la la-plane mr-1 font-size-18"></i>Flight</th>-->
+                                            <th scope="row"><img src="/icon/icon_hotel.png" width="30px" style="vertical-align:middle;"><span style="margin-top:50px;font-size:18px;">모텔</span></th>
                                             <td>
                                                 <div class="table-content">
-                                                    <h3 class="title">London to New York City</h3>
+                                                    <h3 class="title">울산 영남 알프스 인투</h3>
                                                 </div>
                                             </td>
-                                            <td>New York City</td>
-                                            <td>30/6/2020</td>
-                                            <td>2/6/2020</td>
-                                            <td>$350</td>
-                                            <td><span class="badge badge-info py-1 px-2">Pending</span></td>
+                                            <td>울산광역시 </td>
+                                            <td>2022/09/30</td>
+                                            <td>2022/10/15</td>
+                                            <td th:text="${user}">$350</td>
+                                            <td><span class="badge badge-info py-1 px-2">이용 전</span></td>
                                             <td>
                                                 <div class="table-content">
-                                                   <button class="theme-btn theme-btn-small">Cancel</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><i class="la la-car mr-1 font-size-18"></i>Car</th>
-                                            <td>
-                                                <div class="table-content">
-                                                    <h3 class="title">Mercedes-Benz A 200 CDI</h3>
-                                                </div>
-                                            </td>
-                                            <td>Greater London, United Kingdom</td>
-                                            <td>30/6/2020</td>
-                                            <td>2/6/2020</td>
-                                            <td>$350</td>
-                                            <td><span class="badge badge-success py-1 px-2">Completed</span></td>
-                                            <td>
-                                                <div class="table-content">
-                                                   <button class="theme-btn theme-btn-small">Cancel</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><i class="la la-tree mr-1 font-size-18"></i>Tour</th>
-                                            <td>
-                                                <div class="table-content">
-                                                    <h3 class="title">InterContinental New York Barclay</h3>
-                                                </div>
-                                            </td>
-                                            <td>Istanbul , Turkey</td>
-                                            <td>30/6/2020</td>
-                                            <td>2/6/2020</td>
-                                            <td>$350</td>
-                                            <td><span class="badge badge-warning py-1 px-2">Delayed</span></td>
-                                            <td>
-                                                <div class="table-content">
-                                                   <button class="theme-btn theme-btn-small">Cancel</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><i class="la la-ship mr-1 font-size-18"></i>Cruise</th>
-                                            <td>
-                                                <div class="table-content">
-                                                    <h3 class="title">5 Nights Bermuda Cruise</h3>
-                                                </div>
-                                            </td>
-                                            <td>Miami, Florida</td>
-                                            <td>30/6/2020</td>
-                                            <td>2/6/2020</td>
-                                            <td>$350</td>
-                                            <td><span class="badge badge-info py-1 px-2">On schedule</span></td>
-                                            <td>
-                                                <div class="table-content">
-                                                   <button class="theme-btn theme-btn-small">Cancel</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><i class="la la-building mr-1 font-size-18"></i>Hotel</th>
-                                            <td>
-                                                <div class="table-content">
-                                                    <h3 class="title">Melia White House Hotel</h3>
-                                                </div>
-                                            </td>
-                                            <td>Boston, Massachusetts</td>
-                                            <td>30/6/2020</td>
-                                            <td>2/6/2020</td>
-                                            <td>$350</td>
-                                            <td><span class="badge badge-success py-1 px-2">Completed</span></td>
-                                            <td>
-                                                <div class="table-content">
-                                                   <button class="theme-btn theme-btn-small">Cancel</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><i class="la la-tree mr-1 font-size-18"></i>Tour</th>
-                                            <td>
-                                                <div class="table-content">
-                                                    <h3 class="title">Hut on Blue Water Beach Tour</h3>
-                                                </div>
-                                            </td>
-                                            <td>124 Nevada, Las Vegas</td>
-                                            <td>30/6/2020</td>
-                                            <td>2/6/2020</td>
-                                            <td>$350</td>
-                                            <td><span class="badge badge-success py-1 px-2">Completed</span></td>
-                                            <td>
-                                                <div class="table-content">
-                                                   <button class="theme-btn theme-btn-small">Cancel</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><i class="la la-plane mr-1 font-size-18"></i>Flight</th>
-                                            <td>
-                                                <div class="table-content">
-                                                    <h3 class="title">Rome to Australia</h3>
-                                                </div>
-                                            </td>
-                                            <td>New York City</td>
-                                            <td>30/6/2020</td>
-                                            <td>2/6/2020</td>
-                                            <td>$350</td>
-                                            <td><span class="badge badge-success py-1 px-2">Completed</span></td>
-                                            <td>
-                                                <div class="table-content">
-                                                   <button class="theme-btn theme-btn-small">Cancel</button>
+                                                   <button class="theme-btn theme-btn-small" onclick="location.href='/user-dashboard-booking-details'">취소</button>
                                                 </div>
                                             </td>
                                         </tr>
