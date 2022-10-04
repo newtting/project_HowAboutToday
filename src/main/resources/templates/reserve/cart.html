@@ -11,14 +11,14 @@
 <!-- ================================
     START BREADCRUMB AREA
 ================================= -->
-<section class="breadcrumb-area bread-bg-10">
+<section class="breadcrumb-area breadcrumb-board">
     <div class="breadcrumb-wrap">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-content text-center">
                         <div class="section-heading">
-                            <h2 class="sec__title text-white">장바구니</h2>
+                            <h2 class="sec__title text-white">CART</h2>
                         </div>
                         <span class="arrow-blink">
                             <i class="la la-arrow-down"></i>
@@ -60,7 +60,7 @@
                                 <th scope="row">
                                     <div class="table-content product-content d-flex align-items-center">
                                         <a href="room-details.html" class="d-block" th:href="@{/room-details}">
-                                            <img src="images/small-img12.jpg" alt="" class="flex-shrink-0">
+                                            <img src="images/room1.jpg" alt="" class="flex-shrink-0">
                                         </a>
                                        <div class="product-content">
                                            <a href="room-details.html" class="title" th:href="@{/room-details}"
@@ -111,11 +111,11 @@
                                 <div class="form-group mb-0 mr-3"> <!--쿠폰 영역시작 -->
                                     <input class="form-control pl-3" type="text" name="text" placeholder="Coupon code">
                                 </div>
-                                <button type="button" class="theme-btn"th:value="|쿠폰 적용|">쿠폰 적용</button>
+                                <button type="button" class="theme-btn hwt-btn-gray"th:value="|쿠폰 적용|">쿠폰 적용</button>
                             </form> <!-- 쿠폰영역 끝 -->
                         </div><!-- end contact-form-action -->
                         <div class="btn-box">
-                            <a th:href="@{/cart/edit}" href="" class="theme-btn">[[|장바구니 수정|]]</a> <!-- /cart/edit로 보내서 수량 수정가능하게 적용해야 할듯 -->
+                            <a th:href="@{/cart/edit}" href="" class="theme-btn hwt-btn-gray">[[|장바구니 수정|]]</a> <!-- /cart/edit로 보내서 수량 수정가능하게 적용해야 할듯 -->
                         </div>
                     </div>
                     <div class="row">
@@ -148,7 +148,7 @@
                                 </table>
                                 <div class="section-block"></div>
                                 <div class="btn-box text-right pt-4">
-                                    <a th:href="@{/checkout}" href="checkout.html" class="theme-btn">[[|결제 진행|]]</a>
+                                    <a th:href="@{/checkout}" href="checkout.html" class="theme-btn hwt-btn-gray">[[|결제 진행|]]</a>
                                 </div>
                             </div>
                         </div>
