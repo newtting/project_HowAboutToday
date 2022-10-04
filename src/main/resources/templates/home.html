@@ -25,10 +25,10 @@
                             <h2 class="sec__title">HOW ABOUT TODAY ?</h2>
                         </div>
                     </div><!-- end hero-content -->
-                    <div class="search-fields-container">
-                        <div class="contact-form-action">
+                    <div class="search-fields-container hwt-search-container">
+                        <div class="contact-form-action hwt-search">
                             <form action="#" class="row">
-                                <div class="col-lg-3 pr-0">
+                                <div class="col-lg-3 pr-0 hwt-search-element">
                                     <div class="input-box">
                                         <label class="label-text">지역 / 숙소 이름</label>
                                         <div class="form-group">
@@ -37,7 +37,7 @@
                                         </div>
                                     </div>
                                 </div><!-- end col-lg-3 -->
-                                <div class="col-lg-3 pr-0">
+                                <div class="col-lg-3 pr-0 hwt-search-element">
                                     <div class="input-box">
                                         <label class="label-text">체크인 - 체크아웃</label>
                                         <div class="form-group">
@@ -52,9 +52,9 @@
                                         <div class="form-group">
                                             <div class="dropdown dropdown-contain gty-container">
                                                 <a class="dropdown-toggle dropdown-btn" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                                                    <span class="adult" data-text="Adult" data-text-multi="성인">성인 0</span>
+                                                    <span class="adult" data-text="성인" data-text-multi="성인">성인 0</span>
                                                     -
-                                                    <span class="children" data-text="Child" data-text-multi="아동">아동 0</span>
+                                                    <span class="children" data-text="아동" data-text-multi="아동">아동 0</span>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-wrap">
 <!--                                                    <div class="dropdown-item">-->
@@ -93,7 +93,7 @@
                                     </div>
                                 </div><!-- end col-lg-3 -->
                             </form>
-                            <div class="btn-box pt-2">
+                            <div class="btn-box pt-2 hwt-search-btn">
                                 <a href="room-search-result.html" class="theme-btn hwt-btn-gray">검색</a>
                             </div>
                         </div>
@@ -112,55 +112,78 @@
 <!-- ================================
     START INFO AREA
 ================================= -->
-<section class="info-area info-bg info-area2 padding-top-80px padding-bottom-45px">
+<section class="info-area info-bg info-area2 padding-top-80px padding-bottom-45px hwt-info">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box icon-layout-2 d-flex hwt-icon-box">
-                    <div class="info-icon flex-shrink-0 bg-rgb text-color-2 hwt-icon">
-<!--                        <i class="las la-radiation"></i>-->
-                        <img src="images/icon/hotel.png" class="hwt-icon-element">
-                    </div><!-- end info-icon-->
-                    <div class="info-content">
-<!--                        <h4 class="info__title">Unique Atmosphere</h4>-->
-                        <p class="info__desc">호텔</p>
-                    </div><!-- end info-content -->
+        <div class="row hwt-row-board">
+            <div class="col-lg-12">
+                <div class="section-heading hwt-title">
+                    <p class="sec__title">바로가기</p>
+                </div><!-- end section-heading -->
+            </div><!-- end col-lg-12 -->
+        </div>
+        <div class="row hwt-row-icon">
+            <div class="col-lg-3 responsive-column hwt-col-icon">
+                <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                    <div class="hwt-iconbox-pointer">
+                        <a href="hotel-list">
+                            <div class="info-icon flex-shrink-0 bg-rgb text-color-2 hwt-info-icon">
+                                <!--                        <i class="las la-radiation"></i>-->
+                                <img src="images/icon/hotel.png" class="hwt-icon-element">
+                            </div><!-- end info-icon-->
+                            <div class="info-content">
+                                <!--                        <h4 class="info__title">Unique Atmosphere</h4>-->
+                                <p class="info__desc">호텔</p>
+                            </div><!-- end info-content -->
+                        </a>
+                    </div>
                 </div><!-- end icon-box -->
             </div><!-- end col-lg-3 -->
-             <div class="col-lg-3 responsive-column">
-                <div class="icon-box icon-layout-2 d-flex hwt-icon-box">
-                    <div class="info-icon flex-shrink-0 bg-rgb-2 text-color-3 hwt-icon">
-<!--                        <i class="la la-tree"></i>-->
-                        <img src="images/icon/motel2.png" class="hwt-icon-element">
-                    </div><!-- end info-icon-->
-                    <div class="info-content">
-<!--                        <h4 class="info__title">Environment</h4>-->
-                        <p class="info__desc">모텔</p>
-                    </div><!-- end info-content -->
+            <div class="col-lg-3 responsive-column hwt-col-icon">
+                <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                    <div class="hwt-iconbox-pointer">
+                        <a href="motel-list">
+                            <div class="info-icon flex-shrink-0 bg-rgb-2 text-color-3 hwt-info-icon">
+                                <!--                        <i class="la la-tree"></i>-->
+                                <img src="images/icon/motel2.png" class="hwt-icon-element">
+                            </div><!-- end info-icon-->
+                            <div class="info-content">
+                                <!--                        <h4 class="info__title">Environment</h4>-->
+                                <p class="info__desc">모텔</p>
+                            </div><!-- end info-content -->
+                        </a>
+                    </div>
                 </div><!-- end icon-box -->
             </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box icon-layout-2 d-flex hwt-icon-box">
-                    <div class="info-icon flex-shrink-0 bg-rgb-3 text-color-4 hwt-icon">
-<!--                        <i class="las la-map-marked-alt"></i>-->
-                        <img src="images/icon/poolvilla.png" class="hwt-icon-element">
-                    </div><!-- end info-icon-->
-                    <div class="info-content">
-<!--                        <h4 class="info__title">Great Location</h4>-->
-                        <p class="info__desc">펜션/풀빌라</p>
-                    </div><!-- end info-content -->
+            <div class="col-lg-3 responsive-column hwt-col-icon">
+                <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                    <div class="hwt-iconbox-pointer">
+                        <a href="pension-PoolVilla-list">
+                            <div class="info-icon flex-shrink-0 bg-rgb-3 text-color-4 hwt-info-icon">
+                                <!--                        <i class="las la-map-marked-alt"></i>-->
+                                <img src="images/icon/poolvilla.png" class="hwt-icon-element">
+                            </div><!-- end info-icon-->
+                            <div class="info-content">
+                                <!--                        <h4 class="info__title">Great Location</h4>-->
+                                <p class="info__desc">펜션/풀빌라</p>
+                            </div><!-- end info-content -->
+                        </a>
+                    </div>
                 </div><!-- end icon-box -->
             </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box icon-layout-2 d-flex hwt-icon-box">
-                    <div class="info-icon flex-shrink-0 bg-rgb-4 text-color-5 hwt-icon">
-<!--                        <i class="las la-bed"></i>-->
-                        <img src="images/icon/hostel.png" class="hwt-icon-element">
-                    </div><!-- end info-icon-->
-                    <div class="info-content">
-<!--                        <h4 class="info__title">Homey Comfort</h4>-->
-                        <p class="info__desc">게하/한옥</p>
-                    </div><!-- end info-content -->
+            <div class="col-lg-3 responsive-column hwt-col-icon">
+                <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                    <div class="hwt-iconbox-pointer">
+                        <a href="guestHouse-Hanok-list">
+                            <div class="info-icon flex-shrink-0 bg-rgb-4 text-color-5 hwt-info-icon">
+                                <!--                        <i class="las la-bed"></i>-->
+                                <img src="images/icon/hostel.png" class="hwt-icon-element">
+                            </div><!-- end info-icon-->
+                            <div class="info-content">
+                                <!--                        <h4 class="info__title">Homey Comfort</h4>-->
+                                <p class="info__desc">게하/한옥</p>
+                            </div><!-- end info-content -->
+                        </a>
+                    </div>
                 </div><!-- end icon-box -->
             </div><!-- end col-lg-3 -->
         </div><!-- end row -->
@@ -170,60 +193,76 @@
     END INFO AREA
 ================================= -->
 
-<div class="section-block"></div>
+<div class="section-block hwt-section-block"></div>
 
 <!-- ================================
     START INFO AREA 2
 ================================= -->
-<section class="info-area info-bg info-area2 padding-top-80px padding-bottom-45px">
+<section class="info-area info-bg info-area2 padding-top-80px padding-bottom-45px hwt-info2">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box icon-layout-2 d-flex hwt-icon-box">
-                    <div class="info-icon flex-shrink-0 bg-rgb text-color-2 hwt-icon">
-                        <!--                        <i class="las la-radiation"></i>-->
-                        <img src="images/icon/hotel.png" class="hwt-icon-element">
-                    </div><!-- end info-icon-->
-                    <div class="info-content">
-                        <!--                        <h4 class="info__title">Unique Atmosphere</h4>-->
-                        <p class="info__desc">공지사항</p>
-                    </div><!-- end info-content -->
+        <div class="row hwt-row-icon">
+            <div class="col-lg-3 responsive-column hwt-col-icon">
+                <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                    <div class="hwt-iconbox-pointer">
+                        <a href="notice">
+                            <div class="info-icon flex-shrink-0 bg-rgb text-color-2 hwt-info-icon">
+                                <!--                        <i class="las la-radiation"></i>-->
+                                <img src="images/icon/notice.png" class="hwt-icon-element">
+                            </div><!-- end info-icon-->
+                            <div class="info-content">
+                                <!--                        <h4 class="info__title">Unique Atmosphere</h4>-->
+                                <p class="info__desc">공지사항</p>
+                            </div><!-- end info-content -->
+                        </a>
+                    </div>
                 </div><!-- end icon-box -->
             </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box icon-layout-2 d-flex hwt-icon-box">
-                    <div class="info-icon flex-shrink-0 bg-rgb-2 text-color-3 hwt-icon">
-                        <!--                        <i class="la la-tree"></i>-->
-                        <img src="images/icon/motel2.png" class="hwt-icon-element">
-                    </div><!-- end info-icon-->
-                    <div class="info-content">
-                        <!--                        <h4 class="info__title">Environment</h4>-->
-                        <p class="info__desc">이벤트</p>
-                    </div><!-- end info-content -->
+            <div class="col-lg-3 responsive-column hwt-col-icon">
+                <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                    <div class="hwt-iconbox-pointer">
+                        <a href="event">
+                            <div class="info-icon flex-shrink-0 bg-rgb-2 text-color-3 hwt-info-icon">
+                                <!--                        <i class="la la-tree"></i>-->
+                                <img src="images/icon/event.png" class="hwt-icon-element">
+                            </div><!-- end info-icon-->
+                            <div class="info-content">
+                                <!--                        <h4 class="info__title">Environment</h4>-->
+                                <p class="info__desc">이벤트</p>
+                            </div><!-- end info-content -->
+                        </a>
+                    </div>
                 </div><!-- end icon-box -->
             </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box icon-layout-2 d-flex hwt-icon-box">
-                    <div class="info-icon flex-shrink-0 bg-rgb-3 text-color-4 hwt-icon">
-                        <!--                        <i class="las la-map-marked-alt"></i>-->
-                        <img src="images/icon/poolvilla.png" class="hwt-icon-element">
-                    </div><!-- end info-icon-->
-                    <div class="info-content">
-                        <!--                        <h4 class="info__title">Great Location</h4>-->
-                        <p class="info__desc">FAQ</p>
-                    </div><!-- end info-content -->
+            <div class="col-lg-3 responsive-column hwt-col-icon">
+                <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                    <div class="hwt-iconbox-pointer">
+                        <a href="faq">
+                            <div class="info-icon flex-shrink-0 bg-rgb-3 text-color-4 hwt-info-icon">
+                                <!--                        <i class="las la-map-marked-alt"></i>-->
+                                <img src="images/icon/faq.png" class="hwt-icon-element">
+                            </div><!-- end info-icon-->
+                            <div class="info-content">
+                                <!--                        <h4 class="info__title">Great Location</h4>-->
+                                <p class="info__desc">FAQ</p>
+                            </div><!-- end info-content -->
+                        </a>
+                    </div>
                 </div><!-- end icon-box -->
             </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box icon-layout-2 d-flex hwt-icon-box">
-                    <div class="info-icon flex-shrink-0 bg-rgb-4 text-color-5 hwt-icon">
-                        <!--                        <i class="las la-bed"></i>-->
-                        <img src="images/icon/hostel.png" class="hwt-icon-element">
-                    </div><!-- end info-icon-->
-                    <div class="info-content">
-                        <!--                        <h4 class="info__title">Homey Comfort</h4>-->
-                        <p class="info__desc">고객센터</p>
-                    </div><!-- end info-content -->
+            <div class="col-lg-3 responsive-column hwt-col-icon">
+                <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                    <div class="hwt-iconbox-pointer">
+                        <a href="contact">
+                            <div class="info-icon flex-shrink-0 bg-rgb-4 text-color-5 hwt-info-icon">
+                                <!--                        <i class="las la-bed"></i>-->
+                                <img src="images/icon/contact.png" class="hwt-icon-element">
+                            </div><!-- end info-icon-->
+                            <div class="info-content">
+                                <!--                        <h4 class="info__title">Homey Comfort</h4>-->
+                                <p class="info__desc">고객센터</p>
+                            </div><!-- end info-content -->
+                        </a>
+                    </div>
                 </div><!-- end icon-box -->
             </div><!-- end col-lg-3 -->
         </div><!-- end row -->
@@ -414,29 +453,32 @@
 <!-- ================================
    START TESTIMONIAL AREA
 ================================= -->
-<section class="testimonial-area section-bg section-padding padding-top-100px padding-bottom-200px">
+<section class="testimonial-area section-bg section-padding padding-top-70px padding-bottom-70px">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-4">
-                <div class="section-heading">
-                    <h2 class="sec__title line-height-50">인기 여행지</h2>
+            <div class="col-lg-4 hwt-col-left">
+                <div class="section-heading hwt-title">
+                    <p class="sec__title line-height-50">추천 여행지</p>
                 </div><!-- end section-heading -->
             </div><!-- end col-lg-4 -->
             <div class="col-lg-8">
-                <div class="testimonial-carousel carousel-action">
-                    <div class="testimonial-card">
-                        <div class="testi-desc-box">
-                            <p class="testi__desc">서울</p>
-                        </div>
-                    </div><!-- end testimonial-card -->
-                    <div class="testimonial-card">
-                        <div class="testi-desc-box">
+                <div class="testimonial-carousel carousel-action hwt-carousel">
+                    <div class="testimonial-card hwt-circle"
+                         style="background-image: url('https://yaimg.yanolja.com/v5/2022/05/16/15/62826b1c714e09.44266747.png')">
+                        <div class="testi-desc-box hwt-circle-text">
                             <p class="testi__desc">부산</p>
                         </div>
                     </div><!-- end testimonial-card -->
-                    <div class="testimonial-card">
-                        <div class="testi-desc-box">
+                    <div class="testimonial-card hwt-circle"
+                         style="background-image: url('https://yaimg.yanolja.com/v5/2022/05/16/15/62826af8189a81.32041133.png')">
+                        <div class="testi-desc-box hwt-circle-text">
                             <p class="testi__desc">제주도</p>
+                        </div>
+                    </div><!-- end testimonial-card -->
+                    <div class="testimonial-card hwt-circle"
+                         style="background-image: url('https://yaimg.yanolja.com/v5/2022/05/16/15/62826af3d78366.88472574.png')">
+                        <div class="testi-desc-box hwt-circle-text">
+                            <p class="testi__desc">강원도</p>
                         </div>
                     </div><!-- end testimonial-card -->
                 </div><!-- end testimonial-carousel -->
@@ -451,21 +493,21 @@
 <!-- ================================
     START DISCOUNT AREA
 ================================= -->
-<section class="discount-area padding-top-100px padding-bottom-100px">
+<section class="discount-area padding-top-120px padding-bottom-120px hwt-banner-wrap">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="discount-box">
+                <div class="discount-box hwt-banner">
                     <div class="discount-img">
-                        <img src="images/discount-hotel-img.jpg" alt="discount img">
+                        <img src="i" alt="discount img">
                     </div><!-- end discount-img -->
-                    <div class="discount-content">
+                    <div class="discount-content hwt-banner-content-wrap">
                         <div class="section-heading">
                             <p class="sec__desc text-white">아직 회원이 아니신가요?</p>
                             <h2 class="sec__title mb-0 line-height-50 text-white">신규 회원을 위한 <br> 50% 할인 쿠폰</h2>
                         </div><!-- end section-heading -->
-                        <div class="btn-box pt-4">
-                            <a href="#" class="theme-btn border-0 hwt-btn-gray">쿠폰 받기 <i class="la la-arrow-right ml-1"></i></a>
+                        <div class="btn-box pt-4 hwt-banner-content-btn">
+                            <a href="#" class="theme-btn border-0 hwt-btn-white">쿠폰 받기 <i class="la la-arrow-right ml-1"></i></a>
                         </div>
                     </div><!-- end discount-content -->
 <!--                    <div class="company-logo">-->

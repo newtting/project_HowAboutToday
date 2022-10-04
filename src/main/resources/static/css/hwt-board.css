@@ -55,6 +55,10 @@
 	border-color: #566578!important;
 }
 
+.hwt-icon-color {
+    color: #566578!important;
+}
+
 /* NOTICE, EVENT, ABOUT DETAILS */
 .hwt-details-bold {
     font-weight: 600;
@@ -140,4 +144,8 @@
 
 .list-footer a::before {
 	height: 0;
+}
+
+.hwt-icon-bg:hover {
+background-color: #566578!important
 }
