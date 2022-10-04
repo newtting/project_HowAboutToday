@@ -1,5 +1,5 @@
 var mymap = L.map('map', {
-    center: [51.505, -0.09],
+    center: [37.498752264290744, 127.03155913317994],
     zoom: 13
 });
 
@@ -13,7 +13,6 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     zoomOffset: -1
 }).addTo(mymap);
 
-L.marker([51.5, -0.09]).addTo(mymap)
-    .bindPopup("<b>Hello World!</b><br/>I am a popup.").openPopup();
-
+L.marker([37.498752264290744, 127.03155913317994]).addTo(mymap)
+    .bindPopup("<b>안녕하세요!</b><br/>오늘어때 입니다.").openPopup();
 
