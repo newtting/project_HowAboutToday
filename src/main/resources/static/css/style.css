@@ -1852,7 +1852,7 @@ body {
   border-radius: 50%; }
 
 .page-link-nav {
-  color: #287dfa;
+  color: #566578;
   margin-right: 5px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -1871,7 +1871,7 @@ body {
   height: 34px; }
   .page-link-nav:hover {
     color: #fff;
-    background-color: #287dfa; }
+    background-color: #566578; }
 
 /*======== filter-top =========*/
 @media (max-width: 375px) {
@@ -7718,7 +7718,7 @@ body {
         -o-transition: all 0.3s;
         transition: all 0.3s; }
     .sidebar-menu li.active > a, .sidebar-menu li.page-active > a {
-      background-color: #287dfa;
+      background-color: #566578;
       color: #fff;
       -webkit-box-shadow: 0 0 40px rgba(40, 125, 250, 0.1);
       -moz-box-shadow: 0 0 40px rgba(40, 125, 250, 0.1);
@@ -7741,7 +7741,7 @@ body {
       color: #fff;
       border-left-color: rgba(255, 255, 255, 0.1); }
     .sidebar-menu li:hover > a {
-      background-color: #287dfa;
+      background-color: #566578;
       color: #fff;
       -webkit-box-shadow: 0 0 40px rgba(40, 125, 250, 0.1);
       -moz-box-shadow: 0 0 40px rgba(40, 125, 250, 0.1);
@@ -7769,7 +7769,7 @@ body {
 .dashboard-nav {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 10px 20px;
-  background-color: #287dfa; }
+  background-color: #566578; }
   @media only screen and (min-width: 768px) and (max-width: 991px) {
     .dashboard-nav .logo {
       margin-right: 0 !important;
@@ -7814,7 +7814,7 @@ body {
 
 /*===== dashboard-bread =======*/
 .dashboard-bread {
-  background-color: #287dfa;
+  background-color: #566578;
   padding: 20px 20px 60px 20px; }
 
 .dashboard--bread {
