@@ -97,7 +97,7 @@ CREATE TABLE T_ROOM (
   weekdayDiscount int NOT NULL,
   weekendPrice int NOT NULL,
   weekendDiscount int NOT NULL,
-  restStartTime datetime NOT NULL,other
+  restStartTime datetime NOT NULL,
   restEndTime datetime NOT NULL,
   roomInfo varchar(1000) NOT NULL,
   CONSTRAINT FK_26 FOREIGN KEY (accomNum) REFERENCES T_ACCOMMODATION(accomNum)on delete cascade
@@ -239,7 +239,7 @@ CREATE TABLE T_REPLY (
   replyContent varchar(1000) NOT NULL,
   CONSTRAINT FK_6 FOREIGN KEY (memberNum) REFERENCES T_MEMBER(memberNum)on delete cascade,
   CONSTRAINT FK_7 FOREIGN KEY (accomNum) REFERENCES T_ACCOMMODATION(accomNum)on delete cascade,
-  CONSTRAINT FK_8 FOREIGN KEY (roomNum) REFERENCES T_ROOM(roomNum)on delete cascade
+  CONSTRAINT FK_8 FOREIGN KEY (roomNum) REFERENCES T_ROOM(roomNum)on delete cascade,
   CONSTRAINT FK_4 FOREIGN KEY (reserveNum) REFERENCES T_RESERVATION(reserveNum)on delete cascade,
   CONSTRAINT FK_4 FOREIGN KEY (reviewNum) REFERENCES T_REVIEW(reviewNum)on delete cascade,
 );

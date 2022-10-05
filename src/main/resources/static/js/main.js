@@ -519,7 +519,7 @@ Author Email:   contact@tecydevs.com
             $(datePickerMultiple).daterangepicker({
                 opens: 'right',
                 locale: {
-                    format: 'DD/MM/YYYY',
+                    format: 'YYYY/MM/DD',
                 }
             });
         }
@@ -530,7 +530,7 @@ Author Email:   contact@tecydevs.com
                 singleDatePicker: true,
                 opens: 'right',
                 locale: {
-                    format: 'DD/MM/YYYY',
+                    format: 'YYYY/MM/DD',
                 }
             });
         }
@@ -575,7 +575,7 @@ Author Email:   contact@tecydevs.com
                     singleDatePicker: true,
                     opens: 'right',
                     local: {
-                       format: 'DD/MM/YYYY'
+                       format: 'YYYY/MM/DD'
                     }
                 });
                 i++;

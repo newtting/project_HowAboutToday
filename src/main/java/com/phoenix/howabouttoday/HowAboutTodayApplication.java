@@ -2,6 +2,9 @@ package com.phoenix.howabouttoday;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.ResourceBundleMessageSource;
 
 @SpringBootApplication
 public class HowAboutTodayApplication {
@@ -9,4 +12,11 @@ public class HowAboutTodayApplication {
 		SpringApplication.run(HowAboutTodayApplication.class, args);
 	}
 
+	@Bean
+	public MessageSource messageSource() {
+		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+		messageSource.setBasenames("messages/reserveMessage");
+		messageSource.setDefaultEncoding("UTF-8");
+		return messageSource;
+	}
 }
