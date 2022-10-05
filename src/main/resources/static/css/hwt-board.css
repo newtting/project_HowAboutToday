@@ -21,6 +21,10 @@ n
     text-align: center;
 }
 
+.hwt-icon-box a:hover {
+    border-color:#566578
+}
+
 .hwt-icon {
     margin-left: auto;
     margin-right: auto;
@@ -31,6 +35,8 @@ n
     background-color: unset!important;
 }
 
+
+/* List Pages */
 /* NOTICE & EVENT*/
 .hwt-board-title {
     flex-direction: column;
@@ -59,7 +65,24 @@ n
     color: #566578!important;
 }
 
-/* NOTICE, EVENT, ABOUT DETAILS */
+/* FAQ */
+.hwt-row-board {
+    margin-right: 90px;
+    margin-left: 90px;
+}
+
+.col-board {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+/* ABOUT */
+.hwt-about {
+    padding-top: 60px;
+}
+
+
+/* Detail Pages */
 .hwt-board-title {
     display: flex;
     flex-direction: column;
@@ -90,67 +113,4 @@ n
 
 .hwt-details-bottom a {
     color: #566578;
-}
-
-/* FAQ */
-.hwt-row-board {
-    margin-right: 90px;
-    margin-left: 90px;
-}
-
-.col-board {
-    flex: 0 0 100%;
-    max-width: 100%;
-}
-
-/* ABOUT */
-.hwt-about {
-    padding-top: 60px;
-}
-
-/* HEADER */
-.hwt-btn-white {
-    color: #566578;
-    border-color: #fff!important;
-    background-color: #fff;
-}
-
-.hwt-btn-white:hover {
-    color: #fff;
-    border-color: #fff!important;
-    background-color: #566578;
-}
-
-.hwt-btn-gray {
-    color: #fff;
-    border-color: #566578;
-    background-color: #566578;
-}
-
-.hwt-btn-gray:hover {
-    color: #566578;
-    border-color: #566578;
-    background-color: #fff;
-}
-
-.hwt-font-title {
-	font-size: 16px!important;
-}
-
-/* FOOTER */
-.col-footer {
-    flex: 0 0 50%;
-    max-width: 50%;
-}
-
-.list-items li a:hover {
-    color: #566578;
-}
-
-.list-footer a::before {
-	height: 0;
-}
-
-.hwt-icon-bg:hover {
-background-color: #566578!important
 }
