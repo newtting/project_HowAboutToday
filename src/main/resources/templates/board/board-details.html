@@ -331,28 +331,35 @@
     <div class="container">
         <div class="row hwt-row-board">
             <div class="col-lg-8 col-board">
-                <div class="form-box">
-                    <div class="form-title-wrap">
-                        <div class="author-bio">
-                            <th:block th:if="${(#request.getRequestURI).equals('/notice-details')}">
-                                <h3 class="title hwt-details-bold">오늘어때 서비스 정기점검 안내</h3></th:block>
-                            <h3 th:if="${(#request.getRequestURI).equals('/event-details')}"
-                                class="title hwt-details-bold">무이자 할부 카드로 결제 시 최대 8개월 무이자 혜택</h3>
-                            <h3 th:if="${(#request.getRequestURI).equals('/about-details')}"
-                                class="title hwt-details-bold">이용약관</h3>
-                        </div>
-                        <div class="hwt-board-date">
-                            <th:block th:if="${(#request.getRequestURI).equals('/notice-details')}">
-                                <p>2022.10.01</p></th:block>
-                            <a th:if="${(#request.getRequestURI).equals('/event-details')}"
-                               href="event-details" class="author__title">
-                                <p>기간</p>
-                                <p>2022.10.01 - 2022.10.31</p>
-                            </a>
-                        </div>
-                    </div>
 
+                <!-- Board Title -->
+                <div class="form-box">
+                    <div class="form-title-wrap hwt-board-title">
+                        <div class="author-bio">
+                                <h3 class="title hwt-details-bold">
+                                    <th:block th:if="${(#request.getRequestURI).equals('/notice-details')}">오늘어때 서비스 정기점검 안내</th:block>
+                                    <th:block th:if="${(#request.getRequestURI).equals('/event-details')}">무이자 할부 카드로 결제 시 최대 8개월 무이자 혜택</th:block>
+                                    <th:block th:if="${(#request.getRequestURI).equals('/about-details')}">이용약관</th:block>
+                                </h3>
+                        </div>
+                        <th:block th:if="${(#request.getRequestURI).equals('/notice-details')}">
+                            <div class="hwt-board-date">
+                                <p>2022.10.01</p>
+                            </div>
+                        </th:block>
+                        <th:block th:if="${(#request.getRequestURI).equals('/event-details')}">
+                            <div class="hwt-board-date">
+                                <a href="event-details" class="author__title">
+                                    <p>기간</p>
+                                    <p>2022.10.01 - 2022.10.31</p>
+                                </a>
+                            </div>
+                        </th:block>
                     </div><!-- form-title-wrap -->
+                </div>
+
+                <!-- Board Content -->
+                <div class="form-box">
                     <div class="form-content contact-form-action hwt-details-content">
                         <th:block th:if="${(#request.getRequestURI).equals('/notice-details')}">
                             <p>안녕하세요. 오늘어때입니다.</p>

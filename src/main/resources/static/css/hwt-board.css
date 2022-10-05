@@ -60,6 +60,11 @@ n
 }
 
 /* NOTICE, EVENT, ABOUT DETAILS */
+.hwt-board-title {
+    display: flex;
+    flex-direction: column;
+}
+
 .hwt-details-bold {
     font-weight: 600;
 }
