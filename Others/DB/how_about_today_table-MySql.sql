@@ -270,12 +270,19 @@ CREATE TABLE T_BOARD (
 	boardNum int auto_increment,
 	boardCategoryNum int NOT NULL,
 	boardTitle varchar(200) NOT NULL,
-	boardContent varchar(3096) NOT NULL,
+	boardContent varchar(3096),
 	boardCreate datetime NOT NULL,
-	boardHits int NOT NULL,
 	PRIMARY KEY (`boardNum`),
 CONSTRAINT FK_27 FOREIGN KEY (boardCategoryNum) REFERENCES T_BOARD_CATEGORY(boardCategoryNum) on delete cascade
 )AUTO_INCREMENT=1;
+
+--  게시판 이미지
+CREATE TABLE T_BOARD_IMAGE (
+    boardNum int,
+    boardOriginFileName varchar(100) NOT NULL,
+    boardSaveFileName varchar(100) NOT NULL,
+    CONSTRAINT FK_3 FOREIGN KEY (boardNum) REFERENCES T_BOARD(boardNum) on delete cascade
+);
 
 DROP TABLE T_MEMBER;
 DROP TABLE T_COUPON;
