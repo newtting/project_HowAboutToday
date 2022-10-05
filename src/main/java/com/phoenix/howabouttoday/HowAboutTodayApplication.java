@@ -12,11 +12,4 @@ public class HowAboutTodayApplication {
 		SpringApplication.run(HowAboutTodayApplication.class, args);
 	}
 
-	@Bean
-	public MessageSource messageSource() {
-		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-		messageSource.setBasenames("messages/reserveMessage");
-		messageSource.setDefaultEncoding("UTF-8");
-		return messageSource;
-	}
 }
