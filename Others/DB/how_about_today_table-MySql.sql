@@ -25,7 +25,7 @@ CREATE TABLE T_MEMBER (
   memberTel varchar(20) NOT NULL,
 --  memberPoint int NOT NULL, -- 포인트 일단 빼고
   memberGrade int NOT NULL, --  회원 등급: 일반회원, 판매자, 관리자
-  PRIMARY KEY (`memberNum`)
+  PRIMARY KEY (`id`)
 )AUTO_INCREMENT=1;
 
 --  쿠폰
@@ -97,14 +97,9 @@ CREATE TABLE T_ROOM (
   roomName varchar(50) NOT NULL,
   defaultGuest int NOT NULL,
   maxGuest int NOT NULL,
-  stayStartDate datetime NOT NULL,      --  숙박 시작일
-  stayEndDate datetime NOT NULL,       --  숙박 종료일
-  weekdayPrice int NOT NULL,
-  weekdayDiscount int NOT NULL,
-  weekendPrice int NOT NULL,
-  weekendDiscount int NOT NULL,
-  restStartTime datetime NOT NULL,
-  restEndTime datetime NOT NULL,
+  price int NOT NULL,
+  restStartTime varchar(20) NOT NULL,
+  restEndTime varchar(20) NOT NULL,
   roomInfo varchar(1000) NOT NULL,
   PRIMARY KEY (`roomNum`),
   CONSTRAINT FK_26 FOREIGN KEY (accomNum) REFERENCES T_ACCOMMODATION(accomNum)on delete cascade
@@ -115,7 +110,8 @@ CREATE TABLE T_ROOM (
 CREATE TABLE T_ROOM_RESERVATION_INFO (
   accomNum int,
   roomNum int,
-  reserveDate datetime NOT NULL,
+  useStart date NOT NULL,
+  useEnd date NOT NULL,
   CONSTRAINT FK_1 FOREIGN KEY (accomNum) REFERENCES T_ACCOMMODATION (accomNum)on delete cascade,
   CONSTRAINT FK_2 FOREIGN KEY (roomNum) REFERENCES T_ROOM (roomNum)on delete cascade
 );
@@ -148,6 +144,8 @@ CREATE TABLE T_CART (
   memberNum int,
   accomNum int,
   roomNum int,
+  useStart date NOT NULL,
+  useEnd date NOT NULL,
   price int NOT NULL,
   CONSTRAINT FK_11 FOREIGN KEY (memberNum) REFERENCES T_MEMBER(memberNum)on delete cascade,
   CONSTRAINT FK_12 FOREIGN KEY (accomNum) REFERENCES T_ACCOMMODATION(accomNum)on delete cascade,
@@ -190,19 +188,18 @@ CREATE TABLE T_RESERVATION_STATE (
 CREATE TABLE T_RESERVATION (
   memberNum int,
   accomNum int,
+  roomNum int,
   reserveStatus int,
-  reserveNum int auto_increment,
-  orderNum int NOT NULL,
+  orderNum int auto_increment,
   orderDate datetime NOT NULL,
-  roomName varchar(50) NOT NULL,
   useStartDate datetime NOT NULL,
   useEndDate datetime NOT NULL,
-  vehicle varchar(10) NOT NULL,
   price int NOT NULL,
-  PRIMARY KEY (`reserveNum`),
+  PRIMARY KEY (`orderNum`),
   CONSTRAINT FK_16 FOREIGN KEY (memberNum) REFERENCES T_MEMBER(memberNum)on delete cascade,
-  CONSTRAINT FK_5 FOREIGN KEY (reserveStatus) REFERENCES T_RESERVATION_STATE(reserveStatus)on delete cascade,
-  CONSTRAINT FK_17 FOREIGN KEY (accomNum) REFERENCES T_ACCOMMODATION(accomNum)on delete cascade
+  CONSTRAINT FK_17 FOREIGN KEY (accomNum) REFERENCES T_ACCOMMODATION(accomNum)on delete cascade,
+  CONSTRAINT FK_46 FOREIGN KEY (roomNum) REFERENCES T_ROOM(roomNum)on delete cascade,
+  CONSTRAINT FK_5 FOREIGN KEY (reserveStatus) REFERENCES T_RESERVATION_STATE(reserveStatus)on delete cascade
 )AUTO_INCREMENT=1;
 
 --  숙소와 편의시설간의 N:M 관계를 위한 테이블
@@ -218,13 +215,13 @@ CREATE TABLE T_REVIEW (
   memberNum int,
   accomNum int,
   roomNum int,
-  reserveNum int,
+  orderNum int,
   reviewNum int auto_increment,
   reviewRating DECIMAL(2,1) NOT NULL,      -- 평점
-  reviewCreate datetime NOT NULL,
+  reviewCreated datetime NOT NULL,
   reviewContent varchar(1000) NOT NULL,    -- 내용.
   PRIMARY KEY (`reviewNum`),
-  CONSTRAINT FK_4 FOREIGN KEY (reserveNum) REFERENCES T_RESERVATION(reserveNum)on delete cascade,
+  CONSTRAINT FK_4 FOREIGN KEY (orderNum) REFERENCES T_RESERVATION(orderNum)on delete cascade,
   CONSTRAINT FK_6 FOREIGN KEY (memberNum) REFERENCES T_MEMBER(memberNum)on delete cascade,
   CONSTRAINT FK_7 FOREIGN KEY (accomNum) REFERENCES T_ACCOMMODATION(accomNum)on delete cascade,
   CONSTRAINT FK_8 FOREIGN KEY (roomNum) REFERENCES T_ROOM(roomNum)on delete cascade
@@ -243,7 +240,7 @@ CREATE TABLE T_REPLY (
   memberNum int,    -- 판매자
   accomNum int,
   roomNum int,
-  reserveNum int,
+  orderNum int,
   reviewNum int,
   replyNum int auto_increment,
   replyCreate datetime NOT NULL,
@@ -252,7 +249,7 @@ CREATE TABLE T_REPLY (
   CONSTRAINT FK_36 FOREIGN KEY (memberNum) REFERENCES T_MEMBER(memberNum)on delete cascade,
   CONSTRAINT FK_37 FOREIGN KEY (accomNum) REFERENCES T_ACCOMMODATION(accomNum)on delete cascade,
   CONSTRAINT FK_38 FOREIGN KEY (roomNum) REFERENCES T_ROOM(roomNum)on delete cascade,
-  CONSTRAINT FK_44 FOREIGN KEY (reserveNum) REFERENCES T_RESERVATION(reserveNum)on delete cascade,
+  CONSTRAINT FK_44 FOREIGN KEY (orderNum) REFERENCES T_RESERVATION(orderNum)on delete cascade,
   CONSTRAINT FK_34 FOREIGN KEY (reviewNum) REFERENCES T_REVIEW(reviewNum)on delete cascade
 )AUTO_INCREMENT=1;
 
@@ -306,6 +303,5 @@ DROP TABLE T_REPLY;
 DROP TABLE T_REVIEW_IMAGE;
 DROP TABLE T_BOARD;
 DROP TABLE T_BOARD_CATEGORY;
-
-
+DROP TABLE T_BOARD_IMAGE;
 

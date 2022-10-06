@@ -9,7 +9,7 @@ CREATE TABLE T_MEMBER (
   memberTel varchar(20) NOT NULL,
 --  memberPoint int NOT NULL, -- 포인트 일단 빼고
   memberGrade int NOT NULL, --  회원 등급: 일반회원, 판매자, 관리자
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`memberNum `)
 )AUTO_INCREMENT=1;
 
 INSERT INTO `t_member` (`email`,`pw`,`nickName`,`memberTel`,`memberGrade`)
