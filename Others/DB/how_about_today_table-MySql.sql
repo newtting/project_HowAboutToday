@@ -85,8 +85,9 @@ CREATE TABLE T_ACCOMMODATION (
 --  숙소 이미지
 CREATE TABLE T_ACCOM_IMAGE (
   accomNum int,
-  accomOriginFileName varchar(100) NOT NULL,
-  accomSaveFileName varchar(100) NOT NULL,
+  accomImagePath varchar(100) NOT NULL,
+--  accomOriginFileName varchar(100) NOT NULL,
+--  accomSaveFileName varchar(100) NOT NULL,
   CONSTRAINT FK_3 FOREIGN KEY (accomNum) REFERENCES T_ACCOMMODATION(accomNum)on delete cascade
 );
 
@@ -261,13 +262,12 @@ CREATE TABLE T_BOARD_CATEGORY(
 	PRIMARY KEY (`boardCategoryNum`)
 )AUTO_INCREMENT=1;
 
-
 -- 게시판
 CREATE TABLE T_BOARD (
 	boardNum int auto_increment,
 	boardCategoryNum int NOT NULL,
 	boardTitle varchar(200) NOT NULL,
-	boardContent varchar(3096),
+	boardContent varchar(3096) NOT NULL,
 	boardCreate datetime NOT NULL,
 	PRIMARY KEY (`boardNum`),
 CONSTRAINT FK_27 FOREIGN KEY (boardCategoryNum) REFERENCES T_BOARD_CATEGORY(boardCategoryNum) on delete cascade
