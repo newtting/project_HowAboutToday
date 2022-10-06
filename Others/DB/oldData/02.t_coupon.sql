@@ -1,4 +1,3 @@
-SDFSDFSF
 
 CREATE TABLE T_COUPON (
   couponNum int auto_increment,

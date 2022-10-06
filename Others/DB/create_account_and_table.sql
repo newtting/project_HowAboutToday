@@ -10,8 +10,10 @@
 -- ex) drop user gillog@localhost;
 
 
+
+-- 유저 생성과 DB 생성, 권한 주기는 무조건 ROOT 계정에서 실행해야함!!!!!!!
 create user 'phoenix'@'%' identified by 'a123';
-CREATE DATABASE how_about_today_db default CHARACTER SET UTF8;
+CREATE DATABASE how_about_today_db default CHARACTER SET UTF8MB4;
 grant all privileges on how_about_today_db.* to 'phoenix'@'%';	-- 특정 DB에 대한 모든 권한주기
 FLUSH PRIVILEGES; -- 모든 권한 적용
 -- DROP USER  phoenix@'%'; -- 유저 삭제
@@ -25,7 +27,7 @@ CREATE TABLE T_MEMBER (
   memberTel varchar(20) NOT NULL,
 --  memberPoint int NOT NULL, -- 포인트 일단 빼고
   memberGrade int NOT NULL, --  회원 등급: 일반회원, 판매자, 관리자
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`memberNum`)
 )AUTO_INCREMENT=1;
 
 --  쿠폰
@@ -85,10 +87,9 @@ CREATE TABLE T_ACCOMMODATION (
 --  숙소 이미지
 CREATE TABLE T_ACCOM_IMAGE (
   accomNum int,
-  accomImagePath varchar(100) NOT NULL,
---  accomOriginFileName varchar(100) NOT NULL,
---  accomSaveFileName varchar(100) NOT NULL,
-  CONSTRAINT FK_3 FOREIGN KEY (accomNum) REFERENCES T_ACCOMMODATION(accomNum)on delete cascade
+  accomOriginFileName varchar(100) NOT NULL,
+  accomSaveFileName varchar(100) NOT NULL,
+  CONSTRAINT FK_43 FOREIGN KEY (accomNum) REFERENCES T_ACCOMMODATION(accomNum)on delete cascade
 );
 
 --  객실
@@ -105,6 +106,7 @@ CREATE TABLE T_ROOM (
   PRIMARY KEY (`roomNum`),
   CONSTRAINT FK_26 FOREIGN KEY (accomNum) REFERENCES T_ACCOMMODATION(accomNum)on delete cascade
 )AUTO_INCREMENT=1;
+
 -- 원래는 객실 가격을 테이블로 나눴는데 굳이 필요가 없다는 판단이 들어서 객실테이블로 합쳤습니다.
 
 --  객실 정보
@@ -121,15 +123,14 @@ CREATE TABLE T_ROOM_RESERVATION_INFO (
 -- 그리고 유저 B가 숙소A의 페이지에서 10월 1일을 선택하면 INFO의 정보를 읽어와서 10월 1일 객실 X는 예약 마감으로 보입니다.
 
 
---  객실-이미지
+--  객실 이미지
 CREATE TABLE T_ROOM_IMAGE (
-  accomNum int,
   roomNum int,
   roomOriginFileName varchar(100) NOT NULL,
   roomSaveFileName varchar(100) NOT NULL,
-  CONSTRAINT FK_18 FOREIGN KEY (roomNum) REFERENCES T_ROOM(roomNum)on delete cascade,
-  CONSTRAINT FK_19 FOREIGN KEY (accomNum) REFERENCES T_ACCOMMODATION(accomNum)on delete cascade
+  CONSTRAINT FK_18 FOREIGN KEY (roomNum) REFERENCES T_ROOM(roomNum)on delete cascade
 );
+
 
 --  장바구니 숙소
 -- DROP TABLE T_CART_ACCO;
@@ -262,6 +263,7 @@ CREATE TABLE T_BOARD_CATEGORY(
 	PRIMARY KEY (`boardCategoryNum`)
 )AUTO_INCREMENT=1;
 
+
 -- 게시판
 CREATE TABLE T_BOARD (
 	boardNum int auto_increment,
@@ -273,13 +275,15 @@ CREATE TABLE T_BOARD (
 CONSTRAINT FK_27 FOREIGN KEY (boardCategoryNum) REFERENCES T_BOARD_CATEGORY(boardCategoryNum) on delete cascade
 )AUTO_INCREMENT=1;
 
+
 --  게시판 이미지
 CREATE TABLE T_BOARD_IMAGE (
     boardNum int,
     boardOriginFileName varchar(100) NOT NULL,
     boardSaveFileName varchar(100) NOT NULL,
-    CONSTRAINT FK_3 FOREIGN KEY (boardNum) REFERENCES T_BOARD(boardNum) on delete cascade
+    CONSTRAINT FK_53 FOREIGN KEY (boardNum) REFERENCES T_BOARD(boardNum) on delete cascade
 );
+
 
 DROP TABLE T_MEMBER;
 DROP TABLE T_COUPON;

@@ -2,7 +2,7 @@ CREATE TABLE T_BOARD (
 	boardNum int auto_increment,
 	boardCategoryNum int NOT NULL,
 	boardTitle varchar(200) NOT NULL,
-	boardContent varchar(3096),
+	boardContent varchar(3096) NOT NULL,
 	boardCreate datetime NOT NULL,
 	PRIMARY KEY (`boardNum`),
 CONSTRAINT FK_27 FOREIGN KEY (boardCategoryNum) REFERENCES T_BOARD_CATEGORY(boardCategoryNum) on delete cascade
