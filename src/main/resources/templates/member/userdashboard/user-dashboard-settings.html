@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/layout_user">
-
+      layout:decorate="layout/layout_user"
 <th:block layout:fragment="content">
 <!-- ================================
        START DASHBOARD NAV
@@ -30,7 +29,7 @@
                 <li><a th:href="@{/user-dashboard-profile}" href="/user-dashboard-profile.html"><i class="la la-user mr-2 text-color-3"></i>[[|나의 정보|]]</a></li>
                 <li><a th:href="@{/user-dashboard-reviews}" href="/user-dashboard-reviews.html"><i class="la la-star mr-2 text-color-4"></i>[[|나의 리뷰|]]</a></li>
                 <li><a th:href="@{/user-dashboard-wishlist}" href="/user-dashboard-wishlist.html"><i class="la la-heart mr-2"></i>[[|위시 리스트|]]</a></li>
-                <li class="page-active"><a th:href="@{/user-dashboard-settings}" href="/user-dashboard-settings.html"><i class="la la-cog mr-2 text-color-5"></i>[[|정보 수정|]]</a></li>
+<!--                <li class="page-active"><a th:href="@{/user-dashboard-settings}" href="/user-dashboard-settings.html"><i class="la la-cog mr-2 text-color-5"></i>[[|정보 수정|]]</a></li>-->
                 <li><a th:href="@{/home}" href="/home"><i class="la la-power-off mr-2 text-color-6"></i>[[로그아웃]]</a></li>
             </ul>
         </div><!-- end sidebar-menu-wrap -->
@@ -44,138 +43,138 @@
     START DASHBOARD AREA
 ================================= -->
 <section class="dashboard-area">
-    <div class="dashboard-nav">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="menu-wrapper">
-                        <div class="logo mr-5">
-                            <a href="/home"><img src="images/hwt.png" alt="logo" style="width: 180px; height:  20px;"></a>
-                            <div class="menu-toggler">
-                                <i class="la la-bars"></i>
-                                <i class="la la-times"></i>
-                            </div><!-- end menu-toggler -->
-                            <div class="user-menu-open">
-                                <i class="la la-user"></i>
-                            </div><!-- end user-menu-open -->
-                        </div>
-                        <div class="dashboard-search-box">
-                            <div class="contact-form-action">
-                                <form action="#">
-                                    <div class="form-group mb-0">
-                                        <input class="form-control" type="text" name="text" placeholder="검색">
-                                        <button class="search-btn"><i class="la la-search"></i></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="nav-btn ml-auto">
-                            <div class="notification-wrap d-flex align-items-center">
-                                <div class="notification-item mr-2">
-                                    <div class="dropdown">
-                                        <a href="#" class="dropdown-toggle drop-reveal-toggle-icon" id="notificationDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="la la-bell"></i>
-                                            <span class="noti-count">4</span>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-reveal dropdown-menu-xl dropdown-menu-right">
-                                            <div class="dropdown-header drop-reveal-header">
-                                                <h6 class="title">You have <strong class="text-black">4</strong> notifications</h6>
-                                            </div>
-                                            <div class="list-group drop-reveal-list">
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="icon-element flex-shrink-0 mr-3 ml-0"><i class="la la-bell"></i></div>
-                                                        <div class="msg-content w-100">
-                                                            <h3 class="title pb-1">Your request has been sent</h3>
-                                                            <p class="msg-text">2 min ago</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="icon-element bg-2 flex-shrink-0 mr-3 ml-0"><i class="la la-check"></i></div>
-                                                        <div class="msg-content w-100">
-                                                            <h3 class="title pb-1">Your account has been created</h3>
-                                                            <p class="msg-text">1 day ago</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="icon-element bg-3 flex-shrink-0 mr-3 ml-0"><i class="la la-user"></i></div>
-                                                        <div class="msg-content w-100">
-                                                            <h3 class="title pb-1">Your account updated</h3>
-                                                            <p class="msg-text">2 hrs ago</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="icon-element bg-4 flex-shrink-0 mr-3 ml-0"><i class="la la-lock"></i></div>
-                                                        <div class="msg-content w-100">
-                                                            <h3 class="title pb-1">Your password changed</h3>
-                                                            <p class="msg-text">Yesterday</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                            </div>
-                                            <a href="#" class="dropdown-item drop-reveal-btn text-center">View all</a>
-                                        </div><!-- end dropdown-menu -->
-                                    </div>
-                                </div><!-- end notification-item -->
-                                <div class="notification-item">
-                                    <div class="dropdown">
-                                        <a href="#" class="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>
-                                                <span class="font-size-14 font-weight-bold">이동우짱</span>
-                                            </div>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-reveal dropdown-menu-md dropdown-menu-right">
-                                            <div class="dropdown-item drop-reveal-header user-reveal-header">
-                                                <h6 class="title text-uppercase">Welcome!</h6>
-                                            </div>
-                                            <div class="list-group drop-reveal-list user-drop-reveal-list">
-                                                <a href="user-dashboard-profile.html" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-user mr-2"></i>My Profile</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="user-dashboard-booking.html" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-shopping-cart mr-2"></i>My Booking</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="user-dashboard-reviews.html" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-heart mr-2"></i>My Reviews</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="user-dashboard-settings.html" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-gear mr-2"></i>Settings</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <div class="section-block"></div>
-                                                <a href="/home" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-power-off mr-2"></i>Logout</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                            </div>
-                                        </div><!-- end dropdown-menu -->
-                                    </div>
-                                </div><!-- end notification-item -->
+<!--    <div class="dashboard-nav">-->
+<!--        <div class="container-fluid">-->
+<!--            <div class="row">-->
+<!--                <div class="col-lg-12">-->
+<!--                    <div class="menu-wrapper">-->
+<!--                        <div class="logo mr-5">-->
+<!--                            <a href="/home"><img src="images/hwt.png" alt="logo" style="width: 180px; height:  20px;"></a>-->
+<!--                            <div class="menu-toggler">-->
+<!--                                <i class="la la-bars"></i>-->
+<!--                                <i class="la la-times"></i>-->
+<!--                            </div>&lt;!&ndash; end menu-toggler &ndash;&gt;-->
+<!--                            <div class="user-menu-open">-->
+<!--                                <i class="la la-user"></i>-->
+<!--                            </div>&lt;!&ndash; end user-menu-open &ndash;&gt;-->
+<!--                        </div>-->
+<!--                        <div class="dashboard-search-box">-->
+<!--                            <div class="contact-form-action">-->
+<!--                                <form action="#">-->
+<!--                                    <div class="form-group mb-0">-->
+<!--                                        <input class="form-control" type="text" name="text" placeholder="검색">-->
+<!--                                        <button class="search-btn"><i class="la la-search"></i></button>-->
+<!--                                    </div>-->
+<!--                                </form>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="nav-btn ml-auto">-->
+<!--                            <div class="notification-wrap d-flex align-items-center">-->
+<!--                                <div class="notification-item mr-2">-->
+<!--                                    <div class="dropdown">-->
+<!--                                        <a href="#" class="dropdown-toggle drop-reveal-toggle-icon" id="notificationDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                                            <i class="la la-bell"></i>-->
+<!--                                            <span class="noti-count">4</span>-->
+<!--                                        </a>-->
+<!--                                        <div class="dropdown-menu dropdown-reveal dropdown-menu-xl dropdown-menu-right">-->
+<!--                                            <div class="dropdown-header drop-reveal-header">-->
+<!--                                                <h6 class="title">You have <strong class="text-black">4</strong> notifications</h6>-->
+<!--                                            </div>-->
+<!--                                            <div class="list-group drop-reveal-list">-->
+<!--                                                <a href="#" class="list-group-item list-group-item-action">-->
+<!--                                                    <div class="msg-body d-flex align-items-center">-->
+<!--                                                        <div class="icon-element flex-shrink-0 mr-3 ml-0"><i class="la la-bell"></i></div>-->
+<!--                                                        <div class="msg-content w-100">-->
+<!--                                                            <h3 class="title pb-1">Your request has been sent</h3>-->
+<!--                                                            <p class="msg-text">2 min ago</p>-->
+<!--                                                        </div>-->
+<!--                                                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                                                </a>-->
+<!--                                                <a href="#" class="list-group-item list-group-item-action">-->
+<!--                                                    <div class="msg-body d-flex align-items-center">-->
+<!--                                                        <div class="icon-element bg-2 flex-shrink-0 mr-3 ml-0"><i class="la la-check"></i></div>-->
+<!--                                                        <div class="msg-content w-100">-->
+<!--                                                            <h3 class="title pb-1">Your account has been created</h3>-->
+<!--                                                            <p class="msg-text">1 day ago</p>-->
+<!--                                                        </div>-->
+<!--                                                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                                                </a>-->
+<!--                                                <a href="#" class="list-group-item list-group-item-action">-->
+<!--                                                    <div class="msg-body d-flex align-items-center">-->
+<!--                                                        <div class="icon-element bg-3 flex-shrink-0 mr-3 ml-0"><i class="la la-user"></i></div>-->
+<!--                                                        <div class="msg-content w-100">-->
+<!--                                                            <h3 class="title pb-1">Your account updated</h3>-->
+<!--                                                            <p class="msg-text">2 hrs ago</p>-->
+<!--                                                        </div>-->
+<!--                                                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                                                </a>-->
+<!--                                                <a href="#" class="list-group-item list-group-item-action">-->
+<!--                                                    <div class="msg-body d-flex align-items-center">-->
+<!--                                                        <div class="icon-element bg-4 flex-shrink-0 mr-3 ml-0"><i class="la la-lock"></i></div>-->
+<!--                                                        <div class="msg-content w-100">-->
+<!--                                                            <h3 class="title pb-1">Your password changed</h3>-->
+<!--                                                            <p class="msg-text">Yesterday</p>-->
+<!--                                                        </div>-->
+<!--                                                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                            <a href="#" class="dropdown-item drop-reveal-btn text-center">View all</a>-->
+<!--                                        </div>&lt;!&ndash; end dropdown-menu &ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                </div>&lt;!&ndash; end notification-item &ndash;&gt;-->
+<!--                                <div class="notification-item">-->
+<!--                                    <div class="dropdown">-->
+<!--                                        <a href="#" class="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                                            <div class="d-flex align-items-center">-->
+<!--                                                <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>-->
+<!--                                                <span class="font-size-14 font-weight-bold">이동우짱</span>-->
+<!--                                            </div>-->
+<!--                                        </a>-->
+<!--                                        <div class="dropdown-menu dropdown-reveal dropdown-menu-md dropdown-menu-right">-->
+<!--                                            <div class="dropdown-item drop-reveal-header user-reveal-header">-->
+<!--                                                <h6 class="title text-uppercase">Welcome!</h6>-->
+<!--                                            </div>-->
+<!--                                            <div class="list-group drop-reveal-list user-drop-reveal-list">-->
+<!--                                                <a href="user-dashboard-profile.html" class="list-group-item list-group-item-action">-->
+<!--                                                    <div class="msg-body">-->
+<!--                                                        <div class="msg-content">-->
+<!--                                                            <h3 class="title"><i class="la la-user mr-2"></i>My Profile</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                                                </a>-->
+<!--                                                <a href="user-dashboard-booking.html" class="list-group-item list-group-item-action">-->
+<!--                                                    <div class="msg-body">-->
+<!--                                                        <div class="msg-content">-->
+<!--                                                            <h3 class="title"><i class="la la-shopping-cart mr-2"></i>My Booking</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                                                </a>-->
+<!--                                                <a href="user-dashboard-reviews.html" class="list-group-item list-group-item-action">-->
+<!--                                                    <div class="msg-body">-->
+<!--                                                        <div class="msg-content">-->
+<!--                                                            <h3 class="title"><i class="la la-heart mr-2"></i>My Reviews</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                                                </a>-->
+<!--                                                <a href="user-dashboard-settings.html" class="list-group-item list-group-item-action">-->
+<!--                                                    <div class="msg-body">-->
+<!--                                                        <div class="msg-content">-->
+<!--                                                            <h3 class="title"><i class="la la-gear mr-2"></i>수정 하기</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                                                </a>-->
+<!--                                                <div class="section-block"></div>-->
+<!--                                                <a href="/home" class="list-group-item list-group-item-action">-->
+<!--                                                    <div class="msg-body">-->
+<!--                                                        <div class="msg-content">-->
+<!--                                                            <h3 class="title"><i class="la la-power-off mr-2"></i>Logout</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                        </div>&lt;!&ndash; end dropdown-menu &ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                </div>&lt;!&ndash; end notification-item &ndash;&gt;-->
                             </div>
                         </div><!-- end nav-btn -->
                     </div><!-- end menu-wrapper -->
@@ -195,13 +194,13 @@
                         </div><!-- end breadcrumb-content -->
                     </div><!-- end col-lg-6 -->
                     <div class="col-lg-6">
-                        <div class="breadcrumb-list text-right">
-                            <ul class="list-items">
-                                <li><a href="/home" class="text-white">홈으로</a></li>
+<!--                        <div class="breadcrumb-list text-right">-->
+<!--                            <ul class="list-items">-->
+<!--                                <li><a href="/home" class="text-white">Home</a></li>-->
 <!--                                <li>Dashboard</li>-->
 <!--                                <li>Settings</li>-->
-                            </ul>
-                        </div><!-- end breadcrumb-list -->
+<!--                            </ul>-->
+<!--                        </div>&lt;!&ndash; end breadcrumb-list &ndash;&gt;-->
                     </div><!-- end col-lg-6 -->
                 </div><!-- end row -->
             </div>
@@ -209,84 +208,210 @@
         <div class="dashboard-main-content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <div class="form-box">
-                            <div class="form-title-wrap border-bottom-0 pb-0">
-                                <h3 class="title">나의 정보</h3>
+                            <div class="form-title-wrap">
+                                <h3 class="title">정보 수정</h3>
                             </div>
                             <div class="form-content">
-                                <div class="table-form table-responsive">
-                                    <table class="table">
-                                        <tbody>
-                                        <tr>
-                                            <td class="pl-0">
-                                                <div class="table-content">
-                                                    <h3 class="title font-weight-medium">닉네임</h3>
-                                                </div>
-                                            </td>
-                                            <td>:</td>
-                                            <td>이동우짱</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="pl-0">
-                                                <div class="table-content">
-                                                    <h3 class="title font-weight-medium">이메일 주소</h3>
-                                                </div>
-                                            </td>
-                                            <td>:</td>
-                                            <td>dongwoo@gmail.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="pl-0">
-                                                <div class="table-content">
-                                                    <h3 class="title font-weight-medium">전화번호</h3>
-                                                </div>
-                                            </td>
-                                            <td>:</td>
-                                            <td>010-1234-5678</td>
-                                        </tr>
-                                                                              <tr>
-                                            <td class="pl-0">
-                                                <div class="table-content">
-                                                <h3 class="title font-weight-medium">패스워드</h3>
-                                                                                            </div>
-                                                                                        </td>
-                                                                                        <td>:</td>
-                                                                                        <td>기존 패스워드</td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td class="pl-0">
-                                                                                            <div class="table-content">
-                                                                                                <h3 class="title font-weight-medium">새로운 패스워드</h3>
-                                                                                            </div>
-                                                                                        </td>
-                                                                                        <td>:</td>
-                                                                                        <td>새로운 패스워드</td>
-                                                                                    </tr>
-
-                                                                                                                             <tr>
-                                                                                                                                <td class="pl-0">
-                                                                                                                                    <div class="table-content">
-                                                                                                                                        <h3 class="title font-weight-medium">새로운 패스워드 재확인</h3>
-                                                                                                                                    </div>
-                                                                                                                                </td>
-                                                                                                                                <td>:</td>
-                                                                                                                                <td>새로운 패스워드 재입력</td>
-                                                                                                                            </tr>
-
-
-
-                                        </tbody>
-                                    </table>
-
-                                    <div class="btn-box">
-                                        <button class="theme-btn" type="button">수정하기</button>
+                                <div class="user-profile-action d-flex align-items-center pb-4">
+                                    <div class="user-pro-img">
+                                        <img src="images/team1.jpg" alt="user-image">
+                                    </div>
+                                    <div class="upload-btn-box">
+                                        <p class="pb-2 font-size-15 line-height-24">최대 파일 크기는 5MB, 최소 치수: 150x150이며 적합한 파일은 .jpg.png입니다.</p>
+                                        <div class="file-upload-wrap file-upload-wrap-2">
+                                            <input type="file" name="files[]" class="multi file-upload-input with-preview" maxlength="1">
+                                            <span class="file-upload-text"><i class="la la-upload mr-2"></i>이미지 업로드</span>
+                                            <a href="#" class="theme-btn theme-btn-small">이미지 삭제</a>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="section-block"></div>
-                                <!--                                <div class="btn-box mt-4">-->
-                                <!--                                    <a href="user-dashboard-settings.html" class="theme-btn">Edit Profile</a>-->
-                                <!--                                </div>-->
+                                <div class="contact-form-action">
+                                    <form action="#">
+                                        <div class="row">
+                                            <div class="col-lg-6 responsive-column">
+                                                <div class="input-box">
+                                                    <label class="label-text">닉네임</label>
+                                                    <div class="form-group">
+                                                        <span class="la la-user form-icon"></span>
+                                                        <input class="form-control" type="text" value="이동우짱">
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col-lg-6 -->
+                                            <div class="col-lg-6 responsive-column">
+                                                <div class="input-box">
+                                                    <label class="label-text">전화번호</label>
+                                                    <div class="form-group">
+                                                        <span class="la la-phone form-icon"></span>
+                                                        <input class="form-control" type="text" value="010-1234-5678">
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col-lg-6 -->
+<!--                                            <div class="col-lg-6 responsive-column">-->
+<!--                                                <div class="input-box">-->
+<!--                                                    <label class="label-text">Email Address</label>-->
+<!--                                                    <div class="form-group">-->
+<!--                                                        <span class="la la-envelope form-icon"></span>-->
+<!--                                                        <input class="form-control" type="text" value="alitufan@gmail.com">-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>&lt;!&ndash; end col-lg-6-->
+<!--                                            <div class="col-lg-6 responsive-column">-->
+<!--                                                <div class="input-box">-->
+<!--                                                    <label class="label-text">전화번호</label>-->
+<!--                                                    <div class="form-group">-->
+<!--                                                        <span class="la la-phone form-icon"></span>-->
+<!--                                                        <input class="form-control" type="text" value="02-123-4567">-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+<!--                                            <div class="col-lg-6 responsive-column">-->
+<!--                                                <div class="input-box">-->
+<!--                                                    <label class="label-text">Date of birth</label>-->
+<!--                                                    <div class="form-group">-->
+<!--                                                        <span class="la la-user form-icon"></span>-->
+<!--                                                        <input class="form-control" type="text" value="03 Jun 1990">-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+<!--                                            <div class="col-lg-6 responsive-column">-->
+<!--                                                <div class="input-box">-->
+<!--                                                    <label class="label-text">Address</label>-->
+<!--                                                    <div class="form-group">-->
+<!--                                                        <span class="la la-map form-icon"></span>-->
+<!--                                                        <input class="form-control" type="text" value="8800 Orchard Lake Road, Suite 180 Farmington Hills, U.S.A.">-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+                                            <div class="col-lg-12">
+                                                <div class="btn-box">
+                                                    <button class="theme-btn" type="button">수정 하기</button>
+                                                </div>
+                                            </div><!-- end col-lg-12 -->
+                                        </div><!-- end row -->
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- end form-box -->
+                    </div><!-- end col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="form-box">
+                            <div class="form-title-wrap">
+                                <h3 class="title">이메일 수정</h3>
+                            </div>
+                            <div class="form-content">
+                                <div class="contact-form-action">
+                                    <form action="#">
+                                        <div class="row">
+                                            <div class="col-lg-12 responsive-column">
+                                                <div class="input-box">
+                                                    <label class="label-text">기존 이메일</label>
+                                                    <div class="form-group">
+                                                        <span class="la la-envelope form-icon"></span>
+                                                        <input class="form-control" type="text" placeholder="이메일 입력">
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col-lg-12 -->
+                                            <div class="col-lg-12 responsive-column">
+                                                <div class="input-box">
+                                                    <label class="label-text">새로운 이메일</label>
+                                                    <div class="form-group">
+                                                        <span class="la la-envelope form-icon"></span>
+                                                        <input class="form-control" type="text" placeholder="이메일 입력">
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col-lg-12 -->
+                                            <div class="col-lg-12 responsive-column">
+                                                <div class="input-box">
+                                                    <label class="label-text">새로운 이메일 재확인</label>
+                                                    <div class="form-group">
+                                                        <span class="la la-envelope form-icon"></span>
+                                                        <input class="form-control" type="text" placeholder="이메일 재입력">
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col-lg-12 -->
+                                            <div class="col-lg-12">
+                                                <div class="btn-box">
+                                                    <button class="theme-btn" type="button">이메일 수정</button>
+                                                </div>
+                                            </div><!-- end col-lg-12 -->
+                                        </div><!-- end row -->
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- end form-box -->
+                    </div><!-- end col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="form-box">
+                            <div class="form-title-wrap">
+                                <h3 class="title">패스워드 수정</h3>
+                            </div>
+                            <div class="form-content">
+                                <div class="contact-form-action">
+                                    <form action="#">
+                                        <div class="row">
+                                            <div class="col-lg-6 responsive-column">
+                                                <div class="input-box">
+                                                    <label class="label-text">기존 패스워드</label>
+                                                    <div class="form-group">
+                                                        <span class="la la-lock form-icon"></span>
+                                                        <input class="form-control" type="text" placeholder="기존 패스워드">
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col-lg-6 -->
+                                            <div class="col-lg-6 responsive-column">
+                                                <div class="input-box">
+                                                    <label class="label-text">새로운 패스워드</label>
+                                                    <div class="form-group">
+                                                        <span class="la la-lock form-icon"></span>
+                                                        <input class="form-control" type="text" placeholder="패스워드 입력">
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col-lg-6 -->
+                                            <div class="col-lg-6 responsive-column">
+                                                <div class="input-box">
+                                                    <label class="label-text">새로운 패스워드 재확인</label>
+                                                    <div class="form-group">
+                                                        <span class="la la-lock form-icon"></span>
+                                                        <input class="form-control" type="text" placeholder="패스워드 재입력">
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col-lg-6 -->
+                                            <div class="col-lg-12">
+                                                <div class="btn-box">
+                                                    <button class="theme-btn" type="button">비밀번호 수정</button>
+                                                </div>
+                                            </div><!-- end col-lg-12 -->
+                                        </div><!-- end row -->
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- end form-box -->
+                    </div><!-- end col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="form-box">
+                            <div class="form-title-wrap">
+                                <h3 class="title pb-2">회원탈퇴</h3>
+                                <p class="font-size-15 line-height-24">회원 계정과 득롱된 데이터가 삭제되며, 삭제된 데이터는 복구할 수 없습니다.
+                                     <!--<a href="contact.html" class="color-text">contact us</a>--!>
+                                </p>
+                            </div>
+                            <div class="form-content">
+                                <div class="contact-form-action">
+                                    <form action="#">
+<!--                                        <div class="input-box">-->
+<!--                                            <label class="label-text">Email Address</label>-->
+<!--                                            <div class="form-group">-->
+<!--                                                <span class="la la-envelope form-icon"></span>-->
+<!--                                                <input class="form-control" type="text" placeholder="Enter email address">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+                                        <div class="btn-box">
+                                            <button class="theme-btn" type="button">회원탈퇴</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div><!-- end form-box -->
                     </div><!-- end col-lg-12 -->
