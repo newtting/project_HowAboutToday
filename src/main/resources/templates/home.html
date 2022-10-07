@@ -4,11 +4,12 @@
       layout:decorate="layout/layout">
 
 <th:block layout:fragment="content">
+
 <!-- ================================
     START HERO-WRAPPER AREA
 ================================= -->
 <section class="hero-wrapper hero-wrapper2">
-    <div class="hero-box pb-0">
+    <div class="hero-box pb-0 hwt-hero-box">
         <div id="fullscreen-slide-contain">
             <ul class="slides-container">
                 <li><img src="images/hero-bg2.jpg" alt=""></li>
@@ -46,7 +47,7 @@
                                         </div>
                                     </div>
                                 </div><!-- end col-lg-3 -->
-                                <div class="col-lg-3">
+                                <div class="col-lg-3 hwt-search-element2">
                                     <div class="input-box">
                                         <label class="label-text">인원수</label>
                                         <div class="form-group">
@@ -112,7 +113,7 @@
 <!-- ================================
     START INFO AREA
 ================================= -->
-<section class="info-area info-bg info-area2 padding-top-80px padding-bottom-45px hwt-info">
+<section class="info-area info-bg info-area2 padding-top-40px padding-bottom-60px hwt-info">
     <div class="container">
         <div class="row hwt-row-board">
             <div class="col-lg-12">
@@ -451,43 +452,119 @@
 ================================= -->
 
 <!-- ================================
-   START TESTIMONIAL AREA
+    START DESTINATION AREA
 ================================= -->
-<section class="testimonial-area section-bg section-padding padding-top-70px padding-bottom-70px">
+<section class="destination-area padding-top-130px padding-bottom-80px">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-4 hwt-col-left">
-                <div class="section-heading hwt-title">
-                    <p class="sec__title line-height-50">추천 여행지</p>
-                </div><!-- end section-heading -->
-            </div><!-- end col-lg-4 -->
             <div class="col-lg-8">
-                <div class="testimonial-carousel carousel-action hwt-carousel">
-                    <div class="testimonial-card hwt-circle"
-                         style="background-image: url('https://yaimg.yanolja.com/v5/2022/05/16/15/62826b1c714e09.44266747.png')">
-                        <div class="testi-desc-box hwt-circle-text">
-                            <p class="testi__desc">부산</p>
-                        </div>
-                    </div><!-- end testimonial-card -->
-                    <div class="testimonial-card hwt-circle"
-                         style="background-image: url('https://yaimg.yanolja.com/v5/2022/05/16/15/62826af8189a81.32041133.png')">
-                        <div class="testi-desc-box hwt-circle-text">
-                            <p class="testi__desc">제주도</p>
-                        </div>
-                    </div><!-- end testimonial-card -->
-                    <div class="testimonial-card hwt-circle"
-                         style="background-image: url('https://yaimg.yanolja.com/v5/2022/05/16/15/62826af3d78366.88472574.png')">
-                        <div class="testi-desc-box hwt-circle-text">
-                            <p class="testi__desc">강원도</p>
-                        </div>
-                    </div><!-- end testimonial-card -->
-                </div><!-- end testimonial-carousel -->
+                <div class="section-heading">
+                    <h2 class="sec__title">인기 여행지</h2>
+                </div><!-- end section-heading -->
             </div><!-- end col-lg-8 -->
         </div><!-- end row -->
+        <div class="row padding-top-50px">
+            <div class="col-lg-4 responsive-column">
+                <div class="card-item destination-card destination--card">
+                    <div class="card-img hwt-card-img">
+                        <img src="images/hwt/jeju.jpg" alt="destination-img">
+                    </div>
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h3 class="card-title hwt-card-title"><a href="tour-details.html">제주도</a></h3>
+                        </div>
+                        <div>
+                            <a href="hotel-list" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
+                                숙소 조회 <i class="la la-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div><!-- end card-item -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-4 responsive-column">
+                <div class="card-item destination-card destination--card">
+                    <div class="card-img hwt-card-img">
+                        <img src="images/hwt/busan.jpg" alt="destination-img">
+                    </div>
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h3 class="card-title hwt-card-title"><a href="tour-details.html">부산</a></h3>
+                        </div>
+                        <div>
+                            <a href="hotel-list" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
+                                숙소 조회 <i class="la la-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div><!-- end card-item -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-4 responsive-column">
+                <div class="card-item destination-card destination--card">
+                    <div class="card-img hwt-card-img">
+                        <img src="images/hwt/gangwon.jpg" alt="destination-img">
+                    </div>
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h3 class="card-title hwt-card-title"><a href="tour-details.html">강원도</a></h3>
+                        </div>
+                        <div>
+                            <a href="hotel-list" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
+                                숙소 조회 <i class="la la-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div><!-- end card-item -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-4 responsive-column">
+                <div class="card-item destination-card destination--card">
+                    <div class="card-img hwt-card-img">
+                        <img src="images/hwt/gyeongju.jpg" alt="destination-img">
+                    </div>
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h3 class="card-title hwt-card-title"><a href="tour-details.html">경주</a></h3>
+                        </div>
+                        <div>
+                            <a href="hotel-list" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
+                                숙소 조회 <i class="la la-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div><!-- end card-item -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-4 responsive-column">
+                <div class="card-item destination-card destination--card">
+                    <div class="card-img hwt-card-img">
+                        <img src="images/hwt/jeonju.jpg" alt="destination-img">
+                    </div>
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h3 class="card-title hwt-card-title"><a href="tour-details.html">전주</a></h3>
+                        </div>
+                        <div>
+                            <a href="hotel-list" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
+                                숙소 조회 <i class="la la-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div><!-- end card-item -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-4 responsive-column">
+                <div class="card-item destination-card destination--card">
+                    <div class="card-img">
+                        <img src="images/hwt/yeosu.jpg" alt="destination-img">
+                    </div>
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h3 class="card-title hwt-card-title"><a href="tour-details.html">여수</a></h3>
+                        </div>
+                        <div>
+                            <a href="hotel-list" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
+                                숙소 조회 <i class="la la-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div><!-- end card-item -->
+            </div><!-- end col-lg-4 -->
+        </div><!-- end row -->
     </div><!-- end container -->
-</section><!-- end testimonial-area -->
+</section><!-- end destination-area -->
 <!-- ================================
-       START TESTIMONIAL AREA
+    END DESTINATION AREA
 ================================= -->
 
 <!-- ================================
@@ -504,7 +581,7 @@
                     <div class="discount-content hwt-banner-content-wrap">
                         <div class="section-heading">
                             <p class="sec__desc text-white">아직 회원이 아니신가요?</p>
-                            <h2 class="sec__title mb-0 line-height-50 text-white">신규 회원을 위한 <br> 50% 할인 쿠폰</h2>
+                            <p class="sec__title mb-0 line-height-50 text-white hwt-banner-title">신규 회원을 위한 <br> 50% 할인 쿠폰</p>
                         </div><!-- end section-heading -->
                         <div class="btn-box pt-4 hwt-banner-content-btn">
                             <a href="#" class="theme-btn border-0 hwt-btn-white">쿠폰 받기 <i class="la la-arrow-right ml-1"></i></a>
@@ -681,7 +758,7 @@
                                 <label class="label-text">이메일 주소</label>
                                 <div class="form-group">
                                     <span class="la la-envelope form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="how-about-today@hwt.com">
+                                    <input class="form-control" type="text" name="text" placeholder="이메일 주소">
                                 </div>
                             </div><!-- end input-box -->
                             <div class="input-box">
@@ -739,7 +816,7 @@
                                 <label class="label-text">이메일</label>
                                 <div class="form-group">
                                     <span class="la la-envelope form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="how-about-today@hwt.com">
+                                    <input class="form-control" type="text" name="text" placeholder="이메일 입력">
                                 </div>
                             </div><!-- end input-box -->
                             <div class="input-box">

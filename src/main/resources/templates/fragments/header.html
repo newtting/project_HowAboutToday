@@ -55,7 +55,7 @@
                                                 <li><a href="about">오늘어때 정보</a></li>
                                             </ul>
                                         </li>
-                                        <li>
+                                        <!--<li>
                                             <a href="#">마이페이지 <i class="la la-angle-down"></i></a>
                                             <ul class="dropdown-menu-item">
                                                 <li><a href="user-dashboard-profile">프로필</a></li>
@@ -63,19 +63,87 @@
                                                 <li><a href="user-dashboard-wishlist">위시리스트</a></li>
                                                 <li><a href="user-dashboard-booking">예약내역</a></li>
                                             </ul>
-                                        </li>
+                                        </li>-->
                                     </ul>
                                 </nav>
                             </div><!-- end main-menu-content -->
+
+                            <!-- 로그아웃 상태 -->
                             <div class="header-right-action">
-                                <a href="#" class="theme-btn theme-btn-small theme-btn-transparent mr-1 hwt-btn-gray" data-toggle="modal" data-target="#signupPopupForm">회원가입</a>
-                                <a href="#" class="theme-btn theme-btn-small hwt-btn-gray" data-toggle="modal" data-target="#loginPopupForm">로그인</a>
+                                <a href="#" class="theme-btn theme-btn-small theme-btn-transparent mr-1 hwt-btn-gray"
+                                   data-toggle="modal" data-target="#signupPopupForm">회원가입</a>
+                                <a href="#" class="theme-btn theme-btn-small hwt-btn-gray"
+                                   data-toggle="modal" data-target="#loginPopupForm">로그인</a>
                             </div>
+
+                            <!-- 로그인 상태 -->
+                            <!-- 장바구니 아이콘 -->
                             <div class="header-icon-wrap">
                                 <a href="cart">
                                     <img src="icon/basket.png" class="header-icon">
                                 </a>
                             </div>
+
+                            <!-- 회원 Dropdown -->
+                            <div class="notification-item">
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>
+                                            <span class="font-size-14 font-weight-bold" style="color: #000;">수정</span>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-reveal dropdown-menu-md dropdown-menu-right">
+                                        <div class="dropdown-item drop-reveal-header user-reveal-header">
+                                            <h6 class="title text-uppercase">Welcome!</h6>
+                                        </div>
+                                        <div class="list-group drop-reveal-list user-drop-reveal-list">
+                                            <a href="user-dashboard-profile" class="list-group-item list-group-item-action">
+                                                <div class="msg-body">
+                                                    <div class="msg-content">
+                                                        <h3 class="title"><i class="la la-user mr-2"></i>프로필</h3>
+                                                    </div>
+                                                </div><!-- end msg-body -->
+                                            </a>
+                                            <a href="user-dashboard-booking" class="list-group-item list-group-item-action">
+                                                <div class="msg-body">
+                                                    <div class="msg-content">
+                                                        <h3 class="title"><i class="la la-shopping-cart mr-2"></i>나의 후기</h3>
+                                                    </div>
+                                                </div><!-- end msg-body -->
+                                            </a>
+                                            <a href="user-dashboard-reviews" class="list-group-item list-group-item-action">
+                                                <div class="msg-body">
+                                                    <div class="msg-content">
+                                                        <h3 class="title"><i class="la la-heart mr-2"></i>위시리스트</h3>
+                                                    </div>
+                                                </div><!-- end msg-body -->
+                                            </a>
+                                            <a href="user-dashboard-settings" class="list-group-item list-group-item-action">
+                                                <div class="msg-body">
+                                                    <div class="msg-content">
+                                                        <h3 class="title"><i class="la la-gear mr-2"></i>예약내역</h3>
+                                                    </div>
+                                                </div><!-- end msg-body -->
+                                            </a>
+                                            <div class="section-block"></div>
+                                            <a href="/home" class="list-group-item list-group-item-action">
+                                                <div class="msg-body">
+                                                    <div class="msg-content">
+                                                        <h3 class="title"><i class="la la-power-off mr-2"></i>로그아웃</h3>
+                                                    </div>
+                                                </div><!-- end msg-body -->
+                                            </a>
+                                        </div>
+                                    </div><!-- end dropdown-menu -->
+                                </div>
+                            </div><!-- end notification-item -->
+
+                            <div class="header-right-action">
+                                <a href="#" class="theme-btn theme-btn-small hwt-btn-gray"
+                                   data-toggle="modal" data-target="#loginPopupForm">로그아웃</a>
+                            </div>
+
                         </div>
 <!--                        <div class="nav-btn">-->
 <!--                            <a href="become-local-expert.html" class="theme-btn">Become Local Expert</a>-->
