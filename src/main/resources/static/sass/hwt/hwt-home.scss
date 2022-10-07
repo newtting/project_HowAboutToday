@@ -1,0 +1,105 @@
+// Hero
+.hwt-hero-box {
+  padding-top: 100px;
+}
+
+// Search
+.hwt-search-container {
+  padding: 30px 20px 30px;
+  padding-top: 37px!important;
+}
+
+.hwt-search {
+	display: flex;
+  form {
+    width: 83%;
+    padding-left: 44px;
+  }
+}
+
+.hwt-search-element {
+  flex: 0 0 37%;
+  max-width: 37%;
+}
+
+.hwt-search-element2 {
+  flex: 0 0 26%;
+  max-width: 26%;
+}
+
+.hwt-search-btn {
+  padding-left: 64px;
+  padding-top: 37px!important;
+}
+
+// Infomation Icons
+.hwt-info {
+  &::before {
+    background-image: unset;
+  }
+}
+
+.hwt-info2 {
+  padding: 60pt 0 60pt;
+  &::before {
+    background-image: unset;
+  }
+}
+
+.hwt-iconbox-pointer {
+    cursor: pointer;
+    text-align: center;
+}
+
+.hwt-info-icon {
+  margin-right: 0!important;
+  margin-bottom: 10px;
+  background-color: rgb(81 117 169 / 10%)!important;
+  color: #566578!important;
+}
+
+.hwt-row-icon {
+    margin-left: 90px;
+}
+
+.hwt-icon-layout {
+    margin-left: 45px;
+    margin-bottom: 0;
+}
+
+.hwt-col-icon {
+    flex: 0 0 23%;
+    max-width: 23%;
+}
+
+.hwt-title {
+  p {
+    font-size: 18pt!important;
+    padding-bottom: 35pt;
+    padding-left: 20pt;
+  }
+}
+
+.hwt-section-block {
+  height: 15px;
+}
+
+// Popular Accommodation
+.hwt-circle {
+  border-radius: 100%;
+  font-size: 16pt!important;
+  font-weight: 600!important;
+  color: #fff;
+}
+
+// Popular Destination
+.hwt-card-img {
+    &::before {
+      background-color: #0d233eab!important;
+    }
+}
+
+.hwt-card-title {
+  font-size: 19px!important;
+  font-weight: 700;
+}
