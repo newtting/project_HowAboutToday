@@ -12,6 +12,12 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 
 
 /* Button */
+.hwt-btn-white-fix {
+    color: #566578;
+    border-color: #fff!important;
+    background-color: #fff;
+}
+
 .hwt-btn-white {
     color: #566578;
     border-color: #fff!important;
@@ -110,6 +116,10 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 }
 
 .hwt-banner-content-btn {
-    padding-left: 100px;
+    padding-left: 130px;
     line-height: 5;
+}
+
+.hwt-banner-title {
+    font-size: 35px!important;
 }
