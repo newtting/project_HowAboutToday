@@ -1,46 +1,12 @@
-
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout/layout_user">
 
 <th:block layout:fragment="content">
-<!-- ================================
-       START DASHBOARD NAV
-================================= -->
-<div class="sidebar-nav">
-    <div class="sidebar-nav-body">
-        <div class="side-menu-close">
-            <i class="la la-times"></i>
-        </div><!-- end menu-toggler -->
-        <div class="author-content">
-            <div class="d-flex align-items-center">
-                <div class="author-img avatar-sm">
-                    <img src="images/team8.jpg" alt="testimonial image">
-                </div>
-                <div class="author-bio">
-                    <h4 class="author__title">Ali Tufan</h4>
-                    <span class="author__meta">Member Since May 2017</span>
-                </div>
-            </div>
-        </div>
-        <div class="sidebar-menu-wrap">
-            <ul class="sidebar-menu list-items">
-<!--                <li><a href="user-dashboard" ><i class="la la-dashboard mr-2 text-color" ></i><span th:text="#{sidebar_dashboard}">Dashboard</span></a></li>-->
-                <li class="page-active"><a href="user-dashboard-booking" ><i class="la la-shopping-cart mr-2"></i><span th:text="#{sidebar_myBooking}">My Booking</span></a></li>
-                <li><a href="user-dashboard-profile" ><i class="la la-user mr-2 text-color-2"></i><span th:text="#{sidebar_myProfile}">My Profile</span></a></li>
-                <li><a href="user-dashboard-reviews" ><i class="la la-star mr-2 text-color-3"></i><span th:text="#{sidebar_myReviews}">My Reviews</span></a></li>
-                <li><a href="user-dashboard-wishlist" ><i class="la la-heart mr-2 text-color-4"></i><span th:text="#{sidebar_wishList}">Wishlist</span></a></li>
-                <li><a href="user-dashboard-settings"><i class="la la-cog mr-2 text-color-5"></i><span th:text="#{sidebar_settings}">Settings</span></a></li>
-                <li><a href="/home"><i class="la la-power-off mr-2 text-color-6" ></i><span th:text="#{sidebar_logout}">Logout</span></a></li>
-            </ul>
-        </div><!-- end sidebar-menu-wrap -->
-    </div>
-</div><!-- end sidebar-nav -->
-<!-- ================================
-       END DASHBOARD NAV
-================================= -->
+
+<!-- sidebar -->
+<th:block th:replace="fragments/user-sidebar"></th:block>
 
 <!-- ================================
     START DASHBOARD AREA
