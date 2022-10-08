@@ -6,41 +6,9 @@
       layout:decorate="layout/layout_user">
 
 <th:block layout:fragment="content">
-<!-- ================================
-       START DASHBOARD NAV
-================================= -->
-<div class="sidebar-nav">
-    <div class="sidebar-nav-body">
-        <div class="side-menu-close">
-            <i class="la la-times"></i>
-        </div><!-- end menu-toggler -->
-        <div class="author-content">
-            <div class="d-flex align-items-center">
-                <div class="author-img avatar-sm">
-                    <img src="images/team8.jpg" alt="testimonial image">
-                </div>
-                <div class="author-bio">
-                    <h4 class="author__title">이동우짱</h4>
-                    <span class="author__meta">2020년10월4일</span>
-                </div>
-            </div>
-        </div>
-        <div class="sidebar-menu-wrap">
-            <ul class="sidebar-menu list-items"> <!-- 사이드바 영역 -->
-<!--                <li><a th:href="@{/user-dashboard}" href="/user-dashboard.html"><i class="la la-dashboard mr-2 text-color"></i>[[대시보드]]</a></li>-->
-                <li><a th:href="@{/user-dashboard-booking}" href="/user-dashboard-booking.html"><i class="la la-shopping-cart mr-2 text-color-2"></i>[[|나의 결제내역|]]</a></li>
-                <li><a th:href="@{/user-dashboard-profile}" href="/user-dashboard-profile.html"><i class="la la-user mr-2 text-color-3"></i>[[|나의 정보|]]</a></li>
-                <li class="page-active"><a th:href="@{/user-dashboard-reviews}" href="/user-dashboard-reviews.html"><i class="la la-star mr-2 text-color-4"></i>[[|나의 리뷰|]]</a></li>
-                <li><a th:href="@{/user-dashboard-wishlist}" href="/user-dashboard-wishlist.html"><i class="la la-heart mr-2"></i>[[|위시 리스트|]]</a></li>
-<!--                <li><a th:href="@{/user-dashboard-settings}" href="/user-dashboard-settings.html"><i class="la la-cog mr-2 text-color-5"></i>[[|정보 수정|]]</a></li>-->
-                <li><a th:href="@{/home}" href="/home"><i class="la la-power-off mr-2 text-color-6"></i>[[로그아웃]]</a></li>
-            </ul>
-        </div><!-- end sidebar-menu-wrap -->
-    </div>
-</div><!-- end sidebar-nav -->
-<!-- ================================
-       END DASHBOARD NAV
-================================= -->
+
+<!-- sidebar -->
+<th:block th:replace="fragments/user-sidebar"></th:block>
 
 <!-- ================================
     START DASHBOARD AREA
