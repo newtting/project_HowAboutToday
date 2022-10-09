@@ -69,6 +69,27 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
     width: 33px;
 }
 
+.hwt-header-menu {
+    padding-bottom: 10px;
+    padding-left: 50px;
+    padding-right: 55px;
+}
+
+.hwt-menu-content {
+    padding-right: 81px;
+}
+
+.hwt-btns a {
+    margin-right: 15px!important;
+}
+
+.hwt-menu-item {
+    padding-right: 40px!important;
+}
+
+.hwt-adjust {
+    padding-right: 127px;
+}
 
 /* FOOTER */
 .col-footer {
@@ -122,4 +143,12 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 
 .hwt-banner-title {
     font-size: 35px!important;
+}
+
+.user-footer-item {
+    margin-bottom: 35px;
+}
+
+.user-footer-border {
+    margin-top: 170px!important;
 }

@@ -27,14 +27,25 @@
     <link rel="stylesheet" href="css/jquery-ui.css">
     <link rel="stylesheet" href="css/flag-icon.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/hwt-layout.css">
+    <link rel="stylesheet" href="/css/hwt-user.css">
 </head>
 <body>
 
 <!-- canvas_user -->
 <th:block th:replace="fragments/canvas_user::canvas_user"></th:block>
 
+<!--header -->
+<th:block th:replace="fragments/user-header::header"></th:block>
+
+<!-- sidebar -->
+<th:block th:replace="fragments/user-sidebar"></th:block>
+
 <!-- content -->
 <th:block layout:fragment="content"></th:block>
+
+<!-- footer -->
+<th:block th:replace="fragments/user-footer"></th:block>
 
 <!-- start scroll top -->
 <div id="back-to-top">

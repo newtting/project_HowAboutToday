@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<th:block th:fragment="footer">
+<th:block th:fragment="user-footer">
 
-<section class="footer-area section-bg padding-top-100px padding-bottom-30px">
+<div class="border-top mt-5 user-footer-border"></div>
+
+<section class="footer-area section-bg hwt-footer-area">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 responsive-column col-footer">
-                <div class="footer-item">
+                <div class="footer-item user-footer-item">
                     <div class="footer-logo padding-bottom-30px">
                         <a href="home" class="foot__logo"><img src="/images/hwt/hwt.png" width="250px" alt="logo"></a>
                     </div><!-- end logo -->
@@ -20,7 +22,6 @@
             </div><!-- end col-lg-3 -->
         </div><!-- end row -->
     </div><!-- end container -->
-    <div class="section-block mt-4"></div>
 </section><!-- end footer-area -->
 
 </th:block>

@@ -5,9 +5,6 @@
 
 <th:block layout:fragment="content">
 
-<!-- sidebar -->
-<th:block th:replace="fragments/user-sidebar"></th:block>
-
 <!-- ================================
     START DASHBOARD AREA
 ================================= -->
@@ -190,27 +187,6 @@
 <!--                        </div>&lt;!&ndash; end copy-right-content &ndash;&gt;-->
 <!--                    </div>&lt;!&ndash; end col-lg-5 &ndash;&gt;-->
 <!--                </div>&lt;!&ndash; end row &ndash;&gt;-->
-                <section class="footer-area section-lg padding-top-100px padding-bottom-30px">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-3 responsive-column col-footer">
-                                <div class="footer-item">
-                                    <div class="footer-logo padding-bottom-30px">
-                                        <a href="home" class="foot__logo"><img src="/images/hwt.png" width="250px" alt="logo"></a>
-                                    </div><!-- end logo -->
-                                    <p class="footer__desc">소중한 하루를 위한, 오늘어때</p>
-                                    <ul class="list-items pt-3">
-                                        <li>서울시 강남구 테헤란로 124</li>
-                                        <li>+02-1111-2222</li>
-                                        <li><a href="#">how-about-today@hwt.com</a></li>
-                                    </ul>
-                                </div><!-- end footer-item -->
-                            </div><!-- end col-lg-3 -->
-
-                        </div><!-- end row -->
-                    </div><!-- end container -->
-                    <div class="section-block mt-4"></div>
-                </section><!-- end footer-area -->
             </div><!-- end container-fluid -->
         </div><!-- end dashboard-main-content -->
     </div><!-- end dashboard-content-wrap -->
@@ -218,121 +194,8 @@
 <!-- ================================
     END DASHBOARD AREA
 ================================= -->
-<!-- -->
 
 
 </th:block>
 
 </html>
-<!-- 알림창 코드 -->
-<!--<div class="notification-item mr-2">&lt;!&ndash; 알림창 &ndash;&gt;-->
-<!--    <div class="dropdown">-->
-<!--        <a href="#" class="dropdown-toggle drop-reveal-toggle-icon" id="notificationDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--            <i class="la la-bell"></i>-->
-<!--            <span class="noti-count">4</span>-->
-<!--        </a>-->
-<!--        <div class="dropdown-menu dropdown-reveal dropdown-menu-xl dropdown-menu-right">-->
-<!--            <div class="dropdown-header drop-reveal-header">-->
-<!--                <h6 class="title">You have <strong class="text-black">4</strong> notifications</h6>-->
-<!--            </div>-->
-<!--            <div class="list-group drop-reveal-list">-->
-<!--                <a href="#" class="list-group-item list-group-item-action">-->
-<!--                    <div class="msg-body d-flex align-items-center">-->
-<!--                        <div class="icon-element flex-shrink-0 mr-3 ml-0"><i class="la la-bell"></i></div>-->
-<!--                        <div class="msg-content w-100">-->
-<!--                            <h3 class="title pb-1">Your request has been sent</h3>-->
-<!--                            <p class="msg-text">2 min ago</p>-->
-<!--                        </div>-->
-<!--                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
-<!--                </a>-->
-<!--                <a href="#" class="list-group-item list-group-item-action">-->
-<!--                    <div class="msg-body d-flex align-items-center">-->
-<!--                        <div class="icon-element bg-2 flex-shrink-0 mr-3 ml-0"><i class="la la-check"></i></div>-->
-<!--                        <div class="msg-content w-100">-->
-<!--                            <h3 class="title pb-1">Your account has been created</h3>-->
-<!--                            <p class="msg-text">1 day ago</p>-->
-<!--                        </div>-->
-<!--                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
-<!--                </a>-->
-<!--                <a href="#" class="list-group-item list-group-item-action">-->
-<!--                    <div class="msg-body d-flex align-items-center">-->
-<!--                        <div class="icon-element bg-3 flex-shrink-0 mr-3 ml-0"><i class="la la-user"></i></div>-->
-<!--                        <div class="msg-content w-100">-->
-<!--                            <h3 class="title pb-1">Your account updated</h3>-->
-<!--                            <p class="msg-text">2 hrs ago</p>-->
-<!--                        </div>-->
-<!--                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
-<!--                </a>-->
-<!--                <a href="#" class="list-group-item list-group-item-action">-->
-<!--                    <div class="msg-body d-flex align-items-center">-->
-<!--                        <div class="icon-element bg-4 flex-shrink-0 mr-3 ml-0"><i class="la la-lock"></i></div>-->
-<!--                        <div class="msg-content w-100">-->
-<!--                            <h3 class="title pb-1">Your password changed</h3>-->
-<!--                            <p class="msg-text">Yesterday</p>-->
-<!--                        </div>-->
-<!--                    </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
-<!--                </a>-->
-<!--            </div>-->
-<!--            <a href="#" class="dropdown-item drop-reveal-btn text-center">View all</a> &lt;!&ndash; 알림페이지 이동 &ndash;&gt;-->
-<!--        </div>&lt;!&ndash; end dropdown-menu &ndash;&gt;-->
-<!--    </div>-->
-<!--</div>&lt;!&ndash; end notification-item &ndash;&gt;-->
-
-
-<!-- 우측상단 유저드랍다운 코드 -->
-<!--<div class="notification-wrap d-flex align-items-center">-->
-<!--    &lt;!&ndash; 기존 알림창 위치 &ndash;&gt;-->
-<!--    <div class="notification-item">-->
-<!--        <div class="dropdown">-->
-<!--            <a href="#" class="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> &lt;!&ndash; 이게뭔지 모르겠네 &ndash;&gt;-->
-<!--                <div class="d-flex align-items-center">-->
-<!--                    <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/user1.jpg" alt="team-img"></div>-->
-<!--                    <span class="font-size-14 font-weight-bold" th:text="아무개님">회원 이름</span>-->
-<!--                </div>-->
-<!--            </a>-->
-<!--            <div class="dropdown-menu dropdown-reveal dropdown-menu-md dropdown-menu-right">&lt;!&ndash; 우측상단 드랍다운 &ndash;&gt;-->
-<!--                <div class="dropdown-item drop-reveal-header user-reveal-header">-->
-<!--                    <h6 class="title text-uppercase">환영합니다</h6>-->
-<!--                </div>-->
-<!--                <div class="list-group drop-reveal-list user-drop-reveal-list">-->
-<!--                    <a th:href="@{/user-dashboard-profile}" href="user-dashboard-profile.html" class="list-group-item list-group-item-action">-->
-<!--                        <div class="msg-body">-->
-<!--                            <div class="msg-content">-->
-<!--                                <h3 class="title"><i class="la la-user mr-2"></i>[[|나의 정보|]]</h3>-->
-<!--                            </div>-->
-<!--                        </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
-<!--                    </a>-->
-<!--                    <a th:href="@{/user-dashboard-booking}" href="user-dashboard-booking.html" class="list-group-item list-group-item-action">-->
-<!--                        <div class="msg-body">-->
-<!--                            <div class="msg-content">-->
-<!--                                <h3 class="title"><i class="la la-shopping-cart mr-2"></i>[[|나의 결제내역|]]</h3>-->
-<!--                            </div>-->
-<!--                        </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
-<!--                    </a>-->
-<!--                    <a th:href="@{/user-dashboard-reviews}" href="user-dashboard-reviews.html" class="list-group-item list-group-item-action">-->
-<!--                        <div class="msg-body">-->
-<!--                            <div class="msg-content">-->
-<!--                                <h3 class="title"><i class="la la-heart mr-2"></i>[[|나의 리뷰|]]</h3>-->
-<!--                            </div>-->
-<!--                        </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
-<!--                    </a>-->
-<!--                    <a th:href="@{/user-dashboard-settings}" href="user-dashboard-settings.html" class="list-group-item list-group-item-action">-->
-<!--                        <div class="msg-body">-->
-<!--                            <div class="msg-content">-->
-<!--                                <h3 class="title"><i class="la la-gear mr-2"></i>[[|정보 수정|]]</h3>-->
-<!--                            </div>-->
-<!--                        </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
-<!--                    </a>-->
-<!--                    <div class="section-block"></div>-->
-<!--                    <a th:href="@{/home}" href="/home" class="list-group-item list-group-item-action">-->
-<!--                        <div class="msg-body">-->
-<!--                            <div class="msg-content">-->
-<!--                                <h3 class="title"><i class="la la-power-off mr-2"></i>[[|로그 아웃|]]</h3>-->
-<!--                            </div>-->
-<!--                        </div>&lt;!&ndash; end msg-body &ndash;&gt;-->
-<!--                    </a>-->
-<!--                </div>-->
-<!--            </div>&lt;!&ndash; end dropdown-menu &ndash;&gt;-->
-<!--        </div>-->
-<!--    </div>&lt;!&ndash; end notification-item &ndash;&gt;-->
-<!--</div>-->
