@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.payment.entity;
+package com.phoenix.howabouttoday.accom.entity;
 
 
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class AccommodationImage {
+public class AccomImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +37,7 @@ public class AccommodationImage {
     private Accommodation accommodation;
 
     @Builder
-    public AccommodationImage(String accomOriginFilename, String accomSaveFilename, Accommodation accommodation) {
+    public AccomImage(String accomOriginFilename, String accomSaveFilename, Accommodation accommodation) {
         this.accomOriginFilename = accomOriginFilename;
         this.accomSaveFilename = accomSaveFilename;
         this.accommodation = accommodation;
