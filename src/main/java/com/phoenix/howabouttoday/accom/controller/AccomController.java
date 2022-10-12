@@ -142,14 +142,5 @@ public class AccomController {
     @PostMapping("guestHouse-Hanok-single")
     public String postGuestHouseResult(){ return "accom/hotel/guestHouse-Hanok-single";}
 
-    @GetMapping("room-details")
-    public String getRoomDetails(){
-        return "accom/room/room-details";
-    }
-    @PostMapping("room-details")
-    public String postRoomDetails(){
-        return "accom/room/room-details";
-    }
-
 
 }

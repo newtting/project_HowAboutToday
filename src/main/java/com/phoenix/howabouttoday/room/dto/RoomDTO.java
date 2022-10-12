@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.accom.dto;
+package com.phoenix.howabouttoday.room.dto;
 
 public class RoomDTO {
     private int roomNum;//객실 번호
