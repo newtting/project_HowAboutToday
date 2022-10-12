@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.accom.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import javax.persistence.Id;
@@ -8,21 +9,15 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name="T_ACCOMMODATION")
+@Table(name="T_REGION")
 public class Region {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column
+  @Id @GeneratedValue
   private Long regionNum;
 
-  @Column
-  private String regionName;  //지역이름
+  private String regionName;
 
-  @Column
-  private String regionParentNum;//부모번호
-
-
+  private int regionParentNum;
 }

@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.accom.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -7,15 +8,15 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@NoArgsConstructor
-
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name="T_FACILTIES")
 public class Facilties {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column
-    private Long faciltiesNum;
+    private Long faciltiesNum;//시설  번호
 
     @Column
-    private String faciltiesName;
+    private String faciltiesName;//시설이름
 }

@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.accom.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -7,15 +8,27 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@NoArgsConstructor
-@Table(name="T_ACCOMMODATION")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name="T_ACCOM_VIEW_FACILITES")
 public class AccomViewFacilties {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private Long accomNum;
+    @Id @GeneratedValue
+    private Long accomViewfaciltiesNum;
 
-    @Column
-    private String facilties;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "accommodation_num")
+    private Accommodation accommodation;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "facilties_num")
+    private Facilties facilties;
+
+    @Enumerated(EnumType.STRING)
+    private FaciltiesName accomViewFaciltiesName;
+
+
+
+
+
 }
+
