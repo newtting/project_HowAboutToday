@@ -1,11 +1,10 @@
 package com.phoenix.howabouttoday.reserve.domain.Reservation;
 
-import com.phoenix.howabouttoday.accom.Accommodation;
+
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.member.Member;
-import com.phoenix.howabouttoday.payment.Order;
+import com.phoenix.howabouttoday.payment.Orders;
 import com.phoenix.howabouttoday.payment.Pay;
-import com.phoenix.howabouttoday.room.Room;
 import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -68,8 +67,6 @@ public abstract class Reservation {
     private int reservePrice;
     private int reserveAdultCount;
     private int reserveChildCount;
-
-
 
 
 }

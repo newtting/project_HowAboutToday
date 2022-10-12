@@ -10,17 +10,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class Payment {
 
 
-    private final AccomodationService accomodationService;
-
+    private final AccomodationService accomodationService_origin;
     @Autowired
     public Payment(AccomodationService accomodationService) {
-        this.accomodationService = accomodationService;
+        this.accomodationService_origin = accomodationService;
     }
 
     @GetMapping("user-dashboard-booking-details")
     public String getUserDashboardSettings() {
 
-        //accomodationService.createMember();
+        accomodationService_origin.createAccom();
         return "reserve/payment-received";
     }
     @PostMapping("user-dashboard-booking-details")
