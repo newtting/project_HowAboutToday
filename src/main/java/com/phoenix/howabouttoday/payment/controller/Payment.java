@@ -1,7 +1,6 @@
 package com.phoenix.howabouttoday.payment.controller;
 
-import com.phoenix.howabouttoday.payment.service.AccomodationService;
-import lombok.RequiredArgsConstructor;
+import com.phoenix.howabouttoday.accom.service.AccomodationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,13 +31,10 @@ public class Payment {
     @GetMapping("user-dashboard-bookings")
     public String getUserDashboard() {
 
-<<<<<<< Updated upstream
-//        accomodationService.getReadMember();
-=======
+
 
 //        accomodationService.getReadMember();
 
->>>>>>> Stashed changes
         return "member/userdashboard/user-dashboard-booking";
     }
     @PostMapping("user-dashboard-bookings")

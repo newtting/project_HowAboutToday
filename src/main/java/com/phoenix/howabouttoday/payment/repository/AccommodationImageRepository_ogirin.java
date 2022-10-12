@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface AccommodationImageRepository extends JpaRepository<AccomImage, Long> {
+public interface AccommodationImageRepository_ogirin extends JpaRepository<AccomImage, Long> {
 
     @Override
     <S extends AccomImage> S save(S entity);

@@ -1,8 +1,8 @@
 package com.phoenix.howabouttoday.accom.service;
 
-import com.phoenix.howabouttoday.payment.entity.Accommodation;
-import com.phoenix.howabouttoday.payment.entity.AccommodationImage;
-import com.phoenix.howabouttoday.payment.repository.AccommodationRepository;
+import com.phoenix.howabouttoday.accom.entity.AccomImage;
+import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import com.phoenix.howabouttoday.payment.repository.AccommodationRepository_ogirin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +14,11 @@ import java.util.ArrayList;
 public class AccomodationService {
 
 
-    private final AccommodationRepository accommodationRepository;
+    private final AccommodationRepository_ogirin accommodationRepository;
 //    private final AccommodationImageRepository accommodationImageRepository;
 
     @Autowired
-    public AccomodationService(AccommodationRepository accommodationRepository){
+    public AccomodationService(AccommodationRepository_ogirin accommodationRepository){
         this.accommodationRepository = accommodationRepository;
 //        this.accommodationImageRepository = accommodationImageRepository;
     }
@@ -33,7 +33,7 @@ public class AccomodationService {
     @Transactional
     public void createMember() {
 
-        AccommodationImage image = AccommodationImage.builder()
+        AccomImage image = AccomImage.builder()
                 .accomOriginFilename("image0.jpg")
                 .accomSaveFilename("image0.jpg")
                 .build();
@@ -52,7 +52,7 @@ public class AccomodationService {
                 longitude(126.5092).
                 lowPrice(45000).
                 reserveRange(60).
-                accommodationImage(new ArrayList<AccommodationImage>()).
+                accommodationImage(new ArrayList<AccomImage>()).
                 build();
 
 

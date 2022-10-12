@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface AccommodationRepository extends JpaRepository<Accommodation, Long> {
+public interface AccommodationRepository_ogirin extends JpaRepository<Accommodation, Long> {
 
     @Override
     <S extends Accommodation> S save(S entity);

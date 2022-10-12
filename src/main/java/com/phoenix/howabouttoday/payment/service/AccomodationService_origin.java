@@ -2,23 +2,22 @@ package com.phoenix.howabouttoday.payment.service;
 
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
-import com.phoenix.howabouttoday.payment.repository.AccommodationRepository;
+import com.phoenix.howabouttoday.payment.repository.AccommodationRepository_ogirin;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 
 
-@Service
-public class AccomodationService {
+
+public class AccomodationService_origin {
 
 
-    private final AccommodationRepository accommodationRepository;
+    private final AccommodationRepository_ogirin accommodationRepository;
 //    private final AccommodationImageRepository accommodationImageRepository;
 
     @Autowired
-    public AccomodationService(AccommodationRepository accommodationRepository){
+    public AccomodationService_origin(AccommodationRepository_ogirin accommodationRepository){
         this.accommodationRepository = accommodationRepository;
 //        this.accommodationImageRepository = accommodationImageRepository;
     }

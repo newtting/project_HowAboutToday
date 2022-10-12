@@ -1,18 +1,18 @@
 package com.phoenix.howabouttoday.accom.repository;
 
-import com.phoenix.howabouttoday.payment.entity.AccommodationImage;
+import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface AccommodationImageRepository extends JpaRepository<AccommodationImage, Long> {
+
+public interface AccommodationImageRepository extends JpaRepository<AccomImage, Long> {
 
     @Override
-    <S extends AccommodationImage> S save(S entity);
+    <S extends AccomImage> S save(S entity);
 
-
-    AccommodationImage findByAccomNum(Long number);
 
     @Override
-    List<AccommodationImage> findAll();
+    List<AccomImage> findAll();
+    AccomImage findByAccomNum(Long number);
 }
