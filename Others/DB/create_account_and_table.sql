@@ -284,6 +284,24 @@ CREATE TABLE BOARD_IMAGE (
     CONSTRAINT FK_53 FOREIGN KEY (boardNum) REFERENCES BOARD(boardNum) on delete cascade
 );
 
+--  결제
+CREATE TABLE PAYMENT (
+    pay_num int auto_increment, -- pk
+    pay_tel varchar(50) NOT NULL,   -- 전화번호(결제 시 따로 적으면 그걸로
+    pay_name varchar(50) NOT NULL,
+    member_num int NOT NULL,    -- fk
+    accom_num int NOT NULL, -- fk
+    room_num int NOT NULL, -- fk
+    orderDate datetime NOT NULL,
+    useStartDate datetime NOT NULL,
+    useEndDate datetime NOT NULL,
+    amountPrice  int NOT NULL,
+    paymentType varchar(50) NOT NULL,
+    CONSTRAINT FK_61 FOREIGN KEY (member_num) REFERENCES MEMBER(member_num)on delete cascade,
+    CONSTRAINT FK_62 FOREIGN KEY (accom_num) REFERENCES ACCOMMODATION(accom_num)on delete cascade,
+    CONSTRAINT FK_63 FOREIGN KEY (room_num) REFERENCES ROOM(room_num)on delete cascade,
+)AUTO_INCREMENT=1;
+
 
 DROP TABLE MEMBER;
 DROP TABLE COUPON;

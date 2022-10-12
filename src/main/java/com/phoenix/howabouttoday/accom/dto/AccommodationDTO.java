@@ -6,10 +6,7 @@ public class AccommodationDTO {
     private String accomName;//숙소 이름
     private String accomTel;//숙소 전화번호
     private int accomCategoryNum;//숙소 카테고리 번호
-    private String accomCategoryName;//숙소 카테고리 이름
     private int regionNum;//숙소 지역 번호
-    private String regionName;//숙소 지역 이름
-    private int regionParentNum;//숙소 지역 Parent 번호
     private String accomAddress;//숙소 주소
     private Double accomRating;//숙소 평점
     private int totalreviewNum;//숙소의 총 리뷰 수
