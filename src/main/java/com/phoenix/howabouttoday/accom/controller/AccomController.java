@@ -151,40 +151,5 @@ public class AccomController {
         return "accom/room/room-details";
     }
 
-    @GetMapping("room-grid")
-    public String getRoomGird(){
-        return "accom/room/room-grid";
-    }
-    @PostMapping("room-grid")
-    public String postRoomGird(){
-        return "accom/room/room-grid";
-    }
-
-    @GetMapping("room-list")
-    public String getRoomList(){
-        return "accom/room/room-list";
-    }
-    @PostMapping("room-list")
-    public String postRoomList(){
-        return "accom/room/room-list";
-    }
-
-    @GetMapping("room-search-result")
-    public String getRoomSearchResult(){
-        return "accom/room/room-search-result";
-    }
-    @PostMapping("room-search-result")
-    public String postRoomSearchResult(){
-        return "accom/room/room-search-result";
-    }
-
-    @GetMapping("room-search-result-list")
-    public String getRoomSearchResultList(){
-        return "accom/room/room-search-result-list";
-    }
-    @PostMapping("room-search-result-list")
-    public String postRoomSearchResultList(){
-        return "accom/room/room-search-result-list";
-    }
 
 }
