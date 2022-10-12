@@ -21,7 +21,7 @@ public class Payment {
     @GetMapping("user-dashboard-booking-details")
     public String getUserDashboardSettings() {
 
-        accomodationService.createMember();
+        //accomodationService.createMember();
         return "reserve/payment-received";
     }
     @PostMapping("user-dashboard-booking-details")
@@ -32,7 +32,13 @@ public class Payment {
     @GetMapping("user-dashboard-bookings")
     public String getUserDashboard() {
 
+<<<<<<< Updated upstream
 //        accomodationService.getReadMember();
+=======
+
+//        accomodationService.getReadMember();
+
+>>>>>>> Stashed changes
         return "member/userdashboard/user-dashboard-booking";
     }
     @PostMapping("user-dashboard-bookings")
