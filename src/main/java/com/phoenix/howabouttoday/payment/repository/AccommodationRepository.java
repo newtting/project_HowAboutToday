@@ -8,7 +8,10 @@ import java.util.List;
 
 public interface AccommodationRepository extends JpaRepository<Accommodation, Long> {
 
-    Accommodation findByAccomnum(Long number);
+    @Override
+    <S extends Accommodation> S save(S entity);
+
+    Accommodation findByAccomNum(Long number);
 
     @Override
     List<Accommodation> findAll();
