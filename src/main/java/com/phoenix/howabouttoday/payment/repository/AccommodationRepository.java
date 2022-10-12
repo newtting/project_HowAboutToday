@@ -1,7 +1,7 @@
 package com.phoenix.howabouttoday.payment.repository;
 
 
-import com.phoenix.howabouttoday.payment.entity.Accommodation;
+import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

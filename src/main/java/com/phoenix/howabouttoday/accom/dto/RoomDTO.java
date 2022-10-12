@@ -1,7 +1,6 @@
 package com.phoenix.howabouttoday.accom.dto;
 
 public class RoomDTO {
-
     private int roomNum;//객실 번호
     private String roomName;//객실 이름
     private int defaultGuest;//최소 인원
@@ -17,5 +16,4 @@ public class RoomDTO {
     private String roomInfo;//객실 정보
     private String roomOriginFileName;//객실 이미지 기존 파일 이름
     private String roomSaveFileName;//객실 이미지 저장 파일 이름
-
 }

@@ -32,7 +32,7 @@ public class Payment {
     @GetMapping("user-dashboard-bookings")
     public String getUserDashboard() {
 
-        accomodationService.getReadMember();
+//        accomodationService.getReadMember();
         return "member/userdashboard/user-dashboard-booking";
     }
     @PostMapping("user-dashboard-bookings")

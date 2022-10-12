@@ -1,3 +1,10 @@
+
+## 코딩 컨벤션
+
+1. 자료형은 전부 클래스로(ex int(X) -> Integer(O)) long(X) -> Long(O)
+2. PK ID는 Long으로
+
+
 ## 2022-09-29일 수정사항
 - template 폴더에 있던 .html 파일들 접두사에 맞게 정리
 - 패키지를 db에 맞게 일부분 생성
@@ -91,8 +98,3 @@ ver. Lastest(Version: 8.0 or Higher)
 4. 정상 접속시 설치 완료.
 
 
-## 코딩 컨벤션
-
-1. 자료형은 전부 클래스로(ex int(X) -> Integer(O))
-2. api 요청은 요청에 맞게
-- 읽기 get, 생성(쓰기) post, 수정 put or patch, 삭제 delete
