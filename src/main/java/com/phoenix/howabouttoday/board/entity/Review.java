@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Builder
 @Getter
 @Entity
-@Table(name="T_REVIEW")
+@Table
 
 public class Review {
 
@@ -23,7 +23,7 @@ public class Review {
     @Column
     private Long reviewNum;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_num")
     private Orders order;
 

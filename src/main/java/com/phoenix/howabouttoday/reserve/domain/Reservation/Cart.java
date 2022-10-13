@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @DiscriminatorValue("cart")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "t_cart")
+@Table
 public class Cart extends Reservation {
 
 }

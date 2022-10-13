@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Builder
 @Getter
 @Entity
-@Table(name="T_REPLY")
+@Table
 
 public class Reply {
 

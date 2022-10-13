@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name="T_ACCOM_VIEW_FACILITES")
+@Table
 public class AccomViewFacilties {
 
     @Id @GeneratedValue

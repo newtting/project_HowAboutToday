@@ -13,6 +13,6 @@ import javax.persistence.Table;
 @DiscriminatorValue("wishlist")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "t_wishlist")
+@Table
 public class WishList extends Reservation {
 }

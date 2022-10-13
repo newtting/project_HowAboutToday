@@ -34,7 +34,7 @@ import static javax.persistence.FetchType.*;
 @Getter
 @DiscriminatorColumn(name = "reserve_type")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "t_reservation")
+@Table
 public abstract class Reservation {
 
     @Id @GeneratedValue

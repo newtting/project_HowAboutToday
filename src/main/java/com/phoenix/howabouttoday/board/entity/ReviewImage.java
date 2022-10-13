@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Builder
 @Getter
 @Entity
-@Table(name="T_REVIEW_IMAGE")
+@Table
 
 
 public class ReviewImage {

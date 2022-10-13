@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name="T_REGION")
+@Table
 public class Region {
 
   @Id @GeneratedValue
