@@ -25,12 +25,16 @@ public class BoardRepositoryTest {
     @Test
     public void BoardList() {
 
+
+
         String boardTitle = "테스트 게시글";
         String boardContent = "테스트 본문";
         LocalDateTime boardCreate = LocalDateTime.of(2022,10,12,16,51);
 
         String boardCategoryName = "공지사항";
         int boardParentNum = 0;
+
+
 
         boardRepository.save(Board.builder()
                 .boardTitle(boardTitle)
