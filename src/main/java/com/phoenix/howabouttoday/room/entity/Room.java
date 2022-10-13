@@ -14,17 +14,17 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private int roomNum;
+    private Integer roomNum;
 
     @NotNull
     @Column(length = 30)
     private String roomName;
 
     @NotNull
-    private int defaultGuest;//최소 인원
+    private Integer defaultGuest;//최소 인원
 
     @NotNull
-    private int maxGuest;//최대 인원
+    private Integer maxGuest;//최대 인원
 
     @NotNull
     private String stayStartDate;//객실 이용 시작일
@@ -33,16 +33,16 @@ public class Room {
     private String stayEndDate;//객실 이용 종료일
 
     @NotNull
-    private int weekdayPrice;//평일 숙소 금액
+    private Integer weekdayPrice;//평일 숙소 금액
 
     @NotNull
-    private int weekdayDiscount;//평일 할인 금액
+    private Integer weekdayDiscount;//평일 할인 금액
 
     @NotNull
-    private int weekendPrice;//주말 숙소 금액
+    private Integer weekendPrice;//주말 숙소 금액
 
     @NotNull
-    private int weekendDiscount;//주말 할인 금액
+    private Integer weekendDiscount;//주말 할인 금액
 
     @NotNull
     private String roomInfo;//객실 정보

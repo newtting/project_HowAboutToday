@@ -4,6 +4,7 @@ import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.payment.AccomCategory;
+import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 
 @SpringBootTest
 @Transactional
-class AccomodationService_originTest {
+class AccomodationServiceTest {
 
     @Autowired
     private AccommodationRepository accommodationRepository;
@@ -71,4 +72,12 @@ class AccomodationService_originTest {
         System.out.println(test.getAccommodationImage().size());
         System.out.println(test.getAccomCategoryName());
     }
+
+    @Test
+    public void 장바구니에서_결제로_넘기는_테스트(){
+
+//        Cart cart = new Cart();
+
+    }
+
 }
