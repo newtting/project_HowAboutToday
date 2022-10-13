@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,6 +15,7 @@ import javax.persistence.*;
 @Getter
 @Entity
 @Table
+
 
 public class Reply {
 
@@ -30,6 +32,8 @@ public class Reply {
     private Review review;
 
 
+    private LocalDateTime replyCreatedDate;
+    private LocalDateTime replyModifyDate;
 
 
 }
