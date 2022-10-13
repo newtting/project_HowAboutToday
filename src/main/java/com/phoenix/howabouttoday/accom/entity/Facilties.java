@@ -9,14 +9,17 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name="T_FACILTIES")
+@Table
 public class Facilties {
 
     @Id
     @GeneratedValue
     @Column
-    private Long faciltiesNum;//시설  번호
+    private Long faciltiesNum;//시설번호
 
-    @Column
-    private String faciltiesName;//시설이름
+    @Enumerated(EnumType.STRING)
+    private FaciltiesName accomViewFaciltiesName;//시설이름
+
+    private String faciltiesOriginalFileName;
+    private String faciltiesSaveFilename;
 }

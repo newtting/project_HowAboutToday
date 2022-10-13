@@ -2,6 +2,7 @@ package com.phoenix.howabouttoday.reserve.domain.Reservation;
 
 
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.payment.Orders;
 import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.AccessLevel;
@@ -33,7 +34,7 @@ import static javax.persistence.FetchType.*;
 @Getter
 @DiscriminatorColumn(name = "reserve_type")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "t_reservation")
+@Table
 public abstract class Reservation {
 
     @Id @GeneratedValue

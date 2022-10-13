@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name="T_ACCOM_VIEW_FACILITES")
+@Table
 public class AccomViewFacilties {
 
     @Id @GeneratedValue
@@ -23,8 +23,7 @@ public class AccomViewFacilties {
     @JoinColumn(name = "facilties_num")
     private Facilties facilties;
 
-    @Enumerated(EnumType.STRING)
-    private FaciltiesName accomViewFaciltiesName;
+
 
 
 
