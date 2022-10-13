@@ -23,8 +23,7 @@ public class AccomViewFacilties {
     @JoinColumn(name = "facilties_num")
     private Facilties facilties;
 
-    @Enumerated(EnumType.STRING)
-    private FaciltiesName accomViewFaciltiesName;
+
 
 
 
