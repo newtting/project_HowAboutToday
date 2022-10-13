@@ -1,7 +1,6 @@
 package com.phoenix.howabouttoday.board.entity;
 
 import com.phoenix.howabouttoday.member.entity.Member;
-import com.phoenix.howabouttoday.payment.Order;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,11 +21,11 @@ public class Reply {
     @Column
     private Long reply_num;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_num")
     private Member member;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "review_num")
     private Review review;
 
