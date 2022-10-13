@@ -1,26 +1,23 @@
 package com.phoenix.howabouttoday.room.entity;
 
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
+import javax.persistence.*;
 
 @Data
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RoomImage {
 
+    
+    //import가 import org.springframework.data.annotation.Id; 이거말고
+    //import javax.persistence.*; 이걸로 되어야 기본키 에러가 안남
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private int roomNum;
+    private Integer roomNum;
 
     @NotNull
     @Column(length = 50)

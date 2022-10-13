@@ -1,6 +1,8 @@
 package com.phoenix.howabouttoday.accom.entity;
 
 
+import com.phoenix.howabouttoday.payment.AccomCategory;
+import com.phoenix.howabouttoday.payment.AccomCategoryConverter;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
@@ -28,8 +30,9 @@ public class Accommodation {
     private String accomTel;//숙소 전화번호
 
     @NotNull
-//    @OneToMany() 추후에 숙소카테고리 만든 후 entity 만든 후에 매핑필요
-    private Integer accomCategoryNum;//숙소 카테고리 번호
+    @Column(length = 50)
+    @Convert(converter = AccomCategoryConverter.class)
+    private AccomCategory accomCategoryName;//숙소 카테고리 번호
 
     @NotNull
     //    @OneToMany() 추후에 지역 카테고리 entity 만든 후에 매핑필요
@@ -68,10 +71,10 @@ public class Accommodation {
     private List<AccomImage> accommodationImage;    //이미지 fk를 위한 매핑
 
     @Builder
-    public Accommodation(String accomName, String accomTel, Integer accomCategoryNum, Integer regionNum, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange, List<AccomImage> accommodationImage) {
+    public Accommodation(String accomName, String accomTel, AccomCategory accomCategoryName, Integer regionNum, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange, List<AccomImage> accommodationImage) {
         this.accomName = accomName;
         this.accomTel = accomTel;
-        this.accomCategoryNum = accomCategoryNum;
+        this.accomCategoryName = accomCategoryName;
         this.regionNum = regionNum;
         this.accomAddress = accomAddress;
         this.accomRating = accomRating;
