@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequiredArgsConstructor
 public class AccomController {
-
+    //테스트
     // 메인 화면
     @GetMapping("home")
     public String getIndex2(){
