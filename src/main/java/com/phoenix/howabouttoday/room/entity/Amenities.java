@@ -17,9 +17,9 @@ public class Amenities {
     @Id
     @GeneratedValue
     @Column
-    private Integer amenitiesNum;
+    private Long amenitiesNum;//시설번호
 
     @Column
-    private String amenitiesName;
+    private String amenitiesName;//시설이름
 
 }

@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.room.entity;
 
+import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
@@ -17,7 +18,7 @@ public class RoomImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Integer roomNum;
+    private Long roomNum;
 
     @NotNull
     @Column(length = 50)
@@ -27,10 +28,15 @@ public class RoomImage {
     @Column(length = 50)
     private String roomSaveFileName;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="room_roomNum", referencedColumnName = "roomNum")
+    private Room room;
+
     @Builder
-    public RoomImage(String roomOriginFileName,String roomSaveFileName) {
+    public RoomImage(String roomOriginFileName,String roomSaveFileName,Room room) {
         this.roomOriginFileName = roomOriginFileName;
         this.roomSaveFileName = roomSaveFileName;
+        this.room = room;
     }
 
 }

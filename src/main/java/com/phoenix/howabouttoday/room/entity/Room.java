@@ -1,9 +1,11 @@
 package com.phoenix.howabouttoday.room.entity;
 
+import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -14,7 +16,7 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Integer roomNum;
+    private Long roomNum;
 
     @NotNull
     @Column(length = 30)
@@ -50,8 +52,11 @@ public class Room {
     //private String restStartTime;//대실 시작 시간
     //private String restEndTime;//대실 종료 시간
 
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    private List<RoomImage> roomImage;
+
     @Builder
-    public Room(String roomName,int defaultGuest,int maxGuest,String stayStartDate,String stayEndDate,int weekdayPrice,int weekendPrice,int weekendDiscount,String roomInfo) {
+    public Room(String roomName,int defaultGuest,int maxGuest,String stayStartDate,String stayEndDate,int weekdayPrice,int weekendPrice,int weekendDiscount,String roomInfo, List<RoomImage> roomImage) {
         this.roomName = roomName;
         this.defaultGuest = defaultGuest;
         this.maxGuest = maxGuest;
@@ -62,6 +67,7 @@ public class Room {
         this.weekendPrice = weekendPrice;
         this.weekendDiscount = weekendDiscount;
         this.roomInfo = roomInfo;
+        this.roomImage = roomImage;
     }
 
 }

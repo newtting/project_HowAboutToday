@@ -17,9 +17,9 @@ public class Service {
     @Id
     @GeneratedValue
     @Column
-    private Integer serviceNum;
+    private Long serviceNum;//서비스번호
 
     @Column
-    private String serviceName;
+    private String serviceName;//서비스이름
 
 }
