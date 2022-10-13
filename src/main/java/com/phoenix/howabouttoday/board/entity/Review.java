@@ -1,12 +1,12 @@
 package com.phoenix.howabouttoday.board.entity;
 
 
-import com.phoenix.howabouttoday.payment.Order;
+
+import com.phoenix.howabouttoday.payment.Orders;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.core.annotation.Order;
 
 import javax.persistence.*;
 
@@ -25,7 +25,7 @@ public class Review {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_num")
-    private Order order;
+    private Orders order;
 
 
 

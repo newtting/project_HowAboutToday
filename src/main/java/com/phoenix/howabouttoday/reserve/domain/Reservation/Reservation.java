@@ -2,6 +2,7 @@ package com.phoenix.howabouttoday.reserve.domain.Reservation;
 
 
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.payment.Orders;
 import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.AccessLevel;
