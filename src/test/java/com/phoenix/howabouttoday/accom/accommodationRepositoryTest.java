@@ -50,10 +50,6 @@ public class accommodationRepositoryTest {
 
         List<Accommodation> accommodationList = accommodationRepository.findAll();
 
-
-
         assertThat(accommodationList.get(0).getAccomName()).isEqualTo(accomName);
-
-
     }
 }

@@ -23,11 +23,5 @@ public class AccomViewFacilties {
     @JoinColumn(name = "facilties_num")
     private Facilties facilties;
 
-
-
-
-
-
-
 }
 

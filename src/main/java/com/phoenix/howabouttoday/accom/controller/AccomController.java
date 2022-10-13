@@ -1,6 +1,7 @@
 package com.phoenix.howabouttoday.accom.controller;
 
 import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
+import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.service.AccomodationService;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
@@ -50,7 +51,7 @@ public class AccomController {
     @GetMapping("hotel-list")
     public String getHotelList(Model model){
 
-        List<AccommodationDTO> accommodationDTOList =accomodationService.getAccommodationlist();
+        List<Accommodation> accommodationDTOList =accomodationService.getAccommodationlist();
         model.addAttribute("accommodationList",accommodationDTOList);
         return "accom/hotel/hotel-list";
     }
