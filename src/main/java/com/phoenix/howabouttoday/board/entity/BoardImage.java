@@ -14,7 +14,7 @@ public class BoardImage {
     private Long boardImageNum; // 게시글 이미지 번호
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "board_num", nullable = false)
     private Board board; // 게시글
 
     @Column(nullable = false)
