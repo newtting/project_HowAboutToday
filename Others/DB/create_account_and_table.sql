@@ -255,34 +255,34 @@ CREATE TABLE REPLY (
   CONSTRAINT FK_34 FOREIGN KEY (reviewNum) REFERENCES REVIEW(reviewNum)on delete cascade
 )AUTO_INCREMENT=1;
 
--- 게시판 카테고리
-CREATE TABLE BOARD_CATEGORY(
-	boardCategoryNum int auto_increment,
-	boardCategoryName varchar(20) NOT NULL,
-	boardParentNum int NOT NULL,
-	PRIMARY KEY (`boardCategoryNum`)
-)AUTO_INCREMENT=1;
-
-
 -- 게시판
 CREATE TABLE BOARD (
-	boardNum int auto_increment,
-	boardCategoryNum int NOT NULL,
-	boardTitle varchar(200) NOT NULL,
-	boardContent varchar(3096) NOT NULL,
-	boardCreate datetime NOT NULL,
-	PRIMARY KEY (`boardNum`),
+	boardNum int auto_increment, -- 게시글 번호
+	boardCategoryNum int NOT NULL, -- 게시글 카테고리 번호
+	boardTitle varchar(200) NOT NULL, -- 게시글 제목
+	boardContent varchar(3096) NOT NULL, -- 게시글 내용
+	boardCreate datetime NOT NULL, -- 게시글 작성일
+	PRIMARY KEY (`board_num`),
 CONSTRAINT FK_27 FOREIGN KEY (boardCategoryNum) REFERENCES BOARD_CATEGORY(boardCategoryNum) on delete cascade
 )AUTO_INCREMENT=1;
 
+-- 게시판 카테고리
+CREATE TABLE BOARD_CATEGORY(
+	boardCategoryNum int auto_increment, -- 게시글 카테고리 번호
+	boardCategoryName varchar(20) NOT NULL, -- 게시글 카테고리 이름
+	boardParentNum int NOT NULL, -- 게시글 카테고리 부모 번호
+	PRIMARY KEY (`boardCategoryNum`)
+)AUTO_INCREMENT=1;
 
 --  게시판 이미지
 CREATE TABLE BOARD_IMAGE (
-    boardNum int,
-    boardOriginFileName varchar(100) NOT NULL,
-    boardSaveFileName varchar(100) NOT NULL,
+    boardImageNum int auto_increment, -- 게시글 이미지 번호
+    boardNum int, -- 게시글 번호
+    boardOriginFileName varchar(100) NOT NULL, -- 게시글 이미지 기존 파일 이름
+    boardSaveFileName varchar(100) NOT NULL, -- 게시글 이미지 기존 파일 이름
+    PRIMARY KEY (`boardImageNum`),
     CONSTRAINT FK_53 FOREIGN KEY (boardNum) REFERENCES BOARD(boardNum) on delete cascade
-);
+)AUTO_INCREMENT=1;
 
 --  결제
 CREATE TABLE PAYMENT (
