@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.accom.service;
 
+import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -57,5 +59,20 @@ public class AccomodationService {
 
 //        accommodationImageRepository.save(image);
         accommodationRepository.save(newMember);
+
+
+    }
+
+    @Transactional
+    public List<AccommodationDTO> getAccommodationlist() {
+
+    //    List<Accommodation> accommodationList = AccommodationRepository.findAll();
+        List<AccommodationDTO> accommodationDTOList = new ArrayList<>();
+
+    //    for(Accommodation accommodation: accommodationList) {
+    //        AccommodationDTO accommodationDTO =AccommodationDTO.builder()
+    //                .id(accommodation.getId())
+    //    }
+           return accommodationDTOList;
     }
 }

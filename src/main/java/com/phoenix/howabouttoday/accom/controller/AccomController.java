@@ -1,14 +1,24 @@
 package com.phoenix.howabouttoday.accom.controller;
 
+import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
+import com.phoenix.howabouttoday.accom.service.AccomodationService;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class AccomController {
-    //테스트
+
+    private AccomodationService accomodationService;
+
+    public AccomController(AccomodationService accomodationService) {
+        this.accomodationService = accomodationService;
+    }
     // 메인 화면
     @GetMapping("home")
     public String getIndex2(){
@@ -38,11 +48,16 @@ public class AccomController {
     }
 
     @GetMapping("hotel-list")
-    public String getHotelList(){
+    public String getHotelList(Model model){
+
+        List<AccommodationDTO> accommodationDTOList =accomodationService.getAccommodationlist();
+        model.addAttribute("accommodationList",accommodationDTOList);
         return "accom/hotel/hotel-list";
     }
     @PostMapping("hotel-list")
     public String postHotelList(){
+
+
         return "accom/hotel/hotel-list";
     }
 
