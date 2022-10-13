@@ -8,6 +8,7 @@ import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -69,14 +70,14 @@ public class Accommodation {
 
     //양방향 매핑을 위해 추가
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
-    private List<AccomImage> accommodationImage;    //이미지 fk를 위한 매핑
+    private List<AccomImage> accommodationImage = new ArrayList<>();    //이미지 fk를 위한 매핑
 
     //양방향 매핑을 위해 추가
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
-    private List<Room> room;    //이미지 fk를 위한 매핑
+    private List<Room> room = new ArrayList<>();    //이미지 fk를 위한 매핑
 
     @Builder
-    public Accommodation(String accomName, String accomTel, AccomCategory accomCategoryName, Integer regionNum, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange, List<AccomImage> accommodationImage) {
+    public Accommodation(String accomName, String accomTel, AccomCategory accomCategoryName, Integer regionNum, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange) {
         this.accomName = accomName;
         this.accomTel = accomTel;
         this.accomCategoryName = accomCategoryName;
@@ -89,7 +90,6 @@ public class Accommodation {
         this.longitude = longitude;
         this.lowPrice = lowPrice;
         this.reserveRange = reserveRange;
-        this.accommodationImage = accommodationImage;
     }
 
 }

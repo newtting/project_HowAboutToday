@@ -20,16 +20,17 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
-@SpringBootTest
-@Transactional
-class AccomodationServiceTest {
+    @SpringBootTest
+    @Transactional
+    class AccomodationServiceTest {
 
-    @Autowired
-    private AccommodationRepository accommodationRepository;
+        @Autowired
+        private AccommodationRepository accommodationRepository;
 //    private final AccommodationImageRepository accommodationImageRepository;
 
 
-    @Test
+
+        @Test
     public void 생성_매핑_테스트() {
         AccomImage image = AccomImage.builder()
                 .accomOriginFilename("image0.jpg")
@@ -55,7 +56,6 @@ class AccomodationServiceTest {
                 .longitude(126.5092)
                 .lowPrice(45000)
                 .reserveRange(60)
-                .accommodationImage(new ArrayList<AccomImage>())
                 .build();
 
 
@@ -109,7 +109,6 @@ class AccomodationServiceTest {
                 .longitude(126.5092)
                 .lowPrice(45000)
                 .reserveRange(60)
-                .accommodationImage(new ArrayList<AccomImage>())
                 .build();
 
         Room room = Room.builder()
@@ -145,7 +144,6 @@ class AccomodationServiceTest {
                 .longitude(126.5092)
                 .lowPrice(45000)
                 .reserveRange(60)
-                .accommodationImage(new ArrayList<AccomImage>())
                 .build();
 
         Room room2 = Room.builder()
@@ -181,6 +179,57 @@ class AccomodationServiceTest {
         newOrder.getReservation().add(cart2);
 
         System.out.println("하아");
+    }
+    
+    @Test
+    public void 객실에서_결제로_넘기는_테스트(){
+        Member member = Member.builder()
+                .email("ingn@nate.com")
+                .pwd("1111")
+                .nickname("noscarna")
+                .memberTel("01045020614")
+                .memberCode(Code.MEMBER)
+                .joinDate(LocalDateTime.now())
+                .withdrawdate(LocalDateTime.now())
+                .memberOriginalFileName("Origin")
+                .memberSaveFileName("save")
+                .build();
+
+
+        Accommodation acco = Accommodation.builder()
+                .accomName("보령(대천) 너울펜션")
+                .accomTel("050350577805")
+                .accomCategoryName(AccomCategory.PENSION)
+                .regionNum(8)
+                .accomAddress("충청남도 보령시 해수욕장13길 10-20")
+                .accomRating(4.4)
+                .accomWishlistCount(110)
+                .totalReviewNum(1103)
+                .latitude(36.3196)
+                .longitude(126.5092)
+                .lowPrice(45000)
+                .reserveRange(60)
+                .build();
+
+        Room room = Room.builder()
+                .roomName("깨끗한 방")
+                .defaultGuest(2)
+                .maxGuest(4)
+                .price(45000)
+                .roomInfo("고객에게 최선을 다합니다.")
+                .build();
+
+
+        Cart cart = Cart.builder()
+                .member(member)
+                .accommodation(acco)
+                .room(room)
+                .reserveStatus(ReserveStatus.READY)
+                .reserveUseStartDate(LocalDate.now())
+                .reserveUseEndDate(LocalDate.now())
+                .reservePrice(room.getPrice())
+                .reserveAdultCount(room.getDefaultGuest())
+                .build();
     }
 
 }

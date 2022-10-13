@@ -46,7 +46,6 @@ public class AccomodationService {
         .longitude(126.5092)
         .lowPrice(45000)
         .reserveRange(60)
-        .accommodationImage(new ArrayList<AccomImage>())
         .build();
 
 
