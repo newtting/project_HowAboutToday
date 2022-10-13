@@ -16,7 +16,7 @@ public class AccomViewFacilties {
     private Long accomViewfaciltiesNum;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "accommodation_num")
+    @JoinColumn(name = "accom_num")
     private Accommodation accommodation;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -17,12 +17,17 @@ import javax.persistence.*;
 @Table
 
 
+
 public class ReviewImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private int reviewNum;
+    private int reviewImageNum;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "review_num")
+    private Review review;
 
 
     @NotNull
@@ -32,6 +37,7 @@ public class ReviewImage {
     @NotNull
     @Column(length = 50)
     private String reviewSaveFileName;
+
 
     @Builder
     public ReviewImage(String reviewOriginalFileName,String reviewSaveFileName) {
