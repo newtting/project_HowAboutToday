@@ -11,11 +11,11 @@ public class ReserveController {
 
     @GetMapping("hotel-booking")
     public String getHotelBooking(){
-        return "reserve/hotel-booking";
+        return "reserve/checkout";
     }
     @PostMapping("hotel-booking")
     public String postHotelBooking(){
-        return "reserve/hotel-booking";
+        return "reserve/checkout";
     }
 
     @GetMapping("checkout")

@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.member.wishlist;
+package com.phoenix.howabouttoday.reserve.domain.Reservation;
 
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import lombok.AccessLevel;
@@ -10,9 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@DiscriminatorValue("wishlist")
+@DiscriminatorValue("cart")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "t_wishlist")
-public class WishList extends Reservation {
+@Table(name = "t_cart")
+public class Cart extends Reservation {
+
 }

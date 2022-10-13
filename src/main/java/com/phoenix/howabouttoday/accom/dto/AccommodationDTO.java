@@ -1,17 +1,18 @@
 package com.phoenix.howabouttoday.accom.dto;
 
+import lombok.Getter;
+
+
 public class AccommodationDTO {
 
     private int accomNum;//숙소 번호
     private String accomName;//숙소 이름
     private String accomTel;//숙소 전화번호
     private int accomCategoryNum;//숙소 카테고리 번호
-    private String accomCategoryName;//숙소 카테고리 이름
     private int regionNum;//숙소 지역 번호
-    private String regionName;//숙소 지역 이름
-    private int regionParentNum;//숙소 지역 Parent 번호
     private String accomAddress;//숙소 주소
     private Double accomRating;//숙소 평점
+    private int accomWishListCount;//찜 갯수
     private int totalreviewNum;//숙소의 총 리뷰 수
     private Double latitude;//위도
     private Double longitude;//경도
