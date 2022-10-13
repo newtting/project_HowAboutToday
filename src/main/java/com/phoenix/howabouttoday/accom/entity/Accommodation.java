@@ -3,6 +3,7 @@ package com.phoenix.howabouttoday.accom.entity;
 
 import com.phoenix.howabouttoday.payment.AccomCategory;
 import com.phoenix.howabouttoday.payment.AccomCategoryConverter;
+import com.phoenix.howabouttoday.room.entity.Room;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
@@ -69,6 +70,10 @@ public class Accommodation {
     //양방향 매핑을 위해 추가
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
     private List<AccomImage> accommodationImage;    //이미지 fk를 위한 매핑
+
+    //양방향 매핑을 위해 추가
+    @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
+    private List<Room> room;    //이미지 fk를 위한 매핑
 
     @Builder
     public Accommodation(String accomName, String accomTel, AccomCategory accomCategoryName, Integer regionNum, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange, List<AccomImage> accommodationImage) {

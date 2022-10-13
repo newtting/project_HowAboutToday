@@ -5,9 +5,7 @@ import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.payment.Orders;
 import com.phoenix.howabouttoday.room.entity.Room;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -34,6 +32,7 @@ import static javax.persistence.FetchType.*;
 @Getter
 @DiscriminatorColumn(name = "reserve_type")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Table
 public abstract class Reservation {
 
@@ -53,7 +52,7 @@ public abstract class Reservation {
     private Room room;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "pay_num")
+    @JoinColumn(name = "orders_num")
     private Orders orders;
 
     @Enumerated(EnumType.STRING)
@@ -66,6 +65,7 @@ public abstract class Reservation {
     private int reservePrice;
     private int reserveAdultCount;
     private int reserveChildCount;
+
 
 
 }

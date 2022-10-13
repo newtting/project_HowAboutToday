@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.room.entity;
 
+import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
@@ -16,8 +17,12 @@ public class Room {
     @Column
     private Integer roomNum;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="accommodation_accomNum", referencedColumnName = "accomNum")
+    private Accommodation accommodation;
+
     @NotNull
-    @Column(length = 30)
+    @Column(length = 50)
     private String roomName;
 
     @NotNull
@@ -26,23 +31,9 @@ public class Room {
     @NotNull
     private Integer maxGuest;//최대 인원
 
-    @NotNull
-    private String stayStartDate;//객실 이용 시작일
 
     @NotNull
-    private String stayEndDate;//객실 이용 종료일
-
-    @NotNull
-    private Integer weekdayPrice;//평일 숙소 금액
-
-    @NotNull
-    private Integer weekdayDiscount;//평일 할인 금액
-
-    @NotNull
-    private Integer weekendPrice;//주말 숙소 금액
-
-    @NotNull
-    private Integer weekendDiscount;//주말 할인 금액
+    private Integer price;//주말 숙소 금액
 
     @NotNull
     private String roomInfo;//객실 정보
@@ -51,16 +42,11 @@ public class Room {
     //private String restEndTime;//대실 종료 시간
 
     @Builder
-    public Room(String roomName,int defaultGuest,int maxGuest,String stayStartDate,String stayEndDate,int weekdayPrice,int weekendPrice,int weekendDiscount,String roomInfo) {
+    public Room(String roomName,int defaultGuest,int maxGuest, Integer price, String roomInfo) {
         this.roomName = roomName;
         this.defaultGuest = defaultGuest;
         this.maxGuest = maxGuest;
-        this.stayStartDate = stayStartDate;
-        this.stayEndDate = stayEndDate;
-        this.weekdayPrice = weekdayPrice;
-        this.weekdayDiscount = weekendDiscount;
-        this.weekendPrice = weekendPrice;
-        this.weekendDiscount = weekendDiscount;
+        this.price = price;
         this.roomInfo = roomInfo;
     }
 
