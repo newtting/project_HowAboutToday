@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.room.entity;
 
+import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
@@ -13,45 +14,48 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private Integer roomNum;
+    private Long roomNum;
 
-    @NotNull
+
     @Column(length = 30)
     private String roomName;
 
-    @NotNull
+
+    @ManyToOne
+    @JoinColumn(name = "accom_num")
+    private Accommodation accommodation;
+
     private Integer defaultGuest;//최소 인원
 
-    @NotNull
+
     private Integer maxGuest;//최대 인원
 
-    @NotNull
+
     private String stayStartDate;//객실 이용 시작일
 
-    @NotNull
+
     private String stayEndDate;//객실 이용 종료일
 
-    @NotNull
+
     private Integer weekdayPrice;//평일 숙소 금액
 
-    @NotNull
+
     private Integer weekdayDiscount;//평일 할인 금액
 
-    @NotNull
+
     private Integer weekendPrice;//주말 숙소 금액
 
-    @NotNull
+
     private Integer weekendDiscount;//주말 할인 금액
 
-    @NotNull
+
     private String roomInfo;//객실 정보
 
     //private String restStartTime;//대실 시작 시간
     //private String restEndTime;//대실 종료 시간
 
     @Builder
-    public Room(String roomName,int defaultGuest,int maxGuest,String stayStartDate,String stayEndDate,int weekdayPrice,int weekendPrice,int weekendDiscount,String roomInfo) {
+    public Room(String roomName,int defaultGuest,int maxGuest,String stayStartDate,String stayEndDate,int weekdayPrice,int weekendPrice,int weekendDiscount,String roomInfo , Accommodation accommodation) {
         this.roomName = roomName;
         this.defaultGuest = defaultGuest;
         this.maxGuest = maxGuest;
@@ -62,6 +66,7 @@ public class Room {
         this.weekendPrice = weekendPrice;
         this.weekendDiscount = weekendDiscount;
         this.roomInfo = roomInfo;
+        this.accommodation = accommodation;
     }
 
 }

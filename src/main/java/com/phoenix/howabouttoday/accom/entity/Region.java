@@ -1,8 +1,7 @@
 package com.phoenix.howabouttoday.accom.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import javax.persistence.Id;
 
 import javax.persistence.*;
@@ -12,6 +11,8 @@ import java.io.Serializable;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table
+@Builder
+@AllArgsConstructor
 public class Region {
 
   @Id @GeneratedValue

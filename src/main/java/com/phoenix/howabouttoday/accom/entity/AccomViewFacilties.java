@@ -24,10 +24,5 @@ public class AccomViewFacilties {
     private Facilties facilties;
 
 
-
-
-
-
-
 }
 

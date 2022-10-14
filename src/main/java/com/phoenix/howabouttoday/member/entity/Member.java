@@ -20,13 +20,13 @@ public class Member {
   private Long memberNum;
 
   /*로그인할 회원 아이디(이메일)*/
-  @Column(name = "email", nullable = false, length = 50, unique = true)
+  @Column(name = "email", nullable = false, length = 50)
   private String email;
 
   @Column(name = "pwd", nullable = false,length = 100) //패스워드
   private String pwd;
 
-  @Column(name= "nickname", nullable = false,unique = true) //닉네임
+  @Column(name= "nickname", nullable = false) //닉네임
   private String nickname;
 
   @Column(nullable = true)
