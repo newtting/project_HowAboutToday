@@ -1,5 +1,7 @@
 package com.phoenix.howabouttoday.accom.entity;
 
+import com.phoenix.howabouttoday.accom.RegionType;
+import com.phoenix.howabouttoday.accom.RegionTypeConverter;
 import lombok.*;
 
 import javax.persistence.Id;
@@ -12,18 +14,19 @@ import java.io.Serializable;
 @Entity
 public class Region {
 
-  @Id @GeneratedValue
+  @Id
+  @GeneratedValue
   private Long regionNum;
 
   @Column(length = 50)
   @Convert(converter = RegionTypeConverter.class)
   private RegionType region;
 
-  private Integer regionParentNum;
+  private RegionType regionParentNum;
 
   @Builder
-  public Region(RegionType region, Integer regionParentNum){
+  public Region(RegionType region, RegionType regionParentNum){
     this.region = region;
-    thi.regionParentNum = regionParentNum;
+    this.regionParentNum = regionParentNum;
   }
 }

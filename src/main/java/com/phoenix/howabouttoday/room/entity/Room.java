@@ -28,10 +28,6 @@ public class Room {
     @Column(length = 50)
     private String roomName;
 
-    @ManyToOne
-    @JoinColumn(name = "accom_num")
-    private Accommodation accommodation;
-
     private Integer defaultGuest;//최소 인원
 
     private Integer maxGuest;//최대 인원
@@ -41,15 +37,16 @@ public class Room {
 
     private String roomInfo;//객실 정보
 
-    //private String restStartTime;//대실 시작 시간
-    //private String restEndTime;//대실 종료 시간
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    private List<RoomImage> roomImage;
+
 
     //양방향 매핑을 위해 추가
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<AvailableDate> availableDate = new ArrayList<>();
 
     @Builder
-    public Room(String roomName,int defaultGuest,int maxGuest, Integer price, String roomInfo) {
+    public Room(String roomName,int defaultGuest,int maxGuest, Integer price, String roomInfo, Accommodation accommodation) {
         this.roomName = roomName;
         this.defaultGuest = defaultGuest;
         this.maxGuest = maxGuest;

@@ -3,6 +3,7 @@ package com.phoenix.howabouttoday.payment.testDriver;
 import com.phoenix.howabouttoday.accom.RegionType;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.payment.AccomCategory;
@@ -17,6 +18,12 @@ import java.util.ArrayList;
 public class RequestPayment {
 
     public void 객실에서_결제로_넘기는_테스트(){
+
+        Region region  = Region.builder()
+                .region(RegionType.SEOUL)
+                .regionParentNum(RegionType.SEOUL)
+                .build();
+
         Member member = Member.builder()
                 .email("ingn@nate.com")
                 .pwd("1111")
@@ -34,7 +41,7 @@ public class RequestPayment {
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
                 .accomCategory(AccomCategory.PENSION)
-                .region(RegionType.CHUNGNAM_SEJONG)
+                .region(region)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)
