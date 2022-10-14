@@ -26,11 +26,4 @@ public class BoardImage {
     @Column(nullable = false)
     private String boardSaveFileName; // 게시글 이미지 저장 파일 이름
 
-    @Builder
-    public BoardImage(String boardOriginFileName, String boardSaveFileName, Board board) {
-        this.boardOriginFileName = boardOriginFileName;
-        this.boardSaveFileName = boardSaveFileName;
-        this.board = board;
-    }
-
 }
