@@ -18,7 +18,7 @@ public class Facilties {
     private Long faciltiesNum;//시설번호
 
     @Enumerated(EnumType.STRING)
-    private FaciltiesName accomViewFaciltiesName;//시설이름
+    private FaciltiesName faciltiesName;//시설이름
 
     private String faciltiesOriginalFileName;
     private String faciltiesSaveFilename;

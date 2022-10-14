@@ -30,24 +30,6 @@ public class AccomController {
         return "home";
     }
 
-    @GetMapping("add-hotel")
-    public String getAddHotel(){
-        return "accom/hotel/add-hotel";
-    }
-    @PostMapping("add-hotel")
-    public String postAddHotel(){
-        return "accom/hotel/add-hotel";
-    }
-
-    @GetMapping("hotel-grid")
-    public String getHotelGrid(){
-        return "accom/hotel/hotel-grid";
-    }
-    @PostMapping("hotel-grid")
-    public String postHotelGrid(){
-        return "accom/hotel/hotel-grid";
-    }
-
     @GetMapping("hotel-list")
     public String getHotelList(Model model){
 
@@ -71,14 +53,6 @@ public class AccomController {
         return "accom/hotel/hotel-search-result";
     }
 
-    @GetMapping("hotel-sidebar")
-    public String getHotelSidebar(){
-        return "accom/hotel/hotel-sidebar";
-    }
-    @PostMapping("hotel-sidebar")
-    public String postHotelSidebar(){
-        return "accom/hotel/hotel-sidebar";
-    }
 
     @GetMapping("hotel-single")
     public String getHotelSingle(){
