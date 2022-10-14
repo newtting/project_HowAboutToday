@@ -9,15 +9,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
+
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
 public class Service {
 
     @Id
     @GeneratedValue
     @Column
-    private Integer serviceNum;
+    private Long serviceNum;
 
     @Column
     private String serviceName;

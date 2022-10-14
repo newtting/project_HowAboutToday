@@ -7,12 +7,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
 public class RoomViewAmenities {
 
     @Id
-    private Integer roomViewAmenitiesNum;
+    private Long roomViewAmenitiesNum;
 
 }
