@@ -1,12 +1,15 @@
 package com.phoenix.howabouttoday.board.entity;
 
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "board_image")
 public class BoardImage {
 
     @Id
@@ -22,5 +25,12 @@ public class BoardImage {
 
     @Column(nullable = false)
     private String boardSaveFileName; // 게시글 이미지 저장 파일 이름
+
+    @Builder
+    public BoardImage(String boardOriginFileName, String boardSaveFileName, Board board) {
+        this.boardOriginFileName = boardOriginFileName;
+        this.boardSaveFileName = boardSaveFileName;
+        this.board = board;
+    }
 
 }

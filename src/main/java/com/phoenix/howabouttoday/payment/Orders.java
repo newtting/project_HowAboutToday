@@ -9,21 +9,21 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
+
 @Getter
-@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Orders {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ordersNum;
 
-    @NotNull
+
     @Column(length = 50)
     private String ordersTel;
 
-    @NotNull
+
     @Column(length = 50)
     private String ordersName;
 
@@ -31,14 +31,14 @@ public class Orders {
     @Column(length = 50)
     private String ordersDate;
 
-    @NotNull
-    private Long ordersPrice;
 
-    @NotNull
+    private Integer ordersPrice;
+
+
     @Column(length = 50)
     private String ordersType;
 
-    @NotNull
+
     @Column(length = 50)
     private String ordersStatus;
 
@@ -46,7 +46,7 @@ public class Orders {
     private List<Reservation> reservation = new ArrayList<>(); //이미지 fk를 위한 매핑
 
     @Builder
-    public Orders(Long ordersNum, String ordersTel, String ordersName, String ordersDate, Long ordersPrice, String ordersType, String ordersStatus) {
+    public Orders(Long ordersNum, String ordersTel, String ordersName, String ordersDate, Integer ordersPrice, String ordersType, String ordersStatus) {
         this.ordersNum = ordersNum;
         this.ordersTel = ordersTel;
         this.ordersName = ordersName;
