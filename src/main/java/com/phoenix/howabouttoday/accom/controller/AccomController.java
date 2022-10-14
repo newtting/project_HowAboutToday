@@ -3,6 +3,7 @@ package com.phoenix.howabouttoday.accom.controller;
 import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.service.AccomodationService;
+import com.phoenix.howabouttoday.room.service.RoomService;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
@@ -20,6 +21,8 @@ public class AccomController {
     public AccomController(AccomodationService accomodationService) {
         this.accomodationService = accomodationService;
     }
+    private final RoomService roomService;
+
     // 메인 화면
     @GetMapping("home")
     public String getIndex2(){
@@ -55,13 +58,15 @@ public class AccomController {
 
 
     @GetMapping("hotel-single")
-    public String getHotelSingle(){
+    public String getHotelSingle(Model model){
+
+        model.addAttribute("roomlist", roomService.roomList());
+
         return "accom/hotel/hotel-single";
+
     }
     @PostMapping("hotel-single")
-    public String postHotelSingle(){
-        return "accom/hotel/hotel-single";
-    }
+    public String postHotelSingle(){return "accom/hotel/hotel-single";}
 
     @GetMapping("motel-list")
     public String getMotelList(){
@@ -82,8 +87,12 @@ public class AccomController {
     }
 
     @GetMapping("motel-single")
-    public String getMotelSingle(){
+    public String getMotelSingle(Model model){
+
+        model.addAttribute("roomlist", roomService.roomList());
+
         return "accom/hotel/motel-single";
+
     }
     @PostMapping("motel-single")
     public String postMotelSingle(){
@@ -100,8 +109,12 @@ public class AccomController {
     }
 
     @GetMapping("pension-PoolVilla-single")
-    public String getPensionPoolVillaSingle(){
+    public String getPensionPoolVillaSingle(Model model){
+
+        model.addAttribute("roomlist", roomService.roomList());
+
         return "accom/hotel/pension-PoolVilla-single";
+
     }
     @PostMapping("pension-PoolVilla-single")
     public String postPensionPoolVillaSingle(){
@@ -128,7 +141,13 @@ public class AccomController {
     public String postGuestHouseSingle(){ return "accom/hotel/guestHouse-Hanok-result";}
 
     @GetMapping("guestHouse-Hanok-single")
-    public String getGuestHouseResult(){ return "accom/hotel/guestHouse-Hanok-single";}
+    public String getGuestHouseResult(Model model){
+
+        model.addAttribute("roomlist", roomService.roomList());
+
+        return "accom/hotel/guestHouse-Hanok-single";
+
+    }
     @PostMapping("guestHouse-Hanok-single")
     public String postGuestHouseResult(){ return "accom/hotel/guestHouse-Hanok-single";}
 

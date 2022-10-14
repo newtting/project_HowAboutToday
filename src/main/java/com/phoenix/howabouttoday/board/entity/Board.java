@@ -5,16 +5,17 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "board")
 public class Board {
 
     // Notice, Event, FAQ, About
@@ -25,7 +26,7 @@ public class Board {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_category_num")
-    private BoardCategory boardCategory; // 게시글 카테고리
+    private BoardCategory boardCategory; // 게시글 카테고리 번호
 
     @Column(nullable = false)
     private String boardTitle; // 게시글 제목
@@ -41,11 +42,11 @@ public class Board {
     private List<BoardImage> boardImageList = new ArrayList<>();
 
     @Builder
-    public Board(String boardTitle, String boardContent, LocalDateTime boardCreate,BoardCategory boardCategory) {
+    public Board(BoardCategory boardCategory, String boardTitle, String boardContent, LocalDateTime boardCreate) {
+        this.boardCategory = boardCategory;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
         this.boardCreate = boardCreate;
-        this.boardCategory = boardCategory;
     }
 
 }

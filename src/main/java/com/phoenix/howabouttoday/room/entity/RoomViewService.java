@@ -7,12 +7,21 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
 public class RoomViewService {
 
     @Id
-    private Integer roomViewAmenitiesNum;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long roomViewAmenitiesNum;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_num")
+    private Room room;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "service_num")
+    private Service service;
 
 }
