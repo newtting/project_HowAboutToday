@@ -29,27 +29,28 @@ import static javax.persistence.FetchType.*;
  * reserveChildCount = 인원(아동)
  */
 
-@Entity
+
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @DiscriminatorColumn(name = "reserve_type")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table
 @SuperBuilder
+@AllArgsConstructor
+@Entity
 public abstract class Reservation {
 
     @Id @GeneratedValue
     private Long reserveNum;
 
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "member_num")
     private Member member;
 
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "accom_num")
     private Accommodation accommodation;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "room_num")
     private Room room;
 
@@ -67,6 +68,7 @@ public abstract class Reservation {
     private int reservePrice;
     private int reserveAdultCount;
     private int reserveChildCount;
+
 
 
 }

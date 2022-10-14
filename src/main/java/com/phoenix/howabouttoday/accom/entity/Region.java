@@ -10,15 +10,20 @@ import java.io.Serializable;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table
-@Builder
-@AllArgsConstructor
 public class Region {
 
   @Id @GeneratedValue
   private Long regionNum;
 
-  private String regionName;
+  @Column(length = 50)
+  @Convert(converter = RegionTypeConverter.class)
+  private RegionType region;
 
-  private int regionParentNum;
+  private Integer regionParentNum;
+
+  @Builder
+  public Region(RegionType region, Integer regionParentNum){
+    this.region = region;
+    thi.regionParentNum = regionParentNum;
+  }
 }

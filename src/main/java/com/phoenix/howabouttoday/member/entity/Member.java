@@ -7,12 +7,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table
 public class Member {
 
   @Id
@@ -42,4 +40,16 @@ public class Member {
   private String memberOriginalFileName;
   private String memberSaveFileName;
 
+  @Builder
+  public Member(String email, String pwd, String nickname, String memberTel, Code memberCode, LocalDateTime joinDate, LocalDateTime withdrawdate, String memberOriginalFileName, String memberSaveFileName) {
+    this.email = email;
+    this.pwd = pwd;
+    this.nickname = nickname;
+    this.memberTel = memberTel;
+    this.memberCode = memberCode;
+    this.joinDate = joinDate;
+    this.withdrawdate = withdrawdate;
+    this.memberOriginalFileName = memberOriginalFileName;
+    this.memberSaveFileName = memberSaveFileName;
+  }
 }
