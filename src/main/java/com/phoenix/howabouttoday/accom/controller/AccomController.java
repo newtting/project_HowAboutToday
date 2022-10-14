@@ -17,11 +17,13 @@ import java.util.List;
 public class AccomController {
 
     private AccomodationService accomodationService;
+    private RoomService roomService;
 
-    public AccomController(AccomodationService accomodationService) {
-        this.accomodationService = accomodationService;
-    }
-    private final RoomService roomService;
+//    public AccomController(AccomodationService accomodationService, RoomService roomService) {
+//        this.accomodationService = accomodationService;
+//        this.roomService = roomService;
+//    }
+
 
     // 메인 화면
     @GetMapping("home")
@@ -36,7 +38,7 @@ public class AccomController {
     @GetMapping("hotel-list")
     public String getHotelList(Model model){
 
-        List<Accommodation> accommodationDTOList =accomodationService.getAccommodationlist();
+        List<Accommodation> accommodationDTOList = accomodationService.getAccommodationlist();
         model.addAttribute("accommodationList",accommodationDTOList);
         return "accom/hotel/hotel-list";
     }
