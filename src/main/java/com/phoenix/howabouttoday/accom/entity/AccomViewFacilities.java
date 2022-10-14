@@ -20,9 +20,8 @@ public class AccomViewFacilities {
     private Accommodation accommodation;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "facilties_num")
+    @JoinColumn(name = "facilities_num")
     private Facilities facilities;
-
 
 }
 
