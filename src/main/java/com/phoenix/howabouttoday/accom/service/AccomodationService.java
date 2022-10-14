@@ -28,16 +28,19 @@ public class AccomodationService {
 //        this.accommodationImageRepository = accommodationImageRepository;
     }
 
-    @Transactional
-    public void createAccom() {
+    public void saveData(){
+        accommodationRepository.save(createAccom());
+    }
 
+    @Transactional
+    public Accommodation createAccom() {
 
         Region region  = Region.builder()
                 .region(RegionType.SEOUL)
                 .regionParentNum(RegionType.SEOUL)
                 .build();
 
-        Accommodation newMember = Accommodation.builder()
+        Accommodation accommodation = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
                 .accomCategory(AccomCategory.PENSION)
@@ -55,14 +58,12 @@ public class AccomodationService {
         AccomImage image = AccomImage.builder()
                 .accomOriginFilename("image0.jpg")
                 .accomSaveFilename("image0.jpg")
-                .accommodation(newMember)
+
+                .accommodation(accommodation)
                 .build();
 
-        newMember.getAccommodationImage().add(image);
 
-
-//        accommodationImageRepository.save(image);
-        accommodationRepository.save(newMember);
+        return accommodation;
     }
 
     /*
@@ -74,5 +75,8 @@ public class AccomodationService {
         return accommodationRepository.findAll();
     }
 
+    public List<Accommodation> getAllData() {
+        return accommodationRepository.findAll();
+    }
 }
 

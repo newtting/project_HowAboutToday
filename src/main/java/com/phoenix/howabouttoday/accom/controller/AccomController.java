@@ -1,8 +1,12 @@
 package com.phoenix.howabouttoday.accom.controller;
 
+import com.phoenix.howabouttoday.accom.RegionType;
 import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
+import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.service.AccomodationService;
+import com.phoenix.howabouttoday.payment.AccomCategory;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
@@ -24,27 +28,47 @@ public class AccomController {
 //        this.roomService = roomService;
 //    }
 
-
-    // 메인 화면
-    @GetMapping("home")
-    public String getIndex2(){
-        return "home";
-    }
-    @PostMapping("home")
-    public String postIndex2(){
-        return "home";
-    }
-
     @GetMapping("hotel-list")
     public String getHotelList(Model model){
+        System.out.println("123?");
+        accomodationService.saveData();
+
+        Accommodation accommodation=accomodationService.getAllData().get(0);
+
+        Region region  = Region.builder()
+                .region(RegionType.SEOUL)
+                .regionParentNum(RegionType.SEOUL)
+                .build();
+
+        Accommodation newMember = Accommodation.builder()
+                .accomName(accommodation.getAccomName())
+                .accomTel(accommodation.getAccomTel())
+                .accomCategory(accommodation.getAccomCategory())
+                .region(region)
+                .accomAddress(accommodation.getAccomAddress())
+                .accomRating(accommodation.getAccomRating())
+                .accomWishlistCount(accommodation.getAccomWishlistCount())
+                .totalReviewNum(accommodation.getTotalReviewNum())
+                .latitude(accommodation.getLatitude())
+                .longitude(accommodation.getLongitude())
+                .lowPrice(accommodation.getLowPrice())
+                .reserveRange(accommodation.getReserveRange())
+                .build();
+
+        AccomImage image = AccomImage.builder()
+                .accomOriginFilename(accommodation.getAccommodationImage().toString())
+                .accomSaveFilename(accommodation.getAccommodationImage().toString())
+                .accommodation(newMember)
+                .build();
 
         List<Accommodation> accommodationDTOList = accomodationService.getAccommodationlist();
+
         model.addAttribute("accommodationList",accommodationDTOList);
+
         return "accom/hotel/hotel-list";
     }
     @PostMapping("hotel-list")
     public String postHotelList(){
-
 
         return "accom/hotel/hotel-list";
     }
@@ -153,5 +177,13 @@ public class AccomController {
     @PostMapping("guestHouse-Hanok-single")
     public String postGuestHouseResult(){ return "accom/hotel/guestHouse-Hanok-single";}
 
-
+    // 메인 화면
+    @GetMapping("home")
+    public String getIndex2(){
+        return "home";
+    }
+    @PostMapping("home")
+    public String postIndex2(){
+        return "home";
+    }
 }
