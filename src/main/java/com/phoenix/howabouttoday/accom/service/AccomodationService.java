@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.accom.service;
 
+import com.phoenix.howabouttoday.accom.RegionType;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
@@ -27,17 +28,12 @@ public class AccomodationService {
     @Transactional
     public void createAccom() {
 
-        AccomImage image = AccomImage.builder()
-                .accomOriginFilename("image0.jpg")
-                .accomSaveFilename("image0.jpg")
-                .build();
-
 
         Accommodation newMember = Accommodation.builder()
         .accomName("보령(대천) 너울펜션")
         .accomTel("050350577805")
-        .accomCategoryName(AccomCategory.PENSION)
-                .regionNum(8)
+        .accomCategory(AccomCategory.PENSION)
+                .region(RegionType.CHUNGNAM_SEJONG)
         .accomAddress("충청남도 보령시 해수욕장13길 10-20")
         .accomRating(4.4)
         .accomWishlistCount(110)
@@ -46,16 +42,19 @@ public class AccomodationService {
         .longitude(126.5092)
         .lowPrice(45000)
         .reserveRange(60)
-        .accommodationImage(new ArrayList<AccomImage>())
         .build();
 
+        AccomImage image = AccomImage.builder()
+                .accomOriginFilename("image0.jpg")
+                .accomSaveFilename("image0.jpg")
+                .accommodation(newMember)
+                .build();
 
-        image.setAccommodation(newMember);
         newMember.getAccommodationImage().add(image);
-
 
 
 //        accommodationImageRepository.save(image);
         accommodationRepository.save(newMember);
     }
 }
+

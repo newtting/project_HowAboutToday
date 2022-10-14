@@ -1,21 +1,22 @@
 package com.phoenix.howabouttoday.board.dto;
 
 import com.phoenix.howabouttoday.board.entity.Board;
-import com.phoenix.howabouttoday.board.entity.BoardCategory;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
-public class BoardListDTO {
+public class BoardDetailDTO {
 
     private Long boardNum;
     private String boardTitle;
+    private String boardContent;
     private LocalDateTime boardCreate;
 
-    public BoardListDTO(Board board) {
+    public BoardDetailDTO(Board board) {
         this.boardNum = board.getBoardNum();
         this.boardTitle = board.getBoardTitle();
+        this.boardContent = board.getBoardContent();
         this.boardCreate = board.getBoardCreate();
     }
 
