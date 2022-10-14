@@ -34,24 +34,33 @@ public class Accommodation {
     private AccomCategory accomCategory;//숙소 카테고리 번호
 
     //    @OneToMany() 추후에 지역 카테고리 entity 만든 후에 매핑필요
-    @Convert(converter = RegionTypeConverter.class)
-    private RegionType region; //숙소 지역 번호
+
+    @ManyToOne
+    @JoinColumn(name = "region_num")
+    private Region region; //숙소 지역 번호
+
 
     @Column(length = 200)
     private String accomAddress;//숙소 주소
 
+
     @Column(precision = 1, scale = 2)
     private Double accomRating;//숙소 평점
 
+
     private Integer totalReviewNum;//숙소의 평점 수
 
+
     private Integer accomWishlistCount; //즐겨찾기 버튼 갯수
+
 
     @Column(precision = 14, scale = 28)
     private Double latitude; //위도
 
+
     @Column(precision = 14, scale = 31)
     private Double longitude; //경도
+
 
     private Integer lowPrice; //숙소의 객실 최저가
 
@@ -66,7 +75,7 @@ public class Accommodation {
     private List<Room> room = new ArrayList<>();    //이미지 fk를 위한 매핑
 
     @Builder
-    public Accommodation(String accomName, String accomTel, AccomCategory accomCategory, RegionType region, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange) {
+    public Accommodation(String accomName, String accomTel, AccomCategory accomCategory, Region region, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange) {
         this.accomName = accomName;
         this.accomTel = accomTel;
         this.accomCategory = accomCategory;

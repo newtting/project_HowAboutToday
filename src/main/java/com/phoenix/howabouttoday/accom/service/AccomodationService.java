@@ -57,3 +57,4 @@ public class AccomodationService {
         accommodationRepository.save(newMember);
     }
 }
+

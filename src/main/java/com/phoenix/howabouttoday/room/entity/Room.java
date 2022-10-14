@@ -10,7 +10,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
@@ -29,17 +28,17 @@ public class Room {
     @Column(length = 50)
     private String roomName;
 
-    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "accom_num")
+    private Accommodation accommodation;
+
     private Integer defaultGuest;//최소 인원
 
-    @NotNull
     private Integer maxGuest;//최대 인원
-
 
     @NotNull
     private Integer price;//주말 숙소 금액
 
-    @NotNull
     private String roomInfo;//객실 정보
 
     //private String restStartTime;//대실 시작 시간
@@ -49,7 +48,6 @@ public class Room {
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<AvailableDate> availableDate = new ArrayList<>();
 
-
     @Builder
     public Room(String roomName,int defaultGuest,int maxGuest, Integer price, String roomInfo) {
         this.roomName = roomName;
@@ -57,6 +55,6 @@ public class Room {
         this.maxGuest = maxGuest;
         this.price = price;
         this.roomInfo = roomInfo;
+        this.accommodation = accommodation;
     }
-
 }
