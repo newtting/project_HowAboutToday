@@ -11,7 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Entity
-@Table(name = "board_category")
 public class BoardCategory {
 
     @Id

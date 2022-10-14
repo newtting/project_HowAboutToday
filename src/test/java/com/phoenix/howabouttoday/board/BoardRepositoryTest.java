@@ -55,7 +55,6 @@ public class BoardRepositoryTest {
                 .build();
 
         category.getBoardList().add(board);
-
         board.getBoardImageList().add(image);
 
         boardRepository.save(board);

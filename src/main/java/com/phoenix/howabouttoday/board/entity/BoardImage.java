@@ -9,7 +9,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Entity
-@Table(name = "board_image")
 public class BoardImage {
 
     @Id
