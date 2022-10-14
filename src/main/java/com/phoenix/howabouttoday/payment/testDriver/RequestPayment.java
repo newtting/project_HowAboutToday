@@ -72,7 +72,4 @@ public class RequestPayment {
                 .reserveAdultCount(room.getDefaultGuest())
                 .build();
     }
-
-
-
 }

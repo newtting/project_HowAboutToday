@@ -28,8 +28,6 @@ class CartServiceTest {
     @Autowired
     private CartRepository cartRepository;
 
-
-
     @Test
     //디비에 Cart정보를 저장
     public void saveData(){
@@ -37,8 +35,6 @@ class CartServiceTest {
         List<Cart> cartData =  cartRepository.findAll();
 
         Assertions.assertThat(cartData.size()).isEqualTo(1);
-
-
     }
     @Test
     public Cart createCartData(){

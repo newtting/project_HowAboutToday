@@ -13,12 +13,14 @@ import com.phoenix.howabouttoday.payment.Orders;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
 import com.phoenix.howabouttoday.room.entity.Room;
+import com.phoenix.howabouttoday.room.repository.RoomRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,15 +28,14 @@ import java.util.List;
 
 
 @SpringBootTest
-//@Transactional
+@Transactional
 class AccomodationServiceTest {
 
-    @Autowired
-    private AccommodationRepository accommodationRepository;
-//    private final AccommodationImageRepository accommodationImageRepository;
-
-    @Autowired
     private MemberRepository memberRepository;
+    private AccommodationRepository accommodationRepository;
+    private RoomRepository roomRepository;
+
+
     private ObjectGenerator objectGenerator = new ObjectGenerator();
     @Test
     public void testPaging(){
@@ -60,8 +61,38 @@ class AccomodationServiceTest {
         list.forEach(member -> System.out.println(member.getEmail()));
 
 
-//        Assertions.assertThat(testList.get(0).getClass().getName()).isEqualTo(30);
+    Assertions.assertThat(testList.get(0).getClass().getName()).isEqualTo(30);
 
+    }
+
+    @Test
+    public void makeMember(){
+        final Integer MEMBER_COUNT = 21;
+
+        for (int i = 0; i < MEMBER_COUNT; i++) {
+            memberRepository.save(objectGenerator.createMember());
+        }
+
+        List<Member> testList = memberRepository.findAll();
+        Assertions.assertThat(testList.size()).isEqualTo(MEMBER_COUNT);
+    }
+
+    @Test
+    public void makeAccommodation(){
+        final Integer MEMBER_COUNT = 11;
+
+        for (int i = 0; i < MEMBER_COUNT; i++) {
+            memberRepository.save(objectGenerator.createMember());
+        }
+
+        List<Member> testList = memberRepository.findAll();
+        Assertions.assertThat(testList.size()).isEqualTo(MEMBER_COUNT);
+    }
+
+
+    @Test
+    public void 생성코드테스트(){
+        objectGenerator.makeTestData();
     }
 
     @Test
