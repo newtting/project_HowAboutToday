@@ -3,10 +3,11 @@ package com.phoenix.howabouttoday.payment.service;
 import com.phoenix.howabouttoday.accom.RegionType;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
-import com.phoenix.howabouttoday.member.MemberRepository;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.payment.AccomCategory;
 import com.phoenix.howabouttoday.payment.Orders;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
@@ -19,8 +20,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
-import javax.transaction.Transactional;
-import java.awt.print.Pageable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -68,13 +67,16 @@ class AccomodationServiceTest {
     @Test
     public void 생성_매핑_테스트() {
 
-
+        Region region  = Region.builder()
+                .region(RegionType.SEOUL)
+                .regionParentNum(RegionType.SEOUL)
+                .build();
 
         Accommodation newMember = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
                 .accomCategory(AccomCategory.PENSION)
-                .region(RegionType.CHUNGNAM_SEJONG)
+                .region(region)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)
@@ -119,6 +121,10 @@ class AccomodationServiceTest {
     @Test
     public void 장바구니에서_결제로_넘기는_테스트(){
 
+        Region region  = Region.builder()
+                .region(RegionType.SEOUL)
+                .regionParentNum(RegionType.SEOUL)
+                .build();
 
         Member member = Member.builder()
                 .email("ingn@nate.com")
@@ -137,7 +143,7 @@ class AccomodationServiceTest {
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
                 .accomCategory(AccomCategory.PENSION)
-                .region(RegionType.CHUNGNAM_SEJONG)
+                .region(region)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)
@@ -172,7 +178,7 @@ class AccomodationServiceTest {
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
                 .accomCategory(AccomCategory.PENSION)
-                .region(RegionType.CHUNGNAM_SEJONG)
+                .region(region)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)
@@ -220,6 +226,13 @@ class AccomodationServiceTest {
 
     @Test
     public void 객실에서_결제로_넘기는_테스트(){
+
+        Region region  = Region.builder()
+                .region(RegionType.SEOUL)
+                .regionParentNum(RegionType.SEOUL)
+                .build();
+
+
         Member member = Member.builder()
                 .email("ingn@nate.com")
                 .pwd("1111")
@@ -237,7 +250,7 @@ class AccomodationServiceTest {
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
                 .accomCategory(AccomCategory.PENSION)
-                .region(RegionType.CHUNGNAM_SEJONG)
+                .region(region)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)
