@@ -269,6 +269,3 @@ class AccomodationServiceTest {
                 .build();
     }
 }
-
-
-
