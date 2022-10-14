@@ -41,8 +41,9 @@ public class Room {
 
     private String roomInfo;//객실 정보
 
-    //private String restStartTime;//대실 시작 시간
-    //private String restEndTime;//대실 종료 시간
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    private List<RoomImage> roomImage;
+
 
     //양방향 매핑을 위해 추가
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -55,6 +56,7 @@ public class Room {
         this.maxGuest = maxGuest;
         this.price = price;
         this.roomInfo = roomInfo;
+        this.roomImage = roomImage;
         this.accommodation = accommodation;
     }
 }

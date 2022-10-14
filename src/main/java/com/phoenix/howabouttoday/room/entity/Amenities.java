@@ -15,8 +15,10 @@ public class Amenities {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Long amenitiesNum;
+    private Long amenitiesNum;//시설번호
 
     @Column
-    private String amenitiesName;
+    private String amenitiesName;//시설이름
+
+
 }
