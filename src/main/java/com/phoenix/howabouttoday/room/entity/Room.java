@@ -1,21 +1,25 @@
 package com.phoenix.howabouttoday.room.entity;
 
+import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import com.phoenix.howabouttoday.payment.AvailableDate;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@NoArgsConstructor
+
 @Getter
-@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Integer roomNum;
+    private Long roomNum;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="accommodation_accomNum", referencedColumnName = "accomNum")
@@ -40,6 +44,11 @@ public class Room {
 
     //private String restStartTime;//대실 시작 시간
     //private String restEndTime;//대실 종료 시간
+
+    //양방향 매핑을 위해 추가
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<AvailableDate> availableDate = new ArrayList<>();
+
 
     @Builder
     public Room(String roomName,int defaultGuest,int maxGuest, Integer price, String roomInfo) {

@@ -28,11 +28,6 @@ public class AccomodationService {
     @Transactional
     public void createAccom() {
 
-        AccomImage image = AccomImage.builder()
-                .accomOriginFilename("image0.jpg")
-                .accomSaveFilename("image0.jpg")
-                .build();
-
 
         Accommodation newMember = Accommodation.builder()
         .accomName("보령(대천) 너울펜션")
@@ -49,10 +44,13 @@ public class AccomodationService {
         .reserveRange(60)
         .build();
 
+        AccomImage image = AccomImage.builder()
+                .accomOriginFilename("image0.jpg")
+                .accomSaveFilename("image0.jpg")
+                .accommodation(newMember)
+                .build();
 
-        image.setAccommodation(newMember);
         newMember.getAccommodationImage().add(image);
-
 
 
 //        accommodationImageRepository.save(image);

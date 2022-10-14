@@ -12,11 +12,11 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDate;
 
-@Entity
+
 @DiscriminatorValue("cart")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table
+@Entity
 public class Cart extends Reservation {
 
     @Builder

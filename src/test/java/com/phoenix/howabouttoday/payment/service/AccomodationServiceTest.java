@@ -67,15 +67,7 @@ class AccomodationServiceTest {
 
     @Test
     public void 생성_매핑_테스트() {
-        AccomImage image = AccomImage.builder()
-                .accomOriginFilename("image0.jpg")
-                .accomSaveFilename("image0.jpg")
-                .build();
 
-        AccomImage image1 = AccomImage.builder()
-                .accomOriginFilename("image0.jpg")
-                .accomSaveFilename("image0.jpg")
-                .build();
 
 
         Accommodation newMember = Accommodation.builder()
@@ -93,9 +85,19 @@ class AccomodationServiceTest {
                 .reserveRange(60)
                 .build();
 
+        AccomImage image = AccomImage.builder()
+                .accomOriginFilename("image0.jpg")
+                .accomSaveFilename("image0.jpg")
+                .accommodation(newMember)
+                .build();
 
-        image.setAccommodation(newMember);
-        image1.setAccommodation(newMember);
+        AccomImage image1 = AccomImage.builder()
+                .accomOriginFilename("image0.jpg")
+                .accomSaveFilename("image0.jpg")
+                .accommodation(newMember)
+                .build();
+
+
         newMember.getAccommodationImage().add(image);
         newMember.getAccommodationImage().add(image1);
 
@@ -205,7 +207,7 @@ class AccomodationServiceTest {
                 .ordersTel("01045020614")
                 .ordersName("김영운")
                 .ordersDate("2022-10-13")
-                .ordersPrice(45000L+90000L)
+                .ordersPrice(45000+90000)
                 .ordersType("카드")
                 .ordersStatus("이용 전")
                 .build();
@@ -266,6 +268,7 @@ class AccomodationServiceTest {
                 .reserveAdultCount(room.getDefaultGuest())
                 .build();
     }
-
 }
+
+
 

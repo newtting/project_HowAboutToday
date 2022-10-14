@@ -27,13 +27,13 @@ import static javax.persistence.FetchType.*;
  * reserveChildCount = 인원(아동)
  */
 
-@Entity
+
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @DiscriminatorColumn(name = "reserve_type")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Table
+@Entity
 public abstract class Reservation {
 
     @Id @GeneratedValue

@@ -13,7 +13,6 @@ import java.io.Serializable;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table
 public class Region {
 
   @Id @GeneratedValue
