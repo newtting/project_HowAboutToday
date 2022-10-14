@@ -6,14 +6,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table
-public class AccomViewFacilties {
+@Entity
+public class AccomViewFacilities {
 
     @Id @GeneratedValue
-    private Long accomViewfaciltiesNum;
+    private Long accomViewfacilitiesNum;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "accom_num")
@@ -21,12 +21,7 @@ public class AccomViewFacilties {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "facilties_num")
-    private Facilties facilties;
-
-
-
-
-
+    private Facilities facilities;
 
 
 }
