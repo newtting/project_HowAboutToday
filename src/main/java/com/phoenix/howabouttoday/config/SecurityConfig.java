@@ -63,7 +63,7 @@ public class SecurityConfig {
 		http.formLogin()
 				.loginPage("/")
 				.usernameParameter("email")
-				.passwordParameter("pwd")
+				.passwordParameter("pwd");
 
 
 

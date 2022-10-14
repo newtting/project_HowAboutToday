@@ -28,10 +28,6 @@ public class Room {
     @Column(length = 50)
     private String roomName;
 
-    @ManyToOne
-    @JoinColumn(name = "accom_num")
-    private Accommodation accommodation;
-
     private Integer defaultGuest;//최소 인원
 
     private Integer maxGuest;//최대 인원
@@ -50,13 +46,12 @@ public class Room {
     private List<AvailableDate> availableDate = new ArrayList<>();
 
     @Builder
-    public Room(String roomName,int defaultGuest,int maxGuest, Integer price, String roomInfo) {
+    public Room(String roomName,int defaultGuest,int maxGuest, Integer price, String roomInfo, Accommodation accommodation) {
         this.roomName = roomName;
         this.defaultGuest = defaultGuest;
         this.maxGuest = maxGuest;
         this.price = price;
         this.roomInfo = roomInfo;
-        this.roomImage = roomImage;
         this.accommodation = accommodation;
     }
 }

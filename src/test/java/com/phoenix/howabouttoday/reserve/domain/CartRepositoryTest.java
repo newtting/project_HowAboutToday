@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.reserve.domain;
 
+import com.phoenix.howabouttoday.accom.RegionType;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
@@ -16,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -43,7 +45,7 @@ class CartRepositoryTest {
         Member saveMember = memberRepository.save(member);
 //        Optional<Member> byId = memberRepository.findById(saveMember.getMemberNum());
 //        Member findMember = byId.get();
-        Region region1 = Region.builder().regionName("서울").build();
+        Region region1 = Region.builder().region(RegionType.SEOUL).build();
         Region saveRegion = regionRepository.save(region1);
 //        Optional<Region> byId1 = regionRepository.findById(saveRegion.getRegionNum());
 //        Region findRegion = byId1.get();
@@ -53,8 +55,15 @@ class CartRepositoryTest {
 //        Optional<Accommodation> byId2 = accommodationRepository.findById(saveAccom.getAccomNum());
 //        Accommodation findAccom = byId2.get();
 
+
+
         Room room1 = Room.builder()
-                .roomName("객실1").accommodation(saveAccom)
+                .roomName("깨끗한 방")
+                .accommodation(saveAccom)
+                .defaultGuest(2)
+                .maxGuest(4)
+                .price(45000)
+                .roomInfo("고객에게 최선을 다합니다.")
                 .build();
 
         Room saveRoom = roomRepository.save(room1);
@@ -64,8 +73,8 @@ class CartRepositoryTest {
                 .accommodation(saveAccom)
                 .room(saveRoom)
                 .reservePrice(8000)
-                .reserveUseStartDate(LocalDateTime.now())
-                .reserveUseEndDate(LocalDateTime.now())
+                .reserveUseStartDate(LocalDate.now())
+                .reserveUseEndDate(LocalDate.now())
                 .build();
         Cart saveCart = cartRepository.save(cart1);
 

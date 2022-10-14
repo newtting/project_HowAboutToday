@@ -62,13 +62,11 @@ public abstract class Reservation {
     private ReserveStatus reserveStatus;
 
 
-    private LocalDateTime reserveUseStartDate;
-    private LocalDateTime reserveUseEndDate;
+    private LocalDate reserveUseStartDate;
+    private LocalDate reserveUseEndDate;
 
     private int reservePrice;
     private int reserveAdultCount;
     private int reserveChildCount;
-
-
 
 }

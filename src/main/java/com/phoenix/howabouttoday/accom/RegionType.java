@@ -7,6 +7,7 @@ import java.util.Arrays;
 @Getter
 public enum RegionType {
 
+    EMPTY("없음",0),
     SEOUL("서울",0),
     GYEONGGI("경기",0),
     INCHEON("인천",0),
