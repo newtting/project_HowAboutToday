@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -20,7 +21,7 @@ public class AccomodationService {
 //    private final AccommodationImageRepository accommodationImageRepository;
 
     @Autowired
-    public AccomodationService(AccommodationRepository accommodationRepository){
+    public AccomodationService(AccommodationRepository accommodationRepository) {
         this.accommodationRepository = accommodationRepository;
 //        this.accommodationImageRepository = accommodationImageRepository;
     }
@@ -56,5 +57,15 @@ public class AccomodationService {
 //        accommodationImageRepository.save(image);
         accommodationRepository.save(newMember);
     }
+
+    /*
+    리스트 목록 조회
+     */
+    @Transactional
+    public List<Accommodation> getAccommodationlist() {
+
+        return accommodationRepository.findAll();
+    }
+
 }
 

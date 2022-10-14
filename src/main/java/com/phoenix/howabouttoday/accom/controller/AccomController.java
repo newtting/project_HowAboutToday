@@ -1,5 +1,8 @@
 package com.phoenix.howabouttoday.accom.controller;
 
+import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
+import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import com.phoenix.howabouttoday.accom.service.AccomodationService;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
@@ -7,10 +10,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class AccomController {
 
+    private AccomodationService accomodationService;
+
+    public AccomController(AccomodationService accomodationService) {
+        this.accomodationService = accomodationService;
+    }
     private final RoomService roomService;
 
     // 메인 화면
@@ -23,30 +33,17 @@ public class AccomController {
         return "home";
     }
 
-    @GetMapping("add-hotel")
-    public String getAddHotel(){
-        return "accom/hotel/add-hotel";
-    }
-    @PostMapping("add-hotel")
-    public String postAddHotel(){
-        return "accom/hotel/add-hotel";
-    }
-
-    @GetMapping("hotel-grid")
-    public String getHotelGrid(){
-        return "accom/hotel/hotel-grid";
-    }
-    @PostMapping("hotel-grid")
-    public String postHotelGrid(){
-        return "accom/hotel/hotel-grid";
-    }
-
     @GetMapping("hotel-list")
-    public String getHotelList(){
+    public String getHotelList(Model model){
+
+        List<Accommodation> accommodationDTOList =accomodationService.getAccommodationlist();
+        model.addAttribute("accommodationList",accommodationDTOList);
         return "accom/hotel/hotel-list";
     }
     @PostMapping("hotel-list")
     public String postHotelList(){
+
+
         return "accom/hotel/hotel-list";
     }
 
@@ -59,14 +56,6 @@ public class AccomController {
         return "accom/hotel/hotel-search-result";
     }
 
-    @GetMapping("hotel-sidebar")
-    public String getHotelSidebar(){
-        return "accom/hotel/hotel-sidebar";
-    }
-    @PostMapping("hotel-sidebar")
-    public String postHotelSidebar(){
-        return "accom/hotel/hotel-sidebar";
-    }
 
     @GetMapping("hotel-single")
     public String getHotelSingle(Model model){
