@@ -1,8 +1,10 @@
 package com.phoenix.howabouttoday.payment.service;
 
+import com.phoenix.howabouttoday.accom.RegionType;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
+import com.phoenix.howabouttoday.member.MemberRepository;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.payment.AccomCategory;
@@ -14,23 +16,56 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
 import javax.transaction.Transactional;
+import java.awt.print.Pageable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 
 
-    @SpringBootTest
-    @Transactional
-    class AccomodationServiceTest {
+@SpringBootTest
+//@Transactional
+class AccomodationServiceTest {
 
-        @Autowired
-        private AccommodationRepository accommodationRepository;
+    @Autowired
+    private AccommodationRepository accommodationRepository;
 //    private final AccommodationImageRepository accommodationImageRepository;
 
+    @Autowired
+    private MemberRepository memberRepository;
+    private ObjectGenerator objectGenerator = new ObjectGenerator();
+    @Test
+    public void testPaging(){
+
+        for (int i = 0; i < 31; i++) {
+            memberRepository.save(objectGenerator.createMember());
+        }
+
+//        List<Member> memberList = memberRepository.findAll();
+
+        PageRequest paging = PageRequest.of(0, 6);
+
+        Page<Member> result = memberRepository.findAll(paging);
+        List<Member> testList = memberRepository.findAll();
+
+        System.out.println("PAGE SIZE" + result.getSize());
+        System.out.println("TOTAL PAGES" + result.getTotalPages());
+        System.out.println("TOTAL COUNT" + result.getTotalElements());
+        System.out.println("NEXT" + result.nextPageable());
+
+        List<Member> list = result.getContent();
+
+        list.forEach(member -> System.out.println(member.getEmail()));
 
 
-        @Test
+//        Assertions.assertThat(testList.get(0).getClass().getName()).isEqualTo(30);
+
+    }
+
+    @Test
     public void 생성_매핑_테스트() {
         AccomImage image = AccomImage.builder()
                 .accomOriginFilename("image0.jpg")
@@ -46,8 +81,8 @@ import java.util.ArrayList;
         Accommodation newMember = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
-                .accomCategoryName(AccomCategory.PENSION)
-                .regionNum(8)
+                .accomCategory(AccomCategory.PENSION)
+                .region(RegionType.CHUNGNAM_SEJONG)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)
@@ -72,11 +107,11 @@ import java.util.ArrayList;
 
         Assertions.assertThat(test.getAccomName()).isEqualTo(newMember.getAccomName());
         Assertions.assertThat(test.getAccommodationImage().size()).isEqualTo(2);
-        Assertions.assertThat(test.getAccomCategoryName()).isEqualTo(newMember.getAccomCategoryName());
+        Assertions.assertThat(test.getAccomCategory()).isEqualTo(newMember.getAccomCategory());
 
         System.out.println(test.getAccomName());
         System.out.println(test.getAccommodationImage().size());
-        System.out.println(test.getAccomCategoryName());
+        System.out.println(test.getAccomCategory());
     }
 
     @Test
@@ -99,8 +134,8 @@ import java.util.ArrayList;
         Accommodation acco = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
-                .accomCategoryName(AccomCategory.PENSION)
-                .regionNum(8)
+                .accomCategory(AccomCategory.PENSION)
+                .region(RegionType.CHUNGNAM_SEJONG)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)
@@ -134,8 +169,8 @@ import java.util.ArrayList;
         Accommodation acco2 = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
-                .accomCategoryName(AccomCategory.PENSION)
-                .regionNum(8)
+                .accomCategory(AccomCategory.PENSION)
+                .region(RegionType.CHUNGNAM_SEJONG)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)
@@ -180,7 +215,7 @@ import java.util.ArrayList;
 
         System.out.println("하아");
     }
-    
+
     @Test
     public void 객실에서_결제로_넘기는_테스트(){
         Member member = Member.builder()
@@ -199,8 +234,8 @@ import java.util.ArrayList;
         Accommodation acco = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
-                .accomCategoryName(AccomCategory.PENSION)
-                .regionNum(8)
+                .accomCategory(AccomCategory.PENSION)
+                .region(RegionType.CHUNGNAM_SEJONG)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)

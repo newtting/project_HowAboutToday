@@ -1,5 +1,7 @@
 package com.phoenix.howabouttoday.accom.entity;
 
+import com.phoenix.howabouttoday.accom.RegionType;
+import com.phoenix.howabouttoday.accom.RegionTypeConverter;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +19,9 @@ public class Region {
   @Id @GeneratedValue
   private Long regionNum;
 
-  private String regionName;
+  @Column(length = 50)
+  @Convert(converter = RegionTypeConverter.class)
+  private RegionType region;
 
   private int regionParentNum;
 }

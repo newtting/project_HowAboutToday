@@ -1,9 +1,11 @@
 package com.phoenix.howabouttoday.payment.testDriver;
 
+import com.phoenix.howabouttoday.accom.RegionType;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.payment.AccomCategory;
+import com.phoenix.howabouttoday.payment.service.ObjectGenerator;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
 import com.phoenix.howabouttoday.room.entity.Room;
@@ -23,6 +25,7 @@ class CartServiceTest {
 
     @Autowired
     private CartRepository cartRepository;
+
 
 
     @Test
@@ -54,8 +57,8 @@ class CartServiceTest {
         Accommodation acco = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
-                .accomCategoryName(AccomCategory.PENSION)
-                .regionNum(8)
+                .accomCategory(AccomCategory.PENSION)
+                .region(RegionType.CHUNGNAM_SEJONG)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)

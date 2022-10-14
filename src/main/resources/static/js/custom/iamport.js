@@ -7,7 +7,7 @@ function requestPay() {
         pay_method: "card",
         merchant_uid : 'merchant_'+new Date().getTime(),
         name : '결제테스트',
-        amount : 14000,
+        amount : 140,
         buyer_email : 'iamport@siot.do',
         buyer_name : '구매자',
         buyer_tel : '010-4502-0614',

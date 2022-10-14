@@ -244,7 +244,7 @@
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <h3 class="card-title" th:text="${cart.getAccommodation().getAccomName()}">Premium Lake View Room</h3>
-                                        <p class="card-meta" th:text="${cart.getAccommodation().getRegionNum()}">Mariana's hotel, Mexico</p>
+                                        <p class="card-meta" th:text="${cart.getAccommodation().getRegion().getValue()}">Mariana's hotel, Mexico</p>
                                     </div>
 <!--                                    <div>-->
 <!--                                        <a href="room-details.html" class="btn ml-1"><i class="la la-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>-->
@@ -261,7 +261,7 @@
                                     <li><span th:text="#{checkout_booking_room_name}">Room name:</span><span th:text="${cart.getRoom().getRoomName()}"></span></li>
                                     <li><span th:text="#{checkout_booking_night}">Night:</span><span th:text="${cart.getReserveUseEndDate()}"></span></li>
                                     <li><span th:text="#{checkout_booking_guest}">Guests:</span><span th:text="${cart.getRoom().getMaxGuest()}"></span></li>
-                                    <li><span th:text="#{checkout_booking_extra_service}">Extra Services:</span><span th:text="${cart.getAccommodation().getAccomCategoryName()}"></span></li>
+                                    <li><span th:text="#{checkout_booking_extra_service}">Extra Services:</span><span th:text="${cart.getAccommodation().getAccomCategory().getValue()}"></span></li>
                                 </ul>
                                 <div class="section-block"></div>
                                 <ul class="list-items list-items-2 pt-3">

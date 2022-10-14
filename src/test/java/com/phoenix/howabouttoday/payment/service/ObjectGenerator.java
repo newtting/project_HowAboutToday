@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
-class ObjectGenerator {
+public class ObjectGenerator {
 
 //    @Autowired
 //    private AccommodationRepository accommodationRepository;
@@ -36,6 +36,10 @@ class ObjectGenerator {
     public String[] randomString(){
 
         String randAlphabet[] = new String[4];
+        randAlphabet[0] = "";
+        randAlphabet[1] = "";
+        randAlphabet[2] = "";
+        randAlphabet[3] = "";
 
         for (int i = 0; i < 4; i++) {
             randAlphabet[0]+= (char)(Math.random() * 26 + 97);

@@ -1,6 +1,8 @@
 package com.phoenix.howabouttoday.accom.entity;
 
 
+import com.phoenix.howabouttoday.accom.RegionType;
+import com.phoenix.howabouttoday.accom.RegionTypeConverter;
 import com.phoenix.howabouttoday.payment.AccomCategory;
 import com.phoenix.howabouttoday.payment.AccomCategoryConverter;
 import com.phoenix.howabouttoday.room.entity.Room;
@@ -34,11 +36,12 @@ public class Accommodation {
     @NotNull
     @Column(length = 50)
     @Convert(converter = AccomCategoryConverter.class)
-    private AccomCategory accomCategoryName;//숙소 카테고리 번호
+    private AccomCategory accomCategory;//숙소 카테고리 번호
 
     @NotNull
     //    @OneToMany() 추후에 지역 카테고리 entity 만든 후에 매핑필요
-    private Integer regionNum ; //숙소 지역 번호
+    @Convert(converter = RegionTypeConverter.class)
+    private RegionType region; //숙소 지역 번호
 
     @NotNull
     @Column(length = 200)
@@ -77,11 +80,11 @@ public class Accommodation {
     private List<Room> room = new ArrayList<>();    //이미지 fk를 위한 매핑
 
     @Builder
-    public Accommodation(String accomName, String accomTel, AccomCategory accomCategoryName, Integer regionNum, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange) {
+    public Accommodation(String accomName, String accomTel, AccomCategory accomCategory, RegionType region, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange) {
         this.accomName = accomName;
         this.accomTel = accomTel;
-        this.accomCategoryName = accomCategoryName;
-        this.regionNum = regionNum;
+        this.accomCategory = accomCategory;
+        this.region = region;
         this.accomAddress = accomAddress;
         this.accomRating = accomRating;
         this.accomWishlistCount = accomWishlistCount;

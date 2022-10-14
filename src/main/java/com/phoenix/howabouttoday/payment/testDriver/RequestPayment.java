@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.payment.testDriver;
 
+import com.phoenix.howabouttoday.accom.RegionType;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.member.entity.Code;
@@ -32,8 +33,8 @@ public class RequestPayment {
         Accommodation acco = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
-                .accomCategoryName(AccomCategory.PENSION)
-                .regionNum(8)
+                .accomCategory(AccomCategory.PENSION)
+                .region(RegionType.CHUNGNAM_SEJONG)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)
