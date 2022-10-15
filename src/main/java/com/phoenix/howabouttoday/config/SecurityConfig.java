@@ -61,14 +61,10 @@ public class SecurityConfig {
 
 
 		http.formLogin()
-				.loginPage("/")
+				.loginPage("/home")
+				.defaultSuccessUrl("/user-dashboard-booking")
 				.usernameParameter("email")
 				.passwordParameter("pwd");
-
-
-
-
-
 
 		return http.build();
 	}

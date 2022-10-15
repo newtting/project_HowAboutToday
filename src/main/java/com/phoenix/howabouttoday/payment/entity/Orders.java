@@ -1,11 +1,14 @@
 
-package com.phoenix.howabouttoday.payment;
+package com.phoenix.howabouttoday.payment.entity;
 
+import com.phoenix.howabouttoday.accom.entity.Region;
+import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +22,10 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ordersNum;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "memberNum")
+    private Member member; //숙소 지역 번호
+
 
     @Column(length = 50)
     private String ordersTel;
@@ -29,7 +36,7 @@ public class Orders {
 
 
     @Column(length = 50)
-    private String ordersDate;
+    private LocalDate ordersDate;
 
 
     private Integer ordersPrice;
@@ -46,7 +53,7 @@ public class Orders {
     private List<Reservation> reservation = new ArrayList<>(); //이미지 fk를 위한 매핑
 
     @Builder
-    public Orders(Long ordersNum, String ordersTel, String ordersName, String ordersDate, Integer ordersPrice, String ordersType, String ordersStatus) {
+    public Orders(Long ordersNum, String ordersTel, String ordersName, LocalDate ordersDate, Integer ordersPrice, String ordersType, String ordersStatus, Member member) {
         this.ordersNum = ordersNum;
         this.ordersTel = ordersTel;
         this.ordersName = ordersName;
@@ -54,5 +61,6 @@ public class Orders {
         this.ordersPrice = ordersPrice;
         this.ordersType = ordersType;
         this.ordersStatus = ordersStatus;
+        this.member = member;
     }
 }

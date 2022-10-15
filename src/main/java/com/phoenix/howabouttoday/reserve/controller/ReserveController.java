@@ -25,13 +25,13 @@ public class ReserveController {
 
 
     @GetMapping("hotel-booking")
-    public String getHotelBooking(/*@ModelAttribute CartDto_1 cartDto1*/Model model){
+    public String getHotelBooking(/*@ModelAttribute CartDto_1 cartDto1Model model*/){
         System.out.println("오지?");
         cartService.saveData();
-
+//
         Cart cart = cartService.getAllData().get(0);
-
-
+//
+//
         CartDto_1 cartDto1 = CartDto_1.builder()
                 .reserveNum(cart.getReserveNum())
                 .member(cart.getMember())
@@ -42,8 +42,8 @@ public class ReserveController {
                 .reservePrice(cart.getReservePrice())
                 .reserveAdultCount(cart.getReserveAdultCount())
                 .build();
-
-        model.addAttribute("cart", cartDto1);
+//
+//        model.addAttribute("cart", cartDto1);
 
         return "reserve/checkout";
     }
@@ -54,14 +54,15 @@ public class ReserveController {
         return "reserve/checkout";
     }
 
-    @GetMapping("checkout")
-    public String getCheckout(){
-        return "reserve/checkout";
-    }
-    @PostMapping("checkout")
-    public String postCheckout(){
-        return "reserve/checkout";
-    }
+    //이 부분에서 forward로 이동시키기
+//    @GetMapping("checkout")
+//    public String getCheckout(){
+//        return "reserve/checkout";
+//    }
+//    @PostMapping("checkout")
+//    public String postCheckout(){
+//        return "reserve/checkout";
+//    }
 
     @GetMapping("payment-received")
     public String getPaymentReceived(){

@@ -1,19 +1,15 @@
 package com.phoenix.howabouttoday.payment.testDriver;
 
 import com.phoenix.howabouttoday.accom.RegionType;
-import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
-import com.phoenix.howabouttoday.payment.AccomCategory;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
 import com.phoenix.howabouttoday.room.entity.Room;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class RequestPayment {
 
@@ -30,8 +26,8 @@ public class RequestPayment {
                 .nickname("noscarna")
                 .memberTel("01045020614")
                 .memberCode(Code.MEMBER)
-                .joinDate(LocalDateTime.now())
-                .withdrawdate(LocalDateTime.now())
+                .joinDate(LocalDate.now())
+                .withdrawdate(LocalDate.now())
                 .memberOriginalFileName("Origin")
                 .memberSaveFileName("save")
                 .build();

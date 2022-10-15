@@ -37,9 +37,9 @@ public class AccomController {
 
     @GetMapping("hotel-list")
     public String getHotelList(Model model){
-
-        List<Accommodation> accommodationDTOList = accomodationService.getAccommodationlist();
-        model.addAttribute("accommodationList",accommodationDTOList);
+//        오류나서 주석처리
+//        List<Accommodation> accommodationDTOList = accomodationService.getAccommodationlist();
+//        model.addAttribute("accommodationList",accommodationDTOList);
         return "accom/hotel/hotel-list";
     }
     @PostMapping("hotel-list")
@@ -62,7 +62,8 @@ public class AccomController {
     @GetMapping("hotel-single")
     public String getHotelSingle(Model model){
 
-        model.addAttribute("roomlist", roomService.roomList());
+//        오류나서 주석처리
+//        model.addAttribute("roomlist", roomService.roomList());
 
         return "accom/hotel/hotel-single";
 

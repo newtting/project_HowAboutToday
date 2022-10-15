@@ -1,25 +1,22 @@
 package com.phoenix.howabouttoday.payment.service;
 
 import com.phoenix.howabouttoday.accom.RegionType;
-import com.phoenix.howabouttoday.accom.RegionTypeConverter;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
-import com.phoenix.howabouttoday.payment.AccomCategory;
-import com.phoenix.howabouttoday.payment.AvailableDate;
-import com.phoenix.howabouttoday.payment.OrderRepository;
-import com.phoenix.howabouttoday.payment.Orders;
+import com.phoenix.howabouttoday.payment.testDriver.AccomCategory;
+import com.phoenix.howabouttoday.payment.testDriver.AvailableDate;
+import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
+import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
 import com.phoenix.howabouttoday.room.entity.Room;
-import org.assertj.core.api.Assertions;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.phoenix.howabouttoday.room.entity.RoomImage;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +26,7 @@ public class ObjectGenerator {
     private AccommodationRepository accommodationRepository;
 
 
-    private OrderRepository orderRepository;
+    private OrdersRepository orderRepository;
 ////    private final AccommodationImageRepository accommodationImageRepository;
 
 
@@ -74,8 +71,8 @@ public class ObjectGenerator {
                 .nickname(randValue[2])
                 .memberTel(randomTel())
                 .memberCode(Code.MEMBER)
-                .joinDate(LocalDateTime.now())
-                .withdrawdate(LocalDateTime.now())
+                .joinDate(LocalDate.now())
+                .withdrawdate(LocalDate.now())
                 .memberOriginalFileName(randValue[3])
                 .memberSaveFileName(randValue[3])
                 .build();
@@ -103,17 +100,16 @@ public class ObjectGenerator {
         return room;
     }
 
-    public Room createRoom(){
+    public Room createRoom(Accommodation accom){
         String[] randValue = randomString();
 
-        List<AvailableDate> newDate = new ArrayList<>(60);
-
         Room room = Room.builder()
-                .roomName("깨끗한 방"+randValue[0])
+                .roomName(randValue[0] + "한 방")
                 .defaultGuest((int)(Math.random() * 2 + 1))
-                .maxGuest((int)(Math.random() * 4 + 1))
+                .maxGuest((int)(Math.random() * 3 + 2))
                 .price(35000 + (int)(Math.random() * 10000 + 5000))
                 .roomInfo("고객에게 최선을 다합니다.")
+                .accommodation(accom)
                 .build();
 
         return room;
@@ -134,23 +130,36 @@ public class ObjectGenerator {
         return region;
     }
 
-    public AccomImage createImage(){
-        String imageNumber = String.valueOf(Math.floor(Math.random() * 200));
+    public AccomImage createAccomImage(Accommodation accom){
+        String imageNumber = String.valueOf(Math.round(Math.random() * 200));
 
         AccomImage image = AccomImage.builder()
                 .accomOriginFilename("image" + imageNumber + ".jpg")
                 .accomSaveFilename("image" + imageNumber + ".jpg")
+                .accommodation(accom)
                 .build();
 
         return image;
     }
 
-    public void makeTestData(){
+    public RoomImage createRoomImage(Room room){
+        String imageNumber = String.valueOf(Math.round(Math.random() * 200));
+
+        RoomImage image = RoomImage.builder()
+                .roomOriginFileName("image" + imageNumber + ".jpg")
+                .roomSaveFileName("image" + imageNumber + ".jpg")
+                .room(room)
+                .build();
+
+        return image;
+    }
+
+    public Orders makeTestData(){
         String[] randValue = randomString();
 
         List<AvailableDate> newDate = new ArrayList<>(60);
 
-        Room room = createRoom();
+        Room room = createRoom(null);
 
         Cart cart = Cart.builder()
                 .member(createMember())
@@ -166,15 +175,12 @@ public class ObjectGenerator {
         Orders newOrder = Orders.builder()
                 .ordersTel("01045020614")
                 .ordersName("김영운")
-                .ordersDate("2022-10-13")
+                .ordersDate(LocalDate.now())
                 .ordersPrice(45000+90000)
                 .ordersType("카드")
                 .ordersStatus("이용 전")
                 .build();
 
-        orderRepository.save(newOrder);
-        List<Orders> ordersList = orderRepository.findAll();
-        Assertions.assertThat(ordersList.size()).isEqualTo(1);
-
+        return newOrder;
     }
 }
