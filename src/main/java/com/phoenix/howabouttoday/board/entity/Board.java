@@ -29,7 +29,7 @@ public class Board {
     @Column(nullable = false)
     private String boardTitle; // 게시글 제목
 
-    @Column
+    @Column(nullable = false)
     private String boardContent; // 게시글 내용
 
     @CreatedDate

@@ -30,18 +30,19 @@ public class Event {
     @Column
     private LocalDateTime eventCreate; // 이벤트 게시일
 
-    @Column
+    @Column(nullable = false)
     private LocalDate eventStart; // 이벤트 시작일
 
-    @Column
+    @Column(nullable = false)
     private LocalDate eventEnd; // 이벤트 종료일
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<EventImage> eventImageList = new ArrayList<>();
 
     @Builder
-    public Event(String eventTitle, LocalDate eventStart, LocalDate eventEnd) {
+    public Event(String eventTitle, LocalDateTime eventCreate, LocalDate eventStart, LocalDate eventEnd) {
         this.eventTitle = eventTitle;
+        this.eventCreate = eventCreate;
         this.eventStart = eventStart;
         this.eventEnd = eventEnd;
     }
