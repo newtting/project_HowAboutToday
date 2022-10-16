@@ -45,9 +45,23 @@ public class PaymentController {
 
         return "reserve/payment-received";
     }
+
     @PostMapping("user-dashboard-booking-details")
     public String postUserDashboardSettings() {
+
         return "reserve/payment-received";
+    }
+
+    @GetMapping("paymentSuccess")
+    public String getUserPaymentSuccess() {
+
+        return "reserve/payment-complete";
+    }
+
+    @PostMapping("paymentSuccess")
+    public String postUserPaymentSuccess() {
+
+        return "reserve/payment-complete";
     }
 
 
@@ -55,7 +69,7 @@ public class PaymentController {
     public String getUserDashboard(Principal principal, Authentication authentication, Model model) {
         /*********************로그인 후 인증정보를 가져 오는 부분 작성***********************/
         try {
-            Customer customer = memberServiceCopy.getCustomer(2L);
+            Customer customer = memberServiceCopy.getCustomer(1L);
 
             List<Orders> orders = customer.getOrders();
             List<OrderHistory> orderHistory = new ArrayList<>();

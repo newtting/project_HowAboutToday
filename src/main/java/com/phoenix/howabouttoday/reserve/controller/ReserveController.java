@@ -45,22 +45,21 @@ public class ReserveController {
 //        return "reserve/checkout";
 //    }
 
-    @GetMapping("payment-received")
-    public String getPaymentReceived(){
-        return "reserve/payment-received";
-    }
-    @PostMapping("payment-received")
-    public String postPaymentReceived(){
-        return "reserve/payment-received";
-    }
-
-    @GetMapping("payment-complete")
-    public String getPaymentComplete(){
-        return "reserve/payment-complete";
-    }
-    @PostMapping("payment-complete")
-    public String postPaymentComplete(){
-        return "reserve/payment-complete";
-    }
-
+//    @GetMapping("payment-received")
+//    public String getPaymentReceived(){
+//        return "reserve/payment-received";
+//    }
+//    @PostMapping("payment-received")
+//    public String postPaymentReceived(){
+//        return "reserve/payment-received";
+//    }
+//
+//    @GetMapping("payment-complete")
+//    public String getPaymentComplete(){
+//        return "reserve/payment-complete";
+//    }
+//    @PostMapping("payment-complete")
+//    public String postPaymentComplete(){
+//        return "reserve/payment-complete";
+//    }
 }
