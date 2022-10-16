@@ -9,10 +9,12 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 @Entity
 public class BoardCategory {
+
+    // 게시판 : Notice, FAQ, About Us
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

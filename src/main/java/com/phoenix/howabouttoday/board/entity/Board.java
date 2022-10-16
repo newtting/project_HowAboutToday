@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -12,13 +13,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
-@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EntityListeners(AuditingEntityListener.class)
+@Getter
 @Entity
 public class Board {
 
-    // Notice, Event, FAQ, About
+    // 게시판 : Notice, FAQ, About Us
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,10 +37,7 @@ public class Board {
 
     @CreatedDate
     @Column
-    private LocalDateTime boardCreate; // 게시글 작성일
-
-    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
-    private List<BoardImage> boardImageList = new ArrayList<>();
+    private LocalDateTime boardCreate; // 게시일
 
     @Builder
     public Board(BoardCategory boardCategory, String boardTitle, String boardContent, LocalDateTime boardCreate) {
