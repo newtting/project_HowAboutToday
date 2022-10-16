@@ -61,7 +61,6 @@ class CartRepositoryTest {
 
         Cart cart1 = Cart.builder()
                 .member(saveMember)
-                .accommodation(saveAccom)
                 .room(saveRoom)
                 .reservePrice(8000)
                 .reserveUseStartDate(LocalDateTime.now())
