@@ -7,6 +7,8 @@ import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +51,8 @@ public class Accommodation {
 
 
     private Integer accomWishlistCount; //즐겨찾기 버튼 갯수
-
+    private LocalTime checkIn;
+    private LocalTime checkOut;
 
     @Column(precision = 14, scale = 28)
     private Double latitude; //위도

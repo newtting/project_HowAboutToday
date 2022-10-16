@@ -1,18 +1,23 @@
 
 function requestPay() {
 
+    // let amountPrice = Number(document.querySelector("#totalPrice").innerText);
+    // console.log(amountPrice);
+
+
     window.IMP.init('imp73826618');
     window.IMP.request_pay({
         pg: "kcp",
         pay_method: "card",
-        merchant_uid : 'merchant_'+new Date().getTime(),
-        name : '결제테스트',
-        amount : 140,
-        buyer_email : 'iamport@siot.do',
-        buyer_name : '구매자',
-        buyer_tel : '010-4502-0614',
-        buyer_addr : '서울특별시 강남구 삼성동',
-        buyer_postcode : '123-456'
+        merchant_uid : merchant_uid,
+        name : name,
+        // amount : amount,
+        amount : 1,
+        buyer_email : buyer_email,
+        buyer_name : buyer_name,
+        buyer_tel : buyer_tel,
+        buyer_addr : buyer_addr,
+        buyer_postcode : buyer_postcode,
     }, function (rsp) { // callback
         if (rsp.success) {
             alert("결제 성공")

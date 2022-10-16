@@ -18,5 +18,4 @@ public class MemberService {
 //        this.accommodationImageRepository = accommodationImageRepository;
     }
 
-
 }

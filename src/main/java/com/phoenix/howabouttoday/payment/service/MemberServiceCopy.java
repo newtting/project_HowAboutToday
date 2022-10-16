@@ -26,6 +26,7 @@ public class MemberServiceCopy implements UserDetailsService {
 
         Customer customer = Customer.builder()
                 .num(member.getMemberNum())
+                .email(member.getEmail())
                 .name(member.getNickname())
                 .tel(member.getMemberTel())
                 .code(member.getMemberCode())
@@ -35,6 +36,9 @@ public class MemberServiceCopy implements UserDetailsService {
         return customer;
     }
 
+    public Member getMember(Long memberNum) throws UsernameNotFoundException{
+        return memberRepository.findById(memberNum).get();
+    }
 
 
     @Override

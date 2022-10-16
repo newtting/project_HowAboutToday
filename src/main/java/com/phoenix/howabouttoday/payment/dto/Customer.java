@@ -15,6 +15,8 @@ public class Customer {
 
     private String name;
 
+    private String email;
+
     private String tel;
 
     private Code code;
@@ -24,10 +26,10 @@ public class Customer {
     private List<Orders> orders = new ArrayList<>();
 
     @Builder
-
-    public Customer(Long num, String name, String tel, Code code, List<Orders> orders) {
+    public Customer(Long num, String name, String email, String tel, Code code, List<Orders> orders) {
         this.num = num;
         this.name = name;
+        this.email = email;
         this.tel = tel;
         this.code = code;
         this.orders = orders;
