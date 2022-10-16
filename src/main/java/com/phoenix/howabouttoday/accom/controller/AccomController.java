@@ -20,8 +20,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AccomController {
 
-    private AccomodationService accomodationService;
-    private RoomService roomService;
+    private final AccomodationService accommodationService;
+    private final RoomService roomService;
 
 //    public AccomController(AccomodationService accomodationService, RoomService roomService) {
 //        this.accomodationService = accomodationService;
@@ -31,39 +31,16 @@ public class AccomController {
     @GetMapping("hotel-list")
     public String getHotelList(Model model){
         System.out.println("123?");
-        accomodationService.saveData();
+        accommodationService.saveData();
 
-        Accommodation accommodation=accomodationService.getAllData().get(0);
+        List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
 
-        Region region  = Region.builder()
-                .region(RegionType.SEOUL)
-                .regionParentNum(RegionType.SEOUL)
-                .build();
+        /*for (Accommodation accommodation : accommodationDTOList) {
 
-        Accommodation newMember = Accommodation.builder()
-                .accomName(accommodation.getAccomName())
-                .accomTel(accommodation.getAccomTel())
-                .accomCategory(accommodation.getAccomCategory())
-                .region(region)
-                .accomAddress(accommodation.getAccomAddress())
-                .accomRating(accommodation.getAccomRating())
-                .accomWishlistCount(accommodation.getAccomWishlistCount())
-                .totalReviewNum(accommodation.getTotalReviewNum())
-                .latitude(accommodation.getLatitude())
-                .longitude(accommodation.getLongitude())
-                .lowPrice(accommodation.getLowPrice())
-                .reserveRange(accommodation.getReserveRange())
-                .build();
+            System.out.println("accommodation = " + accommodation.getAccomName());
 
-        AccomImage image = AccomImage.builder()
-                .accomOriginFilename(accommodation.getAccommodationImage().toString())
-                .accomSaveFilename(accommodation.getAccommodationImage().toString())
-                .accommodation(newMember)
-                .build();
-
-        List<Accommodation> accommodationDTOList = accomodationService.getAccommodationlist();
-
-        model.addAttribute("accommodationList",accommodationDTOList);
+        }*/
+        model.addAttribute("accommodationList",accommodationList);
 
         return "accom/hotel/hotel-list";
     }

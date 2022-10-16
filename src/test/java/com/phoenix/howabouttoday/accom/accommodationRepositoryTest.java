@@ -2,10 +2,13 @@ package com.phoenix.howabouttoday.accom;
 
 
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
+import com.phoenix.howabouttoday.accom.repository.RegionRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -32,16 +35,22 @@ reserveRange	예약가능범위
 
 @Transactional
 @SpringBootTest
+@Rollback(false)
 public class accommodationRepositoryTest {
 
     @Autowired
     AccommodationRepository accommodationRepository;
+
+    @Autowired
+    RegionRepository regionRepository;
 
     @Test
     public void AccommodationList() {
 
         String accomName = "테스트 이름";
         String accomAddress = "테스트 주소";
+
+
 
         accommodationRepository.save(Accommodation.builder()
                         .accomName(accomName)
@@ -51,5 +60,16 @@ public class accommodationRepositoryTest {
         List<Accommodation> accommodationList = accommodationRepository.findAll();
 
         assertThat(accommodationList.get(0).getAccomName()).isEqualTo(accomName);
+    }
+    @Test
+    public void 지역_추가() {
+
+        Region save = regionRepository.save(Region.builder()
+                .region(RegionType.SEOUL)
+                .regionParentNum(RegionType.SEOUL)
+                .build());
+
+        assertThat(save.getRegionParentNum()).isEqualTo(RegionType.SEOUL);
+
     }
 }

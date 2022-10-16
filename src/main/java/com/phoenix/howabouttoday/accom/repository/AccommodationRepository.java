@@ -12,6 +12,7 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
     @Override
     <S extends Accommodation> S save(S entity);
 
+
     Accommodation findByAccomNum(Long number);
 
     @Override
