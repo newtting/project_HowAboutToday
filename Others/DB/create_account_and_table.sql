@@ -286,7 +286,7 @@ CREATE TABLE EVENT (
 
 -- Event 게시판 이미지
 CREATE TABLE EVENT_IMAGE (
-    eventImageNum int auto_increment, -- 게시글 이미지 번호
+    eventImageNum int auto_increment, -- 이벤트 이미지 번호
     eventNum int, -- 이벤트 게시글 번호
     eventOriginFileName varchar(100) NOT NULL, -- 기존 파일 이름
     eventSaveFileName varchar(100) NOT NULL, -- 저장 파일 이름

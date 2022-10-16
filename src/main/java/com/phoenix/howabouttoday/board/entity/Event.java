@@ -36,7 +36,7 @@ public class Event {
     @Column
     private LocalDate eventEnd; // 이벤트 종료일
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<EventImage> eventImageList = new ArrayList<>();
 
     @Builder
