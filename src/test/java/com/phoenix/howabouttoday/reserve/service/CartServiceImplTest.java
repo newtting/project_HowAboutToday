@@ -3,9 +3,7 @@ package com.phoenix.howabouttoday.reserve.service;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.accom.repository.RegionRepository;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
-import com.phoenix.howabouttoday.reserve.domain.MemberRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
-import com.phoenix.howabouttoday.reserve.domain.RoomRepository;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

@@ -4,6 +4,7 @@ import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import lombok.Data;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class CartDto {
@@ -33,8 +34,8 @@ public class CartDto {
         private String roomName;
         private String roomFileName;
 
-        private LocalDateTime reserveUseStartDate;
-        private LocalDateTime reserveUseEndDate;
+        private LocalDate reserveUseStartDate;
+        private LocalDate reserveUseEndDate;
 
         private int reservePrice;
         private int reserveAdultCount;

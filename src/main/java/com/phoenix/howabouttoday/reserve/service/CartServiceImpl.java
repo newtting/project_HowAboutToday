@@ -2,17 +2,18 @@ package com.phoenix.howabouttoday.reserve.service;
 
 
 import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
-import com.phoenix.howabouttoday.reserve.domain.MemberRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
-import com.phoenix.howabouttoday.reserve.domain.RoomRepository;
 import com.phoenix.howabouttoday.room.entity.Room;
+import com.phoenix.howabouttoday.room.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -42,8 +43,15 @@ public class CartServiceImpl implements CartService{
     }
 
     @Override
-    public List<Cart> getListMemberNum(Long memberNum) {
-        return null;
+    public List<CartDto.ResponseDto> getListMemberNum(Long memberNum) {
+        Member member = memberRepository.findById(memberNum).orElseThrow(() ->
+                new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
+
+        List<Cart> cartList = cartRepository.findAllByMember_MemberNum(member.getMemberNum());
+
+        return cartList.stream().map(CartDto.ResponseDto::new).collect(Collectors.toList());
+
+
     }
 
     @Override

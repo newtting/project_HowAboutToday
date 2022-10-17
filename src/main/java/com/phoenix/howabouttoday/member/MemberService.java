@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.member;
 
+import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,7 @@ public class MemberService {
         this.memberRepository = memberRepository;
 //        this.accommodationImageRepository = accommodationImageRepository;
     }
+
+
 
 }

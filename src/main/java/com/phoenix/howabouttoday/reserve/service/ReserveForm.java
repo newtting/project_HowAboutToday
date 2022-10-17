@@ -4,14 +4,15 @@ import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 public class ReserveForm {
 
 
-    private LocalDateTime reserveUseStartDate;
-    private LocalDateTime reserveUseEndDate;
+    private LocalDate reserveUseStartDate;
+    private LocalDate reserveUseEndDate;
 
     private int reserveAdultCount;
     private int reserveChildCount;

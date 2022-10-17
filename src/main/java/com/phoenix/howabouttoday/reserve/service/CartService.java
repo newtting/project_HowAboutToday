@@ -16,7 +16,7 @@ public interface CartService {
     void deleteByNum(Long cartNum);
 
     /** 장바구니에서 모든 리스트 반환 **/
-    List<Cart> getListMemberNum(Long memberNum);
+    List<CartDto.ResponseDto> getListMemberNum(Long memberNum);
 
     /** 장바구니에 숙소가 존재하는지 확인 **/
     boolean checkCart(Long memberNum, Long roomNum);

@@ -6,7 +6,6 @@ import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.service.AccomodationService;
-import com.phoenix.howabouttoday.payment.AccomCategory;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
@@ -31,16 +30,16 @@ public class AccomController {
     @GetMapping("hotel-list")
     public String getHotelList(Model model){
         System.out.println("123?");
-        accommodationService.saveData();
-
-        List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
-
-        /*for (Accommodation accommodation : accommodationDTOList) {
-
-            System.out.println("accommodation = " + accommodation.getAccomName());
-
-        }*/
-        model.addAttribute("accommodationList",accommodationList);
+//        accommodationService.saveData();
+//
+//        List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
+//
+//        /*for (Accommodation accommodation : accommodationDTOList) {
+//
+//            System.out.println("accommodation = " + accommodation.getAccomName());
+//
+//        }*/
+//        model.addAttribute("accommodationList",accommodationList);
 
 
         return "accom/hotel/hotel-list";
