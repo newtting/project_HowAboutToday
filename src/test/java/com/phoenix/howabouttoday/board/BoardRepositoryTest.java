@@ -1,26 +1,30 @@
-package com.phoenix.howabouttoday.board;
 
-import com.phoenix.howabouttoday.board.entity.Board;
-import com.phoenix.howabouttoday.board.entity.BoardCategory;
-import com.phoenix.howabouttoday.board.repository.BoardCategoryRepository;
-import com.phoenix.howabouttoday.board.repository.BoardRepository;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.*;
-
-@Transactional
-@SpringBootTest
-@Rollback(false)
-public class BoardRepositoryTest {
+//package com.phoenix.howabouttoday.board;
+//
+//import com.phoenix.howabouttoday.board.entity.Board;
+//import com.phoenix.howabouttoday.board.entity.BoardCategory;
+//import com.phoenix.howabouttoday.board.entity.BoardImage;
+//import com.phoenix.howabouttoday.board.repository.BoardCategoryRepository;
+//import com.phoenix.howabouttoday.board.repository.BoardImageRepository;
+//import com.phoenix.howabouttoday.board.repository.BoardRepository;
+//import org.assertj.core.api.Assertions;
+//import org.junit.jupiter.api.Test;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.test.annotation.Rollback;
+//import org.springframework.transaction.annotation.Transactional;
+//
+//import java.time.LocalDateTime;
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//import static org.assertj.core.api.Assertions.*;
+//
+//@Transactional
+//@SpringBootTest
+//@Rollback(false)
+//public class BoardRepositoryTest {
+//
 
 //    @Autowired
 //    BoardRepository boardRepository;
@@ -65,5 +69,4 @@ public class BoardRepositoryTest {
 //        assertThat(board1.getBoardCreate()).isEqualTo(board.getBoardCreate());
 //        assertThat(board1.getBoardCategory().getBoardCategoryName()).isEqualTo(board.getBoardCategory().getBoardCategoryName());
 //        assertThat(board1.getBoardCategory().getBoardParentNum()).isEqualTo(board.getBoardCategory().getBoardParentNum());
-//    }
-}
+
