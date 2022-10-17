@@ -74,6 +74,7 @@ class CartRepositoryTest {
         Room saveRoom = roomRepository.save(room1);
 
         Cart cart1 = Cart.builder()
+
   //              .member(saveMember)
                 .accommodation(saveAccom)
                 .room(saveRoom)
