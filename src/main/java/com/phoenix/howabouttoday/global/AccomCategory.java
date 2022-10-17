@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.payment;
+package com.phoenix.howabouttoday.global;
 
 import lombok.Getter;
 

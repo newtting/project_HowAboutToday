@@ -1,8 +1,8 @@
 package com.phoenix.howabouttoday.accom.controller;
 
-import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.service.AccomodationService;
+import com.phoenix.howabouttoday.global.AccomCategory;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
@@ -16,35 +16,33 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AccomController {
 
-    private AccomodationService accomodationService;
-    private RoomService roomService;
+    private final AccomodationService accommodationService;
+    private final RoomService roomService;
 
 //    public AccomController(AccomodationService accomodationService, RoomService roomService) {
 //        this.accomodationService = accomodationService;
 //        this.roomService = roomService;
 //    }
 
-
-    // 메인 화면
-    @GetMapping("home")
-    public String getIndex2(){
-        return "home";
-    }
-    @PostMapping("home")
-    public String postIndex2(){
-        return "home";
-    }
-
     @GetMapping("hotel-list")
     public String getHotelList(Model model){
+        System.out.println("123?");
+        accommodationService.saveData();
 
-        List<Accommodation> accommodationDTOList = accomodationService.getAccommodationlist();
-        model.addAttribute("accommodationList",accommodationDTOList);
+        List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
+
+        /*for (Accommodation accommodation : accommodationDTOList) {
+
+            System.out.println("accommodation = " + accommodation.getAccomName());
+
+        }*/
+        model.addAttribute("accommodationList",accommodationList);
+
+
         return "accom/hotel/hotel-list";
     }
     @PostMapping("hotel-list")
     public String postHotelList(){
-
 
         return "accom/hotel/hotel-list";
     }
@@ -62,7 +60,8 @@ public class AccomController {
     @GetMapping("hotel-single")
     public String getHotelSingle(Model model){
 
-        model.addAttribute("roomlist", roomService.roomList());
+//        오류나서 주석처리
+//        model.addAttribute("roomlist", roomService.roomList());
 
         return "accom/hotel/hotel-single";
 
@@ -153,5 +152,13 @@ public class AccomController {
     @PostMapping("guestHouse-Hanok-single")
     public String postGuestHouseResult(){ return "accom/hotel/guestHouse-Hanok-single";}
 
-
+    // 메인 화면
+    @GetMapping("home")
+    public String getIndex2(){
+        return "home";
+    }
+    @PostMapping("home")
+    public String postIndex2(){
+        return "home";
+    }
 }

@@ -1,12 +1,10 @@
-package com.phoenix.howabouttoday.payment;
+package com.phoenix.howabouttoday.payment.testDriver;
 
 import com.phoenix.howabouttoday.room.entity.Room;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,18 +19,19 @@ public class AvailableDate {
     private Long availableDataId;
 
     @Column
-    private String date;
+    private LocalDate date;
 
 //    // 양방향
 //    @OneToMany(mappedBy = "availableDate", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<AvailableTime> availableTimes = new ArrayList<>();
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="roomNum"/*, referencedColumnName = "roomNum"*/)
     private Room room;
 
     @Builder
-    public AvailableDate(String date,Room room){
+    public AvailableDate(LocalDate date,Room room){
         this.date=date;
         this.room=room;
     }
