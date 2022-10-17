@@ -42,6 +42,7 @@ public class AccomController {
         }*/
         model.addAttribute("accommodationList",accommodationList);
 
+
         return "accom/hotel/hotel-list";
     }
     @PostMapping("hotel-list")
@@ -63,7 +64,8 @@ public class AccomController {
     @GetMapping("hotel-single")
     public String getHotelSingle(Model model){
 
-        model.addAttribute("roomlist", roomService.roomList());
+//        오류나서 주석처리
+//        model.addAttribute("roomlist", roomService.roomList());
 
         return "accom/hotel/hotel-single";
 

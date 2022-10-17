@@ -68,16 +68,16 @@ public class MemberController {
 //        }
 //    }
 
-   @GetMapping("user-dashboard-booking")
-    public String getUserDashboardBooking(Model model) {
-
-        addUsers(model);
-        return "member/userdashboard/user-dashboard-booking";
-    }
-    @PostMapping("user-dashboard-booking")
-    public String postUserDashboardBooking() {
-        return "member/userdashboard/user-dashboard-booking";
-    }
+//   @GetMapping("user-dashboard-booking")
+//    public String getUserDashboardBooking(Model model) {
+//
+//        addUsers(model);
+//        return "member/userdashboard/user-dashboard-booking";
+//    }
+//    @PostMapping("user-dashboard-booking")
+//    public String postUserDashboardBooking() {
+//        return "member/userdashboard/user-dashboard-booking";
+//    }
 
     @GetMapping("user-dashboard-profile")
     public String getUserDashboardProfile() {

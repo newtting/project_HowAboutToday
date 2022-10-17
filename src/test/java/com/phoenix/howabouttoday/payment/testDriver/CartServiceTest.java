@@ -5,8 +5,6 @@ import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
-import com.phoenix.howabouttoday.payment.AccomCategory;
-import com.phoenix.howabouttoday.payment.service.ObjectGenerator;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
@@ -17,18 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class CartServiceTest {
 
     @Autowired
     private CartRepository cartRepository;
-
-
 
     @Test
     //디비에 Cart정보를 저장
@@ -37,8 +30,6 @@ class CartServiceTest {
         List<Cart> cartData =  cartRepository.findAll();
 
         Assertions.assertThat(cartData.size()).isEqualTo(1);
-
-
     }
     @Test
     public Cart createCartData(){
@@ -54,8 +45,8 @@ class CartServiceTest {
                 .nickname("noscarna")
                 .memberTel("01045020614")
                 .memberCode(Code.MEMBER)
-                .joinDate(LocalDateTime.now())
-                .withdrawdate(LocalDateTime.now())
+                .joinDate(LocalDate.now())
+                .withdrawdate(LocalDate.now())
                 .memberOriginalFileName("Origin")
                 .memberSaveFileName("save")
                 .build();
