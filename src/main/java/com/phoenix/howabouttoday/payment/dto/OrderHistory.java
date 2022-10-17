@@ -1,9 +1,6 @@
 package com.phoenix.howabouttoday.payment.dto;
 
 
-import com.phoenix.howabouttoday.accom.RegionType;
-import com.phoenix.howabouttoday.payment.testDriver.AccomCategory;
-import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
 import lombok.Builder;
 import lombok.Getter;
 

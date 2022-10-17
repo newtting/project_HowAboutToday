@@ -1,13 +1,12 @@
 package com.phoenix.howabouttoday.accom.entity;
 
-import com.phoenix.howabouttoday.accom.RegionType;
-import com.phoenix.howabouttoday.accom.RegionTypeConverter;
+import com.phoenix.howabouttoday.global.RegionType;
+import com.phoenix.howabouttoday.global.RegionTypeConverter;
 import lombok.*;
 
 import javax.persistence.Id;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
