@@ -28,21 +28,17 @@ public class Room {
     @Column(length = 50)
     private String roomName;
 
-    @ManyToOne
-    @JoinColumn(name = "accom_num")
-    private Accommodation accommodation;
-
     private Integer defaultGuest;//최소 인원
 
     private Integer maxGuest;//최대 인원
 
     @NotNull
-    private Integer price;//주말 숙소 금액
+    private Integer price;//숙소 금액
 
     private String roomInfo;//객실 정보
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
-    private List<RoomImage> roomImage;
+    private List<RoomImage> roomImage = new ArrayList<>();
 
 
     //양방향 매핑을 위해 추가
@@ -58,5 +54,6 @@ public class Room {
         this.roomInfo = roomInfo;
         this.roomImage = roomImage;
         this.accommodation = accommodation;
+
     }
 }

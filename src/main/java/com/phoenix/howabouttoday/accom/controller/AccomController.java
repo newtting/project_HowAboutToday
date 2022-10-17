@@ -1,11 +1,14 @@
 package com.phoenix.howabouttoday.accom.controller;
 
+import com.phoenix.howabouttoday.room.dto.RoomDTO;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -68,10 +71,14 @@ public class AccomController {
         return "accom/hotel/hotel-sidebar";
     }
 
+    //호텔 상세페이지 - 객실리스트
     @GetMapping("hotel-single")
     public String getHotelSingle(Model model){
 
-        model.addAttribute("roomlist", roomService.roomList());
+//        model.addAttribute("roomlist", roomService.roomList());
+
+        List<RoomDTO> roomList = roomService.findAll();
+        model.addAttribute("roomlist",roomList);
 
         return "accom/hotel/hotel-single";
 
@@ -97,10 +104,12 @@ public class AccomController {
         return "accom/hotel/motel-search-result";
     }
 
+    //모텔 상세페이지 - 객실리스트
     @GetMapping("motel-single")
     public String getMotelSingle(Model model){
 
-        model.addAttribute("roomlist", roomService.roomList());
+        List<RoomDTO> roomList = roomService.findAll();
+        model.addAttribute("roomlist",roomList);
 
         return "accom/hotel/motel-single";
 
@@ -119,10 +128,12 @@ public class AccomController {
         return "accom/hotel/pension-PoolVilla-list";
     }
 
+    //펜션/풀빌라 상세페이지 - 객실리스트
     @GetMapping("pension-PoolVilla-single")
     public String getPensionPoolVillaSingle(Model model){
 
-        model.addAttribute("roomlist", roomService.roomList());
+        List<RoomDTO> roomList = roomService.findAll();
+        model.addAttribute("roomlist",roomList);
 
         return "accom/hotel/pension-PoolVilla-single";
 
@@ -151,10 +162,12 @@ public class AccomController {
     @PostMapping("guesthouse-Hanok-result")
     public String postGuestHouseSingle(){ return "accom/hotel/guestHouse-Hanok-result";}
 
+    //게하/한옥 상세페이지 - 객실리스트
     @GetMapping("guestHouse-Hanok-single")
     public String getGuestHouseResult(Model model){
 
-        model.addAttribute("roomlist", roomService.roomList());
+        List<RoomDTO> roomList = roomService.findAll();
+        model.addAttribute("roomlist",roomList);
 
         return "accom/hotel/guestHouse-Hanok-single";
 
