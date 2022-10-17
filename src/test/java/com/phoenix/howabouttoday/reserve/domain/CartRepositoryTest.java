@@ -7,9 +7,11 @@ import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.accom.repository.RegionRepository;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import com.phoenix.howabouttoday.room.entity.Room;
+import com.phoenix.howabouttoday.room.repository.RoomRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +31,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class CartRepositoryTest {
 
     @Autowired CartRepository cartRepository;
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
     @Autowired RegionRepository regionRepository;
     @Autowired AccommodationRepository accommodationRepository;
 
-    @Autowired RoomRepository roomRepository;
+    @Autowired
+    RoomRepository roomRepository;
     @Test
     public void 카트_등록_조회() throws Exception{
         //given

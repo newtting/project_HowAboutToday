@@ -1,15 +1,14 @@
 package com.phoenix.howabouttoday.accom.entity;
 
 
-import com.phoenix.howabouttoday.accom.RegionType;
-import com.phoenix.howabouttoday.accom.RegionTypeConverter;
-import com.phoenix.howabouttoday.payment.AccomCategory;
-import com.phoenix.howabouttoday.payment.AccomCategoryConverter;
+import com.phoenix.howabouttoday.payment.testDriver.AccomCategory;
+import com.phoenix.howabouttoday.payment.testDriver.AccomCategoryConverter;
 import com.phoenix.howabouttoday.room.entity.Room;
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +51,8 @@ public class Accommodation {
 
 
     private Integer accomWishlistCount; //즐겨찾기 버튼 갯수
-
+    private LocalTime checkIn;
+    private LocalTime checkOut;
 
     @Column(precision = 14, scale = 28)
     private Double latitude; //위도
@@ -65,6 +65,7 @@ public class Accommodation {
     private Integer lowPrice; //숙소의 객실 최저가
 
     private Integer reserveRange;//예약 가능일 범위(ex. 60 → 오늘부터 +60일까지 예약 가능)
+
 
     //양방향 매핑을 위해 추가
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)

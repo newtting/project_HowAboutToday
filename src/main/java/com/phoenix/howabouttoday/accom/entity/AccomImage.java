@@ -22,6 +22,7 @@ public class AccomImage {
     private String accomSaveFilename;
 
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="accommodation_accomNum", referencedColumnName = "accomNum")
     private Accommodation accommodation;
