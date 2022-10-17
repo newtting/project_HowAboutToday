@@ -1,3 +1,4 @@
+/*
 package com.phoenix.howabouttoday.reserve.domain;
 
 import com.phoenix.howabouttoday.accom.RegionType;
@@ -46,7 +47,7 @@ class CartRepositoryTest {
                 .pwd("1234")
                 .nickname("정영진")
                 .memberCode(Code.MEMBER).build();
-        Member saveMember = memberRepository.save(member);
+//        Member saveMember = memberRepository.save(member);
 //        Optional<Member> byId = memberRepository.findById(saveMember.getMemberNum());
 //        Member findMember = byId.get();
         Region region1 = Region.builder().region(RegionType.SEOUL).build();
@@ -73,7 +74,7 @@ class CartRepositoryTest {
         Room saveRoom = roomRepository.save(room1);
 
         Cart cart1 = Cart.builder()
-                .member(saveMember)
+  //              .member(saveMember)
                 .accommodation(saveAccom)
                 .room(saveRoom)
                 .reservePrice(8000)
@@ -93,4 +94,4 @@ class CartRepositoryTest {
         //then
     }
 
-}
+}*/
