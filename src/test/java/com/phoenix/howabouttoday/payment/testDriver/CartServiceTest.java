@@ -1,6 +1,7 @@
 package com.phoenix.howabouttoday.payment.testDriver;
 
-import com.phoenix.howabouttoday.accom.RegionType;
+import com.phoenix.howabouttoday.global.AccomCategory;
+import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.member.entity.Code;

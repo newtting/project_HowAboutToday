@@ -1,3 +1,4 @@
+
 //package com.phoenix.howabouttoday.board;
 //
 //import com.phoenix.howabouttoday.board.entity.Board;
@@ -24,6 +25,7 @@
 //@Rollback(false)
 //public class BoardRepositoryTest {
 //
+
 //    @Autowired
 //    BoardRepository boardRepository;
 //    @Autowired
@@ -67,7 +69,4 @@
 //        assertThat(board1.getBoardCreate()).isEqualTo(board.getBoardCreate());
 //        assertThat(board1.getBoardCategory().getBoardCategoryName()).isEqualTo(board.getBoardCategory().getBoardCategoryName());
 //        assertThat(board1.getBoardCategory().getBoardParentNum()).isEqualTo(board.getBoardCategory().getBoardParentNum());
-//
-//    }
-//
-//}
+

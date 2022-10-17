@@ -2,16 +2,18 @@ package com.phoenix.howabouttoday.reserve.service;
 
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.accom.repository.RegionRepository;
+import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 
+import com.phoenix.howabouttoday.room.repository.RoomRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Optional;
 
 
@@ -36,8 +38,8 @@ class CartServiceImplTest {
     public void 장바구니저장_테스트() throws Exception{
         //given
         ReserveForm rsForm = new ReserveForm();
-        rsForm.setReserveUseStartDate(LocalDateTime.now());
-        rsForm.setReserveUseEndDate(LocalDateTime.now());
+        rsForm.setReserveUseStartDate(LocalDate.now());
+        rsForm.setReserveUseEndDate(LocalDate.now());
         rsForm.setReserveAdultCount(2);
 
         Cart saveCart = cartService.save(1L, 2L, rsForm);

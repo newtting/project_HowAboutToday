@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @Data
 public class ReserveForm {
 
-
     private LocalDate reserveUseStartDate;
     private LocalDate reserveUseEndDate;
 
