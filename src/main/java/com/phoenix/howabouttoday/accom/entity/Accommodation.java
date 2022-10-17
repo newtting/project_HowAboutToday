@@ -38,29 +38,24 @@ public class Accommodation {
     @JoinColumn(name = "region_num")
     private Region region; //숙소 지역 번호
 
-
     @Column(length = 200)
     private String accomAddress;//숙소 주소
-
 
     @Column(precision = 1, scale = 2)
     private Double accomRating;//숙소 평점
 
-
     private Integer totalReviewNum;//숙소의 평점 수
 
-
     private Integer accomWishlistCount; //즐겨찾기 버튼 갯수
+
     private LocalTime checkIn;
     private LocalTime checkOut;
 
     @Column(precision = 14, scale = 28)
     private Double latitude; //위도
 
-
     @Column(precision = 14, scale = 31)
     private Double longitude; //경도
-
 
     private Integer lowPrice; //숙소의 객실 최저가
 
