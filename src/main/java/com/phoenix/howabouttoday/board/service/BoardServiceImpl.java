@@ -4,8 +4,6 @@ import com.phoenix.howabouttoday.board.dto.BoardDetailDTO;
 import com.phoenix.howabouttoday.board.dto.BoardListDTO;
 import com.phoenix.howabouttoday.board.dto.EventDetailDTO;
 import com.phoenix.howabouttoday.board.dto.EventListDTO;
-import com.phoenix.howabouttoday.board.entity.BoardCategory;
-import com.phoenix.howabouttoday.board.repository.BoardCategoryRepository;
 import com.phoenix.howabouttoday.board.repository.BoardRepository;
 import com.phoenix.howabouttoday.board.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,20 +20,6 @@ public class BoardServiceImpl implements BoardService {
 
     private final BoardRepository boardRepository;
     private final EventRepository eventRepository;
-    private final BoardCategoryRepository boardCategoryRepository;
-
-    // 게시판 카테고리
-    @Override
-    public List<BoardListDTO> findByCategory(BoardCategory boardCategory) {
-
-        // Entity → DTO
-        List<BoardListDTO> lists = boardRepository.findByBoardCategory(boardCategory) // Entity List
-                .stream() // Entity Stream
-                .map(BoardListDTO::new) // DTO Stream
-                .collect(Collectors.toList()); // DTO List
-
-        return lists;
-    }
 
     // (Notice, About Us) 게시판 리스트
     @Override
@@ -66,14 +50,20 @@ public class BoardServiceImpl implements BoardService {
     // (Notice, FAQ, About Us) 게시판 디테일
     @Override
     public BoardDetailDTO findOne_Board(Long boardNum) {
-//        return boardRepository.getReferenceById(boardNum);
-        return null;
+
+        return boardRepository.findByBoardNum(boardNum) // Entity
+                .map(BoardDetailDTO::new) // DTO
+                .orElse(null); // 에러 시 null 반환
     }
 
+    // Event 게시판 디테일
     @Override
     public EventDetailDTO findOne_Event(Long eventNum) {
-        return null;
-    }
 
+        // Entity → DTO
+        return eventRepository.findByEventNum(eventNum) // Entity
+                .map(EventDetailDTO::new) // DTO
+                .orElse(null); // 에러 시 null 반환
+    }
 
 }
