@@ -1,13 +1,11 @@
 package com.phoenix.howabouttoday.config;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,6 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 
 @RequiredArgsConstructor //CustomUserDetailsService 생성자 주입을 위한 lombok
 @Configuration //클래스 안에서 @Bean을 통해 등록하는 방법
@@ -54,17 +54,28 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-		//인증되지 않은 모든 요청을 허락
-		http.authorizeRequests()
-				.antMatchers("/user/**").hasRole("MEMBER")
-				.antMatchers("/").permitAll();
-
-
-		http.formLogin()
-				.loginPage("/")
-				.usernameParameter("email")
-				.passwordParameter("pwd")
-
+		//인증되지 않은 모든 요청을
+		http
+				.authorizeRequests()
+					.antMatchers("/admin/**").hasRole("ADMIN")
+//					.antMatchers("/user-dashboard-profile").hasRole("MEMBER")
+//					.antMatchers("/user-dashboard-reviews").hasRole("MEMBER")
+//					.antMatchers("/user-dashboard-wishlist").hasRole("MEMBER")
+//					.antMatchers("/user-dashboard-booking").hasRole("MEMBER")
+					.antMatchers("/**" ).permitAll()
+				.and()
+					.formLogin()
+					.loginPage("/auth/login")
+					.usernameParameter("email")
+					.passwordParameter("pwd")
+					.loginProcessingUrl("loginProc")
+					.defaultSuccessUrl("/home")
+					.permitAll()
+				.and()
+					.logout()
+					.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+					.invalidateHttpSession(true).deleteCookies("JSESSIONID")
+					.logoutSuccessUrl("/");
 
 
 
