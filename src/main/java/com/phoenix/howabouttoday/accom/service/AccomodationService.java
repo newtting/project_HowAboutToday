@@ -1,16 +1,19 @@
 package com.phoenix.howabouttoday.accom.service;
 
+import com.phoenix.howabouttoday.accom.RegionType;
+import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.accom.repository.RegionRepository;
-import com.phoenix.howabouttoday.payment.AccomCategory;
+import com.phoenix.howabouttoday.payment.testDriver.AccomCategory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +40,12 @@ public class AccomodationService {
         Region region = byId.get();
         log.info("Region",region.getRegionNum());
 
-        Accommodation accommodation = Accommodation.builder()
+        Region region1 = Region.builder()
+                .region(RegionType.SEOUL)
+                .regionParentNum(RegionType.SEOUL)
+                .build();
+
+        Accommodation accommodation1 = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
                 .accomCategory(AccomCategory.PENSION)
@@ -52,10 +60,15 @@ public class AccomodationService {
                 .reserveRange(60)
                 .build();
 
-        AccomImage image = AccomImage.builder()
+        AccomImage image1 = AccomImage.builder()
                 .accomOriginFilename("image0.jpg")
                 .accomSaveFilename("image0.jpg")
-                .accommodation(accommodation)
+                .accommodation(accommodation1)
+                .build();
+
+        Region region2 = Region.builder()
+                .region(RegionType.SEOUL)
+                .regionParentNum(RegionType.SEOUL)
                 .build();
 
         Accommodation accommodation2 = Accommodation.builder()
@@ -79,9 +92,38 @@ public class AccomodationService {
                 .accommodation(accommodation2)
                 .build();
 
-        return accommodation;
+        return accommodation1;
     }
 
+    @Transactional
+    public List<AccommodationDTO> searchResults(String keyword) {
+        List<Accommodation> accomAccommodations = accommodationRepository.findByAccomNameContaining(keyword);
+        List<AccommodationDTO> accomDtoList = new ArrayList<>();
+
+        if (accomAccommodations.isEmpty()) return accomDtoList;
+
+        for (Accommodation accommodation : accomAccommodations) {
+            accomDtoList.add(this.convertEntityToDto(accommodation));
+        }
+        return accomDtoList;
+    }
+
+    public AccommodationDTO convertEntityToDto(Accommodation accommodation) {
+
+        return AccommodationDTO.builder()
+                .accomName(accommodation.getAccomName())
+                .accomTel(accommodation.getAccomTel())
+                .accomAddress(accommodation.getAccomAddress())
+                .accomRating(accommodation.getAccomRating())
+                .accomWishListCount(accommodation.getAccomWishlistCount())
+                .totalreviewNum(accommodation.getTotalReviewNum())
+                .latitude(accommodation.getLatitude())
+                .longitude(accommodation.getLongitude())
+                .lowPrice(accommodation.getLowPrice())
+                .reserveRange(accommodation.getReserveRange())
+                .build();
+
+    }
 
 }
 

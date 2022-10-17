@@ -1,3 +1,4 @@
+/*
 package com.phoenix.howabouttoday.board;
 
 import com.phoenix.howabouttoday.board.entity.Board;
@@ -71,3 +72,4 @@ public class BoardRepositoryTest {
     }
 
 }
+*/

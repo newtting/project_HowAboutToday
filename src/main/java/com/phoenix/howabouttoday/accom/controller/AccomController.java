@@ -6,8 +6,10 @@ import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.service.AccomodationService;
-import com.phoenix.howabouttoday.payment.AccomCategory;
+//import com.phoenix.howabouttoday.payment.AccomCategory;
 import com.phoenix.howabouttoday.room.service.RoomService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
@@ -29,18 +31,28 @@ public class AccomController {
 //        this.roomService = roomService;
 //    }
 
+    // 메인 화면
+    @GetMapping("home")
+    public String getIndex2(){
+        return "home";
+    }
+    @PostMapping("home")
+    public String postIndex2(){
+        return "home";
+    }
+
+
     @GetMapping("hotel-list")
     public String getHotelList(Model model){
-        System.out.println("123?");
         accommodationService.saveData();
 
         List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
 
         model.addAttribute("accommodationList",accommodationList);
 
-
         return "accom/hotel/hotel-list";
     }
+
     @PostMapping("hotel-list")
     public String postHotelList(){
 
@@ -48,8 +60,14 @@ public class AccomController {
     }
 
     @GetMapping("hotel-search-result")
-    public String getHotelSearchResult(){
+    public String getHotelSearchResult(@RequestParam(value = "keyword") String keyword, Model model){
+        List<AccommodationDTO> accommodationDTOList = accommodationService.searchResults(keyword);
+        for (AccommodationDTO accommodationDTO : accommodationDTOList) {
+            System.out.println("accommodationDTO.getAccomName() = " + accommodationDTO.getAccomName());
+        }
 
+        
+        model.addAttribute("accomList", accommodationDTOList);
         return "accom/hotel/hotel-search-result";
     }
     @PostMapping("hotel-search-result")
@@ -153,13 +171,5 @@ public class AccomController {
     @PostMapping("guestHouse-Hanok-single")
     public String postGuestHouseResult(){ return "accom/hotel/guestHouse-Hanok-single";}
 
-    // 메인 화면
-    @GetMapping("home")
-    public String getIndex2(){
-        return "home";
-    }
-    @PostMapping("home")
-    public String postIndex2(){
-        return "home";
-    }
+
 }

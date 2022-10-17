@@ -70,7 +70,13 @@ public class accommodationRepositoryTest {
                 .regionParentNum(RegionType.SEOUL)
                 .build());
 
+        Region save2 = regionRepository.save(Region.builder()
+                .region(RegionType.SEOUL)
+                .regionParentNum(RegionType.SEOUL)
+                .build());
+
         assertThat(save.getRegionParentNum()).isEqualTo(RegionType.SEOUL);
+        assertThat(save2.getRegionParentNum()).isEqualTo(RegionType.SEOUL);
 
     }
 }

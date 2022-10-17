@@ -19,5 +19,6 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
     @Override
     List<Accommodation> findAll();
 
+    List<Accommodation> findByAccomNameAndContaining(String keyword);
 
 }
