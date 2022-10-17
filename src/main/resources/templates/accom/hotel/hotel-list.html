@@ -517,7 +517,7 @@
                         <div class="card-rating">
                             <span class="badge text-white" th:text="${accommodationList.accomRating}">4.4/5</span>
                             <span class="review__text">Average</span>
-                            <span class="rating__text" th:text="${accommodationList.totalReviewNum}">(30 Reviews)</span>
+                            <span class="rating__text" th:text="|(${accommodationList.totalReviewNum})|">(30 Reviews)</span>
                         </div>
                         <div class="card-price d-flex align-items-center justify-content-between">
                             <p>

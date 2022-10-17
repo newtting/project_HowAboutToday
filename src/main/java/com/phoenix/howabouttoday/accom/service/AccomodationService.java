@@ -37,7 +37,7 @@ public class AccomodationService {
 
     public Accommodation createAccom() {
 
-        Optional<Region> byId = regionRepository.findById(2L);
+        Optional<Region> byId = regionRepository.findById(1L);//1L은 집에서 임의의 데이터를 입력할때 마다 다르기 때문에 확인 해줘야함.
         Region region = byId.get();
         log.info("Region",region.getRegionNum());
 
