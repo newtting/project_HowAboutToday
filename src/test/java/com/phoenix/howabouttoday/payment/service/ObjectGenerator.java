@@ -61,7 +61,6 @@ public class ObjectGenerator {
         return randTel;
     }
 
-
     public Member createMember(){
         String[] randValue = randomString();
 

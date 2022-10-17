@@ -121,12 +121,20 @@ public class DataInsertTest {
 //        Assertions.assertThat(ordersRepository.findAll().size()).isEqualTo(1);
 
         Optional<Member> optionalMember = memberRepository.findById(1L);
+        Member member1 = optionalMember.get();
 
-        cartRepository.deleteAll();
+        List<Cart> cartList = cartRepository.findAllByMember_MemberNum(member1.getMemberNum());
+
+        for (Cart cart : cartList) {
+            System.out.println("cart.getReserveNum() = " + cart.getReserveNum());
+        }
+
+//        cartRepository.deleteAll();
         if (optionalMember.isEmpty()){
             new NullPointerException("회원 정보가 없습니다.");
         }
         Member member = optionalMember.get();
+
 
         System.out.println("잘 되니?");
 
@@ -180,7 +188,6 @@ public class DataInsertTest {
             new NullPointerException("회원 정보가 없습니다.");
         }
         Member member = optionalMember.get();
-
 
         Orders order = Orders.builder()
                 .ordersTel("01045020614")
