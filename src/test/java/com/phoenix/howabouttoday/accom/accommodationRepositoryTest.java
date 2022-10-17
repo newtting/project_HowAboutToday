@@ -5,6 +5,7 @@ import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.accom.repository.RegionRepository;
+import groovy.util.logging.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,6 +37,7 @@ reserveRange	예약가능범위
 @Transactional
 @SpringBootTest
 @Rollback(false)
+@Slf4j
 public class accommodationRepositoryTest {
 
     @Autowired
@@ -49,7 +51,6 @@ public class accommodationRepositoryTest {
 
         String accomName = "테스트 이름";
         String accomAddress = "테스트 주소";
-
 
 
         accommodationRepository.save(Accommodation.builder()

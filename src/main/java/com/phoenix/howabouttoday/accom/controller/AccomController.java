@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -35,12 +36,8 @@ public class AccomController {
 
         List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
 
-        /*for (Accommodation accommodation : accommodationDTOList) {
-
-            System.out.println("accommodation = " + accommodation.getAccomName());
-
-        }*/
         model.addAttribute("accommodationList",accommodationList);
+
 
         return "accom/hotel/hotel-list";
     }
@@ -52,6 +49,7 @@ public class AccomController {
 
     @GetMapping("hotel-search-result")
     public String getHotelSearchResult(){
+
         return "accom/hotel/hotel-search-result";
     }
     @PostMapping("hotel-search-result")
@@ -63,7 +61,8 @@ public class AccomController {
     @GetMapping("hotel-single")
     public String getHotelSingle(Model model){
 
-        model.addAttribute("roomlist", roomService.roomList());
+//        오류나서 주석처리
+//        model.addAttribute("roomlist", roomService.roomList());
 
         return "accom/hotel/hotel-single";
 

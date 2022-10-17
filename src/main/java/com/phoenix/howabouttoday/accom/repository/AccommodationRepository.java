@@ -1,6 +1,7 @@
 package com.phoenix.howabouttoday.accom.repository;
 
 
+import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +18,6 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
 
     @Override
     List<Accommodation> findAll();
+
+
 }
