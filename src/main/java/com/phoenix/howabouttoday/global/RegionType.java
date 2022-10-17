@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.accom;
+package com.phoenix.howabouttoday.global;
 
 import lombok.Getter;
 

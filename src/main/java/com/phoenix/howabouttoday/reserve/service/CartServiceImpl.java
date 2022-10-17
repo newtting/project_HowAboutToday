@@ -2,11 +2,11 @@ package com.phoenix.howabouttoday.reserve.service;
 
 
 import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
-import com.phoenix.howabouttoday.reserve.domain.MemberRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
-import com.phoenix.howabouttoday.reserve.domain.RoomRepository;
 import com.phoenix.howabouttoday.room.entity.Room;
+import com.phoenix.howabouttoday.room.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

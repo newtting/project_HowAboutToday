@@ -1,13 +1,12 @@
 package com.phoenix.howabouttoday.accom.entity;
 
 
-import com.phoenix.howabouttoday.payment.testDriver.AccomCategory;
-import com.phoenix.howabouttoday.payment.testDriver.AccomCategoryConverter;
+import com.phoenix.howabouttoday.global.AccomCategory;
+import com.phoenix.howabouttoday.global.AccomCategoryConverter;
 import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;

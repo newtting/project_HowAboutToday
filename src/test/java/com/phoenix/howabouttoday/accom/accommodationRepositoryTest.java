@@ -5,6 +5,7 @@ import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.accom.repository.RegionRepository;
+import com.phoenix.howabouttoday.global.RegionType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
