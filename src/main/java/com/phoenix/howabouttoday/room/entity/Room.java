@@ -1,8 +1,7 @@
 package com.phoenix.howabouttoday.room.entity;
 
-import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
-import com.phoenix.howabouttoday.payment.AvailableDate;
+import com.phoenix.howabouttoday.payment.testDriver.AvailableDate;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
@@ -28,10 +27,6 @@ public class Room {
     @Column(length = 50)
     private String roomName;
 
-    @ManyToOne
-    @JoinColumn(name = "accom_num")
-    private Accommodation accommodation;
-
     private Integer defaultGuest;//최소 인원
 
     private Integer maxGuest;//최대 인원
@@ -41,22 +36,23 @@ public class Room {
 
     private String roomInfo;//객실 정보
 
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
-    private List<RoomImage> roomImage;
-
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<RoomImage> roomImage = new ArrayList<>();
 
     //양방향 매핑을 위해 추가
+    @Setter
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<AvailableDate> availableDate = new ArrayList<>();
 
     @Builder
-    public Room(String roomName,int defaultGuest,int maxGuest, Integer price, String roomInfo) {
+    public Room(String roomName,int defaultGuest,int maxGuest, Integer price, String roomInfo, Accommodation accommodation) {
         this.roomName = roomName;
         this.defaultGuest = defaultGuest;
         this.maxGuest = maxGuest;
         this.price = price;
         this.roomInfo = roomInfo;
-        this.roomImage = roomImage;
         this.accommodation = accommodation;
     }
 }
+
+
