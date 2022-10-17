@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -42,8 +43,15 @@ public class CartServiceImpl implements CartService{
     }
 
     @Override
-    public List<Cart> getListMemberNum(Long memberNum) {
-        return null;
+    public List<CartDto.ResponseDto> getListMemberNum(Long memberNum) {
+        Member member = memberRepository.findById(memberNum).orElseThrow(() ->
+                new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
+
+        List<Cart> cartList = cartRepository.findAllByMember_MemberNum(member.getMemberNum());
+
+        return cartList.stream().map(CartDto.ResponseDto::new).collect(Collectors.toList());
+
+
     }
 
     @Override
@@ -70,3 +78,5 @@ public class CartServiceImpl implements CartService{
         return saveCart;
     }
 }
+
+

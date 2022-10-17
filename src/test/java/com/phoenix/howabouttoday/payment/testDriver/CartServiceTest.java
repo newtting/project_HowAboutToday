@@ -40,6 +40,7 @@ class CartServiceTest {
                 .regionParentNum(RegionType.SEOUL)
                 .build();
 
+
         Member member = Member.builder()
                 .email("ingn@nate.com")
                 .pwd("1111")

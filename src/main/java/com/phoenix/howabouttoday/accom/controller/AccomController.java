@@ -27,16 +27,16 @@ public class AccomController {
     @GetMapping("hotel-list")
     public String getHotelList(Model model){
         System.out.println("123?");
-        accommodationService.saveData();
-
-        List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
-
-        /*for (Accommodation accommodation : accommodationDTOList) {
-
-            System.out.println("accommodation = " + accommodation.getAccomName());
-
-        }*/
-        model.addAttribute("accommodationList",accommodationList);
+//        accommodationService.saveData();
+//
+//        List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
+//
+//        /*for (Accommodation accommodation : accommodationDTOList) {
+//
+//            System.out.println("accommodation = " + accommodation.getAccomName());
+//
+//        }*/
+//        model.addAttribute("accommodationList",accommodationList);
 
 
         return "accom/hotel/hotel-list";
