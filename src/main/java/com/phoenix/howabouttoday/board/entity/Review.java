@@ -5,7 +5,7 @@ import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 
 
-import com.phoenix.howabouttoday.payment.Orders;
+import com.phoenix.howabouttoday.payment.entity.Orders;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

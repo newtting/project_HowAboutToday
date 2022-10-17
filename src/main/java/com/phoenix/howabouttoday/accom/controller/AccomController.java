@@ -1,48 +1,53 @@
 package com.phoenix.howabouttoday.accom.controller;
 
+import com.phoenix.howabouttoday.accom.RegionType;
+import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
+import com.phoenix.howabouttoday.accom.entity.AccomImage;
+import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import com.phoenix.howabouttoday.accom.entity.Region;
+import com.phoenix.howabouttoday.accom.service.AccomodationService;
+import com.phoenix.howabouttoday.payment.AccomCategory;
+import com.phoenix.howabouttoday.room.service.RoomService;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class AccomController {
 
-    // 메인 화면
-    @GetMapping("home")
-    public String getIndex2(){
-        return "home";
-    }
-    @PostMapping("home")
-    public String postIndex2(){
-        return "home";
-    }
+    private final AccomodationService accommodationService;
+    private final RoomService roomService;
 
-    @GetMapping("add-hotel")
-    public String getAddHotel(){
-        return "accom/hotel/add-hotel";
-    }
-    @PostMapping("add-hotel")
-    public String postAddHotel(){
-        return "accom/hotel/add-hotel";
-    }
-
-    @GetMapping("hotel-grid")
-    public String getHotelGrid(){
-        return "accom/hotel/hotel-grid";
-    }
-    @PostMapping("hotel-grid")
-    public String postHotelGrid(){
-        return "accom/hotel/hotel-grid";
-    }
+//    public AccomController(AccomodationService accomodationService, RoomService roomService) {
+//        this.accomodationService = accomodationService;
+//        this.roomService = roomService;
+//    }
 
     @GetMapping("hotel-list")
-    public String getHotelList(){
+    public String getHotelList(Model model){
+        System.out.println("123?");
+        accommodationService.saveData();
+
+        List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
+
+        /*for (Accommodation accommodation : accommodationDTOList) {
+
+            System.out.println("accommodation = " + accommodation.getAccomName());
+
+        }*/
+        model.addAttribute("accommodationList",accommodationList);
+
+
         return "accom/hotel/hotel-list";
     }
     @PostMapping("hotel-list")
     public String postHotelList(){
+
         return "accom/hotel/hotel-list";
     }
 
@@ -55,23 +60,18 @@ public class AccomController {
         return "accom/hotel/hotel-search-result";
     }
 
-    @GetMapping("hotel-sidebar")
-    public String getHotelSidebar(){
-        return "accom/hotel/hotel-sidebar";
-    }
-    @PostMapping("hotel-sidebar")
-    public String postHotelSidebar(){
-        return "accom/hotel/hotel-sidebar";
-    }
 
     @GetMapping("hotel-single")
-    public String getHotelSingle(){
+    public String getHotelSingle(Model model){
+
+//        오류나서 주석처리
+//        model.addAttribute("roomlist", roomService.roomList());
+
         return "accom/hotel/hotel-single";
+
     }
     @PostMapping("hotel-single")
-    public String postHotelSingle(){
-        return "accom/hotel/hotel-single";
-    }
+    public String postHotelSingle(){return "accom/hotel/hotel-single";}
 
     @GetMapping("motel-list")
     public String getMotelList(){
@@ -92,8 +92,12 @@ public class AccomController {
     }
 
     @GetMapping("motel-single")
-    public String getMotelSingle(){
+    public String getMotelSingle(Model model){
+
+        model.addAttribute("roomlist", roomService.roomList());
+
         return "accom/hotel/motel-single";
+
     }
     @PostMapping("motel-single")
     public String postMotelSingle(){
@@ -110,8 +114,12 @@ public class AccomController {
     }
 
     @GetMapping("pension-PoolVilla-single")
-    public String getPensionPoolVillaSingle(){
+    public String getPensionPoolVillaSingle(Model model){
+
+        model.addAttribute("roomlist", roomService.roomList());
+
         return "accom/hotel/pension-PoolVilla-single";
+
     }
     @PostMapping("pension-PoolVilla-single")
     public String postPensionPoolVillaSingle(){
@@ -138,9 +146,23 @@ public class AccomController {
     public String postGuestHouseSingle(){ return "accom/hotel/guestHouse-Hanok-result";}
 
     @GetMapping("guestHouse-Hanok-single")
-    public String getGuestHouseResult(){ return "accom/hotel/guestHouse-Hanok-single";}
+    public String getGuestHouseResult(Model model){
+
+        model.addAttribute("roomlist", roomService.roomList());
+
+        return "accom/hotel/guestHouse-Hanok-single";
+
+    }
     @PostMapping("guestHouse-Hanok-single")
     public String postGuestHouseResult(){ return "accom/hotel/guestHouse-Hanok-single";}
 
-
+    // 메인 화면
+    @GetMapping("home")
+    public String getIndex2(){
+        return "home";
+    }
+    @PostMapping("home")
+    public String postIndex2(){
+        return "home";
+    }
 }
