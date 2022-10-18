@@ -4,10 +4,9 @@ import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.accom.repository.RegionRepository;
-import com.phoenix.howabouttoday.member.entity.Code;
-import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.payment.controller.member.entity.Code;
+import com.phoenix.howabouttoday.payment.controller.member.entity.Member;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
-import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import com.phoenix.howabouttoday.room.entity.Room;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -18,8 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional

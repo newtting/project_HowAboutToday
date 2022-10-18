@@ -1,10 +1,8 @@
-package com.phoenix.howabouttoday.member.entity;
+package com.phoenix.howabouttoday.payment.controller.member.entity;
 
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 

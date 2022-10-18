@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.member.controller;
+package com.phoenix.howabouttoday.payment.controller.member.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

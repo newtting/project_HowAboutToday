@@ -2,7 +2,7 @@ package com.phoenix.howabouttoday.reserve.domain.Reservation;
 
 
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
-import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.payment.controller.member.entity.Member;
 import com.phoenix.howabouttoday.payment.Orders;
 import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.*;
@@ -10,7 +10,6 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import static javax.persistence.FetchType.*;
 
@@ -62,8 +61,8 @@ public abstract class Reservation {
     private ReserveStatus reserveStatus;
 
 
-    private LocalDateTime reserveUseStartDate;
-    private LocalDateTime reserveUseEndDate;
+    private LocalDate reserveUseStartDate;
+    private LocalDate reserveUseEndDate;
 
     private int reservePrice;
     private int reserveAdultCount;

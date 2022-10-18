@@ -1,6 +1,6 @@
-package com.phoenix.howabouttoday.member.dto;
+package com.phoenix.howabouttoday.payment.controller.member.dto;
 
-public class MemberCreateDTO {
+public class MemberUpdateDTO {
 
     private int memberNum;//회원 번호
     private String email;//이메일

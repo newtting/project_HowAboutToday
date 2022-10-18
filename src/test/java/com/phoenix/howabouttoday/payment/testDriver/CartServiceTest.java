@@ -1,11 +1,9 @@
 package com.phoenix.howabouttoday.payment.testDriver;
 
-import com.phoenix.howabouttoday.accom.RegionType;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
-import com.phoenix.howabouttoday.member.entity.Code;
-import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.payment.controller.member.entity.Code;
+import com.phoenix.howabouttoday.payment.controller.member.entity.Member;
 import com.phoenix.howabouttoday.payment.AccomCategory;
-import com.phoenix.howabouttoday.payment.service.ObjectGenerator;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
 import com.phoenix.howabouttoday.room.entity.Room;
@@ -14,11 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class CartServiceTest {
@@ -58,7 +53,7 @@ class CartServiceTest {
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
                 .accomCategory(AccomCategory.PENSION)
-                .region(RegionType.CHUNGNAM_SEJONG)
+               // .region(RegionType.CHUNGNAM_SEJONG)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)
@@ -83,8 +78,8 @@ class CartServiceTest {
                 .accommodation(acco)
                 .room(room)
                 .reserveStatus(ReserveStatus.READY)
-                .reserveUseStartDate(LocalDate.now())
-                .reserveUseEndDate(LocalDate.now())
+//                .reserveUseStartDate(LocalDate.now())
+//                .reserveUseEndDate(LocalDate.now())
                 .reservePrice(room.getPrice())
                 .reserveAdultCount(room.getDefaultGuest())
                 .build();

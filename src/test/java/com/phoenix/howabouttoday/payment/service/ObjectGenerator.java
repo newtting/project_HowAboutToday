@@ -1,23 +1,10 @@
 package com.phoenix.howabouttoday.payment.service;
 
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
-import com.phoenix.howabouttoday.accom.entity.Accommodation;
-import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
-import com.phoenix.howabouttoday.member.entity.Code;
-import com.phoenix.howabouttoday.member.entity.Member;
-import com.phoenix.howabouttoday.payment.AccomCategory;
-import com.phoenix.howabouttoday.payment.Orders;
-import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
-import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
-import com.phoenix.howabouttoday.room.entity.Room;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import com.phoenix.howabouttoday.payment.controller.member.entity.Code;
+import com.phoenix.howabouttoday.payment.controller.member.entity.Member;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 
 public class ObjectGenerator {

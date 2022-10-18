@@ -79,7 +79,7 @@ public class AccomController {
     public String getHotelSingle(Model model){
 
         List<Room> roomList = roomService.getRoomList();
-        model.addAttribute("roomlist",roomList);
+        model.addAttribute("roomList",roomList);
 
         return "accom/hotel/hotel-single";
 
@@ -110,7 +110,7 @@ public class AccomController {
     public String getMotelSingle(Model model){
 
         List<Room> roomList = roomService.getRoomList();
-        model.addAttribute("roomlist",roomList);
+        model.addAttribute("roomList",roomList);
 
         return "accom/hotel/motel-single";
 
@@ -134,7 +134,7 @@ public class AccomController {
     public String getPensionPoolVillaSingle(Model model){
 
         List<Room> roomList = roomService.getRoomList();
-        model.addAttribute("roomlist",roomList);
+        model.addAttribute("roomList",roomList);
 
         return "accom/hotel/pension-PoolVilla-single";
 
@@ -168,7 +168,7 @@ public class AccomController {
     public String getGuestHouseResult(Model model){
 
         List<Room> roomList = roomService.getRoomList();
-        model.addAttribute("roomlist",roomList);
+        model.addAttribute("roomList",roomList);
 
         return "accom/hotel/guestHouse-Hanok-single";
 

@@ -410,12 +410,12 @@
                             <div class="single-content-item padding-top-40px padding-bottom-30px">
                                 <h3 class="title font-size-20">이용가능한 객실</h3>
                                 <div class="cabin-type padding-top-30px">
-                                    <div class="cabin-type-item seat-selection-item d-flex">
+                                    <div class="cabin-type-item seat-selection-item d-flex" th:each="roomList : ${roomList}">
                                         <div class="cabin-type-img flex-shrink-0">
                                             <a th:href="room-details"><img src="images/inside-cabin.jpg" alt=""></a>
                                         </div>
                                         <div class="cabin-type-detail">
-                                            <h3 class="title"><a th:href="room-details">Standard Family room</a></h3>
+                                            <h3 class="title"><a th:href="room-details" th:text="${roomList.roomName}">Standard Family room</a></h3>
                                             <div class="row padding-top-20px">
                                                 <div class="col-lg-6 responsive-column">
                                                     <div class="single-tour-feature d-flex align-items-center mb-3">
@@ -491,251 +491,251 @@
                                         </div>
                                     </div><!-- end cabin-type-item -->
                                 </div><!-- end cabin-type -->
-                                <div class="cabin-type padding-top-30px">
-                                    <div class="cabin-type-item seat-selection-item d-flex">
-                                        <div class="cabin-type-img flex-shrink-0">
-                                            <img src="images/oceanview-cabin.jpg" alt="">
-                                        </div>
-                                        <div class="cabin-type-detail">
-                                            <h3 class="title"><a href="room-details">Superior Double Room</a></h3>
-                                            <div class="row padding-top-20px">
-                                                <div class="col-lg-6 responsive-column">
-                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                            <i class="la la-wifi"></i>
-                                                        </div>
-                                                        <div class="single-feature-titles">
-                                                            <h3 class="title font-size-15 font-weight-medium">Free Wi-Fi</h3>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end col-lg-6 -->
-                                                <div class="col-lg-6 responsive-column">
-                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                            <i class="la la-bed"></i>
-                                                        </div>
-                                                        <div class="single-feature-titles">
-                                                            <h3 class="title font-size-15 font-weight-medium">2 Single beds</h3>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end col-lg-6 -->
-                                                <div class="col-lg-6 responsive-column">
-                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                            <i class="la la-building"></i>
-                                                        </div>
-                                                        <div class="single-feature-titles">
-                                                            <h3 class="title font-size-15 font-weight-medium">15 m²</h3>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end col-lg-6 -->
-                                                <div class="col-lg-6 responsive-column">
-                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                            <i class="la la-hotel"></i>
-                                                        </div>
-                                                        <div class="single-feature-titles">
-                                                            <h3 class="title font-size-15 font-weight-medium">Shower and bathtub</h3>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end col-lg-6 -->
-                                            </div><!-- end row -->
-                                            <div class="room-photos">
-                                                <a class="btn theme-btn-hover-gray" data-src="images/img1.jpg"
-                                                   data-fancybox="gallery"
-                                                   data-caption="Showing image - 01"
-                                                   data-speed="700">
-                                                    <i class="la la-photo mr-2"></i>Room Photos
-                                                </a>
-                                                <a class="d-none"
-                                                     data-fancybox="gallery"
-                                                     data-src="images/img2.jpg"
-                                                     data-caption="Showing image - 02"
-                                                     data-speed="700"></a>
-                                                <a class="d-none"
-                                                     data-fancybox="gallery"
-                                                     data-src="images/img3.jpg"
-                                                     data-caption="Showing image - 03"
-                                                     data-speed="700"></a>
-                                                <a class="d-none"
-                                                     data-fancybox="gallery"
-                                                     data-src="images/img4.jpg"
-                                                     data-caption="Showing image - 04"
-                                                     data-speed="700"></a>
-                                            </div>
-                                        </div>
-                                        <div class="cabin-price">
-                                            <p class="text-uppercase font-size-14">Per/night<strong class="mt-n1 text-black font-size-18 font-weight-black d-block">$121</strong></p>
-                                            <div class="custom-checkbox mb-0">
-                                                <input type="checkbox" id="selectChb2">
-                                                <label for="selectChb2" class="theme-btn theme-btn-small">Select</label>
-                                            </div>
-                                        </div>
-                                    </div><!-- end cabin-type-item -->
-                                </div><!-- end cabin-type -->
-                                <div class="cabin-type padding-top-30px">
-                                    <div class="cabin-type-item seat-selection-item d-flex">
-                                        <div class="cabin-type-img flex-shrink-0">
-                                            <img src="images/balcony-cabin.jpg" alt="">
-                                        </div>
-                                        <div class="cabin-type-detail">
-                                            <h3 class="title"><a href="room-details">Deluxe Single Room</a></h3>
-                                            <div class="row padding-top-20px">
-                                                <div class="col-lg-6 responsive-column">
-                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                            <i class="la la-wifi"></i>
-                                                        </div>
-                                                        <div class="single-feature-titles">
-                                                            <h3 class="title font-size-15 font-weight-medium">Free Wi-Fi</h3>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end col-lg-6 -->
-                                                <div class="col-lg-6 responsive-column">
-                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                            <i class="la la-bed"></i>
-                                                        </div>
-                                                        <div class="single-feature-titles">
-                                                            <h3 class="title font-size-15 font-weight-medium">2 Single beds</h3>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end col-lg-6 -->
-                                                <div class="col-lg-6 responsive-column">
-                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                            <i class="la la-building"></i>
-                                                        </div>
-                                                        <div class="single-feature-titles">
-                                                            <h3 class="title font-size-15 font-weight-medium">15 m²</h3>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end col-lg-6 -->
-                                                <div class="col-lg-6 responsive-column">
-                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                            <i class="la la-hotel"></i>
-                                                        </div>
-                                                        <div class="single-feature-titles">
-                                                            <h3 class="title font-size-15 font-weight-medium">Shower and bathtub</h3>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end col-lg-6 -->
-                                            </div><!-- end row -->
-                                            <div class="room-photos">
-                                                <a class="btn theme-btn-hover-gray" data-src="images/img1.jpg"
-                                                   data-fancybox="gallery"
-                                                   data-caption="Showing image - 01"
-                                                   data-speed="700">
-                                                    <i class="la la-photo mr-2"></i>Room Photos
-                                                </a>
-                                                <a class="d-none"
-                                                     data-fancybox="gallery"
-                                                     data-src="images/img2.jpg"
-                                                     data-caption="Showing image - 02"
-                                                     data-speed="700"></a>
-                                                <a class="d-none"
-                                                     data-fancybox="gallery"
-                                                     data-src="images/img3.jpg"
-                                                     data-caption="Showing image - 03"
-                                                     data-speed="700"></a>
-                                                <a class="d-none"
-                                                     data-fancybox="gallery"
-                                                     data-src="images/img4.jpg"
-                                                     data-caption="Showing image - 04"
-                                                     data-speed="700"></a>
-                                            </div>
-                                        </div>
-                                        <div class="cabin-price">
-                                            <p class="text-uppercase font-size-14">Per/night<strong class="mt-n1 text-black font-size-18 font-weight-black d-block">$121</strong></p>
-                                            <div class="custom-checkbox mb-0">
-                                                <input type="checkbox" id="selectChb3">
-                                                <label for="selectChb3" class="theme-btn theme-btn-small">Select</label>
-                                            </div>
-                                        </div>
-                                    </div><!-- end cabin-type-item -->
-                                </div><!-- end cabin-type -->
-                                <div class="cabin-type padding-top-30px">
-                                    <div class="cabin-type-item seat-selection-item d-flex">
-                                        <div class="cabin-type-img flex-shrink-0">
-                                            <img src="images/suite-cabin.jpg" alt="">
-                                        </div>
-                                        <div class="cabin-type-detail">
-                                            <h3 class="title"><a href="room-details">Single Bed Room</a></h3>
-                                            <div class="row padding-top-20px">
-                                                <div class="col-lg-6 responsive-column">
-                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                            <i class="la la-wifi"></i>
-                                                        </div>
-                                                        <div class="single-feature-titles">
-                                                            <h3 class="title font-size-15 font-weight-medium">Free Wi-Fi</h3>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end col-lg-6 -->
-                                                <div class="col-lg-6 responsive-column">
-                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                            <i class="la la-bed"></i>
-                                                        </div>
-                                                        <div class="single-feature-titles">
-                                                            <h3 class="title font-size-15 font-weight-medium">1 Single beds</h3>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end col-lg-6 -->
-                                                <div class="col-lg-6 responsive-column">
-                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                            <i class="la la-building"></i>
-                                                        </div>
-                                                        <div class="single-feature-titles">
-                                                            <h3 class="title font-size-15 font-weight-medium">15 m²</h3>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end col-lg-6 -->
-                                                <div class="col-lg-6 responsive-column">
-                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                            <i class="la la-hotel"></i>
-                                                        </div>
-                                                        <div class="single-feature-titles">
-                                                            <h3 class="title font-size-15 font-weight-medium">Shower and bathtub</h3>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end col-lg-6 -->
-                                            </div><!-- end row -->
-                                            <div class="room-photos">
-                                                <a class="btn theme-btn-hover-gray" data-src="images/img1.jpg"
-                                                   data-fancybox="gallery"
-                                                   data-caption="Showing image - 01"
-                                                   data-speed="700">
-                                                    <i class="la la-photo mr-2"></i>Room Photos
-                                                </a>
-                                                <a class="d-none"
-                                                     data-fancybox="gallery"
-                                                     data-src="images/img2.jpg"
-                                                     data-caption="Showing image - 02"
-                                                     data-speed="700"></a>
-                                                <a class="d-none"
-                                                     data-fancybox="gallery"
-                                                     data-src="images/img3.jpg"
-                                                     data-caption="Showing image - 03"
-                                                     data-speed="700"></a>
-                                                <a class="d-none"
-                                                     data-fancybox="gallery"
-                                                     data-src="images/img4.jpg"
-                                                     data-caption="Showing image - 04"
-                                                     data-speed="700"></a>
-                                            </div>
-                                        </div>
-                                        <div class="cabin-price">
-                                            <p class="text-uppercase font-size-14">Per/night<strong class="mt-n1 text-black font-size-18 font-weight-black d-block">$121</strong></p>
-                                            <div class="custom-checkbox mb-0">
-                                                <input type="checkbox" id="selectChb4">
-                                                <label for="selectChb4" class="theme-btn theme-btn-small">Select</label>
-                                            </div>
-                                        </div>
-                                    </div><!-- end cabin-type-item -->
+<!--                                <div class="cabin-type padding-top-30px">-->
+<!--                                    <div class="cabin-type-item seat-selection-item d-flex">-->
+<!--                                        <div class="cabin-type-img flex-shrink-0">-->
+<!--                                            <img src="images/oceanview-cabin.jpg" alt="">-->
+<!--                                        </div>-->
+<!--                                        <div class="cabin-type-detail">-->
+<!--                                            <h3 class="title"><a href="room-details">Superior Double Room</a></h3>-->
+<!--                                            <div class="row padding-top-20px">-->
+<!--                                                <div class="col-lg-6 responsive-column">-->
+<!--                                                    <div class="single-tour-feature d-flex align-items-center mb-3">-->
+<!--                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">-->
+<!--                                                            <i class="la la-wifi"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="single-feature-titles">-->
+<!--                                                            <h3 class="title font-size-15 font-weight-medium">Free Wi-Fi</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+<!--                                                <div class="col-lg-6 responsive-column">-->
+<!--                                                    <div class="single-tour-feature d-flex align-items-center mb-3">-->
+<!--                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">-->
+<!--                                                            <i class="la la-bed"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="single-feature-titles">-->
+<!--                                                            <h3 class="title font-size-15 font-weight-medium">2 Single beds</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+<!--                                                <div class="col-lg-6 responsive-column">-->
+<!--                                                    <div class="single-tour-feature d-flex align-items-center mb-3">-->
+<!--                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">-->
+<!--                                                            <i class="la la-building"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="single-feature-titles">-->
+<!--                                                            <h3 class="title font-size-15 font-weight-medium">15 m²</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+<!--                                                <div class="col-lg-6 responsive-column">-->
+<!--                                                    <div class="single-tour-feature d-flex align-items-center mb-3">-->
+<!--                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">-->
+<!--                                                            <i class="la la-hotel"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="single-feature-titles">-->
+<!--                                                            <h3 class="title font-size-15 font-weight-medium">Shower and bathtub</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+<!--                                            </div>&lt;!&ndash; end row &ndash;&gt;-->
+<!--                                            <div class="room-photos">-->
+<!--                                                <a class="btn theme-btn-hover-gray" data-src="images/img1.jpg"-->
+<!--                                                   data-fancybox="gallery"-->
+<!--                                                   data-caption="Showing image - 01"-->
+<!--                                                   data-speed="700">-->
+<!--                                                    <i class="la la-photo mr-2"></i>Room Photos-->
+<!--                                                </a>-->
+<!--                                                <a class="d-none"-->
+<!--                                                     data-fancybox="gallery"-->
+<!--                                                     data-src="images/img2.jpg"-->
+<!--                                                     data-caption="Showing image - 02"-->
+<!--                                                     data-speed="700"></a>-->
+<!--                                                <a class="d-none"-->
+<!--                                                     data-fancybox="gallery"-->
+<!--                                                     data-src="images/img3.jpg"-->
+<!--                                                     data-caption="Showing image - 03"-->
+<!--                                                     data-speed="700"></a>-->
+<!--                                                <a class="d-none"-->
+<!--                                                     data-fancybox="gallery"-->
+<!--                                                     data-src="images/img4.jpg"-->
+<!--                                                     data-caption="Showing image - 04"-->
+<!--                                                     data-speed="700"></a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="cabin-price">-->
+<!--                                            <p class="text-uppercase font-size-14">Per/night<strong class="mt-n1 text-black font-size-18 font-weight-black d-block">$121</strong></p>-->
+<!--                                            <div class="custom-checkbox mb-0">-->
+<!--                                                <input type="checkbox" id="selectChb2">-->
+<!--                                                <label for="selectChb2" class="theme-btn theme-btn-small">Select</label>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>&lt;!&ndash; end cabin-type-item &ndash;&gt;-->
+<!--                                </div>&lt;!&ndash; end cabin-type &ndash;&gt;-->
+<!--                                <div class="cabin-type padding-top-30px">-->
+<!--                                    <div class="cabin-type-item seat-selection-item d-flex">-->
+<!--                                        <div class="cabin-type-img flex-shrink-0">-->
+<!--                                            <img src="images/balcony-cabin.jpg" alt="">-->
+<!--                                        </div>-->
+<!--                                        <div class="cabin-type-detail">-->
+<!--                                            <h3 class="title"><a href="room-details">Deluxe Single Room</a></h3>-->
+<!--                                            <div class="row padding-top-20px">-->
+<!--                                                <div class="col-lg-6 responsive-column">-->
+<!--                                                    <div class="single-tour-feature d-flex align-items-center mb-3">-->
+<!--                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">-->
+<!--                                                            <i class="la la-wifi"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="single-feature-titles">-->
+<!--                                                            <h3 class="title font-size-15 font-weight-medium">Free Wi-Fi</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+<!--                                                <div class="col-lg-6 responsive-column">-->
+<!--                                                    <div class="single-tour-feature d-flex align-items-center mb-3">-->
+<!--                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">-->
+<!--                                                            <i class="la la-bed"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="single-feature-titles">-->
+<!--                                                            <h3 class="title font-size-15 font-weight-medium">2 Single beds</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+<!--                                                <div class="col-lg-6 responsive-column">-->
+<!--                                                    <div class="single-tour-feature d-flex align-items-center mb-3">-->
+<!--                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">-->
+<!--                                                            <i class="la la-building"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="single-feature-titles">-->
+<!--                                                            <h3 class="title font-size-15 font-weight-medium">15 m²</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+<!--                                                <div class="col-lg-6 responsive-column">-->
+<!--                                                    <div class="single-tour-feature d-flex align-items-center mb-3">-->
+<!--                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">-->
+<!--                                                            <i class="la la-hotel"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="single-feature-titles">-->
+<!--                                                            <h3 class="title font-size-15 font-weight-medium">Shower and bathtub</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+<!--                                            </div>&lt;!&ndash; end row &ndash;&gt;-->
+<!--                                            <div class="room-photos">-->
+<!--                                                <a class="btn theme-btn-hover-gray" data-src="images/img1.jpg"-->
+<!--                                                   data-fancybox="gallery"-->
+<!--                                                   data-caption="Showing image - 01"-->
+<!--                                                   data-speed="700">-->
+<!--                                                    <i class="la la-photo mr-2"></i>Room Photos-->
+<!--                                                </a>-->
+<!--                                                <a class="d-none"-->
+<!--                                                     data-fancybox="gallery"-->
+<!--                                                     data-src="images/img2.jpg"-->
+<!--                                                     data-caption="Showing image - 02"-->
+<!--                                                     data-speed="700"></a>-->
+<!--                                                <a class="d-none"-->
+<!--                                                     data-fancybox="gallery"-->
+<!--                                                     data-src="images/img3.jpg"-->
+<!--                                                     data-caption="Showing image - 03"-->
+<!--                                                     data-speed="700"></a>-->
+<!--                                                <a class="d-none"-->
+<!--                                                     data-fancybox="gallery"-->
+<!--                                                     data-src="images/img4.jpg"-->
+<!--                                                     data-caption="Showing image - 04"-->
+<!--                                                     data-speed="700"></a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="cabin-price">-->
+<!--                                            <p class="text-uppercase font-size-14">Per/night<strong class="mt-n1 text-black font-size-18 font-weight-black d-block">$121</strong></p>-->
+<!--                                            <div class="custom-checkbox mb-0">-->
+<!--                                                <input type="checkbox" id="selectChb3">-->
+<!--                                                <label for="selectChb3" class="theme-btn theme-btn-small">Select</label>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>&lt;!&ndash; end cabin-type-item &ndash;&gt;-->
+<!--                                </div>&lt;!&ndash; end cabin-type &ndash;&gt;-->
+<!--                                <div class="cabin-type padding-top-30px">-->
+<!--                                    <div class="cabin-type-item seat-selection-item d-flex">-->
+<!--                                        <div class="cabin-type-img flex-shrink-0">-->
+<!--                                            <img src="images/suite-cabin.jpg" alt="">-->
+<!--                                        </div>-->
+<!--                                        <div class="cabin-type-detail">-->
+<!--                                            <h3 class="title"><a href="room-details">Single Bed Room</a></h3>-->
+<!--                                            <div class="row padding-top-20px">-->
+<!--                                                <div class="col-lg-6 responsive-column">-->
+<!--                                                    <div class="single-tour-feature d-flex align-items-center mb-3">-->
+<!--                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">-->
+<!--                                                            <i class="la la-wifi"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="single-feature-titles">-->
+<!--                                                            <h3 class="title font-size-15 font-weight-medium">Free Wi-Fi</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+<!--                                                <div class="col-lg-6 responsive-column">-->
+<!--                                                    <div class="single-tour-feature d-flex align-items-center mb-3">-->
+<!--                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">-->
+<!--                                                            <i class="la la-bed"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="single-feature-titles">-->
+<!--                                                            <h3 class="title font-size-15 font-weight-medium">1 Single beds</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+<!--                                                <div class="col-lg-6 responsive-column">-->
+<!--                                                    <div class="single-tour-feature d-flex align-items-center mb-3">-->
+<!--                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">-->
+<!--                                                            <i class="la la-building"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="single-feature-titles">-->
+<!--                                                            <h3 class="title font-size-15 font-weight-medium">15 m²</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+<!--                                                <div class="col-lg-6 responsive-column">-->
+<!--                                                    <div class="single-tour-feature d-flex align-items-center mb-3">-->
+<!--                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">-->
+<!--                                                            <i class="la la-hotel"></i>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="single-feature-titles">-->
+<!--                                                            <h3 class="title font-size-15 font-weight-medium">Shower and bathtub</h3>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+<!--                                            </div>&lt;!&ndash; end row &ndash;&gt;-->
+<!--                                            <div class="room-photos">-->
+<!--                                                <a class="btn theme-btn-hover-gray" data-src="images/img1.jpg"-->
+<!--                                                   data-fancybox="gallery"-->
+<!--                                                   data-caption="Showing image - 01"-->
+<!--                                                   data-speed="700">-->
+<!--                                                    <i class="la la-photo mr-2"></i>Room Photos-->
+<!--                                                </a>-->
+<!--                                                <a class="d-none"-->
+<!--                                                     data-fancybox="gallery"-->
+<!--                                                     data-src="images/img2.jpg"-->
+<!--                                                     data-caption="Showing image - 02"-->
+<!--                                                     data-speed="700"></a>-->
+<!--                                                <a class="d-none"-->
+<!--                                                     data-fancybox="gallery"-->
+<!--                                                     data-src="images/img3.jpg"-->
+<!--                                                     data-caption="Showing image - 03"-->
+<!--                                                     data-speed="700"></a>-->
+<!--                                                <a class="d-none"-->
+<!--                                                     data-fancybox="gallery"-->
+<!--                                                     data-src="images/img4.jpg"-->
+<!--                                                     data-caption="Showing image - 04"-->
+<!--                                                     data-speed="700"></a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="cabin-price">-->
+<!--                                            <p class="text-uppercase font-size-14">Per/night<strong class="mt-n1 text-black font-size-18 font-weight-black d-block">$121</strong></p>-->
+<!--                                            <div class="custom-checkbox mb-0">-->
+<!--                                                <input type="checkbox" id="selectChb4">-->
+<!--                                                <label for="selectChb4" class="theme-btn theme-btn-small">Select</label>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>&lt;!&ndash; end cabin-type-item &ndash;&gt;-->
                                 </div><!-- end cabin-type -->
                             </div><!-- end single-content-item -->
                             <div class="section-block"></div>

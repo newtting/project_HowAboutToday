@@ -19,18 +19,18 @@ public class RoomService {
 
     private final RoomRepository roomRepository;
 
-    public void saveData(){
-        roomRepository.save(createRoom());
-    }
-
     //객실 리스트 처리
     public List<Room> getRoomList() {
         return roomRepository.findAll();
     }
 
+    public void saveData(){
+        roomRepository.save(createRoom());
+    }
+
     public Room createRoom() {
 
-        Room room1 = Room.builder()
+        Room room = Room.builder()
                 .roomName("스위트룸")
                 .defaultGuest(2)
                 .maxGuest(4)
@@ -40,13 +40,13 @@ public class RoomService {
                 .roomInfo("객실 정보")
                 .build();
 
-        RoomImage image1 = RoomImage.builder()
+        RoomImage image = RoomImage.builder()
                 .roomOriginFileName("image.jpg")
                 .roomSaveFileName("image.jpg")
-                .room(room1)
+                .room(room)
                 .build();
 
-        return room1;
+        return room;
 
     }
 

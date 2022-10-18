@@ -17,6 +17,8 @@ public class Region {
   @Id @GeneratedValue
   private Long regionNum;
 
+  private String regionName;
+
   @Column(length = 50)
   @Convert(converter = RegionTypeConverter.class)
   private RegionType region;
@@ -24,8 +26,9 @@ public class Region {
   private Integer regionParentNum;
 
   @Builder
-  public Region(RegionType region, Integer regionParentNum){
+  public Region(RegionType region, Integer regionParentNum,String regionName){
     this.region = region;
     this.regionParentNum = regionParentNum;
+    this.regionName = regionName;
   }
 }

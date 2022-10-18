@@ -1,18 +1,13 @@
 package com.phoenix.howabouttoday.payment.testDriver;
 
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
-import com.phoenix.howabouttoday.member.entity.Member;
-import com.phoenix.howabouttoday.payment.Orders;
-import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
+import com.phoenix.howabouttoday.payment.controller.member.entity.Member;
 import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-import javax.persistence.*;
 import java.time.LocalDate;
-
-import static javax.persistence.FetchType.LAZY;
 
 @Getter
 @AllArgsConstructor
