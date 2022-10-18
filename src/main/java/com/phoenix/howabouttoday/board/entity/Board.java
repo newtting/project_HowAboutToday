@@ -5,40 +5,36 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Entity
-@Table(name = "board")
 public class Board {
 
-    // Notice, Event, FAQ, About
+    // 게시판 : Notice, FAQ, About Us
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long boardNum; // 게시글 번호
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "board_category_num", nullable = false)
+    @JoinColumn(name = "board_category_num")
     private BoardCategory boardCategory; // 게시글 카테고리 번호
 
     @Column(nullable = false)
     private String boardTitle; // 게시글 제목
 
-    @Column
+    @Column(nullable = false)
     private String boardContent; // 게시글 내용
 
     @CreatedDate
     @Column
-    private LocalDateTime boardCreate; // 게시글 작성일
-
-    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
-    private List<BoardImage> boardImageList;
+    private LocalDateTime boardCreate; // 게시일
 
     @Builder
     public Board(BoardCategory boardCategory, String boardTitle, String boardContent, LocalDateTime boardCreate) {

@@ -1,26 +1,40 @@
 package com.phoenix.howabouttoday.reserve.domain.Reservation;
 
-import com.phoenix.howabouttoday.accom.entity.Accommodation;
-import com.phoenix.howabouttoday.member.entity.Member;
-import com.phoenix.howabouttoday.payment.Orders;
-import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
-import com.phoenix.howabouttoday.room.entity.Room;
+import com.phoenix.howabouttoday.payment.dto.OrderDto;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
+
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.time.LocalDate;
 
-@Entity
+
 @DiscriminatorValue("cart")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table
+@SuperBuilder
+@Entity
 public class Cart extends Reservation {
 
-    @Builder
-    public Cart(Long reserveNum, Member member, Accommodation accommodation, Room room, Orders orders, ReserveStatus reserveStatus, LocalDate reserveUseStartDate, LocalDate reserveUseEndDate, int reservePrice, int reserveAdultCount, int reserveChildCount) {
-        super(reserveNum, member, accommodation, room, orders, reserveStatus, reserveUseStartDate, reserveUseEndDate, reservePrice, reserveAdultCount, reserveChildCount);
+    // @Builder
+    // public Cart(Long reserveNum, Member member, Accommodation accommodation, Room room, Orders orders, ReserveStatus reserveStatus, LocalDate reserveUseStartDate, LocalDate reserveUseEndDate, int reservePrice, int reserveAdultCount, int reserveChildCount) {
+    //     super(reserveNum, member, accommodation, room, orders, reserveStatus, reserveUseStartDate, reserveUseEndDate, reservePrice, reserveAdultCount, reserveChildCount);
+    // }
+
+    public OrderDto transDto(){
+        return OrderDto.builder()
+                .accomType(this.getAccommodation().getAccomCategory().getValue())
+                .accomName(this.getAccommodation().getAccomName())
+                .accomRegion(this.getAccommodation().getRegion().getRegion().getValue())
+                .orderDate(LocalDate.now().toString())
+                .usePeriod(this.getReserveUseStartDate().toString() + " ~ " + this.getReserveUseEndDate().toString())
+                .price(String.valueOf(this.getReservePrice()))
+                .usedStatus(this.getReserveStatus().toString())
+                .roomName(this.getRoom().getRoomName())
+                .checkTime("입실: 오후 15시, 퇴실: 오전 11시")
+                .build();
     }
+
+
 }

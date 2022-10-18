@@ -1,25 +1,24 @@
 package com.phoenix.howabouttoday.room.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
+@AllArgsConstructor
+@Builder
 public class Amenities {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Integer amenitiesNum;
+    private Long amenitiesNum;//시설번호
 
     @Column
-    private String amenitiesName;
+    private String amenitiesName;//시설이름
+
 
 }

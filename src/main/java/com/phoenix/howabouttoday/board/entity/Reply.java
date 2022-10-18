@@ -14,9 +14,6 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @Entity
-@Table
-
-
 public class Reply {
 
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,9 +28,9 @@ public class Reply {
     @JoinColumn(name = "review_num")
     private Review review;
 
-
     private LocalDateTime replyCreatedDate;
     private LocalDateTime replyModifyDate;
 
+    private String content;
 
 }

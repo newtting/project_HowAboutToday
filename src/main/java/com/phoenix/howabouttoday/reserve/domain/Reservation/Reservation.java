@@ -3,9 +3,10 @@ package com.phoenix.howabouttoday.reserve.domain.Reservation;
 
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.member.entity.Member;
-import com.phoenix.howabouttoday.payment.Orders;
+import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,13 +28,14 @@ import static javax.persistence.FetchType.*;
  * reserveChildCount = 인원(아동)
  */
 
-@Entity
+
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @DiscriminatorColumn(name = "reserve_type")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@SuperBuilder
 @AllArgsConstructor
-@Table
+@Entity
 public abstract class Reservation {
 
     @Id @GeneratedValue
@@ -43,14 +45,16 @@ public abstract class Reservation {
     @JoinColumn(name = "member_num")
     private Member member;
 
+
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "accom_num")
     private Accommodation accommodation;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "room_num")
     private Room room;
 
+    @Setter
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "orders_num")
     private Orders orders;
@@ -58,14 +62,11 @@ public abstract class Reservation {
     @Enumerated(EnumType.STRING)
     private ReserveStatus reserveStatus;
 
-
     private LocalDate reserveUseStartDate;
     private LocalDate reserveUseEndDate;
 
     private int reservePrice;
     private int reserveAdultCount;
     private int reserveChildCount;
-
-
 
 }
