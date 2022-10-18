@@ -28,9 +28,6 @@ public class Review {
     @Column
     private Long reviewNum;
 
-    @ManyToOne
-    @JoinColumn(name = "reserve_num")
-    private Reservation reservation;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_num")
@@ -38,10 +35,6 @@ public class Review {
 
     private LocalDateTime reviewCreatedDate;
     private LocalDateTime reviewModifyDate;
-
-    @ManyToOne
-    @JoinColumn(name = "order_num")
-    private Orders order;
 
 
     private Double reviewRating;

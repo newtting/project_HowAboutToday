@@ -7,8 +7,8 @@ const requestPay = () => {
         pay_method: pay_method,
         merchant_uid : merchant_uid,
         name : name,
-        // amount : amount,
-        amount : 1,
+        amount : amount,
+        // amount : 1,
         buyer_email : buyer_email,
         buyer_name : buyer_name,
         buyer_tel : buyer_tel,
@@ -38,5 +38,6 @@ const successRequest = () => {
  * */
 
     console.log("리다이렉트")
+    location.replace("/paymentSuccess");
 
 }
