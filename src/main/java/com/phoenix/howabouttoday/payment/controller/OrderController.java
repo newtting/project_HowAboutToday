@@ -42,7 +42,7 @@ public class OrderController {
         model.addAttribute("infoList", infoList);
 
         return "reserve/checkout";
-    }
+}
 
     @PostMapping("checkout")
     public String postCheckout(){

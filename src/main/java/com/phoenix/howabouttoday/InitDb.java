@@ -17,11 +17,11 @@ import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.payment.repository.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
-import com.phoenix.howabouttoday.room.dto.AvailableDate;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
+import com.phoenix.howabouttoday.room.dto.AvailableDate;
 import com.phoenix.howabouttoday.room.entity.Amenities;
 import com.phoenix.howabouttoday.room.entity.Room;
 import com.phoenix.howabouttoday.room.entity.RoomImage;
@@ -38,7 +38,6 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
@@ -51,7 +50,7 @@ public class InitDb {
     @PostConstruct
     public void init(){
         initService.dbInit1();
-        initService.dbInit2();
+        //initService.dbInit2();
     }
 
 
@@ -115,8 +114,6 @@ public class InitDb {
                     .accomRating(4.4)
                     .accomWishlistCount(110)
                     .totalReviewNum(1103)
-                    .checkIn(LocalTime.of(15, 00))
-                    .checkOut(LocalTime.of(11, 00))
                     .latitude(36.3196)
                     .longitude(126.5092)
                     .lowPrice(45000)
@@ -174,13 +171,10 @@ public class InitDb {
                     .accommodation(accommodation)
                     .build());
 
-
             /** 장바구니 등록 **/
             Cart cart = cartRepository.save(Cart.builder()
-                    .accommodation(accommodation)
                     .member(member)
                     .room(room)
-                    .reserveStatus(ReserveStatus.READY)
                     .reserveUseStartDate(LocalDate.of(2022, 10, 18))
                     .reserveUseEndDate(LocalDate.of(2022, 10, 20))
                     .reservePrice(room.getPrice())
@@ -219,36 +213,36 @@ public class InitDb {
             ordersRepository.save(order);
 
 
-            객실예약정보_입력(member.getMemberNum());
-
-            /** 주문 등록 **/
-
-
-            /** 댓글 등록 **/
-            Review review = reviewRepository.save(Review.builder()
-                    .member(member)
-                    .reviewCreatedDate(LocalDateTime.now())
-                    .reviewModifyDate(LocalDateTime.now())
-                    .reviewRating(3.72)
-                    .reviewContent("안녕")
-                    .build());
-
-
-            /** 댓글 이미지 등록 **/
-            reviewImageRepository.save(ReviewImage.builder()
-                    .review(review)
-                    .reviewOriginalFileName("Original")
-                    .reviewSaveFileName("Svae")
-                    .build());
-
-            /** 리플 **/
-            replyRepository.save(Reply.builder()
-                    .member(member)
-                    .review(review)
-                    .content("이용해 주셔서 감사합니다")
-                    .replyCreatedDate(LocalDateTime.now())
-                    .replyModifyDate(LocalDateTime.now())
-                    .build());
+//            객실예약정보_입력(member.getMemberNum());
+//
+//            /** 주문 등록 **/
+//
+//
+//            /** 댓글 등록 **/
+//            Review review = reviewRepository.save(Review.builder()
+//                    .member(member)
+//                    .reviewCreatedDate(LocalDateTime.now())
+//                    .reviewModifyDate(LocalDateTime.now())
+//                    .reviewRating(3.72)
+//                    .reviewContent("안녕")
+//                    .build());
+//
+//
+//            /** 댓글 이미지 등록 **/
+//            reviewImageRepository.save(ReviewImage.builder()
+//                    .review(review)
+//                    .reviewOriginalFileName("Original")
+//                    .reviewSaveFileName("Svae")
+//                    .build());
+//
+//            /** 리플 **/
+//            replyRepository.save(Reply.builder()
+//                    .member(member)
+//                    .review(review)
+//                    .content("이용해 주셔서 감사합니다")
+//                    .replyCreatedDate(LocalDateTime.now())
+//                    .replyModifyDate(LocalDateTime.now())
+//                    .build());
 
 
             /** 매핑테이블들 **/
@@ -362,7 +356,7 @@ public class InitDb {
                     .member(member)
                     .build();
 
-            OrdersDetail ordersDetail = OrdersDetail.builder()
+            OrdersDetail ordersDetail = ordersDetailRepository.save(OrdersDetail.builder()
                     .member(cart.getMember())
                     .accommodation(cart.getAccommodation())
                     .room(cart.getRoom())
@@ -373,12 +367,12 @@ public class InitDb {
                     .reservePrice(cart.getReservePrice())
                     .reserveAdultCount(cart.getReserveAdultCount())
                     .reserveChildCount(cart.getReserveChildCount())
-                    .build();
+                    .build());
+
+
 
             order.getOrdersDetail().add(ordersDetail);
             member.getOrders().add(order);
-
-            ordersDetailRepository.save(ordersDetail);
             ordersRepository.save(order);
 
 
@@ -430,25 +424,24 @@ public class InitDb {
             }
             Orders orders = optionOrders.get();
 
-            for (OrdersDetail orderDetail : orders.getOrdersDetail()) {
-                LocalDate ldStart = orderDetail.getReserveUseStartDate();
-                LocalDate ldEnd = orderDetail.getReserveUseEndDate();
+            for (Reservation reservation : orders.getOrdersDetail()) {
+                LocalDate ldStart = reservation.getReserveUseStartDate();
+                LocalDate ldEnd = reservation.getReserveUseEndDate();
 
                 Long days = ChronoUnit.DAYS.between(ldStart, ldEnd);
 
                 for (Long i = 0L; i < days; i++) {
                     AvailableDate newDate = AvailableDate.builder()
                             .date(ldStart.plusDays(i))
-                            .room(orderDetail.getRoom())
+                            .room(reservation.getRoom())
                             .build();
-                    orderDetail.getRoom().getAvailableDate().add(newDate);
+                    reservation.getRoom().getAvailableDate().add(newDate);
                 }
             }
         }
 
     }
 }
-
 
 
 

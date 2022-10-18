@@ -54,6 +54,7 @@ public class Orders {
     @Column(length = 50)
     private String ordersStatus;
 
+    @NotNull
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     private List<OrdersDetail> ordersDetail = new ArrayList<>(); //이미지 fk를 위한 매핑
 

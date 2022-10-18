@@ -49,7 +49,6 @@ public class PaymentController {
         MemberDTO customer = memberServiceCopy.getCustomer(1L);
 
         List<OrdersDto> orders = orderService.getOrdersDto(customer.getNum());
-        List<OrdersDetailDto> orderHistory = new ArrayList<>();
 
 
         model.addAttribute("orders", orders);
