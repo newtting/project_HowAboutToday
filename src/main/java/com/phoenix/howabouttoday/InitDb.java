@@ -1,12 +1,14 @@
 package com.phoenix.howabouttoday;
 
-import com.phoenix.howabouttoday.accom.RegionType;
+
 import com.phoenix.howabouttoday.accom.entity.*;
 import com.phoenix.howabouttoday.accom.repository.*;
 import com.phoenix.howabouttoday.board.entity.Reply;
 import com.phoenix.howabouttoday.board.entity.Review;
 import com.phoenix.howabouttoday.board.entity.ReviewImage;
 import com.phoenix.howabouttoday.board.repository.*;
+import com.phoenix.howabouttoday.global.AccomCategory;
+import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
@@ -16,7 +18,7 @@ import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
-import com.phoenix.howabouttoday.payment.testDriver.AccomCategory;
+
 import com.phoenix.howabouttoday.payment.testDriver.AvailableDate;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
@@ -51,6 +53,7 @@ public class InitDb {
     public void init(){
         initService.dbInit1();
         initService.dbInit2();
+        initService.dbInit3();
     }
 
 
@@ -145,6 +148,15 @@ public class InitDb {
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
+            Room room1 = roomRepository.save(Room.builder()
+                    .accommodation(accommodation)
+                    .roomName("너울펜션 디럭스룸")
+                    .defaultGuest(2)
+                    .maxGuest(10)
+                    .price(70000)
+                    .roomInfo("임시 객실정보 입니다")
+                    .build());
+
 
 
             /** 객실 이미지 등록 **/
@@ -152,6 +164,12 @@ public class InitDb {
                     .roomOriginFileName("image0.jpg")
                     .roomSaveFileName("image0.jpg")
                     .room(room)
+                    .build());
+
+            roomImageRepository.save(RoomImage.builder()
+                    .roomOriginFileName("image0.jpg")
+                    .roomSaveFileName("image0.jpg")
+                    .room(room1)
                     .build());
 
 
@@ -179,6 +197,16 @@ public class InitDb {
                     .reserveUseEndDate(LocalDate.of(2022, 10, 20))
                     .reservePrice(room.getPrice())
                     .reserveAdultCount(2)
+                    .reserveChildCount(1)
+                    .build());
+
+            Cart cart1 = cartRepository.save(Cart.builder()
+                    .member(member)
+                    .room(room1)
+                    .reserveUseStartDate(LocalDate.of(2022, 10, 23))
+                    .reserveUseEndDate(LocalDate.of(2022, 10, 26))
+                    .reservePrice(room1.getPrice())
+                    .reserveAdultCount(4)
                     .reserveChildCount(1)
                     .build());
 
@@ -411,6 +439,20 @@ public class InitDb {
             /** 매핑테이블들 **/
 
 
+        }
+
+        public void dbInit3(){
+            /**회원등록**/
+            Member member = memberRepository.save(Member.builder()
+                    .email("bbb1@naver.com")
+                    .pwd("1234")
+                    .memberTel("010-5555-2323")
+                    .nickname("정영진")
+                    .memberOriginalFileName("Originl")
+                    .memberSaveFileName("save")
+                    .joinDate(LocalDate.of(2021,9,27))
+                    .memberCode(Code.MEMBER)
+                    .build());
         }
 
 

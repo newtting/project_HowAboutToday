@@ -69,4 +69,6 @@ public abstract class Reservation {
     private int reserveAdultCount;
     private int reserveChildCount;
 
+
+
 }

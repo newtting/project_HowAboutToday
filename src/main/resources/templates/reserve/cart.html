@@ -56,7 +56,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <th:block th:if="${checkCart}">
+                            <tr th:each="cart:${cartList}">
                                 <th scope="row">
                                     <div class="table-content product-content d-flex align-items-center">
                                         <a href="room-details.html" class="d-block" th:href="@{/room-details}">
@@ -64,43 +65,39 @@
                                         </a>
                                        <div class="product-content">
                                            <a href="room-details.html" class="title" th:href="@{/room-details}"
-                                              th:text="|영진호텔 최고의 방|">
+                                              th:text="${cart.getRoomName()}">
                                            호텔 방 이름</a>
                                            <div class="product-info-wrap">
                                                <div class="product-info line-height-24">
                                                    <span class="product-info-label" th:text="|예약 일시:|">예약 일시:</span>
                                                        <span class="product-info-value">
-                                                       <span class="product-check-in" th:text="|2022년 10월 1일|">체크인 날짜</span>
+                                                       <span class="product-check-in" th:text="${cart.getReserveUseStartDate()}">체크인 날짜</span>
                                                        <span class="product-mark">/</span>
-                                                       <span class="product-check-out" th:text="|202년 10월 3일|">체크아웃 날짜</span>
-                                                       <span class="product-nights" th:text="|(2박)|">몇박인지 </span>
+                                                       <span class="product-check-out" th:text="${cart.getReserveUseEndDate()}">체크아웃 날짜</span>
+                                                       <span class="product-nights" th:text="|(${cart.getBetweenDay()}박)|">몇박인지 </span>
                                                     </span>
                                                </div><!-- end product-info -->
                                                <div class="product-info line-height-24">
                                                    <span class="product-info-label" th:text="|인원:|">인원:</span>
-                                                   <span class="product-info-value" th:text="|성인 3명|">성인 명수</span>
-                                               </div><!-- end product-info -->
-                                               <div class="product-info line-height-24">
-                                                   <span class="product-info-label" th:text="|추가 서비스:|">추가서비스:</span>
-                                                   <span class="product-info-value" th:text="|조식, 공항픽업, 주차|">추가서비스 항목</span>
+                                                   <span class="product-info-value" th:text="|성인 ${cart.getReserveAdultCount()}명| ">성인 명수</span>
+                                                   <span class="product-info-value" th:text="|아동 ${cart.getReserveChildCount()}명|">아동 명수</span>
                                                </div><!-- end product-info -->
                                            </div>
                                        </div>
                                     </div>
                                 </th>
-                                <td th:text="|50,000원|">숙소 가격</td> <!-- 숙소 가격 필드 -->
+                                <td th:text="|${cart.getReservePrice()}원|">숙소 가격</td> <!-- 숙소 가격 필드 -->
                                 <td>
-                                    <div class="product-info">
-                                        <input type="text" class="form-control" value="1"> <!--수량 필드-->
-                                    </div>
+                                    1
                                 </td>
-                                <td th:text="|50000|">가격 * 수량 = 소계</td> <!-- 소계 필드 (수량필드 조작시 자바스크립트 렌더링 필요)-->
+                                <td th:text="|${cart.getReservePrice()}원|">가격 * 수량 = 소계</td> <!-- 소계 필드 (수량필드 조작시 자바스크립트 렌더링 필요)-->
                                 <td>
                                     <div class="remove-wrap">
                                         <a th:href="|javascript:void(0)|" href="javascript:void(0)" class="btn font-size-18"><i class="la la-times"></i></a>
                                     </div>
                                 </td>
                             </tr>
+                            </th:block>
                             </tbody>
                         </table>
                     </div>
@@ -114,9 +111,7 @@
                                 <button type="button" class="theme-btn hwt-btn-gray"th:value="|쿠폰 적용|">쿠폰 적용</button>
                             </form> <!-- 쿠폰영역 끝 -->
                         </div><!-- end contact-form-action -->
-                        <div class="btn-box">
-                            <a th:href="@{/cart/edit}" href="" class="theme-btn hwt-btn-gray">[[|장바구니 수정|]]</a> <!-- /cart/edit로 보내서 수량 수정가능하게 적용해야 할듯 -->
-                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-lg-4 ml-auto">
@@ -128,23 +123,25 @@
                                             <th scope="col" th:text="|가격|">가격</th>
                                         </tr>
                                     </thead>
+                                    <th:block  th:if="${checkCart}" >
                                     <tbody>
                                             <th scope="row">
                                                 <div class="table-content">
-                                                    <h3 class="title" th:text="|소계:|">분류명</h3>
+                                                    <h3 class="title" th:text="|소계:|">totalPrice</h3>
                                                 </div>
                                             </th>
-                                            <td th:text="|50,000원|">50000</td>
+                                            <td th:text="|${totalPrice}원|"></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">
                                                 <div class="table-content">
-                                                    <h3 class="title" th:text="|합계:|">분류 명</h3>
+                                                    <h3 class="title" th:text="|합계:|"></h3>
                                                 </div>
                                             </th>
-                                            <td th:text="|50,000원|"></td>
+                                            <td th:text="|${totalPrice}원|"></td>
                                         </tr>
                                     </tbody>
+                                    </th:block>
                                 </table>
                                 <div class="section-block"></div>
                                 <div class="btn-box text-right pt-4">
