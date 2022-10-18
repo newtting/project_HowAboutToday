@@ -20,11 +20,14 @@ public class BoardDetailDTO {
     private String boardContent; // 게시글 내용
     private LocalDateTime boardCreate; // 게시일
 
+    private String boardCategoryName; // 게시글 카테고리 이름
+
     public BoardDetailDTO(Board board) {
         this.boardNum = board.getBoardNum();
         this.boardTitle = board.getBoardTitle();
         this.boardContent = board.getBoardContent();
         this.boardCreate = board.getBoardCreate();
+        this.boardCategoryName = board.getBoardCategory().getBoardCategoryName();
     }
 
 }

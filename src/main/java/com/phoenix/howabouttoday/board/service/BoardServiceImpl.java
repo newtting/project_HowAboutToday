@@ -46,7 +46,7 @@ public class BoardServiceImpl implements BoardService {
         List<List<BoardDetailDTO>> faqList = new ArrayList<>(); // Board Detail List
 
         // Board Detail List
-        for(BoardCategory boardCategory : categoryList) { // categoryList에서 1개씩 빼서 boardCategory에 넣는다
+        for(BoardCategory boardCategory : categoryList) { // Category 1개 : categoryList에서 1개씩 빼서 boardCategory에 넣는다
 
             // Board Detail 1개 
             // Entity → DTO
