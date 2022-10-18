@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
 @Setter
 public class EventDetailDTO {
 
+    // 게시판 리스트 페이지 : Notice, FAQ, About Us
+
     private Long eventNum; // 이벤트 게시글 번호
     private String eventTitle; // 이벤트 게시글 제목
     private LocalDateTime eventCreate; // 이벤트 게시일

@@ -55,7 +55,7 @@ public class BoardController {
     public String eventDetails(@PathVariable Long eventNum, Model model){
 
         EventDetailDTO eventDetailDTO = boardService.findOne_Event(eventNum);
-        model.addAttribute("dto", eventDetailDTO);
+        model.addAttribute("eventDetailDTO", eventDetailDTO);
 
         return "board/event-details";
     }
