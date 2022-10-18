@@ -41,7 +41,7 @@
                 <div class="form-box">
                     <div class="form-title-wrap hwt-board-title hwt-detail-title">
                         <div class="author-bio">
-                                <h3 class="title hwt-details-bold" th:text="${dto.boardTitle}">게시글 제목</h3>
+                                <h3 class="title hwt-details-bold" th:text="${boardDetailDTO.boardTitle}">게시글 제목</h3>
                         </div>
                     </div><!-- form-title-wrap -->
                 </div>
@@ -49,7 +49,7 @@
                 <!-- Board Content -->
                 <div class="form-box">
                     <div class="form-content contact-form-action hwt-details-content">
-                        <p th:text="${dto.boardContent}">게시글 내용</p>
+                        <p th:text="${boardDetailDTO.boardContent}">게시글 내용</p>
                     </div><!-- end form-content -->
                     <div class="form-bottom-wrap">
                         <div class="hwt-details-bottom">
