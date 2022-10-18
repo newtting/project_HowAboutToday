@@ -7,8 +7,8 @@ import com.phoenix.howabouttoday.board.entity.BoardCategory;
 import com.phoenix.howabouttoday.board.entity.Event;
 import com.phoenix.howabouttoday.board.entity.EventImage;
 import com.phoenix.howabouttoday.board.repository.BoardCategoryRepository;
-import com.phoenix.howabouttoday.board.repository.EventImageRepository;
 import com.phoenix.howabouttoday.board.repository.BoardRepository;
+import com.phoenix.howabouttoday.board.repository.EventImageRepository;
 import com.phoenix.howabouttoday.board.repository.EventRepository;
 import com.phoenix.howabouttoday.board.service.BoardService;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Transactional
 @SpringBootTest
