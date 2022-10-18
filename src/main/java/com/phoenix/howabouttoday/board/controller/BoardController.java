@@ -1,9 +1,6 @@
 package com.phoenix.howabouttoday.board.controller;
 
-import com.phoenix.howabouttoday.board.dto.BoardDetailDTO;
-import com.phoenix.howabouttoday.board.dto.BoardListDTO;
-import com.phoenix.howabouttoday.board.dto.EventDetailDTO;
-import com.phoenix.howabouttoday.board.dto.EventListDTO;
+import com.phoenix.howabouttoday.board.dto.*;
 import com.phoenix.howabouttoday.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
