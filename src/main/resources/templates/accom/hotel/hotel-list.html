@@ -373,15 +373,17 @@
             <div class="col-lg-4">
                 <div class="sidebar mt-0">
                     <div class="sidebar-widget">
-                        <h3 class="title stroke-shape">호텔 검색</h3>
-                        <div class="sidebar-widget-item">
-                            <div class="contact-form-action">
-                                <form action="/test/test" method="get">
+
+                        <form action="hotel-listSearch" method="get">
+                            <h3 class="title stroke-shape">호텔 검색</h3>
+                            <div class="sidebar-widget-item">
+                                <div class="contact-form-action">
+
                                     <div class="input-box">
                                         <label class="label-text">호텔 이름</label>
                                         <div class="form-group">
                                             <span class="la la-map-marker form-icon"></span>
-                                            <input class="form-control" type="text" name="text" placeholder="지역을 입력하세요.">
+                                            <input class="form-control" type="text" name="keyword" placeholder="이름을 입력하세요.">
                                         </div>
                                     </div>
                                     <div class="input-box">
@@ -391,31 +393,33 @@
                                             <input class="date-picker-multiple form-control" type="text" fi name="daterange" readonly>
                                         </div>
                                     </div>
-                                    <button type="submit">테스트</button>
-                                </form>
+
+                                        <!--<button type="submit">서밋</button>-->
+                                </div>
+                            </div><!-- end sidebar-widget-item -->
+                            <div class="sidebar-widget-item">
+                                <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
+                                    <label class="font-size-16">성인</label>
+                                    <div class="qtyBtn d-flex align-items-center">
+                                        <div class="qtyDec"><i class="la la-minus"></i></div>
+                                        <input type="text" name="qtyInput" value="0">
+                                        <div class="qtyInc"><i class="la la-plus"></i></div>
+                                    </div>
+                                </div><!-- end qty-box -->
+                                <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
+                                    <label class="font-size-16">아동</label>
+                                    <div class="qtyBtn d-flex align-items-center">
+                                        <div class="qtyDec"><i class="la la-minus"></i></div>
+                                        <input type="text" name="qtyInput" value="0">
+                                        <div class="qtyInc"><i class="la la-plus"></i></div>
+                                    </div>
+                                </div><!-- end qty-box -->
+                            </div><!-- end sidebar-widget-item -->
+                            <div class="btn-box pt-2">
+                                <button class="theme-btn hwt-btn-gray">검 색</button>
+
                             </div>
-                        </div><!-- end sidebar-widget-item -->
-                        <div class="sidebar-widget-item">
-                            <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
-                                <label class="font-size-16">성인</label>
-                                <div class="qtyBtn d-flex align-items-center">
-                                    <div class="qtyDec"><i class="la la-minus"></i></div>
-                                    <input type="text" name="qtyInput" value="0">
-                                    <div class="qtyInc"><i class="la la-plus"></i></div>
-                                </div>
-                            </div><!-- end qty-box -->
-                            <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
-                                <label class="font-size-16">아동</label>
-                                <div class="qtyBtn d-flex align-items-center">
-                                    <div class="qtyDec"><i class="la la-minus"></i></div>
-                                    <input type="text" name="qtyInput" value="0">
-                                    <div class="qtyInc"><i class="la la-plus"></i></div>
-                                </div>
-                            </div><!-- end qty-box -->
-                        </div><!-- end sidebar-widget-item -->
-                        <div class="btn-box pt-2">
-                            <a th:href="hotel-search-result" class="theme-btn hwt-btn-gray">검 색</a>
-                        </div>
+                        </form>
                     </div><!-- end sidebar-widget -->
                     <div class="sidebar-widget">
                         <h3 class="title stroke-shape">가격순</h3>
@@ -507,7 +511,6 @@
                         <a href="hotel-single" class="d-block" th:href="@{/hotel-single}">
                             <img src="images/img1.jpg" alt="hotel-img">
                         </a>
-                        <span class="badge">Bestseller</span>
                         <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
                             <i class="la la-heart-o"></i>
                         </div>
@@ -522,8 +525,8 @@
                         </div>
                         <div class="card-price d-flex align-items-center justify-content-between">
                             <p>
-                                <span class="price__from">From</span>
-                                <span class="price__num" th:text="${accommodationList.lowPrice}">$88.00</span>
+                                <span class="price__from">최소 가격 :</span>
+                                <span class="price__num" th:text="|${accommodationList.lowPrice}~|">$88.00</span>
                             </p>
                             <a th:href="hotel-single" class="btn-text">방 정보<i class="la la-angle-right"></i></a>
                         </div>
