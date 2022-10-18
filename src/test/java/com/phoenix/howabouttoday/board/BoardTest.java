@@ -2,6 +2,7 @@ package com.phoenix.howabouttoday.board;
 
 import com.phoenix.howabouttoday.board.dto.BoardDetailDTO;
 import com.phoenix.howabouttoday.board.dto.BoardListDTO;
+import com.phoenix.howabouttoday.board.dto.EventDetailDTO;
 import com.phoenix.howabouttoday.board.entity.Board;
 import com.phoenix.howabouttoday.board.entity.BoardCategory;
 import com.phoenix.howabouttoday.board.entity.Event;
@@ -51,8 +52,8 @@ public class BoardTest {
         // Board 게시글 입력
         Board board = Board.builder()
                 .boardCategory(boardCategoryRepository.save(boardCategory))
-                .boardTitle("공지사항 테스트2")
-                .boardContent("공지사항 본문2")
+                .boardTitle("공지사항 테스트1")
+                .boardContent("공지사항 본문1")
                 .boardCreate(LocalDateTime.of(2022,10,12,16,51))
                 .build();
 
@@ -120,7 +121,7 @@ public class BoardTest {
                 .boardParentNum(0)
                 .build();
 
-        // Board 게시글 입력
+        // Board 게시글1 입력
         Board board1 = Board.builder()
                 .boardCategory(boardCategoryRepository.save(boardCategory))
                 .boardTitle("FAQ 테스트1")
@@ -128,6 +129,7 @@ public class BoardTest {
                 .boardCreate(LocalDateTime.of(2022,10,12,16,51))
                 .build();
 
+        // Board 게시글2 입력
         Board board2 = Board.builder()
                 .boardCategory(boardCategoryRepository.save(boardCategory))
                 .boardTitle("FAQ 테스트2")
@@ -170,6 +172,44 @@ public class BoardTest {
         BoardDetailDTO board1 = boardService.findOne_Board(boardNum);
 
         assertThat(board1.getBoardTitle()).isEqualTo("FAQ 테스트3");
+
+    }
+
+    @Test
+    public void findOne_Event_Test() {
+
+        // Event 게시글 입력
+        Event event = Event.builder()
+                .eventTitle("이벤트 테스트1")
+                .eventCreate(LocalDateTime.of(2022,10,1,19,42))
+                .eventStart(LocalDate.of(2022,10,1))
+                .eventEnd(LocalDate.of(2022,10,15))
+                .build();
+
+        // Event image
+        EventImage image1 = EventImage.builder()
+                .event(event)
+                .originFileName("image1.jpg")
+                .saveFileName("image1.jpg")
+                .build();
+        EventImage image2 = EventImage.builder()
+                .event(event)
+                .originFileName("image2.jpg")
+                .saveFileName("image2.jpg")
+                .build();
+
+        event.getEventImageList().add(image1);
+        event.getEventImageList().add(image2);
+
+        eventRepository.save(event);
+
+        Long eventNum = event.getEventNum();
+        EventDetailDTO event1 = boardService.findOne_Event(eventNum);
+
+        assertThat(event1.getEventTitle()).isEqualTo(event.getEventTitle()); // event1과 입력한 event의 Title 비교
+        assertThat(event1.getEventStart()).isEqualTo(event.getEventStart()); // Start date 비교
+        assertThat(event1.getEventEnd()).isEqualTo(event.getEventEnd()); // End date 비교
+        assertThat(event1.getEventImageList().size()).isEqualTo(2); // event1의 ImageList 크기 비교
 
     }
 
