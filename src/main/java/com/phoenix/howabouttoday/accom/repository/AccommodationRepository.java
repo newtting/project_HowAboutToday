@@ -21,8 +21,4 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
 
     List<Accommodation> findByAccomNameContaining(String keyword);
 
-    /*static List<Accommodation> findByAccomNameLike(String name) {
-        return null;
-    }*/
-
 }

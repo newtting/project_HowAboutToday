@@ -373,12 +373,10 @@
             <div class="col-lg-4">
                 <div class="sidebar mt-0">
                     <div class="sidebar-widget">
-
                         <form action="hotel-listSearch" method="get">
                             <h3 class="title stroke-shape">호텔 검색</h3>
                             <div class="sidebar-widget-item">
                                 <div class="contact-form-action">
-
                                     <div class="input-box">
                                         <label class="label-text">호텔 이름</label>
                                         <div class="form-group">
@@ -390,11 +388,9 @@
                                         <label class="label-text">날짜 선택</label>
                                         <div class="form-group">
                                             <span class="la la-calendar form-icon"></span>
-                                            <input class="date-picker-multiple form-control" type="text" fi name="daterange" readonly>
+                                            <input class="date-picker-multiple form-control" type="text" fi name="date" readonly>
                                         </div>
                                     </div>
-
-                                        <!--<button type="submit">서밋</button>-->
                                 </div>
                             </div><!-- end sidebar-widget-item -->
                             <div class="sidebar-widget-item">
@@ -402,7 +398,7 @@
                                     <label class="font-size-16">성인</label>
                                     <div class="qtyBtn d-flex align-items-center">
                                         <div class="qtyDec"><i class="la la-minus"></i></div>
-                                        <input type="text" name="qtyInput" value="0">
+                                        <input type="text" name="adult" value="0">
                                         <div class="qtyInc"><i class="la la-plus"></i></div>
                                     </div>
                                 </div><!-- end qty-box -->
@@ -410,14 +406,13 @@
                                     <label class="font-size-16">아동</label>
                                     <div class="qtyBtn d-flex align-items-center">
                                         <div class="qtyDec"><i class="la la-minus"></i></div>
-                                        <input type="text" name="qtyInput" value="0">
+                                        <input type="text" name="child" value="0">
                                         <div class="qtyInc"><i class="la la-plus"></i></div>
                                     </div>
                                 </div><!-- end qty-box -->
                             </div><!-- end sidebar-widget-item -->
                             <div class="btn-box pt-2">
                                 <button class="theme-btn hwt-btn-gray">검 색</button>
-
                             </div>
                         </form>
                     </div><!-- end sidebar-widget -->
@@ -511,7 +506,7 @@
                         <a href="hotel-single" class="d-block" th:href="@{/hotel-single}">
                             <img src="images/img1.jpg" alt="hotel-img">
                         </a>
-                        <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
+                        <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist">
                             <i class="la la-heart-o"></i>
                         </div>
                     </div>
