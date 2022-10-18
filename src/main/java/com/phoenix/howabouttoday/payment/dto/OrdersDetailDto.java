@@ -7,6 +7,7 @@
 package com.phoenix.howabouttoday.payment.dto;
 
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
+import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -52,20 +53,25 @@ public class OrdersDetailDto {
         this.checkOut = checkOut;
     }
 
-    public OrdersDetailDto(OrdersDetail ordersDetail){
-        this.accomType = ordersDetail.getRoom().getAccommodation().getAccomCategory().getValue();
-        this.accomName = ordersDetail.getRoom().getAccommodation().getAccomName();
-        this.accomRegion = ordersDetail.getRoom().getAccommodation().getRegion().getRegion().getValue();
+    public OrdersDetailDto(Reservation reservation) {
+
+        Period period = Period.between(reservation.getReserveUseStartDate(), reservation.getReserveUseEndDate());
+        DayOfWeek startday = reservation.getReserveUseStartDate().getDayOfWeek();
+        DayOfWeek endday = reservation.getReserveUseEndDate().getDayOfWeek();
+
+        this.accomType = reservation.getRoom().getAccommodation().getAccomCategory().getValue();
+        this.accomName = reservation.getRoom().getAccommodation().getAccomName();
+        this.accomRegion = reservation.getRoom().getAccommodation().getRegion().getRegion().getValue();
         this.orderDate = LocalDate.now().toString();
-        this.usePeriod = ordersDetail.transDto().getUsePeriod();
-        this.startDate = ordersDetail.transDto().getStartDate();
-        this.endDate = ordersDetail.transDto().getEndDate();
-        this.startWeek = ordersDetail.transDto().getStartWeek();
-        this.endWeek = ordersDetail.transDto().getEndWeek();
-        this.price = ordersDetail.transDto().getPrice();
-        this.usedStatus = ordersDetail.transDto().getUsedStatus();
-        this.roomName = ordersDetail.transDto().getRoomName();
-        this.checkIn = ordersDetail.transDto().getCheckIn();
-        this.checkOut = ordersDetail.transDto().getCheckOut();
+        this.usePeriod = String.valueOf(period.getDays());
+        this.startDate = reservation.getReserveUseStartDate().toString();
+        this.endDate = reservation.getReserveUseEndDate().toString();
+        this.startWeek = startday.toString();
+        this.endWeek = endday.toString();
+        this.price = String.valueOf(reservation.getReservePrice());
+        this.usedStatus = reservation.getReserveStatus().toString();
+        this.roomName = reservation.getRoom().getRoomName();
+        this.checkIn = reservation.getRoom().getAccommodation().getCheckIn().toString();
+        this.checkOut = reservation.getRoom().getAccommodation().getCheckOut().toString();
     }
 }

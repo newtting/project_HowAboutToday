@@ -50,7 +50,6 @@ public class PaymentController {
 
         List<OrdersDto> orders = orderService.getOrdersDto(customer.getNum());
 
-
         model.addAttribute("orders", orders);
 
         System.out.println("결제 내역 페이지");

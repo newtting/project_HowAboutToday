@@ -40,7 +40,7 @@ public class OrdersDto {
         this.ordersPrice = orders.getOrdersPrice();
         this.ordersType = orders.getOrdersType();
         this.ordersStatus = orders.getOrdersStatus();
-        this.ordersDetailDtoList = orders.getOrdersDetail().stream().map(OrdersDetailDto::new).collect(Collectors.toList());
+        this.ordersDetailDtoList = orders.getReservation().stream().map(OrdersDetailDto::new).collect(Collectors.toList());
     }
 
 }

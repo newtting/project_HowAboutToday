@@ -156,7 +156,7 @@ public class DataInsertTest {
         }
         Orders orders = optionOrders.get();
 
-        for (Reservation reservation:orders.getOrdersDetail()) {
+        for (Reservation reservation:orders.getReservation()) {
             LocalDate ldStart = reservation.getReserveUseStartDate();
             LocalDate ldEnd = reservation.getReserveUseEndDate();
 

@@ -56,7 +56,7 @@ public class Orders {
 
     @NotNull
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
-    private List<OrdersDetail> ordersDetail = new ArrayList<>(); //이미지 fk를 위한 매핑
+    private List<Reservation> reservation = new ArrayList<>(); //이미지 fk를 위한 매핑
 
     @Builder
     public Orders(Member member, String ordersTel, String ordersName, LocalDate ordersDate, Integer ordersPrice, String ordersType, String ordersStatus) {

@@ -63,7 +63,7 @@ public class OrderService {
                 .map(OrdersDetail::new) // DTO Stream
                 .collect(Collectors.toList()); // DTO List
 
-        order.getOrdersDetail().addAll(lists);
+        order.getReservation().addAll(lists);
 
         ordersRepository.save(order);
         return true;

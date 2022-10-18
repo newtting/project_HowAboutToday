@@ -50,7 +50,7 @@ public class InitDb {
     @PostConstruct
     public void init(){
         initService.dbInit1();
-        //initService.dbInit2();
+        initService.dbInit2();
     }
 
 
@@ -206,43 +206,43 @@ public class InitDb {
                     .reserveChildCount(cart.getReserveChildCount())
                     .build();
 
-            order.getOrdersDetail().add(ordersDetail);
+            order.getReservation().add(ordersDetail);
             member.getOrders().add(order);
 
             ordersDetailRepository.save(ordersDetail);
             ordersRepository.save(order);
 
 
-//            객실예약정보_입력(member.getMemberNum());
-//
-//            /** 주문 등록 **/
-//
-//
-//            /** 댓글 등록 **/
-//            Review review = reviewRepository.save(Review.builder()
-//                    .member(member)
-//                    .reviewCreatedDate(LocalDateTime.now())
-//                    .reviewModifyDate(LocalDateTime.now())
-//                    .reviewRating(3.72)
-//                    .reviewContent("안녕")
-//                    .build());
-//
-//
-//            /** 댓글 이미지 등록 **/
-//            reviewImageRepository.save(ReviewImage.builder()
-//                    .review(review)
-//                    .reviewOriginalFileName("Original")
-//                    .reviewSaveFileName("Svae")
-//                    .build());
-//
-//            /** 리플 **/
-//            replyRepository.save(Reply.builder()
-//                    .member(member)
-//                    .review(review)
-//                    .content("이용해 주셔서 감사합니다")
-//                    .replyCreatedDate(LocalDateTime.now())
-//                    .replyModifyDate(LocalDateTime.now())
-//                    .build());
+            객실예약정보_입력(member.getMemberNum());
+
+            /** 주문 등록 **/
+
+
+            /** 댓글 등록 **/
+            Review review = reviewRepository.save(Review.builder()
+                    .member(member)
+                    .reviewCreatedDate(LocalDateTime.now())
+                    .reviewModifyDate(LocalDateTime.now())
+                    .reviewRating(3.72)
+                    .reviewContent("안녕")
+                    .build());
+
+
+            /** 댓글 이미지 등록 **/
+            reviewImageRepository.save(ReviewImage.builder()
+                    .review(review)
+                    .reviewOriginalFileName("Original")
+                    .reviewSaveFileName("Svae")
+                    .build());
+
+            /** 리플 **/
+            replyRepository.save(Reply.builder()
+                    .member(member)
+                    .review(review)
+                    .content("이용해 주셔서 감사합니다")
+                    .replyCreatedDate(LocalDateTime.now())
+                    .replyModifyDate(LocalDateTime.now())
+                    .build());
 
 
             /** 매핑테이블들 **/
@@ -356,7 +356,7 @@ public class InitDb {
                     .member(member)
                     .build();
 
-            OrdersDetail ordersDetail = ordersDetailRepository.save(OrdersDetail.builder()
+            OrdersDetail ordersDetail = OrdersDetail.builder()
                     .member(cart.getMember())
                     .accommodation(cart.getAccommodation())
                     .room(cart.getRoom())
@@ -367,12 +367,12 @@ public class InitDb {
                     .reservePrice(cart.getReservePrice())
                     .reserveAdultCount(cart.getReserveAdultCount())
                     .reserveChildCount(cart.getReserveChildCount())
-                    .build());
+                    .build();
 
-
-
-            order.getOrdersDetail().add(ordersDetail);
+            order.getReservation().add(ordersDetail);
             member.getOrders().add(order);
+
+            ordersDetailRepository.save(ordersDetail);
             ordersRepository.save(order);
 
 
@@ -424,7 +424,7 @@ public class InitDb {
             }
             Orders orders = optionOrders.get();
 
-            for (Reservation reservation : orders.getOrdersDetail()) {
+            for (Reservation reservation : orders.getReservation()) {
                 LocalDate ldStart = reservation.getReserveUseStartDate();
                 LocalDate ldEnd = reservation.getReserveUseEndDate();
 
@@ -442,6 +442,7 @@ public class InitDb {
 
     }
 }
+
 
 
 
