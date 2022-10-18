@@ -6,6 +6,7 @@
 
 package com.phoenix.howabouttoday.payment.dto;
 
+import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import lombok.Builder;
@@ -35,6 +36,7 @@ public class OrdersDetailDto {
     private String roomName;
     private String checkIn;
     private String checkOut;
+
 
     public OrdersDetailDto(String accomType, String accomName, String accomRegion, String orderDate, String usePeriod, String startDate, String endDate, String startWeek, String endWeek, String price, String usedStatus, String roomName, String checkIn, String checkOut) {
         this.accomType = accomType;

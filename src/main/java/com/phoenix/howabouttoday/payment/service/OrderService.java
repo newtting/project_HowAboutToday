@@ -37,7 +37,7 @@ public class OrderService {
     public List<OrdersDto> getOrdersDto(Long memberNum){
         List<OrdersDto> lists = ordersRepository.findAllByMember_MemberNum(memberNum)
                 .stream()
-                .map(OrdersDto::new) // 적용 후
+                .map(order -> new OrdersDto(order)) // 적용 후
                 .collect(Collectors.toList());
         return lists;
     }
@@ -60,7 +60,7 @@ public class OrderService {
 
         List<OrdersDetail> lists = cartList // Entity List
                 .stream() // Entity Stream
-                .map(OrdersDetail::new) // DTO Stream
+                .map(cart -> new OrdersDetail(cart, order)) // DTO Stream
                 .collect(Collectors.toList()); // DTO List
 
         order.getReservation().addAll(lists);

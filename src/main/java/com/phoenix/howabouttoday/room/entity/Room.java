@@ -36,12 +36,12 @@ public class Room {
 
     private String roomInfo;//객실 정보
 
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
     private List<RoomImage> roomImage = new ArrayList<>();
 
     //양방향 매핑을 위해 추가
-    @Setter
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
     private List<AvailableDate> availableDate = new ArrayList<>();
 
     @Builder

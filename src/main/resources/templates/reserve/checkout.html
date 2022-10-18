@@ -96,6 +96,52 @@
                             </tr>
                             </tbody>
                         </table>
+                        <table class="table">
+                            <thead>
+                            <tr th:border="2">
+                                <th scope="col" th:text="|결제 내역|">Product</th>
+                                <th class="table-content text-right" scope="col" th:text="|금액|">Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <div class="table-content">
+                                        <p class="title">총 예약 금액</p>
+                                    </div>
+                                </th>
+                                <td>
+                                    <div class="table-content text-right">
+                                        <h3 class="title color-text">$264</h3>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <div class="table-content">
+                                        <p class="title" th:text="#{payment_details_discount}">Subtotal</p>
+                                    </div>
+                                </th>
+                                <td>
+                                    <div class="table-content text-right">
+                                        <h3 class="title color-text">-$24</h3>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <div class="table-content">
+                                        <p class="title" th:text="#{payment_details_total_price}">Order Total</p>
+                                    </div>
+                                </th>
+                                <td>
+                                    <div class="table-content text-right">
+                                        <h3 class="title color-text">$240</h3>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
 
 

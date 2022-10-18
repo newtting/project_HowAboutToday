@@ -43,4 +43,11 @@ public class OrdersDto {
         this.ordersDetailDtoList = orders.getReservation().stream().map(OrdersDetailDto::new).collect(Collectors.toList());
     }
 
+    public OrdersDto() {
+    }
+
+    public OrdersDto test1(Orders orders){
+        return null;
+    }
+
 }

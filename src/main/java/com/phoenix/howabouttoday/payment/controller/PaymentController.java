@@ -31,8 +31,12 @@ public class PaymentController {
     private final OrderService orderService;
 
     @GetMapping("user-dashboard-booking-details")
-    public String getUserDashboardSettings() {
+    public String getUserDashboardSettings(Model model) {
 
+        MemberDTO customer = memberServiceCopy.getCustomer(1L);
+        List<OrdersDto> orders = orderService.getOrdersDto(customer.getNum());
+        model.addAttribute("orders", orders);
+        System.out.println("결제 내역 페이지");
 
         return "reserve/payment-received";
     }

@@ -38,6 +38,7 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
@@ -118,6 +119,8 @@ public class InitDb {
                     .longitude(126.5092)
                     .lowPrice(45000)
                     .reserveRange(60)
+                    .checkIn(LocalTime.of(15, 0))
+                    .checkOut(LocalTime.of(11, 0))
                     .build());
 
             /** 숙소시설 등록 **/
@@ -175,6 +178,7 @@ public class InitDb {
             Cart cart = cartRepository.save(Cart.builder()
                     .member(member)
                     .room(room)
+                    .reserveStatus(ReserveStatus.READY)
                     .reserveUseStartDate(LocalDate.of(2022, 10, 18))
                     .reserveUseEndDate(LocalDate.of(2022, 10, 20))
                     .reservePrice(room.getPrice())
@@ -196,7 +200,7 @@ public class InitDb {
             OrdersDetail ordersDetail = OrdersDetail.builder()
                     .member(cart.getMember())
                     .accommodation(cart.getAccommodation())
-                    .room(cart.getRoom())
+                    .room(room)
                     .orders(order)
                     .reserveStatus(ReserveStatus.READY)
                     .reserveUseStartDate(cart.getReserveUseStartDate())
@@ -209,7 +213,7 @@ public class InitDb {
             order.getReservation().add(ordersDetail);
             member.getOrders().add(order);
 
-            ordersDetailRepository.save(ordersDetail);
+            //ordersDetailRepository.save(ordersDetail);
             ordersRepository.save(order);
 
 
@@ -284,6 +288,8 @@ public class InitDb {
                     .latitude(37.5228)
                     .longitude(126.8927)
                     .lowPrice(20000)
+                    .checkIn(LocalTime.of(15, 0))
+                    .checkOut(LocalTime.of(11, 0))
                     .reserveRange(60)
                     .build());
 
@@ -359,7 +365,7 @@ public class InitDb {
             OrdersDetail ordersDetail = OrdersDetail.builder()
                     .member(cart.getMember())
                     .accommodation(cart.getAccommodation())
-                    .room(cart.getRoom())
+                    .room(room)
                     .orders(order)
                     .reserveStatus(ReserveStatus.READY)
                     .reserveUseStartDate(cart.getReserveUseStartDate())
@@ -372,7 +378,7 @@ public class InitDb {
             order.getReservation().add(ordersDetail);
             member.getOrders().add(order);
 
-            ordersDetailRepository.save(ordersDetail);
+            //ordersDetailRepository.save(ordersDetail);
             ordersRepository.save(order);
 
 

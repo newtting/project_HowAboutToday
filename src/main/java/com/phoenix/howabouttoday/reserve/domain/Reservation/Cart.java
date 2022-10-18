@@ -44,9 +44,9 @@ public class Cart extends Reservation {
         String price = numberFormat.format(this.getReservePrice());
 
         return OrdersDetailDto.builder()
-                .accomType(this.getAccommodation().getAccomCategory().getValue())
-                .accomName(this.getAccommodation().getAccomName())
-                .accomRegion(this.getAccommodation().getRegion().getRegion().getValue())
+                .accomType(this.getRoom().getAccommodation().getAccomCategory().getValue())
+                .accomName(this.getRoom().getAccommodation().getAccomName())
+                .accomRegion(this.getRoom().getAccommodation().getRegion().getRegion().getValue())
                 .orderDate(LocalDate.now().toString())
                 .usePeriod(String.valueOf(period.getDays()))
                 .startDate(this.getReserveUseStartDate().toString())
