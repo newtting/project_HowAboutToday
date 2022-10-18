@@ -45,7 +45,6 @@ public abstract class Reservation {
     @JoinColumn(name = "member_num")
     private Member member;
 
-
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "accom_num")
     private Accommodation accommodation;

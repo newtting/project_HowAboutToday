@@ -2,35 +2,31 @@ package com.phoenix.howabouttoday.payment.service;
 
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
-import com.phoenix.howabouttoday.payment.dto.Customer;
-import com.phoenix.howabouttoday.payment.dto.OrderDto;
+import com.phoenix.howabouttoday.payment.dto.OrdersDetailDto;
+import com.phoenix.howabouttoday.payment.dto.OrdersDto;
+import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
-import com.phoenix.howabouttoday.payment.entity.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
-import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
-import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class OrderService {
 
     private final CartRepository cartRepository;
-
-    public List<OrderDto> getCartData(Long memberId){
-
+    private final MemberRepository memberRepository;
+    private final OrdersRepository ordersRepository;
+    public List<OrdersDetailDto> getCartData(Long memberId){
         List<Cart> cartList = cartRepository.findAllByMember_MemberNum(memberId);
-        List<OrderDto> orderDtoList = new ArrayList<>();
+        List<OrdersDetailDto> orderDtoList = new ArrayList<>();
 
         cartList.forEach(cart -> {
             orderDtoList.add(cart.transDto());
@@ -38,15 +34,49 @@ public class OrderService {
         return orderDtoList;
     }
 
-    public Integer getTotalPrice(List<OrderDto> orderDtoList){
-        Integer totalPrice = 0;
-
-        for (OrderDto dto: orderDtoList) {
-            totalPrice += Integer.parseInt(dto.getPrice());
-        }
-
-        return totalPrice;
+    public List<OrdersDto> getOrdersDto(Long memberNum){
+        List<OrdersDto> lists = ordersRepository.findAllByMember_MemberNum(memberNum)
+                .stream()
+                .map(OrdersDto::new) // 적용 후
+                .collect(Collectors.toList());
+        return lists;
     }
 
+    public boolean savePaymentData(Long memberNum, String name, String tel){
 
+        Member member = memberRepository.findById(memberNum).get();
+
+        Orders order = Orders.builder()
+                .member(member)
+                .ordersName(name)
+                .ordersTel(tel)
+                .ordersDate(LocalDate.now())
+                .ordersPrice(getTotalPrice(member.getMemberNum()))
+                .ordersType("가상계좌")
+                .ordersStatus("이용 후")
+                .build();
+
+        List<Cart> cartList = cartRepository.findAllByMember_MemberNum(member.getMemberNum());
+
+        List<OrdersDetail> lists = cartList // Entity List
+                .stream() // Entity Stream
+                .map(OrdersDetail::new) // DTO Stream
+                .collect(Collectors.toList()); // DTO List
+
+        order.getOrdersDetail().addAll(lists);
+
+        ordersRepository.save(order);
+        return true;
+    }
+
+    public Integer getTotalPrice(Long memberId){
+        List<Cart> cartList = cartRepository.findAllByMember_MemberNum(memberId);
+        Integer totalPrice = 0;
+
+        for (Cart cart: cartList) {
+            totalPrice += cart.getReservePrice();
+        }
+        return totalPrice;
+    }
 }
+

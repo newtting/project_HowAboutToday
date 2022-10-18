@@ -15,9 +15,9 @@ import com.phoenix.howabouttoday.member.wishlist.WishList;
 import com.phoenix.howabouttoday.member.wishlist.WishlistRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
-import com.phoenix.howabouttoday.payment.entity.OrdersDetailRepository;
+import com.phoenix.howabouttoday.payment.repository.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
-import com.phoenix.howabouttoday.payment.testDriver.AvailableDate;
+import com.phoenix.howabouttoday.room.dto.AvailableDate;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
@@ -38,6 +38,7 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
@@ -114,6 +115,8 @@ public class InitDb {
                     .accomRating(4.4)
                     .accomWishlistCount(110)
                     .totalReviewNum(1103)
+                    .checkIn(LocalTime.of(15, 00))
+                    .checkOut(LocalTime.of(11, 00))
                     .latitude(36.3196)
                     .longitude(126.5092)
                     .lowPrice(45000)
@@ -171,6 +174,7 @@ public class InitDb {
                     .accommodation(accommodation)
                     .build());
 
+
             /** 장바구니 등록 **/
             Cart cart = cartRepository.save(Cart.builder()
                     .accommodation(accommodation)
@@ -208,7 +212,7 @@ public class InitDb {
                     .reserveChildCount(cart.getReserveChildCount())
                     .build();
 
-            order.getReservation().add(ordersDetail);
+            order.getOrdersDetail().add(ordersDetail);
             member.getOrders().add(order);
 
             ordersDetailRepository.save(ordersDetail);
@@ -371,7 +375,7 @@ public class InitDb {
                     .reserveChildCount(cart.getReserveChildCount())
                     .build();
 
-            order.getReservation().add(ordersDetail);
+            order.getOrdersDetail().add(ordersDetail);
             member.getOrders().add(order);
 
             ordersDetailRepository.save(ordersDetail);
@@ -426,18 +430,18 @@ public class InitDb {
             }
             Orders orders = optionOrders.get();
 
-            for (Reservation reservation : orders.getReservation()) {
-                LocalDate ldStart = reservation.getReserveUseStartDate();
-                LocalDate ldEnd = reservation.getReserveUseEndDate();
+            for (OrdersDetail orderDetail : orders.getOrdersDetail()) {
+                LocalDate ldStart = orderDetail.getReserveUseStartDate();
+                LocalDate ldEnd = orderDetail.getReserveUseEndDate();
 
                 Long days = ChronoUnit.DAYS.between(ldStart, ldEnd);
 
                 for (Long i = 0L; i < days; i++) {
                     AvailableDate newDate = AvailableDate.builder()
                             .date(ldStart.plusDays(i))
-                            .room(reservation.getRoom())
+                            .room(orderDetail.getRoom())
                             .build();
-                    reservation.getRoom().getAvailableDate().add(newDate);
+                    orderDetail.getRoom().getAvailableDate().add(newDate);
                 }
             }
         }

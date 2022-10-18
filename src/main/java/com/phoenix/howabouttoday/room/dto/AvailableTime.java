@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.payment.testDriver;
+package com.phoenix.howabouttoday.room.dto;
 
 import lombok.AccessLevel;
 import lombok.Builder;

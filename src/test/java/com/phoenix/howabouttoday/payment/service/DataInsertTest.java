@@ -13,11 +13,11 @@ import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
-import com.phoenix.howabouttoday.payment.entity.OrdersDetailRepository;
+import com.phoenix.howabouttoday.payment.repository.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.AvailableDateRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.global.AccomCategory;
-import com.phoenix.howabouttoday.payment.testDriver.AvailableDate;
+import com.phoenix.howabouttoday.room.dto.AvailableDate;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
@@ -156,7 +156,7 @@ public class DataInsertTest {
         }
         Orders orders = optionOrders.get();
 
-        for (Reservation reservation:orders.getReservation()) {
+        for (Reservation reservation:orders.getOrdersDetail()) {
             LocalDate ldStart = reservation.getReserveUseStartDate();
             LocalDate ldEnd = reservation.getReserveUseEndDate();
 
@@ -215,12 +215,8 @@ public class DataInsertTest {
                     .reserveChildCount(data.getReserveChildCount())
                     .build();
             ordersDetailRepository.save(ordersDetail);
-            order.getReservation().add(ordersDetail);
+//            order.getReservation().add(ordersDetail);
         }
-
-        member.getOrders().add(order);
-
-
         ordersRepository.save(order);
 
     }

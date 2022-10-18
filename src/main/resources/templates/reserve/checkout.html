@@ -41,10 +41,10 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col" th:text="|숙소|">Product</th>
+                                <th scope="col" align="center" th:text="|숙소|">Product</th>
                                 <th scope="col" th:text="| |">Subtotal</th>
                                 <th scope="col" th:text="| |">Action</th>
-                                <th scope="col" th:text="|예약기간|">Quantity</th>
+                                <th scope="col" th:text="| |">Quantity</th>
                                 <th scope="col" th:text="|숙소가격|">Price</th>
                             </tr>
                             </thead>
@@ -64,16 +64,13 @@
                                                     <span class="product-info-label" th:text="${info.getRoomName()}">인원:</span>
                                                 </div><!-- end product-info -->
                                                 <div class="product-info line-height-24">
-                                                    <span class="product-info-label" th:text="|예약 일시:|">예약 일시:</span>
+                                                    <span class="product-info-label" >예약 일시:</span>
                                                     <span class="product-info-value">
-                                                       <span class="product-check-in" th:text="|2022년 10월 1일|">체크인 날짜</span>
-                                                       <span class="product-mark">/</span>
-                                                       <span class="product-check-out" th:text="|202년 10월 3일|">체크아웃 날짜</span>
-                                                       <span class="product-nights" th:text="|(2박)|">몇박인지 </span>
+                                                       <span class="product-check-in" th:text="#{checkout_period(${info.getStartDate()}, ${info.getEndDate()}, ${info.getStartWeek()}, ${info.getEndWeek()}, ${info.getUsePeriod()})}">체크타임</span>
                                                     </span>
                                                 </div><!-- end product-info -->
                                                 <div class="product-info line-height-24">
-                                                    <span class="product-info-label" th:text="|체크인 15:00 / 체크아웃 13:00|">추가서비스:</span>
+                                                    <span class="product-info-label" th:text="#{checkout_checkTime(${info.getCheckIn()}, ${info.getCheckOut()})}">추가서비스:</span>
                                                 </div><!-- end product-info -->
                                             </div>
                                         </div>
@@ -90,11 +87,12 @@
                                     </div>
                                 </td> <!-- 소계 필드 (수량필드 조작시 자바스크립트 렌더링 필요)-->
                                 <td>
-                                    <div class="product-info">
-                                        <input type="text" class="form-control" value="2" disabled="disabled"> <!--수량 필드-->
+                                    <div>
+
                                     </div>
+
                                 </td>
-                                <td th:text="${info.getPrice()}">숙소 가격</td> <!-- 숙소 가격 필드 -->
+                                <td align="center" th:text="#{checkout_monetary_unit(${info.getPrice()})}">숙소 가격</td> <!-- 숙소 가격 필드 -->
                             </tr>
                             </tbody>
                         </table>
@@ -114,7 +112,7 @@
                                                 <label class="label-text" th:text="#{checkout_name}">Name</label>
                                                 <div class="form-group">
                                                     <span class="la la-user form-icon"></span>
-                                                    <input class="form-control" type="text" name="text" th:placeholder="#{checkout_placeholder_name}" th:value="${customer.getName()}">
+                                                    <input class="form-control" type="text" name="text" th:placeholder="#{checkout_placeholder_name}" th:value="${customer.getNickname()}">
                                                 </div>
                                             </div>
                                         </div><!-- end col-lg-8 -->
@@ -124,7 +122,7 @@
                                                 <label class="label-text" th:text="#{checkout_tel}">Phone Number</label>
                                                 <div class="form-group">
                                                     <span class="la la-phone form-icon"></span>
-                                                    <input class="form-control" type="text" name="text" th:placeholder="#{checkout_placeholder_tel}" th:value="${customer.getTel()}">
+                                                    <input class="form-control" type="text" name="text" th:placeholder="#{checkout_placeholder_tel}" th:value="${customer.getMemberTel()}">
                                                 </div>
                                             </div>
                                         </div><!-- end col-lg-8 -->
@@ -462,12 +460,12 @@
 
 
         const name  = [[${infoList.get(0).getAccomName()}]];
-        const buyer_name = [[${customer.getName()}]];
+        const buyer_name = [[${customer.getNickname()}]];
         const merchant_uid = [[${customer.getNum()}]] + new Date().getTime();
         const amount = Number([[${totalPrice}]]);
         const buyer_email = [[${customer.getEmail()}]];
 
-        const buyer_tel = [[${customer.getTel()}]];
+        const buyer_tel = [[${customer.getMemberTel()}]];
 
         const buyer_addr = [[${infoList.get(0).getAccomRegion()}]];
         const buyer_postcode = '123-456';
