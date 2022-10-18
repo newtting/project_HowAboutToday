@@ -1,5 +1,7 @@
 package com.phoenix.howabouttoday.accom.entity;
 
+import com.phoenix.howabouttoday.accom.RegionType;
+import com.phoenix.howabouttoday.accom.RegionTypeConverter;
 import lombok.*;
 
 import javax.persistence.Id;
@@ -24,6 +26,6 @@ public class Region {
   @Builder
   public Region(RegionType region, Integer regionParentNum){
     this.region = region;
-    thi.regionParentNum = regionParentNum;
+    this.regionParentNum = regionParentNum;
   }
 }

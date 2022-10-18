@@ -1,6 +1,8 @@
 package com.phoenix.howabouttoday.accom.controller;
 
+import com.phoenix.howabouttoday.accom.service.AccomodationService;
 import com.phoenix.howabouttoday.room.dto.RoomDTO;
+import com.phoenix.howabouttoday.room.entity.Room;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AccomController {
 
+    private final AccomodationService accommodationService;
     private final RoomService roomService;
 
     // 메인 화면
@@ -75,9 +78,7 @@ public class AccomController {
     @GetMapping("hotel-single")
     public String getHotelSingle(Model model){
 
-//        model.addAttribute("roomlist", roomService.roomList());
-
-        List<RoomDTO> roomList = roomService.findAll();
+        List<Room> roomList = roomService.getRoomList();
         model.addAttribute("roomlist",roomList);
 
         return "accom/hotel/hotel-single";
@@ -108,7 +109,7 @@ public class AccomController {
     @GetMapping("motel-single")
     public String getMotelSingle(Model model){
 
-        List<RoomDTO> roomList = roomService.findAll();
+        List<Room> roomList = roomService.getRoomList();
         model.addAttribute("roomlist",roomList);
 
         return "accom/hotel/motel-single";
@@ -132,7 +133,7 @@ public class AccomController {
     @GetMapping("pension-PoolVilla-single")
     public String getPensionPoolVillaSingle(Model model){
 
-        List<RoomDTO> roomList = roomService.findAll();
+        List<Room> roomList = roomService.getRoomList();
         model.addAttribute("roomlist",roomList);
 
         return "accom/hotel/pension-PoolVilla-single";
@@ -166,7 +167,7 @@ public class AccomController {
     @GetMapping("guestHouse-Hanok-single")
     public String getGuestHouseResult(Model model){
 
-        List<RoomDTO> roomList = roomService.findAll();
+        List<Room> roomList = roomService.getRoomList();
         model.addAttribute("roomlist",roomList);
 
         return "accom/hotel/guestHouse-Hanok-single";

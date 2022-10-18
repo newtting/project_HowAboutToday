@@ -7,6 +7,7 @@ import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,14 @@ public class Room {
 
     private String roomInfo;//객실 정보
 
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    private String roomOriginFileName;//객실 이미지 기존 파일 이름
+
+    private String roomSaveFileName;//객실 이미지 저장 파일 이름
+
+    private LocalDate stayStartDate;
+    private LocalDate stayEndDate;
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<RoomImage> roomImage = new ArrayList<>();
 
 
@@ -46,14 +54,16 @@ public class Room {
     private List<AvailableDate> availableDate = new ArrayList<>();
 
     @Builder
-    public Room(String roomName,int defaultGuest,int maxGuest, Integer price, String roomInfo) {
+    public Room(String roomName,int defaultGuest,int maxGuest, Integer price, String roomInfo,Accommodation accommodation,LocalDate stayStartDate,LocalDate stayEndDate, String roomOriginFileName, String roomSaveFileName) {
         this.roomName = roomName;
         this.defaultGuest = defaultGuest;
         this.maxGuest = maxGuest;
         this.price = price;
         this.roomInfo = roomInfo;
-        this.roomImage = roomImage;
         this.accommodation = accommodation;
-
+        this.stayStartDate = stayStartDate;
+        this.stayEndDate = stayEndDate;
+        this.roomOriginFileName = roomOriginFileName;
+        this.roomSaveFileName = roomSaveFileName;
     }
 }
