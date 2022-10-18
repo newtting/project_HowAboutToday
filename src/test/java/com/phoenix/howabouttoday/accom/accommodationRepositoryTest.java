@@ -1,14 +1,20 @@
 package com.phoenix.howabouttoday.accom;
 
 
+import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.accom.repository.RegionRepository;
+import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import groovy.util.logging.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
@@ -46,6 +52,9 @@ public class accommodationRepositoryTest {
     @Autowired
     RegionRepository regionRepository;
 
+    @Autowired
+    MemberRepository memberRepository;
+
     @Test
     public void AccommodationList() {
 
@@ -70,13 +79,20 @@ public class accommodationRepositoryTest {
                 .regionParentNum(RegionType.SEOUL)
                 .build());
 
-        Region save2 = regionRepository.save(Region.builder()
-                .region(RegionType.SEOUL)
-                .regionParentNum(RegionType.SEOUL)
-                .build());
-
         assertThat(save.getRegionParentNum()).isEqualTo(RegionType.SEOUL);
-        assertThat(save2.getRegionParentNum()).isEqualTo(RegionType.SEOUL);
+
 
     }
+
+    @Test
+    public void 검색() {
+
+        //PageRequest pageRequest = new PageRequest(0,10, new Sort(Sort.Direction.DESC,"name");
+
+
+        //List<Accommodation> search = AccommodationRepository.findByAccomNameLike("보");
+
+
+    }
+
 }

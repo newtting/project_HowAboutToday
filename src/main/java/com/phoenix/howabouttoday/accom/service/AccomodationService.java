@@ -26,26 +26,22 @@ public class AccomodationService {
     private final AccommodationRepository accommodationRepository;
 //    private final AccommodationImageRepository accommodationImageRepository;
     private final RegionRepository regionRepository;
-    public void saveData(){
-        accommodationRepository.save(createAccom());
-    }
+
     /*리스트 목록 조회*/
     public List<Accommodation> getAccommodationlist() {
         return accommodationRepository.findAll();
     }
 
+    /*public void saveData(){
+        accommodationRepository.save(createAccom());
+    }
     public Accommodation createAccom() {
 
         Optional<Region> byId = regionRepository.findById(1L);//1L은 집에서 임의의 데이터를 입력할때 마다 다르기 때문에 확인 해줘야함.
         Region region = byId.get();
         log.info("Region",region.getRegionNum());
 
-        Region region1 = Region.builder()
-                .region(RegionType.SEOUL)
-                .regionParentNum(RegionType.SEOUL)
-                .build();
-
-        Accommodation accommodation1 = Accommodation.builder()
+        Accommodation accommodation = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
                 .accomCategory(AccomCategory.PENSION)
@@ -60,52 +56,26 @@ public class AccomodationService {
                 .reserveRange(60)
                 .build();
 
-        AccomImage image1 = AccomImage.builder()
+        AccomImage image = AccomImage.builder()
                 .accomOriginFilename("image0.jpg")
                 .accomSaveFilename("image0.jpg")
-                .accommodation(accommodation1)
+                .accommodation(accommodation)
                 .build();
 
-        Region region2 = Region.builder()
-                .region(RegionType.SEOUL)
-                .regionParentNum(RegionType.SEOUL)
-                .build();
-
-        Accommodation accommodation2 = Accommodation.builder()
-                .accomName("서울 아폴로 게스트하우스")
-                .accomTel("050350521568")
-                .accomCategory(AccomCategory.GUESTHOUSE)
-                .region(region)
-                .accomAddress("서울특별시 영등포구 영등포로19길 7-1")
-                .accomRating(4.2)
-                .accomWishlistCount(12)
-                .totalReviewNum(127)
-                .latitude(37.5228)
-                .longitude(126.8927)
-                .lowPrice(20000)
-                .reserveRange(60)
-                .build();
-
-        AccomImage image2 = AccomImage.builder()
-                .accomOriginFilename("image1.jpg")
-                .accomSaveFilename("image1.jpg")
-                .accommodation(accommodation2)
-                .build();
-
-        return accommodation1;
-    }
+        return accommodation;
+    }*/
 
     @Transactional
-    public List<AccommodationDTO> searchResults(String keyword) {
-        List<Accommodation> accomAccommodations = accommodationRepository.findByAccomNameContaining(keyword);
+    public List<Accommodation> searchResults(String keyword) {
+        List<Accommodation> accommodations = accommodationRepository.findByAccomNameContaining(keyword);
         List<AccommodationDTO> accomDtoList = new ArrayList<>();
 
-        if (accomAccommodations.isEmpty()) return accomDtoList;
+        if (accommodations.isEmpty()) return accommodations;
 
-        for (Accommodation accommodation : accomAccommodations) {
+        for (Accommodation accommodation : accommodations) {
             accomDtoList.add(this.convertEntityToDto(accommodation));
         }
-        return accomDtoList;
+        return accommodations;
     }
 
     public AccommodationDTO convertEntityToDto(Accommodation accommodation) {

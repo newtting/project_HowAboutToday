@@ -32,7 +32,7 @@ public class AccomController {
 //    }
 
     // 메인 화면
-    @GetMapping("home")
+    @GetMapping(value = {"/", "home"})
     public String getIndex2(){
         return "home";
     }
@@ -44,7 +44,6 @@ public class AccomController {
 
     @GetMapping("hotel-list")
     public String getHotelList(Model model){
-        accommodationService.saveData();
 
         List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
 
@@ -55,20 +54,16 @@ public class AccomController {
 
     @PostMapping("hotel-list")
     public String postHotelList(){
-
         return "accom/hotel/hotel-list";
     }
 
-    @GetMapping("hotel-search-result")
+    @GetMapping("hotel-listSearch")
     public String getHotelSearchResult(@RequestParam(value = "keyword") String keyword, Model model){
-        List<AccommodationDTO> accommodationDTOList = accommodationService.searchResults(keyword);
-        for (AccommodationDTO accommodationDTO : accommodationDTOList) {
-            System.out.println("accommodationDTO.getAccomName() = " + accommodationDTO.getAccomName());
-        }
 
-        
-        model.addAttribute("accomList", accommodationDTOList);
-        return "accom/hotel/hotel-search-result";
+        List<Accommodation> accommodationList = accommodationService.searchResults(keyword);
+
+        model.addAttribute("accommodationList", accommodationList);
+        return "accom/hotel/hotel-list";
     }
     @PostMapping("hotel-search-result")
     public String postHotelSearchResult(){
