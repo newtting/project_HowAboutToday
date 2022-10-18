@@ -1,15 +1,7 @@
 package com.phoenix.howabouttoday.payment.dto;
 
-import com.phoenix.howabouttoday.accom.RegionType;
-import com.phoenix.howabouttoday.accom.RegionTypeConverter;
-import com.phoenix.howabouttoday.accom.entity.Region;
 import lombok.Builder;
 import lombok.Getter;
-
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Converter;
-import java.time.LocalDateTime;
 
 @Getter
 @Builder

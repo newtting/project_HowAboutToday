@@ -1,12 +1,10 @@
 package com.phoenix.howabouttoday.accom.controller;
 
-import com.phoenix.howabouttoday.accom.RegionType;
-import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
-import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
-import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.service.AccomodationService;
+
 //import com.phoenix.howabouttoday.payment.AccomCategory;
+
 import com.phoenix.howabouttoday.room.service.RoomService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -48,6 +46,7 @@ public class AccomController {
         List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
 
         model.addAttribute("accommodationList",accommodationList);
+
 
         return "accom/hotel/hotel-list";
     }

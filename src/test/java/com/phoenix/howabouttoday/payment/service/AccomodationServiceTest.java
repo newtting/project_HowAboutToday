@@ -1,6 +1,6 @@
 package com.phoenix.howabouttoday.payment.service;
 
-import com.phoenix.howabouttoday.accom.RegionType;
+import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
@@ -8,7 +8,7 @@ import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
-import com.phoenix.howabouttoday.payment.testDriver.AccomCategory;
+import com.phoenix.howabouttoday.global.AccomCategory;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;

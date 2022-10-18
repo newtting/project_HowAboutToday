@@ -1,7 +1,7 @@
 /*
 package com.phoenix.howabouttoday.reserve.domain;
 
-import com.phoenix.howabouttoday.accom.RegionType;
+import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
@@ -74,6 +74,7 @@ class CartRepositoryTest {
         Room saveRoom = roomRepository.save(room1);
 
         Cart cart1 = Cart.builder()
+
   //              .member(saveMember)
                 .accommodation(saveAccom)
                 .room(saveRoom)

@@ -1,7 +1,7 @@
 package com.phoenix.howabouttoday.payment.service;
 
 
-import com.phoenix.howabouttoday.accom.RegionType;
+import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
@@ -16,7 +16,7 @@ import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.AvailableDateRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
-import com.phoenix.howabouttoday.payment.testDriver.AccomCategory;
+import com.phoenix.howabouttoday.global.AccomCategory;
 import com.phoenix.howabouttoday.payment.testDriver.AvailableDate;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
@@ -26,17 +26,12 @@ import com.phoenix.howabouttoday.room.entity.Room;
 import com.phoenix.howabouttoday.room.entity.RoomImage;
 import com.phoenix.howabouttoday.room.repository.RoomImageRepository;
 import com.phoenix.howabouttoday.room.repository.RoomRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jpa.mapping.JpaPersistentEntity;
-import org.springframework.jdbc.datasource.embedded.DataSourceFactory;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -126,12 +121,20 @@ public class DataInsertTest {
 //        Assertions.assertThat(ordersRepository.findAll().size()).isEqualTo(1);
 
         Optional<Member> optionalMember = memberRepository.findById(1L);
+        Member member1 = optionalMember.get();
 
-        cartRepository.deleteAll();
+        List<Cart> cartList = cartRepository.findAllByMember_MemberNum(member1.getMemberNum());
+
+        for (Cart cart : cartList) {
+            System.out.println("cart.getReserveNum() = " + cart.getReserveNum());
+        }
+
+//        cartRepository.deleteAll();
         if (optionalMember.isEmpty()){
             new NullPointerException("회원 정보가 없습니다.");
         }
         Member member = optionalMember.get();
+
 
         System.out.println("잘 되니?");
 
@@ -185,7 +188,6 @@ public class DataInsertTest {
             new NullPointerException("회원 정보가 없습니다.");
         }
         Member member = optionalMember.get();
-
 
         Orders order = Orders.builder()
                 .ordersTel("01045020614")

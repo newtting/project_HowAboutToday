@@ -1,13 +1,13 @@
 package com.phoenix.howabouttoday.payment.service;
 
-import com.phoenix.howabouttoday.accom.RegionType;
+import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
-import com.phoenix.howabouttoday.payment.testDriver.AccomCategory;
+import com.phoenix.howabouttoday.global.AccomCategory;
 import com.phoenix.howabouttoday.payment.testDriver.AvailableDate;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
@@ -60,7 +60,6 @@ public class ObjectGenerator {
         }
         return randTel;
     }
-
 
     public Member createMember(){
         String[] randValue = randomString();

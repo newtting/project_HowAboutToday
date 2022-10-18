@@ -10,8 +10,6 @@ import java.util.List;
 
 public interface BoardService {
 
-    List<BoardListDTO> findByCategory(BoardCategory boardCategory); // 게시판 카테고리
-
     List<BoardListDTO> findAll_Board(String boardCategoryName); // (Notice, About Us) 게시판 리스트
     List<EventListDTO> findAll_Event(); // Event 게시판 리스트
 

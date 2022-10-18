@@ -49,7 +49,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <tr th:each="info : ${infoList}">
                                 <th scope="row">
                                     <div class="table-content product-content d-flex align-items-center">
                                         <!--                                    <a href="room-details.html" class="d-block" th:href="@{/room-details}">-->
@@ -461,15 +461,15 @@
         }))
 
 
-        const name  = [[${info.getAccomName()}]];
+        const name  = [[${infoList.get(0).getAccomName()}]];
         const buyer_name = [[${customer.getName()}]];
         const merchant_uid = [[${customer.getNum()}]] + new Date().getTime();
-        const amount = Number([[${info.getPrice()}]]);
+        const amount = Number([[${totalPrice}]]);
         const buyer_email = [[${customer.getEmail()}]];
 
         const buyer_tel = [[${customer.getTel()}]];
 
-        const buyer_addr = [[${info.getRegion()}]];
+        const buyer_addr = [[${infoList.get(0).getAccomRegion()}]];
         const buyer_postcode = '123-456';
 
     </script>

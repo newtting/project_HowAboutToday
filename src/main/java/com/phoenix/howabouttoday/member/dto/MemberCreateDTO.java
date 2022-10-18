@@ -1,13 +1,33 @@
 package com.phoenix.howabouttoday.member.dto;
 
-public class MemberCreateDTO {
+import com.phoenix.howabouttoday.member.entity.Code;
+import com.phoenix.howabouttoday.member.entity.Member;
+import lombok.Getter;
 
-    private int memberNum;//회원 번호
-    private String email;//이메일
-    private String pw;//비밀번호
-    private String nickName;//닉네임
-    private String memberTel;//전화번호
-    private int memberPoint;//회원 보유 포인트
-    private int memberGrade;//회원 등급: 일반회원, 판매자, 관리자
+import java.io.Serializable;
 
+//세션
+@Getter
+public class MemberCreateDTO implements Serializable { //세션 저장 클래스
+
+
+    private String email;
+
+    private String pwd;
+
+    private String nickname;
+
+    private String memberTel;
+
+    private Code memberCode;
+
+    //Entity -> DTO
+    public MemberCreateDTO(Member member) {
+        this.email = member.getEmail();
+        this.pwd = member.getPwd();
+        this.nickname = member.getNickname();
+        this.memberTel = member.getMemberTel();
+        this.memberCode = member.getMemberCode();
+
+    }
 }

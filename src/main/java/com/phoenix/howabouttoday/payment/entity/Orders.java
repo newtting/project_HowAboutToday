@@ -3,6 +3,7 @@ package com.phoenix.howabouttoday.payment.entity;
 
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;

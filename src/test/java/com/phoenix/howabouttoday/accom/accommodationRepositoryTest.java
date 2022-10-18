@@ -6,9 +6,11 @@ import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.accom.repository.RegionRepository;
+import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import groovy.util.logging.Slf4j;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
