@@ -7,24 +7,24 @@
 <!-- ================================
     START BREADCRUMB AREA
 ================================= -->
-<section class="breadcrumb-area breadcrumb-board">
-    <div class="breadcrumb-wrap">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-content text-center">
-                        <div class="section-heading">
-                            <h2 class="sec__title text-white">NOTICE</h2>
-                        </div>
-                    </div><!-- end breadcrumb-content -->
-                </div><!-- end col-lg-6 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end breadcrumb-wrap -->
-    <div class="bread-svg-box">
-        <svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100 0 50 10 0 0 0 10 100 10"></polygon></svg>
-    </div><!-- end bread-svg -->
-</section><!-- end breadcrumb-area -->
+    <section class="breadcrumb-area breadcrumb-board">
+        <div class="breadcrumb-wrap">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-content text-center">
+                            <div class="section-heading">
+                                <h2 class="sec__title text-white">EVENT</h2>
+                            </div>
+                        </div><!-- end breadcrumb-content -->
+                    </div><!-- end col-lg-6 -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end breadcrumb-wrap -->
+        <div class="bread-svg-box">
+            <svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100 0 50 10 0 0 0 10 100 10"></polygon></svg>
+        </div><!-- end bread-svg -->
+    </section><!-- end breadcrumb-area -->
 <!-- ================================
     END BREADCRUMB AREA
 ================================= -->
@@ -36,29 +36,32 @@
     <div class="container">
         <div class="row hwt-row-board">
             <div class="col-lg-8 col-board">
-
                 <!-- Board Title -->
                 <div class="form-box">
                     <div class="form-title-wrap hwt-board-title hwt-detail-title">
                         <div class="author-bio">
-                            <h3 class="title hwt-details-bold" th:text="${boardDetailDTO.boardTitle}">게시글 제목</h3>
+                                <h3 class="title hwt-details-bold" th:text="${eventDetailDTO.eventTitle}">게시글 제목</h3>
                         </div>
-                        <div class="hwt-detail-date" th:text="${#temporals.format(boardDetailDTO.boardCreate, 'YYYY-MM-dd')}">게시일</div>
+                        <div class="hwt-detail-date" th:text="|${#temporals.format(eventDetailDTO.eventStart, 'yyyy-MM-dd')} -
+                            ${#temporals.format(eventDetailDTO.eventEnd, 'yyyy-MM-dd')}|">게시일</div>
                     </div><!-- form-title-wrap -->
                 </div>
 
                 <!-- Board Content -->
                 <div class="form-box">
                     <div class="form-content contact-form-action hwt-details-content">
-                        <p th:text="${boardDetailDTO.boardContent}">게시글 내용</p>
+                        <th:block th:each="eventImageDTO : ${eventDetailDTO.eventImageList}">
+                            <div>
+                                <img th:src="@{|/images/hwt/event/${eventImageDTO.saveFileName}|}" class="event-images"/>
+                            </div>
+                        </th:block>
                     </div><!-- end form-content -->
                     <div class="form-bottom-wrap">
                         <div class="hwt-details-bottom">
-                            <a href="/notice" class="author__title">목록</a>
+                            <a href="/event" class="author__title">목록</a>
                         </div>
                     </div><!-- form-bottom-wrap -->
                 </div><!-- end form-box -->
-
             </div><!-- end col-lg-8 -->
         </div><!-- end row -->
     </div><!-- end container -->
