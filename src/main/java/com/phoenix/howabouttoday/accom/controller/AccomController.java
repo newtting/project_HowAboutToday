@@ -5,6 +5,7 @@ import com.phoenix.howabouttoday.accom.service.AccomodationService;
 
 //import com.phoenix.howabouttoday.payment.AccomCategory;
 
+import com.phoenix.howabouttoday.room.dto.RoomListDTO;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -73,8 +74,8 @@ public class AccomController {
     @GetMapping("hotel-single")
     public String getHotelSingle(Model model){
 
-//        오류나서 주석처리
-//        model.addAttribute("roomlist", roomService.roomList());
+        List<RoomListDTO> roomList = roomService.findAll_Room();
+        model.addAttribute("lists",roomList);
 
         return "accom/hotel/hotel-single";
 
@@ -103,7 +104,8 @@ public class AccomController {
     @GetMapping("motel-single")
     public String getMotelSingle(Model model){
 
-        model.addAttribute("roomlist", roomService.roomList());
+        List<RoomListDTO> roomList = roomService.findAll_Room();
+        model.addAttribute("lists",roomList);
 
         return "accom/hotel/motel-single";
 
@@ -125,7 +127,8 @@ public class AccomController {
     @GetMapping("pension-PoolVilla-single")
     public String getPensionPoolVillaSingle(Model model){
 
-        model.addAttribute("roomlist", roomService.roomList());
+        List<RoomListDTO> roomList = roomService.findAll_Room();
+        model.addAttribute("lists",roomList);
 
         return "accom/hotel/pension-PoolVilla-single";
 
@@ -157,7 +160,8 @@ public class AccomController {
     @GetMapping("guestHouse-Hanok-single")
     public String getGuestHouseResult(Model model){
 
-        model.addAttribute("roomlist", roomService.roomList());
+        List<RoomListDTO> roomList = roomService.findAll_Room();
+        model.addAttribute("lists",roomList);
 
         return "accom/hotel/guestHouse-Hanok-single";
 
