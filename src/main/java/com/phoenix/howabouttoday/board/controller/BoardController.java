@@ -32,7 +32,7 @@ public class BoardController {
     public String noticeDetails(@PathVariable Long boardNum, Model model){
 
         BoardDetailDTO boardDetailDTO = boardService.findOne_Board(boardNum);
-        model.addAttribute("dto", boardDetailDTO);
+        model.addAttribute("boardDetailDTO", boardDetailDTO);
 
         return "board/notice-details";
     }
@@ -57,12 +57,12 @@ public class BoardController {
         return "board/event-details";
     }
 
-    // FAQ 페이지
+    // FAQ 리스트 페이지
     @GetMapping("faq")
-    public String faq(@PathVariable Long boardNum, Model model){
+    public String faqList(Model model){
 
-        BoardDetailDTO boardDetailDTO = boardService.findOne_Board(boardNum);
-        model.addAttribute("dto", boardDetailDTO);
+        List<List<BoardDetailDTO>> faqList = boardService.findAll_FAQ("FAQ"); // boardCategoryName = "FAQ"인 데이터들을 DTO에 저장
+        model.addAttribute("lists", faqList);
 
         return "board/faq";
     }
@@ -92,7 +92,7 @@ public class BoardController {
     public String aboutUsDetails(@PathVariable Long boardNum, Model model){
 
         BoardDetailDTO boardDetailDTO = boardService.findOne_Board(boardNum);
-        model.addAttribute("dto", boardDetailDTO);
+        model.addAttribute("boardDetailDTO", boardDetailDTO);
 
         return "board/aboutUs-details";
     }
