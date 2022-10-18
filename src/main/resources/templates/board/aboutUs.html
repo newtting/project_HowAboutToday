@@ -45,8 +45,10 @@ START CARD AREA
             <th:block th:each="dto, loop: ${lists}">
                 <div class="col-lg-4 responsive-column col-board">
                     <div class="card-item blog-card">
+                        <input type="hidden" th:value="${dto.boardNum}">
+
                         <div class="card-footer d-flex align-items-center justify-content-between hwt-board-list"
-                             th:href="@{|/aboutUs?boardNum=${dto.boardNum}|}">
+                             th:onclick="|location.href='@{|/aboutUs/${dto.boardNum}|}'|">
                             <div class="author-content d-flex hwt-board-title">
                                 <div class="author-bio">
                                     <a class="author__title" th:text="${dto.boardTitle}">게시글 제목</a>
@@ -55,9 +57,7 @@ START CARD AREA
                             <div class="post-share">
                                 <ul>
                                     <li>
-                                        <a href="about-details">
-                                            <i class="la la-share icon-element hwt-icon"></i>
-                                        </a>
+                                        <a><i class="la la-share icon-element hwt-icon"></i></a>
                                     </li>
                                 </ul>
                             </div>
