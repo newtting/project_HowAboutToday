@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.payment.testDriver;
+package com.phoenix.howabouttoday.room.dto;
 
 import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.*;
