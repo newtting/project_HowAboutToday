@@ -2,8 +2,8 @@ package com.phoenix.howabouttoday.payment.service;
 
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
-import com.phoenix.howabouttoday.payment.dto.OrdersDetailDto;
-import com.phoenix.howabouttoday.payment.dto.OrdersDto;
+import com.phoenix.howabouttoday.payment.dto.OrdersDetailDTO;
+import com.phoenix.howabouttoday.payment.dto.OrdersDTO;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
@@ -19,14 +19,14 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class OrderService {
+public class OrdersService {
 
     private final CartRepository cartRepository;
     private final MemberRepository memberRepository;
     private final OrdersRepository ordersRepository;
-    public List<OrdersDetailDto> getCartData(Long memberId){
+    public List<OrdersDetailDTO> getCartData(Long memberId){
         List<Cart> cartList = cartRepository.findAllByMember_MemberNum(memberId);
-        List<OrdersDetailDto> orderDtoList = new ArrayList<>();
+        List<OrdersDetailDTO> orderDtoList = new ArrayList<>();
 
         cartList.forEach(cart -> {
             orderDtoList.add(cart.transDto());
@@ -34,10 +34,10 @@ public class OrderService {
         return orderDtoList;
     }
 
-    public List<OrdersDto> getOrdersDto(Long memberNum){
-        List<OrdersDto> lists = ordersRepository.findAllByMember_MemberNum(memberNum)
+    public List<OrdersDTO> getOrdersDto(Long memberNum){
+        List<OrdersDTO> lists = ordersRepository.findAllByMember_MemberNum(memberNum)
                 .stream()
-                .map(order -> new OrdersDto(order)) // 적용 후
+                .map(order -> new OrdersDTO(order)) // 적용 후
                 .collect(Collectors.toList());
         return lists;
     }

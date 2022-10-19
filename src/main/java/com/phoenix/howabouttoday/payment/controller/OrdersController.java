@@ -9,8 +9,8 @@ package com.phoenix.howabouttoday.payment.controller;
 
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
-import com.phoenix.howabouttoday.payment.dto.OrdersDetailDto;
-import com.phoenix.howabouttoday.payment.service.OrderService;
+import com.phoenix.howabouttoday.payment.dto.OrdersDetailDTO;
+import com.phoenix.howabouttoday.payment.service.OrdersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +22,9 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-public class OrderController {
+public class OrdersController {
 
-    private final OrderService orderService;
+    private final OrdersService orderService;
     private final MemberService memberService;
 
     @GetMapping("checkout")
@@ -43,7 +43,7 @@ public class OrderController {
         //1. 시큐리티를 사용해서 principal 객체에서 user정보를 가져와서 memberNum을 알 수 있다.
 
         MemberDTO customer = memberService.getCustomer(1L);
-        List<OrdersDetailDto> infoList = orderService.getCartData(customer.getNum());
+        List<OrdersDetailDTO> infoList = orderService.getCartData(customer.getNum());
         Integer totalPrice = orderService.getTotalPrice(customer.getNum());
         System.out.println(totalPrice);
 
