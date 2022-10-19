@@ -310,7 +310,67 @@ public class InitDb {
                     .accomCategory(AccomCategory.GUESTHOUSE)
                     .region(region)
                     .accomAddress("서울특별시 영등포구 영등포로19길 7-1")
+                    .accomRating(5.0)
+                    .accomWishlistCount(12)
+                    .totalReviewNum(127)
+                    .latitude(37.5228)
+                    .longitude(126.8927)
+                    .lowPrice(12000)
+                    .reserveRange(60)
+                    .build());
+
+            Accommodation accommodation2 = accommodationRepository.save(Accommodation.builder()
+                    .accomName("대구 팔공산 스타탄생 드라이브인")
+                    .accomTel("050350521568")
+                    .accomCategory(AccomCategory.GUESTHOUSE)
+                    .region(region)
+                    .accomAddress("대구광역시 동구 파계로138길 36")
                     .accomRating(4.2)
+                    .accomWishlistCount(12)
+                    .totalReviewNum(127)
+                    .latitude(37.5228)
+                    .longitude(126.8927)
+                    .lowPrice(11000)
+                    .reserveRange(60)
+                    .build());
+
+            Accommodation accommodation3 = accommodationRepository.save(Accommodation.builder()
+                    .accomName("인천(석남동) 뱅크")
+                    .accomTel("050350521568")
+                    .accomCategory(AccomCategory.GUESTHOUSE)
+                    .region(region)
+                    .accomAddress("인천광역시 서구 염곡로 250")
+                    .accomRating(3.6)
+                    .accomWishlistCount(12)
+                    .totalReviewNum(127)
+                    .latitude(37.5228)
+                    .longitude(126.8927)
+                    .lowPrice(13000)
+                    .reserveRange(60)
+                    .build());
+
+            Accommodation accommodation4 = accommodationRepository.save(Accommodation.builder()
+                    .accomName("제주 탑아일랜드 호텔")
+                    .accomTel("050350521568")
+                    .accomCategory(AccomCategory.GUESTHOUSE)
+                    .region(region)
+                    .accomAddress("제주특별자치도 제주시 용남1길 47")
+                    .accomRating(2.1)
+                    .accomWishlistCount(12)
+                    .totalReviewNum(127)
+                    .latitude(37.5228)
+                    .longitude(126.8927)
+                    .lowPrice(20000)
+                    .reserveRange(60)
+                    .build());
+
+            Accommodation accommodation5 = accommodationRepository.save(Accommodation.builder()
+                    .accomName("포항 씨엔스톤펜션")
+                    .accomTel("050350521568")
+                    .accomCategory(AccomCategory.GUESTHOUSE)
+                    .region(region)
+                    .accomAddress("경상북도 포항시 북구 청하면 해안로1918번길34-1")
+                    .accomRating(1.2)
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
                     .latitude(37.5228)
@@ -329,11 +389,11 @@ public class InitDb {
                     .build());
 
             /** 숙소이미지 등록 **/
-            accommodationImageRepository.save( AccomImage.builder()
+            /*accommodationImageRepository.save( AccomImage.builder()
                     .accomOriginFilename("image1.jpg")
                     .accomSaveFilename("image1.jpg")
                     .accommodation(accommodation)
-                    .build());
+                    .build());*/
 
             /** 객실등록 **/
             Room room = roomRepository.save(Room.builder()
