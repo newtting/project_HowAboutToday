@@ -2,10 +2,7 @@ package com.phoenix.howabouttoday.member.dto;
 
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
@@ -35,8 +32,8 @@ public class MemberDTO {
                 .memberTel(memberTel)
                 .memberCode(memberCode.MEMBER)
                 .build();
-            return member;
-        }
+        return member;
     }
+}
 
 

@@ -4,6 +4,7 @@ package com.phoenix.howabouttoday.member.controller;
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.type.CalendarType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,21 +20,25 @@ public class MemberController {
     private final MemberService memberService;
 
 
-    @GetMapping("/auth/join")
+    @GetMapping("/member/join")
     public String join() {
-        return "/user/user-join";
+        return "home";
     }
 
-    @PostMapping("/auth/joinProc")
+
+
+    @PostMapping("/member/join")
     public String joinProc(MemberDTO memberDTO) {
+        System.out.println("memberDto = " + memberDTO.toString());
         memberService.join(memberDTO);
 
-        return "redirect:/auth/login";
+
+        return "redirect:/home";
     }
 
-    @GetMapping("/auth/login")
+    @GetMapping("/member/login")
     public String login() {
-        return "/user/user-login";
+        return "/member/login";
     }
 
 
