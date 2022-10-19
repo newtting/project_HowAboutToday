@@ -5,7 +5,6 @@ import com.phoenix.howabouttoday.accom.service.AccomodationService;
 
 //import com.phoenix.howabouttoday.payment.AccomCategory;
 
-import com.phoenix.howabouttoday.room.dto.RoomListDTO;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,30 +40,30 @@ public class AccomController {
     }
 
 
-//    @GetMapping("hotel-list")
-//    public String getHotelList(Model model){
-//
-//        List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
-//
-//        model.addAttribute("accommodationList",accommodationList);
-//
-//
-//        return "accom/hotel/hotel-list";
-//    }
+    @GetMapping("hotel-list")
+    public String getHotelList(Model model){
+
+        List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
+
+        model.addAttribute("accommodationList",accommodationList);
+
+
+        return "accom/hotel/hotel-list";
+    }
 
     @PostMapping("hotel-list")
     public String postHotelList(){
         return "accom/hotel/hotel-list";
     }
 
-//    @GetMapping("hotel-listSearch")
-//    public String getHotelSearchResult(@RequestParam(value = "keyword") String keyword, Model model){
-//
-//        List<Accommodation> accommodationList = accommodationService.searchResults(keyword);
-//
-//        model.addAttribute("accommodationList", accommodationList);
-//        return "accom/hotel/hotel-list";
-//    }
+    @GetMapping("hotel-listSearch")
+    public String getHotelSearchResult(@RequestParam(value = "keyword") String keyword, Model model){
+
+        List<Accommodation> accommodationList = accommodationService.searchResults(keyword);
+
+        model.addAttribute("accommodationList", accommodationList);
+        return "accom/hotel/hotel-list";
+    }
     @PostMapping("hotel-search-result")
     public String postHotelSearchResult(){
         return "accom/hotel/hotel-search-result";
@@ -74,8 +73,8 @@ public class AccomController {
     @GetMapping("hotel-single")
     public String getHotelSingle(Model model){
 
-        List<RoomListDTO> roomList = roomService.findAll_Room();
-        model.addAttribute("lists",roomList);
+//        오류나서 주석처리
+//        model.addAttribute("roomlist", roomService.roomList());
 
         return "accom/hotel/hotel-single";
 
@@ -104,8 +103,7 @@ public class AccomController {
     @GetMapping("motel-single")
     public String getMotelSingle(Model model){
 
-        List<RoomListDTO> roomList = roomService.findAll_Room();
-        model.addAttribute("lists",roomList);
+        model.addAttribute("roomlist", roomService.roomList());
 
         return "accom/hotel/motel-single";
 
@@ -127,8 +125,7 @@ public class AccomController {
     @GetMapping("pension-PoolVilla-single")
     public String getPensionPoolVillaSingle(Model model){
 
-        List<RoomListDTO> roomList = roomService.findAll_Room();
-        model.addAttribute("lists",roomList);
+        model.addAttribute("roomlist", roomService.roomList());
 
         return "accom/hotel/pension-PoolVilla-single";
 
@@ -160,8 +157,7 @@ public class AccomController {
     @GetMapping("guestHouse-Hanok-single")
     public String getGuestHouseResult(Model model){
 
-        List<RoomListDTO> roomList = roomService.findAll_Room();
-        model.addAttribute("lists",roomList);
+        model.addAttribute("roomlist", roomService.roomList());
 
         return "accom/hotel/guestHouse-Hanok-single";
 

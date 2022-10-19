@@ -1,6 +1,6 @@
 package com.phoenix.howabouttoday.board.entity;
 
-import com.phoenix.howabouttoday.payment.controller.member.entity.Member;
+import com.phoenix.howabouttoday.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

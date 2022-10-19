@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.payment.controller.member.wishlist;
+package com.phoenix.howabouttoday.member.wishlist;
 
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import lombok.AccessLevel;

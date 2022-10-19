@@ -172,10 +172,10 @@ public class data {
                 .accommodation(accom200)
                 .build();
 
-//        room.getRoomImage().addAll(createRoomImage(56, room));
-//        room1.getRoomImage().addAll(createRoomImage(48, room1));
-//        room2.getRoomImage().addAll(createRoomImage(14, room2));
-//        room3.getRoomImage().addAll(createRoomImage(89, room3));
+        room.getRoomImage().addAll(createRoomImage(56, room));
+        room1.getRoomImage().addAll(createRoomImage(48, room1));
+        room2.getRoomImage().addAll(createRoomImage(14, room2));
+        room3.getRoomImage().addAll(createRoomImage(89, room3));
 
         accom100.getRoom().add(room);
         accom100.getRoom().add(room1);

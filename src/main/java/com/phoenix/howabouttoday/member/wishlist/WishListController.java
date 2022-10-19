@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.payment.controller.member.wishlist;
+package com.phoenix.howabouttoday.member.wishlist;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

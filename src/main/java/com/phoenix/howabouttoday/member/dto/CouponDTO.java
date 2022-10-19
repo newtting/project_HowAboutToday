@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.payment.controller.member.dto;
+package com.phoenix.howabouttoday.member.dto;
 
 public class CouponDTO {
 
