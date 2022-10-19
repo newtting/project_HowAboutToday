@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -20,10 +21,17 @@ public class MemberService {
     private final BCryptPasswordEncoder encoder;
 
     @Transactional
-    public Long join(MemberDTO memberDTO) {
-        memberDTO.setPwd(encoder.encode(memberDTO.getPwd()));
+    public Long join(MemberDTO DTO) {
+        DTO.setPwd(encoder.encode(DTO.getPwd()));
 
-        return memberRepository.save(memberDTO.toEntity()).getMemberNum();
+        return memberRepository.save(DTO.toEntity()).getMemberNum();
+    }
+
+    private void validateDuplicateMember(Member member) {
+        Optional<Member> findMember = memberRepository.findByEmail(member.getEmail());
+        if (findMember != null) {
+            throw new IllegalStateException("이미 가입된 회원입니다.");
+        }
     }
 
     public Customer getCustomer(Long memberNum) throws UsernameNotFoundException {
