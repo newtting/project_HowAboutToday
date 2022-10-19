@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday;
 
+
 import com.phoenix.howabouttoday.accom.entity.*;
 import com.phoenix.howabouttoday.accom.repository.*;
 import com.phoenix.howabouttoday.board.entity.Reply;
@@ -15,8 +16,11 @@ import com.phoenix.howabouttoday.member.wishlist.WishList;
 import com.phoenix.howabouttoday.member.wishlist.WishlistRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
+
 import com.phoenix.howabouttoday.payment.repository.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
+
+
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
@@ -148,6 +152,15 @@ public class InitDb {
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
+            Room room1 = roomRepository.save(Room.builder()
+                    .accommodation(accommodation)
+                    .roomName("너울펜션 디럭스룸")
+                    .defaultGuest(2)
+                    .maxGuest(10)
+                    .price(70000)
+                    .roomInfo("임시 객실정보 입니다")
+                    .build());
+
 
 
             /** 객실 이미지 등록 **/
@@ -155,6 +168,12 @@ public class InitDb {
                     .roomOriginFileName("image0.jpg")
                     .roomSaveFileName("image0.jpg")
                     .room(room)
+                    .build());
+
+            roomImageRepository.save(RoomImage.builder()
+                    .roomOriginFileName("image0.jpg")
+                    .roomSaveFileName("image0.jpg")
+                    .room(room1)
                     .build());
 
 
@@ -178,11 +197,20 @@ public class InitDb {
             Cart cart = cartRepository.save(Cart.builder()
                     .member(member)
                     .room(room)
-                    .reserveStatus(ReserveStatus.READY)
                     .reserveUseStartDate(LocalDate.of(2022, 10, 18))
                     .reserveUseEndDate(LocalDate.of(2022, 10, 20))
                     .reservePrice(room.getPrice())
                     .reserveAdultCount(2)
+                    .reserveChildCount(1)
+                    .build());
+
+            Cart cart1 = cartRepository.save(Cart.builder()
+                    .member(member)
+                    .room(room1)
+                    .reserveUseStartDate(LocalDate.of(2022, 10, 23))
+                    .reserveUseEndDate(LocalDate.of(2022, 10, 26))
+                    .reservePrice(room1.getPrice())
+                    .reserveAdultCount(4)
                     .reserveChildCount(1)
                     .build());
 
@@ -200,7 +228,7 @@ public class InitDb {
             OrdersDetail ordersDetail = OrdersDetail.builder()
                     .member(cart.getMember())
                     .accommodation(cart.getAccommodation())
-                    .room(room)
+                    .room(cart.getRoom())
                     .orders(order)
                     .reserveStatus(ReserveStatus.READY)
                     .reserveUseStartDate(cart.getReserveUseStartDate())
@@ -365,7 +393,7 @@ public class InitDb {
             OrdersDetail ordersDetail = OrdersDetail.builder()
                     .member(cart.getMember())
                     .accommodation(cart.getAccommodation())
-                    .room(room)
+                    .room(cart.getRoom())
                     .orders(order)
                     .reserveStatus(ReserveStatus.READY)
                     .reserveUseStartDate(cart.getReserveUseStartDate())
@@ -419,6 +447,20 @@ public class InitDb {
 
         }
 
+        public void dbInit3(){
+            /**회원등록**/
+            Member member = memberRepository.save(Member.builder()
+                    .email("bbb1@naver.com")
+                    .pwd("1234")
+                    .memberTel("010-5555-2323")
+                    .nickname("정영진")
+                    .memberOriginalFileName("Originl")
+                    .memberSaveFileName("save")
+                    .joinDate(LocalDate.of(2021,9,27))
+                    .memberCode(Code.MEMBER)
+                    .build());
+        }
+
 
 
         public void 객실예약정보_입력(Long memberId) {
@@ -448,3 +490,10 @@ public class InitDb {
 
     }
 }
+
+
+
+
+
+
+

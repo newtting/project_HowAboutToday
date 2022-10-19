@@ -24,4 +24,7 @@ public interface CartRepository extends JpaRepository<Cart,Long> {
     List<Cart> findAllByMember_MemberNum(Long memberNum);
 
 
+
+
+
 }

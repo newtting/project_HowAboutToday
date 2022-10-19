@@ -26,22 +26,30 @@ public class CartServiceImpl implements CartService{
     private final MemberRepository memberRepository;
     private final RoomRepository roomRepository;
 
-
+    /** memberNum에 해당하는 장바구니 존재 여부 확인 **/
     @Override
     public boolean checkHaveCart(Long memberNum) {
-        return false;
+        return cartRepository.existsByMember_MemberNum(memberNum);
     }
 
+
+    /** memberNum의 장바구니 전부 삭제 **/
     @Override
     public void deleteAll(Long memberNum) {
-
+        cartRepository.deleteAllByMember_MemberNum(memberNum);
     }
 
+    /** 장바구니에서 특정 객실 삭제 **/
     @Override
     public void deleteByNum(Long cartNum) {
+        Cart cart = cartRepository.findById(cartNum).orElseThrow(() ->
+                new IllegalArgumentException("해당 장바구니 정보가 존재하지 않습니다"));
+
+        cartRepository.delete(cart);
 
     }
 
+    /** memberNum을 통해 cartList 받아옴 **/
     @Override
     public List<CartDto.ResponseDto> getListMemberNum(Long memberNum) {
         Member member = memberRepository.findById(memberNum).orElseThrow(() ->
@@ -51,14 +59,15 @@ public class CartServiceImpl implements CartService{
 
         return cartList.stream().map(CartDto.ResponseDto::new).collect(Collectors.toList());
 
-
     }
 
+    /** memberNum, roomNum에 해당하는 cart가 존재하는지 확인 - **/
     @Override
     public boolean checkCart(Long memberNum, Long roomNum) {
-        return false;
+        return cartRepository.existsByMember_MemberNumAndRoom_RoomNum(memberNum,roomNum);
     }
 
+    /** 장바구니 저장 **/
     @Override
     public Cart save(Long memberNum, Long roomNum , ReserveForm reserveForm) {
         Member member = memberRepository.findById(memberNum).orElseThrow(() ->
