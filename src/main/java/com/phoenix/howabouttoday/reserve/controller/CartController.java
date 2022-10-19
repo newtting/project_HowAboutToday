@@ -79,18 +79,18 @@ public class CartController {
 
 
 
-//    @GetMapping("/test")
-//    @ResponseBody
-//    public String cartList(@RequestParam Long[] cartNum){
-//
-//        for (Long aLong : cartNum) {
-//            System.out.println("aLong = " + aLong);
-//        }
-//
-//
-//
-//        return "hi";
-//    }
+    @GetMapping("/test")
+    @ResponseBody
+    public String cartList(@RequestParam Long[] cartNum){
+
+        for (Long aLong : cartNum) {
+            System.out.println("aLong = " + aLong);
+        }
+
+
+
+        return "hi";
+    }
 
 
 
