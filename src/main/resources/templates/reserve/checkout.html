@@ -39,13 +39,14 @@
                 <div class="col-lg-8">
                     <div class="table-form table-responsive mb-3">
                         <table class="table">
-                            <thead>
+                            <thead class="thead-dark">
                             <tr>
                                 <th scope="col" align="center" th:text="|숙소|">Product</th>
                                 <th scope="col" th:text="| |">Subtotal</th>
                                 <th scope="col" th:text="| |">Action</th>
                                 <th scope="col" th:text="| |">Quantity</th>
-                                <th scope="col" th:text="|숙소가격|">Price</th>
+                                <th class="table-content text-right" scope="col" th:text="|숙소가격|">Price</th>
+
                             </tr>
                             </thead>
                             <tbody>
@@ -92,13 +93,13 @@
                                     </div>
 
                                 </td>
-                                <td align="center" th:text="#{checkout_monetary_unit(${info.getPrice()})}">숙소 가격</td> <!-- 숙소 가격 필드 -->
+                                <td class="table-content text-right" th:text="#{checkout_monetary_unit(${info.getPrice()})}">숙소 가격</td> <!-- 숙소 가격 필드 -->
                             </tr>
                             </tbody>
                         </table>
                         <table class="table">
-                            <thead>
-                            <tr th:border="2">
+                            <thead class="thead-dark">
+                            <tr>
                                 <th scope="col" th:text="|결제 내역|">Product</th>
                                 <th class="table-content text-right" scope="col" th:text="|금액|">Price</th>
                             </tr>
@@ -112,22 +113,23 @@
                                 </th>
                                 <td>
                                     <div class="table-content text-right">
-                                        <h3 class="title color-text">$264</h3>
+                                        <h3 class="title color-text text-right" th:text="#{checkout_monetary_unit(${totalPrice})}">$264</h3>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="table-content">
-                                        <p class="title" th:text="#{payment_details_discount}">Subtotal</p>
-                                    </div>
-                                </th>
-                                <td>
-                                    <div class="table-content text-right">
-                                        <h3 class="title color-text">-$24</h3>
-                                    </div>
-                                </td>
-                            </tr>
+<!--                            쿠폰 ui 부분. 일단 뺐음-->
+<!--                            <tr>-->
+<!--                                <th scope="row">-->
+<!--                                    <div class="table-content">-->
+<!--                                        <p class="title" th:text="#{payment_details_discount}">Subtotal</p>-->
+<!--                                    </div>-->
+<!--                                </th>-->
+<!--                                <td>-->
+<!--                                    <div class="table-content text-right">-->
+<!--                                        <h3 class="title color-text">-$24</h3>-->
+<!--                                    </div>-->
+<!--                                </td>-->
+<!--                            </tr>-->
                             <tr>
                                 <th scope="row">
                                     <div class="table-content">
@@ -136,7 +138,7 @@
                                 </th>
                                 <td>
                                     <div class="table-content text-right">
-                                        <h3 class="title color-text">$240</h3>
+                                        <h3 class="title color-text" th:text="#{checkout_monetary_unit(${totalPrice})}">$240</h3>
                                     </div>
                                 </td>
                             </tr>
