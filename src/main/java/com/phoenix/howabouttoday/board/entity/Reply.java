@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.board.entity;
 
+
 import com.phoenix.howabouttoday.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
