@@ -56,6 +56,8 @@ public class SecurityConfig {
 
 		//인증되지 않은 모든 요청을
 		http
+				.csrf().ignoringAntMatchers("/rest/**") /* REST API 사용 시 csrf 예외 처리 */
+				.and()
 				.authorizeRequests()
 					.antMatchers("/admin/**").hasRole("ADMIN")
 //					.antMatchers("/user-dashboard-profile").hasRole("MEMBER")

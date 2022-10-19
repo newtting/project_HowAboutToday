@@ -10,9 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.Period;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -74,6 +78,19 @@ public class CartController {
     }
 
 
+
+//    @GetMapping("/test")
+//    @ResponseBody
+//    public String cartList(@RequestParam Long[] cartNum){
+//
+//        for (Long aLong : cartNum) {
+//            System.out.println("aLong = " + aLong);
+//        }
+//
+//
+//
+//        return "hi";
+//    }
 
 
 
