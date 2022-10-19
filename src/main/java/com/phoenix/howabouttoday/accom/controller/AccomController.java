@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.accom.controller;
 
+import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.service.AccomodationService;
 
@@ -44,9 +45,10 @@ public class AccomController {
     public String getHotelList(Model model){
 
         List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
+        List<AccomImage> accomImageList = accommodationService.getAccomImage();
 
         model.addAttribute("accommodationList",accommodationList);
-
+        model.addAttribute("accomImageList",accomImageList);
 
         return "accom/hotel/hotel-list";
     }
@@ -69,13 +71,11 @@ public class AccomController {
         return "accom/hotel/hotel-search-result";
     }
 
-
+    //숙소 상세 
     @GetMapping("hotel-single")
     public String getHotelSingle(Model model){
 
-//        오류나서 주석처리
 //        model.addAttribute("roomlist", roomService.roomList());
-
         return "accom/hotel/hotel-single";
 
     }

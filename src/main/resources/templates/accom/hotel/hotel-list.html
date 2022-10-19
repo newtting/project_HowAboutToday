@@ -502,9 +502,9 @@
             <!-- 리스트 목록 시작 -->
             <div class="col-lg-8">
                 <div class="card-item card-item-list" th:each="accommodationList : ${accommodationList}">
-                    <div class="card-img">
+                    <div class="card-img" th:each="accomImageList : ${accomImageList}">
                         <a href="hotel-single" class="d-block" th:href="@{/hotel-single}">
-                            <img src="images/img1.jpg" alt="hotel-img">
+                            <img th:src="|/data/images/${accomImageList.accomOriginFilename}" alt="hotel-img">
                         </a>
                         <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist">
                             <i class="la la-heart-o"></i>
@@ -523,7 +523,7 @@
                                 <span class="price__from">최소 가격 :</span>
                                 <span class="price__num" th:text="|${accommodationList.lowPrice}~|">$88.00</span>
                             </p>
-                            <a th:href="hotel-single" class="btn-text">방 정보<i class="la la-angle-right"></i></a>
+                            <a th:href="hotel-single" class="btn-text" >방 정보<i class="la la-angle-right"></i></a>
                         </div>
                     </div>
                 </div><!-- end card-item -->
