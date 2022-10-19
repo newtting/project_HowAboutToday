@@ -5,7 +5,6 @@ import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.room.entity.Room;
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -46,6 +45,7 @@ public abstract class Reservation {
     @JoinColumn(name = "member_num")
     private Member member;
 
+
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "accom_num")
     private Accommodation accommodation;
@@ -54,7 +54,7 @@ public abstract class Reservation {
     @JoinColumn(name = "room_num")
     private Room room;
 
-    @NotNull
+
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "ordersNum", referencedColumnName = "ordersNum")
     protected Orders orders;
@@ -69,17 +69,4 @@ public abstract class Reservation {
     private int reserveAdultCount;
     private int reserveChildCount;
 
-
-    public Reservation(Member member, Accommodation accommodation, Room room, Orders orders, ReserveStatus reserveStatus, LocalDate reserveUseStartDate, LocalDate reserveUseEndDate, int reservePrice, int reserveAdultCount, int reserveChildCount) {
-        this.member = member;
-        this.accommodation = accommodation;
-        this.room = room;
-        this.orders = orders;
-        this.reserveStatus = reserveStatus;
-        this.reserveUseStartDate = reserveUseStartDate;
-        this.reserveUseEndDate = reserveUseEndDate;
-        this.reservePrice = reservePrice;
-        this.reserveAdultCount = reserveAdultCount;
-        this.reserveChildCount = reserveChildCount;
-    }
 }

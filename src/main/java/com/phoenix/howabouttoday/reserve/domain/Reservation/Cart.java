@@ -1,18 +1,13 @@
 package com.phoenix.howabouttoday.reserve.domain.Reservation;
 
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailDTO;
+
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import java.text.NumberFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.TextStyle;
-import java.util.Locale;
 
 
 @DiscriminatorValue("cart")

@@ -4,6 +4,7 @@ import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
+import com.phoenix.howabouttoday.accom.repository.AccommodationImageRepository;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.accom.repository.RegionRepository;
 import lombok.Builder;
@@ -25,13 +26,14 @@ import java.util.Optional;
 public class AccomodationService {
     private final AccommodationRepository accommodationRepository;
 //    private final AccommodationImageRepository accommodationImageRepository;
-    private final RegionRepository regionRepository;
+    private final AccommodationImageRepository accommodationImageRepository;
 
     /*리스트 목록 조회*/
     public List<Accommodation> getAccommodationlist() {
         return accommodationRepository.findAll();
     }
 
+    public List<AccomImage> getAccomImage() {return accommodationImageRepository.findAll(); }
     /*public void saveData(){
         accommodationRepository.save(createAccom());
     }
@@ -94,6 +96,8 @@ public class AccomodationService {
                 .build();
 
     }
+
+
 
 }
 
