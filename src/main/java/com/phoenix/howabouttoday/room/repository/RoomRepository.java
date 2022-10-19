@@ -3,15 +3,11 @@ package com.phoenix.howabouttoday.room.repository;
 import com.phoenix.howabouttoday.room.entity.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import java.util.Optional;
 
 public interface RoomRepository extends JpaRepository<Room, Long> {
 
+    // Room Detail
     @Override
-    <S extends Room> S save(S entity);
-
-    @Override
-    List<Room> findAll();
-
-    
+    Optional<Room> findById(Long roomNum);
 }
