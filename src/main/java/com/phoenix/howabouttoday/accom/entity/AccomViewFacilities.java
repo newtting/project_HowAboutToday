@@ -21,9 +21,7 @@ public class AccomViewFacilities {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "facilities_num")
-
     private Facilities facilities;
-
 
 }
 

@@ -1,9 +1,12 @@
 package com.phoenix.howabouttoday.payment.testDriver;
 
+import com.phoenix.howabouttoday.global.AccomCategory;
+import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
-import com.phoenix.howabouttoday.payment.controller.member.entity.Code;
-import com.phoenix.howabouttoday.payment.controller.member.entity.Member;
-import com.phoenix.howabouttoday.payment.AccomCategory;
+import com.phoenix.howabouttoday.accom.entity.Region;
+import com.phoenix.howabouttoday.member.entity.Code;
+import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
 import com.phoenix.howabouttoday.room.entity.Room;
@@ -12,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootTest
@@ -21,8 +24,6 @@ class CartServiceTest {
     @Autowired
     private CartRepository cartRepository;
 
-
-
     @Test
     //디비에 Cart정보를 저장
     public void saveData(){
@@ -30,11 +31,15 @@ class CartServiceTest {
         List<Cart> cartData =  cartRepository.findAll();
 
         Assertions.assertThat(cartData.size()).isEqualTo(1);
-
-
     }
     @Test
     public Cart createCartData(){
+
+        Region region  = Region.builder()
+                .region(RegionType.SEOUL)
+                .regionParentNum(RegionType.SEOUL)
+                .build();
+
 
         Member member = Member.builder()
                 .email("ingn@nate.com")
@@ -42,8 +47,8 @@ class CartServiceTest {
                 .nickname("noscarna")
                 .memberTel("01045020614")
                 .memberCode(Code.MEMBER)
-                .joinDate(LocalDateTime.now())
-                .withdrawdate(LocalDateTime.now())
+                .joinDate(LocalDate.now())
+                .withdrawdate(LocalDate.now())
                 .memberOriginalFileName("Origin")
                 .memberSaveFileName("save")
                 .build();
@@ -53,7 +58,7 @@ class CartServiceTest {
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
                 .accomCategory(AccomCategory.PENSION)
-               // .region(RegionType.CHUNGNAM_SEJONG)
+                .region(region)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)
@@ -78,8 +83,8 @@ class CartServiceTest {
                 .accommodation(acco)
                 .room(room)
                 .reserveStatus(ReserveStatus.READY)
-//                .reserveUseStartDate(LocalDate.now())
-//                .reserveUseEndDate(LocalDate.now())
+                .reserveUseStartDate(LocalDate.now())
+                .reserveUseEndDate(LocalDate.now())
                 .reservePrice(room.getPrice())
                 .reserveAdultCount(room.getDefaultGuest())
                 .build();
