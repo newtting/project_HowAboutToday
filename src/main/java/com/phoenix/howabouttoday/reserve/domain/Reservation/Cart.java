@@ -1,6 +1,6 @@
 package com.phoenix.howabouttoday.reserve.domain.Reservation;
 
-import com.phoenix.howabouttoday.payment.dto.OrdersDetailDto;
+import com.phoenix.howabouttoday.payment.dto.OrdersDetailDTO;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -27,7 +27,7 @@ public class Cart extends Reservation {
     //     super(reserveNum, member, accommodation, room, orders, reserveStatus, reserveUseStartDate, reserveUseEndDate, reservePrice, reserveAdultCount, reserveChildCount);
     // }
 
-    public OrdersDetailDto transDto(){
+    public OrdersDetailDTO transDto(){
 
         Period period = Period.between(this.getReserveUseStartDate(), this.getReserveUseEndDate());
         String checkIn = this.getRoom().getAccommodation().getCheckIn().toString();
@@ -43,7 +43,7 @@ public class Cart extends Reservation {
         NumberFormat numberFormat = NumberFormat.getInstance();
         String price = numberFormat.format(this.getReservePrice());
 
-        return OrdersDetailDto.builder()
+        return OrdersDetailDTO.builder()
                 .accomType(this.getRoom().getAccommodation().getAccomCategory().getValue())
                 .accomName(this.getRoom().getAccommodation().getAccomName())
                 .accomRegion(this.getRoom().getAccommodation().getRegion().getRegion().getValue())

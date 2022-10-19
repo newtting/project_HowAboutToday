@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Getter
 
-public class OrdersDto {
+public class OrdersDTO {
 
     private Long ordersNum;
 
@@ -29,9 +29,9 @@ public class OrdersDto {
 
     private String ordersStatus;
 
-    private List<OrdersDetailDto> ordersDetailDtoList;
+    private List<OrdersDetailDTO> ordersDetailDtoList;
 
-    public OrdersDto(Orders orders) {
+    public OrdersDTO(Orders orders) {
         this.ordersNum = orders.getOrdersNum();
         this.member = orders.getMember();
         this.ordersTel = orders.getOrdersTel();
@@ -40,13 +40,13 @@ public class OrdersDto {
         this.ordersPrice = orders.getOrdersPrice();
         this.ordersType = orders.getOrdersType();
         this.ordersStatus = orders.getOrdersStatus();
-        this.ordersDetailDtoList = orders.getReservation().stream().map(OrdersDetailDto::new).collect(Collectors.toList());
+        this.ordersDetailDtoList = orders.getReservation().stream().map(OrdersDetailDTO::new).collect(Collectors.toList());
     }
 
-    public OrdersDto() {
+    public OrdersDTO() {
     }
 
-    public OrdersDto test1(Orders orders){
+    public OrdersDTO test1(Orders orders){
         return null;
     }
 
