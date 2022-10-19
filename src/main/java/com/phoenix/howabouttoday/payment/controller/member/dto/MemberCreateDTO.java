@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.member.dto;
+package com.phoenix.howabouttoday.payment.controller.member.dto;
 
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;

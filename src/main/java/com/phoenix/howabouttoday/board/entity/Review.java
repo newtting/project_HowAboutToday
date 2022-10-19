@@ -1,7 +1,7 @@
 package com.phoenix.howabouttoday.board.entity;
 
 
-import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.payment.controller.member.entity.Member;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 
 
