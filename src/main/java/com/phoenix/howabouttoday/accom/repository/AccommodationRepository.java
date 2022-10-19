@@ -20,4 +20,4 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
 
     List<Accommodation> findByAccomNameContaining(String keyword);
 
-
+}

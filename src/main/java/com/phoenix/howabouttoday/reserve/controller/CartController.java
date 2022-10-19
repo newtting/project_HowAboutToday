@@ -78,19 +78,19 @@ public class CartController {
     }
 
 
-
-    @GetMapping("/test")
-    @ResponseBody
-    public String cartList(@RequestParam Long[] cartNum){
-
-        for (Long aLong : cartNum) {
-            System.out.println("aLong = " + aLong);
-        }
-
-
-
-        return "hi";
-    }
+//    OrdersController로 이동
+//    @GetMapping("/test")
+//    @ResponseBody
+//    public String cartList(@RequestParam Long[] cartNum){
+//
+//        for (Long aLong : cartNum) {
+//            System.out.println("aLong = " + aLong);
+//        }
+//
+//
+//
+//        return "hi";
+//    }
 
 
 

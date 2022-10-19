@@ -3,13 +3,11 @@ package com.phoenix.howabouttoday.board.dto;
 import com.phoenix.howabouttoday.board.entity.Board;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
-@Setter
 public class BoardDetailDTO {
 
     // 게시판 리스트 페이지 : FAQ
