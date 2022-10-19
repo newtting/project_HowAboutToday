@@ -54,10 +54,10 @@ public abstract class Reservation {
     @JoinColumn(name = "room_num")
     private Room room;
 
-    @Setter
+
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "orders_num")
-    private Orders orders;
+    @JoinColumn(name = "ordersNum", referencedColumnName = "ordersNum")
+    protected Orders orders;
 
     @Enumerated(EnumType.STRING)
     private ReserveStatus reserveStatus;
@@ -68,7 +68,5 @@ public abstract class Reservation {
     private int reservePrice;
     private int reserveAdultCount;
     private int reserveChildCount;
-
-
 
 }

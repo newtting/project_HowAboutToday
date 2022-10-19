@@ -19,13 +19,13 @@ import java.util.List;
 
 @Service
 @Transactional
-public class CartService {
+public class CartServiceCopy {
 
     private final CartRepository cartRepository;
 
 
     @Autowired
-    public CartService(CartRepository cartRepository) {
+    public CartServiceCopy(CartRepository cartRepository) {
         this.cartRepository = cartRepository;
     }
 

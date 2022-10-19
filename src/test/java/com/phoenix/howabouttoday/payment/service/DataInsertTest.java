@@ -13,11 +13,11 @@ import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
-import com.phoenix.howabouttoday.payment.entity.OrdersDetailRepository;
+import com.phoenix.howabouttoday.payment.repository.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.AvailableDateRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.global.AccomCategory;
-import com.phoenix.howabouttoday.payment.testDriver.AvailableDate;
+import com.phoenix.howabouttoday.room.dto.AvailableDate;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
@@ -121,12 +121,20 @@ public class DataInsertTest {
 //        Assertions.assertThat(ordersRepository.findAll().size()).isEqualTo(1);
 
         Optional<Member> optionalMember = memberRepository.findById(1L);
+        Member member1 = optionalMember.get();
 
-        cartRepository.deleteAll();
+        List<Cart> cartList = cartRepository.findAllByMember_MemberNum(member1.getMemberNum());
+
+        for (Cart cart : cartList) {
+            System.out.println("cart.getReserveNum() = " + cart.getReserveNum());
+        }
+
+//        cartRepository.deleteAll();
         if (optionalMember.isEmpty()){
             new NullPointerException("회원 정보가 없습니다.");
         }
         Member member = optionalMember.get();
+
 
         System.out.println("잘 되니?");
 
@@ -181,7 +189,6 @@ public class DataInsertTest {
         }
         Member member = optionalMember.get();
 
-
         Orders order = Orders.builder()
                 .ordersTel("01045020614")
                 .ordersName("김영운")
@@ -208,12 +215,8 @@ public class DataInsertTest {
                     .reserveChildCount(data.getReserveChildCount())
                     .build();
             ordersDetailRepository.save(ordersDetail);
-            order.getReservation().add(ordersDetail);
+//            order.getReservation().add(ordersDetail);
         }
-
-        member.getOrders().add(order);
-
-
         ordersRepository.save(order);
 
     }

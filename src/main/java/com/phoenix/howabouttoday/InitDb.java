@@ -1,14 +1,12 @@
 package com.phoenix.howabouttoday;
 
-
+import com.phoenix.howabouttoday.accom.RegionType;
 import com.phoenix.howabouttoday.accom.entity.*;
 import com.phoenix.howabouttoday.accom.repository.*;
 import com.phoenix.howabouttoday.board.entity.Reply;
 import com.phoenix.howabouttoday.board.entity.Review;
 import com.phoenix.howabouttoday.board.entity.ReviewImage;
 import com.phoenix.howabouttoday.board.repository.*;
-import com.phoenix.howabouttoday.global.AccomCategory;
-import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
@@ -18,7 +16,7 @@ import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
-
+import com.phoenix.howabouttoday.payment.testDriver.AccomCategory;
 import com.phoenix.howabouttoday.payment.testDriver.AvailableDate;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
@@ -53,7 +51,6 @@ public class InitDb {
     public void init(){
         initService.dbInit1();
         initService.dbInit2();
-        initService.dbInit3();
     }
 
 
@@ -121,6 +118,8 @@ public class InitDb {
                     .longitude(126.5092)
                     .lowPrice(45000)
                     .reserveRange(60)
+                    .checkIn(LocalTime.of(15, 0))
+                    .checkOut(LocalTime.of(11, 0))
                     .build());
 
             /** 숙소시설 등록 **/
@@ -237,7 +236,7 @@ public class InitDb {
             order.getReservation().add(ordersDetail);
             member.getOrders().add(order);
 
-            ordersDetailRepository.save(ordersDetail);
+            //ordersDetailRepository.save(ordersDetail);
             ordersRepository.save(order);
 
 
@@ -312,6 +311,8 @@ public class InitDb {
                     .latitude(37.5228)
                     .longitude(126.8927)
                     .lowPrice(20000)
+                    .checkIn(LocalTime.of(15, 0))
+                    .checkOut(LocalTime.of(11, 0))
                     .reserveRange(60)
                     .build());
 
@@ -400,7 +401,7 @@ public class InitDb {
             order.getReservation().add(ordersDetail);
             member.getOrders().add(order);
 
-            ordersDetailRepository.save(ordersDetail);
+            //ordersDetailRepository.save(ordersDetail);
             ordersRepository.save(order);
 
 

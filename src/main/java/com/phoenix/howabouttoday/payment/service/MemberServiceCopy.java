@@ -1,9 +1,8 @@
 package com.phoenix.howabouttoday.payment.service;
 
+import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
-import com.phoenix.howabouttoday.payment.dto.Customer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,17 +19,16 @@ public class MemberServiceCopy implements UserDetailsService {
         this.memberRepository = memberRepository;
     }
 
-    public Customer getCustomer(Long memberNum) throws UsernameNotFoundException{
+    public MemberDTO getCustomer(Long memberNum) throws UsernameNotFoundException{
 
         Member member = memberRepository.findById(memberNum).get();
 
-        Customer customer = Customer.builder()
+        MemberDTO customer = MemberDTO.builder()
                 .num(member.getMemberNum())
                 .email(member.getEmail())
-                .name(member.getNickname())
-                .tel(member.getMemberTel())
-                .code(member.getMemberCode())
-                .orders(member.getOrders())
+                .nickname(member.getNickname())
+                .memberTel(member.getMemberTel())
+                .memberCode(member.getMemberCode())
                 .build();
 
         return customer;
