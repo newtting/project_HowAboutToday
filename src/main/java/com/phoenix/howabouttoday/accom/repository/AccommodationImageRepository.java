@@ -14,4 +14,6 @@ public interface AccommodationImageRepository extends JpaRepository<AccomImage, 
     @Override
     List<AccomImage> findAll();
     AccomImage findByAccomNum(Long number);
+
+
 }

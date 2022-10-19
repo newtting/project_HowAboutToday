@@ -71,7 +71,7 @@ public class AccomController {
         return "accom/hotel/hotel-search-result";
     }
 
-    //숙소 상세 
+    //숙소 상세
     @GetMapping("hotel-single")
     public String getHotelSingle(Model model){
 

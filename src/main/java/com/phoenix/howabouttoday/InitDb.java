@@ -357,11 +357,11 @@ public class InitDb {
                     .build());
 
             /** 숙소이미지 등록 **/
-            accommodationImageRepository.save( AccomImage.builder()
+            /*accommodationImageRepository.save( AccomImage.builder()
                     .accomOriginFilename("image1.jpg")
                     .accomSaveFilename("image1.jpg")
                     .accommodation(accommodation)
-                    .build());
+                    .build());*/
 
             /** 객실등록 **/
             Room room = roomRepository.save(Room.builder()

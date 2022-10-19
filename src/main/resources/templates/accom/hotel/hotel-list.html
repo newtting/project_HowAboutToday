@@ -511,17 +511,17 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h3 class="card-title"><a th:href="@{/hotel-single}" th:text="${accommodationList.accomName}">The Millennium Hilton New York</a></h3>
-                        <p class="card-meta" th:text="${accommodationList.accomAddress}">124 E Huron St, New york</p>
+                        <h3 class="card-title" ><a th:href="@{/hotel-single}" th:text="${accommodationList.accomName}"></a></h3>
+                        <p class="card-meta" th:text="${accommodationList.accomAddress}"></p>
                         <div class="card-rating">
-                            <span class="badge text-white" th:text="${accommodationList.accomRating}">4.4/5</span>
+                            <span class="badge text-white" th:text="${accommodationList.accomRating}"></span>
                             <span class="review__text">Average</span>
-                            <span class="rating__text" th:text="|(${accommodationList.totalReviewNum})|">(30 Reviews)</span>
+                            <span class="rating__text" th:text="|(${accommodationList.totalReviewNum})|"></span>
                         </div>
                         <div class="card-price d-flex align-items-center justify-content-between">
                             <p>
                                 <span class="price__from">최소 가격 :</span>
-                                <span class="price__num" th:text="|${accommodationList.lowPrice}~|">$88.00</span>
+                                <span class="price__num" th:text="|${accommodationList.lowPrice}~|"></span>
                             </p>
                             <a th:href="hotel-single" class="btn-text" >방 정보<i class="la la-angle-right"></i></a>
                         </div>
