@@ -70,7 +70,7 @@ public class Accommodation {
     private List<Room> room = new ArrayList<>();    //이미지 fk를 위한 매핑
 
     @Builder
-    public Accommodation(String accomName, String accomTel, AccomCategory accomCategory, Region region, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange) {
+    public Accommodation(String accomName, String accomTel, AccomCategory accomCategory, Region region, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange, LocalTime checkIn, LocalTime checkOut) {
         this.accomName = accomName;
         this.accomTel = accomTel;
         this.accomCategory = accomCategory;
@@ -83,6 +83,8 @@ public class Accommodation {
         this.longitude = longitude;
         this.lowPrice = lowPrice;
         this.reserveRange = reserveRange;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
     }
 
 }

@@ -3,7 +3,6 @@ package com.phoenix.howabouttoday.member.Service;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
-import com.phoenix.howabouttoday.payment.dto.Customer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,6 +23,7 @@ public class MemberService {
     public Long join(MemberDTO DTO) {
         DTO.setPwd(encoder.encode(DTO.getPwd()));
 
+
         return memberRepository.save(DTO.toEntity()).getMemberNum();
     }
 
@@ -34,17 +34,16 @@ public class MemberService {
         }
     }
 
-    public Customer getCustomer(Long memberNum) throws UsernameNotFoundException {
+    public MemberDTO getCustomer(Long memberNum) throws UsernameNotFoundException {
 
         Member member = memberRepository.findById(memberNum).get();
 
-        Customer customer = Customer.builder()
+        MemberDTO customer = MemberDTO.builder()
                 .num(member.getMemberNum())
                 .email(member.getEmail())
-                .name(member.getNickname())
-                .tel(member.getMemberTel())
-                .code(member.getMemberCode())
-                .orders(member.getOrders())
+                .nickname(member.getNickname())
+                .memberTel(member.getMemberTel())
+                .memberCode(member.getMemberCode())
                 .build();
 
         return customer;

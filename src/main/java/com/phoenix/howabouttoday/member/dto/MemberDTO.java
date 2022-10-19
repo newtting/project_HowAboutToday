@@ -11,6 +11,8 @@ import lombok.*;
 
 public class MemberDTO {
 
+    private Long num;
+
     private String email;
 
     private String pwd;

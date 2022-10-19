@@ -1,3 +1,8 @@
+/**
+ * 결제창에서 객실과 룸 정보를 전달하는 dto
+ *
+ */
+
 package com.phoenix.howabouttoday.payment.dto;
 
 import lombok.Builder;
@@ -17,4 +22,5 @@ public class CheckOutAccomRoomDTO {
     private String service;
     private Integer price;
 }
+
 
