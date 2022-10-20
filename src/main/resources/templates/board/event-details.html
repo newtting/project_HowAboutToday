@@ -52,7 +52,7 @@
                     <div class="form-content contact-form-action hwt-details-content">
                         <th:block th:each="eventImageDTO : ${eventDetailDTO.eventImageList}">
                             <div>
-                                <img th:src="@{|/images/hwt/event/${eventImageDTO.saveFileName}|}" class="event-images"/>
+                                <img th:src="@{|/images/hwt/event/${eventDetailDTO.eventNum}/${eventImageDTO.saveFileName}|}" class="event-images"/>
                             </div>
                         </th:block>
                     </div><!-- end form-content -->
