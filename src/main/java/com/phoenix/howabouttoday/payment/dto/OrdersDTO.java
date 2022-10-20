@@ -46,8 +46,4 @@ public class OrdersDTO {
     public OrdersDTO() {
     }
 
-    public OrdersDTO test1(Orders orders){
-        return null;
-    }
-
 }
