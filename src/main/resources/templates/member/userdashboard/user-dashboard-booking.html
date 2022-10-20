@@ -62,8 +62,8 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <div th:each="orderDetails : ${orders}">
-                                                <tr th:each="orderDetail : ${orderDetails.getOrdersDetailDtoList()}">
+                                            <div th:each="ordersDTO : ${ordersDTOList}">
+                                                <tr th:each="orderDetail : ${ordersDTO.getOrdersDetailDTOList()[0]}">
                                                     <!--                                            <th scope="row"><i class="la la-plane mr-1 font-size-18"></i>Flight</th>-->
                                                     <th scope="row"><img src="/icon/icon_hotel.png" width="30px" style="vertical-align:middle;"><span style="margin-top:50px;font-size:18px;" th:text="${orderDetail.getAccomType()}">모텔</span></th>
                                                     <td>

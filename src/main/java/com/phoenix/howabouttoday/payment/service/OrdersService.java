@@ -56,11 +56,15 @@ public class OrdersService {
                 .collect(Collectors.toList());
     }
 
-    public List<OrdersDTO> getOrdersDTO(Long memberNum){
+    public List<OrdersDTO> getOrdersDTOList(Long memberNum){
         return ordersRepository.findAllByMember_MemberNum(memberNum)
                 .stream()
                 .map(OrdersDTO::new) // 적용 후
                 .collect(Collectors.toList());
+    }
+
+    public OrdersDTO getOrdersDTO(Long ordersNum){
+        return new OrdersDTO(ordersRepository.findById(ordersNum).get());
     }
 
     public boolean savePaymentData(Long memberNum, String name, String tel, String ordersType, List<Long> cartNum){

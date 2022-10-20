@@ -29,7 +29,7 @@ public class OrdersDTO {
 
     private String ordersStatus;
 
-    private List<OrdersDetailDTO> ordersDetailDtoList;
+    private List<OrdersDetailDTO> ordersDetailDTOList;
 
     public OrdersDTO(Orders orders) {
         this.ordersNum = orders.getOrdersNum();
@@ -40,7 +40,7 @@ public class OrdersDTO {
         this.ordersPrice = orders.getOrdersPrice();
         this.ordersType = orders.getOrdersType();
         this.ordersStatus = orders.getOrdersStatus();
-        this.ordersDetailDtoList = orders.getReservation().stream().map(OrdersDetailDTO::new).collect(Collectors.toList());
+        this.ordersDetailDTOList = orders.getReservation().stream().map(OrdersDetailDTO::new).collect(Collectors.toList());
     }
 
     public OrdersDTO() {

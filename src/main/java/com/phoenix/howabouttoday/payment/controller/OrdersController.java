@@ -63,7 +63,7 @@ public class OrdersController {
     }
 
     @GetMapping("bookingDetail")
-    public String getUserOrderDetail(Model model, @RequestParam Long ordersNum) {
+    public String getUserOrderDetail(Model model) {
 
         /**
          * 1. get방식
@@ -72,15 +72,13 @@ public class OrdersController {
          * 4.
          */
 
+        Long ordersNum = 3L;
 
         MemberDTO customer = memberService.getCustomer(1L);
-//        List<OrdersDetailVO> infoList = orderService.getCartData(cartNum);
-//        Integer totalPrice = orderService.getTotalPrice(cartNum);   //얘를 따로 이렇게 하는 게 맞을까??
-//
-//        model.addAttribute("totalPrice", totalPrice);
-//        model.addAttribute("customer", customer);
-//        model.addAttribute("infoList", infoList);
+        OrdersDTO ordersDTO = orderService.getOrdersDTO(ordersNum);
 
+        model.addAttribute("customer", customer);
+        model.addAttribute("ordersDTO", ordersDTO);
         return "reserve/payment-received";
     }
 
@@ -92,7 +90,6 @@ public class OrdersController {
 
     @GetMapping("/paymentSuccess")
     public String getUserPaymentSuccess() {
-        System.out.println("겟 홈으로");
         return "redirect:/home";
     }
 

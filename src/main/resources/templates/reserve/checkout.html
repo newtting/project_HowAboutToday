@@ -75,7 +75,7 @@
                                             </div>
                                         </div>
                                     </th>
-                                    <td class="text-lg-right pr-5" th:text="#{checkout_monetary_unit(${info.getPrice()})}">숙소 가격</td> <!-- 숙소 가격 필드 -->
+                                    <td class="text-lg-right pr-5" th:text="#{checkout_monetary_unit(${#numbers.formatInteger(info.getPrice(), 0, 'COMMA')})}">숙소 가격</td> <!-- 숙소 가격 필드 -->
                                 </tr>
                                 </tbody>
                             </table>
