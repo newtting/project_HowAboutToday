@@ -3,14 +3,14 @@ package com.phoenix.howabouttoday.reserve.domain.Reservation;
 
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.member.entity.Member;
-import com.phoenix.howabouttoday.payment.Orders;
+import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.room.entity.Room;
+import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import static javax.persistence.FetchType.*;
 
@@ -42,33 +42,44 @@ public abstract class Reservation {
     @Id @GeneratedValue
     private Long reserveNum;
 
-    @ManyToOne(fetch = LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_num")
     private Member member;
 
-    @ManyToOne(fetch = LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "accom_num")
     private Accommodation accommodation;
 
-    @ManyToOne(fetch = LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "room_num")
     private Room room;
 
+    @NotNull
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "orders_num")
-    private Orders orders;
+    @JoinColumn(name = "ordersNum", referencedColumnName = "ordersNum")
+    protected Orders orders;
 
     @Enumerated(EnumType.STRING)
     private ReserveStatus reserveStatus;
 
-
-    private LocalDateTime reserveUseStartDate;
-    private LocalDateTime reserveUseEndDate;
+    private LocalDate reserveUseStartDate;
+    private LocalDate reserveUseEndDate;
 
     private int reservePrice;
     private int reserveAdultCount;
     private int reserveChildCount;
 
 
-
+    public Reservation(Member member, Accommodation accommodation, Room room, Orders orders, ReserveStatus reserveStatus, LocalDate reserveUseStartDate, LocalDate reserveUseEndDate, int reservePrice, int reserveAdultCount, int reserveChildCount) {
+        this.member = member;
+        this.accommodation = accommodation;
+        this.room = room;
+        this.orders = orders;
+        this.reserveStatus = reserveStatus;
+        this.reserveUseStartDate = reserveUseStartDate;
+        this.reserveUseEndDate = reserveUseEndDate;
+        this.reservePrice = reservePrice;
+        this.reserveAdultCount = reserveAdultCount;
+        this.reserveChildCount = reserveChildCount;
+    }
 }

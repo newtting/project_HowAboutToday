@@ -1,19 +1,16 @@
 package com.phoenix.howabouttoday.room.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
+import javax.persistence.*;
+import java.util.List;
 
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+@Builder
+@AllArgsConstructor
 public class Service {
 
     @Id
@@ -23,5 +20,6 @@ public class Service {
 
     @Column
     private String serviceName;//서비스이름
+
 
 }
