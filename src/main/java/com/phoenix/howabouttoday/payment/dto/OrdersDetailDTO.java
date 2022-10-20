@@ -6,22 +6,17 @@
 
 package com.phoenix.howabouttoday.payment.dto;
 
-import com.phoenix.howabouttoday.accom.entity.Accommodation;
-import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.text.NumberFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.format.TextStyle;
-import java.util.Locale;
 
 @Getter
 @Builder
-public class OrdersDetailDto {
+public class OrdersDetailDTO {
     private String accomType;
     private String accomName;
     private String accomRegion;
@@ -38,7 +33,7 @@ public class OrdersDetailDto {
     private String checkOut;
 
 
-    public OrdersDetailDto(String accomType, String accomName, String accomRegion, String orderDate, String usePeriod, String startDate, String endDate, String startWeek, String endWeek, String price, String usedStatus, String roomName, String checkIn, String checkOut) {
+    public OrdersDetailDTO(String accomType, String accomName, String accomRegion, String orderDate, String usePeriod, String startDate, String endDate, String startWeek, String endWeek, String price, String usedStatus, String roomName, String checkIn, String checkOut) {
         this.accomType = accomType;
         this.accomName = accomName;
         this.accomRegion = accomRegion;
@@ -55,7 +50,7 @@ public class OrdersDetailDto {
         this.checkOut = checkOut;
     }
 
-    public OrdersDetailDto(Reservation reservation) {
+    public OrdersDetailDTO(Reservation reservation) {
 
         Period period = Period.between(reservation.getReserveUseStartDate(), reservation.getReserveUseEndDate());
         DayOfWeek startday = reservation.getReserveUseStartDate().getDayOfWeek();
