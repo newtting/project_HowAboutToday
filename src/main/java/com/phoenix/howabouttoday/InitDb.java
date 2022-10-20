@@ -389,11 +389,38 @@ public class InitDb {
                     .build());
 
             /** 숙소이미지 등록 **/
-            /*accommodationImageRepository.save( AccomImage.builder()
-                    .accomOriginFilename("image1.jpg")
+            accommodationImageRepository.save( AccomImage.builder()
+                    .accomOriginFilename("image4.jpg")
                     .accomSaveFilename("image1.jpg")
                     .accommodation(accommodation)
-                    .build());*/
+                    .build());
+
+
+
+            accommodationImageRepository.save( AccomImage.builder()
+                    .accomOriginFilename("image5.jpg")
+                    .accomSaveFilename("image1.jpg")
+                    .accommodation(accommodation2)
+                    .build());
+
+            accommodationImageRepository.save( AccomImage.builder()
+                    .accomOriginFilename("image6.jpg")
+                    .accomSaveFilename("image1.jpg")
+                    .accommodation(accommodation3)
+                    .build());
+
+            accommodationImageRepository.save( AccomImage.builder()
+                    .accomOriginFilename("image7.jpg")
+                    .accomSaveFilename("image1.jpg")
+                    .accommodation(accommodation4)
+                    .build());
+
+            accommodationImageRepository.save( AccomImage.builder()
+                    .accomOriginFilename("image8.jpg")
+                    .accomSaveFilename("image1.jpg")
+                    .accommodation(accommodation5)
+                    .build());
+
 
             /** 객실등록 **/
             Room room = roomRepository.save(Room.builder()

@@ -2,10 +2,13 @@ package com.phoenix.howabouttoday.accom.controller;
 
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import com.phoenix.howabouttoday.accom.entity.Facilities;
+import com.phoenix.howabouttoday.accom.entity.Facility;
 import com.phoenix.howabouttoday.accom.service.AccomodationService;
 
 //import com.phoenix.howabouttoday.payment.AccomCategory;
 
+import com.phoenix.howabouttoday.accom.service.FacilitiesService;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +27,7 @@ public class AccomController {
 
     private final AccomodationService accommodationService;
     private final RoomService roomService;
+    private final FacilitiesService facilitiesService;
 
 //    public AccomController(AccomodationService accomodationService, RoomService roomService) {
 //        this.accomodationService = accomodationService;
@@ -45,10 +49,14 @@ public class AccomController {
     public String getHotelList(Model model){
 
         List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
-        List<AccomImage> accomImageList = accommodationService.getAccomImage();
+
+        for (Accommodation accommodation : accommodationList) {
+            System.out.println("!!!!!!!!accom image =" + accommodation.getAccommodationImage().get(0).getAccomOriginFilename());
+            System.out.println("!!accomNum =" + accommodation.getAccomNum());
+        }
+
 
         model.addAttribute("accommodationList",accommodationList);
-        model.addAttribute("accomImageList",accomImageList);
 
         return "accom/hotel/hotel-list";
     }
@@ -73,8 +81,17 @@ public class AccomController {
 
     //숙소 상세
     @GetMapping("hotel-single")
-    public String getHotelSingle(Model model){
+    public String getHotelSingle(@RequestParam("accomNum") Long accomNum,Model model){
+        //System.out.println("accomNum!! =" + accomNum );
 
+        Accommodation accomList= accommodationService.findAccom(accomNum);
+        List<Facilities> facilitiesList = facilitiesService.getFacilitiesList();
+
+        System.out.println("Accom Num!!" + accomList.getAccomName());
+        System.out.println("Accom Num!!" + accomList.getAccomAddress());
+
+        model.addAttribute("facilities",facilitiesList);
+        model.addAttribute("accommodation",accomList);
 //        model.addAttribute("roomlist", roomService.roomList());
         return "accom/hotel/hotel-single";
 
