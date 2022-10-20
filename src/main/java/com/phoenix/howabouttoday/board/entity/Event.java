@@ -9,7 +9,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class Event {
 
     @CreatedDate
     @Column
-    private LocalDateTime eventCreate; // 이벤트 게시일
+    private LocalDate eventCreate; // 이벤트 게시일
 
     @Column(nullable = false)
     private LocalDate eventStart; // 이벤트 시작일
@@ -40,7 +39,7 @@ public class Event {
     private List<EventImage> eventImageList = new ArrayList<>();
 
     @Builder
-    public Event(String eventTitle, LocalDateTime eventCreate, LocalDate eventStart, LocalDate eventEnd) {
+    public Event(String eventTitle, LocalDate eventCreate, LocalDate eventStart, LocalDate eventEnd) {
         this.eventTitle = eventTitle;
         this.eventCreate = eventCreate;
         this.eventStart = eventStart;

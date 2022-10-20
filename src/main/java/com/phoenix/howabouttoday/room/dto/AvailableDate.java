@@ -25,7 +25,6 @@ public class AvailableDate {
 //    @OneToMany(mappedBy = "availableDate", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<AvailableTime> availableTimes = new ArrayList<>();
 
-    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="roomNum"/*, referencedColumnName = "roomNum"*/)
     private Room room;

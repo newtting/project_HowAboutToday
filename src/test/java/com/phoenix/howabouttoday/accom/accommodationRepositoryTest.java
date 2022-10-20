@@ -86,15 +86,32 @@ public class accommodationRepositoryTest {
 
     }
 
-    @Test
+    /*@Test
     public void 검색() {
 
         //PageRequest pageRequest = new PageRequest(0,10, new Sort(Sort.Direction.DESC,"name");
 
 
         //List<Accommodation> search = AccommodationRepository.findByAccomNameLike("보");
-
+        List<Accommodation> orderPrice = accommodationRepository.findAllByOrderByLowPrice();
+        for (Accommodation accommodation : orderPrice) {
+            System.out.println("accommodation.getLowPrice() = " + accommodation.getLowPrice());
+        }
 
     }
+
+    @Test
+    public void 정렬역순() {
+
+        //PageRequest pageRequest = new PageRequest(0,10, new Sort(Sort.Direction.DESC,"name");
+
+
+        //List<Accommodation> search = AccommodationRepository.findByAccomNameLike("보");
+        List<Accommodation> orderPrice = accommodationRepository.findAllByOrderByLowPriceDesc();
+        for (Accommodation accommodation : orderPrice) {
+            System.out.println("accommodation.getLowPrice() = " + accommodation.getLowPrice());
+        }
+
+    }*/
 
 }
