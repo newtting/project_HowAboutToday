@@ -58,12 +58,12 @@ public class OrdersService {
 
         List<Cart> cartList = cartRepository.findAllByMember_MemberNum(member.getMemberNum());
 
-        List<OrdersDetail> lists = cartList // Entity List
-                .stream() // Entity Stream
-                .map(cart -> new OrdersDetail(cart, order)) // DTO Stream
-                .collect(Collectors.toList()); // DTO List
+//        List<OrdersDetail> lists = cartList // Entity List
+//                .stream() // Entity Stream
+//                .map(cart -> new OrdersDetail(cart, order)) // DTO Stream
+//                .collect(Collectors.toList()); // DTO List
 
-        order.getReservation().addAll(lists);
+//        order.getReservation().addAll(lists);
 
         ordersRepository.save(order);
         return true;
