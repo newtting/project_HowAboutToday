@@ -4,7 +4,7 @@ import com.phoenix.howabouttoday.board.entity.Board;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @Getter
@@ -16,7 +16,7 @@ public class BoardDetailDTO {
     private Long boardNum; // 게시글 번호
     private String boardTitle; // 게시글 제목
     private String boardContent; // 게시글 내용
-    private LocalDateTime boardCreate; // 게시일
+    private LocalDate boardCreate; // 게시일
 
     private String boardCategoryName; // 게시글 카테고리 이름
 
