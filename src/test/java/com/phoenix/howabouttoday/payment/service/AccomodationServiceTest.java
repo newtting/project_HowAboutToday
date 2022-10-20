@@ -267,8 +267,8 @@ class AccomodationServiceTest {
                 .ordersStatus("이용 전")
                 .build();
 
-        newOrder.getReservation().add(cart);
-        newOrder.getReservation().add(cart2);
+//        newOrder.getorder().add(cart);
+//        newOrder.getReservation().add(cart2);
 
         System.out.println("하아");
     }
