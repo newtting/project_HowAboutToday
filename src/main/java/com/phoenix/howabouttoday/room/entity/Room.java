@@ -34,10 +34,10 @@ public class Room {
     @Column(nullable = false)
     private Integer maxGuest;//최대 인원
 
-    @Column(nullable = false)
+    @Column//(nullable = false)
     private LocalDate stayStartDate;//객실 이용 시작일
 
-    @Column(nullable = false)
+    @Column//(nullable = false)
     private LocalDate stayEndDate;//객실 이용 종료일
 
     @Column(nullable = false)

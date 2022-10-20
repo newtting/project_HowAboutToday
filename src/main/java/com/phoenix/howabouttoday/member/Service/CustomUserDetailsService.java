@@ -1,8 +1,8 @@
 package com.phoenix.howabouttoday.member.Service;
 
-import com.phoenix.howabouttoday.member.dto.MemberCreateDTO;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
+import com.phoenix.howabouttoday.payment.controller.member.dto.MemberCreateDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

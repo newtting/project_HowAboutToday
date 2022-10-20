@@ -41,16 +41,16 @@ public class AccomController {
     }
 
 
-//    @GetMapping("hotel-list")
-//    public String getHotelList(Model model){
-//
-//        List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
-//
-//        model.addAttribute("accommodationList",accommodationList);
-//
-//
-//        return "accom/hotel/hotel-list";
-//    }
+    @GetMapping("hotel-list")
+    public String getHotelList(Model model){
+
+        List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
+
+        model.addAttribute("accommodationList",accommodationList);
+
+
+        return "accom/hotel/hotel-list";
+    }
 
     @PostMapping("hotel-list")
     public String postHotelList(){
@@ -72,10 +72,10 @@ public class AccomController {
 
 
     @GetMapping("hotel-single")
-    public String getHotelSingle(Model model){
+    public String getHotelSingle(Model model,Long accomNum){
 
-        List<RoomListDTO> roomList = roomService.findAll_Room();
-        model.addAttribute("lists",roomList);
+        List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
+        model.addAttribute("roomlist",roomList);
 
         return "accom/hotel/hotel-single";
 
@@ -102,11 +102,10 @@ public class AccomController {
     }
 
     @GetMapping("motel-single")
-    public String getMotelSingle(Model model){
+    public String getMotelSingle(Model model,Long accomNum){
 
-        List<RoomListDTO> roomList = roomService.findAll_Room();
-        model.addAttribute("lists",roomList);
-
+        List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
+        model.addAttribute("roomlist",roomList);
         return "accom/hotel/motel-single";
 
     }
@@ -125,11 +124,10 @@ public class AccomController {
     }
 
     @GetMapping("pension-PoolVilla-single")
-    public String getPensionPoolVillaSingle(Model model){
+    public String getPensionPoolVillaSingle(Model model,Long accomNum){
 
-        List<RoomListDTO> roomList = roomService.findAll_Room();
-        model.addAttribute("lists",roomList);
-
+        List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
+        model.addAttribute("roomlist",roomList);
         return "accom/hotel/pension-PoolVilla-single";
 
     }
@@ -158,11 +156,10 @@ public class AccomController {
     public String postGuestHouseSingle(){ return "accom/hotel/guestHouse-Hanok-result";}
 
     @GetMapping("guestHouse-Hanok-single")
-    public String getGuestHouseResult(Model model){
+    public String getGuestHouseResult(Model model,Long accomNum){
 
-        List<RoomListDTO> roomList = roomService.findAll_Room();
-        model.addAttribute("lists",roomList);
-
+        List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
+        model.addAttribute("roomlist",roomList);
         return "accom/hotel/guestHouse-Hanok-single";
 
     }

@@ -11,8 +11,8 @@ import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
-import com.phoenix.howabouttoday.member.wishlist.WishList;
 import com.phoenix.howabouttoday.member.wishlist.WishlistRepository;
+import com.phoenix.howabouttoday.payment.controller.member.wishlist.WishList;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetailRepository;
@@ -22,14 +22,8 @@ import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
-import com.phoenix.howabouttoday.room.entity.Amenities;
-import com.phoenix.howabouttoday.room.entity.Room;
-import com.phoenix.howabouttoday.room.entity.RoomImage;
-import com.phoenix.howabouttoday.room.entity.Service;
-import com.phoenix.howabouttoday.room.repository.AmenitiesRepository;
-import com.phoenix.howabouttoday.room.repository.RoomImageRepository;
-import com.phoenix.howabouttoday.room.repository.RoomRepository;
-import com.phoenix.howabouttoday.room.repository.ServiceRepository;
+import com.phoenix.howabouttoday.room.entity.*;
+import com.phoenix.howabouttoday.room.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -82,7 +76,7 @@ public class InitDb {
         private final OrdersRepository ordersRepository;
         private final OrdersDetailRepository ordersDetailRepository;
         private final AccommodationImageRepository accommodationImageRepository;
-
+        private final RoomViewAmenitiesRepository roomViewAmenitiesRepository;
         public void dbInit1() {
 
             /**회원등록**/
@@ -156,13 +150,28 @@ public class InitDb {
 
 
             /** 객실 오락시설 등록 **/
-            amenitiesRepository.save(Amenities.builder()
+            Amenities amenities = amenitiesRepository.save(Amenities.builder()
                     .amenitiesName("흡연장")
+                    .build());
+
+            Amenities amenities1 = amenitiesRepository.save(Amenities.builder()
+                    .amenitiesName("풋살장")
                     .build());
 
             /** 객실 서비스 등록 **/
             serviceRepository.save(Service.builder()
                     .serviceName("피트니스")
+                    .build());
+
+            /** 객실과 오락시설 등록 **/
+            roomViewAmenitiesRepository.save(RoomViewAmenities.builder()
+                    .room(room)
+                    .amenities(amenities)
+                    .build());
+
+            roomViewAmenitiesRepository.save(RoomViewAmenities.builder()
+                    .room(room)
+                    .amenities(amenities1)
                     .build());
 
             /**위시리스트 등록**/
