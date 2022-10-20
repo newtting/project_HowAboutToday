@@ -29,7 +29,7 @@ public class OrderService {
         List<OrdersDetailDto> orderDtoList = new ArrayList<>();
 
         cartList.forEach(cart -> {
-            orderDtoList.add(cart.transDto());
+//            orderDtoList.add(cart.transDto());
         });
         return orderDtoList;
     }

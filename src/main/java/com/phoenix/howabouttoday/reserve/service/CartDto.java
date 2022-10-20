@@ -51,7 +51,7 @@ public class CartDto {
             this.roomFileName = cart.getRoom().getRoomImage().get(0).getRoomOriginFileName();//대표가되는 첫번째 메인이지하나만 전달
             this.reserveUseStartDate = cart.getReserveUseStartDate();
             this.reserveUseEndDate = cart.getReserveUseEndDate();
-            this.reservePrice = cart.getReservePrice();
+            this.reservePrice = cart.getRoom().getPrice();
             this.reserveAdultCount = cart.getReserveAdultCount();
             this.reserveChildCount = cart.getReserveChildCount();
 

@@ -26,10 +26,7 @@ import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
 import com.phoenix.howabouttoday.room.dto.AvailableDate;
-import com.phoenix.howabouttoday.room.entity.Amenities;
-import com.phoenix.howabouttoday.room.entity.Room;
-import com.phoenix.howabouttoday.room.entity.RoomImage;
-import com.phoenix.howabouttoday.room.entity.Service;
+import com.phoenix.howabouttoday.room.entity.*;
 import com.phoenix.howabouttoday.room.repository.AmenitiesRepository;
 import com.phoenix.howabouttoday.room.repository.RoomImageRepository;
 import com.phoenix.howabouttoday.room.repository.RoomRepository;
@@ -161,6 +158,14 @@ public class InitDb {
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
+            Room room4 = roomRepository.save(Room.builder()
+                    .accommodation(accommodation)
+                    .roomName("너울펜션 기가막힌 룸")
+                    .defaultGuest(2)
+                    .maxGuest(10)
+                    .price(80000)
+                    .roomInfo("임시 객실정보 입니다")
+                    .build());
 
 
             /** 객실 이미지 등록 **/
@@ -174,6 +179,12 @@ public class InitDb {
                     .roomOriginFileName("image0.jpg")
                     .roomSaveFileName("image0.jpg")
                     .room(room1)
+                    .build());
+
+            roomImageRepository.save(RoomImage.builder()
+                    .roomOriginFileName("image0.jpg")
+                    .roomSaveFileName("image0.jpg")
+                    .room(room4)
                     .build());
 
 
@@ -353,7 +364,7 @@ public class InitDb {
                     .build());
 
             /** 객실 오락시설 등록 **/
-            amenitiesRepository.save(Amenities.builder()
+            Amenities amenities = amenitiesRepository.save(Amenities.builder()
                     .amenitiesName("족구장")
                     .build());
 
@@ -361,6 +372,7 @@ public class InitDb {
             serviceRepository.save(Service.builder()
                     .serviceName("수영장")
                     .build());
+
 
             /**위시리스트 등록**/
             wishlistRepository.save(WishList.builder()

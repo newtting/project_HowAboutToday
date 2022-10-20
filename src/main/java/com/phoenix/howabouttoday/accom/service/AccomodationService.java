@@ -65,35 +65,35 @@ public class AccomodationService {
         return accommodation;
     }*/
 
-    @Transactional
-    public List<Accommodation> searchResults(String keyword) {
-        List<Accommodation> accommodations = accommodationRepository.findByAccomNameContaining(keyword);
-        List<AccommodationDTO> accomDtoList = new ArrayList<>();
-
-        if (accommodations.isEmpty()) return accommodations;
-
-        for (Accommodation accommodation : accommodations) {
-            accomDtoList.add(this.convertEntityToDto(accommodation));
-        }
-        return accommodations;
-    }
-
-    public AccommodationDTO convertEntityToDto(Accommodation accommodation) {
-
-        return AccommodationDTO.builder()
-                .accomName(accommodation.getAccomName())
-                .accomTel(accommodation.getAccomTel())
-                .accomAddress(accommodation.getAccomAddress())
-                .accomRating(accommodation.getAccomRating())
-                .accomWishListCount(accommodation.getAccomWishlistCount())
-                .totalreviewNum(accommodation.getTotalReviewNum())
-                .latitude(accommodation.getLatitude())
-                .longitude(accommodation.getLongitude())
-                .lowPrice(accommodation.getLowPrice())
-                .reserveRange(accommodation.getReserveRange())
-                .build();
-
-    }
+//    @Transactional
+//    public List<Accommodation> searchResults(String keyword) {
+//        List<Accommodation> accommodations = accommodationRepository.findByAccomNameContaining(keyword);
+//        List<AccommodationDTO> accomDtoList = new ArrayList<>();
+//
+//        if (accommodations.isEmpty()) return accommodations;
+//
+//        for (Accommodation accommodation : accommodations) {
+//            accomDtoList.add(this.convertEntityToDto(accommodation));
+//        }
+//        return accommodations;
+//    }
+//
+//    public AccommodationDTO convertEntityToDto(Accommodation accommodation) {
+//
+//        return AccommodationDTO.builder()
+//                .accomName(accommodation.getAccomName())
+//                .accomTel(accommodation.getAccomTel())
+//                .accomAddress(accommodation.getAccomAddress())
+//                .accomRating(accommodation.getAccomRating())
+//                .accomWishListCount(accommodation.getAccomWishlistCount())
+//                .totalreviewNum(accommodation.getTotalReviewNum())
+//                .latitude(accommodation.getLatitude())
+//                .longitude(accommodation.getLongitude())
+//                .lowPrice(accommodation.getLowPrice())
+//                .reserveRange(accommodation.getReserveRange())
+//                .build();
+//
+//    }
 
 }
 
