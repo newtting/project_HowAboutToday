@@ -9,12 +9,9 @@ package com.phoenix.howabouttoday.payment.controller;
 
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
-import com.phoenix.howabouttoday.payment.dto.OrdersDetailDTO;
+import com.phoenix.howabouttoday.payment.dto.OrdersDTO;
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailVO;
 import com.phoenix.howabouttoday.payment.service.OrdersService;
-import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
-import com.phoenix.howabouttoday.reserve.service.CartDto;
-import com.phoenix.howabouttoday.reserve.service.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +31,7 @@ public class OrdersController {
     private final OrdersService orderService;
     private final MemberService memberService;
 
-//    @GetMapping("checkout")
+    //    @GetMapping("checkout")
     @GetMapping("/payment")
     public String cartView(Model model, @RequestParam List<Long> cartNum){
         /**
@@ -58,11 +55,39 @@ public class OrdersController {
         model.addAttribute("customer", customer);
         model.addAttribute("infoList", infoList);
         return "reserve/checkout";
-}
+    }
 
     @PostMapping("checkout")
     public String postCheckout(){
         return "reserve/checkout";
+    }
+
+    @GetMapping("bookingDetail")
+    public String getUserOrderDetail(Model model, @RequestParam Long ordersNum) {
+
+        /**
+         * 1. get방식
+         * 2. 회원정보
+         * 3. 오더번호
+         * 4.
+         */
+
+
+        MemberDTO customer = memberService.getCustomer(1L);
+//        List<OrdersDetailVO> infoList = orderService.getCartData(cartNum);
+//        Integer totalPrice = orderService.getTotalPrice(cartNum);   //얘를 따로 이렇게 하는 게 맞을까??
+//
+//        model.addAttribute("totalPrice", totalPrice);
+//        model.addAttribute("customer", customer);
+//        model.addAttribute("infoList", infoList);
+
+        return "reserve/payment-received";
+    }
+
+    @PostMapping("bookingDetail")
+    public String postUserOrderDetail() {
+
+        return "reserve/payment-received";
     }
 
     @GetMapping("/paymentSuccess")
