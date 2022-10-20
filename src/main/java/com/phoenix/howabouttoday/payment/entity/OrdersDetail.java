@@ -24,7 +24,7 @@ import javax.persistence.Entity;
 public class OrdersDetail extends Reservation {
 
     public OrdersDetail(Cart cart, Orders orders) {
-//        super(cart.getMember(), cart.getRoom().getAccommodation(), cart.getRoom(), orders, cart.getReserveStatus(), cart.getReserveUseStartDate(), cart.getReserveUseEndDate(), cart.getReservePrice(), cart.getReserveAdultCount(), cart.getReserveChildCount());
+        super(cart.getMember(), cart.getRoom().getAccommodation(), cart.getRoom(), orders, cart.getReserveStatus(), cart.getReserveUseStartDate(), cart.getReserveUseEndDate(), cart.getReservePrice(), cart.getReserveAdultCount(), cart.getReserveChildCount());
 
     }
 
