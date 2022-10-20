@@ -32,7 +32,7 @@ public class PaymentController {
     public String getUserDashboardSettings(Model model) {
 
         MemberDTO customer = memberServiceCopy.getCustomer(1L);
-        List<OrdersDTO> orders = orderService.getOrdersDto(customer.getNum());
+        List<OrdersDTO> orders = orderService.getOrdersDTO(customer.getNum());
         model.addAttribute("orders", orders);
         System.out.println("결제 내역 페이지");
 
@@ -50,7 +50,7 @@ public class PaymentController {
         /*********************로그인 후 인증정보를 가져 오는 부분 작성***********************/
         MemberDTO customer = memberServiceCopy.getCustomer(1L);
 
-        List<OrdersDTO> orders = orderService.getOrdersDto(customer.getNum());
+        List<OrdersDTO> orders = orderService.getOrdersDTO(customer.getNum());
 
         model.addAttribute("orders", orders);
 

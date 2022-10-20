@@ -4,18 +4,26 @@ import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailDTO;
 import com.phoenix.howabouttoday.payment.dto.OrdersDTO;
+import com.phoenix.howabouttoday.payment.dto.OrdersDetailVO;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
+import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
+import com.phoenix.howabouttoday.reserve.service.CartDto;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static javax.persistence.FetchType.LAZY;
+
 
 @RequiredArgsConstructor
 @Service
@@ -24,59 +32,86 @@ public class OrdersService {
     private final CartRepository cartRepository;
     private final MemberRepository memberRepository;
     private final OrdersRepository ordersRepository;
-    public List<OrdersDetailDTO> getCartData(Long memberId){
-        List<Cart> cartList = cartRepository.findAllByMember_MemberNum(memberId);
-        List<OrdersDetailDTO> orderDtoList = new ArrayList<>();
 
-        cartList.forEach(cart -> {
-            orderDtoList.add(cart.transDto());
-        });
-        return orderDtoList;
-    }
-
-    public List<OrdersDTO> getOrdersDto(Long memberNum){
-        List<OrdersDTO> lists = ordersRepository.findAllByMember_MemberNum(memberNum)
+    public List<OrdersDetailVO> getCartData(List<Long> cartNum){
+        return cartRepository.findAllById(cartNum)
                 .stream()
-                .map(order -> new OrdersDTO(order)) // 적용 후
+                .map(OrdersDetailVO::new)
                 .collect(Collectors.toList());
-        return lists;
     }
 
-    public boolean savePaymentData(Long memberNum, String name, String tel){
+    public List<OrdersDetailDTO> createOrdersDetailData(List<Long> cartNum){
+        return cartRepository.findAllById(cartNum)
+                .stream()
+                .map(OrdersDetailDTO::new)
+                .collect(Collectors.toList());
+    }
 
-        Member member = memberRepository.findById(memberNum).get();
+    public List<OrdersDTO> getOrdersDTO(Long memberNum){
+        return ordersRepository.findAllByMember_MemberNum(memberNum)
+                .stream()
+                .map(OrdersDTO::new) // 적용 후
+                .collect(Collectors.toList());
+    }
 
-        Orders order = Orders.builder()
-                .member(member)
-                .ordersName(name)
-                .ordersTel(tel)
-                .ordersDate(LocalDate.now())
-                .ordersPrice(getTotalPrice(member.getMemberNum()))
-                .ordersType("가상계좌")
-                .ordersStatus("이용 후")
-                .build();
+    public boolean savePaymentData(Long memberNum, String name, String tel, String ordersType, List<Long> cartNum){
 
-        List<Cart> cartList = cartRepository.findAllByMember_MemberNum(member.getMemberNum());
+        try {
+            Member member = memberRepository.findById(memberNum).get();
+            List<Cart> cartList = cartRepository.findAllById(cartNum);
 
-//        List<OrdersDetail> lists = cartList // Entity List
-//                .stream() // Entity Stream
-//                .map(cart -> new OrdersDetail(cart, order)) // DTO Stream
-//                .collect(Collectors.toList()); // DTO List
+            Orders order = Orders.builder()
+                    .member(member)
+                    .ordersName(name)
+                    .ordersTel(tel)
+                    .ordersDate(LocalDate.now())
+                    .ordersPrice(getTotalPrice(cartList
+                            .stream()
+                            .map(cart -> cart.getReserveNum())
+                            .collect(Collectors.toList())))
+                    .ordersType(ordersType)
+                    .ordersStatus(ReserveStatus.READY.toString())
+                    .build();
 
-//        order.getReservation().addAll(lists);
+            List<OrdersDetail> lists = cartList // Entity List
+                    .stream() // Entity Stream
+                    .map(cart -> ordersNumberMapping(cart, order)) // DTO Stream
+                    .collect(Collectors.toList()); // DTO List
 
-        ordersRepository.save(order);
+
+            order.getReservation().addAll(lists);
+
+            ordersRepository.save(order);
+            cartRepository.deleteAllById(cartNum);
+        }
+        catch (RuntimeException e){
+            System.out.println(e.toString());
+            return false;
+        }
         return true;
     }
 
-    public Integer getTotalPrice(Long memberId){
-        List<Cart> cartList = cartRepository.findAllByMember_MemberNum(memberId);
-        Integer totalPrice = 0;
 
-        for (Cart cart: cartList) {
-            totalPrice += cart.getReservePrice();
-        }
-        return totalPrice;
+    public Integer getTotalPrice(List<Long> cartNum){
+        List<Cart> cartList = cartRepository.findAllById(cartNum);
+        return cartList
+                .stream()
+                .mapToInt(Cart::getReservePrice)
+                .sum();
+    }
+
+    private OrdersDetail ordersNumberMapping(Cart cart, Orders order){
+        return OrdersDetail.builder()
+                .member(cart.getMember())
+                .room(cart.getRoom())
+                .orders(order)
+                .reserveStatus(ReserveStatus.READY)
+                .reserveUseStartDate(cart.getReserveUseStartDate())
+                .reserveUseEndDate(cart.getReserveUseEndDate())
+                .reservePrice(cart.getReservePrice())
+                .reserveAdultCount(cart.getReserveAdultCount())
+                .reserveChildCount(cart.getReserveChildCount())
+                .build();
     }
 }
 
