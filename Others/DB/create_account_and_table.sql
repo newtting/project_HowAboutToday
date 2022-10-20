@@ -100,8 +100,8 @@ CREATE TABLE ROOM (
   defaultGuest int NOT NULL,
   maxGuest int NOT NULL,
   price int NOT NULL,
-  stayStartDate varchar(20) NOT NULL,
-  stayEndDate varchar(20) NOT NULL,
+  restStartTime varchar(20) NOT NULL,
+  restEndTime varchar(20) NOT NULL,
   roomInfo varchar(1000) NOT NULL,
   PRIMARY KEY (`roomNum`),
   CONSTRAINT FK_26 FOREIGN KEY (accomNum) REFERENCES ACCOMMODATION(accomNum)on delete cascade

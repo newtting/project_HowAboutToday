@@ -29,13 +29,7 @@ const successRequest = () => {
 
 
 //    필요한 정보
-/**
- *
- *
- *
- *
- *
- * */
+
 
     console.log("리다이렉트")
     location.replace("/paymentSuccess");
