@@ -335,6 +335,8 @@ public class InitDb {
                     .totalReviewNum(127)
                     .latitude(37.5228)
                     .longitude(126.8927)
+                    .checkIn(LocalTime.of(15, 0))
+                    .checkOut(LocalTime.of(11, 0))
                     .lowPrice(12000)
                     .reserveRange(60)
                     .build());
@@ -350,6 +352,8 @@ public class InitDb {
                     .totalReviewNum(127)
                     .latitude(37.5228)
                     .longitude(126.8927)
+                    .checkIn(LocalTime.of(15, 0))
+                    .checkOut(LocalTime.of(11, 0))
                     .lowPrice(11000)
                     .reserveRange(60)
                     .build());
@@ -365,6 +369,8 @@ public class InitDb {
                     .totalReviewNum(127)
                     .latitude(37.5228)
                     .longitude(126.8927)
+                    .checkIn(LocalTime.of(15, 0))
+                    .checkOut(LocalTime.of(11, 0))
                     .lowPrice(13000)
                     .reserveRange(60)
                     .build());
@@ -379,6 +385,8 @@ public class InitDb {
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
                     .latitude(37.5228)
+                    .checkIn(LocalTime.of(15, 0))
+                    .checkOut(LocalTime.of(11, 0))
                     .longitude(126.8927)
                     .lowPrice(20000)
                     .reserveRange(60)

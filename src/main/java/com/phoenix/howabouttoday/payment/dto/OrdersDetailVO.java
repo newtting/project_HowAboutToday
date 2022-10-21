@@ -6,6 +6,7 @@
 
 package com.phoenix.howabouttoday.payment.dto;
 
+import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import lombok.Builder;
@@ -54,5 +55,27 @@ public class OrdersDetailVO {
         this.roomName = cart.getRoom().getRoomName();
         this.checkIn = cart.getRoom().getAccommodation().getCheckIn().toString();
         this.checkOut = cart.getRoom().getAccommodation().getCheckOut().toString();
+    }
+
+    public OrdersDetailVO(OrdersDetail ordersDetail) {
+
+        Period period = Period.between(ordersDetail.getReserveUseStartDate(), ordersDetail.getReserveUseEndDate());
+        String startDay = ordersDetail.getReserveUseStartDate().getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
+        String endDay = ordersDetail.getReserveUseEndDate().getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
+
+        this.cartNum = ordersDetail.getReserveNum();
+        this.accomType = ordersDetail.getRoom().getAccommodation().getAccomCategory().getValue();
+        this.accomName = ordersDetail.getRoom().getAccommodation().getAccomName();
+        this.accomRegion = ordersDetail.getRoom().getAccommodation().getRegion().getRegion().getValue();
+        this.orderDate = LocalDate.now().toString();
+        this.usePeriod = String.valueOf(period.getDays());
+        this.startDate = ordersDetail.getReserveUseStartDate().toString();
+        this.endDate = ordersDetail.getReserveUseEndDate().toString();
+        this.startWeek = startDay;
+        this.endWeek = endDay;
+        this.price = String.valueOf(ordersDetail.getReservePrice());
+        this.roomName = ordersDetail.getRoom().getRoomName();
+        this.checkIn = ordersDetail.getRoom().getAccommodation().getCheckIn().toString();
+        this.checkOut = ordersDetail.getRoom().getAccommodation().getCheckOut().toString();
     }
 }
