@@ -1,6 +1,7 @@
 
 /**
- * 주문내역에서 보여줄 주문 dto
+ * 하나의 숙소에 대한 정보를 담고 있는 DTO
+ * OrderDetail 엔티티와 거의 1:1 관계
  *
  */
 
@@ -34,6 +35,7 @@ public class OrdersDetailDTO {
     private String roomName;
     private String checkIn;
     private String checkOut;
+
 
 
     public OrdersDetailDTO(String accomType, String accomName, String accomRegion, String orderDate, String usePeriod, String startDate, String endDate, String startWeek, String endWeek, String price, String usedStatus, String roomName, String checkIn, String checkOut) {
@@ -74,27 +76,4 @@ public class OrdersDetailDTO {
         this.checkIn = reservation.getRoom().getAccommodation().getCheckIn().toString();
         this.checkOut = reservation.getRoom().getAccommodation().getCheckOut().toString();
     }
-    
-/** 중복 발생해서 우선 주석처리 **/
-//    public OrdersDetailDTO(Cart cart) {
-//
-//        Period period = Period.between(cart.getReserveUseStartDate(), cart.getReserveUseEndDate());
-//        DayOfWeek startday = cart.getReserveUseStartDate().getDayOfWeek();
-//        DayOfWeek endday = cart.getReserveUseEndDate().getDayOfWeek();
-//
-//        this.accomType = cart.getRoom().getAccommodation().getAccomCategory().getValue();
-//        this.accomName = cart.getRoom().getAccommodation().getAccomName();
-//        this.accomRegion = cart.getRoom().getAccommodation().getRegion().getRegion().getValue();
-//        this.orderDate = LocalDate.now().toString();
-//        this.usePeriod = String.valueOf(period.getDays());
-//        this.startDate = cart.getReserveUseStartDate().toString();
-//        this.endDate = cart.getReserveUseEndDate().toString();
-//        this.startWeek = startday.toString();
-//        this.endWeek = endday.toString();
-//        this.price = String.valueOf(cart.getReservePrice());
-//        this.usedStatus = cart.getReserveStatus().toString();
-//        this.roomName = cart.getRoom().getRoomName();
-//        this.checkIn = cart.getRoom().getAccommodation().getCheckIn().toString();
-//        this.checkOut = cart.getRoom().getAccommodation().getCheckOut().toString();
-//    }
 }

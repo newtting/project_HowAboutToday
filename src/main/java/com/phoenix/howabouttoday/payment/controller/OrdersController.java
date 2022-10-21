@@ -31,7 +31,8 @@ public class OrdersController {
     private final OrdersService orderService;
     private final MemberService memberService;
 
-    //    @GetMapping("checkout")
+
+    /* 카드 -> 결제페이지 */
     @GetMapping("/payment")
     public String cartView(Model model, @RequestParam List<Long> cartNum){
         /**
@@ -62,6 +63,7 @@ public class OrdersController {
         return "reserve/checkout";
     }
 
+    /* 마이페이지-예약탭-결제상세내역  */
     @GetMapping("bookingDetail")
     public String getUserOrderDetail(Model model) {
 
@@ -69,6 +71,7 @@ public class OrdersController {
          * 1. get방식
          * 2. 회원정보
          * 3. 오더번호
+         *
          * 4.
          */
 
@@ -88,11 +91,14 @@ public class OrdersController {
         return "reserve/payment-received";
     }
 
+
+    /* 결제 get방식 요청을 post리다이렉트 */
     @GetMapping("/paymentSuccess")
     public String getUserPaymentSuccess() {
         return "redirect:/home";
     }
 
+    /* 결제 성공 */
     @PostMapping("/paymentSuccess")
     public String postUserPaymentSuccess(@RequestParam String name, @RequestParam String tel, @RequestParam String ordersType, @RequestParam List<Long> cartNum) {
         MemberDTO customer = memberService.getCustomer(1L);
