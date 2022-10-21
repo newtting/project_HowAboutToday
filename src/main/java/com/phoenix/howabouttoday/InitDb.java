@@ -35,6 +35,7 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
@@ -113,6 +114,8 @@ public class InitDb {
                     .totalReviewNum(1103)
                     .latitude(36.3196)
                     .longitude(126.5092)
+                    .checkIn(LocalTime.of(15, 0))
+                    .checkOut(LocalTime.of(11, 0))
                     .lowPrice(45000)
                     .reserveRange(60)
                     .build());
@@ -403,6 +406,8 @@ public class InitDb {
                     .totalReviewNum(127)
                     .latitude(37.5228)
                     .longitude(126.8927)
+                    .checkIn(LocalTime.of(15, 0))
+                    .checkOut(LocalTime.of(11, 0))
                     .lowPrice(20000)
                     .reserveRange(60)
                     .build());
