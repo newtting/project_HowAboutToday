@@ -58,6 +58,7 @@ public class CartController {
             for (CartDto.ResponseDto cart : cartList) {
                 totalPrice += cart.getReservePrice();
 
+
                 Period between = Period.between(cart.getReserveUseStartDate(), cart.getReserveUseStartDate());
 
 
