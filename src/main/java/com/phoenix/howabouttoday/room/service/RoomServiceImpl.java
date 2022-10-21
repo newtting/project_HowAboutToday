@@ -40,7 +40,7 @@ public class RoomServiceImpl implements RoomService{
     @Override
     public List<RoomAmenitiesDTO> findAll_Amenities(Long roomNum) {
 
-        List<RoomAmenitiesDTO> alist = roomViewAmenitiesRepository.findAllByAmenitiesRoomNum(roomNum)
+        List<RoomAmenitiesDTO> alist = roomViewAmenitiesRepository.findAllByRoom_RoomNum(roomNum)
                 .stream()
                 .map(RoomAmenitiesDTO::new)
                 .collect(Collectors.toList());
@@ -52,7 +52,7 @@ public class RoomServiceImpl implements RoomService{
     @Override
     public List<RoomServiceDTO> findAll_Service(Long roomNum) {
 
-        List<RoomServiceDTO> slist = roomViewServiceRepository.findAllByServiceRoomNum(roomNum)
+        List<RoomServiceDTO> slist = roomViewServiceRepository.findAllByRoom_RoomNum(roomNum)
                 .stream()
                 .map(RoomServiceDTO::new)
                 .collect(Collectors.toList());

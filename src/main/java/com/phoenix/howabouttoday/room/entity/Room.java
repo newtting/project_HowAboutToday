@@ -1,7 +1,7 @@
 package com.phoenix.howabouttoday.room.entity;
 
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
-import com.phoenix.howabouttoday.payment.testDriver.AvailableDate;
+import com.phoenix.howabouttoday.room.dto.AvailableDate;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 

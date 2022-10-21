@@ -12,16 +12,16 @@ import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.member.wishlist.WishlistRepository;
-import com.phoenix.howabouttoday.payment.controller.member.wishlist.WishList;
+//import com.phoenix.howabouttoday.payment.controller.member.wishlist.WishList;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
-import com.phoenix.howabouttoday.payment.entity.OrdersDetailRepository;
+//import com.phoenix.howabouttoday.payment.entity.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
-import com.phoenix.howabouttoday.payment.testDriver.AvailableDate;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
+import com.phoenix.howabouttoday.room.dto.AvailableDate;
 import com.phoenix.howabouttoday.room.entity.*;
 import com.phoenix.howabouttoday.room.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -74,7 +74,7 @@ public class InitDb {
         private final ServiceRepository serviceRepository;
         private final WishlistRepository wishlistRepository;
         private final OrdersRepository ordersRepository;
-        private final OrdersDetailRepository ordersDetailRepository;
+//        private final OrdersDetailRepository ordersDetailRepository;
         private final AccommodationImageRepository accommodationImageRepository;
         private final RoomViewAmenitiesRepository roomViewAmenitiesRepository;
         public void dbInit1() {
@@ -175,10 +175,10 @@ public class InitDb {
                     .build());
 
             /**위시리스트 등록**/
-            wishlistRepository.save(WishList.builder()
-                    .member(member)
-                    .accommodation(accommodation)
-                    .build());
+//            wishlistRepository.save(WishList.builder()
+//                    .member(member)
+//                    .accommodation(accommodation)
+//                    .build());
 
             /** 장바구니 등록 **/
             Cart cart = cartRepository.save(Cart.builder()
@@ -220,7 +220,7 @@ public class InitDb {
             order.getReservation().add(ordersDetail);
             member.getOrders().add(order);
 
-            ordersDetailRepository.save(ordersDetail);
+//            ordersDetailRepository.save(ordersDetail);
             ordersRepository.save(order);
 
 
@@ -340,10 +340,10 @@ public class InitDb {
                     .build());
 
             /**위시리스트 등록**/
-            wishlistRepository.save(WishList.builder()
-                    .member(member)
-                    .accommodation(accommodation)
-                    .build());
+//            wishlistRepository.save(WishList.builder()
+//                    .member(member)
+//                    .accommodation(accommodation)
+//                    .build());
 
             /** 장바구니 등록 **/
             Cart cart = cartRepository.save(Cart.builder()
@@ -383,7 +383,7 @@ public class InitDb {
             order.getReservation().add(ordersDetail);
             member.getOrders().add(order);
 
-            ordersDetailRepository.save(ordersDetail);
+//            ordersDetailRepository.save(ordersDetail);
             ordersRepository.save(order);
 
 

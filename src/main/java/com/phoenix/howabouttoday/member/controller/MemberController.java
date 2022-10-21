@@ -27,14 +27,14 @@ public class MemberController {
 
 
 
-    @PostMapping("/member/join")
-    public String joinProc(MemberDTO memberDTO) {
-        System.out.println("memberDto = " + memberDTO.toString());
-        memberService.join(memberDTO);
-
-
-        return "redirect:/home";
-    }
+//    @PostMapping("/member/join")
+//    public String joinProc(MemberDTO memberDTO) {
+//        System.out.println("memberDto = " + memberDTO.toString());
+//        memberService.join(memberDTO);
+//
+//
+//        return "redirect:/home";
+//    }
 
     @GetMapping("/member/login")
     public String login() {

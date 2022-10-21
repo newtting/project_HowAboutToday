@@ -8,6 +8,6 @@ import java.util.List;
 public interface RoomViewServiceRepository extends JpaRepository<RoomViewService,Long> {
 
     //Service List
-    List<RoomViewService> findAllByServiceRoomNum(Long roomNum);
+    List<RoomViewService> findAllByRoom_RoomNum(Long roomNum);
 
 }
