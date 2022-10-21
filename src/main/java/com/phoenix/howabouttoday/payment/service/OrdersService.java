@@ -16,6 +16,10 @@ import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
 import com.phoenix.howabouttoday.room.dto.AvailableDate;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,12 +49,10 @@ public class OrdersService {
                 .collect(Collectors.toList());
     }
 
-//    public List<OrdersDetailVO> getOrderDetailData(Long ordersNum){
-//        return ordersRepository.findById(ordersNum).get().getReservation()
-//                .stream()
-//                .map(OrdersDetailVO::new)
-//                .collect(Collectors.toList());
-//    }
+
+    public Page<OrdersDTO> pagingAll(Pageable pageable){
+        return ordersRepository.findAll(pageable).map(OrdersDTO::new);
+    }
 
     public List<OrdersDetailDTO> createOrdersDetailData(List<Long> cartNum){
         return cartRepository.findAllById(cartNum)
