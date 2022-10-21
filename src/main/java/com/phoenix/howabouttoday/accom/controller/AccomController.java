@@ -9,6 +9,7 @@ import com.phoenix.howabouttoday.accom.service.AccomodationService;
 //import com.phoenix.howabouttoday.payment.AccomCategory;
 
 
+import com.phoenix.howabouttoday.room.dto.RoomImageDTO;
 import com.phoenix.howabouttoday.room.dto.RoomListDTO;
 import com.phoenix.howabouttoday.accom.service.FacilitiesService;
 import com.phoenix.howabouttoday.room.service.RoomService;
@@ -84,10 +85,13 @@ public class AccomController {
 
     //숙소 상세
     @GetMapping("hotel-single")
-    public String getHotelSingle(Model model,Long accomNum){
+    public String getHotelSingle(Model model,Long accomNum,Long roomNum){
+
+        List<RoomImageDTO> iList = roomService.findAll_Image(roomNum);
+        model.addAttribute("ilist",iList); //객실 이미지 리스트
 
         List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
-        model.addAttribute("roomlist",roomList);
+        model.addAttribute("roomlist",roomList); //객실 리스트
 
         Accommodation accomList= accommodationService.findAccom(accomNum);
         List<Facilities> facilitiesList = facilitiesService.getFacilitiesList();
