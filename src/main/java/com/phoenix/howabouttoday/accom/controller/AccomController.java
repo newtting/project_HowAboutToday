@@ -13,6 +13,7 @@ import com.phoenix.howabouttoday.room.dto.RoomImageDTO;
 import com.phoenix.howabouttoday.room.dto.RoomListDTO;
 import com.phoenix.howabouttoday.accom.service.FacilitiesService;
 import com.phoenix.howabouttoday.room.service.RoomService;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -47,17 +48,11 @@ public class AccomController {
         return "home";
     }
 
-
+    // 숙소 리스트 출력
     @GetMapping("hotel-list")
     public String getHotelList(Model model){
 
         List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
-
-        for (Accommodation accommodation : accommodationList) {
-            System.out.println("!!!!!!!!accom image =" + accommodation.getAccommodationImage().get(0).getAccomOriginFilename());
-            System.out.println("!!accomNum =" + accommodation.getAccomNum());
-        }
-
 
         model.addAttribute("accommodationList",accommodationList);
 
@@ -72,20 +67,22 @@ public class AccomController {
     @GetMapping("hotel-listSearch")
     public String getHotelSearchResult(@RequestParam(value = "keyword") String keyword, Model model){
 
-//        List<Accommodation> accommodationList = accommodationService.searchResults(keyword);
+        List<Accommodation> accommodationList = accommodationService.searchResults(keyword);
 
-//        model.addAttribute("accommodationList", accommodationList);
+        model.addAttribute("accommodationList", accommodationList);
         return "accom/hotel/hotel-list";
     }
 
-    @PostMapping("hotel-search-result")
-    public String postHotelSearchResult(){
-        return "accom/hotel/hotel-search-result";
-    }
+//    @PostMapping("hotel-search-result")
+//    public String postHotelSearchResult(){
+//        return "accom/hotel/hotel-search-result";
+//    }
 
     //숙소 상세
     @GetMapping("hotel-single")
     public String getHotelSingle(Model model,Long accomNum,Long roomNum){
+
+
 
         List<RoomImageDTO> iList = roomService.findAll_Image(roomNum);
         model.addAttribute("ilist",iList); //객실 이미지 리스트
@@ -93,8 +90,8 @@ public class AccomController {
         List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
         model.addAttribute("roomlist",roomList); //객실 리스트
 
-        Accommodation accomList= accommodationService.findAccom(accomNum);
-        List<Facilities> facilitiesList = facilitiesService.getFacilitiesList();
+        Accommodation accomList= accommodationService.findAccom(accomNum);//숙소 정보
+        List<Facilities> facilitiesList = facilitiesService.getFacilitiesList();//숙소 시설
         model.addAttribute("facilities",facilitiesList);
         model.addAttribute("accommodation",accomList);
 //        model.addAttribute("roomlist", roomService.roomList());
@@ -103,6 +100,18 @@ public class AccomController {
     }
     @PostMapping("hotel-single")
     public String postHotelSingle(){return "accom/hotel/hotel-single";}
+
+    @GetMapping("singleSearch")
+    public String getHotelSingleSearch(Model model,Long accomNum) {
+        System.out.println("accomNum!!!!!!!!!!!!! = " + accomNum);
+        Accommodation accomList= accommodationService.findAccom(accomNum);//숙소 정보
+        List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
+
+        model.addAttribute("roomlist",roomList); //객실 리스트
+        model.addAttribute("accommodation",accomList);
+
+        return "accom/hotel/hotel-single";
+    }
 
     @GetMapping("motel-list")
     public String getMotelList(){
@@ -125,8 +134,6 @@ public class AccomController {
     @GetMapping("motel-single")
     public String getMotelSingle(Model model,Long accomNum){
 
-        List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
-        model.addAttribute("roomlist",roomList);
         return "accom/hotel/motel-single";
 
     }
