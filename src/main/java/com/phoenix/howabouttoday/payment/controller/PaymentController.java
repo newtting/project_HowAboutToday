@@ -2,10 +2,9 @@ package com.phoenix.howabouttoday.payment.controller;
 
 import com.phoenix.howabouttoday.accom.service.AccomodationService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
-import com.phoenix.howabouttoday.payment.dto.OrdersDetailDto;
-import com.phoenix.howabouttoday.payment.dto.OrdersDto;
+import com.phoenix.howabouttoday.payment.dto.OrdersDTO;
 import com.phoenix.howabouttoday.payment.service.MemberServiceCopy;
-import com.phoenix.howabouttoday.payment.service.OrderService;
+import com.phoenix.howabouttoday.payment.service.OrdersService;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -28,13 +26,13 @@ public class PaymentController {
     private final MemberServiceCopy memberServiceCopy;
     private final AccomodationService accomodationService;
     private final RoomService roomService;
-    private final OrderService orderService;
+    private final OrdersService orderService;
 
     @GetMapping("user-dashboard-booking-details")
     public String getUserDashboardSettings(Model model) {
 
         MemberDTO customer = memberServiceCopy.getCustomer(1L);
-        List<OrdersDto> orders = orderService.getOrdersDto(customer.getNum());
+        List<OrdersDTO> orders = orderService.getOrdersDTO(customer.getNum());
         model.addAttribute("orders", orders);
         System.out.println("결제 내역 페이지");
 
@@ -52,7 +50,7 @@ public class PaymentController {
         /*********************로그인 후 인증정보를 가져 오는 부분 작성***********************/
         MemberDTO customer = memberServiceCopy.getCustomer(1L);
 
-        List<OrdersDto> orders = orderService.getOrdersDto(customer.getNum());
+        List<OrdersDTO> orders = orderService.getOrdersDTO(customer.getNum());
 
         model.addAttribute("orders", orders);
 

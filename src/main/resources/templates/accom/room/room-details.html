@@ -295,9 +295,11 @@
       layout:decorate="layout/layout">
 
 <th:block layout:fragment="content">
-<!-- ================================
-    상단 객실 이미지 시작
-================================= -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+
+    <!-- ================================
+        상단 객실 이미지 시작
+    ================================= -->
 <section class="room-detail-bread">
     <div class="full-width-slider carousel-action">
         <div class="full-width-slide-item">
@@ -726,13 +728,16 @@
                             <h3 class="title stroke-shape">숙박 예약</h3>
                             <div class="sidebar-widget-item">
                                 <div class="contact-form-action">
-                                    <form action="#">
+                                    <form action="#" id="date-form">
                                         <div class="input-box">
                                             <label class="label-text">Check in - Check out</label>
                                             <div class="form-group">
                                                 <span class="la la-calendar form-icon"></span>
+
                                                 <input class="date-picker-multiple form-control" type="text" name="daterange" readonly>
+
                                             </div>
+
                                         </div>
                                     </form>
                                 </div>
@@ -742,7 +747,7 @@
                                     <label class="font-size-16">성인 </label>
                                     <div class="qtyBtn d-flex align-items-center">
                                         <div class="qtyDec"><i class="la la-minus"></i></div>
-                                        <input type="text" name="qtyInput" value="0">
+                                        <input id="adult-qty" type="text" name="qtyInput" value="0">
                                         <div class="qtyInc"><i class="la la-plus"></i></div>
                                     </div>
                                 </div><!-- end qty-box -->
@@ -750,7 +755,7 @@
                                     <label class="font-size-16">아동 </label>
                                     <div class="qtyBtn d-flex align-items-center">
                                         <div class="qtyDec"><i class="la la-minus"></i></div>
-                                        <input type="text" name="qtyInput" value="0">
+                                        <input type="text" id="child-qty"  class="reserve-qty" name="qtyInput" value="0">
                                         <div class="qtyInc"><i class="la la-plus"></i></div>
                                     </div>
                                 </div><!-- end qty-box -->
@@ -758,6 +763,7 @@
                             <div class="btn-box">
                                 <a th:href="cart" class="theme-btn hwt-btn-gray text-center w-100 mb-2 "><i class="la la-shopping-cart mr-2 font-size-18"></i>카트 추가하기</a>
                                 <a href="cart.html" class="theme-btn hwt-btn-gray text-center w-100 mb-2">바로 예약</a>
+
                             </div>
                         </div><!-- end sidebar-widget -->
                         <div class="sidebar-widget single-content-widget">
@@ -1150,7 +1156,45 @@
 <!--<script src="js/main.js"></script>-->
 <!--</body>-->
 <!--</html>-->
+    <script>
 
+
+        $("#cart-button").click(function(){
+
+            let check_in = $("#check-in").val();
+            let check_out = $("#check-out").val();
+            let adultQty = $("#adult-qty").val();
+            let childQty = $("#child-qty").val();
+
+            cartForm = JSON.stringify({
+                check_in: check_in,
+                check_out: check_out,
+                adultQty: adultQty,
+                childQty: childQty,
+            });
+            // let form = $("#reserve-form").serialize();
+
+
+            $.ajax({
+                type: 'post',
+                url: '/rest/cart',
+                data: cartForm,
+                contentType: 'application/json; charset=utf-8',
+                dataType:"text",
+            }).done(function(result){
+
+                if(result == "true"){
+                    alert("장바구니에 존재하는 객실입니다.");
+                } else{
+                    alert("장바구니에 저장되었습니다.");
+                    window.location.href = '/cart/';
+                }
+            }).fail(function (error){
+                alert(JSON.stringify(error));
+            });
+        });
+
+    </script>
 </th:block>
 
 </html>

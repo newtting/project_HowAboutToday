@@ -1,11 +1,16 @@
 package com.phoenix.howabouttoday.accom.controller;
 
+import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import com.phoenix.howabouttoday.accom.entity.Facilities;
+import com.phoenix.howabouttoday.accom.entity.Facility;
 import com.phoenix.howabouttoday.accom.service.AccomodationService;
 
 //import com.phoenix.howabouttoday.payment.AccomCategory;
 
+
 import com.phoenix.howabouttoday.room.dto.RoomListDTO;
+import com.phoenix.howabouttoday.accom.service.FacilitiesService;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +29,7 @@ public class AccomController {
 
     private final AccomodationService accommodationService;
     private final RoomService roomService;
+    private final FacilitiesService facilitiesService;
 
 //    public AccomController(AccomodationService accomodationService, RoomService roomService) {
 //        this.accomodationService = accomodationService;
@@ -46,8 +52,13 @@ public class AccomController {
 
         List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
 
-        model.addAttribute("accommodationList",accommodationList);
+        for (Accommodation accommodation : accommodationList) {
+            System.out.println("!!!!!!!!accom image =" + accommodation.getAccommodationImage().get(0).getAccomOriginFilename());
+            System.out.println("!!accomNum =" + accommodation.getAccomNum());
+        }
 
+
+        model.addAttribute("accommodationList",accommodationList);
 
         return "accom/hotel/hotel-list";
     }
@@ -57,26 +68,30 @@ public class AccomController {
         return "accom/hotel/hotel-list";
     }
 
-//    @GetMapping("hotel-listSearch")
-//    public String getHotelSearchResult(@RequestParam(value = "keyword") String keyword, Model model){
-//
+    @GetMapping("hotel-listSearch")
+    public String getHotelSearchResult(@RequestParam(value = "keyword") String keyword, Model model){
+
 //        List<Accommodation> accommodationList = accommodationService.searchResults(keyword);
-//
+
 //        model.addAttribute("accommodationList", accommodationList);
-//        return "accom/hotel/hotel-list";
-//    }
+        return "accom/hotel/hotel-list";
+    }
+
     @PostMapping("hotel-search-result")
     public String postHotelSearchResult(){
         return "accom/hotel/hotel-search-result";
     }
 
-
+    //숙소 상세
     @GetMapping("hotel-single")
     public String getHotelSingle(Model model,Long accomNum){
 
         List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
         model.addAttribute("roomlist",roomList);
 
+        model.addAttribute("facilities",facilitiesList);
+        model.addAttribute("accommodation",accomList);
+//        model.addAttribute("roomlist", roomService.roomList());
         return "accom/hotel/hotel-single";
 
     }

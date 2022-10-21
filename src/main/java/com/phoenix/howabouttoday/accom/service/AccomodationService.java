@@ -5,6 +5,7 @@ import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
+import com.phoenix.howabouttoday.accom.repository.AccommodationImageRepository;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.accom.repository.RegionRepository;
 import lombok.Builder;
@@ -28,11 +29,13 @@ public class AccomodationService {
     private final AccommodationRepository accommodationRepository;
 
     private final RegionRepository regionRepository;
+    private final AccommodationImageRepository accommodationImageRepository;
 
     /*리스트 목록 조회*/
     public List<Accommodation> getAccommodationlist() {
         return accommodationRepository.findAll();
     }
+
 
     /*public void saveData(){
         accommodationRepository.save(createAccom());
@@ -78,7 +81,6 @@ public class AccomodationService {
 
         return accommodations;
     }*/
-
     @Transactional
     public List<Accommodation> searchResults(String keyword) {
         List<Accommodation> accommodations = accommodationRepository.findByAccomNameContaining(keyword);
@@ -107,6 +109,16 @@ public class AccomodationService {
                 .reserveRange(accommodation.getReserveRange())
                 .build();
 
+    }
+
+    @Transactional
+    public Accommodation findAccom(Long accomNum) {
+
+        Optional<Accommodation> findAccom = accommodationRepository.findById(accomNum);
+        Accommodation accommodation = findAccom.orElseThrow(() ->
+                new IllegalArgumentException("해당 숙소가 존재하지 않습니다"));
+
+        return accommodation;
     }
 
 }

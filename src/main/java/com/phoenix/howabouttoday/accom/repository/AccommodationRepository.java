@@ -1,13 +1,11 @@
 package com.phoenix.howabouttoday.accom.repository;
 
 
-import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
-import com.phoenix.howabouttoday.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AccommodationRepository extends JpaRepository<Accommodation, Long> {
 
@@ -21,8 +19,7 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
 
     List<Accommodation> findByAccomNameContaining(String keyword);
 
-    /*static List<Accommodation> findByAccomNameLike(String name) {
-        return null;
-    }*/
-
+    Optional<Accommodation> findById(Long accomNum);
 }
+
+
