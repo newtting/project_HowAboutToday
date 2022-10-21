@@ -71,7 +71,6 @@ public class OrdersService {
     }
 
     public boolean savePaymentData(Long memberNum, String name, String tel, String ordersType, List<Long> cartNum){
-
         try {
             Member member = memberRepository.findById(memberNum).get();
             List<Cart> cartList = cartRepository.findAllById(cartNum);

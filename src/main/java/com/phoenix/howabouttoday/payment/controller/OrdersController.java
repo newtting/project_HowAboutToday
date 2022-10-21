@@ -71,7 +71,6 @@ public class OrdersController {
          * 1. get방식
          * 2. 회원정보
          * 3. 오더번호
-         *
          * 4.
          */
 
@@ -90,7 +89,6 @@ public class OrdersController {
 
         return "reserve/payment-received";
     }
-
 
     /* 결제 get방식 요청을 post리다이렉트 */
     @GetMapping("/paymentSuccess")
