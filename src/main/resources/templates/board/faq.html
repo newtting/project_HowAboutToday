@@ -57,7 +57,7 @@
             </div><!-- end col-lg-3 -->
             <div class="col-lg-3 responsive-column">
                 <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#" class="d-block">
+                    <a href="#faq" class="d-block">
                         <img src="icon/sale.png" class="header-icon">
                         <span class="d-block info__title hwt-font-title">상품 / 서비스</span>
                     </a>
@@ -131,55 +131,27 @@
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->
         <div class="row padding-top-60px hwt-row-board">
-            <div class="col-lg-6 col-board">
+            <div class="col-lg-6 col-board" id="faq">
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">상품 / 서비스</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Can I cancel my booking?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                If I need to cancel my booking, will I pay a fee?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Can I cancel or change my dates for a non-refundable booking?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                How do I know if my booking was cancelled?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Where can I find my property's cancellation policy?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
+                        <th:block th:each="list : ${lists}">
+                            <th:block th:each="boardDetailDTO : ${list}">
+                                <th:block th:if="${boardDetailDTO.boardCategoryName == '상품/서비스'}">
+                                    <li>
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
+                                            <i class="la la-angle-down"></i>
+                                        </a>
+                                        <ul class="toggle-drop-menu pt-2">
+                                            <li class="line-height-26">
+                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </th:block>
+                            </th:block>
+                        </th:block>
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
@@ -187,51 +159,23 @@
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">예약 / 결제</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                What payment methods are accepted?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Can I pay with a deposit, or prepayment?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                I’ve been charged. Do I need to do anything?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Where can I see the payment policy for my booking?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Why do I need to provide my card details?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
+                        <th:block th:each="list : ${lists}">
+                            <th:block th:each="boardDetailDTO : ${list}">
+                                <th:block th:if="${boardDetailDTO.boardCategoryName == '예약/결제'}">
+                                    <li>
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
+                                            <i class="la la-angle-down"></i>
+                                        </a>
+                                        <ul class="toggle-drop-menu pt-2">
+                                            <li class="line-height-26">
+                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </th:block>
+                            </th:block>
+                        </th:block>
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
@@ -239,51 +183,23 @@
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">변경 / 취소 / 환불</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                How do I get more information about the room or property's facilities?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Is it possible to get an extra bed or cot for a child?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                How can I get an invoice?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                I can't find my confirmation email. What should I do?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Will I pay the full price for my children?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
+                        <th:block th:each="list : ${lists}">
+                            <th:block th:each="boardDetailDTO : ${list}">
+                                <th:block th:if="${boardDetailDTO.boardCategoryName == '변경/취소/환불'}">
+                                    <li>
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
+                                            <i class="la la-angle-down"></i>
+                                        </a>
+                                        <ul class="toggle-drop-menu pt-2">
+                                            <li class="line-height-26">
+                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </th:block>
+                            </th:block>
+                        </th:block>
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
@@ -291,51 +207,23 @@
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">쿠폰 / 할인</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                What is the Booking Assistant?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Where can I find the Booking Assistant?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                How can the Booking Assistant help me?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Where does the Booking Assistant get information?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Can I use the Booking Assistant in my language?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
+                        <th:block th:each="list : ${lists}">
+                            <th:block th:each="boardDetailDTO : ${list}">
+                                <th:block th:if="${boardDetailDTO.boardCategoryName == '쿠폰/할인'}">
+                                    <li>
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
+                                            <i class="la la-angle-down"></i>
+                                        </a>
+                                        <ul class="toggle-drop-menu pt-2">
+                                            <li class="line-height-26">
+                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </th:block>
+                            </th:block>
+                        </th:block>
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
@@ -343,42 +231,23 @@
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">포인트</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                What's the difference between a Double room and a Twin room?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                What do "non-refundable" and "free cancellation" mean?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Can I request an extra bed in my room and will there be extra costs?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Is it possible to get an extra bed or cot for a child?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
+                        <th:block th:each="list : ${lists}">
+                            <th:block th:each="boardDetailDTO : ${list}">
+                                <th:block th:if="${boardDetailDTO.boardCategoryName == '포인트'}">
+                                    <li>
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
+                                            <i class="la la-angle-down"></i>
+                                        </a>
+                                        <ul class="toggle-drop-menu pt-2">
+                                            <li class="line-height-26">
+                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </th:block>
+                            </th:block>
+                        </th:block>
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
@@ -386,42 +255,23 @@
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">후기 / 댓글</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Is breakfast included in the price?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                What does the price include?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Are taxes included in the price?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Do I pay a reservation fee to Tripstar.com?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
+                        <th:block th:each="list : ${lists}">
+                            <th:block th:each="boardDetailDTO : ${list}">
+                                <th:block th:if="${boardDetailDTO.boardCategoryName == '후기/댓글'}">
+                                    <li>
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
+                                            <i class="la la-angle-down"></i>
+                                        </a>
+                                        <ul class="toggle-drop-menu pt-2">
+                                            <li class="line-height-26">
+                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </th:block>
+                            </th:block>
+                        </th:block>
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
@@ -429,42 +279,23 @@
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">회원 / 개인정보</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Can I use a debit card to complete my reservation?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Can I make a reservation without a credit card?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Why do I need to give my credit card details?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Can I make a reservation for myself using someone else’s credit card?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
+                        <th:block th:each="list : ${lists}">
+                            <th:block th:each="boardDetailDTO : ${list}">
+                                <th:block th:if="${boardDetailDTO.boardCategoryName == '회원/개인정보'}">
+                                    <li>
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
+                                            <i class="la la-angle-down"></i>
+                                        </a>
+                                        <ul class="toggle-drop-menu pt-2">
+                                            <li class="line-height-26">
+                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </th:block>
+                            </th:block>
+                        </th:block>
                     </ul>
                 </div><!-- end faq-item -->
         </div><!-- end row -->

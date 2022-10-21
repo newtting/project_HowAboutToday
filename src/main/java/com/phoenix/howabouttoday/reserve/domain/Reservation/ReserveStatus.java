@@ -6,5 +6,5 @@ package com.phoenix.howabouttoday.reserve.domain.Reservation;
  */
 
 public enum ReserveStatus {
-    READY,COMP
+    READY,COMP,CANCEL
 }

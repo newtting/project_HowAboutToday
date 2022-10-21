@@ -13,17 +13,18 @@ import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
-import com.phoenix.howabouttoday.payment.entity.OrdersDetailRepository;
+import com.phoenix.howabouttoday.payment.repository.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.AvailableDateRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.global.AccomCategory;
-import com.phoenix.howabouttoday.payment.testDriver.AvailableDate;
+import com.phoenix.howabouttoday.room.dto.AvailableDate;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
 import com.phoenix.howabouttoday.room.entity.Room;
 import com.phoenix.howabouttoday.room.entity.RoomImage;
+import com.phoenix.howabouttoday.room.entity.RoomViewService;
 import com.phoenix.howabouttoday.room.repository.RoomImageRepository;
 import com.phoenix.howabouttoday.room.repository.RoomRepository;
 import org.junit.jupiter.api.Test;
@@ -215,12 +216,8 @@ public class DataInsertTest {
                     .reserveChildCount(data.getReserveChildCount())
                     .build();
             ordersDetailRepository.save(ordersDetail);
-            order.getReservation().add(ordersDetail);
+//            order.getReservation().add(ordersDetail);
         }
-
-        member.getOrders().add(order);
-
-
         ordersRepository.save(order);
 
     }

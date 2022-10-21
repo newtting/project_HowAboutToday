@@ -1,5 +1,13 @@
+
+/**
+ * 결제가 완료되면 cart의 내용을 저장할 테이블
+ * 사실 카트와 다른 부분은 거의 없지만, dType을 사용하려면 이렇게 사용해야한다.
+ */
+
+
 package com.phoenix.howabouttoday.payment.entity;
 
+import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -8,8 +16,6 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
-
 @DiscriminatorValue("orderDetail")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

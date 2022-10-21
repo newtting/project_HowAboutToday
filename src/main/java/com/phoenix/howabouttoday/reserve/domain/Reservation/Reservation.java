@@ -56,8 +56,8 @@ public abstract class Reservation {
 
     @Setter
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "orders_num")
-    private Orders orders;
+    @JoinColumn(name = "ordersNum", referencedColumnName = "ordersNum")
+    protected Orders orders;
 
     @Enumerated(EnumType.STRING)
     private ReserveStatus reserveStatus;
