@@ -9,17 +9,21 @@ package com.phoenix.howabouttoday.payment.controller;
 
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
-import com.phoenix.howabouttoday.payment.dto.OrdersDetailDTO;
+import com.phoenix.howabouttoday.payment.dto.OrdersDTO;
+import com.phoenix.howabouttoday.payment.dto.OrdersDetailVO;
 import com.phoenix.howabouttoday.payment.service.OrdersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.util.List;
 
+@RequestMapping("/orders")
 @RequiredArgsConstructor
 @Controller
 public class OrdersController {
@@ -27,8 +31,10 @@ public class OrdersController {
     private final OrdersService orderService;
     private final MemberService memberService;
 
-    @GetMapping("checkout")
-    public String cartView(Model model/*, @PathVariable Integer id*/){
+
+    /* 카드 -> 결제페이지 */
+    @GetMapping("/payment")
+    public String cartView(Model model, @RequestParam List<Long> cartNum){
         /**
          * 객실 -> 결제 이동시 컨트롤러의 처리 순서
          * 1. 로그인 상태인가?(서큐리티로 체크)
@@ -43,35 +49,61 @@ public class OrdersController {
         //1. 시큐리티를 사용해서 principal 객체에서 user정보를 가져와서 memberNum을 알 수 있다.
 
         MemberDTO customer = memberService.getCustomer(1L);
-        List<OrdersDetailDTO> infoList = orderService.getCartData(customer.getNum());
-        Integer totalPrice = orderService.getTotalPrice(customer.getNum());
-        System.out.println(totalPrice);
-
+        List<OrdersDetailVO> infoList = orderService.getCartData(cartNum);
+        Integer totalPrice = orderService.getTotalPrice(cartNum);   //얘를 따로 이렇게 하는 게 맞을까??
 
         model.addAttribute("totalPrice", totalPrice);
         model.addAttribute("customer", customer);
         model.addAttribute("infoList", infoList);
         return "reserve/checkout";
-}
+    }
 
     @PostMapping("checkout")
     public String postCheckout(){
         return "reserve/checkout";
     }
 
-    @GetMapping("paymentSuccess")
-    public String getUserPaymentSuccess(Model model) {
+    /* 마이페이지-예약탭-결제상세내역  */
+    @GetMapping("bookingDetail")
+    public String getUserOrderDetail(Model model) {
+
+        /**
+         * 1. get방식
+         * 2. 회원정보
+         * 3. 오더번호
+         *
+         * 4.
+         */
+
+        Long ordersNum = 3L;
+
         MemberDTO customer = memberService.getCustomer(1L);
-        orderService.savePaymentData(customer.getNum(), "이동우", "010-1234-5678");
+        OrdersDTO ordersDTO = orderService.getOrdersDTO(ordersNum);
+
+        model.addAttribute("customer", customer);
+        model.addAttribute("ordersDTO", ordersDTO);
+        return "reserve/payment-received";
+    }
+
+    @PostMapping("bookingDetail")
+    public String postUserOrderDetail() {
+
+        return "reserve/payment-received";
+    }
 
 
+    /* 결제 get방식 요청을 post리다이렉트 */
+    @GetMapping("/paymentSuccess")
+    public String getUserPaymentSuccess() {
         return "redirect:/home";
     }
 
-    @PostMapping("paymentSuccess")
-    public String postUserPaymentSuccess() {
+    /* 결제 성공 */
+    @PostMapping("/paymentSuccess")
+    public String postUserPaymentSuccess(@RequestParam String name, @RequestParam String tel, @RequestParam String ordersType, @RequestParam List<Long> cartNum) {
+        MemberDTO customer = memberService.getCustomer(1L);
+        orderService.savePaymentData(customer.getNum(), name, tel, ordersType, cartNum);
 
         return "redirect:/home";
     }
-
 }

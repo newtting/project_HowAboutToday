@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @RequiredArgsConstructor //CustomUserDetailsService 생성자 주입을 위한 lombok
@@ -22,72 +23,77 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-	private final CustomUserDetailsService customUserDetailsService;
-
-	//비밀번호를 암호화 객체
-
-	@Bean
-	public BCryptPasswordEncoder encoder() {
-		return new BCryptPasswordEncoder();
-	}
-
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(customUserDetailsService).passwordEncoder(encoder());
-	}
+    private final CustomUserDetailsService customUserDetailsService;
 
 
-	/*
-	인증 무시할 경로 설정
-	static 하위 폴더(css, js, img)는 무조건 접근이 가능해야함
-	 */
+    //비밀번호를 암호화 객체
 
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web
-			.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/template/**", "/error/**");
-	}
+    @Bean
+    public BCryptPasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-	/*
-	CSRF(Cross Site Request Forgery)
-	웹사이트의 취약점 공격을 방지하기 위해 사용하는 기술
-	스프링 시큐어리티가 CSRF 토큰 값을 발행해서
-	*/
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-
-		//인증되지 않은 모든 요청을
-		http
-				.csrf().disable()
-				.authorizeRequests()
-				.antMatchers("/admin/**").hasRole("ADMIN")
-//				.antMatchers("/user-dashboard-profile").hasRole("MEMBER")
-//				.antMatchers("/user-dashboard-reviews").hasRole("MEMBER")
-//				.antMatchers("/user-dashboard-wishlist").hasRole("MEMBER")
-//				.antMatchers("/user-dashboard-booking").hasRole("MEMBER")
-				.antMatchers("/**" ).permitAll()
-				.and()
-				.formLogin()
-				.loginPage("/member/login")
-				.usernameParameter("email")
-				.passwordParameter("pwd")
-				.loginProcessingUrl("loginProc")
-				.defaultSuccessUrl("/")
-				.permitAll();
-//				.and()
-//				.logout()
-//				.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
-//				.invalidateHttpSession(true).deleteCookies("JSESSIONID")
-//				.logoutSuccessUrl("/");
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(encoder());
+    }
 
 
+   /*
+   인증 무시할 경로 설정
+   static 하위 폴더(css, js, img)는 무조건 접근이 가능해야함
+    */
 
-	}
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/template/**", "/error/**");
+    }
+
+//   @Bean
+//   @Override
+//   public AuthenticationManager authenticationManagerBean() throws Exception {
+//      return super.authenticationManagerBean();
+//   }
+
+   /*
+   CSRF(Cross Site Request Forgery)
+   웹사이트의 취약점 공격을 방지하기 위해 사용하는 기술
+   스프링 시큐어리티가 CSRF 토큰 값을 발행해서
+   */
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+        //인증되지 않은 모든 요청을
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+//            .antMatchers("/user-dashboard-profile").hasRole("MEMBER")
+//            .antMatchers("/user-dashboard-reviews").hasRole("MEMBER")
+//            .antMatchers("/user-dashboard-wishlist").hasRole("MEMBER")
+//            .antMatchers("/user-dashboard-booking").hasRole("MEMBER")
+                .antMatchers("/**" ).permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .usernameParameter("email")
+                .passwordParameter("pwd")
+                .loginProcessingUrl("/loginProc")
+                .defaultSuccessUrl("/home")
+                .permitAll()
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+                .logoutSuccessUrl("/member/home")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
+
+
+
+
+    }
 
 }
-
-
-
-
 

@@ -12,11 +12,10 @@ import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
-import com.phoenix.howabouttoday.member.wishlist.WishList;
 import com.phoenix.howabouttoday.member.wishlist.WishlistRepository;
+//import com.phoenix.howabouttoday.payment.controller.member.wishlist.WishList;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
-
 import com.phoenix.howabouttoday.payment.repository.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 
@@ -26,14 +25,8 @@ import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
 import com.phoenix.howabouttoday.room.dto.AvailableDate;
-import com.phoenix.howabouttoday.room.entity.Amenities;
-import com.phoenix.howabouttoday.room.entity.Room;
-import com.phoenix.howabouttoday.room.entity.RoomImage;
-import com.phoenix.howabouttoday.room.entity.Service;
-import com.phoenix.howabouttoday.room.repository.AmenitiesRepository;
-import com.phoenix.howabouttoday.room.repository.RoomImageRepository;
-import com.phoenix.howabouttoday.room.repository.RoomRepository;
-import com.phoenix.howabouttoday.room.repository.ServiceRepository;
+import com.phoenix.howabouttoday.room.entity.*;
+import com.phoenix.howabouttoday.room.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -85,9 +78,9 @@ public class InitDb {
         private final ServiceRepository serviceRepository;
         private final WishlistRepository wishlistRepository;
         private final OrdersRepository ordersRepository;
-        private final OrdersDetailRepository ordersDetailRepository;
+//        private final OrdersDetailRepository ordersDetailRepository;
         private final AccommodationImageRepository accommodationImageRepository;
-
+        private final RoomViewAmenitiesRepository roomViewAmenitiesRepository;
         public void dbInit1() {
 
             /**회원등록**/
@@ -121,10 +114,10 @@ public class InitDb {
                     .totalReviewNum(1103)
                     .latitude(36.3196)
                     .longitude(126.5092)
-                    .lowPrice(45000)
-                    .reserveRange(60)
                     .checkIn(LocalTime.of(15, 0))
                     .checkOut(LocalTime.of(11, 0))
+                    .lowPrice(45000)
+                    .reserveRange(60)
                     .build());
 
             /** 숙소시설 등록 **/
@@ -161,6 +154,14 @@ public class InitDb {
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
+            Room room4 = roomRepository.save(Room.builder()
+                    .accommodation(accommodation)
+                    .roomName("너울펜션 기가막힌 룸")
+                    .defaultGuest(2)
+                    .maxGuest(10)
+                    .price(80000)
+                    .roomInfo("임시 객실정보 입니다")
+                    .build());
 
 
             /** 객실 이미지 등록 **/
@@ -176,10 +177,20 @@ public class InitDb {
                     .room(room1)
                     .build());
 
+            roomImageRepository.save(RoomImage.builder()
+                    .roomOriginFileName("image0.jpg")
+                    .roomSaveFileName("image0.jpg")
+                    .room(room4)
+                    .build());
+
 
             /** 객실 오락시설 등록 **/
-            amenitiesRepository.save(Amenities.builder()
+            Amenities amenities = amenitiesRepository.save(Amenities.builder()
                     .amenitiesName("흡연장")
+                    .build());
+
+            Amenities amenities1 = amenitiesRepository.save(Amenities.builder()
+                    .amenitiesName("풋살장")
                     .build());
 
             /** 객실 서비스 등록 **/
@@ -187,14 +198,26 @@ public class InitDb {
                     .serviceName("피트니스")
                     .build());
 
-            /**위시리스트 등록**/
-            wishlistRepository.save(WishList.builder()
-                    .member(member)
-                    .accommodation(accommodation)
+            /** 객실과 오락시설 등록 **/
+            roomViewAmenitiesRepository.save(RoomViewAmenities.builder()
+                    .room(room)
+                    .amenities(amenities)
                     .build());
+
+            roomViewAmenitiesRepository.save(RoomViewAmenities.builder()
+                    .room(room)
+                    .amenities(amenities1)
+                    .build());
+
+            /**위시리스트 등록**/
+//            wishlistRepository.save(WishList.builder()
+//                    .member(member)
+//                    .accommodation(accommodation)
+//                    .build());
 
             /** 장바구니 등록 **/
             Cart cart = cartRepository.save(Cart.builder()
+                    .accommodation(accommodation)
                     .member(member)
                     .room(room)
                     .reserveUseStartDate(LocalDate.of(2022, 10, 18))
@@ -241,7 +264,7 @@ public class InitDb {
             order.getReservation().add(ordersDetail);
             member.getOrders().add(order);
 
-            //ordersDetailRepository.save(ordersDetail);
+//            ordersDetailRepository.save(ordersDetail);
             ordersRepository.save(order);
 
 
@@ -315,6 +338,8 @@ public class InitDb {
                     .totalReviewNum(127)
                     .latitude(37.5228)
                     .longitude(126.8927)
+                    .checkIn(LocalTime.of(15, 0))
+                    .checkOut(LocalTime.of(11, 0))
                     .lowPrice(12000)
                     .reserveRange(60)
                     .build());
@@ -330,6 +355,8 @@ public class InitDb {
                     .totalReviewNum(127)
                     .latitude(37.5228)
                     .longitude(126.8927)
+                    .checkIn(LocalTime.of(15, 0))
+                    .checkOut(LocalTime.of(11, 0))
                     .lowPrice(11000)
                     .reserveRange(60)
                     .build());
@@ -345,6 +372,8 @@ public class InitDb {
                     .totalReviewNum(127)
                     .latitude(37.5228)
                     .longitude(126.8927)
+                    .checkIn(LocalTime.of(15, 0))
+                    .checkOut(LocalTime.of(11, 0))
                     .lowPrice(13000)
                     .reserveRange(60)
                     .build());
@@ -359,6 +388,8 @@ public class InitDb {
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
                     .latitude(37.5228)
+                    .checkIn(LocalTime.of(15, 0))
+                    .checkOut(LocalTime.of(11, 0))
                     .longitude(126.8927)
                     .lowPrice(20000)
                     .reserveRange(60)
@@ -375,9 +406,9 @@ public class InitDb {
                     .totalReviewNum(127)
                     .latitude(37.5228)
                     .longitude(126.8927)
-                    .lowPrice(20000)
                     .checkIn(LocalTime.of(15, 0))
                     .checkOut(LocalTime.of(11, 0))
+                    .lowPrice(20000)
                     .reserveRange(60)
                     .build());
 
@@ -389,11 +420,38 @@ public class InitDb {
                     .build());
 
             /** 숙소이미지 등록 **/
-            /*accommodationImageRepository.save( AccomImage.builder()
-                    .accomOriginFilename("image1.jpg")
+            accommodationImageRepository.save( AccomImage.builder()
+                    .accomOriginFilename("image4.jpg")
                     .accomSaveFilename("image1.jpg")
                     .accommodation(accommodation)
-                    .build());*/
+                    .build());
+
+
+
+            accommodationImageRepository.save( AccomImage.builder()
+                    .accomOriginFilename("image5.jpg")
+                    .accomSaveFilename("image1.jpg")
+                    .accommodation(accommodation2)
+                    .build());
+
+            accommodationImageRepository.save( AccomImage.builder()
+                    .accomOriginFilename("image6.jpg")
+                    .accomSaveFilename("image1.jpg")
+                    .accommodation(accommodation3)
+                    .build());
+
+            accommodationImageRepository.save( AccomImage.builder()
+                    .accomOriginFilename("image7.jpg")
+                    .accomSaveFilename("image1.jpg")
+                    .accommodation(accommodation4)
+                    .build());
+
+            accommodationImageRepository.save( AccomImage.builder()
+                    .accomOriginFilename("image8.jpg")
+                    .accomSaveFilename("image1.jpg")
+                    .accommodation(accommodation5)
+                    .build());
+
 
             /** 객실등록 **/
             Room room = roomRepository.save(Room.builder()
@@ -413,7 +471,7 @@ public class InitDb {
                     .build());
 
             /** 객실 오락시설 등록 **/
-            amenitiesRepository.save(Amenities.builder()
+            Amenities amenities = amenitiesRepository.save(Amenities.builder()
                     .amenitiesName("족구장")
                     .build());
 
@@ -422,11 +480,12 @@ public class InitDb {
                     .serviceName("수영장")
                     .build());
 
+
             /**위시리스트 등록**/
-            wishlistRepository.save(WishList.builder()
-                    .member(member)
-                    .accommodation(accommodation)
-                    .build());
+//            wishlistRepository.save(WishList.builder()
+//                    .member(member)
+//                    .accommodation(accommodation)
+//                    .build());
 
             /** 장바구니 등록 **/
             Cart cart = cartRepository.save(Cart.builder()
@@ -466,7 +525,7 @@ public class InitDb {
             order.getReservation().add(ordersDetail);
             member.getOrders().add(order);
 
-            //ordersDetailRepository.save(ordersDetail);
+//            ordersDetailRepository.save(ordersDetail);
             ordersRepository.save(order);
 
 

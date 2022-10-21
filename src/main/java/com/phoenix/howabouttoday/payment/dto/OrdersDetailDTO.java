@@ -1,11 +1,13 @@
 
 /**
- * 주문내역에서 보여줄 주문 dto
+ * 하나의 숙소에 대한 정보를 담고 있는 DTO
+ * OrderDetail 엔티티와 거의 1:1 관계
  *
  */
 
 package com.phoenix.howabouttoday.payment.dto;
 
+import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,6 +15,8 @@ import lombok.Getter;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 @Getter
 @Builder
@@ -29,11 +33,12 @@ public class OrdersDetailDTO {
     private String price;
     private String usedStatus;
     private String roomName;
+    private String roomNum;
     private String checkIn;
     private String checkOut;
 
 
-    public OrdersDetailDTO(String accomType, String accomName, String accomRegion, String orderDate, String usePeriod, String startDate, String endDate, String startWeek, String endWeek, String price, String usedStatus, String roomName, String checkIn, String checkOut) {
+    public OrdersDetailDTO(String accomType, String accomName, String accomRegion, String orderDate, String usePeriod, String startDate, String endDate, String startWeek, String endWeek, String price, String usedStatus, String roomName, String roomNum, String checkIn, String checkOut) {
         this.accomType = accomType;
         this.accomName = accomName;
         this.accomRegion = accomRegion;
@@ -46,6 +51,7 @@ public class OrdersDetailDTO {
         this.price = price;
         this.usedStatus = usedStatus;
         this.roomName = roomName;
+        this.roomNum = roomNum;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
     }
@@ -53,8 +59,8 @@ public class OrdersDetailDTO {
     public OrdersDetailDTO(Reservation reservation) {
 
         Period period = Period.between(reservation.getReserveUseStartDate(), reservation.getReserveUseEndDate());
-        DayOfWeek startday = reservation.getReserveUseStartDate().getDayOfWeek();
-        DayOfWeek endday = reservation.getReserveUseEndDate().getDayOfWeek();
+        String startDay = reservation.getReserveUseStartDate().getDayOfWeek().getDisplayName(TextStyle.NARROW, Locale.KOREAN);
+        String endDay = reservation.getReserveUseEndDate().getDayOfWeek().getDisplayName(TextStyle.NARROW, Locale.KOREAN);
 
         this.accomType = reservation.getRoom().getAccommodation().getAccomCategory().getValue();
         this.accomName = reservation.getRoom().getAccommodation().getAccomName();
@@ -63,11 +69,12 @@ public class OrdersDetailDTO {
         this.usePeriod = String.valueOf(period.getDays());
         this.startDate = reservation.getReserveUseStartDate().toString();
         this.endDate = reservation.getReserveUseEndDate().toString();
-        this.startWeek = startday.toString();
-        this.endWeek = endday.toString();
+        this.startWeek = startDay;
+        this.endWeek = endDay;
         this.price = String.valueOf(reservation.getReservePrice());
         this.usedStatus = reservation.getReserveStatus().toString();
         this.roomName = reservation.getRoom().getRoomName();
+        this.roomNum = reservation.getRoom().getAccommodation().getAccomNum().toString();
         this.checkIn = reservation.getRoom().getAccommodation().getCheckIn().toString();
         this.checkOut = reservation.getRoom().getAccommodation().getCheckOut().toString();
     }

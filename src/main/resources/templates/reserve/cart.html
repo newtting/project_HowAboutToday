@@ -60,7 +60,7 @@
                             </thead>
                             <tbody>
                             <th:block th:if="${checkCart}">
-                            <form action="/cart/test" method="get" id="cartForm">
+                            <form action="/orders/payment" method="get" id="cartForm">
                             <tr th:each="cart:${cartList}">
 
                                 <th scope="row">
