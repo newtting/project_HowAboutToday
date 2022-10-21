@@ -89,8 +89,10 @@ public class AccomController {
         List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
         model.addAttribute("roomlist",roomList);
 
-//        model.addAttribute("facilities",facilitiesList);
-//        model.addAttribute("accommodation",accomList);
+        Accommodation accomList= accommodationService.findAccom(accomNum);
+        List<Facilities> facilitiesList = facilitiesService.getFacilitiesList();
+        model.addAttribute("facilities",facilitiesList);
+        model.addAttribute("accommodation",accomList);
 //        model.addAttribute("roomlist", roomService.roomList());
         return "accom/hotel/hotel-single";
 
