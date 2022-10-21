@@ -27,13 +27,15 @@ public class PaymentController {
     private final MemberService memberService;
     private final OrdersService orderService;
 
-
     /* 마이페이지-예약탭  */
     @GetMapping("user-dashboard-booking")
     public String getUserDashboard(Model model, Principal principal, Authentication authentication){
         //1. 시큐리티를 사용해서 principal 객체에서 user정보를 가져와서 memberNum을 알 수 있다.
 
-        MemberDTO customer = memberService.getCustomer(1L);
+
+
+//        MemberDTO customer = memberService.getCustomer(1L);
+        MemberDTO customer = memberService.getAuthUser(principal.getName());
         List<OrdersDTO> ordersDTOList = orderService.getOrdersDTOList(customer.getNum());
 
 

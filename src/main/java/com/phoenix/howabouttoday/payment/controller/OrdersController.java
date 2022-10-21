@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import java.security.Principal;
 import java.util.List;
 
 @RequestMapping("/orders")
@@ -34,7 +35,7 @@ public class OrdersController {
 
     /* 카드 -> 결제페이지 */
     @GetMapping("/payment")
-    public String cartView(Model model, @RequestParam List<Long> cartNum){
+    public String cartView(Model model, @RequestParam List<Long> cartNum, Principal principal){
         /**
          * 객실 -> 결제 이동시 컨트롤러의 처리 순서
          * 1. 로그인 상태인가?(서큐리티로 체크)
@@ -48,7 +49,8 @@ public class OrdersController {
 
         //1. 시큐리티를 사용해서 principal 객체에서 user정보를 가져와서 memberNum을 알 수 있다.
 
-        MemberDTO customer = memberService.getCustomer(1L);
+//        MemberDTO customer = memberService.getCustomer(1L);
+        MemberDTO customer = memberService.getAuthUser(principal.getName());
         List<OrdersDetailVO> infoList = orderService.getCartData(cartNum);
         Integer totalPrice = orderService.getTotalPrice(cartNum);   //얘를 따로 이렇게 하는 게 맞을까??
 
@@ -98,8 +100,9 @@ public class OrdersController {
 
     /* 결제 성공 */
     @PostMapping("/paymentSuccess")
-    public String postUserPaymentSuccess(@RequestParam String name, @RequestParam String tel, @RequestParam String ordersType, @RequestParam List<Long> cartNum) {
-        MemberDTO customer = memberService.getCustomer(1L);
+    public String postUserPaymentSuccess(@RequestParam String name, @RequestParam String tel, @RequestParam String ordersType, @RequestParam List<Long> cartNum, Principal principal) {
+//        MemberDTO customer = memberService.getCustomer(1L);
+        MemberDTO customer = memberService.getAuthUser(principal.getName());
         orderService.savePaymentData(customer.getNum(), name, tel, ordersType, cartNum);
 
         return "redirect:/home";
