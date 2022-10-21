@@ -37,6 +37,20 @@ public class BoardController {
         return "board/notice-details";
     }
 
+    // 공지사항 작성 페이지
+    @GetMapping("notice-add")
+    public String noticeAdd(){
+
+        return "board/board-add";
+    }
+
+    // 공지사항 작성
+    @PostMapping("notice-add")
+    public String noticeAddf(){
+
+        return "redirect:/notice";
+    }
+
     // 이벤트 리스트 페이지
     @GetMapping("event")
     public String eventList(Model model){
@@ -57,6 +71,20 @@ public class BoardController {
         return "board/event-details";
     }
 
+    // 이벤트 작성 페이지
+    @GetMapping("event-add")
+    public String eventAdd(){
+
+        return "board/event-add";
+    }
+
+    // 이벤트 작성
+    @PostMapping("event-add")
+    public String eventAddf(){
+
+        return "redirect:/event";
+    }
+
     // FAQ 리스트 페이지
     @GetMapping("faq")
     public String faqList(Model model){
@@ -65,6 +93,20 @@ public class BoardController {
         model.addAttribute("lists", faqList);
 
         return "board/faq";
+    }
+
+    // FAQ 작성 페이지
+    @GetMapping("faq-add")
+    public String faqAdd(){
+
+        return "board/faq-add";
+    }
+
+    // FAQ 작성
+    @PostMapping("faq-add")
+    public String faqAddf(){
+
+        return "redirect:/faq";
     }
 
     // 고객센터
@@ -95,6 +137,20 @@ public class BoardController {
         model.addAttribute("boardDetailDTO", boardDetailDTO);
 
         return "board/aboutUs-details";
+    }
+
+    // 오늘어때 정보 작성 페이지
+    @GetMapping("aboutUs-add")
+    public String aboutUsAdd(){
+
+        return "board/board-add";
+    }
+
+    // 오늘어때 정보 작성
+    @PostMapping("aboutUs-add")
+    public String aboutUsAddf(){
+
+        return "redirect:/aboutUs";
     }
 
 }
