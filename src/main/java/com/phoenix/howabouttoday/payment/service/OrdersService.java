@@ -7,31 +7,34 @@ import com.phoenix.howabouttoday.payment.dto.OrdersDTO;
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailVO;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
+import com.phoenix.howabouttoday.payment.repository.AvailableDateRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
-import com.phoenix.howabouttoday.reserve.service.CartDto;
+import com.phoenix.howabouttoday.room.dto.AvailableDate;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static javax.persistence.FetchType.LAZY;
 
-
+@Transactional
 @RequiredArgsConstructor
 @Service
 public class OrdersService {
 
     private final CartRepository cartRepository;
-    private final OrdersDetailRepository ordersDetailRepository;
+    private final AvailableDateRepository availableDateRepository;
     private final MemberRepository memberRepository;
     private final OrdersRepository ordersRepository;
 
@@ -73,24 +76,12 @@ public class OrdersService {
             Member member = memberRepository.findById(memberNum).get();
             List<Cart> cartList = cartRepository.findAllById(cartNum);
 
-            Orders order = Orders.builder()
-                    .member(member)
-                    .ordersName(name)
-                    .ordersTel(tel)
-                    .ordersDate(LocalDate.now())
-                    .ordersPrice(getTotalPrice(cartList
-                            .stream()
-                            .map(cart -> cart.getReserveNum())
-                            .collect(Collectors.toList())))
-                    .ordersType(ordersType)
-                    .ordersStatus(ReserveStatus.READY.toString())
-                    .build();
+            Orders order = getOrder(name, tel, ordersType, member, cartList);
 
             List<OrdersDetail> lists = cartList // Entity List
                     .stream() // Entity Stream
                     .map(cart -> ordersNumberMapping(cart, order)) // DTO Stream
                     .collect(Collectors.toList()); // DTO List
-
 
             order.getReservation().addAll(lists);
 
@@ -104,6 +95,22 @@ public class OrdersService {
         return true;
     }
 
+    private Orders getOrder(String name, String tel, String ordersType, Member member, List<Cart> cartList) {
+        Orders order = Orders.builder()
+                .member(member)
+                .ordersName(name)
+                .ordersTel(tel)
+                .ordersDate(LocalDate.now())
+                .ordersPrice(getTotalPrice(cartList
+                        .stream()
+                        .map(cart -> cart.getReserveNum())
+                        .collect(Collectors.toList())))
+                .ordersType(ordersType)
+                .ordersStatus(ReserveStatus.READY.toString())
+                .build();
+        return order;
+    }
+
 
     public Integer getTotalPrice(List<Long> cartNum){
         List<Cart> cartList = cartRepository.findAllById(cartNum);
@@ -114,7 +121,15 @@ public class OrdersService {
     }
 
     private OrdersDetail ordersNumberMapping(Cart cart, Orders order){
-        return OrdersDetail.builder()
+
+        //예약 날짜를 룸에다가 넣어준다.
+        LocalDate startDate = cart.getReserveUseStartDate();
+        LocalDate endDate =  cart.getReserveUseEndDate();
+
+        Period period = Period.between(startDate, endDate);
+        System.out.println("날짜차이: " + period.getDays());
+
+        OrdersDetail od = OrdersDetail.builder()
                 .member(cart.getMember())
                 .room(cart.getRoom())
                 .orders(order)
@@ -125,6 +140,14 @@ public class OrdersService {
                 .reserveAdultCount(cart.getReserveAdultCount())
                 .reserveChildCount(cart.getReserveChildCount())
                 .build();
+
+        for (int i = 0; i < period.getDays(); i++) {
+            AvailableDate ad = AvailableDate.builder()
+                    .date(startDate.plusDays(i))
+                    .room(od.getRoom())
+                    .build();
+            od.getRoom().getAvailableDate().add(ad);
+        }
+        return od;
     }
 }
-

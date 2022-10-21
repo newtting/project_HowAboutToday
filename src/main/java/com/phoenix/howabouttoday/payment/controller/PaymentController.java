@@ -5,7 +5,6 @@ import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.payment.dto.OrdersDTO;
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailVO;
-import com.phoenix.howabouttoday.payment.service.MemberServiceCopy;
 import com.phoenix.howabouttoday.payment.service.OrdersService;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import lombok.AllArgsConstructor;
@@ -28,6 +27,8 @@ public class PaymentController {
     private final MemberService memberService;
     private final OrdersService orderService;
 
+
+    /* 마이페이지-예약탭  */
     @GetMapping("user-dashboard-booking")
     public String getUserDashboard(Model model){
         //1. 시큐리티를 사용해서 principal 객체에서 user정보를 가져와서 memberNum을 알 수 있다.

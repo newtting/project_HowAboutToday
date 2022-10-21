@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.payment.testDriver;
+package com.phoenix.howabouttoday.payment.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
