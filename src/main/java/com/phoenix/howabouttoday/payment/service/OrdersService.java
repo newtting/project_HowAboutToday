@@ -7,6 +7,7 @@ import com.phoenix.howabouttoday.payment.dto.OrdersDTO;
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailVO;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
+import com.phoenix.howabouttoday.payment.repository.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
@@ -30,6 +31,7 @@ import static javax.persistence.FetchType.LAZY;
 public class OrdersService {
 
     private final CartRepository cartRepository;
+    private final OrdersDetailRepository ordersDetailRepository;
     private final MemberRepository memberRepository;
     private final OrdersRepository ordersRepository;
 
@@ -40,6 +42,13 @@ public class OrdersService {
                 .collect(Collectors.toList());
     }
 
+//    public List<OrdersDetailVO> getOrderDetailData(Long ordersNum){
+//        return ordersRepository.findById(ordersNum).get().getReservation()
+//                .stream()
+//                .map(OrdersDetailVO::new)
+//                .collect(Collectors.toList());
+//    }
+
     public List<OrdersDetailDTO> createOrdersDetailData(List<Long> cartNum){
         return cartRepository.findAllById(cartNum)
                 .stream()
@@ -47,11 +56,15 @@ public class OrdersService {
                 .collect(Collectors.toList());
     }
 
-    public List<OrdersDTO> getOrdersDTO(Long memberNum){
+    public List<OrdersDTO> getOrdersDTOList(Long memberNum){
         return ordersRepository.findAllByMember_MemberNum(memberNum)
                 .stream()
                 .map(OrdersDTO::new) // 적용 후
                 .collect(Collectors.toList());
+    }
+
+    public OrdersDTO getOrdersDTO(Long ordersNum){
+        return new OrdersDTO(ordersRepository.findById(ordersNum).get());
     }
 
     public boolean savePaymentData(Long memberNum, String name, String tel, String ordersType, List<Long> cartNum){

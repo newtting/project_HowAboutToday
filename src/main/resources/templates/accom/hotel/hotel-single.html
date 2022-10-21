@@ -380,533 +380,170 @@
                                             <div class="cabin-type-img flex-shrink-0">
                                                 <a th:href="room-details"><img src="images/inside-cabin.jpg" alt=""></a>
                                             </div>
-                                            <div class="cabin-type-detail">
-                                                <h3 class="title"><a th:href="room-details">Standard Family room</a>
-                                                </h3>
-                                                <div class="row padding-top-20px">
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-wifi"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">Free
-                                                                    Wi-Fi</h3>
-                                                            </div>
+
+                                        </div><!-- end single-tour-feature -->
+                                    </div><!-- end col-lg-4 -->
+                                </div><!-- end row -->
+                            </div><!-- end single-content-item -->
+                            <div class="section-block"></div>
+                        </div><!-- end description -->
+                        <div id="availability" class="page-scroll">
+                            <div class="single-content-item padding-top-40px padding-bottom-30px">
+                                <h3 class="title font-size-20">이용가능한 객실</h3>
+                                <div class="cabin-type padding-top-30px">
+                                    <div class="cabin-type-item seat-selection-item d-flex" th:each="roomList : ${roomlist}">
+                                        <div class="cabin-type-img flex-shrink-0">
+                                            <a th:href="room-details"><img src="images/inside-cabin.jpg" alt=""></a>
+                                        </div>
+                                        <div class="cabin-type-detail">
+                                            <h3 class="title"><a th:href="room-details" th:text="${roomlist.roomName}">Standard Family room</a></h3>
+                                            <div class="row padding-top-20px">
+                                                <div class="col-lg-6 responsive-column">
+                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
+                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
+                                                            <i class="la la-wifi"></i>
                                                         </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-bed"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">2
-                                                                    Single beds</h3>
-                                                            </div>
+                                                        <div class="single-feature-titles">
+                                                            <h3 class="title font-size-15 font-weight-medium">Free Wi-Fi</h3>
                                                         </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-building"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">15
-                                                                    m²</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-hotel"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">Shower
-                                                                    and bathtub</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                </div><!-- end row -->
-                                                <div class="room-photos">
-                                                    <a class="btn theme-btn-hover-gray" data-src="images/img1.jpg"
-                                                       data-fancybox="gallery"
-                                                       data-caption="Showing image - 01"
-                                                       data-speed="700">
-                                                        <i class="la la-photo mr-2"></i>Room Photos
-                                                    </a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="images/img2.jpg"
-                                                       data-caption="Showing image - 02"
-                                                       data-speed="700"></a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="images/img3.jpg"
-                                                       data-caption="Showing image - 03"
-                                                       data-speed="700"></a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="images/img4.jpg"
-                                                       data-caption="Showing image - 04"
-                                                       data-speed="700"></a>
-                                                </div>
-                                            </div>
-                                            <div class="cabin-price">
-                                                <p class="text-uppercase font-size-14">Per/night<strong
-                                                        class="mt-n1 text-black font-size-18 font-weight-black d-block">$121</strong>
-                                                </p>
-                                            </div>
-                                        </div><!-- end cabin-type-item -->
-                                    </div><!-- end cabin-type -->
-                                    <div class="cabin-type padding-top-30px">
-                                        <div class="cabin-type-item seat-selection-item d-flex">
-                                            <div class="cabin-type-img flex-shrink-0">
-                                                <img src="images/oceanview-cabin.jpg" alt="">
-                                            </div>
-                                            <div class="cabin-type-detail">
-                                                <h3 class="title"><a href="room-details">Superior Double Room</a></h3>
-                                                <div class="row padding-top-20px">
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-wifi"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">Free
-                                                                    Wi-Fi</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-bed"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">2
-                                                                    Single beds</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-building"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">15
-                                                                    m²</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-hotel"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">Shower
-                                                                    and bathtub</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                </div><!-- end row -->
-                                                <div class="room-photos">
-                                                    <a class="btn theme-btn-hover-gray" data-src="images/img1.jpg"
-                                                       data-fancybox="gallery"
-                                                       data-caption="Showing image - 01"
-                                                       data-speed="700">
-                                                        <i class="la la-photo mr-2"></i>Room Photos
-                                                    </a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="images/img2.jpg"
-                                                       data-caption="Showing image - 02"
-                                                       data-speed="700"></a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="images/img3.jpg"
-                                                       data-caption="Showing image - 03"
-                                                       data-speed="700"></a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="images/img4.jpg"
-                                                       data-caption="Showing image - 04"
-                                                       data-speed="700"></a>
-                                                </div>
-                                            </div>
-                                            <div class="cabin-price">
-                                                <p class="text-uppercase font-size-14">Per/night<strong
-                                                        class="mt-n1 text-black font-size-18 font-weight-black d-block">$121</strong>
-                                                </p>
-                                            </div>
-                                        </div><!-- end cabin-type-item -->
-                                    </div><!-- end cabin-type -->
-                                    <div class="cabin-type padding-top-30px">
-                                        <div class="cabin-type-item seat-selection-item d-flex">
-                                            <div class="cabin-type-img flex-shrink-0">
-                                                <img src="images/balcony-cabin.jpg" alt="">
-                                            </div>
-                                            <div class="cabin-type-detail">
-                                                <h3 class="title"><a href="room-details">Deluxe Single Room</a></h3>
-                                                <div class="row padding-top-20px">
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-wifi"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">Free
-                                                                    Wi-Fi</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-bed"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">2
-                                                                    Single beds</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-building"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">15
-                                                                    m²</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-hotel"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">Shower
-                                                                    and bathtub</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                </div><!-- end row -->
-                                                <div class="room-photos">
-                                                    <a class="btn theme-btn-hover-gray" data-src="images/img1.jpg"
-                                                       data-fancybox="gallery"
-                                                       data-caption="Showing image - 01"
-                                                       data-speed="700">
-                                                        <i class="la la-photo mr-2"></i>Room Photos
-                                                    </a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="images/img2.jpg"
-                                                       data-caption="Showing image - 02"
-                                                       data-speed="700"></a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="images/img3.jpg"
-                                                       data-caption="Showing image - 03"
-                                                       data-speed="700"></a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="images/img4.jpg"
-                                                       data-caption="Showing image - 04"
-                                                       data-speed="700"></a>
-                                                </div>
-                                            </div>
-                                            <div class="cabin-price">
-                                                <p class="text-uppercase font-size-14">Per/night<strong
-                                                        class="mt-n1 text-black font-size-18 font-weight-black d-block">$121</strong>
-                                                </p>
-                                                <div class="custom-checkbox mb-0">
-                                                    <input type="checkbox" id="selectChb3">
-                                                    <label for="selectChb3"
-                                                           class="theme-btn theme-btn-small">Select</label>
-                                                </div>
-                                            </div>
-                                        </div><!-- end cabin-type-item -->
-                                    </div><!-- end cabin-type -->
-                                    <div class="cabin-type padding-top-30px">
-                                        <div class="cabin-type-item seat-selection-item d-flex">
-                                            <div class="cabin-type-img flex-shrink-0">
-                                                <img src="images/suite-cabin.jpg" alt="">
-                                            </div>
-                                            <div class="cabin-type-detail">
-                                                <h3 class="title"><a href="room-details">Single Bed Room</a></h3>
-                                                <div class="row padding-top-20px">
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-wifi"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">Free
-                                                                    Wi-Fi</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-bed"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">1
-                                                                    Single beds</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-building"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">15
-                                                                    m²</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-hotel"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">Shower
-                                                                    and bathtub</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                </div><!-- end row -->
-                                                <div class="room-photos">
-                                                    <a class="btn theme-btn-hover-gray" data-src="images/img1.jpg"
-                                                       data-fancybox="gallery"
-                                                       data-caption="Showing image - 01"
-                                                       data-speed="700">
-                                                        <i class="la la-photo mr-2"></i>Room Photos
-                                                    </a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="images/img2.jpg"
-                                                       data-caption="Showing image - 02"
-                                                       data-speed="700"></a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="images/img3.jpg"
-                                                       data-caption="Showing image - 03"
-                                                       data-speed="700"></a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="images/img4.jpg"
-                                                       data-caption="Showing image - 04"
-                                                       data-speed="700"></a>
-                                                </div>
-                                            </div>
-                                            <div class="cabin-price">
-                                                <p class="text-uppercase font-size-14">Per/night<strong
-                                                        class="mt-n1 text-black font-size-18 font-weight-black d-block">$121</strong>
-                                                </p>
-                                                <div class="custom-checkbox mb-0">
-                                                    <input type="checkbox" id="selectChb4">
-                                                    <label for="selectChb4"
-                                                           class="theme-btn theme-btn-small">Select</label>
-                                                </div>
-                                            </div>
-                                        </div><!-- end cabin-type-item -->
-                                    </div><!-- end cabin-type -->
-                                </div><!-- end single-content-item -->
-                                <div class="section-block"></div>
-                            </div><!-- end location-map -->
-                            <div id="amenities" class="page-scroll">
-                                <div class="single-content-item padding-top-40px padding-bottom-20px">
-                                    <h3 class="title font-size-20">편의 시설</h3>
-                                    <div class="amenities-feature-item pt-4">
-                                        <div class="row">
-                                            <div class="col-lg-4 responsive-column" th:each="facility : ${facilities}">
-                                                <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                    <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                        <i class="la la-wifi"></i>
                                                     </div>
-                                                    <div class="single-feature-titles">
-                                                        <h3 class="title font-size-15 font-weight-medium"
-                                                            th:text="${facility.facility}">WI-FI</h3>
+                                                </div><!-- end col-lg-6 -->
+                                                <div class="col-lg-6 responsive-column">
+                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
+                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
+                                                            <i class="la la-bed"></i>
+                                                        </div>
+                                                        <div class="single-feature-titles">
+                                                            <h3 class="title font-size-15 font-weight-medium">2 Single beds</h3>
+                                                        </div>
                                                     </div>
-                                                </div><!-- end single-tour-feature -->
-                                            </div><!-- end col-lg-4 -->
-                                            <!--                                        <div class="col-lg-4 responsive-column">-->
-                                            <!--                                            <div class="single-tour-feature d-flex align-items-center mb-3">-->
-                                            <!--                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">-->
-                                            <!--                                                    <i class="la la-check"></i>-->
-                                            <!--                                                </div>-->
-                                            <!--                                                <div class="single-feature-titles">-->
-                                            <!--                                                    <h3 class="title font-size-15 font-weight-medium">수영장</h3>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>&lt;!&ndash; end single-tour-feature &ndash;&gt;-->
-                                            <!--                                        </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-                                            <!--                                        <div class="col-lg-4 responsive-column">-->
-                                            <!--                                            <div class="single-tour-feature d-flex align-items-center mb-3">-->
-                                            <!--                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">-->
-                                            <!--                                                    <i class="la la-television"></i>-->
-                                            <!--                                                </div>-->
-                                            <!--                                                <div class="single-feature-titles">-->
-                                            <!--                                                    <h3 class="title font-size-15 font-weight-medium">TV</h3>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>&lt;!&ndash; end single-tour-feature &ndash;&gt;-->
-                                            <!--                                        </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-                                            <!--                                        <div class="col-lg-4 responsive-column">-->
-                                            <!--                                            <div class="single-tour-feature d-flex align-items-center mb-3">-->
-                                            <!--                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">-->
-                                            <!--                                                    <i class="la la-tree"></i>-->
-                                            <!--                                                </div>-->
-                                            <!--                                                <div class="single-feature-titles">-->
-                                            <!--                                                    <h3 class="title font-size-15 font-weight-medium">에어컨</h3>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>&lt;!&ndash; end single-tour-feature &ndash;&gt;-->
-                                            <!--                                        </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-                                            <!--                                        <div class="col-lg-4 responsive-column">-->
-                                            <!--                                            <div class="single-tour-feature d-flex align-items-center mb-3">-->
-                                            <!--                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">-->
-                                            <!--                                                    <i class="la la-gear"></i>-->
-                                            <!--                                                </div>-->
-                                            <!--                                                <div class="single-feature-titles">-->
-                                            <!--                                                    <h3 class="title font-size-15 font-weight-medium">피트니스 시설</h3>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>&lt;!&ndash; end single-tour-feature &ndash;&gt;-->
-                                            <!--                                        </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-                                            <!--                                        <div class="col-lg-4 responsive-column">-->
-                                            <!--                                            <div class="single-tour-feature d-flex align-items-center mb-3">-->
-                                            <!--                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">-->
-                                            <!--                                                    <i class="la la-check"></i>-->
-                                            <!--                                                </div>-->
-                                            <!--                                                <div class="single-feature-titles">-->
-                                            <!--                                                    <h3 class="title font-size-15 font-weight-medium">냉장고</h3>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>&lt;!&ndash; end single-tour-feature &ndash;&gt;-->
-                                            <!--                                        </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-                                            <!--                                        <div class="col-lg-4 responsive-column">-->
-                                            <!--                                            <div class="single-tour-feature d-flex align-items-center mb-3">-->
-                                            <!--                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">-->
-                                            <!--                                                    <i class="la la-glass"></i>-->
-                                            <!--                                                </div>-->
-                                            <!--                                                <div class="single-feature-titles">-->
-                                            <!--                                                    <h3 class="title font-size-15 font-weight-medium">와인 바</h3>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>&lt;!&ndash; end single-tour-feature &ndash;&gt;-->
-                                            <!--                                        </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-                                            <!--                                        <div class="col-lg-4 responsive-column">-->
-                                            <!--                                            <div class="single-tour-feature d-flex align-items-center mb-3">-->
-                                            <!--                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">-->
-                                            <!--                                                    <i class="la la-music"></i>-->
-                                            <!--                                                </div>-->
-                                            <!--                                                <div class="single-feature-titles">-->
-                                            <!--                                                    <h3 class="title font-size-15 font-weight-medium">오락 시설</h3>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>&lt;!&ndash; end single-tour-feature &ndash;&gt;-->
-                                            <!--                                        </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-                                            <!--                                         <div class="col-lg-4 responsive-column">-->
-                                            <!--                                            <div class="single-tour-feature d-flex align-items-center mb-3">-->
-                                            <!--                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">-->
-                                            <!--                                                    <i class="la la-car"></i>-->
-                                            <!--                                                </div>-->
-                                            <!--                                                <div class="single-feature-titles">-->
-                                            <!--                                                    <h3 class="title font-size-15 font-weight-medium">픽업 서비스</h3>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>&lt;!&ndash; end single-tour-feature &ndash;&gt;-->
-                                            <!--                                        </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-                                            <!--                                        <div class="col-lg-4 responsive-column">-->
-                                            <!--                                            <div class="single-tour-feature d-flex align-items-center mb-3">-->
-                                            <!--                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">-->
-                                            <!--                                                    <i class="la la-check"></i>-->
-                                            <!--                                                </div>-->
-                                            <!--                                                <div class="single-feature-titles">-->
-                                            <!--                                                    <h3 class="title font-size-15 font-weight-medium">룸 서비스</h3>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>&lt;!&ndash; end single-tour-feature &ndash;&gt;-->
-                                            <!--                                        </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-                                            <!--                                        <div class="col-lg-4 responsive-column">-->
-                                            <!--                                            <div class="single-tour-feature d-flex align-items-center mb-3">-->
-                                            <!--                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">-->
-                                            <!--                                                    <i class="la la-check-circle"></i>-->
-                                            <!--                                                </div>-->
-                                            <!--                                                <div class="single-feature-titles">-->
-                                            <!--                                                    <h3 class="title font-size-15 font-weight-medium">애완 동물 허용</h3>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>&lt;!&ndash; end single-tour-feature &ndash;&gt;-->
-                                            <!--                                        </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-                                            <!--                                        <div class="col-lg-4 responsive-column">-->
-                                            <!--                                            <div class="single-tour-feature d-flex align-items-center mb-3">-->
-                                            <!--                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">-->
-                                            <!--                                                    <i class="la la-coffee"></i>-->
-                                            <!--                                                </div>-->
-                                            <!--                                                <div class="single-feature-titles">-->
-                                            <!--                                                    <h3 class="title font-size-15 font-weight-medium">아침 식사</h3>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>&lt;!&ndash; end single-tour-feature &ndash;&gt;-->
-                                            <!--                                        </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-                                            <!--                                        <div class="col-lg-4 responsive-column">-->
-                                            <!--                                            <div class="single-tour-feature d-flex align-items-center mb-3">-->
-                                            <!--                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">-->
-                                            <!--                                                    <i class="la la-car"></i>-->
-                                            <!--                                                </div>-->
-                                            <!--                                                <div class="single-feature-titles">-->
-                                            <!--                                                    <h3 class="title font-size-15 font-weight-medium">무료 주차장</h3>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>&lt;!&ndash; end single-tour-feature &ndash;&gt;-->
-                                            <!--                                        </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-                                            <!--                                        <div class="col-lg-4 responsive-column">-->
-                                            <!--                                            <div class="single-tour-feature d-flex align-items-center mb-3">-->
-                                            <!--                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">-->
-                                            <!--                                                    <i class="la la-wheelchair"></i>-->
-                                            <!--                                                </div>-->
-                                            <!--                                                <div class="single-feature-titles">-->
-                                            <!--                                                    <h3 class="title font-size-15 font-weight-medium">장애인 이용 가능</h3>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>&lt;!&ndash; end single-tour-feature &ndash;&gt;-->
-                                            <!--                                        </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-                                            <!--                                        <div class="col-lg-4 responsive-column">-->
-                                            <!--                                            <div class="single-tour-feature d-flex align-items-center mb-3">-->
-                                            <!--                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">-->
-                                            <!--                                                    <i class="la la-user-secret"></i>-->
-                                            <!--                                                </div>-->
-                                            <!--                                                <div class="single-feature-titles">-->
-                                            <!--                                                    <h3 class="title font-size-15 font-weight-medium">Doorman</h3>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>&lt;!&ndash; end single-tour-feature &ndash;&gt;-->
-                                            <!--                                        </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-                                        </div><!-- end row -->
-                                    </div>
-                                </div><!-- end single-content-item -->
-                                <div class="section-block"></div>
-                            </div><!-- end faq -->
-                            <div id="faq" class="page-scroll">
-                                <div class="single-content-item padding-top-40px padding-bottom-40px">
-                                    <h3 class="title font-size-20">자주 묻는 질문</h3>
-                                    <div class="accordion accordion-item padding-top-30px" id="accordionExample2">
-                                        <div class="card">
-                                            <div class="card-header" id="faqHeadingFour">
-                                                <h2 class="mb-0">
-                                                    <button class="btn btn-link d-flex align-items-center justify-content-end flex-row-reverse font-size-16"
-                                                            type="button" data-toggle="collapse"
-                                                            data-target="#faqCollapseFour" aria-expanded="true"
-                                                            aria-controls="faqCollapseFour">
-                                                        <span class="ml-3">예약이 수락 또는 확인되었는지 어떻게 알 수 있습니까?</span>
-                                                        <i class="la la-minus"></i>
-                                                        <i class="la la-plus"></i>
-                                                    </button>
-                                                </h2>
+                                                </div><!-- end col-lg-6 -->
+                                                <div class="col-lg-6 responsive-column">
+                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
+                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
+                                                            <i class="la la-building"></i>
+
+                                                        </div>
+                                                    </div><!-- end col-lg-6 -->
+                                                    <div class="col-lg-6 responsive-column">
+                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
+                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
+                                                                <i class="la la-bed"></i>
+                                                            </div>
+                                                            <div class="single-feature-titles">
+                                                                <h3 class="title font-size-15 font-weight-medium">2
+                                                                    Single beds</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end col-lg-6 -->
+                                                    <div class="col-lg-6 responsive-column">
+                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
+                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
+                                                                <i class="la la-building"></i>
+                                                            </div>
+                                                            <div class="single-feature-titles">
+                                                                <h3 class="title font-size-15 font-weight-medium">15
+                                                                    m²</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end col-lg-6 -->
+                                                    <div class="col-lg-6 responsive-column">
+                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
+                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
+                                                                <i class="la la-hotel"></i>
+                                                            </div>
+                                                            <div class="single-feature-titles">
+                                                                <h3 class="title font-size-15 font-weight-medium">Shower
+                                                                    and bathtub</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end col-lg-6 -->
+                                                </div><!-- end row -->
+                                                <div class="room-photos">
+                                                    <a class="btn theme-btn-hover-gray" data-src="images/img1.jpg"
+                                                       data-fancybox="gallery"
+                                                       data-caption="Showing image - 01"
+                                                       data-speed="700">
+                                                        <i class="la la-photo mr-2"></i>Room Photos
+                                                    </a>
+                                                    <a class="d-none"
+                                                       data-fancybox="gallery"
+                                                       data-src="images/img2.jpg"
+                                                       data-caption="Showing image - 02"
+                                                       data-speed="700"></a>
+                                                    <a class="d-none"
+                                                       data-fancybox="gallery"
+                                                       data-src="images/img3.jpg"
+                                                       data-caption="Showing image - 03"
+                                                       data-speed="700"></a>
+                                                    <a class="d-none"
+                                                       data-fancybox="gallery"
+                                                       data-src="images/img4.jpg"
+                                                       data-caption="Showing image - 04"
+                                                       data-speed="700"></a>
+                                                </div>
                                             </div>
-                                            <div id="faqCollapseFour" class="collapse show"
-                                                 aria-labelledby="faqHeadingFour" data-parent="#accordionExample2">
-                                                <div class="card-body d-flex">
-                                                    <p>예약 확인은 마이페이지 > 예약확인에 가시면 확인 가능합니다 </p>
+                                            <div class="cabin-price">
+                                                <p class="text-uppercase font-size-14">Per/night<strong
+                                                        class="mt-n1 text-black font-size-18 font-weight-black d-block">$121</strong>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div><!-- end cabin-type-item -->
+                                </div><!-- end cabin-type -->
+                            </div><!-- end single-content-item -->
+                            <div class="section-block"></div>
+                        </div><!-- end location-map -->
+                        <div id="amenities" class="page-scroll">
+                            <div class="single-content-item padding-top-40px padding-bottom-20px">
+                                <h3 class="title font-size-20">편의 시설</h3>
+                                <div class="amenities-feature-item pt-4">
+                                    <div class="row">
+                                        <div class="col-lg-4 responsive-column">
+                                            <div class="single-tour-feature d-flex align-items-center mb-3">
+                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
+                                                    <i class="la la-wifi"></i>
+                                                </div>
+                                                <div class="single-feature-titles">
+                                                    <h3 class="title font-size-15 font-weight-medium">WI-FI</h3>
+                                                </div>
+                                            </div><!-- end single-tour-feature -->
+                                        </div><!-- end col-lg-4 -->
+                                        <div class="col-lg-4 responsive-column">
+                                            <div class="single-tour-feature d-flex align-items-center mb-3">
+                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
+                                                    <i class="la la-check"></i>
+                                                </div>
+                                                <div class="single-feature-titles">
+                                                    <h3 class="title font-size-15 font-weight-medium">수영장</h3>
+                                                </div>
+                                            </div><!-- end single-tour-feature -->
+                                        </div><!-- end col-lg-4 -->
+                                        <div class="col-lg-4 responsive-column">
+                                            <div class="single-tour-feature d-flex align-items-center mb-3">
+                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
+                                                    <i class="la la-television"></i>
+                                                </div>
+                                                <div class="single-feature-titles">
+                                                    <h3 class="title font-size-15 font-weight-medium">TV</h3>
+                                                </div>
+                                            </div><!-- end single-tour-feature -->
+                                        </div><!-- end col-lg-4 -->
+                                        <div class="col-lg-4 responsive-column">
+                                            <div class="single-tour-feature d-flex align-items-center mb-3">
+                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
+                                                    <i class="la la-tree"></i>
+                                                </div>
+                                                <div class="single-feature-titles">
+                                                    <h3 class="title font-size-15 font-weight-medium">에어컨</h3>
+                                                </div>
+                                            </div><!-- end single-tour-feature -->
+                                        </div><!-- end col-lg-4 -->
+                                        <div class="col-lg-4 responsive-column">
+                                            <div class="single-tour-feature d-flex align-items-center mb-3">
+                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
+                                                    <i class="la la-gear"></i>
+
                                                 </div>
                                             </div>
                                         </div><!-- end card -->
