@@ -33,12 +33,12 @@ public class OrdersDetailDTO {
     private String price;
     private String usedStatus;
     private String roomName;
+    private String roomNum;
     private String checkIn;
     private String checkOut;
 
 
-
-    public OrdersDetailDTO(String accomType, String accomName, String accomRegion, String orderDate, String usePeriod, String startDate, String endDate, String startWeek, String endWeek, String price, String usedStatus, String roomName, String checkIn, String checkOut) {
+    public OrdersDetailDTO(String accomType, String accomName, String accomRegion, String orderDate, String usePeriod, String startDate, String endDate, String startWeek, String endWeek, String price, String usedStatus, String roomName, String roomNum, String checkIn, String checkOut) {
         this.accomType = accomType;
         this.accomName = accomName;
         this.accomRegion = accomRegion;
@@ -51,6 +51,7 @@ public class OrdersDetailDTO {
         this.price = price;
         this.usedStatus = usedStatus;
         this.roomName = roomName;
+        this.roomNum = roomNum;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
     }
@@ -73,6 +74,7 @@ public class OrdersDetailDTO {
         this.price = String.valueOf(reservation.getReservePrice());
         this.usedStatus = reservation.getReserveStatus().toString();
         this.roomName = reservation.getRoom().getRoomName();
+        this.roomNum = reservation.getRoom().getAccommodation().getAccomNum().toString();
         this.checkIn = reservation.getRoom().getAccommodation().getCheckIn().toString();
         this.checkOut = reservation.getRoom().getAccommodation().getCheckOut().toString();
     }
