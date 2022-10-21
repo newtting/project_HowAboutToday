@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +21,7 @@ public class MemberController {
     private final MemberService memberService;
 
 
+
     @GetMapping("/member/join")
     public String join() {
         return "home";
@@ -27,18 +29,30 @@ public class MemberController {
 
 
 
-//    @PostMapping("/member/join")
-//    public String joinProc(MemberDTO memberDTO) {
-//        System.out.println("memberDto = " + memberDTO.toString());
-//        memberService.join(memberDTO);
-//
-//
-//        return "redirect:/home";
-//    }
+    @PostMapping("/member/join")
+    public String joinProc(MemberDTO memberDTO, @RequestHeader("referer") String referer) {
 
-    @GetMapping("/member/login")
-    public String login() {
-        return "/member/login";
+
+        System.out.println("referer = " + referer);
+        System.out.println("memberDto = " + memberDTO.toString());
+        memberService.join(memberDTO);
+        String url = referer.substring(21);
+        System.out.println("url = " + url);
+
+        return "redirect:" + url;
+    }
+
+    @GetMapping("/loginProc")
+    public String login(@RequestHeader("referer") String referer) {
+        String url = referer.substring(21);
+        System.out.println("aaa");
+        return "/member/member-login";
+
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        return "member/logout";
     }
 
 

@@ -14,18 +14,16 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class MemberService {
-
     private final MemberRepository memberRepository;
 
-//    private final BCryptPasswordEncoder encoder;
+    private final BCryptPasswordEncoder encoder;
 
-//    @Transactional
-//    public Long join(MemberDTO DTO) {
-//        DTO.setPwd(encoder.encode(DTO.getPwd()));
-//
-//
-//        return memberRepository.save(DTO.toEntity()).getMemberNum();
-//    }
+    @Transactional
+    public Long join(MemberDTO DTO) {
+        DTO.setPwd(encoder.encode(DTO.getPwd()));
+
+        return memberRepository.save(DTO.toEntity()).getMemberNum();
+    }
 
     private void validateDuplicateMember(Member member) {
         Optional<Member> findMember = memberRepository.findByEmail(member.getEmail());
