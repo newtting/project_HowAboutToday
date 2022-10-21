@@ -1,8 +1,10 @@
 package com.phoenix.howabouttoday.room.service;
 
 import com.phoenix.howabouttoday.room.dto.RoomAmenitiesDTO;
+import com.phoenix.howabouttoday.room.dto.RoomImageDTO;
 import com.phoenix.howabouttoday.room.dto.RoomListDTO;
 import com.phoenix.howabouttoday.room.dto.RoomServiceDTO;
+import com.phoenix.howabouttoday.room.repository.RoomImageRepository;
 import com.phoenix.howabouttoday.room.repository.RoomRepository;
 import com.phoenix.howabouttoday.room.repository.RoomViewAmenitiesRepository;
 import com.phoenix.howabouttoday.room.repository.RoomViewServiceRepository;
@@ -23,6 +25,7 @@ public class RoomServiceImpl implements RoomService{
     private final RoomRepository roomRepository;
     private final RoomViewAmenitiesRepository roomViewAmenitiesRepository;
     private final RoomViewServiceRepository roomViewServiceRepository;
+    private final RoomImageRepository roomImageRepository;
 
     //객실 리스트
     @Override
@@ -58,6 +61,17 @@ public class RoomServiceImpl implements RoomService{
                 .collect(Collectors.toList());
 
         return slist;
+
+    }
+
+    public List<RoomImageDTO> findAll_Image(Long roomNum) {
+
+        List<RoomImageDTO> ilist = roomImageRepository.findAllByRoom_RoomNum(roomNum)
+                .stream()
+                .map(RoomImageDTO::new)
+                .collect(Collectors.toList());
+
+        return ilist;
 
     }
 
