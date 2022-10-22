@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
@@ -30,7 +29,6 @@ public class Member {
 
   @Column(nullable = true)
   private String memberTel;
-
 
   @Enumerated(EnumType.STRING)
   private Code memberCode;
