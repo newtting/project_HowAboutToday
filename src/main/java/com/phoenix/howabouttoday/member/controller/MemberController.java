@@ -1,8 +1,10 @@
 package com.phoenix.howabouttoday.member.controller;
 
 
+import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
+import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -66,7 +68,12 @@ public class MemberController {
     }
 
     @GetMapping("user-dashboard")
-    public String getUserDashboard() {
+    public String getUserDashboard(@LoginUser SessionDTO sessionDTO, Model model) {
+
+        if(sessionDTO != null) {
+            model.addAttribute("sessionDTO", sessionDTO);
+        }
+
         return "member/userdashboard/user-dashboard";
     }
     @PostMapping("user-dashboard")
@@ -123,7 +130,12 @@ public class MemberController {
 //    }
 
     @GetMapping("user-dashboard-profile")
-    public String getUserDashboardProfile() {
+    public String getUserDashboardProfile(@LoginUser SessionDTO sessionDTO, Model model) {
+
+        if(sessionDTO != null) {
+            model.addAttribute("sessionDTO", sessionDTO);
+        }
+
         return "member/userdashboard/user-dashboard-profile";
     }
     @PostMapping("user-dashboard-profile")
@@ -132,7 +144,12 @@ public class MemberController {
     }
 
     @GetMapping("user-dashboard-reviews")
-    public String getUserDashboardReviews() {
+    public String getUserDashboardReviews(@LoginUser SessionDTO sessionDTO, Model model) {
+
+        if(sessionDTO != null) {
+            model.addAttribute("sessionDTO", sessionDTO);
+        }
+
         return "member/userdashboard/user-dashboard-reviews";
     }
     @PostMapping("user-dashboard-reviews")
@@ -141,7 +158,12 @@ public class MemberController {
     }
 
     @GetMapping("user-dashboard-settings")
-    public String getUserDashboardSettings() {
+    public String getUserDashboardSettings(@LoginUser SessionDTO sessionDTO, Model model) {
+
+        if(sessionDTO != null) {
+            model.addAttribute("sessionDTO", sessionDTO);
+        }
+
         return "member/userdashboard/user-dashboard-settings";
     }
     @PostMapping("user-dashboard-settings")
