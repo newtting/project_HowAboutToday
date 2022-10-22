@@ -41,20 +41,20 @@
                                             <li>
                                                 <a href="#">숙소 <i class="la la-angle-down"></i></a>
                                                 <ul class="dropdown-menu-item">
-                                                    <li><a href="hotel-list">호텔</a></li>
-                                                    <li><a href="motel-list">모텔</a></li>
-                                                    <li><a href="pension-PoolVilla-list">펜션/풀빌라</a></li>
-                                                    <li><a href="guestHouse-Hanok-list">게하/한옥</a></li>
+                                                    <li><a href="/hotel-list">호텔</a></li>
+                                                    <li><a href="/motel-list">모텔</a></li>
+                                                    <li><a href="/pension-PoolVilla-list">펜션/풀빌라</a></li>
+                                                    <li><a href="/guestHouse-Hanok-list">게하/한옥</a></li>
                                                 </ul>
                                             </li>
                                             <li>
                                                 <a href="#">게시판 <i class="la la-angle-down"></i></a>
                                                 <ul class="dropdown-menu-item">
-                                                    <li><a href="notice">공지사항</a></li>
-                                                    <li><a href="event">이벤트</a></li>
-                                                    <li><a href="faq">자주 묻는 질문</a></li>
-                                                    <li><a href="contact">고객센터</a></li>
-                                                    <li><a href="aboutUs">오늘어때 정보</a></li>
+                                                    <li><a href="/notice">공지사항</a></li>
+                                                    <li><a href="/event">이벤트</a></li>
+                                                    <li><a href="/faq">자주 묻는 질문</a></li>
+                                                    <li><a href="/contact">고객센터</a></li>
+                                                    <li><a href="/aboutUs">오늘어때 정보</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -67,7 +67,7 @@
                                     <!-- 장바구니 아이콘 -->
                                     <div class="header-icon-wrap">
                                         <a href="/cart">
-                                            <img src="/icon/cart2.png" class="header-icon">
+                                            <img src="icon/cart.png" class="header-icon">
                                         </a>
                                     </div>
 
@@ -77,12 +77,12 @@
                                             <a href="#" class="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <div class="d-flex align-items-center">
                                                     <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="/images/team8.jpg" alt="team-img"></div>
-                                                    <span class="font-size-14 font-weight-bold" style="color: #000;">수정</span>
+                                                    <span class="font-size-14 font-weight-bold" style="color: #000;" th:text="${sessionDTO.nickname}"></span>
                                                 </div>
                                             </a>
                                             <div class="dropdown-menu dropdown-reveal dropdown-menu-md dropdown-menu-right">
                                                 <div class="dropdown-item drop-reveal-header user-reveal-header">
-                                                    <h6 class="title text-uppercase">Welcome!</h6>
+                                                    <h6 class="title text-uppercase">안녕하세요!</h6>
                                                 </div>
                                                 <div class="list-group drop-reveal-list user-drop-reveal-list">
                                                     <a href="/user-dashboard-profile" class="list-group-item list-group-item-action">
@@ -118,9 +118,9 @@
                                         </div>
                                     </div><!-- end notification-item -->
 
+                                    <!-- 로그아웃 버튼 -->
                                     <div class="header-right-action">
-                                        <a href="/home" class="theme-btn theme-btn-small hwt-btn-gray"
-                                           data-toggle="modal" data-target="#">로그아웃</a>
+                                        <a href="/member/logout" class="theme-btn theme-btn-small hwt-btn-gray">로그아웃</a>
                                     </div>
                                 </div>
     <!--                        <div class="nav-btn">-->

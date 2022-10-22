@@ -79,7 +79,7 @@
 
                                     <!-- 장바구니 아이콘 -->
                                     <div class="header-icon-wrap">
-                                        <a href="cart">
+                                        <a href="/cart">
                                             <img src="icon/cart.png" class="header-icon">
                                         </a>
                                     </div>
@@ -91,8 +91,7 @@
                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <div class="d-flex align-items-center">
                                                     <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>
-                                                    <span class="font-size-14 font-weight-bold" style="color: #000;">수정</span>
-<!--                                                    <span class="font-size-14 font-weight-bold" style="color: #000;" th:text="${sessionDTO.nickname}"></span>-->
+                                                    <span class="font-size-14 font-weight-bold" style="color: #000;" th:text="${sessionDTO.nickname}"></span>
                                                 </div>
                                             </a>
                                             <div class="dropdown-menu dropdown-reveal dropdown-menu-md dropdown-menu-right">
@@ -100,28 +99,28 @@
                                                     <h6 class="title text-uppercase">안녕하세요!</h6>
                                                 </div>
                                                 <div class="list-group drop-reveal-list user-drop-reveal-list">
-                                                    <a href="user-dashboard-profile" class="list-group-item list-group-item-action">
+                                                    <a href="/user-dashboard-profile" class="list-group-item list-group-item-action">
                                                         <div class="msg-body">
                                                             <div class="msg-content">
                                                                 <h3 class="title"><i class="la la-user mr-2"></i>프로필</h3>
                                                             </div>
                                                         </div><!-- end msg-body -->
                                                     </a>
-                                                    <a href="user-dashboard-booking" class="list-group-item list-group-item-action">
+                                                    <a href="/user-dashboard-booking" class="list-group-item list-group-item-action">
                                                         <div class="msg-body">
                                                             <div class="msg-content">
                                                                 <h3 class="title"><i class="la la-shopping-cart mr-2"></i>나의 후기</h3>
                                                             </div>
                                                         </div><!-- end msg-body -->
                                                     </a>
-                                                    <a href="user-dashboard-reviews" class="list-group-item list-group-item-action">
+                                                    <a href="/user-dashboard-reviews" class="list-group-item list-group-item-action">
                                                         <div class="msg-body">
                                                             <div class="msg-content">
                                                                 <h3 class="title"><i class="la la-heart mr-2"></i>위시리스트</h3>
                                                             </div>
                                                         </div><!-- end msg-body -->
                                                     </a>
-                                                    <a href="user-dashboard-settings" class="list-group-item list-group-item-action">
+                                                    <a href="/user-dashboard-settings" class="list-group-item list-group-item-action">
                                                         <div class="msg-body">
                                                             <div class="msg-content">
                                                                 <h3 class="title"><i class="la la-gear mr-2"></i>예약내역</h3>
@@ -141,6 +140,7 @@
 
                                 </div>
                             </th:block>
+
                         </div>
 
                     </div><!-- end menu-wrapper -->
