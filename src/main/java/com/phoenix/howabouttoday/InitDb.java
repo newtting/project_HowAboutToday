@@ -454,6 +454,8 @@ public class InitDb {
                     .build());
 
 
+
+
             /** 객실등록 **/
             Room room = roomRepository.save(Room.builder()
                     .accommodation(accommodation)
@@ -618,6 +620,12 @@ public class InitDb {
                     .checkOut(LocalTime.of(12, 0))
                     .lowPrice(33000)
                     .reserveRange(14)
+                    .build());
+
+            accommodationImageRepository.save( AccomImage.builder()
+                    .accomOriginFilename("image9.jpg")
+                    .accomSaveFilename("image1.jpg")
+                    .accommodation(accommodation)
                     .build());
 
             Room room1 = roomRepository.save(Room.builder()
