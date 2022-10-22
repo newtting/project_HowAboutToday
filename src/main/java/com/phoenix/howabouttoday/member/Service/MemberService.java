@@ -32,6 +32,20 @@ public class MemberService {
         }
     }
 
+    public MemberDTO getAuthUser(String email){
+
+        Member member = memberRepository.findByEmail(email).get();
+
+        return MemberDTO.builder()
+                .num(member.getMemberNum())
+                .email(member.getEmail())
+                .pwd(member.getPwd())
+                .nickname(member.getNickname())
+                .memberTel(member.getMemberTel())
+                .memberCode(member.getMemberCode())
+                .build();
+    }
+
     public MemberDTO getCustomer(Long memberNum) throws UsernameNotFoundException {
 
         Member member = memberRepository.findById(memberNum).get();

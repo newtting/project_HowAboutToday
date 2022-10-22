@@ -2,6 +2,7 @@ package com.phoenix.howabouttoday.member.dto;
 
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
+import lombok.Data;
 import lombok.Getter;
 
 import java.io.Serializable;

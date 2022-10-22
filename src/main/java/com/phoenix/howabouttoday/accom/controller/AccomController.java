@@ -65,7 +65,7 @@ public class AccomController {
     }
 
     @GetMapping("hotel-listSearch")
-    public String getHotelSearchResult(@RequestParam(value = "keyword") String keyword, Model model){
+    public String getHotelSearchResult(@RequestParam(value = "keyword") String keyword, Model model, String date){
 
         List<Accommodation> accommodationList = accommodationService.searchResults(keyword);
 
