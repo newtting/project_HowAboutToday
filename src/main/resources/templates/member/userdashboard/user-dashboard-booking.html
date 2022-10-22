@@ -36,33 +36,33 @@
             <div class="dashboard-main-content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-12 mx-auto">
+                        <div class="col-lg-10 mx-auto">
                             <div class="form-box">
                                 <div class="form-title-wrap">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div>
                                             <h3 class="title" th:text="#{booking_result}">Booking Results</h3>
                                         </div>
-                                        <span th:text="#{total_bookings}">Total Bookings <strong class="color-text">(17)</strong></span>
+<!--                                        <span th:text="#{total_bookings}">Total Bookings <strong class="color-text">(17)</strong></span>-->
                                     </div>
                                 </div>
                                 <div class="form-content">
                                     <div class="table-form table-responsive">
                                         <table class="table">
                                             <thead>
-                                            <tr>
-                                                <th scope="col" class="text-center" th:text="#{reservation_type}"></th>
-                                                <th scope="col" class="text-center" th:text="#{reservation_name}"></th>
-                                                <th scope="col" class="text-center" th:text="#{reservation_roomName}"></th>
-                                                <th scope="col" class="text-center" th:text="#{reservation_orderDate}"></th>
-                                                <th scope="col" class="text-center" th:text="#{reservation_useDate}"></th>
-                                                <th scope="col" class="text-center" th:text="#{reservation_usedStatus}"></th>
-                                                <th scope="col" class="text-center" th:text="| |"></th>
+                                            <tr class="text-center">
+                                                <th scope="col" th:text="#{reservation_type}"></th>
+                                                <th scope="col" th:text="#{reservation_name}"></th>
+                                                <th scope="col" th:text="#{reservation_roomName}"></th>
+                                                <th scope="col" th:text="#{reservation_orderDate}"></th>
+                                                <th scope="col" th:text="#{reservation_useDate}"></th>
+                                                <th scope="col" th:text="#{reservation_usedStatus}"></th>
+                                                <th scope="col" th:text="| |"></th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <div th:each="ordersDTO : ${ordersDTOList}">
-                                                <tr th:each="orderDetailDTO : ${ordersDTO.getOrdersDetailDTOList()[0]}">
+                                                <tr class="text-center" th:each="orderDetailDTO : ${ordersDTO.getOrdersDetailDTOList()[0]}">
                                                     <!--                                            <th scope="row"><i class="la la-plane mr-1 font-size-18"></i>Flight</th>-->
                                                         <th scope="row"><img src="/icon/icon_hotel.png" width="30px" style="vertical-align:middle;"><span style="margin-top:50px;font-size:18px;" th:text="${orderDetailDTO.getAccomType()}">모텔</span></th>
                                                     <td>
@@ -92,7 +92,7 @@
                         </div><!-- end col-lg-12 -->
                     </div><!-- end row -->
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-10 mx-auto">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li class="page-item">
@@ -101,11 +101,12 @@
                                             <span class="sr-only">Previous</span>
                                         </a>
                                     </li>
-                                    <li class="page-item"><a class="page-link page-link-nav" href="#">1</a></li>
+
+                                    <li class="page-item"><a class="page-link page-link-nav" th:href="@{/user-dashboard-booking/{id}(id = 1)}">1</a></li>
                                     <li class="page-item active">
-                                        <a class="page-link page-link-nav" href="#">2 <span class="sr-only">(current)</span></a>
+                                        <a class="page-link page-link-nav" href="/user-dashboard-booking/2">2 <span class="sr-only">(current)</span></a>
                                     </li>
-                                    <li class="page-item"><a class="page-link page-link-nav" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link page-link-nav" href="/user-dashboard-booking/3">3</a></li>
                                     <li class="page-item">
                                         <a class="page-link page-link-nav" href="#" aria-label="Next">
                                             <span aria-hidden="true"><i class="la la-angle-right"></i></span>
