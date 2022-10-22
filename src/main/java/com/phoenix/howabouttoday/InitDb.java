@@ -16,7 +16,6 @@ import com.phoenix.howabouttoday.member.wishlist.WishlistRepository;
 //import com.phoenix.howabouttoday.payment.controller.member.wishlist.WishList;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
-import com.phoenix.howabouttoday.payment.repository.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 
 
@@ -24,7 +23,7 @@ import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
-import com.phoenix.howabouttoday.room.dto.AvailableDate;
+import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.room.entity.*;
 import com.phoenix.howabouttoday.room.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -563,9 +562,8 @@ public class InitDb {
 
 
             /** 매핑테이블들 **/
-
-
         }
+
 
         public void dbInit3(){
             /**회원등록**/
@@ -664,19 +662,21 @@ public class InitDb {
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
-            Orders order = makeOrder(member);
-            Orders order1 = makeOrder(member);
-            Orders order2 = makeOrder(member);
-            Orders order3 = makeOrder(member);
-            Orders order4 = makeOrder(member);
-            Orders order5 = makeOrder(member);
-            Orders order6 = makeOrder(member);
-            Orders order7 = makeOrder(member);
-            Orders order8 = makeOrder(member);
-            Orders order9 = makeOrder(member);
-            Orders order10 = makeOrder(member);
-            Orders order11 = makeOrder(member);
-            Orders order12 = makeOrder(member);
+            Integer plusDay = 0;
+
+            Orders order = makeOrder(member, plusDay++);
+            Orders order1 = makeOrder(member, plusDay++);
+            Orders order2 = makeOrder(member, plusDay++);
+            Orders order3 = makeOrder(member, plusDay++);
+            Orders order4 = makeOrder(member, plusDay++);
+            Orders order5 = makeOrder(member, plusDay++);
+            Orders order6 = makeOrder(member, plusDay++);
+            Orders order7 = makeOrder(member, plusDay++);
+            Orders order8 = makeOrder(member, plusDay++);
+            Orders order9 = makeOrder(member, plusDay++);
+            Orders order10 = makeOrder(member, plusDay++);
+            Orders order11 = makeOrder(member, plusDay++);
+            Orders order12 = makeOrder(member, plusDay++);
 
             makeOrderDetail(member, room1, ordersRepository.save(order));
             makeOrderDetail(member, room1, ordersRepository.save(order1));
@@ -703,11 +703,11 @@ public class InitDb {
 
         }
 
-        public Orders makeOrder(Member member){
+        public Orders makeOrder(Member member, Integer day){
             return Orders.builder()
                     .ordersTel(member.getMemberTel())
                     .ordersName(member.getNickname())
-                    .ordersDate(LocalDate.now())
+                    .ordersDate(LocalDate.now().plusDays(day))
                     .ordersPrice(35000)
                     .ordersType("card")
                     .ordersStatus("결제완료")

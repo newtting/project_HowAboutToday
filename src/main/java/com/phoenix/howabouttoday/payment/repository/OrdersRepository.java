@@ -2,6 +2,7 @@ package com.phoenix.howabouttoday.payment.repository;
 
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +15,5 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
 
     @Override
     Page<Orders> findAll(Pageable pageable);
+
 }
