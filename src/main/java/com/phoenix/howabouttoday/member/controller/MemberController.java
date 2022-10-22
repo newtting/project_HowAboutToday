@@ -4,7 +4,6 @@ package com.phoenix.howabouttoday.member.controller;
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.type.CalendarType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
