@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.room.dto;
+package com.phoenix.howabouttoday.room.entity;
 
 import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.*;
