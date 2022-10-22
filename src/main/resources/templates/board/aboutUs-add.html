@@ -14,8 +14,7 @@
                     <div class="col-lg-12">
                         <div class="breadcrumb-content text-center">
                             <div class="section-heading">
-                                <h2 th:if="${(#request.getRequestURI).equals('/notice-add')}" class="sec__title text-white">ADD NOTICE</h2>
-                                <h2 th:if="${(#request.getRequestURI).equals('/aboutUs-add')}" class="sec__title text-white">ADD ABOUT US</h2>
+                                <h2 class="sec__title text-white">ADD ABOUT US</h2>
                             </div>
                         </div><!-- end breadcrumb-content -->
                     </div><!-- end col-lg-6 -->
@@ -37,7 +36,7 @@
     <div class="container">
         <div class="row">
 
-            <form method="post" class="row board-add-form">
+            <form th:action="@{aboutUs-add}" th:object="${boardAddDTO}" method="post" class="row board-add-form">
 
                 <!-- Add Form -->
                 <div class="col-lg-8 hwt-col-post">
@@ -50,27 +49,31 @@
 
                         <div class="form-content contact-form-action">
 
-                                <!-- Title -->
-                                <div class="col-lg-12">
-                                    <div class="input-box">
-                                        <label class="label-text board-add-text">제목</label>
-                                        <div class="form-group">
-                                            <span class="la la-briefcase form-icon"></span>
-                                            <input class="form-control board-add-text" type="text" name="text" placeholder="제목을 입력하세요." autofocus>
-                                        </div>
-                                    </div>
-                                </div><!-- end col-lg-12 -->
+                            <input type="hidden" th:field="*{memberNum}">
 
-                                <!-- Content-->
-                                <div class="col-lg-12">
-                                    <div class="input-box">
-                                        <label class="label-text board-add-text">내용</label>
-                                        <div class="form-group">
-                                            <span class="la la-pencil form-icon"></span>
-                                            <textarea class="message-control form-control" id="editor" name="message" placeholder="내용을 입력하세요."></textarea>
-                                        </div>
+                            <!-- Title -->
+                            <div class="col-lg-12">
+                                <div class="input-box">
+                                    <label class="label-text board-add-text">제목</label>
+                                    <div class="form-group">
+                                        <span class="la la-briefcase form-icon"></span>
+                                        <input th:field="*{boardTitle}" class="form-control board-add-text" type="text" autofocus>
+                                        <div th:each="error : ${#fields.errors('boardTitle')}" th:text="${error}" class="error-message"></div>
                                     </div>
-                                </div><!-- end col-lg-12 -->
+                                </div>
+                            </div><!-- end col-lg-12 -->
+
+                            <!-- Content-->
+                            <div class="col-lg-12">
+                                <div class="input-box">
+                                    <label class="label-text board-add-text">내용</label>
+                                    <div class="form-group">
+                                        <span class="la la-pencil form-icon"></span>
+                                        <textarea th:field="*{boardContent}" class="message-control form-control" id="editor" name="message"></textarea>
+                                        <div th:each="error : ${#fields.errors('boardContent')}" th:text="${error}" class="error-message"></div>
+                                    </div>
+                                </div>
+                            </div><!-- end col-lg-12 -->
 
                         </div><!-- end form-content -->
                     </div><!-- end form-box -->

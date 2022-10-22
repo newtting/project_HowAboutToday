@@ -1,13 +1,13 @@
 package com.phoenix.howabouttoday.board.service;
 
-import com.phoenix.howabouttoday.board.dto.BoardDetailDTO;
-import com.phoenix.howabouttoday.board.dto.BoardListDTO;
-import com.phoenix.howabouttoday.board.dto.EventDetailDTO;
-import com.phoenix.howabouttoday.board.dto.EventListDTO;
+import com.phoenix.howabouttoday.board.dto.*;
+import com.phoenix.howabouttoday.board.entity.Board;
 import com.phoenix.howabouttoday.board.entity.BoardCategory;
 import com.phoenix.howabouttoday.board.repository.BoardCategoryRepository;
 import com.phoenix.howabouttoday.board.repository.BoardRepository;
 import com.phoenix.howabouttoday.board.repository.EventRepository;
+import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +24,8 @@ public class BoardServiceImpl implements BoardService {
     private final BoardRepository boardRepository;
     private final BoardCategoryRepository boardCategoryRepository;
     private final EventRepository eventRepository;
+
+    private final MemberRepository memberRepository;
 
     // (Notice, About Us) 게시판 리스트
     @Override
@@ -92,6 +94,31 @@ public class BoardServiceImpl implements BoardService {
         return eventRepository.findByEventNum(eventNum) // Entity
                 .map(EventDetailDTO::new) // DTO
                 .orElse(null); // 에러 시 null 반환
+    }
+
+    // (Notice, About Us) 게시글 작성
+    @Override
+    @Transactional
+    public void addBoard(BoardAddDTO boardAddDTO) {
+
+        Member member = memberRepository.findById(boardAddDTO.getMemberNum()).orElse(null);
+        BoardCategory boardCategory = boardCategoryRepository.findById(boardAddDTO.getBoardCategoryNum()).orElse(null);
+
+        Board board = new Board(member, boardCategory, boardAddDTO);
+        boardRepository.save(board);
+    }
+
+    @Override
+    @Transactional
+    public void addFAQ(FAQAddDTO faqAddDTO) {
+
+    }
+
+    // Event 게시판 작성
+    @Override
+    @Transactional
+    public void addEvent(EventAddDTO eventAddDTO) {
+
     }
 
 }

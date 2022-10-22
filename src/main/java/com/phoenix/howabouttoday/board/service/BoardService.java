@@ -1,9 +1,6 @@
 package com.phoenix.howabouttoday.board.service;
 
-import com.phoenix.howabouttoday.board.dto.BoardDetailDTO;
-import com.phoenix.howabouttoday.board.dto.BoardListDTO;
-import com.phoenix.howabouttoday.board.dto.EventDetailDTO;
-import com.phoenix.howabouttoday.board.dto.EventListDTO;
+import com.phoenix.howabouttoday.board.dto.*;
 
 import java.util.List;
 
@@ -16,4 +13,7 @@ public interface BoardService {
     BoardDetailDTO findOne_Board(Long boardNum); // (Notice, About Us) 게시판 디테일
     EventDetailDTO findOne_Event(Long eventNum); // Event 게시판 디테일
 
+    void addBoard(BoardAddDTO boardAddDTO); // (Notice, About Us) 게시판 작성
+    void addFAQ(FAQAddDTO faqAddDTO); // FAQ 게시판 작성
+    void addEvent(EventAddDTO eventAddDTO); // Event 게시판 작성
 }

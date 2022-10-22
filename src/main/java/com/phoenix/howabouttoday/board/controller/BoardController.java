@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -50,24 +51,27 @@ public class BoardController {
     }
 
     // 공지사항 작성 페이지
-    @GetMapping("admin/notice-add")
-    public String noticeAdd(@LoginUser SessionDTO sessionDTO, Model model){
+    @GetMapping("notice-add")
+    public String noticeAdd(@ModelAttribute("boardAddDTO") BoardAddDTO boardAddDTO,
+                            @LoginUser SessionDTO sessionDTO, Model model){
 
+        boardAddDTO.setMemberNum(sessionDTO.getMemberNum());
         model.addAttribute("sessionDTO", sessionDTO);
 
-        return "board/board-add";
+        return "board/notice-add";
     }
 
     // 공지사항 작성
-    @PostMapping("admin/notice-add")
+    @PostMapping("notice-add")
     public String noticeAdd(@Valid BoardAddDTO boardAddDTO, BindingResult bindingResult,
                             @LoginUser SessionDTO sessionDTO, Model model){
 
         if(bindingResult.hasErrors()) {
             model.addAttribute("sessionDTO", sessionDTO);
-            return "board/board-add";
+            return "board/notice-add";
         }
 
+        boardAddDTO.setBoardCategoryNum(1L);
         boardService.addBoard(boardAddDTO);
 
         return "redirect:/notice";
@@ -103,17 +107,27 @@ public class BoardController {
     }
 
     // 이벤트 작성 페이지
-    @GetMapping("admin/event-add")
-    public String eventAdd(@LoginUser SessionDTO sessionDTO, Model model){
+    @GetMapping("event-add")
+    public String eventAdd(@ModelAttribute("eventAddDTO") EventAddDTO eventAddDTO,
+                           @LoginUser SessionDTO sessionDTO, Model model){
 
+        eventAddDTO.setMemberNum(sessionDTO.getMemberNum());
         model.addAttribute("sessionDTO", sessionDTO);
 
         return "board/event-add";
     }
 
     // 이벤트 작성
-    @PostMapping("admin/event-add")
-    public String eventAdd(){
+    @PostMapping("event-add")
+    public String eventAdd(@Valid EventAddDTO eventAddDTO, BindingResult bindingResult,
+                           @LoginUser SessionDTO sessionDTO, Model model){
+
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("sessionDTO", sessionDTO);
+            return "board/event-add";
+        }
+
+        boardService.addEvent(eventAddDTO);
 
         return "redirect:/event";
     }
@@ -134,17 +148,27 @@ public class BoardController {
     }
 
     // FAQ 작성 페이지
-    @GetMapping("admin/faq-add")
-    public String faqAdd(@LoginUser SessionDTO sessionDTO, Model model){
+    @GetMapping("faq-add")
+    public String faqAdd(@ModelAttribute("faqAddDTO") FAQAddDTO faqAddDTO,
+                         @LoginUser SessionDTO sessionDTO, Model model){
 
+        faqAddDTO.setMemberNum(sessionDTO.getMemberNum());
         model.addAttribute("sessionDTO", sessionDTO);
 
         return "board/faq-add";
     }
 
     // FAQ 작성
-    @PostMapping("admin/faq-add")
-    public String faqAdd(){
+    @PostMapping("faq-add")
+    public String faqAdd(@Valid FAQAddDTO faqAddDTO, BindingResult bindingResult,
+                         @LoginUser SessionDTO sessionDTO, Model model){
+
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("sessionDTO", sessionDTO);
+            return "board/faq-add";
+        }
+
+        boardService.addFAQ(faqAddDTO);
 
         return "redirect:/faq";
     }
@@ -195,24 +219,27 @@ public class BoardController {
     }
 
     // 오늘어때 정보 작성 페이지
-    @GetMapping("admin/aboutUs-add")
-    public String aboutUsAdd(@LoginUser SessionDTO sessionDTO, Model model){
+    @GetMapping("aboutUs-add")
+    public String aboutUsAdd(@ModelAttribute("boardAddDTO") BoardAddDTO boardAddDTO,
+                             @LoginUser SessionDTO sessionDTO, Model model){
 
+        boardAddDTO.setMemberNum(sessionDTO.getMemberNum());
         model.addAttribute("sessionDTO", sessionDTO);
 
-        return "board/board-add";
+        return "board/aboutUs-add";
     }
 
     // 오늘어때 정보 작성
-    @PostMapping("admin/aboutUs-add")
+    @PostMapping("aboutUs-add")
     public String aboutUsAdd(@Valid BoardAddDTO boardAddDTO, BindingResult bindingResult,
                              @LoginUser SessionDTO sessionDTO, Model model){
 
         if(bindingResult.hasErrors()) {
             model.addAttribute("sessionDTO", sessionDTO);
-            return "board/board-add";
+            return "board/aboutUs-add";
         }
 
+        boardAddDTO.setBoardCategoryNum(2L);
         boardService.addBoard(boardAddDTO);
 
         return "redirect:/aboutUs";
