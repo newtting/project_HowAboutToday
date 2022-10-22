@@ -733,8 +733,8 @@
                     </div><!-- end col-lg-8 -->
                     <div class="col-lg-4">
                         <div class="sidebar single-content-sidebar mb-0">
-                            <form th:action="@{/singleSearch(accomNum=${accommodation.accomNum})}" method="get">
-<!--                    다른 방법:<input type="hidden" name="accomNum" th:value="${accommodation.accomNum}">-->
+                            <form th:action="@{/singleSearch}" method="get">
+                                <input type="hidden" name="accomNum" th:value="${accommodation.accomNum}">
                             <div class="sidebar-widget single-content-widget">
                                 <div class="sidebar-widget-item">
                                     <div class="sidebar-book-title-wrap mb-3">

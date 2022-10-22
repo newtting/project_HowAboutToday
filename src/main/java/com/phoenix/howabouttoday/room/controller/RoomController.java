@@ -1,5 +1,7 @@
 package com.phoenix.howabouttoday.room.controller;
 
+import com.phoenix.howabouttoday.config.auth.LoginUser;
+import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import com.phoenix.howabouttoday.room.dto.RoomAmenitiesDTO;
 import com.phoenix.howabouttoday.room.dto.RoomImageDTO;
 import com.phoenix.howabouttoday.room.dto.RoomListDTO;
@@ -20,7 +22,11 @@ public class RoomController {
     private final RoomService roomService;
 
     @GetMapping("room-details")
-    public String getRoomDetails(Model model, Long roomNum){
+    public String getRoomDetails(@LoginUser SessionDTO sessionDTO, Model model, Long roomNum){
+
+        if(sessionDTO != null) {
+            model.addAttribute("sessionDTO", sessionDTO);
+        }
 
         List<RoomImageDTO> iList = roomService.findAll_Image(roomNum);
         model.addAttribute("ilist",iList); //객실 이미지 리스트
