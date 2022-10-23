@@ -14,7 +14,7 @@
                     <div class="col-lg-12">
                         <div class="breadcrumb-content text-center">
                             <div class="section-heading">
-                                <h2 class="sec__title text-white">ADD EVENT</h2>
+                                <h2 class="sec__title text-white">ADD NOTICE</h2>
                             </div>
                         </div><!-- end breadcrumb-content -->
                     </div><!-- end col-lg-6 -->
@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
 
-            <form th:action="@{event-add}" th:object="${eventAddDTO}" method="post" enctype="multipart/form-data" class="row board-add-form">
+            <form th:action="@{notice-add}" th:object="${boardAddDTO}" method="post" class="row board-add-form">
 
                 <!-- Add Form -->
                 <div class="col-lg-8 hwt-col-post">
@@ -57,51 +57,38 @@
                                     <label class="label-text board-add-text">제목</label>
                                     <div class="form-group">
                                         <span class="la la-briefcase form-icon"></span>
-                                        <input th:field="*{eventTitle}" class="form-control board-add-text" type="text" autofocus>
-                                        <div th:each="error : ${#fields.errors('eventTitle')}" th:text="${error}" class="error-message"></div>
+                                        <input th:field="*{boardTitle}" class="form-control board-add-text" type="text" autofocus>
+                                        <div th:each="error : ${#fields.errors('boardTitle')}" th:text="${error}" class="error-message"></div>
                                     </div>
                                 </div>
                             </div><!-- end col-lg-12 -->
 
-                            <!-- Event Start Date and End Date -->
+                            <!-- Content-->
                             <div class="col-lg-12">
                                 <div class="input-box">
-                                    <label class="label-text board-add-text">시작일 - 종료일</label>
-                                    <div class="form-group event-date">
-                                        <span class="la la-calendar form-icon"></span>
-                                        <input class="date-picker-multiple form-control board-add-text" type="text" name="date" readonly>
+                                    <label class="label-text board-add-text">내용</label>
+                                    <div class="form-group">
+                                        <span class="la la-pencil form-icon"></span>
+                                        <textarea th:field="*{boardContent}" class="message-control form-control" id="editor" name="message"></textarea>
+                                        <div th:each="error : ${#fields.errors('boardContent')}" th:text="${error}" class="error-message"></div>
                                     </div>
                                 </div>
                             </div><!-- end col-lg-12 -->
-
-                            <!-- Upload Image -->
-                            <div class="col-lg-4 hwt-col-post">
-                                <label class="label-text board-add-text">이미지 업로드</label>
-                                <div class="form-box event-box">
-                                    <div class="form-content">
-                                        <div class="file-upload-wrap file-upload-wrap-3">
-                                            <input type="file" th:field="*{eventImageList}" class="multi file-upload-input with-preview" multiple>
-<!--                                            <input type="file" th:field="*{eventImageList}" name="files[]" class="multi file-upload-input with-preview" multiple maxlength="3">-->
-                                            <span class="file-upload-text"><i class="la la-upload mr-2"></i>파일을 선택하세요.</span>
-                                        </div>
-                                    </div><!-- end form-content -->
-                                </div><!-- end form-box -->
-                            </div>
 
                         </div><!-- end form-content -->
                     </div><!-- end form-box -->
+
+                    <!-- Button -->
+                    <div class="submit-box hwt-btn-submit">
+                        <div class="btn-box pt-3">
+                            <button type="button" class="theme-btn hwt-btn-left board-btn-white" onclick="history.back()">뒤로가기</button>
+                            <button type="submit" class="theme-btn">작성하기</button>
+                        </div>
+                    </div><!-- end submit-box -->
+
                 </div><!-- end col-lg-8 -->
 
-                <!-- Button -->
-                <div class="submit-box hwt-btn-submit">
-                    <div class="btn-box pt-3">
-                        <button type="button" class="theme-btn hwt-btn-left board-btn-white" onclick="history.back()">뒤로가기</button>
-                        <button type="submit" class="theme-btn">작성하기</button>
-                    </div>
-                </div><!-- end submit-box -->
-
             </form>
-
         </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end listing-form -->

@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.room.dto;
+package com.phoenix.howabouttoday.room.entity;
 
 import lombok.AccessLevel;
 import lombok.Builder;
