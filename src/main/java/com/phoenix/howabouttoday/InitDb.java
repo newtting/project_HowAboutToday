@@ -12,12 +12,12 @@ import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.member.wishlist.WishlistRepository;
-import com.phoenix.howabouttoday.payment.controller.member.wishlist.WishList;
+//import com.phoenix.howabouttoday.payment.controller.member.wishlist.WishList;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
-import com.phoenix.howabouttoday.payment.entity.OrdersDetailRepository;
+//import com.phoenix.howabouttoday.payment.entity.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
-import com.phoenix.howabouttoday.payment.testDriver.AvailableDate;
+//import com.phoenix.howabouttoday.payment.testDriver.AvailableDate;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
@@ -74,7 +74,7 @@ public class InitDb {
         private final ServiceRepository serviceRepository;
         private final WishlistRepository wishlistRepository;
         private final OrdersRepository ordersRepository;
-        private final OrdersDetailRepository ordersDetailRepository;
+//        private final OrdersDetailRepository ordersDetailRepository;
         private final AccommodationImageRepository accommodationImageRepository;
         private final RoomViewAmenitiesRepository roomViewAmenitiesRepository;
         public void dbInit1() {
@@ -175,10 +175,10 @@ public class InitDb {
                     .build());
 
             /**위시리스트 등록**/
-            wishlistRepository.save(WishList.builder()
-                    .member(member)
-                    .accommodation(accommodation)
-                    .build());
+//            wishlistRepository.save(WishList.builder()
+//                    .member(member)
+//                    .accommodation(accommodation)
+//                    .build());
 
             /** 장바구니 등록 **/
             Cart cart = cartRepository.save(Cart.builder()
@@ -220,11 +220,11 @@ public class InitDb {
             order.getReservation().add(ordersDetail);
             member.getOrders().add(order);
 
-            ordersDetailRepository.save(ordersDetail);
+//            ordersDetailRepository.save(ordersDetail);
             ordersRepository.save(order);
 
 
-            객실예약정보_입력(member.getMemberNum());
+//            객실예약정보_입력(member.getMemberNum());
 
             /** 주문 등록 **/
 
@@ -340,10 +340,10 @@ public class InitDb {
                     .build());
 
             /**위시리스트 등록**/
-            wishlistRepository.save(WishList.builder()
-                    .member(member)
-                    .accommodation(accommodation)
-                    .build());
+//            wishlistRepository.save(WishList.builder()
+//                    .member(member)
+//                    .accommodation(accommodation)
+//                    .build());
 
             /** 장바구니 등록 **/
             Cart cart = cartRepository.save(Cart.builder()
@@ -383,11 +383,11 @@ public class InitDb {
             order.getReservation().add(ordersDetail);
             member.getOrders().add(order);
 
-            ordersDetailRepository.save(ordersDetail);
+//            ordersDetailRepository.save(ordersDetail);
             ordersRepository.save(order);
 
 
-            객실예약정보_입력(member.getMemberNum());
+//            객실예약정보_입력(member.getMemberNum());
 
             /** 주문 등록 **/
 
@@ -426,30 +426,30 @@ public class InitDb {
 
 
 
-        public void 객실예약정보_입력(Long memberId) {
-
-            Optional<Orders> optionOrders = ordersRepository.findById(memberId);
-
-            if (optionOrders.isEmpty()) {
-                new NullPointerException("주문이 없습니다.");
-            }
-            Orders orders = optionOrders.get();
-
-            for (Reservation reservation : orders.getReservation()) {
-                LocalDate ldStart = reservation.getReserveUseStartDate();
-                LocalDate ldEnd = reservation.getReserveUseEndDate();
-
-                Long days = ChronoUnit.DAYS.between(ldStart, ldEnd);
-
-                for (Long i = 0L; i < days; i++) {
-                    AvailableDate newDate = AvailableDate.builder()
-                            .date(ldStart.plusDays(i))
-                            .room(reservation.getRoom())
-                            .build();
-                    reservation.getRoom().getAvailableDate().add(newDate);
-                }
-            }
+//        public void 객실예약정보_입력(Long memberId) {
+//
+//            Optional<Orders> optionOrders = ordersRepository.findById(memberId);
+//
+//            if (optionOrders.isEmpty()) {
+//                new NullPointerException("주문이 없습니다.");
+//            }
+//            Orders orders = optionOrders.get();
+//
+//            for (Reservation reservation : orders.getReservation()) {
+//                LocalDate ldStart = reservation.getReserveUseStartDate();
+//                LocalDate ldEnd = reservation.getReserveUseEndDate();
+//
+//                Long days = ChronoUnit.DAYS.between(ldStart, ldEnd);
+//
+//                for (Long i = 0L; i < days; i++) {
+//                    AvailableDate newDate = AvailableDate.builder()
+//                            .date(ldStart.plusDays(i))
+//                            .room(reservation.getRoom())
+//                            .build();
+//                    reservation.getRoom().getAvailableDate().add(newDate);
+//                }
+//            }
         }
 
     }
-}
+

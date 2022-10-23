@@ -5,10 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-
 public interface RoomViewAmenitiesRepository extends JpaRepository<RoomViewAmenities,Long> {
 
-    //Amenities List
-    List<RoomViewAmenities> findAllByAmenitiesRoomNum(Long roomNum);
+    List<RoomViewAmenities> findAllByRoom_RoomNum(Long roomNum);
 
 }

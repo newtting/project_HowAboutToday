@@ -1,7 +1,7 @@
 package com.phoenix.howabouttoday.room.controller;
 
 import com.phoenix.howabouttoday.room.dto.RoomAmenitiesDTO;
-import com.phoenix.howabouttoday.room.dto.RoomListDTO;
+//import com.phoenix.howabouttoday.room.dto.RoomListDTO;
 import com.phoenix.howabouttoday.room.dto.RoomServiceDTO;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +24,8 @@ public class RoomController {
         List<RoomAmenitiesDTO> aList = roomService.findAll_Amenities(roomNum);
         model.addAttribute("alist",aList);
 
-        List<RoomServiceDTO> sList = roomService.findAll_Service(roomNum);
-        model.addAttribute("slist",aList);
+//        List<RoomServiceDTO> sList = roomService.findAll_Service(roomNum);
+//        model.addAttribute("slist",aList);
 
         return "accom/room/room-details";
 
