@@ -14,24 +14,36 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class MemberService {
-
     private final MemberRepository memberRepository;
 
-//    private final BCryptPasswordEncoder encoder;
+    private final BCryptPasswordEncoder encoder;
 
-//    @Transactional
-//    public Long join(MemberDTO DTO) {
-//        DTO.setPwd(encoder.encode(DTO.getPwd()));
-//
-//
-//        return memberRepository.save(DTO.toEntity()).getMemberNum();
-//    }
+    @Transactional
+    public Long join(MemberDTO DTO) {
+        DTO.setPwd(encoder.encode(DTO.getPwd()));
+
+        return memberRepository.save(DTO.toEntity()).getMemberNum();
+    }
 
     private void validateDuplicateMember(Member member) {
         Optional<Member> findMember = memberRepository.findByEmail(member.getEmail());
         if (findMember != null) {
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
+    }
+
+    public MemberDTO getAuthUser(String email){
+
+        Member member = memberRepository.findByEmail(email).get();
+
+        return MemberDTO.builder()
+                .num(member.getMemberNum())
+                .email(member.getEmail())
+                .pwd(member.getPwd())
+                .nickname(member.getNickname())
+                .memberTel(member.getMemberTel())
+                .memberCode(member.getMemberCode())
+                .build();
     }
 
     public MemberDTO getCustomer(Long memberNum) throws UsernameNotFoundException {

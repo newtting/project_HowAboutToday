@@ -39,28 +39,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-   /*
-   인증 무시할 경로 설정
-   static 하위 폴더(css, js, img)는 무조건 접근이 가능해야함
-    */
+	/*
+	인증 무시할 경로 설정
+	static 하위 폴더(css, js, img)는 무조건 접근이 가능해야함
+	 */
 
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
-                .ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/template/**", "/error/**");
+                .ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/template/**", "/error/");
     }
 
-//   @Bean
-//   @Override
-//   public AuthenticationManager authenticationManagerBean() throws Exception {
-//      return super.authenticationManagerBean();
-//   }
+//	@Bean
+//	@Override
+//	public AuthenticationManager authenticationManagerBean() throws Exception {
+//		return super.authenticationManagerBean();
+//	}
 
-   /*
-   CSRF(Cross Site Request Forgery)
-   웹사이트의 취약점 공격을 방지하기 위해 사용하는 기술
-   스프링 시큐어리티가 CSRF 토큰 값을 발행해서
-   */
+	/*
+	CSRF(Cross Site Request Forgery)
+	웹사이트의 취약점 공격을 방지하기 위해 사용하는 기술
+	스프링 시큐어리티가 CSRF 토큰 값을 발행해서
+	*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -70,10 +70,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-//            .antMatchers("/user-dashboard-profile").hasRole("MEMBER")
-//            .antMatchers("/user-dashboard-reviews").hasRole("MEMBER")
-//            .antMatchers("/user-dashboard-wishlist").hasRole("MEMBER")
-//            .antMatchers("/user-dashboard-booking").hasRole("MEMBER")
+//				.antMatchers("/user-dashboard-profile").hasRole("MEMBER")
+//				.antMatchers("/user-dashboard-reviews").hasRole("MEMBER")
+//				.antMatchers("/user-dashboard-wishlist").hasRole("MEMBER")
+//				.antMatchers("/user-dashboard-booking").hasRole("MEMBER")
                 .antMatchers("/**" ).permitAll()
                 .and()
                 .formLogin()
@@ -86,14 +86,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
-                .logoutSuccessUrl("/member/home")
+                .logoutSuccessUrl("/home")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID");
-
-
 
 
     }
 
 }
+
+
+
+
 

@@ -4,6 +4,8 @@ import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,6 +19,8 @@ public class MemberDTO {
 
     private String pwd;
 
+    private LocalDate joinDate;
+
     private String nickname;
 
     private String memberTel;
@@ -29,11 +33,10 @@ public class MemberDTO {
                 .email(email)
                 .pwd(pwd)
                 .nickname(nickname)
+                .joinDate(LocalDate.now())
                 .memberTel(memberTel)
                 .memberCode(memberCode.MEMBER)
                 .build();
         return member;
     }
 }
-
-

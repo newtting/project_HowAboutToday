@@ -12,11 +12,12 @@ import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
-import com.phoenix.howabouttoday.member.wishlist.WishlistRepository;
-//import com.phoenix.howabouttoday.payment.controller.member.wishlist.WishList;
+
+import com.phoenix.howabouttoday.member.wishlist.domain.WishList;
+import com.phoenix.howabouttoday.member.wishlist.domain.WishlistRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
-import com.phoenix.howabouttoday.payment.repository.OrdersDetailRepository;
+
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 
 
@@ -24,7 +25,7 @@ import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
-import com.phoenix.howabouttoday.room.dto.AvailableDate;
+import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.room.entity.*;
 import com.phoenix.howabouttoday.room.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -217,7 +218,6 @@ public class InitDb {
 
             /** 장바구니 등록 **/
             Cart cart = cartRepository.save(Cart.builder()
-                    .accommodation(accommodation)
                     .member(member)
                     .room(room)
                     .reserveUseStartDate(LocalDate.of(2022, 10, 18))
@@ -264,7 +264,7 @@ public class InitDb {
             order.getReservation().add(ordersDetail);
             member.getOrders().add(order);
 
-//            ordersDetailRepository.save(ordersDetail);
+            //ordersDetailRepository.save(ordersDetail);
             ordersRepository.save(order);
 
 
@@ -355,8 +355,6 @@ public class InitDb {
                     .totalReviewNum(127)
                     .latitude(37.5228)
                     .longitude(126.8927)
-                    .checkIn(LocalTime.of(15, 0))
-                    .checkOut(LocalTime.of(11, 0))
                     .lowPrice(11000)
                     .reserveRange(60)
                     .build());
@@ -372,8 +370,6 @@ public class InitDb {
                     .totalReviewNum(127)
                     .latitude(37.5228)
                     .longitude(126.8927)
-                    .checkIn(LocalTime.of(15, 0))
-                    .checkOut(LocalTime.of(11, 0))
                     .lowPrice(13000)
                     .reserveRange(60)
                     .build());
@@ -388,8 +384,6 @@ public class InitDb {
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
                     .latitude(37.5228)
-                    .checkIn(LocalTime.of(15, 0))
-                    .checkOut(LocalTime.of(11, 0))
                     .longitude(126.8927)
                     .lowPrice(20000)
                     .reserveRange(60)
@@ -406,9 +400,9 @@ public class InitDb {
                     .totalReviewNum(127)
                     .latitude(37.5228)
                     .longitude(126.8927)
+                    .lowPrice(20000)
                     .checkIn(LocalTime.of(15, 0))
                     .checkOut(LocalTime.of(11, 0))
-                    .lowPrice(20000)
                     .reserveRange(60)
                     .build());
 
@@ -486,6 +480,34 @@ public class InitDb {
 //                    .member(member)
 //                    .accommodation(accommodation)
 //                    .build());
+
+            for (int i=0; i < 100; i++){
+
+                Accommodation build = Accommodation.builder()
+                        .accomName("보령(대천) 너울펜션" + i)
+                        .accomTel("050350577805")
+                        .accomCategory(AccomCategory.PENSION)
+                        .region(region)
+                        .accomAddress("충청남도 보령시 해수욕장13길 10-20" + i)
+                        .accomRating(4.4)
+                        .accomWishlistCount(110)
+                        .totalReviewNum(1103)
+                        .latitude(36.3196)
+                        .longitude(126.5092)
+                        .lowPrice(45000)
+                        .reserveRange(60)
+                        .checkIn(LocalTime.of(15, 0))
+                        .checkOut(LocalTime.of(11, 0))
+                        .build();
+                Accommodation save = accommodationRepository.save(build);
+
+                WishList build1 = WishList.builder()
+                        .member(member)
+                        .accommodation(save)
+                        .build();
+                wishlistRepository.save(build1);
+            }
+
 
             /** 장바구니 등록 **/
             Cart cart = cartRepository.save(Cart.builder()
@@ -578,6 +600,166 @@ public class InitDb {
                     .joinDate(LocalDate.of(2021,9,27))
                     .memberCode(Code.MEMBER)
                     .build());
+        }
+
+        public void insertReserve(){
+
+            /**회원등록**/
+            Member member = memberRepository.save(Member.builder()
+                    .email("a@com")
+                    .pwd("1111")
+                    .memberTel("010-9876-5432")
+                    .nickname("토에이")
+                    .memberOriginalFileName("Originl")
+                    .memberSaveFileName("save")
+                    .joinDate(LocalDate.now())
+                    .memberCode(Code.MEMBER)
+                    .build());
+
+
+            /**지역 등록 **/
+            Region region = regionRepository.save(Region.builder()
+                    .region(RegionType.JEJU)
+                    .regionParentNum(RegionType.JEJU)
+                    .build());
+
+            /**숙소 등록**/
+            Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
+                    .accomName("제주도 라르고 게스트하우스")
+                    .accomTel("01045020614")
+                    .accomCategory(AccomCategory.GUESTHOUSE)
+                    .region(region)
+                    .accomAddress("제주도 서귀포시 성산읍 13길 10")
+                    .accomRating(3.9)
+                    .accomWishlistCount(100)
+                    .totalReviewNum(238)
+                    .latitude(36.3196)
+                    .longitude(126.5092)
+                    .checkIn(LocalTime.of(13, 0))
+                    .checkOut(LocalTime.of(12, 0))
+                    .lowPrice(33000)
+                    .reserveRange(14)
+                    .build());
+
+            accommodationImageRepository.save( AccomImage.builder()
+                    .accomOriginFilename("image9.jpg")
+                    .accomSaveFilename("image1.jpg")
+                    .accommodation(accommodation)
+                    .build());
+
+            Room room1 = roomRepository.save(Room.builder()
+                    .accommodation(accommodation)
+                    .roomName("우리 집 같은 내방룸")
+                    .defaultGuest(2)
+                    .maxGuest(2)
+                    .stayStartDate(LocalDate.now())
+                    .stayEndDate(LocalDate.of(2022,10, 28))
+                    .price(43000)
+                    .roomInfo("임시 객실정보 입니다")
+                    .build());
+
+            Room room2 = roomRepository.save(Room.builder()
+                    .accommodation(accommodation)
+                    .roomName("너네집 차가운 방")
+                    .defaultGuest(2)
+                    .maxGuest(3)
+                    .stayStartDate(LocalDate.now())
+                    .stayEndDate(LocalDate.of(2022,10, 28))
+                    .price(65000)
+                    .roomInfo("임시 객실정보 입니다")
+                    .build());
+
+            Room room3 = roomRepository.save(Room.builder()
+                    .accommodation(accommodation)
+                    .roomName("언제나 눕게 되는 방")
+                    .defaultGuest(2)
+                    .maxGuest(4)
+                    .stayStartDate(LocalDate.now())
+                    .stayEndDate(LocalDate.of(2022,10, 28))
+                    .price(34000)
+                    .roomInfo("임시 객실정보 입니다")
+                    .build());
+
+            Room room4 = roomRepository.save(Room.builder()
+                    .accommodation(accommodation)
+                    .roomName("너와 나의 연결방")
+                    .defaultGuest(2)
+                    .maxGuest(4)
+                    .stayStartDate(LocalDate.now())
+                    .stayEndDate(LocalDate.of(2022,10, 28))
+                    .price(82000)
+                    .roomInfo("임시 객실정보 입니다")
+                    .build());
+
+            Integer plusDay = 0;
+
+            Orders order = makeOrder(member, plusDay++);
+            Orders order1 = makeOrder(member, plusDay++);
+            Orders order2 = makeOrder(member, plusDay++);
+            Orders order3 = makeOrder(member, plusDay++);
+            Orders order4 = makeOrder(member, plusDay++);
+            Orders order5 = makeOrder(member, plusDay++);
+            Orders order6 = makeOrder(member, plusDay++);
+            Orders order7 = makeOrder(member, plusDay++);
+            Orders order8 = makeOrder(member, plusDay++);
+            Orders order9 = makeOrder(member, plusDay++);
+            Orders order10 = makeOrder(member, plusDay++);
+            Orders order11 = makeOrder(member, plusDay++);
+            Orders order12 = makeOrder(member, plusDay++);
+
+            makeOrderDetail(member, room1, ordersRepository.save(order));
+            makeOrderDetail(member, room1, ordersRepository.save(order1));
+            makeOrderDetail(member, room2, ordersRepository.save(order2));
+            makeOrderDetail(member, room2, ordersRepository.save(order3));
+            makeOrderDetail(member, room2, ordersRepository.save(order4));
+            makeOrderDetail(member, room3, ordersRepository.save(order5));
+            makeOrderDetail(member, room3, ordersRepository.save(order6));
+            makeOrderDetail(member, room3, ordersRepository.save(order7));
+            makeOrderDetail(member, room4, ordersRepository.save(order8));
+            makeOrderDetail(member, room4, ordersRepository.save(order9));
+            makeOrderDetail(member, room1, ordersRepository.save(order10));
+            makeOrderDetail(member, room1, ordersRepository.save(order11));
+            makeOrderDetail(member, room1, ordersRepository.save(order12));
+
+
+            member.getOrders().add(order);
+
+//            ordersDetailRepository.save(ordersDetail);
+            ordersRepository.save(order);
+
+
+            객실예약정보_입력(member.getMemberNum());
+
+        }
+
+        public Orders makeOrder(Member member, Integer day){
+            return Orders.builder()
+                    .ordersTel(member.getMemberTel())
+                    .ordersName(member.getNickname())
+                    .ordersDate(LocalDate.now().plusDays(day))
+                    .ordersPrice(35000)
+                    .ordersType("card")
+                    .ordersStatus("결제완료")
+                    .member(member)
+                    .build();
+        }
+
+        public OrdersDetail makeOrderDetail(Member member, Room room, Orders orders){
+
+            OrdersDetail od = OrdersDetail.builder()
+                    .member(member)
+                    .accommodation(room.getAccommodation())
+                    .room(room)
+                    .orders(orders)
+                    .reserveStatus(ReserveStatus.READY)
+                    .reserveUseStartDate(room.getStayStartDate())
+                    .reserveUseEndDate(room.getStayEndDate())
+                    .reservePrice(room.getPrice())
+                    .reserveAdultCount(2)
+                    .reserveChildCount(2)
+                    .build();
+            orders.getReservation().add(od);
+            return od;
         }
 
 
