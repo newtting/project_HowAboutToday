@@ -301,21 +301,9 @@
         상단 객실 이미지 시작
     ================================= -->
 <section class="room-detail-bread">
-    <div class="full-width-slider carousel-action">
+    <div class="full-width-slider carousel-action" th:each="roomImageDTO : ${roomDetailDTO.roomImageList}">
         <div class="full-width-slide-item">
-            <img src="/images/img30.jpg" alt="">
-        </div><!-- end full-width-slide-item -->
-        <div class="full-width-slide-item">
-            <img src="/images/img31.jpg" alt="">
-        </div><!-- end full-width-slide-item -->
-        <div class="full-width-slide-item">
-            <img src="/images/img32.jpg" alt="">
-        </div><!-- end full-width-slide-item -->
-        <div class="full-width-slide-item">
-            <img src="/images/img33.jpg" alt="">
-        </div><!-- end full-width-slide-item -->
-        <div class="full-width-slide-item">
-            <img src="/images/img34.jpg" alt="">
+            <img th:src="/${roomImageDTO.roomNum/${roomImageDTO.roomSaveFileName}" alt="">
         </div><!-- end full-width-slide-item -->
     </div><!-- end full-width-slider -->
 </section><!-- end room-detail-bread -->
@@ -350,10 +338,10 @@
                     <div class="single-content-wrap padding-top-60px">
                         <div id="description" class="page-scroll">
                             <div class="single-content-item pb-4">
-                                <h3 class="title font-size-26">방 이름</h3>
+                                <h3 class="title font-size-26" th:text="${roomDetailDTO.roomName}">방 이름</h3>
                                 <p class="pt-2">
-                                    <span class="badge badge-warning text-white font-size-16">4.6</span>
-                                    <span>(4,209개의 리뷰)</span>
+                                    <span class="badge badge-warning text-white font-size-16" th:text="${roomDetailDTO.roomRating}">4.6</span>
+                                    <span th:text="|(${roomDetailDTO.roomReviewNum})|">(4,209개의 리뷰)</span>
                                 </p>
                             </div><!-- end single-content-item -->
 
@@ -381,7 +369,7 @@
                                                 <i class="la la-check-circle"></i>
                                             </div>
                                             <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium" th:text="${slist.serviceName}">주차 가능</h3>
+                                                <h3 class="title font-size-15 font-weight-medium" th:text="${serviceList.serviceName}">주차 가능</h3>
                                             </div>
                                         </div><!-- end single-tour-feature -->
                                     </div><!-- end col-lg-4 -->
@@ -401,7 +389,7 @@
                                                 <i class="la la-couch"></i>
                                             </div>
                                             <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium" th:text="${alist.amenitiesName}">2인 소파</h3>
+                                                <h3 class="title font-size-15 font-weight-medium" th:text="${amenitiesList.amenitiesName}">2인 소파</h3>
                                             </div>
                                         </div><!-- end single-tour-feature -->
                                     </div><!-- end col-lg-4 -->
