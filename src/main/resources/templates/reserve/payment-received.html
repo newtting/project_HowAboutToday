@@ -52,18 +52,18 @@
                                 </th>
                                 <td>
                                     <div class="table-content px-2">
-                                        <h3 class="title color-text text-lg-right" th:text="|김영운|">$264</h3>
+                                        <h3 class="title color-text text-lg-right" th:text="${customer.getNickname()}">$264</h3>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">
-                                    <div class="table-content pl-4" th:text="|휴대폰 번호|">Subtotal</p>
+                                    <div class="table-content pl-4" th:text="|핸드폰 번호|">Subtotal</p>
                                     </div>
                                 </th>
                                 <td>
                                     <div class="table-content px-2">
-                                        <h3 class="title color-text text-lg-right">010-4502-0614</h3>
+                                        <h3 class="title color-text text-lg-right" th:text="${customer.getMemberTel()}">010-4502-0614</h3>
                                     </div>
                                 </td>
                             </tr>

@@ -4,12 +4,12 @@
  *
  */
 
-
-
 package com.phoenix.howabouttoday.payment.controller;
 
+import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
+import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import com.phoenix.howabouttoday.payment.dto.OrdersDTO;
 import com.phoenix.howabouttoday.payment.service.PaymentHistoryService;
 import lombok.AllArgsConstructor;
@@ -37,14 +37,19 @@ public class PaymentHistoryController {
 
     /* 마이페이지-예약탭  */
     @GetMapping(value = {"user-dashboard-booking/{page}", "user-dashboard-booking"})
-    public String getUserBooking(@PathVariable(required = false, name = "page") Optional<Integer> page, Model model) {
+    public String getUserBooking(@LoginUser SessionDTO sessionDTO,  @PathVariable(required = false, name = "page") Optional<Integer> page, Model model) {
 //
-        Integer curPage = page.orElse(1);
 
+        if(sessionDTO != null) {
+            model.addAttribute("sessionDTO", sessionDTO);
+        }
+
+        Integer curPage = page.orElse(1);
 
         //1. 시큐리티를 사용해서 principal 객체에서 user정보를 가져와서 memberNum을 알 수 있다.
 
-        MemberDTO customer = memberService.getCustomer(2L); //여긴 페이징 처리 테스트 하느라 고정해둠
+//        MemberDTO customer = memberService.getCustomer(2L); //여긴 페이징 처리 테스트 하느라 고정해둠
+        MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
 //        MemberDTO customer = memberService.getAuthUser(principal.getName());s
 
         Page<OrdersDTO> ordersDTOList = paymentHistoryService.pagingAllByMember(PageRequest.of(curPage - 1, 5, Sort.Direction.DESC, "ordersDate"), customer.getNum());
@@ -63,7 +68,12 @@ public class PaymentHistoryController {
 
     /* 마이페이지-예약탭-결제상세내역  */
     @GetMapping(value = {"bookingDetail/{page}"})
-    public String getUserOrderDetail(Model model, Principal principal, @PathVariable(name = "page") Long page){
+    public String getUserOrderDetail(@LoginUser SessionDTO sessionDTO, Model model, Principal principal, @PathVariable(name = "page") Long page){
+
+
+        if(sessionDTO != null) {
+            model.addAttribute("sessionDTO", sessionDTO);
+        }
 
         /**
          * 1. get방식
@@ -74,8 +84,7 @@ public class PaymentHistoryController {
 
         Long ordersNum = page;
 
-        MemberDTO customer = memberService.getCustomer(3L);
-//        MemberDTO customer = memberService.getAuthUser(principal.getName());
+        MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
         OrdersDTO ordersDTO = paymentHistoryService.getOrdersDTO(ordersNum);
 
         model.addAttribute("customer", customer);
