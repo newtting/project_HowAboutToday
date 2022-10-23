@@ -48,8 +48,8 @@ public class Member {
   @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
   private List<Board> boardList = new ArrayList<>();
 
-  @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-  private List<Event> eventList = new ArrayList<>();
+//  @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+//  private List<Event> eventList = new ArrayList<>();
 
   @Builder
   public Member(String email, String pwd, String nickname, String memberTel, Code memberCode, LocalDate joinDate, LocalDate withdrawdate, String memberOriginalFileName, String memberSaveFileName) {

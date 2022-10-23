@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,11 +46,15 @@ public class Event {
 
     // Event 게시글 작성
     public Event(Member member, EventAddDTO eventAddDTO) {
+
+        String[] splitDate = eventAddDTO.getDate().split(" - ");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+
         this.member = member;
         this.eventTitle = eventAddDTO.getEventTitle();
         this.eventCreate = LocalDate.now();
-        this.eventStart = eventAddDTO.getEventStart();
-        this.eventEnd = eventAddDTO.getEventEnd();
+        this.eventStart = LocalDate.parse(splitDate[0], formatter);
+        this.eventEnd = LocalDate.parse(splitDate[1], formatter);
     }
 
 }

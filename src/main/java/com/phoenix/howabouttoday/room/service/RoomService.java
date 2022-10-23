@@ -1,9 +1,6 @@
 package com.phoenix.howabouttoday.room.service;
 
-import com.phoenix.howabouttoday.room.dto.RoomAmenitiesDTO;
-import com.phoenix.howabouttoday.room.dto.RoomImageDTO;
-import com.phoenix.howabouttoday.room.dto.RoomListDTO;
-import com.phoenix.howabouttoday.room.dto.RoomServiceDTO;
+import com.phoenix.howabouttoday.room.dto.*;
 
 import java.util.List;
 
@@ -16,6 +13,6 @@ public interface RoomService {
 
     List<RoomImageDTO> findAll_Image(Long roomNum); //객실 이미지 리스트
 
-    //객실 디테일
+    RoomDetailDTO findOne_Room(Long roomNum); // 객실 디테일
 
 }

@@ -378,7 +378,7 @@
                                 <div class="cabin-type padding-top-30px">
                                     <div class="cabin-type-item seat-selection-item d-flex mb-3" th:each="roomList : ${roomlist}">
                                         <div class="cabin-type-img flex-shrink-0" th:each="imageList : ${ilist}">
-                                            <a th:href="room-details"><img th:src="${imageList.roomSaveFileName}" alt=""></a>
+                                            <a th:href="room-details"><img th:src="${imageList.getRoomSaveFileName()}" alt=""></a>
                                         </div>
                                         <div class="cabin-type-detail">
                                             <h3 class="title"><a th:href="room-details" th:text="${roomList.roomName}">Standard Family room</a></h3>
@@ -778,7 +778,11 @@
                                        class="theme-btn hwt-btn-gray text-center w-100 theme-btn-transparent"><i
                                             class="la la-calendar mr-2"></i>예약 날짜 조회</button>
                                     <hr/>
+
                                     <a th:href="@{/user-dashboard-wishlist}"
+
+                               
+
                                        class="theme-btn hwt-btn-gray text-center w-100 theme-btn-transparent"><i
                                             class="la la-heart-o mr-2"></i>찜 추가하기</a>
                                 </div>
