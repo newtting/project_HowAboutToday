@@ -12,10 +12,12 @@ import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
-import com.phoenix.howabouttoday.member.wishlist.WishlistRepository;
-//import com.phoenix.howabouttoday.payment.controller.member.wishlist.WishList;
+
+import com.phoenix.howabouttoday.member.wishlist.domain.WishList;
+import com.phoenix.howabouttoday.member.wishlist.domain.WishlistRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
+
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 
 
@@ -48,7 +50,6 @@ public class InitDb {
     public void init(){
         initService.dbInit1();
         initService.dbInit2();
-        initService.insertReserve();
     }
 
 
@@ -217,7 +218,6 @@ public class InitDb {
 
             /** 장바구니 등록 **/
             Cart cart = cartRepository.save(Cart.builder()
-                    .accommodation(accommodation)
                     .member(member)
                     .room(room)
                     .reserveUseStartDate(LocalDate.of(2022, 10, 18))
@@ -264,7 +264,7 @@ public class InitDb {
             order.getReservation().add(ordersDetail);
             member.getOrders().add(order);
 
-//            ordersDetailRepository.save(ordersDetail);
+            //ordersDetailRepository.save(ordersDetail);
             ordersRepository.save(order);
 
 
@@ -355,8 +355,6 @@ public class InitDb {
                     .totalReviewNum(127)
                     .latitude(37.5228)
                     .longitude(126.8927)
-                    .checkIn(LocalTime.of(15, 0))
-                    .checkOut(LocalTime.of(11, 0))
                     .lowPrice(11000)
                     .reserveRange(60)
                     .build());
@@ -372,8 +370,6 @@ public class InitDb {
                     .totalReviewNum(127)
                     .latitude(37.5228)
                     .longitude(126.8927)
-                    .checkIn(LocalTime.of(15, 0))
-                    .checkOut(LocalTime.of(11, 0))
                     .lowPrice(13000)
                     .reserveRange(60)
                     .build());
@@ -388,8 +384,6 @@ public class InitDb {
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
                     .latitude(37.5228)
-                    .checkIn(LocalTime.of(15, 0))
-                    .checkOut(LocalTime.of(11, 0))
                     .longitude(126.8927)
                     .lowPrice(20000)
                     .reserveRange(60)
@@ -406,9 +400,9 @@ public class InitDb {
                     .totalReviewNum(127)
                     .latitude(37.5228)
                     .longitude(126.8927)
+                    .lowPrice(20000)
                     .checkIn(LocalTime.of(15, 0))
                     .checkOut(LocalTime.of(11, 0))
-                    .lowPrice(20000)
                     .reserveRange(60)
                     .build());
 
@@ -453,8 +447,6 @@ public class InitDb {
                     .build());
 
 
-
-
             /** 객실등록 **/
             Room room = roomRepository.save(Room.builder()
                     .accommodation(accommodation)
@@ -488,6 +480,34 @@ public class InitDb {
 //                    .member(member)
 //                    .accommodation(accommodation)
 //                    .build());
+
+            for (int i=0; i < 100; i++){
+
+                Accommodation build = Accommodation.builder()
+                        .accomName("보령(대천) 너울펜션" + i)
+                        .accomTel("050350577805")
+                        .accomCategory(AccomCategory.PENSION)
+                        .region(region)
+                        .accomAddress("충청남도 보령시 해수욕장13길 10-20" + i)
+                        .accomRating(4.4)
+                        .accomWishlistCount(110)
+                        .totalReviewNum(1103)
+                        .latitude(36.3196)
+                        .longitude(126.5092)
+                        .lowPrice(45000)
+                        .reserveRange(60)
+                        .checkIn(LocalTime.of(15, 0))
+                        .checkOut(LocalTime.of(11, 0))
+                        .build();
+                Accommodation save = accommodationRepository.save(build);
+
+                WishList build1 = WishList.builder()
+                        .member(member)
+                        .accommodation(save)
+                        .build();
+                wishlistRepository.save(build1);
+            }
+
 
             /** 장바구니 등록 **/
             Cart cart = cartRepository.save(Cart.builder()
@@ -564,8 +584,9 @@ public class InitDb {
 
 
             /** 매핑테이블들 **/
-        }
 
+
+        }
 
         public void dbInit3(){
             /**회원등록**/
@@ -601,7 +622,7 @@ public class InitDb {
                     .region(RegionType.JEJU)
                     .regionParentNum(RegionType.JEJU)
                     .build());
-            
+
             /**숙소 등록**/
             Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
                     .accomName("제주도 라르고 게스트하우스")
