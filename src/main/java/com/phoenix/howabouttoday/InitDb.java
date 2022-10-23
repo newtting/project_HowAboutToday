@@ -481,32 +481,32 @@ public class InitDb {
 //                    .accommodation(accommodation)
 //                    .build());
 
-            for (int i=0; i < 100; i++){
-
-                Accommodation build = Accommodation.builder()
-                        .accomName("보령(대천) 너울펜션" + i)
-                        .accomTel("050350577805")
-                        .accomCategory(AccomCategory.PENSION)
-                        .region(region)
-                        .accomAddress("충청남도 보령시 해수욕장13길 10-20" + i)
-                        .accomRating(4.4)
-                        .accomWishlistCount(110)
-                        .totalReviewNum(1103)
-                        .latitude(36.3196)
-                        .longitude(126.5092)
-                        .lowPrice(45000)
-                        .reserveRange(60)
-                        .checkIn(LocalTime.of(15, 0))
-                        .checkOut(LocalTime.of(11, 0))
-                        .build();
-                Accommodation save = accommodationRepository.save(build);
-
-                WishList build1 = WishList.builder()
-                        .member(member)
-                        .accommodation(save)
-                        .build();
-                wishlistRepository.save(build1);
-            }
+//            for (int i=0; i < 100; i++){
+//
+//                Accommodation build = Accommodation.builder()
+//                        .accomName("보령(대천) 너울펜션" + i)
+//                        .accomTel("050350577805")
+//                        .accomCategory(AccomCategory.PENSION)
+//                        .region(region)
+//                        .accomAddress("충청남도 보령시 해수욕장13길 10-20" + i)
+//                        .accomRating(4.4)
+//                        .accomWishlistCount(110)
+//                        .totalReviewNum(1103)
+//                        .latitude(36.3196)
+//                        .longitude(126.5092)
+//                        .lowPrice(45000)
+//                        .reserveRange(60)
+//                        .checkIn(LocalTime.of(15, 0))
+//                        .checkOut(LocalTime.of(11, 0))
+//                        .build();
+//                Accommodation save = accommodationRepository.save(build);
+//
+//                WishList build1 = WishList.builder()
+//                        .member(member)
+//                        .accommodation(save)
+//                        .build();
+//                wishlistRepository.save(build1);
+//            }
 
 
             /** 장바구니 등록 **/
