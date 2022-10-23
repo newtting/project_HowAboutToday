@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
 
-            <form method="post" class="row board-add-form">
+            <form th:action="@{faq-add}" th:object="${faqAddDTO}" method="post" class="row board-add-form">
 
                 <!-- Add Form -->
                 <div class="col-lg-8 hwt-col-post">
@@ -49,20 +49,22 @@
 
                         <div class="form-content contact-form-action">
 
+                            <input type="hidden" th:field="*{memberNum}">
+
                             <!-- Category -->
                             <div class="col-lg-6 col-lg-faq responsive-column">
                                 <div class="input-box">
                                     <label class="label-text board-add-select">카테고리</label>
                                     <div class="form-group select-contain w-100">
-                                        <select class="select-contain-select">
+                                        <select class="select-contain-select" th:field="*{boardCategoryNum}">
                                             <option value="">카테고리를 선택하세요.</option>
-                                            <option value="OWNER">상품/서비스</option>
-                                            <option value="GENERAL_MANAGER">예약/결제</option>
-                                            <option value="INNKEEPER">변경/취소/환불</option>
-                                            <option value="AGENCY_CONSULTANT">쿠폰/할인</option>
-                                            <option value="ACCOUNTING_FINANCE">포인트</option>
-                                            <option value="GUEST_SERVICES">후기/댓글</option>
-                                            <option value="MARKETING">회원/개인정보</option>
+                                            <option value="4">상품/서비스</option>
+                                            <option value="5">예약/결제</option>
+                                            <option value="6">변경/취소/환불</option>
+                                            <option value="7">쿠폰/할인</option>
+                                            <option value="8">포인트</option>
+                                            <option value="9">후기/댓글</option>
+                                            <option value="10">회원/개인정보</option>
                                         </select>
                                     </div>
                                 </div>
@@ -74,7 +76,8 @@
                                     <label class="label-text board-add-text">제목</label>
                                     <div class="form-group">
                                         <span class="la la-briefcase form-icon"></span>
-                                        <input class="form-control board-add-text" type="text" name="text" placeholder="제목을 입력하세요." autofocus>
+                                        <input th:field="*{boardTitle}" class="form-control board-add-text" type="text" autofocus>
+                                        <div th:each="error : ${#fields.errors('boardTitle')}" th:text="${error}" class="error-message"></div>
                                     </div>
                                 </div>
                             </div><!-- end col-lg-12 -->
@@ -85,7 +88,8 @@
                                     <label class="label-text board-add-text">내용</label>
                                     <div class="form-group">
                                         <span class="la la-pencil form-icon"></span>
-                                        <textarea class="message-control form-control" id="editor" name="message" placeholder="내용을 입력하세요."></textarea>
+                                        <textarea th:field="*{boardContent}" class="message-control form-control" id="editor" name="message"></textarea>
+                                        <div th:each="error : ${#fields.errors('boardContent')}" th:text="${error}" class="error-message"></div>
                                     </div>
                                 </div>
                             </div><!-- end col-lg-12 -->

@@ -290,13 +290,15 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
       layout:decorate="layout/layout">
 
 <th:block layout:fragment="content">
-<!-- ================================
-    START BREADCRUMB AREA
-================================= -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+
+    <!-- ================================
+        START BREADCRUMB AREA
+    ================================= -->
 <section class="breadcrumb-area bread-bg-7">
     <div class="breadcrumb-wrap">
         <div class="container">
@@ -575,11 +577,13 @@
                 <div class="card-item card-item-list" th:each="accommodation : ${accommodationList}">
                     <div class="card-img">
                         <a class="d-block" th:href="@{/hotel-single(accomNum=${accommodation.accomNum})}">
-                            <img th:src="|/data/images/${accommodation.accommodationImage.get(0).accomOriginFilename}" alt="hotel-img">
+<!--                            <img th:src="|/data/images/${accommodation.accommodationImage.get(0).accomOriginFilename}" alt="hotel-img">-->
                         </a>
-                        <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist">
+                        <a th:href="|javascript:void(0)|" th:onclick="saveWish([[${accommodation.accomNum}]])">
+                        <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist" id="wishList">
                             <i class="la la-heart-o"></i>
                         </div>
+                        </a>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title" ><a th:href="@{/hotel-single(accomNum=${accommodation.accomNum})}" th:text="${accommodation.accomName}"></a></h3>
@@ -896,7 +900,29 @@
 <!--<script src="js/main.js"></script>-->
 <!--</body>-->
 <!--</html>-->
+    <script>
 
+        function saveWish(accomNum) {
+
+            $.ajax({
+                url: '/rest/wish/' + accomNum,
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+            }).done(function(result){
+
+                // 이미 찜한 강의라면 찜 삭제 및 true 반환
+                if(result){
+                    alert("위시리스트에서 삭제하였습니다.");
+
+                } else {
+                    alert("위시리스트에 저장하였습니다.");
+                }
+            }).fail(function(error){
+                alert(JSON.stringify(error));
+            });
+        }
+
+    </script>
 </th:block>
 
 </html>

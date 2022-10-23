@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Getter
@@ -20,18 +22,27 @@ public class RoomDetailDTO {
 
     private int maxGuest; // 최대 인원
 
+    private Double roomRating;
+
+    private int roomReviewNum;
+
     private LocalDate stayStartDate; // 객실 이용 시작일
 
     private LocalDate stayEndDate; // 객실 이용 종료일
 
     private int price; // 객실 가격
 
+    private List<RoomImageDTO> roomImageList; //객실 이미지
+
     public RoomDetailDTO(Room room) {
+        this.roomRating = room.getRoomRating();
+        this.roomReviewNum = room.getRoomReviewNum();
         this.roomNum = room.getRoomNum();
         this.roomName = room.getRoomName();
         this.defaultGuest = room.getDefaultGuest();
         this.maxGuest = room.getMaxGuest();
         this.stayStartDate = room.getStayStartDate();
         this.stayEndDate = room.getStayEndDate();
+        this.roomImageList = room.getRoomImageList().stream().map(RoomImageDTO::new).collect(Collectors.toList());
     }
 }

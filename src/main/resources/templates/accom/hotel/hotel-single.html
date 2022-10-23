@@ -378,7 +378,7 @@
                                 <div class="cabin-type padding-top-30px">
                                     <div class="cabin-type-item seat-selection-item d-flex mb-3" th:each="roomList : ${roomlist}">
                                         <div class="cabin-type-img flex-shrink-0" th:each="imageList : ${ilist}">
-                                            <a th:href="room-details"><img th:src="${imageList.roomSaveFileName}" alt=""></a>
+                                            <a th:href="room-details"><img th:src="${imageList.getRoomSaveFileName()}" alt=""></a>
                                         </div>
                                         <div class="cabin-type-detail">
                                             <h3 class="title"><a th:href="room-details" th:text="${roomList.roomName}">Standard Family room</a></h3>

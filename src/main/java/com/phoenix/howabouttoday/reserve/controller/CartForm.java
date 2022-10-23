@@ -7,8 +7,7 @@ import java.time.LocalDate;
 @Data
 public class CartForm {
 
-    private String check_in;
-    private String check_out;
+    private String checkDate;
     private int adultQty;
     private int childQty;
 
