@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface RoomViewAmenitiesRepository extends JpaRepository<RoomViewAmenities,Long> {
 
+    //Amenities List
     List<RoomViewAmenities> findAllByRoom_RoomNum(Long roomNum);
 
 }
+

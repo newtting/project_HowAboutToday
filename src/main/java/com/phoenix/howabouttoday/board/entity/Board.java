@@ -8,7 +8,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
@@ -29,15 +29,15 @@ public class Board {
     @Column(nullable = false)
     private String boardTitle; // 게시글 제목
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20000, columnDefinition = "TEXT")
     private String boardContent; // 게시글 내용
 
     @CreatedDate
     @Column
-    private LocalDateTime boardCreate; // 게시일
+    private LocalDate boardCreate; // 게시일
 
     @Builder
-    public Board(BoardCategory boardCategory, String boardTitle, String boardContent, LocalDateTime boardCreate) {
+    public Board(BoardCategory boardCategory, String boardTitle, String boardContent, LocalDate boardCreate) {
         this.boardCategory = boardCategory;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;

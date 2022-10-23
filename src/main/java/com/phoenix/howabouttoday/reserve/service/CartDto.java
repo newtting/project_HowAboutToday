@@ -6,6 +6,7 @@ import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 
 public class CartDto {
 
@@ -40,18 +41,29 @@ public class CartDto {
         private int reservePrice;
         private int reserveAdultCount;
         private int reserveChildCount;
+        private int betweenDay;
 
         public ResponseDto(Cart cart) {
             this.cartNum = cart.getReserveNum();
             this.memberNum = cart.getMember().getMemberNum();
             this.roomNum = cart.getRoom().getRoomNum();
             this.roomName = cart.getRoom().getRoomName();
-//            this.roomFileName = cart.getRoom() 룸쪽에서 이미지에 대한 양방향 매핑이 필요해보임
+            this.roomFileName = cart.getRoom().getRoomImageList().get(0).getRoomOriginFileName();//대표가되는 첫번째 메인이지하나만 전달
             this.reserveUseStartDate = cart.getReserveUseStartDate();
             this.reserveUseEndDate = cart.getReserveUseEndDate();
-            this.reservePrice = cart.getReservePrice();
+            this.reservePrice = cart.getRoom().getPrice();
             this.reserveAdultCount = cart.getReserveAdultCount();
             this.reserveChildCount = cart.getReserveChildCount();
+
+            //** 몇박 계산 로직 **/
+            Period between = Period.between(cart.getReserveUseStartDate(),cart.getReserveUseEndDate());
+
+            this.betweenDay = between.getDays();
+
+
+
         }
+
+
     }
 }

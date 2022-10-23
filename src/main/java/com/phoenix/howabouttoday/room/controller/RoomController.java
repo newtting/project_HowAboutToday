@@ -1,7 +1,8 @@
 package com.phoenix.howabouttoday.room.controller;
 
 import com.phoenix.howabouttoday.room.dto.RoomAmenitiesDTO;
-//import com.phoenix.howabouttoday.room.dto.RoomListDTO;
+import com.phoenix.howabouttoday.room.dto.RoomImageDTO;
+import com.phoenix.howabouttoday.room.dto.RoomListDTO;
 import com.phoenix.howabouttoday.room.dto.RoomServiceDTO;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import lombok.RequiredArgsConstructor;
@@ -21,11 +22,14 @@ public class RoomController {
     @GetMapping("room-details")
     public String getRoomDetails(Model model, Long roomNum){
 
-        List<RoomAmenitiesDTO> aList = roomService.findAll_Amenities(roomNum);
-        model.addAttribute("alist",aList);
+        List<RoomImageDTO> iList = roomService.findAll_Image(roomNum);
+        model.addAttribute("ilist",iList); //객실 이미지 리스트
 
-//        List<RoomServiceDTO> sList = roomService.findAll_Service(roomNum);
-//        model.addAttribute("slist",aList);
+        List<RoomAmenitiesDTO> aList = roomService.findAll_Amenities(roomNum);
+        model.addAttribute("alist",aList); //객실 시설 리스트
+
+        List<RoomServiceDTO> sList = roomService.findAll_Service(roomNum);
+        model.addAttribute("slist",sList); //객실 서비스 리스트
 
         return "accom/room/room-details";
 

@@ -24,6 +24,7 @@ import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
 import com.phoenix.howabouttoday.room.entity.Room;
 import com.phoenix.howabouttoday.room.entity.RoomImage;
+import com.phoenix.howabouttoday.room.entity.RoomViewService;
 import com.phoenix.howabouttoday.room.repository.RoomImageRepository;
 import com.phoenix.howabouttoday.room.repository.RoomRepository;
 import org.junit.jupiter.api.Test;
