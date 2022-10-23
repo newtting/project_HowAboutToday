@@ -12,8 +12,8 @@ import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
-import com.phoenix.howabouttoday.member.wishlist.WishList;
-import com.phoenix.howabouttoday.member.wishlist.WishlistRepository;
+import com.phoenix.howabouttoday.member.wishlist.domain.WishList;
+import com.phoenix.howabouttoday.member.wishlist.domain.WishlistRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 
@@ -53,6 +53,9 @@ public class InitDb {
     public void init(){
         initService.dbInit1();
         initService.dbInit2();
+
+
+
     }
 
 
@@ -87,17 +90,20 @@ public class InitDb {
 
         public void dbInit1() {
 
-            /**회원등록**/
-            Member member = memberRepository.save(Member.builder()
-                    .email("aaa@naver.com")
-                    .pwd("123")
-                    .memberTel("010-1234-5678")
-                    .nickname("이동우")
-                    .memberOriginalFileName("Originl")
-                    .memberSaveFileName("save")
-                    .joinDate(LocalDate.of(2022,10,27))
-                    .memberCode(Code.MEMBER)
-                    .build());
+
+
+
+                /**회원등록**/
+                 Member  member = memberRepository.save(Member.builder()
+                        .email("aaa@naver.com")
+                        .pwd("123")
+                        .memberTel("010-1234-5678")
+                        .nickname("이동우")
+                        .memberOriginalFileName("Originl")
+                        .memberSaveFileName("save")
+                        .joinDate(LocalDate.of(2022, 10, 27))
+                        .memberCode(Code.MEMBER)
+                        .build());
 
 
             /**지역 등록 **/
@@ -315,6 +321,7 @@ public class InitDb {
                     .build());
 
             /**숙소 등록**/
+
             Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
                     .accomName("서울 아폴로 게스트하우스")
                     .accomTel("050350521568")
@@ -329,6 +336,29 @@ public class InitDb {
                     .lowPrice(12000)
                     .reserveRange(60)
                     .build());
+
+//            for (int i=0; i < 100; i++){
+//
+//
+//
+//                Accommodation build = Accommodation.builder()
+//                        .accomName("보령(대천) 너울펜션" + i)
+//                        .accomTel("050350577805")
+//                        .accomCategory(AccomCategory.PENSION)
+//                        .region(region)
+//                        .accomAddress("충청남도 보령시 해수욕장13길 10-20" + i)
+//                        .accomRating(4.4)
+//                        .accomWishlistCount(110)
+//                        .totalReviewNum(1103)
+//                        .latitude(36.3196)
+//                        .longitude(126.5092)
+//                        .lowPrice(45000)
+//                        .reserveRange(60)
+//                        .checkIn(LocalTime.of(15, 0))
+//                        .checkOut(LocalTime.of(11, 0))
+//                        .build();
+//                accommodationRepository.save(build);
+//            }
 
             Accommodation accommodation2 = accommodationRepository.save(Accommodation.builder()
                     .accomName("대구 팔공산 스타탄생 드라이브인")
@@ -466,6 +496,34 @@ public class InitDb {
                     .member(member)
                     .accommodation(accommodation)
                     .build());
+
+            for (int i=0; i < 100; i++){
+
+                Accommodation build = Accommodation.builder()
+                        .accomName("보령(대천) 너울펜션" + i)
+                        .accomTel("050350577805")
+                        .accomCategory(AccomCategory.PENSION)
+                        .region(region)
+                        .accomAddress("충청남도 보령시 해수욕장13길 10-20" + i)
+                        .accomRating(4.4)
+                        .accomWishlistCount(110)
+                        .totalReviewNum(1103)
+                        .latitude(36.3196)
+                        .longitude(126.5092)
+                        .lowPrice(45000)
+                        .reserveRange(60)
+                        .checkIn(LocalTime.of(15, 0))
+                        .checkOut(LocalTime.of(11, 0))
+                        .build();
+                Accommodation save = accommodationRepository.save(build);
+
+                WishList build1 = WishList.builder()
+                        .member(member)
+                        .accommodation(save)
+                        .build();
+                wishlistRepository.save(build1);
+            }
+
 
             /** 장바구니 등록 **/
             Cart cart = cartRepository.save(Cart.builder()

@@ -294,9 +294,11 @@
       layout:decorate="layout/layout">
 
 <th:block layout:fragment="content">
-<!-- ================================
-    START BREADCRUMB AREA
-================================= -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+
+    <!-- ================================
+        START BREADCRUMB AREA
+    ================================= -->
 <section class="breadcrumb-area bread-bg-7">
     <div class="breadcrumb-wrap">
         <div class="container">
@@ -506,9 +508,11 @@
                         <a class="d-block" th:href="@{/hotel-single(accomNum=${accommodation.accomNum})}">
                             <img th:src="|/data/images/${accommodation.accommodationImage.get(0).accomOriginFilename}" alt="hotel-img">
                         </a>
-                        <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist">
+                        <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist" id="wishList">
                             <i class="la la-heart-o"></i>
+                            <input type="hidden" id="accomNum" th:value="${accommodation.accomNum}">
                         </div>
+
                     </div>
                     <div class="card-body">
                         <h3 class="card-title" ><a th:href="@{/hotel-single(accomNum=${accommodation.accomNum})}" th:text="${accommodation.accomName}"></a></h3>
@@ -993,7 +997,22 @@
 <!--<script src="js/main.js"></script>-->
 <!--</body>-->
 <!--</html>-->
+    <script>
+        $("#wishList").click(function (){
+            let accomNum = $("#accomNum").val();
 
+            $.ajax({
+                type: 'post',
+                url: '/rest/wishlist' + accomNum,
+                contentType: 'application/json; charset=utf-8',
+            }).done(function(result){
+
+              
+            }).fail(function (error){
+                alert(JSON.stringify(error));
+            });
+        })
+    </script>
 </th:block>
 
 </html>

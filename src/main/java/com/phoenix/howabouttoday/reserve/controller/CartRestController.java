@@ -73,7 +73,7 @@ public class CartRestController {
         return findMember;
     }
 
-
+    /** 스트링타입을 LocalDate타입으로 파싱해주는 메서드 **/
     public LocalDate StringToParseDate(String date){
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
