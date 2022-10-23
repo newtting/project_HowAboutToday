@@ -1,29 +1,22 @@
 /**
  *
- * 장바구니에서 결제로 이동 시 처리하는 컨트롤러
+ * 결제와 관련된 처리들을 모아놓은 컨트롤러
  *
  */
-
 
 package com.phoenix.howabouttoday.payment.controller;
 
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
-import com.phoenix.howabouttoday.payment.dto.OrdersDetailDTO;
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailVO;
 import com.phoenix.howabouttoday.payment.service.OrdersService;
-import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
-import com.phoenix.howabouttoday.reserve.service.CartDto;
-import com.phoenix.howabouttoday.reserve.service.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 
+import java.security.Principal;
 import java.util.List;
 
 @RequestMapping("/orders")
@@ -34,9 +27,10 @@ public class OrdersController {
     private final OrdersService orderService;
     private final MemberService memberService;
 
-//    @GetMapping("checkout")
+
+    /* 카드 -> 결제페이지 */
     @GetMapping("/payment")
-    public String cartView(Model model, @RequestParam List<Long> cartNum){
+    public String cartView(Model model, @RequestParam List<Long> cartNum, Principal principal){
         /**
          * 객실 -> 결제 이동시 컨트롤러의 처리 순서
          * 1. 로그인 상태인가?(서큐리티로 체크)
@@ -50,7 +44,8 @@ public class OrdersController {
 
         //1. 시큐리티를 사용해서 principal 객체에서 user정보를 가져와서 memberNum을 알 수 있다.
 
-        MemberDTO customer = memberService.getCustomer(1L);
+//        MemberDTO customer = memberService.getCustomer(1L);
+        MemberDTO customer = memberService.getAuthUser(principal.getName());
         List<OrdersDetailVO> infoList = orderService.getCartData(cartNum);
         Integer totalPrice = orderService.getTotalPrice(cartNum);   //얘를 따로 이렇게 하는 게 맞을까??
 
@@ -58,24 +53,32 @@ public class OrdersController {
         model.addAttribute("customer", customer);
         model.addAttribute("infoList", infoList);
         return "reserve/checkout";
-}
+    }
 
     @PostMapping("checkout")
     public String postCheckout(){
         return "reserve/checkout";
     }
 
+    /* 결제완료화면 테스트 */
+    @GetMapping("/testSuccess")
+    public String getSuccess() {
+        return "/reserve/payment-complete";
+    }
+    
+    /* 결제 get방식 요청을 post리다이렉트 */
     @GetMapping("/paymentSuccess")
     public String getUserPaymentSuccess() {
-        System.out.println("겟 홈으로");
         return "redirect:/home";
     }
 
+    /* 결제 성공 */
     @PostMapping("/paymentSuccess")
-    public String postUserPaymentSuccess(@RequestParam String name, @RequestParam String tel, @RequestParam String ordersType, @RequestParam List<Long> cartNum) {
-        MemberDTO customer = memberService.getCustomer(1L);
+    public String postUserPaymentSuccess(@RequestParam String name, @RequestParam String tel, @RequestParam String ordersType, @RequestParam List<Long> cartNum, Principal principal) {
+//        MemberDTO customer = memberService.getCustomer(1L);
+        MemberDTO customer = memberService.getAuthUser(principal.getName());
         orderService.savePaymentData(customer.getNum(), name, tel, ordersType, cartNum);
 
-        return "redirect:/home";
+        return "redirect:/testSuccess";
     }
 }
