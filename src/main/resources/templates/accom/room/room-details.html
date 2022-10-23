@@ -734,7 +734,7 @@
                                             <div class="form-group">
                                                 <span class="la la-calendar form-icon"></span>
 
-                                                <input class="date-picker-multiple form-control" type="text" name="daterange" readonly>
+                                                <input class="date-picker-multiple form-control" type="text" name="daterange" id="checkDate" readonly>
 
                                             </div>
 
@@ -761,7 +761,7 @@
                                 </div><!-- end qty-box -->
                             </div><!-- end sidebar-widget-item -->
                             <div class="btn-box">
-                                <a th:href="cart" class="theme-btn hwt-btn-gray text-center w-100 mb-2 "><i class="la la-shopping-cart mr-2 font-size-18"></i>카트 추가하기</a>
+                                <a th:href="|javascript:void(0)|" id="cart-button" class="theme-btn hwt-btn-gray text-center w-100 mb-2 "><i class="la la-shopping-cart mr-2 font-size-18"></i>카트 추가하기</a>
                                 <a href="cart.html" class="theme-btn hwt-btn-gray text-center w-100 mb-2">바로 예약</a>
 
                             </div>
@@ -1161,14 +1161,14 @@
 
         $("#cart-button").click(function(){
 
-            let check_in = $("#check-in").val();
-            let check_out = $("#check-out").val();
+            let checkDate = $("#checkDate").val();
             let adultQty = $("#adult-qty").val();
             let childQty = $("#child-qty").val();
 
             cartForm = JSON.stringify({
-                check_in: check_in,
-                check_out: check_out,
+                // check_in: check_in,
+                // check_out: check_out,
+                checkDate : checkDate,
                 adultQty: adultQty,
                 childQty: childQty,
             });

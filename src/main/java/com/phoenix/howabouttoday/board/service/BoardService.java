@@ -14,6 +14,6 @@ public interface BoardService {
     EventDetailDTO findOne_Event(Long eventNum); // Event 게시판 디테일
 
     void addBoard(BoardAddDTO boardAddDTO); // (Notice, About Us) 게시판 작성
-    void addFAQ(FAQAddDTO faqAddDTO); // FAQ 게시판 작성
-    void addEvent(EventAddDTO eventAddDTO); // Event 게시판 작성
+//    void addFAQ(FAQAddDTO faqAddDTO); // FAQ 게시판 작성
+//    void addEvent(EventAddDTO eventAddDTO); // Event 게시판 작성
 }

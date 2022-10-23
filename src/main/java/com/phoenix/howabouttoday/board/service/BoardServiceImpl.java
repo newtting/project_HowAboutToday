@@ -108,17 +108,17 @@ public class BoardServiceImpl implements BoardService {
         boardRepository.save(board);
     }
 
-    @Override
-    @Transactional
-    public void addFAQ(FAQAddDTO faqAddDTO) {
-
-    }
-
-    // Event 게시판 작성
-    @Override
-    @Transactional
-    public void addEvent(EventAddDTO eventAddDTO) {
-
-    }
+//    @Override
+//    @Transactional
+//    public void addFAQ(FAQAddDTO faqAddDTO) {
+//
+//    }
+//
+//    // Event 게시판 작성
+//    @Override
+//    @Transactional
+//    public void addEvent(EventAddDTO eventAddDTO) {
+//
+//    }
 
 }

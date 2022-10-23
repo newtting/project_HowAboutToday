@@ -1,5 +1,7 @@
 package com.phoenix.howabouttoday.reserve.controller;
 
+import com.phoenix.howabouttoday.config.auth.LoginUser;
+import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.reserve.service.CartService;
@@ -23,34 +25,34 @@ public class CartRestController {
     private final MemberRepository memberRepository;//아직 회원이없어서 테스트용 회원조회에 필요
     /** 장바구니 저장 **/
     @PostMapping
-    public boolean save(
+    public boolean save(@LoginUser SessionDTO user,
                         @RequestBody CartForm cartForm
                         ){
 
+        /** 회원 조회 로직 **/
+        Long memberNum = user.getMemberNum();
+
+        /** 멀티데이트를 스플릿해서 reserveForm에 넘겨주기위한 준비작업 **/
+        String[] splitDate = cartForm.getCheckDate().split("-");
+        //날짜 패턴에 공백이 있어서 양쪽 공백제거 작업
+        String startDate = splitDate[0].strip();
+        String endDate = splitDate[1].strip();
+
         /**reserveForm에 cartForm을 파싱해서 넣어주는 로직 **/
         ReserveForm reserveForm = ReserveForm.builder()
-                .reserveUseStartDate(StringToParseDate(cartForm.getCheck_in()))
-                .reserveUseEndDate(StringToParseDate(cartForm.getCheck_out()))
+                .reserveUseStartDate(StringToParseDate(startDate))
+                .reserveUseEndDate(StringToParseDate(endDate))
                 .reserveAdultCount(cartForm.getAdultQty())
                 .reserveChildCount(cartForm.getChildQty())
                 .build();
-        /*
-        세션에 저장된 회원 꺼내는 부분
-         */
-
-        /** 테스트용 회원 **/
-        Member testMember = getTestMember();
-        /** ----------------- **/
-        Long memberNum = testMember.getMemberNum();
 
 
-
-        if(cartService.checkCart(memberNum,3L)){
+        if(cartService.checkCart(memberNum,1L)){
             /*cart가 존재한다면 */
             return true;
         }else{
             /* cart가 존재하지 않는다면 장바구니에 저장*/
-            cartService.save(memberNum,3L,reserveForm); //임시 룸넘버를 보냈음 테스트하기위함
+            cartService.save(memberNum,1L,reserveForm); //임시 룸넘버를 보냈음 테스트하기위함
             return false;
         }
 
@@ -67,11 +69,6 @@ public class CartRestController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    public Member getTestMember(){
-        Optional<Member> optionalMember = memberRepository.findById(1L);
-        Member findMember = optionalMember.get();
-        return findMember;
-    }
 
     /** 스트링타입을 LocalDate타입으로 파싱해주는 메서드 **/
     public LocalDate StringToParseDate(String date){

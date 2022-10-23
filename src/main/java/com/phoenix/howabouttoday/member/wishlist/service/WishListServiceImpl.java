@@ -1,5 +1,8 @@
 package com.phoenix.howabouttoday.member.wishlist.service;
 
+import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
+import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.member.wishlist.controller.WishListDto;
 import com.phoenix.howabouttoday.member.wishlist.domain.WishList;
@@ -22,20 +25,18 @@ import java.util.stream.Collectors;
 @Slf4j
 public class WishListServiceImpl implements WishListService{
 
-    private static final int PAGE_WISHLIST_COUNT = 3; //한 화면에 보일 컨텐츠 수
+
 
     private final MemberRepository memberRepository;
-    private final RoomRepository roomRepository;
     private final WishlistRepository wishlistRepository;
+    private final AccommodationRepository accommodationRepository;
 
+    /** memberNum에 해당하는 페이징리스트 반환 **/
     @Override
-    public Page<WishList> findByMemberNum(Pageable pageable,Long memberNum) {
+    public Page<WishListDto.ResponseDto> findByMemberNum(Pageable pageable,Long memberNum) {
         memberRepository.findById(memberNum).orElseThrow(() ->
                 new IllegalArgumentException("해당 사용자가 존재하지 않습니다"));
 
-        /* pageble 객체 반환 */
-//        int page = (pageable.getPageNumber()== 0) ? 0 : (pageable.getPageNumber() -1);
-//        pageable = PageRequest.of(page, 5,Sort.by(Sort.Direction.DESC,"reserveNum"));
         /*memberNum에 해당하는 페이지객체 반환 */
         Page<WishList> pageWishList = wishlistRepository.findAllByMemberMemberNum(memberNum,pageable);
 
@@ -44,33 +45,48 @@ public class WishListServiceImpl implements WishListService{
                 wishlist -> new WishListDto.ResponseDto(wishlist)
         );
 
-        return pageWishList;
+        return wishListPageList;
 
     }
-
+    /** memberNum에 해당하는 찜 리스트 존재 여부 확인 -유저의 찜 목록이 존재하는지 확인 **/
     @Override
     public boolean checkHaveWish(Long memberNum) {
-        return false;
+        return wishlistRepository.existsByMember_MemberNum(memberNum);
     }
 
+    /** memberNum이 AccomNum을 찜 리스트에 추가했는지 확인 -유저가 특정 숙소를 찜했는지 확인 **/
     @Override
-    public boolean checkWish(Long memberNum, Long AccomNum) {
-        return false;
+    public boolean checkWish(Long memberNum, Long accomNum) {
+        return wishlistRepository.existsByMember_MemberNumAndAccommodation_AccomNum(memberNum,accomNum);
     }
 
+    /** 찜 목록에 숙소 추가 **/
     @Override
-    public void save(Long memberNum, Long AccomNum) {
+    public void save(Long memberNum, Long accomNum) {
+
+        Member member = memberRepository.findById(memberNum).orElseThrow(() ->
+               new IllegalArgumentException("해당 사용자가 존재하지 않습니다"));
+
+        Accommodation accommodation = accommodationRepository.findById(accomNum).orElseThrow(() ->
+                new IllegalArgumentException("해당 숙소가 존재하지 않습니다"));
+
+        wishlistRepository.save(WishList.builder().member(member).accommodation(accommodation).build());
 
     }
 
+    /** 위시리스트에서 memberNum, accomNum에 해당하는 찜 삭제 - 유저가 특정 숙소 취소 **/
     @Override
-    public void deleteByNum(Long memberNum, Long AccomNum) {
-
+    public void deleteByNum(Long memberNum, Long accomNum) {
+        wishlistRepository.deleteByMember_MemberNumAndAccommodation_AccomNum(memberNum,accomNum);
     }
 
+    /**찜 목록에서 reserveNum에 해당하는 찜 삭제 -유저가 특정 숙소 찜 취소 **/
     @Override
     public void deleteByWish(Long wishListNum) {
+        WishList wish = wishlistRepository.findById(wishListNum).orElseThrow(() ->
+                new IllegalArgumentException("해당 찜이 존재하지 않습니다."));
 
+        wishlistRepository.delete(wish);
     }
 
 //    @Override
