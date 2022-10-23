@@ -1,7 +1,8 @@
 package com.phoenix.howabouttoday.board.entity;
 
+import com.phoenix.howabouttoday.board.dto.EventAddDTO;
+import com.phoenix.howabouttoday.member.entity.Member;
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -22,6 +23,10 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long eventNum; // 이벤트 게시글 번호
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_num")
+    private Member member; // 회원 번호
+
     @Column(nullable = false)
     private String eventTitle; // 이벤트 게시글 제목
 
@@ -38,12 +43,13 @@ public class Event {
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<EventImage> eventImageList = new ArrayList<>();
 
-    @Builder
-    public Event(String eventTitle, LocalDate eventCreate, LocalDate eventStart, LocalDate eventEnd) {
-        this.eventTitle = eventTitle;
-        this.eventCreate = eventCreate;
-        this.eventStart = eventStart;
-        this.eventEnd = eventEnd;
+    // Event 게시글 작성
+    public Event(Member member, EventAddDTO eventAddDTO) {
+        this.member = member;
+        this.eventTitle = eventAddDTO.getEventTitle();
+        this.eventCreate = LocalDate.now();
+        this.eventStart = eventAddDTO.getEventStart();
+        this.eventEnd = eventAddDTO.getEventEnd();
     }
 
 }

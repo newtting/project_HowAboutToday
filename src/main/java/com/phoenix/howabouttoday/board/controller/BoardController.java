@@ -8,10 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -120,14 +118,15 @@ public class BoardController {
     // 이벤트 작성
     @PostMapping("event-add")
     public String eventAdd(@Valid EventAddDTO eventAddDTO, BindingResult bindingResult,
-                           @LoginUser SessionDTO sessionDTO, Model model){
+                           @LoginUser SessionDTO sessionDTO, Model model,
+                           @RequestParam("eventImageList") List<MultipartFile> eventImageList) throws Exception {
 
         if(bindingResult.hasErrors()) {
             model.addAttribute("sessionDTO", sessionDTO);
             return "board/event-add";
         }
 
-        boardService.addEvent(eventAddDTO);
+        boardService.addEvent(eventAddDTO, eventImageList);
 
         return "redirect:/event";
     }

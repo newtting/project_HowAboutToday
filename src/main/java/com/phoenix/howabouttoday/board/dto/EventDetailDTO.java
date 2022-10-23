@@ -29,7 +29,10 @@ public class EventDetailDTO {
         this.eventCreate = event.getEventCreate();
         this.eventStart = event.getEventStart();
         this.eventEnd = event.getEventEnd();
-        this.eventImageList = event.getEventImageList().stream().map(EventImageDTO::new).collect(Collectors.toList());
+        this.eventImageList = event.getEventImageList()
+                .stream()
+                .map(EventImageDTO::new)
+                .collect(Collectors.toList());
     }
 
 }
