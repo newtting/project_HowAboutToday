@@ -32,6 +32,19 @@ public class MemberService {
         }
     }
 
+    public MemberDTO getSessionUser(Long memberNum){
+        Member member = memberRepository.findById(memberNum).get();
+
+        return MemberDTO.builder()
+                .num(member.getMemberNum())
+                .email(member.getEmail())
+                .pwd(member.getPwd())
+                .nickname(member.getNickname())
+                .memberTel(member.getMemberTel())
+                .memberCode(member.getMemberCode())
+                .build();
+    }
+
     public MemberDTO getAuthUser(String email){
 
         Member member = memberRepository.findByEmail(email).get();

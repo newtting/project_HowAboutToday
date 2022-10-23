@@ -15,8 +15,7 @@ import java.util.stream.Collectors;
 @Getter
 public class OrdersDTO {
 
-    private Long ordersNum;
-    private Member member;
+    private Long ordersNum;         //pk값
     private LocalDate ordersDate;
     private Integer ordersPrice;
     private String ordersTel;
@@ -27,7 +26,6 @@ public class OrdersDTO {
 
     public OrdersDTO(Orders orders) {
         this.ordersNum = orders.getOrdersNum();
-        this.member = orders.getMember();
         this.ordersTel = orders.getOrdersTel();
         this.ordersName = orders.getOrdersName();
         this.ordersDate = orders.getOrdersDate();
