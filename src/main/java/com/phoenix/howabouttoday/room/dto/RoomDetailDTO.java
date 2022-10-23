@@ -18,19 +18,19 @@ public class RoomDetailDTO {
 
     private String roomName; // 객실 이름
 
-    private int defaultGuest; // 최소 인원
+    private Integer defaultGuest; // 최소 인원
 
-    private int maxGuest; // 최대 인원
+    private Integer maxGuest; // 최대 인원
 
     private Double roomRating;
 
-    private int roomReviewNum;
+    private Integer roomReviewNum;
 
     private LocalDate stayStartDate; // 객실 이용 시작일
 
     private LocalDate stayEndDate; // 객실 이용 종료일
 
-    private int price; // 객실 가격
+    private Integer price; // 객실 가격
 
     private List<RoomImageDTO> roomImageList; //객실 이미지
 
