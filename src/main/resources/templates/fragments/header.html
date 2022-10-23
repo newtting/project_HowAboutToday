@@ -136,7 +136,7 @@
                             </div><!-- end notification-item -->
 
                             <sec:authorize access="isAuthenticated()">
-                                <a href="/member/logout" class="theme-btn theme-btn-small hwt-btn-gray"
+                                <a th:href="@{/member/logout}" class="theme-btn theme-btn-small hwt-btn-gray"
                                    sec:authorize="isAuthenticated()" >로그아웃</a>
                             </sec:authorize>
 
