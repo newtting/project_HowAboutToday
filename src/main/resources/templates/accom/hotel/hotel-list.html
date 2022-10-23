@@ -575,7 +575,7 @@
                 <div class="card-item card-item-list" th:each="accommodation : ${accommodationList}">
                     <div class="card-img">
                         <a class="d-block" th:href="@{/hotel-single(accomNum=${accommodation.accomNum})}">
-                            <img th:src="|/data/images/${accommodation.accommodationImage.get(0).accomOriginFilename}" alt="hotel-img">
+                            <img th:src="|/data/images/${accommodation.accommodationImage.get(0).accomOriginFilename}|" alt="hotel-img">
                         </a>
                         <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist">
                             <i class="la la-heart-o"></i>
