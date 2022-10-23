@@ -9,6 +9,7 @@ import com.phoenix.howabouttoday.board.entity.ReviewImage;
 import com.phoenix.howabouttoday.board.repository.*;
 import com.phoenix.howabouttoday.global.AccomCategory;
 import com.phoenix.howabouttoday.global.RegionType;
+import com.phoenix.howabouttoday.member.Service.CustomUserDetailsService;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
@@ -29,6 +30,7 @@ import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.room.entity.*;
 import com.phoenix.howabouttoday.room.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -50,8 +52,8 @@ public class InitDb {
     public void init(){
         initService.dbInit1();
         initService.dbInit2();
-    }
 
+    }
 
     @Component
     @Transactional
