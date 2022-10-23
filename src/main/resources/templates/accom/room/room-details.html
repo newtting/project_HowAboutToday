@@ -301,9 +301,9 @@
         상단 객실 이미지 시작
     ================================= -->
 <section class="room-detail-bread">
-    <div class="full-width-slider carousel-action" th:each="roomImageDTO : ${roomDetailDTO.roomImageList}">
+    <div class="full-width-slider carousel-action" th:each="roomImageDTO : ${roomDetailDTO.getRoomImageList()}">
         <div class="full-width-slide-item">
-            <img th:src="/${roomImageDTO.roomNum/${roomImageDTO.roomSaveFileName}" alt="">
+            <img th:src="@{${'/images/' + roomImageDTO.getRoomSaveFileName()}}" alt="">
         </div><!-- end full-width-slide-item -->
     </div><!-- end full-width-slider -->
 </section><!-- end room-detail-bread -->
