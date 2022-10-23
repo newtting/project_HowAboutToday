@@ -102,7 +102,7 @@ public class OrdersService {
         System.out.println("날짜차이: " + period.getDays());
 
         OrdersDetail od = OrdersDetail.builder()
-                .member(cart.getMember())
+                .member(order.getMember())
                 .room(cart.getRoom())
                 .orders(order)
                 .reserveStatus(ReserveStatus.READY)

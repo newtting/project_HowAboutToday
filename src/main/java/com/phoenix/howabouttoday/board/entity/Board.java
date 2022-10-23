@@ -1,6 +1,7 @@
 package com.phoenix.howabouttoday.board.entity;
 
 import com.phoenix.howabouttoday.board.dto.BoardAddDTO;
+import com.phoenix.howabouttoday.board.dto.FAQAddDTO;
 import com.phoenix.howabouttoday.member.entity.Member;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -47,6 +48,15 @@ public class Board {
         this.boardCategory = boardCategory;
         this.boardTitle = boardAddDTO.getBoardTitle();
         this.boardContent = boardAddDTO.getBoardContent();
+        this.boardCreate = LocalDate.now();
+    }
+
+    // (Notice, About Us) 게시글 작성
+    public Board(Member member, BoardCategory boardCategory, FAQAddDTO faqAddDTO) {
+        this.member = member;
+        this.boardCategory = boardCategory;
+        this.boardTitle = faqAddDTO.getBoardTitle();
+        this.boardContent = faqAddDTO.getBoardContent();
         this.boardCreate = LocalDate.now();
     }
 }
