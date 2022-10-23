@@ -7,12 +7,10 @@
 
 package com.phoenix.howabouttoday.payment.dto;
 
-import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.TextStyle;
@@ -22,6 +20,7 @@ import java.util.Locale;
 @Builder
 public class OrdersDetailDTO {
     private String accomType;
+    private String accomTypeIcon;
     private String accomName;
     private String accomRegion;
     private String orderDate;
@@ -33,13 +32,14 @@ public class OrdersDetailDTO {
     private String price;
     private String usedStatus;
     private String roomName;
+    private String roomNum;
     private String checkIn;
     private String checkOut;
 
 
-
-    public OrdersDetailDTO(String accomType, String accomName, String accomRegion, String orderDate, String usePeriod, String startDate, String endDate, String startWeek, String endWeek, String price, String usedStatus, String roomName, String checkIn, String checkOut) {
+    public OrdersDetailDTO(String accomType, String accomTypeFilePath, String accomName, String accomRegion, String orderDate, String usePeriod, String startDate, String endDate, String startWeek, String endWeek, String price, String usedStatus, String roomName, String roomNum, String checkIn, String checkOut) {
         this.accomType = accomType;
+        this.accomTypeIcon = accomTypeFilePath;
         this.accomName = accomName;
         this.accomRegion = accomRegion;
         this.orderDate = orderDate;
@@ -51,6 +51,7 @@ public class OrdersDetailDTO {
         this.price = price;
         this.usedStatus = usedStatus;
         this.roomName = roomName;
+        this.roomNum = roomNum;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
     }
@@ -61,7 +62,9 @@ public class OrdersDetailDTO {
         String startDay = reservation.getReserveUseStartDate().getDayOfWeek().getDisplayName(TextStyle.NARROW, Locale.KOREAN);
         String endDay = reservation.getReserveUseEndDate().getDayOfWeek().getDisplayName(TextStyle.NARROW, Locale.KOREAN);
 
+
         this.accomType = reservation.getRoom().getAccommodation().getAccomCategory().getValue();
+        this.accomTypeIcon = reservation.getRoom().getAccommodation().getAccomCategory().toString().toLowerCase();
         this.accomName = reservation.getRoom().getAccommodation().getAccomName();
         this.accomRegion = reservation.getRoom().getAccommodation().getRegion().getRegion().getValue();
         this.orderDate = LocalDate.now().toString();
@@ -73,6 +76,7 @@ public class OrdersDetailDTO {
         this.price = String.valueOf(reservation.getReservePrice());
         this.usedStatus = reservation.getReserveStatus().toString();
         this.roomName = reservation.getRoom().getRoomName();
+        this.roomNum = reservation.getRoom().getAccommodation().getAccomNum().toString();
         this.checkIn = reservation.getRoom().getAccommodation().getCheckIn().toString();
         this.checkOut = reservation.getRoom().getAccommodation().getCheckOut().toString();
     }

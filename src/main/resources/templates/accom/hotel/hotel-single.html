@@ -131,7 +131,7 @@
 <!--                    <div class="menu-wrapper">-->
 <!--                        <a href="#" class="down-button"><i class="la la-angle-down"></i></a>-->
 <!--                        <div class="logo">-->
-<!--                            <a href="/home"><img src="images/logo.png" alt="logo"></a>-->
+<!--                            <a href="/home"><img src="/images/logo.png" alt="logo"></a>-->
 <!--                            <div class="menu-toggler">-->
 <!--                                <i class="la la-bars"></i>-->
 <!--                                <i class="la la-times"></i>-->
@@ -306,17 +306,17 @@
                         <div class="breadcrumb-btn">
                             <a class="d-none"
                                data-fancybox="hotel-single-main-gallery"
-                               data-src="images/img2.jpg"
+                               data-src="/images/img2.jpg"
                                data-caption="Showing image - 02"
                                data-speed="700"></a>
                             <a class="d-none"
                                data-fancybox="hotel-single-main-gallery"
-                               data-src="images/img3.jpg"
+                               data-src="/images/img3.jpg"
                                data-caption="Showing image - 03"
                                data-speed="700"></a>
                             <a class="d-none"
                                data-fancybox="hotel-single-main-gallery"
-                               data-src="images/img4.jpg"
+                               data-src="/images/img4.jpg"
                                data-caption="Showing image - 04"
                                data-speed="700"></a>
                         </div><!-- end breadcrumb-btn -->
@@ -372,63 +372,21 @@
                                 </div><!-- end single-content-item -->
                                 <div class="section-block"></div>
                             </div><!-- end description -->
-                            <div id="availability" class="page-scroll">
-                                <div class="single-content-item padding-top-40px padding-bottom-30px">
-                                    <h3 class="title font-size-20">이용가능한 객실</h3>
-                                    <div class="cabin-type padding-top-30px">
-                                        <div class="cabin-type-item seat-selection-item d-flex">
-                                            <div class="cabin-type-img flex-shrink-0">
-                                                <a th:href="room-details"><img src="images/inside-cabin.jpg" alt=""></a>
-                                            </div>
-
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                </div><!-- end row -->
-                            </div><!-- end single-content-item -->
-                            <div class="section-block"></div>
-                        </div><!-- end description -->
                         <div id="availability" class="page-scroll">
                             <div class="single-content-item padding-top-40px padding-bottom-30px">
                                 <h3 class="title font-size-20">이용가능한 객실</h3>
                                 <div class="cabin-type padding-top-30px">
-                                    <div class="cabin-type-item seat-selection-item d-flex" th:each="roomList : ${roomlist}">
-                                        <div class="cabin-type-img flex-shrink-0">
-                                            <a th:href="room-details"><img src="images/inside-cabin.jpg" alt=""></a>
+                                    <div class="cabin-type-item seat-selection-item d-flex mb-3" th:each="roomList : ${roomlist}">
+                                        <div class="cabin-type-img flex-shrink-0" th:each="imageList : ${ilist}">
+                                            <a th:href="room-details"><img th:src="${imageList.getRoomSaveFileName()}" alt=""></a>
                                         </div>
                                         <div class="cabin-type-detail">
-                                            <h3 class="title"><a th:href="room-details" th:text="${roomlist.roomName}">Standard Family room</a></h3>
+                                            <h3 class="title"><a th:href="room-details" th:text="${roomList.roomName}">Standard Family room</a></h3>
                                             <div class="row padding-top-20px">
-                                                <div class="col-lg-6 responsive-column">
-                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                            <i class="la la-wifi"></i>
-                                                        </div>
-                                                        <div class="single-feature-titles">
-                                                            <h3 class="title font-size-15 font-weight-medium">Free Wi-Fi</h3>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end col-lg-6 -->
-                                                <div class="col-lg-6 responsive-column">
-                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                            <i class="la la-bed"></i>
-                                                        </div>
-                                                        <div class="single-feature-titles">
-                                                            <h3 class="title font-size-15 font-weight-medium">2 Single beds</h3>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- end col-lg-6 -->
-                                                <div class="col-lg-6 responsive-column">
-                                                    <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                            <i class="la la-building"></i>
-
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
                                                     <div class="col-lg-6 responsive-column">
                                                         <div class="single-tour-feature d-flex align-items-center mb-3">
                                                             <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-bed"></i>
+                                                                <i class="la la-check"></i>
                                                             </div>
                                                             <div class="single-feature-titles">
                                                                 <h3 class="title font-size-15 font-weight-medium">2
@@ -439,7 +397,7 @@
                                                     <div class="col-lg-6 responsive-column">
                                                         <div class="single-tour-feature d-flex align-items-center mb-3">
                                                             <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-building"></i>
+                                                                <i class="la la-check"></i>
                                                             </div>
                                                             <div class="single-feature-titles">
                                                                 <h3 class="title font-size-15 font-weight-medium">15
@@ -450,7 +408,7 @@
                                                     <div class="col-lg-6 responsive-column">
                                                         <div class="single-tour-feature d-flex align-items-center mb-3">
                                                             <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-hotel"></i>
+                                                                <i class="la la-check"></i>
                                                             </div>
                                                             <div class="single-feature-titles">
                                                                 <h3 class="title font-size-15 font-weight-medium">Shower
@@ -460,7 +418,7 @@
                                                     </div><!-- end col-lg-6 -->
                                                 </div><!-- end row -->
                                                 <div class="room-photos">
-                                                    <a class="btn theme-btn-hover-gray" data-src="images/img1.jpg"
+                                                    <a class="btn theme-btn-hover-gray" data-src="/images/img1.jpg"
                                                        data-fancybox="gallery"
                                                        data-caption="Showing image - 01"
                                                        data-speed="700">
@@ -468,24 +426,24 @@
                                                     </a>
                                                     <a class="d-none"
                                                        data-fancybox="gallery"
-                                                       data-src="images/img2.jpg"
+                                                       data-src="/images/img2.jpg"
                                                        data-caption="Showing image - 02"
                                                        data-speed="700"></a>
                                                     <a class="d-none"
                                                        data-fancybox="gallery"
-                                                       data-src="images/img3.jpg"
+                                                       data-src="/images/img3.jpg"
                                                        data-caption="Showing image - 03"
                                                        data-speed="700"></a>
                                                     <a class="d-none"
                                                        data-fancybox="gallery"
-                                                       data-src="images/img4.jpg"
+                                                       data-src="/images/img4.jpg"
                                                        data-caption="Showing image - 04"
                                                        data-speed="700"></a>
                                                 </div>
                                             </div>
                                             <div class="cabin-price">
-                                                <p class="text-uppercase font-size-14">Per/night<strong
-                                                        class="mt-n1 text-black font-size-18 font-weight-black d-block">$121</strong>
+                                                <p class="text-uppercase font-size-14">1박<strong
+                                                        class="mt-n1 text-black font-size-18 font-weight-black d-block" th:text="${roomList.price}">$121</strong>
                                                 </p>
                                             </div>
                                         </div>
@@ -499,126 +457,100 @@
                                 <h3 class="title font-size-20">편의 시설</h3>
                                 <div class="amenities-feature-item pt-4">
                                     <div class="row">
-                                        <div class="col-lg-4 responsive-column">
+                                        <div class="col-lg-4 responsive-column" th:each="facility : ${facilities}">
                                             <div class="single-tour-feature d-flex align-items-center mb-3">
                                                 <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
                                                     <i class="la la-wifi"></i>
                                                 </div>
                                                 <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium">WI-FI</h3>
+                                                    <h3 class="title font-size-15 font-weight-medium" th:text="${facility.facility.krName}">WI-FI</h3>
                                                 </div>
                                             </div><!-- end single-tour-feature -->
                                         </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 responsive-column">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-check"></i>
-                                                </div>
-                                                <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium">수영장</h3>
-                                                </div>
-                                            </div><!-- end single-tour-feature -->
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 responsive-column">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-television"></i>
-                                                </div>
-                                                <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium">TV</h3>
-                                                </div>
-                                            </div><!-- end single-tour-feature -->
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 responsive-column">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-tree"></i>
-                                                </div>
-                                                <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium">에어컨</h3>
-                                                </div>
-                                            </div><!-- end single-tour-feature -->
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 responsive-column">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-gear"></i>
-
-                                                </div>
-                                            </div>
-                                        </div><!-- end card -->
-                                        <div class="card">
-                                            <div class="card-header" id="faqHeadingFive">
-                                                <h2 class="mb-0">
-                                                    <button class="btn btn-link d-flex align-items-center justify-content-end flex-row-reverse font-size-16"
-                                                            type="button" data-toggle="collapse"
-                                                            data-target="#faqCollapseFive" aria-expanded="false"
-                                                            aria-controls="faqCollapseFive">
-                                                        <span class="ml-3">일정 변경이 가능할까요?</span>
-                                                        <i class="la la-minus"></i>
-                                                        <i class="la la-plus"></i>
-                                                    </button>
-                                                </h2>
-                                            </div>
-                                            <div id="faqCollapseFive" class="collapse" aria-labelledby="faqHeadingFive"
-                                                 data-parent="#accordionExample2">
-                                                <div class="card-body d-flex">
-                                                    <p>일정 변경은 불가합니다.
-
-
-                                                        예약취소와 동일하게 취소 및 환불 규정에 따라 처리되므로 예약취소가 가능한 기간에는 예약 취소 후 재결제하셔서 이용
-                                                        부탁드립니다.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div><!-- end card -->
-                                        <div class="card">
-                                            <div class="card-header" id="faqHeadingSix">
-                                                <h2 class="mb-0">
-                                                    <button class="btn btn-link d-flex align-items-center justify-content-end flex-row-reverse font-size-16"
-                                                            type="button" data-toggle="collapse"
-                                                            data-target="#faqCollapseSix" aria-expanded="false"
-                                                            aria-controls="faqCollapseSix">
-                                                        <span class="ml-3">파손이 발생하면 어떻게 하나요?</span>
-                                                        <i class="la la-minus"></i>
-                                                        <i class="la la-plus"></i>
-                                                    </button>
-                                                </h2>
-                                            </div>
-                                            <div id="faqCollapseSix" class="collapse" aria-labelledby="faqHeadingSix"
-                                                 data-parent="#accordionExample2">
-                                                <div class="card-body d-flex">
-                                                    <p>파손이 발생하면 현장에서 호스트와 함께 확인하시고 사진을 반드시 찍어주세요.
-
-
-                                                        호스트가 수리 견적을 전달해 드리면 배상 절차를 진행하여 주시기 바랍니다.</p>
-                                                </div>
-                                            </div>
-                                        </div><!-- end card -->
-                                        <div class="card">
-                                            <div class="card-header" id="faqHeadingSeven">
-                                                <h2 class="mb-0">
-                                                    <button class="btn btn-link d-flex align-items-center justify-content-end flex-row-reverse font-size-16"
-                                                            type="button" data-toggle="collapse"
-                                                            data-target="#faqCollapseSeven" aria-expanded="false"
-                                                            aria-controls="faqCollapseSeven">
-                                                        <span class="ml-3">음식물 반입이 가능한가요?</span>
-                                                        <i class="la la-minus"></i>
-                                                        <i class="la la-plus"></i>
-                                                    </button>
-                                                </h2>
-                                            </div>
-                                            <div id="faqCollapseSeven" class="collapse"
-                                                 aria-labelledby="faqHeadingSeven" data-parent="#accordionExample2">
-                                                <div class="card-body d-flex">
-                                                    <p>이용하려는 공간에 따라 다릅니다. 공간 설명에서 취식 가능 여부를 확인하시거나, 호스트에게 문의 바랍니다.</p>
-                                                </div>
-                                            </div>
-                                        </div><!-- end card -->
                                     </div>
-                                </div><!-- end single-content-item -->
-                                <div class="section-block"></div>
-                            </div><!-- end faq -->
+                                </div>
+                                <div id="faq" class="page-scroll">
+                                    <div class="single-content-item padding-top-40px padding-bottom-40px">
+                                        <h3 class="title font-size-20">자주 묻는 질문</h3>
+                                        <div class="accordion accordion-item padding-top-30px" id="accordionExample2">
+                                            <div class="card">
+                                                <div class="card-header" id="faqHeadingFour">
+                                                    <h2 class="mb-0">
+                                                        <button class="btn btn-link d-flex align-items-center justify-content-end flex-row-reverse font-size-16" type="button" data-toggle="collapse" data-target="#faqCollapseFour" aria-expanded="true" aria-controls="faqCollapseFour">
+                                                            <span class="ml-3">예약이 수락 또는 확인되었는지 어떻게 알 수 있습니까?</span>
+                                                            <i class="la la-minus"></i>
+                                                            <i class="la la-plus"></i>
+                                                        </button>
+                                                    </h2>
+                                                </div>
+                                                <div id="faqCollapseFour" class="collapse show" aria-labelledby="faqHeadingFour" data-parent="#accordionExample2">
+                                                    <div class="card-body d-flex">
+                                                        <p>예약 확인은 마이페이지 > 예약확인에 가시면 확인 가능합니다 </p>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end card -->
+                                            <div class="card">
+                                                <div class="card-header" id="faqHeadingFive">
+                                                    <h2 class="mb-0">
+                                                        <button class="btn btn-link d-flex align-items-center justify-content-end flex-row-reverse font-size-16" type="button" data-toggle="collapse" data-target="#faqCollapseFive" aria-expanded="false" aria-controls="faqCollapseFive">
+                                                            <span class="ml-3">일정 변경이 가능할까요?</span>
+                                                            <i class="la la-minus"></i>
+                                                            <i class="la la-plus"></i>
+                                                        </button>
+                                                    </h2>
+                                                </div>
+                                                <div id="faqCollapseFive" class="collapse" aria-labelledby="faqHeadingFive" data-parent="#accordionExample2">
+                                                    <div class="card-body d-flex">
+                                                        <p>일정 변경은 불가합니다.
+
+
+                                                            예약취소와 동일하게 취소 및 환불 규정에 따라 처리되므로 예약취소가 가능한 기간에는 예약 취소 후 재결제하셔서 이용 부탁드립니다.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end card -->
+                                            <div class="card">
+                                                <div class="card-header" id="faqHeadingSix">
+                                                    <h2 class="mb-0">
+                                                        <button class="btn btn-link d-flex align-items-center justify-content-end flex-row-reverse font-size-16" type="button" data-toggle="collapse" data-target="#faqCollapseSix" aria-expanded="false" aria-controls="faqCollapseSix">
+                                                            <span class="ml-3">파손이 발생하면 어떻게 하나요?</span>
+                                                            <i class="la la-minus"></i>
+                                                            <i class="la la-plus"></i>
+                                                        </button>
+                                                    </h2>
+                                                </div>
+                                                <div id="faqCollapseSix" class="collapse" aria-labelledby="faqHeadingSix" data-parent="#accordionExample2">
+                                                    <div class="card-body d-flex">
+                                                        <p>파손이 발생하면 현장에서 호스트와 함께 확인하시고 사진을 반드시 찍어주세요.
+
+
+
+                                                            호스트가 수리 견적을 전달해 드리면 배상 절차를 진행하여 주시기 바랍니다.</p>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end card -->
+                                            <div class="card">
+                                                <div class="card-header" id="faqHeadingSeven">
+                                                    <h2 class="mb-0">
+                                                        <button class="btn btn-link d-flex align-items-center justify-content-end flex-row-reverse font-size-16" type="button" data-toggle="collapse" data-target="#faqCollapseSeven" aria-expanded="false" aria-controls="faqCollapseSeven">
+                                                            <span class="ml-3">음식물 반입이 가능한가요?</span>
+                                                            <i class="la la-minus"></i>
+                                                            <i class="la la-plus"></i>
+                                                        </button>
+                                                    </h2>
+                                                </div>
+                                                <div id="faqCollapseSeven" class="collapse" aria-labelledby="faqHeadingSeven" data-parent="#accordionExample2">
+                                                    <div class="card-body d-flex">
+                                                        <p>이용하려는 공간에 따라 다릅니다. 공간 설명에서 취식 가능 여부를 확인하시거나, 호스트에게 문의 바랍니다.</p>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end card -->
+                                        </div>
+                                    </div><!-- end single-content-item -->
+                                    <div class="section-block"></div>
+                                </div><!-- end faq -->
+                            </div>
+
                             <!-- 위치 -->
                             <div id="location-map" class="page-scroll">
                                 <div class="single-content-item padding-top-40px padding-bottom-40px">
@@ -641,7 +573,7 @@
                                     <div class="comments-list padding-top-50px">
                                         <div class="comment">
                                             <div class="comment-avatar">
-                                                <img class="avatar__img" alt="" src="images/team8.jpg">
+                                                <img class="avatar__img" alt="" src="/images/team8.jpg">
                                             </div>
                                             <div class="comment-body">
                                                 <div class="meta-data">
@@ -670,7 +602,7 @@
                                         </div><!-- end comments -->
                                         <div class="comment">
                                             <div class="comment-avatar">
-                                                <img class="avatar__img" alt="" src="images/team8.jpg">
+                                                <img class="avatar__img" alt="" src="/images/team8.jpg">
                                             </div>
                                             <div class="comment-body">
                                                 <div class="meta-data">
@@ -699,7 +631,7 @@
                                         </div><!-- end comments -->
                                         <div class="comment">
                                             <div class="comment-avatar">
-                                                <img class="avatar__img" alt="" src="images/team10.jpg">
+                                                <img class="avatar__img" alt="" src="/images/team10.jpg">
                                             </div>
                                             <div class="comment-body">
                                                 <div class="meta-data">
@@ -737,35 +669,58 @@
                                             <div class="form-content">
                                                 <div class="contact-form-action">
                                                     <form method="post">
-                                                        <div class="row">
-                                                            <div class="col-lg-6 responsive-column">
-                                                                <div class="input-box">
-                                                                    <label class="label-text">성함</label>
-                                                                    <div class="form-group">
-                                                                        <span class="la la-user form-icon"></span>
-                                                                        <input class="form-control" type="text"
-                                                                               name="text" placeholder="투숙객 성함">
+                                                        <div class="form-content">
+                                                            <div class="rate-option p-2">
+                                                                <div class="row">
+                                                                    <div class="col-lg-4 responsive-column">
+                                                                        <div class="rate-option-item">
+                                                                            <label>평점</label>
+                                                                            <div class="rate-stars-option">
+                                                                                <input type="checkbox" id="lst1" value="1">
+                                                                                <label for="lst1"></label>
+                                                                                <input type="checkbox" id="lst2" value="2">
+                                                                                <label for="lst2"></label>
+                                                                                <input type="checkbox" id="lst3" value="3">
+                                                                                <label for="lst3"></label>
+                                                                                <input type="checkbox" id="lst4" value="4">
+                                                                                <label for="lst4"></label>
+                                                                                <input type="checkbox" id="lst5" value="5">
+                                                                                <label for="lst5"></label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div><!-- col-lg-4 -->
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6 responsive-column">
+                                                                        <div class="input-box">
+                                                                            <label class="label-text">성함</label>
+                                                                            <div class="form-group">
+                                                                                <span class="la la-user form-icon"></span>
+                                                                                <input class="form-control" type="text"
+                                                                                       name="text" placeholder="투숙객 성함">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-12">
+                                                                        <div class="input-box">
+                                                                            <label class="label-text">내용</label>
+                                                                            <div class="form-group">
+                                                                                <span class="la la-pencil form-icon"></span>
+                                                                                <textarea class="message-control form-control"
+                                                                                          name="message"
+                                                                                          placeholder="후기 내용을 작성해주세요"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-12">
+                                                                        <div class="btn-box">
+                                                                            <button type="button"
+                                                                                    class="theme-btn hwt-btn-gray">작성하기
+                                                                            </button>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-lg-12">
-                                                                <div class="input-box">
-                                                                    <label class="label-text">내용</label>
-                                                                    <div class="form-group">
-                                                                        <span class="la la-pencil form-icon"></span>
-                                                                        <textarea class="message-control form-control"
-                                                                                  name="message"
-                                                                                  placeholder="후기 내용을 작성해주세요"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-12">
-                                                                <div class="btn-box">
-                                                                    <button type="button"
-                                                                            class="theme-btn hwt-btn-gray">작성하기
-                                                                    </button>
-                                                                </div>
-                                                            </div>
+                                                           </div>
                                                         </div>
                                                     </form>
                                                 </div><!-- end contact-form-action -->
@@ -774,299 +729,30 @@
                                     </div><!-- end comment-forum -->
                                 </div><!-- end single-content-item -->
                             </div><!-- end review-box -->
-                            <!--                        <div class="review-box">-->
-                            <!--                            <div class="single-content-item padding-top-40px">-->
-                            <!--                                <h3 class="title font-size-20">Showing 3 guest reviews</h3>-->
-                            <!--                                <div class="comments-list padding-top-50px">-->
-                            <!--                                    <div class="comment">-->
-                            <!--                                        <div class="comment-avatar">-->
-                            <!--                                            <img class="avatar__img" alt="" src="images/team8.jpg">-->
-                            <!--                                        </div>-->
-                            <!--                                        <div class="comment-body">-->
-                            <!--                                            <div class="meta-data">-->
-                            <!--                                                <h3 class="comment__author">Jenny Doe</h3>-->
-                            <!--                                                <div class="meta-data-inner d-flex">-->
-                            <!--                                                    <span class="ratings d-flex align-items-center mr-1">-->
-                            <!--                                                        <i class="la la-star"></i>-->
-                            <!--                                                        <i class="la la-star"></i>-->
-                            <!--                                                        <i class="la la-star"></i>-->
-                            <!--                                                        <i class="la la-star"></i>-->
-                            <!--                                                        <i class="la la-star"></i>-->
-                            <!--                                                    </span>-->
-                            <!--                                                    <p class="comment__date">April 5, 2019</p>-->
-                            <!--                                                </div>-->
-                            <!--                                            </div>-->
-                            <!--                                            <p class="comment-content">-->
-                            <!--                                                Lorem ipsum dolor sit amet, dolores mandamus moderatius ea ius, sed civibus vivendum imperdiet ei, amet tritani sea id. Ut veri diceret fierent mei, qui facilisi suavitate euripidis-->
-                            <!--                                            </p>-->
-                            <!--                                            <div class="comment-reply d-flex align-items-center justify-content-between">-->
-                            <!--                                                <a class="theme-btn" href="#" data-toggle="modal" data-target="#replayPopupForm">-->
-                            <!--                                                    <span class="la la-mail-reply mr-1"></span>Reply-->
-                            <!--                                                </a>-->
-                            <!--                                                <div class="reviews-reaction">-->
-                            <!--                                                    <a href="#" class="comment-like"><i class="la la-thumbs-up"></i> 13</a>-->
-                            <!--                                                    <a href="#" class="comment-dislike"><i class="la la-thumbs-down"></i> 2</a>-->
-                            <!--                                                    <a href="#" class="comment-love"><i class="la la-heart-o"></i> 5</a>-->
-                            <!--                                                </div>-->
-                            <!--                                            </div>-->
-                            <!--                                        </div>-->
-                            <!--                                    </div>&lt;!&ndash; end comments &ndash;&gt;-->
-                            <!--                                    <div class="comment comment-reply-item">-->
-                            <!--                                        <div class="comment-avatar">-->
-                            <!--                                            <img class="avatar__img" alt="" src="images/team9.jpg">-->
-                            <!--                                        </div>-->
-                            <!--                                        <div class="comment-body">-->
-                            <!--                                            <div class="meta-data">-->
-                            <!--                                                <h3 class="comment__author">Jenny Doe</h3>-->
-                            <!--                                                <div class="meta-data-inner d-flex">-->
-                            <!--                                                    <span class="ratings d-flex align-items-center mr-1">-->
-                            <!--                                                        <i class="la la-star"></i>-->
-                            <!--                                                        <i class="la la-star"></i>-->
-                            <!--                                                        <i class="la la-star"></i>-->
-                            <!--                                                        <i class="la la-star"></i>-->
-                            <!--                                                        <i class="la la-star"></i>-->
-                            <!--                                                    </span>-->
-                            <!--                                                    <p class="comment__date">April 5, 2019</p>-->
-                            <!--                                                </div>-->
-                            <!--                                            </div>-->
-                            <!--                                            <p class="comment-content">-->
-                            <!--                                                Lorem ipsum dolor sit amet, dolores mandamus moderatius ea ius, sed civibus vivendum imperdiet ei, amet tritani sea id. Ut veri diceret fierent mei, qui facilisi suavitate euripidis-->
-                            <!--                                            </p>-->
-                            <!--                                            <div class="comment-reply d-flex align-items-center justify-content-between">-->
-                            <!--                                                <a class="theme-btn" href="#" data-toggle="modal" data-target="#replayPopupForm">-->
-                            <!--                                                    <span class="la la-mail-reply mr-1"></span>Reply-->
-                            <!--                                                </a>-->
-                            <!--                                                <div class="reviews-reaction">-->
-                            <!--                                                    <a href="#" class="comment-like"><i class="la la-thumbs-up"></i> 13</a>-->
-                            <!--                                                    <a href="#" class="comment-dislike"><i class="la la-thumbs-down"></i> 2</a>-->
-                            <!--                                                    <a href="#" class="comment-love"><i class="la la-heart-o"></i> 5</a>-->
-                            <!--                                                </div>-->
-                            <!--                                            </div>-->
-                            <!--                                        </div>-->
-                            <!--                                    </div>&lt;!&ndash; end comments &ndash;&gt;-->
-                            <!--                                    <div class="comment">-->
-                            <!--                                        <div class="comment-avatar">-->
-                            <!--                                            <img class="avatar__img" alt="" src="images/team10.jpg">-->
-                            <!--                                        </div>-->
-                            <!--                                        <div class="comment-body">-->
-                            <!--                                            <div class="meta-data">-->
-                            <!--                                                <h3 class="comment__author">Jenny Doe</h3>-->
-                            <!--                                                <div class="meta-data-inner d-flex">-->
-                            <!--                                                    <span class="ratings d-flex align-items-center mr-1">-->
-                            <!--                                                        <i class="la la-star"></i>-->
-                            <!--                                                        <i class="la la-star"></i>-->
-                            <!--                                                        <i class="la la-star"></i>-->
-                            <!--                                                        <i class="la la-star"></i>-->
-                            <!--                                                        <i class="la la-star"></i>-->
-                            <!--                                                    </span>-->
-                            <!--                                                    <p class="comment__date">April 5, 2019</p>-->
-                            <!--                                                </div>-->
-                            <!--                                            </div>-->
-                            <!--                                            <p class="comment-content">-->
-                            <!--                                                Lorem ipsum dolor sit amet, dolores mandamus moderatius ea ius, sed civibus vivendum imperdiet ei, amet tritani sea id. Ut veri diceret fierent mei, qui facilisi suavitate euripidis-->
-                            <!--                                            </p>-->
-                            <!--                                            <div class="comment-reply d-flex align-items-center justify-content-between">-->
-                            <!--                                                <a class="theme-btn" href="#" data-toggle="modal" data-target="#replayPopupForm">-->
-                            <!--                                                    <span class="la la-mail-reply mr-1"></span>Reply-->
-                            <!--                                                </a>-->
-                            <!--                                                <div class="reviews-reaction">-->
-                            <!--                                                    <a href="#" class="comment-like"><i class="la la-thumbs-up"></i> 13</a>-->
-                            <!--                                                    <a href="#" class="comment-dislike"><i class="la la-thumbs-down"></i> 2</a>-->
-                            <!--                                                    <a href="#" class="comment-love"><i class="la la-heart-o"></i> 5</a>-->
-                            <!--                                                </div>-->
-                            <!--                                            </div>-->
-                            <!--                                        </div>-->
-                            <!--                                    </div>&lt;!&ndash; end comments &ndash;&gt;-->
-                            <!--                                    <div class="btn-box load-more text-center">-->
-                            <!--                                        <button class="theme-btn theme-btn-small theme-btn-transparent" type="button">Load More Review</button>-->
-                            <!--                                    </div>-->
-                            <!--                                </div>&lt;!&ndash; end comments-list &ndash;&gt;-->
-                            <!--                                <div class="comment-forum padding-top-40px">-->
-                            <!--                                    <div class="form-box">-->
-                            <!--                                        <div class="form-title-wrap">-->
-                            <!--                                            <h3 class="title">Write a Review</h3>-->
-                            <!--                                        </div>&lt;!&ndash; form-title-wrap &ndash;&gt;-->
-                            <!--                                        <div class="form-content">-->
-                            <!--                                            <div class="rate-option p-2">-->
-                            <!--                                                <div class="row">-->
-                            <!--                                                    <div class="col-lg-4 responsive-column">-->
-                            <!--                                                        <div class="rate-option-item">-->
-                            <!--                                                            <label>Service</label>-->
-                            <!--                                                            <div class="rate-stars-option">-->
-                            <!--                                                                <input type="checkbox" id="lst1" value="1">-->
-                            <!--                                                                <label for="lst1"></label>-->
-                            <!--                                                                <input type="checkbox" id="lst2" value="2">-->
-                            <!--                                                                <label for="lst2"></label>-->
-                            <!--                                                                <input type="checkbox" id="lst3" value="3">-->
-                            <!--                                                                <label for="lst3"></label>-->
-                            <!--                                                                <input type="checkbox" id="lst4" value="4">-->
-                            <!--                                                                <label for="lst4"></label>-->
-                            <!--                                                                <input type="checkbox" id="lst5" value="5">-->
-                            <!--                                                                <label for="lst5"></label>-->
-                            <!--                                                            </div>-->
-                            <!--                                                        </div>-->
-                            <!--                                                    </div>&lt;!&ndash; col-lg-4 &ndash;&gt;-->
-                            <!--                                                    <div class="col-lg-4 responsive-column">-->
-                            <!--                                                        <div class="rate-option-item">-->
-                            <!--                                                            <label>Location</label>-->
-                            <!--                                                            <div class="rate-stars-option">-->
-                            <!--                                                                <input type="checkbox" id="l1" value="1">-->
-                            <!--                                                                <label for="l1"></label>-->
-                            <!--                                                                <input type="checkbox" id="l2" value="2">-->
-                            <!--                                                                <label for="l2"></label>-->
-                            <!--                                                                <input type="checkbox" id="l3" value="3">-->
-                            <!--                                                                <label for="l3"></label>-->
-                            <!--                                                                <input type="checkbox" id="l4" value="4">-->
-                            <!--                                                                <label for="l4"></label>-->
-                            <!--                                                                <input type="checkbox" id="l5" value="5">-->
-                            <!--                                                                <label for="l5"></label>-->
-                            <!--                                                            </div>-->
-                            <!--                                                        </div>-->
-                            <!--                                                    </div>&lt;!&ndash; col-lg-4 &ndash;&gt;-->
-                            <!--                                                    <div class="col-lg-4 responsive-column">-->
-                            <!--                                                        <div class="rate-option-item">-->
-                            <!--                                                            <label>Value for Money</label>-->
-                            <!--                                                            <div class="rate-stars-option">-->
-                            <!--                                                                <input type="checkbox" id="vm1" value="1">-->
-                            <!--                                                                <label for="vm1"></label>-->
-                            <!--                                                                <input type="checkbox" id="vm2" value="2">-->
-                            <!--                                                                <label for="vm2"></label>-->
-                            <!--                                                                <input type="checkbox" id="vm3" value="3">-->
-                            <!--                                                                <label for="vm3"></label>-->
-                            <!--                                                                <input type="checkbox" id="vm4" value="4">-->
-                            <!--                                                                <label for="vm4"></label>-->
-                            <!--                                                                <input type="checkbox" id="vm5" value="5">-->
-                            <!--                                                                <label for="vm5"></label>-->
-                            <!--                                                            </div>-->
-                            <!--                                                        </div>-->
-                            <!--                                                    </div>&lt;!&ndash; col-lg-4 &ndash;&gt;-->
-                            <!--                                                    <div class="col-lg-4 responsive-column">-->
-                            <!--                                                        <div class="rate-option-item">-->
-                            <!--                                                            <label>Cleanliness</label>-->
-                            <!--                                                            <div class="rate-stars-option">-->
-                            <!--                                                                <input type="checkbox" id="cln1" value="1">-->
-                            <!--                                                                <label for="cln1"></label>-->
-                            <!--                                                                <input type="checkbox" id="cln2" value="2">-->
-                            <!--                                                                <label for="cln2"></label>-->
-                            <!--                                                                <input type="checkbox" id="cln3" value="3">-->
-                            <!--                                                                <label for="cln3"></label>-->
-                            <!--                                                                <input type="checkbox" id="cln4" value="4">-->
-                            <!--                                                                <label for="cln4"></label>-->
-                            <!--                                                                <input type="checkbox" id="cln5" value="5">-->
-                            <!--                                                                <label for="cln5"></label>-->
-                            <!--                                                            </div>-->
-                            <!--                                                        </div>-->
-                            <!--                                                    </div>&lt;!&ndash; col-lg-4 &ndash;&gt;-->
-                            <!--                                                    <div class="col-lg-4 responsive-column">-->
-                            <!--                                                        <div class="rate-option-item">-->
-                            <!--                                                            <label>Facilities</label>-->
-                            <!--                                                            <div class="rate-stars-option">-->
-                            <!--                                                                <input type="checkbox" id="f1" value="1">-->
-                            <!--                                                                <label for="f1"></label>-->
-                            <!--                                                                <input type="checkbox" id="f2" value="2">-->
-                            <!--                                                                <label for="f2"></label>-->
-                            <!--                                                                <input type="checkbox" id="f3" value="3">-->
-                            <!--                                                                <label for="f3"></label>-->
-                            <!--                                                                <input type="checkbox" id="f4" value="4">-->
-                            <!--                                                                <label for="f4"></label>-->
-                            <!--                                                                <input type="checkbox" id="f5" value="5">-->
-                            <!--                                                                <label for="f5"></label>-->
-                            <!--                                                            </div>-->
-                            <!--                                                        </div>-->
-                            <!--                                                    </div>&lt;!&ndash; col-lg-4 &ndash;&gt;-->
-                            <!--                                                </div>&lt;!&ndash; end row &ndash;&gt;-->
-                            <!--                                            </div>&lt;!&ndash; end rate-option &ndash;&gt;-->
-                            <!--                                            <div class="contact-form-action">-->
-                            <!--                                                <form method="post">-->
-                            <!--                                                    <div class="row">-->
-                            <!--                                                        <div class="col-lg-6 responsive-column">-->
-                            <!--                                                            <div class="input-box">-->
-                            <!--                                                                <label class="label-text">Name</label>-->
-                            <!--                                                                <div class="form-group">-->
-                            <!--                                                                    <span class="la la-user form-icon"></span>-->
-                            <!--                                                                    <input class="form-control" type="text" name="text" placeholder="Your name">-->
-                            <!--                                                                </div>-->
-                            <!--                                                            </div>-->
-                            <!--                                                        </div>-->
-                            <!--                                                        <div class="col-lg-6 responsive-column">-->
-                            <!--                                                            <div class="input-box">-->
-                            <!--                                                                <label class="label-text">Email</label>-->
-                            <!--                                                                <div class="form-group">-->
-                            <!--                                                                    <span class="la la-envelope-o form-icon"></span>-->
-                            <!--                                                                    <input class="form-control" type="email" name="email" placeholder="Email address">-->
-                            <!--                                                                </div>-->
-                            <!--                                                            </div>-->
-                            <!--                                                        </div>-->
-                            <!--                                                        <div class="col-lg-12">-->
-                            <!--                                                            <div class="input-box">-->
-                            <!--                                                                <label class="label-text">Message</label>-->
-                            <!--                                                                <div class="form-group">-->
-                            <!--                                                                    <span class="la la-pencil form-icon"></span>-->
-                            <!--                                                                    <textarea class="message-control form-control" name="message" placeholder="Write message"></textarea>-->
-                            <!--                                                                </div>-->
-                            <!--                                                            </div>-->
-                            <!--                                                        </div>-->
-                            <!--                                                        <div class="col-lg-12">-->
-                            <!--                                                            <div class="btn-box">-->
-                            <!--                                                                <button type="button" class="theme-btn">Leave a Review</button>-->
-                            <!--                                                            </div>-->
-                            <!--                                                        </div>-->
-                            <!--                                                    </div>-->
-                            <!--                                                </form>-->
-                            <!--                                            </div>&lt;!&ndash; end contact-form-action &ndash;&gt;-->
-                            <!--                                        </div>&lt;!&ndash; end form-content &ndash;&gt;-->
-                            <!--                                    </div>&lt;!&ndash; end form-box &ndash;&gt;-->
-                            <!--                                </div>&lt;!&ndash; end comment-forum &ndash;&gt;-->
-                            <!--                            </div>&lt;!&ndash; end single-content-item &ndash;&gt;-->
-                            <!--                        </div>&lt;!&ndash; end review-box &ndash;&gt;-->
                         </div><!-- end single-content-wrap -->
                     </div><!-- end col-lg-8 -->
                     <div class="col-lg-4">
                         <div class="sidebar single-content-sidebar mb-0">
+                            <form th:action="@{/singleSearch}" method="get">
+                                <input type="hidden" name="accomNum" th:value="${accommodation.accomNum}">
                             <div class="sidebar-widget single-content-widget">
                                 <div class="sidebar-widget-item">
                                     <div class="sidebar-book-title-wrap mb-3">
                                         <p><span class="text-form"></span><span
-                                                class="text-value hwt-amounts ml-2 mr-1">찜 추가</span></p>
-                                        <p class="font-size-14 line-height-24">날짜와 인원을 선택하여 추가해주세요.</p>
+                                                class="text-value hwt-amounts mr-1">Room 검색</span></p>
+                                        <p class="font-size-14 line-height-24">Room 예약 날짜 조회</p>
                                     </div>
                                 </div><!-- end sidebar-widget-item -->
                                 <div class="sidebar-widget-item">
                                     <div class="contact-form-action">
-                                        <form action="#">
-                                            <div class="input-box">
-                                                <label class="label-text">날짜</label>
-                                                <div class="form-group">
-                                                    <span class="la la-calendar form-icon"></span>
-                                                    <input class="date-picker-multiple form-control" type="text"
-                                                           name="daterange" readonly>
-                                                </div>
+                                        <div class="input-box">
+                                            <label class="label-text">날짜</label>
+                                            <div class="form-group">
+                                                <span class="la la-calendar form-icon"></span>
+                                                <input class="date-picker-multiple form-control" type="text"
+                                                       name="daterange" readonly>
                                             </div>
-                                            <div class="input-box">
-                                                <label class="label-text">객실</label>
-                                                <div class="form-group">
-                                                    <div class="select-contain w-auto">
-                                                        <select class="select-contain-select">
-                                                            <option value="0">객실 선택</option>
-                                                            <option value="1">1 Room</option>
-                                                            <option value="2">2 Rooms</option>
-                                                            <option value="3">3 Rooms</option>
-                                                            <option value="4">4 Rooms</option>
-                                                            <option value="5">5 Rooms</option>
-                                                            <option value="6">6 Rooms</option>
-                                                            <option value="7">7 Rooms</option>
-                                                            <option value="8">8 Rooms</option>
-                                                            <option value="9">9 Rooms</option>
-                                                            <option value="10">10 Rooms</option>
-                                                            <option value="11">11 Rooms</option>
-                                                            <option value="12">12 Rooms</option>
-                                                            <option value="13">13 Rooms</option>
-                                                            <option value="14">14 Rooms</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div><!-- end sidebar-widget-item -->
                                 <div class="sidebar-widget-item">
@@ -1088,11 +774,20 @@
                                     </div><!-- end qty-box -->
                                 </div><!-- end sidebar-widget-item -->
                                 <div class="btn-box pt-2">
-                                    <a th:href="user-dashboard-wishlist"
+                                    <button
+                                       class="theme-btn hwt-btn-gray text-center w-100 theme-btn-transparent"><i
+                                            class="la la-calendar mr-2"></i>예약 날짜 조회</button>
+                                    <hr/>
+
+                                    <a th:href="@{/user-dashboard-wishlist}"
+
+                               
+
                                        class="theme-btn hwt-btn-gray text-center w-100 theme-btn-transparent"><i
                                             class="la la-heart-o mr-2"></i>찜 추가하기</a>
                                 </div>
                             </div><!-- end sidebar-widget -->
+                            </form>
                             <div class="sidebar-widget single-content-widget">
                                 <h3 class="title stroke-shape">이 숙소를 추천하는 이유</h3>
                                 <div class="sidebar-list">
@@ -1133,113 +828,6 @@
     <div class="section-block"></div>
 
     <!-- ================================
-        START RELATE TOUR AREA
-    ================================= -->
-    <!--
-    <section class="related-tour-area section&#45;&#45;padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-heading text-center">
-                        <h2 class="sec__title">You might also like</h2>
-                    </div>&lt;!&ndash; end section-heading &ndash;&gt;
-                </div>&lt;!&ndash; end col-lg-12 &ndash;&gt;
-            </div>&lt;!&ndash; end row &ndash;&gt;
-            <div class="row padding-top-50px">
-                <div class="col-lg-4 responsive-column">
-                    <div class="card-item">
-                        <div class="card-img">
-                            <a href="hotel-single.html" class="d-block">
-                                <img src="images/img1.jpg" alt="hotel-img">
-                            </a>
-                            <span class="badge">Bestseller</span>
-                            <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
-                                <i class="la la-heart-o"></i>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title"><a href="hotel-single.html">The Millennium Hilton New York</a></h3>
-                            <p class="card-meta">124 E Huron St, New york</p>
-                            <div class="card-rating">
-                                <span class="badge text-white">4.4/5</span>
-                                <span class="review__text">Average</span>
-                                <span class="rating__text">(30 Reviews)</span>
-                            </div>
-                            <div class="card-price d-flex align-items-center justify-content-between">
-                                <p>
-                                    <span class="price__from">From</span>
-                                    <span class="price__num">$88.00</span>
-                                    <span class="price__text">Per night</span>
-                                </p>
-                                <a href="hotel-single.html" class="btn-text">See details<i class="la la-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>&lt;!&ndash; end card-item &ndash;&gt;
-                </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;
-                <div class="col-lg-4 responsive-column">
-                    <div class="card-item">
-                        <div class="card-img">
-                            <a href="hotel-single.html" class="d-block">
-                                <img src="images/img2.jpg" alt="hotel-img">
-                            </a>
-                            <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
-                                <i class="la la-heart-o"></i>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title"><a href="hotel-single.html">Best Western Grant Park Hotel</a></h3>
-                            <p class="card-meta">124 E Huron St, Chicago</p>
-                            <div class="card-rating">
-                                <span class="badge text-white">4.4/5</span>
-                                <span class="review__text">Average</span>
-                                <span class="rating__text">(30 Reviews)</span>
-                            </div>
-                            <div class="card-price d-flex align-items-center justify-content-between">
-                                <p>
-                                    <span class="price__from">From</span>
-                                    <span class="price__num">$58.00</span>
-                                    <span class="price__text">Per night</span>
-                                </p>
-                                <a href="hotel-single.html" class="btn-text">See details<i class="la la-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>&lt;!&ndash; end card-item &ndash;&gt;
-                </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;
-                <div class="col-lg-4 responsive-column">
-                    <div class="card-item">
-                        <div class="card-img">
-                            <a href="hotel-single.html" class="d-block">
-                                <img src="images/img3.jpg" alt="hotel-img">
-                            </a>
-                            <span class="badge">Featured</span>
-                            <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
-                                <i class="la la-heart-o"></i>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title"><a href="hotel-single.html">Hyatt Regency Maui Resort & Spa</a></h3>
-                            <p class="card-meta">200 Nohea Kai Dr, Lahaina, HI</p>
-                            <div class="card-rating">
-                                <span class="badge text-white">4.4/5</span>
-                                <span class="review__text">Average</span>
-                                <span class="rating__text">(30 Reviews)</span>
-                            </div>
-                            <div class="card-price d-flex align-items-center justify-content-between">
-                                <p>
-                                    <span class="price__from">From</span>
-                                    <span class="price__num">$88.00</span>
-                                    <span class="price__text">Per night</span>
-                                </p>
-                                <a href="hotel-single.html" class="btn-text">See details<i class="la la-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>&lt;!&ndash; end card-item &ndash;&gt;
-                </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;
-            </div>&lt;!&ndash; end row &ndash;&gt;
-        </div>&lt;!&ndash; end container &ndash;&gt;
-    </section>&lt;!&ndash; end related-tour-area &ndash;&gt;
-    -->
-    <!-- ================================
         END RELATE TOUR AREA
     ================================= -->
 
@@ -1265,111 +853,6 @@
     </section><!-- end cta-area -->
     <!-- ================================
         END CTA AREA
-    ================================= -->
-
-    <!-- ================================
-           START FOOTER AREA
-    ================================= -->
-    <!--<section class="footer-area section-bg padding-top-100px padding-bottom-30px">-->
-    <!--    <div class="container">-->
-    <!--        <div class="row">-->
-    <!--            <div class="col-lg-3 responsive-column">-->
-    <!--                <div class="footer-item">-->
-    <!--                    <div class="footer-logo padding-bottom-30px">-->
-    <!--                        <a href="/home" class="foot__logo"><img src="images/logo.png" alt="logo"></a>-->
-    <!--                    </div>&lt;!&ndash; end logo &ndash;&gt;-->
-    <!--                    <p class="footer__desc">Morbi convallis bibendum urna ut viverra. Maecenas consequat</p>-->
-    <!--                    <ul class="list-items pt-3">-->
-    <!--                        <li>3015 Grand Ave, Coconut Grove,<br> Cerrick Way, FL 12345</li>-->
-    <!--                        <li>+123-456-789</li>-->
-    <!--                        <li><a href="#">trizen@yourwebsite.com</a></li>-->
-    <!--                    </ul>-->
-    <!--                </div>&lt;!&ndash; end footer-item &ndash;&gt;-->
-    <!--            </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
-    <!--            <div class="col-lg-3 responsive-column">-->
-    <!--                <div class="footer-item">-->
-    <!--                    <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Company</h4>-->
-    <!--                    <ul class="list-items list&#45;&#45;items">-->
-    <!--                        <li><a href="about.html">About us</a></li>-->
-    <!--                        <li><a href="services.html">Services</a></li>-->
-    <!--                        <li><a href="#">Jobs</a></li>-->
-    <!--                        <li><a href="blog-grid.html">News</a></li>-->
-    <!--                        <li><a href="contact.html">Support</a></li>-->
-    <!--                        <li><a href="#">Advertising</a></li>-->
-    <!--                    </ul>-->
-    <!--                </div>&lt;!&ndash; end footer-item &ndash;&gt;-->
-    <!--            </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
-    <!--            <div class="col-lg-3 responsive-column">-->
-    <!--                <div class="footer-item">-->
-    <!--                    <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Other Services</h4>-->
-    <!--                    <ul class="list-items list&#45;&#45;items">-->
-    <!--                        <li><a href="#">Investor Relations</a></li>-->
-    <!--                        <li><a href="#">Trizen.com Rewards</a></li>-->
-    <!--                        <li><a href="#">Partners</a></li>-->
-    <!--                        <li><a href="#">List My Hotel</a></li>-->
-    <!--                        <li><a href="#">All Hotels</a></li>-->
-    <!--                        <li><a href="#">TV Ads</a></li>-->
-    <!--                    </ul>-->
-    <!--                </div>&lt;!&ndash; end footer-item &ndash;&gt;-->
-    <!--            </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
-    <!--            <div class="col-lg-3 responsive-column">-->
-    <!--                <div class="footer-item">-->
-    <!--                    <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Other Links</h4>-->
-    <!--                    <ul class="list-items list&#45;&#45;items">-->
-    <!--                        <li><a href="#">USA Vacation Packages</a></li>-->
-    <!--                        <li><a href="#">USA Flights</a></li>-->
-    <!--                        <li><a href="#">USA Hotels</a></li>-->
-    <!--                        <li><a href="#">USA Car Hire</a></li>-->
-    <!--                        <li><a href="#">Create an Account</a></li>-->
-    <!--                        <li><a href="#">Trizen Reviews</a></li>-->
-    <!--                    </ul>-->
-    <!--                </div>&lt;!&ndash; end footer-item &ndash;&gt;-->
-    <!--            </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
-    <!--        </div>&lt;!&ndash; end row &ndash;&gt;-->
-    <!--        <div class="row align-items-center">-->
-    <!--            <div class="col-lg-8">-->
-    <!--                <div class="term-box footer-item">-->
-    <!--                    <ul class="list-items list&#45;&#45;items d-flex align-items-center">-->
-    <!--                        <li><a href="#">Terms & Conditions</a></li>-->
-    <!--                        <li><a href="#">Privacy Policy</a></li>-->
-    <!--                        <li><a href="#">Help Center</a></li>-->
-    <!--                    </ul>-->
-    <!--                </div>-->
-    <!--            </div>&lt;!&ndash; end col-lg-8 &ndash;&gt;-->
-    <!--            <div class="col-lg-4">-->
-    <!--                <div class="footer-social-box text-right">-->
-    <!--                    <ul class="social-profile">-->
-    <!--                        <li><a href="#"><i class="lab la-facebook-f"></i></a></li>-->
-    <!--                        <li><a href="#"><i class="lab la-twitter"></i></a></li>-->
-    <!--                        <li><a href="#"><i class="lab la-instagram"></i></a></li>-->
-    <!--                        <li><a href="#"><i class="lab la-linkedin-in"></i></a></li>-->
-    <!--                    </ul>-->
-    <!--                </div>-->
-    <!--            </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-    <!--        </div>&lt;!&ndash; end row &ndash;&gt;-->
-    <!--    </div>&lt;!&ndash; end container &ndash;&gt;-->
-    <!--    <div class="section-block mt-4"></div>-->
-    <!--    <div class="container">-->
-    <!--        <div class="row align-items-center">-->
-    <!--            <div class="col-lg-7">-->
-    <!--                <div class="copy-right padding-top-30px">-->
-    <!--                    <p class="copy__desc">-->
-    <!--                        &copy; Copyright Trizen 2020. Made with-->
-    <!--                        <span class="la la-heart"></span> by <a href="https://themeforest.net/user/techydevs/portfolio">TechyDevs</a>-->
-    <!--                    </p>-->
-    <!--                </div>&lt;!&ndash; end copy-right &ndash;&gt;-->
-    <!--            </div>&lt;!&ndash; end col-lg-7 &ndash;&gt;-->
-    <!--            <div class="col-lg-5">-->
-    <!--                <div class="copy-right-content d-flex align-items-center justify-content-end padding-top-30px">-->
-    <!--                    <h3 class="title font-size-15 pr-2">We Accept</h3>-->
-    <!--                    <img src="images/payment-img.png" alt="">-->
-    <!--                </div>&lt;!&ndash; end copy-right-content &ndash;&gt;-->
-    <!--            </div>&lt;!&ndash; end col-lg-5 &ndash;&gt;-->
-    <!--        </div>&lt;!&ndash; end row &ndash;&gt;-->
-    <!--    </div>&lt;!&ndash; end container &ndash;&gt;-->
-    <!--</section>&lt;!&ndash; end footer-area &ndash;&gt;-->
-    <!-- ================================
-           START FOOTER AREA
     ================================= -->
 
     <!-- start back-to-top -->

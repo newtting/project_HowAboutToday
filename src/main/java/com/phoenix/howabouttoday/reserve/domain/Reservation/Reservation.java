@@ -68,5 +68,4 @@ public abstract class Reservation {
     private int reservePrice;
     private int reserveAdultCount;
     private int reserveChildCount;
-
 }

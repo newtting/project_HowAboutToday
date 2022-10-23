@@ -29,11 +29,11 @@ public class Cart extends Reservation {
     // }
 
 //    public OrdersDetailDTO transDto(){
-//
-//        Period period = Period.between(this.getReserveUseStartDate(), this.getReserveUseEndDate());
-//        String checkIn = this.getRoom().getAccommodation().getCheckIn().toString();
-//        String checkOut = this.getRoom().getAccommodation().getCheckOut().toString();
-//
+// this.getReserveUseEndDate());
+////        String checkIn = this.getRoom().getAccommodation().getCheckIn().toString();
+////        String checkOut = this.getRoom().getAccommodation().getCheckOut().toString();
+////
+//        Period period = Period.between(this.getReserveUseStartDate(),
 //        // 2. DayOfWeek 객체 구하기
 //        DayOfWeek startday = this.getReserveUseStartDate().getDayOfWeek();
 //        DayOfWeek endday = this.getReserveUseEndDate().getDayOfWeek();

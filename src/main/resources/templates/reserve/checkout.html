@@ -51,7 +51,7 @@
                                     <th scope="row">
                                         <div class="table-content product-content d-flex align-items-center">
                                             <!--                                    <a href="room-details.html" class="d-block" th:href="@{/room-details}">-->
-                                            <!--                                        <img src="images/room1.jpg" alt="" class="flex-shrink-0">-->
+                                            <!--                                        <img src="/images/room1.jpg" alt="" class="flex-shrink-0">-->
                                             <!--                                    </a>-->
                                             <div class="product-content">
                                                 <a href="room-details.html" class="title px-2" th:href="@{/room-details}"
@@ -238,7 +238,7 @@
                                         <!--                                    <li class="nav-item col-lg-3 row-cols-1">-->
                                         <!--                                        <a class="nav-link" id="asf-tab" name="payment" data-toggle="tab" href="#kakaopay" role="tab" data-value="kakaopay" aria-controls="kakaopay" aria-selected="true">-->
                                         <!--                                            <i class="la la-check icon-element"></i>-->
-                                        <!--                                            <img src="images/kakaopay.png" alt="">-->
+                                        <!--                                            <img src="/images/kakaopay.png" alt="">-->
                                         <!--                                            <span class="d-block pt-2">카카오페이</span>-->
                                         <!--                                        </a>-->
                                         <!--                                    </li>-->
@@ -438,66 +438,6 @@
                     </div>
                     <div class="modal-body">
                         <div class="contact-form-action">
-                            <form method="post" action="/loginProc">
-                                <div class="input-box">
-                                    <label class="label-text">이메일</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="email" name="email" id="email" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group mb-2">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" name="pwd" id="pwd" placeholder="패스워드">
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <!--                                    <div class="custom-checkbox mb-0">-->
-                                        <!--                                        <input type="checkbox" id="rememberchb">-->
-                                        <!--                                        <label for="rememberchb">Remember me</label>-->
-                                        <!--                                    </div>-->
-                                        <p class="forgot-password">
-                                            <a href="recover">비밀번호를 잊으셨나요?</a>
-                                        </p>
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" id="login" class="theme-btn w-100">로그인</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 로그인</p>
-                                    <ul class="social-profile py-3">
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end modal-popup -->
-
-    <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle2">로그인</h5>
-                            <p class="font-size-14">안녕하세요! 로그인을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
                             <div class="input-box">
                                 <label class="label-text">이메일</label>
                                 <div class="form-group">
@@ -564,22 +504,7 @@
 
     </script>
 
-    <!-- Template JS Files -->
-    <!--<script src="js/jquery-3.4.1.min.js"></script>-->
-    <!--<script src="js/jquery-ui.js"></script>-->
-    <!--<script src="js/popper.min.js"></script>-->
-    <!--<script src="js/bootstrap.min.js"></script>-->
-    <!--<script src="js/bootstrap-select.min.js"></script>-->
-    <!--<script src="js/moment.min.js"></script>-->
-    <!--<script src="js/daterangepicker.js"></script>-->
-    <!--<script src="js/owl.carousel.min.js"></script>-->
-    <!--<script src="js/jquery.fancybox.min.js"></script>-->
-    <!--<script src="js/jquery.countTo.min.js"></script>-->
-    <!--<script src="js/animated-headline.js"></script>-->
-    <!--<script src="js/jquery.ripples-min.js"></script>-->
-    <!--<script src="js/main.js"></script>-->
-    <!--</body>-->
-    <!--</html>-->
+
 
 </th:block>
 
