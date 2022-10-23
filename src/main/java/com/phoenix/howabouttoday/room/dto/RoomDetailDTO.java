@@ -22,6 +22,10 @@ public class RoomDetailDTO {
 
     private int maxGuest; // 최대 인원
 
+    private Double roomRating;
+
+    private int roomReviewNum;
+
     private LocalDate stayStartDate; // 객실 이용 시작일
 
     private LocalDate stayEndDate; // 객실 이용 종료일
@@ -31,6 +35,8 @@ public class RoomDetailDTO {
     private List<RoomImageDTO> roomImageList; //객실 이미지
 
     public RoomDetailDTO(Room room) {
+        this.roomRating = room.getRoomRating();
+        this.roomReviewNum = room.getRoomReviewNum();
         this.roomNum = room.getRoomNum();
         this.roomName = room.getRoomName();
         this.defaultGuest = room.getDefaultGuest();

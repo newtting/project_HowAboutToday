@@ -43,6 +43,11 @@ public class Room {
     @Column(nullable = false)
     private Integer price;//객실 가격
 
+    @Column(precision = 1, scale = 2)
+    private Double roomRating;//숙소 평점
+
+    private Integer roomReviewNum;//숙소의 평점 수
+
     @Column(nullable = false)
     private String roomInfo;//객실 정보
 
@@ -55,7 +60,9 @@ public class Room {
     private List<AvailableDate> availableDate = new ArrayList<>();
 
     @Builder
-    public Room(String roomName,int defaultGuest,int maxGuest, Integer price, String roomInfo, Accommodation accommodation, LocalDate stayEndDate, LocalDate stayStartDate) {
+    public Room(String roomName,int defaultGuest,int maxGuest, Double roomRating,Integer roomReviewNum,Integer price, String roomInfo, Accommodation accommodation, LocalDate stayEndDate, LocalDate stayStartDate) {
+        this.roomRating = roomRating;
+        this.roomReviewNum = roomReviewNum;
         this.roomName = roomName;
         this.defaultGuest = defaultGuest;
         this.maxGuest = maxGuest;
