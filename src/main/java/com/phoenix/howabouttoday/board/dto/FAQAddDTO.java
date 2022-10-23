@@ -16,9 +16,6 @@ public class FAQAddDTO {
     private Long memberNum; // 회원번호
     private Long boardCategoryNum; // 게시글 카테고리 번호
 
-    @NotBlank(message = "카테고리를 선택하세요.")
-    private String boardCategoryName; // 게시글 카테고리 이름
-
     @NotBlank(message = "제목을 입력하세요.")
     private String boardTitle; // 게시글 제목
 

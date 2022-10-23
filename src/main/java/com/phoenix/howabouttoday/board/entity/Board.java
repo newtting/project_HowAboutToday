@@ -51,7 +51,7 @@ public class Board {
         this.boardCreate = LocalDate.now();
     }
 
-    // (Notice, About Us) 게시글 작성
+    // FAQ 게시글 작성
     public Board(Member member, BoardCategory boardCategory, FAQAddDTO faqAddDTO) {
         this.member = member;
         this.boardCategory = boardCategory;
