@@ -143,7 +143,7 @@ public class InitDb {
                     .roomName("너울펜션 스위트룸")
                     .defaultGuest(2)
                     .maxGuest(10)
-                    .price(50000)
+                    .price(50)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -152,7 +152,7 @@ public class InitDb {
                     .roomName("너울펜션 디럭스룸")
                     .defaultGuest(2)
                     .maxGuest(10)
-                    .price(70000)
+                    .price(70)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 

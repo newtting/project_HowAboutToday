@@ -21,7 +21,6 @@ public class OrdersRequestDTO {
     private String merchantId;
     private List<Long> cartNum;
 
-
     public OrdersRequestDTO(String name, String tel, String ordersType, String merchantId, List<Long> cartNum) {
         this.name = name;
         this.tel = tel;

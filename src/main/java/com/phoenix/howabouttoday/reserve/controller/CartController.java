@@ -34,6 +34,8 @@ public class CartController {
 
         /** 회원 조회 로직 **/
         Long memberNum = user.getMemberNum();
+//        Long memberNum = 1l;
+
 
         /* 장바구니 존재 여부 확인 */
         boolean checkCart = cartService.checkHaveCart(memberNum);

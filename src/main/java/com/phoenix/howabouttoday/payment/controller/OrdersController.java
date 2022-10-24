@@ -10,7 +10,8 @@ import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
-import com.phoenix.howabouttoday.member.entity.Code;
+import com.phoenix.howabouttoday.member.entity.Role;
+import com.phoenix.howabouttoday.payment.dto.OrdersDeleteDTO;
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailVO;
 import com.phoenix.howabouttoday.payment.dto.OrdersRequestDTO;
 import com.phoenix.howabouttoday.payment.service.OrdersService;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/orders")
 @RequiredArgsConstructor
@@ -50,7 +52,7 @@ public class OrdersController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
         else{
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Code.MEMBER);
+            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
         }
 
         //1. 시큐리티를 사용해서 principal 객체에서 user정보를 가져와서 memberNum을 알 수 있다.
@@ -74,11 +76,21 @@ public class OrdersController {
     /* 주문삭제 */
     /* 주문은 삭제가 아니라 취소로 표시해두고 여러가지 제한을 두는 게 맞을 것 같기도 하다. */
     @PostMapping("/deleteorders")
-    public String getSuccess(@RequestParam Long ordersNum) {
-        System.out.println(ordersNum + "번 삭제!!!");
-        orderService.cancelOrders(ordersNum);
-        return "redirect:/user-dashboard-booking";
+    @ResponseBody
+    public OrdersDeleteDTO getDelete(@LoginUser SessionDTO sessionDTO, @RequestBody OrdersDeleteDTO data) {
+
+        System.out.println("잘 들어오니?");
+
+        System.out.println(orderService.getToken());
+        orderService.cancelOrders(data);
+
+
+
+//        orderService.cancelOrders(ordersNum);
+        return data;
     }
+
+
 
     /* 결제 get방식 요청을 post리다이렉트 */
     @GetMapping("/paymentSuccess")
@@ -88,14 +100,17 @@ public class OrdersController {
 
     /* 결제 성공 */
     @PostMapping("/paymentSuccess")
-    public String postUserPaymentSuccess(@LoginUser SessionDTO sessionDTO, Principal principal, OrdersRequestDTO ordersRequestDTO) {
+    public String postUserPaymentSuccess(@LoginUser SessionDTO sessionDTO, OrdersRequestDTO ordersRequestDTO) {
 
+
+        /** 결제 완료 요청이 csrf로 인해서 막혔다. 정확히 뭐가 문제인지는 파악해보자. **/
+        /** 이것만 제대로 되면 결제 취소도 가능할듯. **/
 
         if(sessionDTO != null) {
 //            model.addAttribute("sessionDTO", sessionDTO);
         }
         else{
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Code.MEMBER);
+            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
         }
 
 //        model.addAttribute("sessionDTO", sessionDTO);
