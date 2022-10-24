@@ -47,16 +47,38 @@
                     </div><!-- form-title-wrap -->
                 </div>
 
-                <!-- Board Content -->
                 <div class="form-box">
+
+                    <!-- Board Content -->
                     <div class="form-content contact-form-action hwt-details-content">
                         <p th:text="${boardDetailDTO.boardContent}">게시글 내용</p>
                     </div><!-- end form-content -->
-                    <div class="form-bottom-wrap">
-                        <div class="hwt-details-bottom">
-                            <a href="/notice" class="author__title">목록</a>
-                        </div>
-                    </div><!-- form-bottom-wrap -->
+
+                    <!-- Button -->
+                    <th:block sec:authorize="hasRole('ADMIN')">
+                        <div class="form-bottom-wrap-admin">
+                            <div class="hwt-details-bottom-left">
+                                <a th:href="@{|/admin/notice-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
+                                <a href="/admin/notice-delete" class="author__title">삭제</a>
+                            </div>
+
+                            <!-- Button - List -->
+                            <div class="hwt-details-bottom">
+                                <a href="/notice" class="author__title">목록</a>
+                            </div>
+                        </div><!-- form-bottom-wrap -->
+                    </th:block>
+
+                    <th:block sec:authorize="!hasRole('ADMIN')">
+                        <div class="form-bottom-wrap">
+
+                            <!-- Button - List -->
+                            <div class="hwt-details-bottom">
+                                <a href="/notice" class="author__title">목록</a>
+                            </div>
+                        </div><!-- form-bottom-wrap -->
+                    </th:block>
+
                 </div><!-- end form-box -->
 
             </div><!-- end col-lg-8 -->
