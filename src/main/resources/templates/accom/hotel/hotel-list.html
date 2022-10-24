@@ -571,11 +571,12 @@
                     </div><!-- end sidebar-widget -->
                 </div><!-- end sidebar -->
             </div><!-- end col-lg-4 -->
+
             <!-- 리스트 목록 시작 -->
             <div class="col-lg-8">
-                <div class="card-item card-item-list" th:each="accommodation : ${accomPageList}">
+                <div class="card-item card-item-list" th:each="accommodation, i: ${accomPageList}">
 
-                    <div class="card-img">
+                    <div class="card-img" th:id="|anchor${i.count}|">
                         <a class="d-block" th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}">
 
 <!--                            <img th:src="@{${'/data/images/' + accommodation.getAccommodationImage().get(0).getAccomOriginFilename()}}" alt="hotel-img">-->
@@ -600,21 +601,21 @@
                                 <span class="price__from">최소 가격 :</span>
                                 <span class="price__num" th:text="|${accommodation.getLowPrice()}~|"></span>
                             </p>
-                            <a th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}" class="btn-text" >방 정보<i class="la la-angle-right"></i></a>s
+                            <a th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}" class="btn-text">방 정보<i class="la la-angle-right"></i></a>
+
                         </div>
                     </div>
                 </div><!-- end card-item -->
             </div><!-- end col-lg-8 -->
                 <!-- 여기서 끝남ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         </div><!-- end row -->
+
+        <a th:href="|#anchor${size-5}|" id="accomAnchor"></a>
         <div class="row">
             <div class="col-lg-12">
-                <a th:id="anchor"></a>
-
-
                 <div class="btn-box mt-3 text-center">
-                    <a th:href="|@{/accom/{category_name}/(category_name=${categoryName},size=${accomPageList.size+5},anchor=#anchor)}|">
-                    <button type="button" id="anchor" class="theme-btn"><i class="la la-refresh mr-1"></i>Load More</button>
+                    <a th:href="|@{/accom/{category_name}/(category_name=${categoryName},size=${accomPageList.size+5})}|">
+                    <button type="button" class="theme-btn"><i class="la la-refresh mr-1"></i>Load More</button>
                     </a>
                     <p class="font-size-13 pt-2">Showing 1 - 6 of 2224 Hotels</p>
 
@@ -910,6 +911,13 @@
 <!--</html>-->
     <script>
 
+
+        $(document).ready(function (){
+
+           document.getElementById("accomAnchor").click();
+
+        });
+
         function saveWish(accomNum) {
 
             $.ajax({
@@ -929,6 +937,11 @@
                 alert(JSON.stringify(error));
             });
         }
+
+
+
+
+
 
     </script>
 </th:block>

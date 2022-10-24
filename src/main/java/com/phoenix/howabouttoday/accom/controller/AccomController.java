@@ -63,10 +63,13 @@ public class AccomController {
     }
 
     @GetMapping("/accom/{category_name}")
+
+
     public String readAccom(@PathVariable(required = false) String category_name,
                             @PageableDefault(page = 0,size = 5,sort = "accomNum",direction = Sort.Direction.DESC)
                             Pageable pageable,
-                            Model model) {
+                            Model model,
+                            @LoginUser SessionDTO sessionDTO) {
         System.out.println("카테고리호출!!!! = " + category_name);
         List<AccomCategoryDto.ResponseDto> categoryList = accomCategoryService.findAccomList();
 
@@ -74,9 +77,12 @@ public class AccomController {
         String viewName = accomCategoryService.getAccomViewName(category_name);
         model.addAttribute("viewName",viewName);
         Slice<AccomDto.ResponsePageDto> accomPageList = accommodationService.getAccomPageList(pageable,category_name);
+        int size = accomPageList.getSize();
+
+        model.addAttribute("size",size);
         model.addAttribute("categoryName",category_name);
         model.addAttribute("accomPageList",accomPageList);
-
+        model.addAttribute("sessionDTO", sessionDTO);
 
 
         return "accom/hotel/hotel-list";
