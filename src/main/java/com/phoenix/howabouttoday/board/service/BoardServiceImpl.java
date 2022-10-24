@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
@@ -67,17 +66,17 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     public void editBoard(Long boardNum, BoardDTO boardDTO) {
 
-        Board board = boardRepository.findById(boardNum).orElseThrow(() -> new NoSuchElementException());
+        Board board = boardRepository.findById(boardNum).orElse(null);
         board.editBoard(board.getBoardNum(), boardDTO);
-
-//        boardRepository.save(board);
-
     }
 
     // 게시글 삭제
     @Override
+    @Transactional
     public void deleteBoard(BoardDetailDTO boardDetailDTO) {
-        
+
+        Board board = boardRepository.findById(boardDetailDTO.getBoardNum()).orElse(null);
+        boardRepository.delete(board);
     }
 
 }

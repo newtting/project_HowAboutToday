@@ -54,29 +54,34 @@
                         <p th:text="${boardDetailDTO.boardContent}">게시글 내용</p>
                     </div><!-- end form-content -->
 
-                    <!-- Button -->
+                    <!-- Admin -->
                     <th:block sec:authorize="hasRole('ADMIN')">
                         <div class="form-bottom-wrap-admin">
+
+                            <!-- Edit & Delete Button -->
                             <div class="hwt-details-bottom-left">
                                 <a th:href="@{|/admin/notice-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
-                                <a href="/admin/notice-delete" class="author__title">삭제</a>
+                                <a th:href="@{|/admin/notice-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
                             </div>
 
-                            <!-- Button - List -->
+                            <!-- List Button -->
                             <div class="hwt-details-bottom">
                                 <a href="/notice" class="author__title">목록</a>
                             </div>
+
                         </div><!-- form-bottom-wrap -->
                     </th:block>
 
+                    <!-- Member -->
                     <th:block sec:authorize="!hasRole('ADMIN')">
-                        <div class="form-bottom-wrap">
 
-                            <!-- Button - List -->
+                        <!-- List Button -->
+                        <div class="form-bottom-wrap">
                             <div class="hwt-details-bottom">
                                 <a href="/notice" class="author__title">목록</a>
                             </div>
                         </div><!-- form-bottom-wrap -->
+
                     </th:block>
 
                 </div><!-- end form-box -->

@@ -77,9 +77,9 @@ public class AboutUsController {
         return "redirect:/aboutUs";
     }
 
-    // 오늘어때 정보 삭제 페이지
+    // 오늘어때 정보 수정 페이지
     @GetMapping("admin/aboutUs-edit/{boardNum}")
-    public String noticeEdit(@PathVariable Long boardNum,
+    public String aboutUsEdit(@PathVariable Long boardNum,
                              @LoginUser SessionDTO sessionDTO, Model model){
 
         if(sessionDTO == null) {
@@ -93,9 +93,9 @@ public class AboutUsController {
         return "board/aboutUs-edit";
     }
 
-    // 오늘어때 정보 삭제
+    // 오늘어때 정보 수정
     @PostMapping("admin/aboutUs-edit/{boardNum}")
-    public String noticeEdit(@PathVariable Long boardNum, @Valid BoardDTO boardDTO,
+    public String aboutUsEdit(@PathVariable Long boardNum, @Valid BoardDTO boardDTO,
                              BindingResult bindingResult, @LoginUser SessionDTO sessionDTO, Model model){
 
         if(bindingResult.hasErrors()) {
@@ -114,6 +114,16 @@ public class AboutUsController {
         boardService.editBoard(boardNum, boardDTO);
 
         return "redirect:/aboutUs/{boardNum}";
+    }
+
+    // 오늘어때 정보 삭제
+    @GetMapping("admin/aboutUs-delete/{boardNum}")
+    public String aboutUsDelete(@PathVariable Long boardNum) {
+
+        BoardDetailDTO boardDetailDTO = boardService.findOne_Board(boardNum);
+        boardService.deleteBoard(boardDetailDTO);
+
+        return "redirect:/aboutUs";
     }
 
 }

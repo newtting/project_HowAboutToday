@@ -35,7 +35,8 @@ public class NoticeController {
 
     // 공지사항 디테일 페이지
     @GetMapping("notice/{boardNum}")
-    public String noticeDetails(@LoginUser SessionDTO sessionDTO, @PathVariable Long boardNum, Model model){
+    public String noticeDetails(@PathVariable Long boardNum,
+                                @LoginUser SessionDTO sessionDTO, Model model){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -123,7 +124,7 @@ public class NoticeController {
     }
 
     // 공지사항 삭제
-    @GetMapping("admin/notice-delete")
+    @GetMapping("admin/notice-delete/{boardNum}")
     public String noticeDelete(@PathVariable Long boardNum) {
 
         BoardDetailDTO boardDetailDTO = boardService.findOne_Board(boardNum);
