@@ -133,10 +133,11 @@
                                         </div><!-- end dropdown-menu -->
                                     </div><!-- end notification-item -->
 
-                                    <!-- 로그아웃 버튼 -->
-                                    <div class="header-right-action hwt-btns">
-                                        <a href="/member/logout" class="theme-btn theme-btn-small hwt-btn-gray">로그아웃</a>
-                                    </div>
+
+                            <sec:authorize access="isAuthenticated()">
+                                <a th:href="@{/member/logout}" class="theme-btn theme-btn-small hwt-btn-gray"
+                                   sec:authorize="isAuthenticated()" >로그아웃</a>
+                            </sec:authorize>
 
                                 </div>
                             </th:block>

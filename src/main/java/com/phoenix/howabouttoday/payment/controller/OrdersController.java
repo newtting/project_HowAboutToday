@@ -32,7 +32,7 @@ public class OrdersController {
 
     /* 카드 -> 결제페이지 */
     @GetMapping("/payment")
-    public String cartView(@LoginUser SessionDTO sessionDTO, Model model, @RequestParam List<Long> cartNum, Principal principal){
+    public String paymentView(@LoginUser SessionDTO sessionDTO, Model model, @RequestParam List<Long> cartNum, Principal principal){
         /**
          * 객실 -> 결제 이동시 컨트롤러의 처리 순서
          * 1. 로그인 상태인가?(서큐리티로 체크)
@@ -56,7 +56,9 @@ public class OrdersController {
         List<OrdersDetailVO> infoList = orderService.getCartData(cartNum);
         Integer totalPrice = orderService.getTotalPrice(cartNum);   //얘를 따로 이렇게 하는 게 맞을까??
 
-        model.addAttribute("totalPrice", totalPrice);
+//        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("totalPrice", 50000);
+
         model.addAttribute("customer", customer);
         model.addAttribute("infoList", infoList);
         return "reserve/checkout";
