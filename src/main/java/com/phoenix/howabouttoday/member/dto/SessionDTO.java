@@ -1,7 +1,7 @@
 package com.phoenix.howabouttoday.member.dto;
 
-import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.member.entity.Role;
 import lombok.Data;
 import lombok.Getter;
 
@@ -21,7 +21,7 @@ public class SessionDTO implements Serializable { //세션 저장 클래스
 
     private String memberTel;
 
-    private Code memberCode;
+    private Role role;
 
     //Entity -> DTO
     public SessionDTO(Member member) {
@@ -30,7 +30,7 @@ public class SessionDTO implements Serializable { //세션 저장 클래스
         this.pwd = member.getPwd();
         this.nickname = member.getNickname();
         this.memberTel = member.getMemberTel();
-        this.memberCode = member.getMemberCode();
+        this.role = member.getRole();
 
     }
 }

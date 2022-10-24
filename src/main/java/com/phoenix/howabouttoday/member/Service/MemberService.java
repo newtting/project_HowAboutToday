@@ -42,7 +42,7 @@ public class MemberService {
                 .pwd(member.getPwd())
                 .nickname(member.getNickname())
                 .memberTel(member.getMemberTel())
-                .memberCode(member.getMemberCode())
+                .role(member.getRole())
                 .build();
     }
 
@@ -56,7 +56,7 @@ public class MemberService {
                 .pwd(member.getPwd())
                 .nickname(member.getNickname())
                 .memberTel(member.getMemberTel())
-                .memberCode(member.getMemberCode())
+                .role(member.getRole())
                 .build();
     }
 
@@ -69,7 +69,7 @@ public class MemberService {
                 .email(member.getEmail())
                 .nickname(member.getNickname())
                 .memberTel(member.getMemberTel())
-                .memberCode(member.getMemberCode())
+                .role(member.getRole())
                 .build();
 
         return customer;

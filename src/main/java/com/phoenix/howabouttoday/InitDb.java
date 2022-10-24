@@ -9,7 +9,7 @@ import com.phoenix.howabouttoday.board.entity.ReviewImage;
 import com.phoenix.howabouttoday.board.repository.*;
 import com.phoenix.howabouttoday.global.AccomCategory;
 import com.phoenix.howabouttoday.global.RegionType;
-import com.phoenix.howabouttoday.member.entity.Code;
+import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 
@@ -93,7 +93,7 @@ public class InitDb {
                     .memberOriginalFileName("Originl")
                     .memberSaveFileName("save")
                     .joinDate(LocalDate.of(2022,10,27))
-                    .memberCode(Code.MEMBER)
+                    .role(Role.MEMBER)
                     .build());
 
 
@@ -317,7 +317,7 @@ public class InitDb {
                     .memberOriginalFileName("Originl")
                     .memberSaveFileName("save1")
                     .joinDate(LocalDate.of(2022,9,27))
-                    .memberCode(Code.MEMBER)
+                    .role(Role.MEMBER)
                     .build());
 
             /**지역 등록 **/
@@ -598,7 +598,7 @@ public class InitDb {
                     .memberOriginalFileName("Originl")
                     .memberSaveFileName("save")
                     .joinDate(LocalDate.of(2021,9,27))
-                    .memberCode(Code.MEMBER)
+                    .role(Role.MEMBER)
                     .build());
         }
 
@@ -613,7 +613,7 @@ public class InitDb {
                     .memberOriginalFileName("Originl")
                     .memberSaveFileName("save")
                     .joinDate(LocalDate.now())
-                    .memberCode(Code.MEMBER)
+                    .role(Role.MEMBER)
                     .build());
 
 
