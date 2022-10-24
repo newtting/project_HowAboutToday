@@ -1,6 +1,7 @@
 package com.phoenix.howabouttoday.accom.service;
 
 
+import com.phoenix.howabouttoday.accom.dto.AccomDto;
 import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
@@ -9,10 +10,12 @@ import com.phoenix.howabouttoday.accom.repository.AccommodationImageRepository;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.accom.repository.RegionRepository;
 import lombok.Builder;
-import com.phoenix.howabouttoday.global.AccomCategory;
+
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -30,6 +33,19 @@ public class AccomodationService {
 
     private final RegionRepository regionRepository;
     private final AccommodationImageRepository accommodationImageRepository;
+
+    public Slice<AccomDto.ResponsePageDto> getAccomPageList(Pageable pageable,String category_name) {
+
+        Slice<Accommodation> page = accommodationRepository.findByAccomCategory_Name(category_name,pageable);
+
+        Slice<AccomDto.ResponsePageDto> accomPageList = page.map(accom -> new AccomDto.ResponsePageDto(accom));
+
+        return accomPageList;
+    }
+
+
+
+
 
     /*리스트 목록 조회*/
     public List<Accommodation> getAccommodationlist() {

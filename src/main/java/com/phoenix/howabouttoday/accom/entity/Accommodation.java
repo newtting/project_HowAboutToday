@@ -1,8 +1,8 @@
 package com.phoenix.howabouttoday.accom.entity;
 
 
-import com.phoenix.howabouttoday.global.AccomCategory;
-import com.phoenix.howabouttoday.global.AccomCategoryConverter;
+
+
 import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.*;
 
@@ -27,9 +27,14 @@ public class Accommodation {
     @Column(length = 50)
     private String accomTel;//숙소 전화번호
 
-    @Column(length = 50)
-    @Convert(converter = AccomCategoryConverter.class)
-    private AccomCategory accomCategory;//숙소 카테고리 번호
+//    @Column(length = 50)
+//    @Convert(converter = AccomCategoryConverter.class)
+//    private AccomCategory accomCategory;//숙소 카테고리 번호
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "accom_category_num")
+    private AccomCategory accomCategory;
+
 
     //    @OneToMany() 추후에 지역 카테고리 entity 만든 후에 매핑필요
 
@@ -68,6 +73,8 @@ public class Accommodation {
     //양방향 매핑을 위해 추가
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
     private List<Room> room = new ArrayList<>();    //이미지 fk를 위한 매핑
+
+
 
     @Builder
     public Accommodation(Long accomNum, String accomName, String accomTel, AccomCategory accomCategory, Region region, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange, LocalTime checkIn, LocalTime checkOut) {

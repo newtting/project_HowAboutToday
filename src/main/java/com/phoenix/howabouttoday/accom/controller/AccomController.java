@@ -1,9 +1,12 @@
 package com.phoenix.howabouttoday.accom.controller;
 
+import com.phoenix.howabouttoday.accom.dto.AccomCategoryDto;
+import com.phoenix.howabouttoday.accom.dto.AccomDto;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Facilities;
 import com.phoenix.howabouttoday.accom.entity.Facility;
+import com.phoenix.howabouttoday.accom.service.AccomCategoryService;
 import com.phoenix.howabouttoday.accom.service.AccomodationService;
 
 //import com.phoenix.howabouttoday.payment.AccomCategory;
@@ -18,14 +21,19 @@ import com.phoenix.howabouttoday.room.service.RoomService;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -35,6 +43,9 @@ public class AccomController {
     private final RoomService roomService;
     private final FacilitiesService facilitiesService;
 
+    private final AccomCategoryService accomCategoryService;
+
+
 //    public AccomController(AccomodationService accomodationService, RoomService roomService) {
 //        this.accomodationService = accomodationService;
 //        this.roomService = roomService;
@@ -43,13 +54,38 @@ public class AccomController {
     // 메인 화면
     @GetMapping(value = {"/", "home"})
     public String home(@LoginUser SessionDTO sessionDTO, Model model){
-
+    //가나다라
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
         return "home";
     }
+
+    @GetMapping("/accom/{category_name}")
+    public String readAccom(@PathVariable(required = false) String category_name,
+                            @PageableDefault(page = 0,size = 5,sort = "accomNum",direction = Sort.Direction.DESC)
+                            Pageable pageable,
+                            Model model) {
+        System.out.println("카테고리호출!!!! = " + category_name);
+        List<AccomCategoryDto.ResponseDto> categoryList = accomCategoryService.findAccomList();
+
+        model.addAttribute("categoryList",categoryList);
+        String viewName = accomCategoryService.getAccomViewName(category_name);
+        model.addAttribute("viewName",viewName);
+        Slice<AccomDto.ResponsePageDto> accomPageList = accommodationService.getAccomPageList(pageable,category_name);
+        model.addAttribute("categoryName",category_name);
+        model.addAttribute("accomPageList",accomPageList);
+
+
+
+        return "accom/hotel/hotel-list";
+
+
+
+
+    }
+
 
     // 숙소 리스트 출력
     @GetMapping("hotel-list")
