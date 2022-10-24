@@ -33,7 +33,7 @@ public class Member {
   private String memberTel;
 
   @Enumerated(EnumType.STRING)
-  private Code memberCode;
+  private Role role;
 
   private LocalDate joinDate;
   private LocalDate withdrawdate;
@@ -52,12 +52,12 @@ public class Member {
 //  private List<Event> eventList = new ArrayList<>();
 
   @Builder
-  public Member(String email, String pwd, String nickname, String memberTel, Code memberCode, LocalDate joinDate, LocalDate withdrawdate, String memberOriginalFileName, String memberSaveFileName) {
+  public Member(String email, String pwd, String nickname, String memberTel, Role role, LocalDate joinDate, LocalDate withdrawdate, String memberOriginalFileName, String memberSaveFileName) {
     this.email = email;
     this.pwd = pwd;
     this.nickname = nickname;
     this.memberTel = memberTel;
-    this.memberCode = memberCode;
+    this.role = role;
     this.joinDate = joinDate;
     this.withdrawdate = withdrawdate;
     this.memberOriginalFileName = memberOriginalFileName;
