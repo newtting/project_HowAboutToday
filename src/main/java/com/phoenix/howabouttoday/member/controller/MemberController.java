@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,12 +23,10 @@ public class MemberController {
     private final MemberService memberService;
 
 
-
     @GetMapping("/member/join")
     public String join() {
         return "home";
     }
-
 
 
     @PostMapping("/member/join")
@@ -43,11 +42,16 @@ public class MemberController {
         return "redirect:" + url;
     }
 
+//    @GetMapping("/loginProc")
+//    public String login(@RequestHeader("referer") String referer) {
+//        String url = referer.substring(21);
+//        System.out.println("aaa");
+//        return "/member/member-login";
+
     @GetMapping("/loginProc")
-    public String login(@RequestHeader("referer") String referer) {
-        String url = referer.substring(21);
-        System.out.println("aaa");
-        return "/member/member-login";
+    public String login() {
+        return "/home";
+
 
     }
 
