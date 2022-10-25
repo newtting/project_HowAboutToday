@@ -246,6 +246,7 @@ public class InitDb {
                     .ordersPrice(room.getPrice())
                     .ordersType("card")
                     .ordersStatus("결제완료")
+                    .impUid("abc")
                     .member(member)
                     .build();
 
@@ -530,6 +531,7 @@ public class InitDb {
                     .ordersType("card")
                     .ordersStatus("결제완료")
                     .member(member)
+                    .impUid("def")
                     .build();
 
             OrdersDetail ordersDetail = OrdersDetail.builder()

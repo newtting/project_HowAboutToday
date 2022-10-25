@@ -150,7 +150,6 @@
                                 <div class="table-content px-2">
                                     <h3 class="title text-color-10 text-lg-right" th:text="#{checkout_monetary_unit(${#numbers.formatInteger(ordersDTO.getOrdersPrice(), 0, 'COMMA')})}">$240</h3>
                                     <input type="hidden" id="totalPrice" th:value="${ordersDTO.getOrdersPrice()}" >
-
                                 </div>
                             </td>
                         </tr>
@@ -161,7 +160,7 @@
                         <div class="section-block mt-3"></div>
                         <div class="btn-box text-center pt-4">
                             <a href="/user-dashboard-booking" class="theme-btn" th:text="#{payment_details_book_complete}">Book Complete</a>
-                            <a th:style="${'cursor:pointer;'}" th:onclick="|javascript:cancelConfirm('${ordersDTO.ordersNum}')|" class="theme-btn border-0 text-white bg-7" th:text="#{payment_details_book_cancel}">Cancel your booking</a>
+                            <a th:style="${'cursor:pointer;'}" th:onclick="|javascript:cancelConfirm()|" class="theme-btn border-0 text-white bg-7" th:text="#{payment_details_book_cancel}">Cancel your booking</a>
                             <input type="hidden" id="merchantId" th:value="${ordersDTO.getOrdersMerchantId()}" >
                         </div>
                     </div>

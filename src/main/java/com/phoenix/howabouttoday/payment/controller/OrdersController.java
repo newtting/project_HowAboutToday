@@ -1,7 +1,5 @@
 /**
- *
  * 결제와 관련된 처리들을 모아놓은 컨트롤러
- *
  */
 
 package com.phoenix.howabouttoday.payment.controller;
@@ -13,7 +11,7 @@ import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.payment.dto.OrdersDeleteDTO;
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailVO;
-import com.phoenix.howabouttoday.payment.dto.OrdersRequestDTO;
+import com.phoenix.howabouttoday.payment.dto.OrdersCreateDTO;
 import com.phoenix.howabouttoday.payment.service.OrdersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -23,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Map;
 
 @RequestMapping("/orders")
 @RequiredArgsConstructor
@@ -36,7 +33,8 @@ public class OrdersController {
 
     /* 카드 -> 결제페이지 */
     @GetMapping("/payment")
-    public String paymentView(@LoginUser SessionDTO sessionDTO, Model model, @RequestParam List<Long> cartNum, Principal principal){
+    public String paymentView(@LoginUser SessionDTO sessionDTO, Model model, @RequestParam List<Long> cartNum, Principal principal) {
+
         /**
          * 객실 -> 결제 이동시 컨트롤러의 처리 순서
          * 1. 로그인 상태인가?(서큐리티로 체크)
@@ -48,10 +46,9 @@ public class OrdersController {
          * - 회원과 룸은 DTO로 받는 정보로, 꼭 필요한 정보만 있으면 된다.
          */
 
-        if(sessionDTO != null) {
+        if (sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
-        }
-        else{
+        } else {
             sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
         }
 
@@ -69,7 +66,7 @@ public class OrdersController {
     }
 
     @PostMapping("checkout")
-    public String postCheckout(){
+    public String postCheckout() {
         return "reserve/checkout";
     }
 
@@ -85,11 +82,9 @@ public class OrdersController {
         orderService.cancelOrders(data);
 
 
-
 //        orderService.cancelOrders(ordersNum);
         return data;
     }
-
 
 
     /* 결제 get방식 요청을 post리다이렉트 */
@@ -100,16 +95,16 @@ public class OrdersController {
 
     /* 결제 성공 */
     @PostMapping("/paymentSuccess")
-    public String postUserPaymentSuccess(@LoginUser SessionDTO sessionDTO, OrdersRequestDTO ordersRequestDTO) {
+    public String postUserPaymentSuccess(@LoginUser SessionDTO sessionDTO, OrdersCreateDTO ordersRequestDTO) {
 
 
+        /** 해결 완료! **/
         /** 결제 완료 요청이 csrf로 인해서 막혔다. 정확히 뭐가 문제인지는 파악해보자. **/
         /** 이것만 제대로 되면 결제 취소도 가능할듯. **/
 
-        if(sessionDTO != null) {
+        if (sessionDTO != null) {
 //            model.addAttribute("sessionDTO", sessionDTO);
-        }
-        else{
+        } else {
             sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
         }
 

@@ -95,7 +95,6 @@ public class PaymentHistoryController {
 
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
         OrdersDTO ordersDTO = paymentHistoryService.getOrdersDTO(ordersNum);
-        ordersDTO.setOrdersMerchantId("18273982");
         model.addAttribute("customer", customer);
         model.addAttribute("ordersDTO", ordersDTO);
         return "reserve/bookingDetails";
