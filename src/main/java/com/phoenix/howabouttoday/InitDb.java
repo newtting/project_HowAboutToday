@@ -9,7 +9,7 @@ import com.phoenix.howabouttoday.board.entity.ReviewImage;
 import com.phoenix.howabouttoday.board.repository.*;
 
 import com.phoenix.howabouttoday.global.RegionType;
-import com.phoenix.howabouttoday.member.entity.Code;
+import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 
@@ -29,6 +29,7 @@ import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.room.entity.*;
 import com.phoenix.howabouttoday.room.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -50,8 +51,8 @@ public class InitDb {
     public void init(){
         initService.dbInit1();
         initService.dbInit2();
-    }
 
+    }
 
     @Component
     @Transactional
@@ -95,7 +96,7 @@ public class InitDb {
                     .memberOriginalFileName("Originl")
                     .memberSaveFileName("save")
                     .joinDate(LocalDate.of(2022,10,27))
-                    .memberCode(Code.MEMBER)
+                    .role(Role.MEMBER)
                     .build());
 
 
@@ -154,7 +155,7 @@ public class InitDb {
                     .roomName("너울펜션 스위트룸")
                     .defaultGuest(2)
                     .maxGuest(10)
-                    .price(50000)
+                    .price(50)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -163,7 +164,7 @@ public class InitDb {
                     .roomName("너울펜션 디럭스룸")
                     .defaultGuest(2)
                     .maxGuest(10)
-                    .price(70000)
+                    .price(70)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -257,6 +258,7 @@ public class InitDb {
                     .ordersPrice(room.getPrice())
                     .ordersType("card")
                     .ordersStatus("결제완료")
+                    .impUid("abc")
                     .member(member)
                     .build();
 
@@ -329,7 +331,7 @@ public class InitDb {
                     .memberOriginalFileName("Originl")
                     .memberSaveFileName("save1")
                     .joinDate(LocalDate.of(2022,9,27))
-                    .memberCode(Code.MEMBER)
+                    .role(Role.MEMBER)
                     .build());
 
             /**지역 등록 **/
@@ -567,6 +569,7 @@ public class InitDb {
                     .ordersType("card")
                     .ordersStatus("결제완료")
                     .member(member)
+                    .impUid("def")
                     .build();
 
             OrdersDetail ordersDetail = OrdersDetail.builder()
@@ -636,7 +639,7 @@ public class InitDb {
                     .memberOriginalFileName("Originl")
                     .memberSaveFileName("save")
                     .joinDate(LocalDate.of(2021,9,27))
-                    .memberCode(Code.MEMBER)
+                    .role(Role.MEMBER)
                     .build());
         }
 
@@ -651,7 +654,7 @@ public class InitDb {
                     .memberOriginalFileName("Originl")
                     .memberSaveFileName("save")
                     .joinDate(LocalDate.now())
-                    .memberCode(Code.MEMBER)
+                    .role(Role.MEMBER)
                     .build());
 
 
