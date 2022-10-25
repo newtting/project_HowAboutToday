@@ -55,9 +55,9 @@ public class PaymentHistoryController {
 
 //        MemberDTO customer = memberService.getCustomer(2L); //여긴 페이징 처리 테스트 하느라 고정해둠
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
-//        MemberDTO customer = memberService.getAuthUser(principal.getName());s
+//        MemberDTO customer = memberService.getAuthUser(principal.getName());
 
-        Page<OrdersDTO> ordersDTOList = paymentHistoryService.pagingAllByMember(PageRequest.of(curPage - 1, 5, Sort.Direction.DESC, "ordersDate"), customer.getNum());
+        Page<OrdersDTO> ordersDTOList = paymentHistoryService.pagingAllByMember(PageRequest.of(curPage - 1, 5, Sort.by("ordersNum").descending()), customer.getNum());
 
 //        Page<OrdersDTO> ordersDTOList = orderService.pagingAll(PageRequest.of(curPage - 1, 5, Sort.Direction.DESC, "ordersDate"));
 

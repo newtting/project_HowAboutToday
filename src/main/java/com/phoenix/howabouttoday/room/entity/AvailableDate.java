@@ -16,7 +16,7 @@ public class AvailableDate {
     private Long availableDateId;
 
     @Column
-    private LocalDate date;
+    private LocalDate oneDay;
 
 //    // 양방향
 //    @OneToMany(mappedBy = "availableDate", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -28,7 +28,7 @@ public class AvailableDate {
 
     @Builder
     public AvailableDate(LocalDate date,Room room){
-        this.date=date;
+        this.oneDay =date;
         this.room=room;
     }
 }

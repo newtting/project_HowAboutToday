@@ -25,6 +25,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -261,10 +262,10 @@ class AccomodationServiceTest {
         Orders newOrder = Orders.builder()
                 .ordersTel("01045020614")
                 .ordersName("김영운")
-                .ordersDate(LocalDate.now())
+                .ordersDate(LocalDateTime.now())
                 .ordersPrice(45000+90000)
                 .ordersType("카드")
-                .ordersStatus("이용 전")
+                .ordersStatus("결제완료")
                 .build();
 
 //        newOrder.getorder().add(cart);
@@ -352,7 +353,7 @@ class AccomodationServiceTest {
         Orders order1 = Orders.builder()
                 .ordersTel(member.getMemberTel())
                 .ordersName(member.getNickname())
-                .ordersDate(LocalDate.now())
+                .ordersDate(LocalDateTime.now())
                 .ordersPrice(45555)
                 .ordersType("card")
                 .ordersStatus("결제완료")
@@ -364,7 +365,7 @@ class AccomodationServiceTest {
         Orders order2 = Orders.builder()
                 .ordersTel(member.getMemberTel())
                 .ordersName(member.getNickname())
-                .ordersDate(LocalDate.now())
+                .ordersDate(LocalDateTime.now())
                 .ordersPrice(111111)
                 .ordersType("card")
                 .ordersStatus("결제완료")

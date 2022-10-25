@@ -17,6 +17,7 @@ import com.phoenix.howabouttoday.room.entity.Room;
 import com.phoenix.howabouttoday.room.entity.RoomImage;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -174,10 +175,10 @@ public class ObjectGenerator {
         Orders newOrder = Orders.builder()
                 .ordersTel("01045020614")
                 .ordersName("김영운")
-                .ordersDate(LocalDate.now())
+                .ordersDate(LocalDateTime.now())
                 .ordersPrice(45000+90000)
                 .ordersType("카드")
-                .ordersStatus("이용 전")
+                .ordersStatus("결제완료")
                 .build();
 
         return newOrder;

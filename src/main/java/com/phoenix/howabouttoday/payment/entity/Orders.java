@@ -15,6 +15,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class Orders {
     private String ordersName;
 
     @Column(length = 50)
-    private LocalDate ordersDate;
+    private LocalDateTime ordersDate;
 
     private Integer ordersPrice;
 
@@ -58,8 +59,14 @@ public class Orders {
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     private List<Reservation> reservation = new ArrayList<>(); //이미지 fk를 위한 매핑
 
+
+    public void changeToReadyState(){
+        this.ordersStatus = "취소완료";
+    }
+
+
     @Builder
-    public Orders(Member member, String ordersTel, String ordersName, LocalDate ordersDate, Integer ordersPrice, String ordersType, String ordersStatus, String impUid, String merchantId) {
+    public Orders(Member member, String ordersTel, String ordersName, LocalDateTime ordersDate, Integer ordersPrice, String ordersType, String ordersStatus, String impUid, String merchantId) {
         this.member = member;
         this.ordersTel = ordersTel;
         this.ordersName = ordersName;

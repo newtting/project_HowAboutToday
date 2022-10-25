@@ -26,6 +26,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -81,7 +82,7 @@ public class OrdersService {
                 .member(member)
                 .ordersName(ordersRequestDTO.getName())
                 .ordersTel(ordersRequestDTO.getTel())
-                .ordersDate(LocalDate.now())
+                .ordersDate(LocalDateTime.now())
                 .ordersPrice(getTotalPrice(cartList
                         .stream()
                         .map(cart -> cart.getReserveNum())
@@ -140,19 +141,13 @@ public class OrdersService {
 
             Orders orders = ordersRepository.findById(ordersNum).orElseThrow(()->new IllegalArgumentException("해당 Orders가 없습니다."));
             orders.getReservation()
-                    .forEach(orderDetail -> orderDetail.getRoom().getAvailableDate()
-                        .forEach(date -> {  //date가 하나의 availableDate, 즉 하루 날짜
-                            LocalDate startDate = orderDetail.getReserveUseStartDate().minusDays(1);
-                            LocalDate endDate = orderDetail.getReserveUseEndDate();
-                            if (date.getDate().isAfter(startDate) && date.getDate().isBefore(endDate)){
-                                availableDateRepository.deleteById(date.getAvailableDateId());
-                                System.out.println("지우는 날짜 pk값: " +  date.getAvailableDateId());
-                                //지우는 값은 맞는데 지워지지 않는다.. 이유가 뭘까!
-                                System.out.println("지우는 날짜: " +  date.getDate());
-                            }
-                        })
-                    );
-            //ordersRepository.deleteById(ordersNum);
+                    .forEach(orderDetail -> {
+                        LocalDate startDate = orderDetail.getReserveUseStartDate();
+                        LocalDate endDate = orderDetail.getReserveUseEndDate().minusDays(1);
+                        availableDateRepository.deleteAllByRoom_RoomNumAndOneDayBetween(orderDetail.getRoom().getRoomNum(), startDate, endDate);
+                        System.out.println("췍");
+                    });
+            orders.changeToReadyState();
         }
     }
     public Long cancelOrders(OrdersDeleteDTO ordersDeleteDTO){

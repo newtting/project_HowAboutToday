@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.TextStyle;
 import java.util.List;
 import java.util.Locale;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 public class OrdersDTO {
 
     private Long ordersNum;         //pk값
-    private LocalDate ordersDate;
+    private LocalDateTime ordersDate;
     private Integer ordersPrice;
     private String ordersTel;
     private String ordersName;
