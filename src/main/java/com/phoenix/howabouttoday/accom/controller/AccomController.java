@@ -4,6 +4,7 @@ import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Facilities;
 import com.phoenix.howabouttoday.accom.entity.Facility;
+import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.accom.service.AccomodationService;
 
 //import com.phoenix.howabouttoday.payment.AccomCategory;
@@ -11,6 +12,7 @@ import com.phoenix.howabouttoday.accom.service.AccomodationService;
 
 import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
+import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.room.dto.RoomImageDTO;
 import com.phoenix.howabouttoday.room.dto.RoomListDTO;
 import com.phoenix.howabouttoday.accom.service.FacilitiesService;
@@ -24,6 +26,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -258,6 +261,7 @@ public class AccomController {
     }
     @PostMapping("guestHouse-Hanok-single")
     public String postGuestHouseResult(){ return "accom/hotel/guestHouse-Hanok-single";}
+
 
 
 }

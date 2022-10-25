@@ -33,12 +33,21 @@ public class Accommodation {
 
     //    @OneToMany() 추후에 지역 카테고리 entity 만든 후에 매핑필요
 
+
+
     @ManyToOne
     @JoinColumn(name = "region_num")
     private Region region; //숙소 지역 번호
 
     @Column(length = 200)
-    private String accomAddress;//숙소 주소
+    private String accomAddress1;// 예: 서울시
+
+    @Column(length = 200)
+    private String accomAddress2; // 예: 관악구
+
+    @Column(length = 200)
+    private String accomAddress3; // 예: 나머지 도로명주소
+
 
     @Column(precision = 1, scale = 2)
     private Double accomRating;//숙소 평점
@@ -70,13 +79,15 @@ public class Accommodation {
     private List<Room> room = new ArrayList<>();    //이미지 fk를 위한 매핑
 
     @Builder
-    public Accommodation(Long accomNum, String accomName, String accomTel, AccomCategory accomCategory, Region region, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange, LocalTime checkIn, LocalTime checkOut) {
+    public Accommodation(Long accomNum, String accomName, String accomTel, AccomCategory accomCategory, Region region, String accomAddress1,String accomAddress2,String accomAddress3, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange, LocalTime checkIn, LocalTime checkOut) {
         this.accomNum = accomNum;
         this.accomName = accomName;
         this.accomTel = accomTel;
         this.accomCategory = accomCategory;
         this.region = region;
-        this.accomAddress = accomAddress;
+        this.accomAddress1 = accomAddress1;
+        this.accomAddress2 = accomAddress2;
+        this.accomAddress3 = accomAddress3;
         this.accomRating = accomRating;
         this.accomWishlistCount = accomWishlistCount;
         this.totalReviewNum = totalReviewNum;

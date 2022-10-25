@@ -36,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
         auth.userDetailsService(customUserDetailsService).passwordEncoder(encoder());
     }
 
@@ -68,6 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //인증되지 않은 모든 요청을
         http
+                .csrf().disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and()
@@ -78,6 +80,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/user-dashboard-wishlist").authenticated()
 				.antMatchers("/user-dashboard-booking").authenticated()
                 .antMatchers("/user-dashboard-setting").authenticated()
+                .antMatchers("/rest/wish/").authenticated()
                 .antMatchers("/**" ).permitAll()
                 .and()
                 .formLogin()

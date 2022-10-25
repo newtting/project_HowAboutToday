@@ -99,7 +99,7 @@ public class AccomodationService {
         return AccommodationDTO.builder()
                 .accomName(accommodation.getAccomName())
                 .accomTel(accommodation.getAccomTel())
-                .accomAddress(accommodation.getAccomAddress())
+//                .accomAddress(accommodation.getAccomAddress())
                 .accomRating(accommodation.getAccomRating())
                 .accomWishListCount(accommodation.getAccomWishlistCount())
                 .totalreviewNum(accommodation.getTotalReviewNum())

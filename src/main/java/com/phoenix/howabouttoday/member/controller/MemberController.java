@@ -1,17 +1,17 @@
 package com.phoenix.howabouttoday.member.controller;
 
 
+import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
+import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
 public class MemberController {
 
     private final MemberService memberService;
-
+    private final MemberRepository memberRepository;
 
     @GetMapping("/member/join")
     public String join() {
