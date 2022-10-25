@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.accom.dto;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.phoenix.howabouttoday.accom.entity.AccomCategory;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
@@ -13,6 +14,7 @@ import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class AccomDto {
 
@@ -46,7 +48,7 @@ public class AccomDto {
             this.accomRating = accommodation.getAccomRating();
             this.totalReviewNum = accommodation.getTotalReviewNum();
             this.accomNum = accommodation.getAccomNum();
-//            this.accommodationImage = accommodation.getAccommodationImage().get(0);
+            this.accommodationImage = accommodation.getAccommodationImage().get(0);
             this.lowPrice = accommodation.getLowPrice();
         }
     }

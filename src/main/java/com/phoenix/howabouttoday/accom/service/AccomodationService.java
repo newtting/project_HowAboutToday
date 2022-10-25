@@ -44,59 +44,11 @@ public class AccomodationService {
     }
 
 
-
-
-
     /*리스트 목록 조회*/
     public List<Accommodation> getAccommodationlist() {
         return accommodationRepository.findAll();
     }
 
-
-    /*public void saveData(){
-        accommodationRepository.save(createAccom());
-    }
-    public Accommodation createAccom() {
-        Optional<Region> byId = regionRepository.findById(1L);//1L은 집에서 임의의 데이터를 입력할때 마다 다르기 때문에 확인 해줘야함.
-        Region region = byId.get();
-        log.info("Region",region.getRegionNum());
-
-        Optional<Region> byId = regionRepository.findById(1L);//1L은 집에서 임의의 데이터를 입력할때 마다 다르기 때문에 확인 해줘야함.
-        Region region = byId.get();
-        log.info("Region",region.getRegionNum());
-
-        Accommodation accommodation = Accommodation.builder()
-                .accomName("보령(대천) 너울펜션")
-                .accomTel("050350577805")
-                .accomCategory(AccomCategory.PENSION)
-                .region(region)
-                .accomAddress("충청남도 보령시 해수욕장13길 10-20")
-                .accomRating(4.4)
-                .accomWishlistCount(110)
-                .totalReviewNum(1103)
-                .latitude(36.3196)
-                .longitude(126.5092)
-                .lowPrice(45000)
-                .reserveRange(60)
-                .build();
-
-        AccomImage image = AccomImage.builder()
-                .accomOriginFilename("image0.jpg")
-                .accomSaveFilename("image0.jpg")
-                .accommodation(accommodation)
-                .build();
-        return accommodation;
-    }
-
-    @Transactional
-    public List<Accommodation> searchResults(String keyword) {
-        List<Accommodation> accommodations = accommodationRepository.findByAccomNameContaining(keyword);
-        List<AccommodationDTO> accomDtoList = new ArrayList<>();
-
-        if (accommodations.isEmpty()) return accommodations;
-
-        return accommodations;
-    }*/
     @Transactional
     public List<Accommodation> searchResults(String keyword) {
         List<Accommodation> accommodations = accommodationRepository.findByAccomNameContaining(keyword);
@@ -136,6 +88,11 @@ public class AccomodationService {
 
         return accommodation;
     }
+
+//    public List<Accommodation> searchAccommodation() {
+//        List<Accommodation> accommodations = accommodationRepository.getAccommodationByNum();
+//        return accommodations;
+//    }
 
 }
 

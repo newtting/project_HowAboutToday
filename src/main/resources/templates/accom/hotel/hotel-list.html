@@ -578,9 +578,7 @@
 
                     <div class="card-img" th:id="|anchor${i.count}|">
                         <a class="d-block" th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}">
-
-<!--                            <img th:src="@{${'/data/images/' + accommodation.getAccommodationImage().get(0).getAccomOriginFilename()}}" alt="hotel-img">-->
-
+                            <img th:src="|@{/data/images/{accomImage}(accomImage=${accommodation.accommodationImage.accomOriginFilename})}|" alt="hotel-img">
                         </a>
                         <a th:href="|javascript:void(0)|" th:onclick="saveWish([[${accommodation.getAccomNum()}]])">
                         <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist" id="wishList">
@@ -617,8 +615,6 @@
                     <a th:href="|@{/accom/{category_name}/(category_name=${categoryName},size=${accomPageList.size+5})}|">
                     <button type="button" class="theme-btn"><i class="la la-refresh mr-1"></i>Load More</button>
                     </a>
-                    <p class="font-size-13 pt-2">Showing 1 - 6 of 2224 Hotels</p>
-
                 </div><!-- end btn-box -->
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->
@@ -911,7 +907,6 @@
 <!--</html>-->
     <script>
 
-
         $(document).ready(function (){
 
            document.getElementById("accomAnchor").click();
@@ -940,10 +935,9 @@
 
 
 
-
-
-
     </script>
+
+
 </th:block>
 
 </html>

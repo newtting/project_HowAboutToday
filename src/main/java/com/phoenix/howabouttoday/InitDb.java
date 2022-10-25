@@ -358,7 +358,7 @@ public class InitDb {
             Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
                     .accomName("서울 아폴로 게스트하우스")
                     .accomTel("050350521568")
-                    .accomCategory(motel)
+                    .accomCategory(penssion)
                     .region(region)
                     .accomAddress("서울특별시 영등포구 영등포로19길 7-1")
                     .accomRating(5.0)
@@ -448,8 +448,6 @@ public class InitDb {
                     .accommodation(accommodation)
                     .build());
 
-
-
             accommodationImageRepository.save( AccomImage.builder()
                     .accomOriginFilename("image5.jpg")
                     .accomSaveFilename("image1.jpg")
@@ -511,6 +509,8 @@ public class InitDb {
 
             for (int i=0; i < 100; i++) {
 
+
+
                 Accommodation build = Accommodation.builder()
                         .accomName("보령(대천) 너울펜션" + i)
                         .accomTel("050350577805")
@@ -522,12 +522,21 @@ public class InitDb {
                         .totalReviewNum(1103)
                         .latitude(36.3196)
                         .longitude(126.5092)
-                        .lowPrice(45000)
+                        .lowPrice(i+(500))
                         .reserveRange(60)
                         .checkIn(LocalTime.of(15, 0))
                         .checkOut(LocalTime.of(11, 0))
                         .build();
+
                 Accommodation save = accommodationRepository.save(build);
+
+                AccomImage image = accommodationImageRepository.save(AccomImage.builder()
+                        .accomOriginFilename("image" + i + ".jpg")
+                        .accomSaveFilename("image4.jpg")
+                        .accommodation(save)
+                        .build());
+
+
             }
 //
 //                WishList build1 = WishList.builder()
