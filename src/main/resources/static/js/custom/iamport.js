@@ -82,8 +82,9 @@ const runCancel = () => {
             xhr.setRequestHeader(header, token);
         },
     }).done((response) => {
-        alert(response.merchant_uid);
-        alert("성공")
+        // alert(response.merchant_uid);
+        alert("예약을 취소했습니다.")
+        window.location.href = '/user-dashboard-booking';
     }).fail(function (error) {
         alert("실패")
         alert(JSON.stringify(error));

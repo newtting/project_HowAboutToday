@@ -46,7 +46,7 @@ public class OrdersDetailVO {
         this.accomName = cart.getRoom().getAccommodation().getAccomName();
         this.accomRegion = cart.getRoom().getAccommodation().getRegion().getRegion().getValue();
         this.orderDate = LocalDate.now().toString();
-        this.usePeriod = String.valueOf(period.getDays());
+        this.usePeriod = String.valueOf(period.getMonths() * 30 + period.getDays());
         this.startDate = cart.getReserveUseStartDate().toString();
         this.endDate = cart.getReserveUseEndDate().toString();
         this.startWeek = startDay;
@@ -68,7 +68,7 @@ public class OrdersDetailVO {
         this.accomName = ordersDetail.getRoom().getAccommodation().getAccomName();
         this.accomRegion = ordersDetail.getRoom().getAccommodation().getRegion().getRegion().getValue();
         this.orderDate = LocalDate.now().toString();
-        this.usePeriod = String.valueOf(period.getDays());
+        this.usePeriod = String.valueOf(period.getMonths() * 30 + period.getDays());
         this.startDate = ordersDetail.getReserveUseStartDate().toString();
         this.endDate = ordersDetail.getReserveUseEndDate().toString();
         this.startWeek = startDay;

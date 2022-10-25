@@ -78,14 +78,10 @@ public class OrdersController {
 
         System.out.println("잘 들어오니?");
 
-        System.out.println(orderService.getToken());
-        orderService.cancelOrders(data);
-
-
-//        orderService.cancelOrders(ordersNum);
+        Long cancelOrdersNum = orderService.cancelOrders(data);
+        orderService.deleteOrders(cancelOrdersNum);
         return data;
     }
-
 
     /* 결제 get방식 요청을 post리다이렉트 */
     @GetMapping("/paymentSuccess")
