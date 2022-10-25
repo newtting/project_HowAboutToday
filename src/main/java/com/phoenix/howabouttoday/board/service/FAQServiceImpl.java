@@ -87,7 +87,7 @@ public class FAQServiceImpl implements FAQService {
     @Transactional
     public void deleteFAQ(BoardDetailDTO boardDetailDTO) {
 
-        Board board = boardRepository.findById(boardDetailDTO.getBoardNum()).orElse(null);
+        Board board = boardRepository.findById(boardDetailDTO.getBoardNum()).orElse(null);//
         boardRepository.delete(board);
     }
 }
