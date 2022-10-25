@@ -301,9 +301,10 @@
         상단 객실 이미지 시작
     ================================= -->
 <section class="room-detail-bread">
-    <div class="full-width-slider carousel-action" th:each="roomImageDTO : ${roomDetailDTO.roomImageList}">
+    <div class="full-width-slider carousel-action" th:each="roomImageDTO : ${roomDetailDTO?.roomImageList}">
         <div class="full-width-slide-item">
-            <img th:src="/${roomImageDTO.roomNum/${roomImageDTO.roomSaveFileName}" alt="">
+            <img th:src="|/data/images/${roomImageDTO.roomSaveFileName}|" alt="">
+
         </div><!-- end full-width-slide-item -->
     </div><!-- end full-width-slider -->
 </section><!-- end room-detail-bread -->
@@ -335,13 +336,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
+                    <form action="/orders/payment" method="get" id="roomForm">
                     <div class="single-content-wrap padding-top-60px">
                         <div id="description" class="page-scroll">
                             <div class="single-content-item pb-4">
-                                <h3 class="title font-size-26" th:text="${roomDetailDTO.roomName}">방 이름</h3>
+                                <h3 class="title font-size-26" th:text="${roomDetailDTO?.roomName}">방 이름</h3>
                                 <p class="pt-2">
-                                    <span class="badge badge-warning text-white font-size-16" th:text="${roomDetailDTO.roomRating}">4.6</span>
-                                    <span th:text="|(${roomDetailDTO.roomReviewNum})|">(4,209개의 리뷰)</span>
+                                    <span class="badge badge-warning text-white font-size-16" th:text="${roomDetailDTO?.roomRating}">4.6</span>
+                                    <span th:text="|(${roomDetailDTO?.roomReviewNum})|">(4,209개의 리뷰)</span>
                                 </p>
                             </div><!-- end single-content-item -->
 
@@ -707,6 +709,7 @@
                             </div><!-- end single-content-item -->
                         </div><!-- end review-box -->
                     </div><!-- end single-content-wrap -->
+                    </form>
                 </div><!-- end col-lg-8 -->
 
                 <!-- 오른쪽 네비바 -->
@@ -750,7 +753,7 @@
                             </div><!-- end sidebar-widget-item -->
                             <div class="btn-box">
                                 <a th:href="|javascript:void(0)|" id="cart-button" class="theme-btn hwt-btn-gray text-center w-100 mb-2 "><i class="la la-shopping-cart mr-2 font-size-18"></i>카트 추가하기</a>
-                                <a href="cart.html" class="theme-btn hwt-btn-gray text-center w-100 mb-2">바로 예약</a>
+                                <a th:href="|javascript:void(0)|" id="checkout-button" th:Onclick="roomSubmit()" class="theme-btn hwt-btn-gray text-center w-100 mb-2">바로 예약</a>
 
                             </div>
                         </div><!-- end sidebar-widget -->
@@ -1181,6 +1184,26 @@
                 alert(JSON.stringify(error));
             });
         });
+
+        $("#checkout-button").click(function(){
+
+            let roomNum = $("#roomNum").val();
+            let checkDate = $("#checkDate").val();
+            let adultQty = $("#adult-qty").val();
+            let childQty = $("#child-qty").val();
+
+            cartForm = JSON.stringify({
+                // check_in: check_in,
+                // check_out: check_out,
+                roomNum : roomNum,
+                checkDate : checkDate,
+                adultQty: adultQty,
+                childQty: childQty,
+            });
+
+<!--        const successForm = document.querySelector("form[name='myForm']");-->
+
+<!--        successForm.submit();-->
 
     </script>
 </th:block>

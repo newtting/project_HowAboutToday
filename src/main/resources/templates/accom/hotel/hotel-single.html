@@ -381,7 +381,7 @@
                                             <a th:href="room-details"><img th:src="${imageList.getRoomSaveFileName()}" alt=""></a>
                                         </div>
                                         <div class="cabin-type-detail">
-                                            <h3 class="title"><a th:href="room-details" th:text="${roomList.roomName}">Standard Family room</a></h3>
+                                            <h3 class="title"><a th:href="@{/room-details(roomNum=${roomList.roomNum})}" th:text="${roomList.roomName}">Standard Family room</a></h3>
                                             <div class="row padding-top-20px">
                                                     <div class="col-lg-6 responsive-column">
                                                         <div class="single-tour-feature d-flex align-items-center mb-3">
@@ -417,29 +417,6 @@
                                                         </div>
                                                     </div><!-- end col-lg-6 -->
                                                 </div><!-- end row -->
-                                                <div class="room-photos">
-                                                    <a class="btn theme-btn-hover-gray" data-src="/images/img1.jpg"
-                                                       data-fancybox="gallery"
-                                                       data-caption="Showing image - 01"
-                                                       data-speed="700">
-                                                        <i class="la la-photo mr-2"></i>Room Photos
-                                                    </a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="/images/img2.jpg"
-                                                       data-caption="Showing image - 02"
-                                                       data-speed="700"></a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="/images/img3.jpg"
-                                                       data-caption="Showing image - 03"
-                                                       data-speed="700"></a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="/images/img4.jpg"
-                                                       data-caption="Showing image - 04"
-                                                       data-speed="700"></a>
-                                                </div>
                                             </div>
                                             <div class="cabin-price">
                                                 <p class="text-uppercase font-size-14">1박<strong
@@ -778,7 +755,7 @@
                                        class="theme-btn hwt-btn-gray text-center w-100 theme-btn-transparent"><i
                                             class="la la-calendar mr-2"></i>예약 날짜 조회</button>
                                     <hr/>
-                                    <a th:href="/user-dashboard-wishlist"
+                                    <a href="/user-dashboard-wishlist"
                                        class="theme-btn hwt-btn-gray text-center w-100 theme-btn-transparent"><i
                                             class="la la-heart-o mr-2"></i>찜 추가하기</a>
                                 </div>

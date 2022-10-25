@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class RoomController {
     private final RoomService roomService;
 
     @GetMapping("room-details")
-    public String getRoomDetails(@LoginUser SessionDTO sessionDTO, Model model, Long roomNum){
+    public String getRoomDetails(@LoginUser SessionDTO sessionDTO, Model model, @RequestParam(value="roomNum",required=false) Long roomNum){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
