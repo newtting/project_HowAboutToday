@@ -103,7 +103,7 @@ public class InitDb {
             /**지역 등록 **/
             Region region = regionRepository.save(Region.builder()
                     .region(RegionType.SEOUL)
-                    .regionParentNum(RegionType.SEOUL)
+//                    .regionParentNum(RegionType.SEOUL)
                     .build());
 
             /** 카테고리 등록 **/
@@ -140,6 +140,7 @@ public class InitDb {
                     .faciltiesOriginalFileName("image5.jpg")
                     .faciltiesSaveFilename("image7.jpg")
                     .build());
+
 
             /** 숙소이미지 등록 **/
             accommodationImageRepository.save( AccomImage.builder()
@@ -510,8 +511,6 @@ public class InitDb {
 //                    .build());
 
             for (int i=0; i < 100; i++) {
-
-
 
                 Accommodation build = Accommodation.builder()
                         .accomName("보령(대천) 너울펜션" + i)

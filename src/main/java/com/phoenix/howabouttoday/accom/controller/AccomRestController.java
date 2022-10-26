@@ -30,10 +30,9 @@ public class AccomRestController {
 
     @GetMapping("/{category_name}")
     public Slice<AccomDto.ResponsePageDto> accommodations(@PathVariable(required = false) String category_name,
-                                               @PageableDefault(page = 0,size = 5,sort = "accomNum",direction = Sort.Direction.DESC) Pageable pageable) {
+                                                          @PageableDefault(page = 0,size = 5,sort = "accomNum",direction = Sort.Direction.DESC) Pageable pageable) {
 
         return accomodationService.getAccomPageList(pageable,category_name);
     }
-
 
 }
