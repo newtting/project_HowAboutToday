@@ -8,6 +8,7 @@ import com.phoenix.howabouttoday.board.entity.Review;
 import com.phoenix.howabouttoday.board.entity.ReviewImage;
 import com.phoenix.howabouttoday.board.repository.*;
 import com.phoenix.howabouttoday.global.AccomCategory;
+import com.phoenix.howabouttoday.global.OrdersStatus;
 import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.entity.Member;
@@ -245,7 +246,7 @@ public class InitDb {
                     .ordersDate(LocalDateTime.now())
                     .ordersPrice(room.getPrice())
                     .ordersType("card")
-                    .ordersStatus("결제완료")
+                    .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .impUid("abc")
                     .member(member)
                     .build();
@@ -529,7 +530,7 @@ public class InitDb {
                     .ordersDate(LocalDateTime.now())
                     .ordersPrice(room.getPrice())
                     .ordersType("card")
-                    .ordersStatus("결제완료")
+                    .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .member(member)
                     .impUid("def")
                     .build();
@@ -742,7 +743,7 @@ public class InitDb {
                     .ordersDate(LocalDateTime.now().plusDays(day))
                     .ordersPrice(35000)
                     .ordersType("card")
-                    .ordersStatus("결제완료")
+                    .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .member(member)
                     .build();
         }

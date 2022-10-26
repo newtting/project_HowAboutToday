@@ -23,7 +23,6 @@ const requestPay = () => {
     }, function (rsp) { // callback
         if (rsp.success) {
             successRequest(rsp.imp_uid, rsp.merchant_uid);
-
         } else {
             alert("실패!!!!!!!!!!!!!!!!!!!")
         }
@@ -84,13 +83,13 @@ const runCancel = () => {
     }).done((response) => {
         // alert(response.merchant_uid);
         alert("예약을 취소했습니다.")
+
         window.location.href = '/user-dashboard-booking';
     }).fail(function (error) {
         alert("실패")
         alert(JSON.stringify(error));
     });
 }
-
 
 function cancelPay() {
 

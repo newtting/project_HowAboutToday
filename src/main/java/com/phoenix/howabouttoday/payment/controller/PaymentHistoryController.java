@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,11 +44,10 @@ public class PaymentHistoryController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-        else{
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
-            model.addAttribute("sessionDTO", sessionDTO);
-        }
-
+//        else{
+//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+//            model.addAttribute("sessionDTO", sessionDTO);
+//        }
 
         Integer curPage = page.orElse(1);
 
@@ -79,10 +79,10 @@ public class PaymentHistoryController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-        else{
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
-            model.addAttribute("sessionDTO", sessionDTO);
-        }
+//        else{
+//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+//            model.addAttribute("sessionDTO", sessionDTO);
+//        }
 
         /**
          * 1. get방식

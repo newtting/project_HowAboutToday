@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class OrdersDTO {
 
     private Long ordersNum;         //pk값
-    private LocalDateTime ordersDate;
+    private LocalDate ordersDate;
     private Integer ordersPrice;
     private String ordersTel;
     private String ordersName;
@@ -31,10 +31,10 @@ public class OrdersDTO {
         this.ordersNum = orders.getOrdersNum();
         this.ordersTel = orders.getOrdersTel();
         this.ordersName = orders.getOrdersName();
-        this.ordersDate = orders.getOrdersDate();
+        this.ordersDate = orders.getOrdersDate().toLocalDate();
         this.ordersPrice = orders.getOrdersPrice();
         this.ordersType = orders.getOrdersType();
-        this.ordersStatus = orders.getOrdersStatus();
+        this.ordersStatus = orders.getOrdersStatus().getValue();
         this.ordersMerchantId = orders.getMerchantId();
         this.ordersDetailDTOList = orders.getReservation().stream().map(OrdersDetailDTO::new).collect(Collectors.toList());
     }

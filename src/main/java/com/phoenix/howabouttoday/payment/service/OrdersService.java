@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.payment.service;
 
+import com.phoenix.howabouttoday.global.OrdersStatus;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.payment.dto.OrdersDeleteDTO;
@@ -88,7 +89,7 @@ public class OrdersService {
                         .map(cart -> cart.getReserveNum())
                         .collect(Collectors.toList())))
                 .ordersType(ordersRequestDTO.getOrdersType())
-                .ordersStatus(ReserveStatus.READY.getValue())
+                .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                 .merchantId(ordersRequestDTO.getMerchantId())
                 .impUid(ordersRequestDTO.getImp_uid())
                 .build();
@@ -136,7 +137,7 @@ public class OrdersService {
         return od;
     }
 
-    public void deleteOrders(Long ordersNum){
+    public void changeStatusOrders(Long ordersNum){
         if (ordersNum != -1){
 
             Orders orders = ordersRepository.findById(ordersNum).orElseThrow(()->new IllegalArgumentException("해당 Orders가 없습니다."));
@@ -186,6 +187,7 @@ public class OrdersService {
         catch (ParseException e){
             System.out.println(e.toString());
         }
+        System.out.println(jsonObject.get("code"));
 
         return ((Long)jsonObject.get("code") == 0) ? orders.getOrdersNum() : -1;
     }
