@@ -1,8 +1,7 @@
 package com.phoenix.howabouttoday.accom.entity;
 
 
-import com.phoenix.howabouttoday.global.AccomCategory;
-import com.phoenix.howabouttoday.global.AccomCategoryConverter;
+
 import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.*;
 
@@ -39,7 +38,7 @@ public class Accommodation {
 
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_num")
     private Region region; //숙소 지역 번호
 

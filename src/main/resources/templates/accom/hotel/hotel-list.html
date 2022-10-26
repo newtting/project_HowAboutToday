@@ -572,9 +572,9 @@
                 </div><!-- end sidebar -->
             </div><!-- end col-lg-4 -->
             <!-- 리스트 목록 시작 -->
+            <input type="hidden" id="cateName" th:value="${categoryName}">
             <div class="col-lg-8">
                 <div class="card-item card-item-list" th:each="accommodation, i: ${accomPageList}">
-
                     <div class="card-img" th:id="|anchor${i.count}|">
                         <a class="d-block" th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}">
                             <img th:src="|@{/data/images/{accomImage}(accomImage=${accommodation.accommodationImage.accomOriginFilename})}|" alt="hotel-img">
@@ -902,15 +902,29 @@
 <!--</html>-->
     <script>
 
-        $(document).ready(function (){
+        $("#sort").on("change", function(){
 
-           document.getElementById("accomAnchor").click();
+
+           let category_name = $("#cateName").val();
+            alert(category_name);
+
+            $.ajax({
+                url: '/rest/accom/' + category_name,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+            }).done(function(result){
+
+                console.log(result);
+
+            }).fail(function(error){
+                alert(JSON.stringify(error));
+            });
 
         });
 
-        $("#sort option:selected").val().click(function () {
-           alert("aaa");
-        });
+
+
+
 
 
 

@@ -140,7 +140,7 @@ public class InitDb {
 
             /** 숙소시설 등록 **/
             facilitiesRepository.save(Facilities.builder()
-                    .facility(Facility.TV)
+                    .facility(Facility.CHARGE)
                     .faciltiesOriginalFileName("image5.jpg")
                     .faciltiesSaveFilename("image7.jpg")
                     .build());
@@ -402,7 +402,7 @@ public class InitDb {
                     .accomTel("050350521568")
                     .accomCategory(penssion)
                     .region(region)
-                    .accomAddress("인천광역시 서구 염곡로 250")
+//                    .accomAddress("인천광역시 서구 염곡로 250")
                     .accomRating(3.6)
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
@@ -417,7 +417,7 @@ public class InitDb {
                     .accomTel("050350521568")
 //                    .accomCategory(AccomCategory.GUESTHOUSE)
                     .region(region)
-                    .accomAddress("제주특별자치도 제주시 용남1길 47")
+//                    .accomAddress("제주특별자치도 제주시 용남1길 47")
                     .accomRating(2.1)
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
@@ -528,7 +528,7 @@ public class InitDb {
                         .accomTel("050350577805")
                         .accomCategory(motel)
                         .region(region)
-                        .accomAddress("충청남도 보령시 해수욕장13길 10-20" + i)
+//                        .accomAddress("충청남도 보령시 해수욕장13길 10-20" + i)
                         .accomRating(4.4)
                         .accomWishlistCount(110)
                         .totalReviewNum(1103)
@@ -540,12 +540,13 @@ public class InitDb {
                         .checkOut(LocalTime.of(11, 0))
                         .build();
 
-                Accommodation save = accommodationRepository.save(build);
+
+                Accommodation save1 = accommodationRepository.save(build);
 
                 AccomImage image = accommodationImageRepository.save(AccomImage.builder()
                         .accomOriginFilename("image" + i + ".jpg")
                         .accomSaveFilename("image4.jpg")
-                        .accommodation(save)
+                        .accommodation(save1)
                         .build());
 
 
@@ -678,11 +679,17 @@ public class InitDb {
                     .parentRegion(save)
                     .build());
 
+            AccomCategory hotel = accomCategoryRepository.save(AccomCategory.builder()
+                    .name("hotel")
+                    .viewName("호텔")
+                    .build());
+
+
             /**숙소 등록**/
             Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
                     .accomName("제주도 라르고 게스트하우스")
                     .accomTel("01045020614")
-                    .accomCategory(AccomCategory.GUESTHOUSE)
+                    .accomCategory(hotel)
                     .region(region)
 
 //                    .accomAddress("제주도 서귀포시 성산읍 13길 10")
