@@ -27,10 +27,12 @@ public class MemberController {
     private final MemberService memberService;
 
 
+
     @GetMapping("/member/join")
     public String join() {
         return "/member/home";
     }
+
 
 
     @PostMapping("/member/join")
@@ -104,9 +106,10 @@ public class MemberController {
 //        return "/member/member-login";
 
     @GetMapping("/loginProc")
-    public String login() {
-        return "/home";
-
+    public String login(@RequestHeader("referer") String referer) {
+        String url = referer.substring(21);
+        System.out.println("aaa");
+        return "/member/member-login";
 
     }
 

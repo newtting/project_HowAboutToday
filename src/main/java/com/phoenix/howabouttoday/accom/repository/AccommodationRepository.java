@@ -2,6 +2,9 @@ package com.phoenix.howabouttoday.accom.repository;
 
 
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -14,12 +17,11 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
 
     Accommodation findByAccomNum(Long number);
 
-    @Override
-    List<Accommodation> findAll();
-
     List<Accommodation> findByAccomNameContaining(String keyword);
 
-    Optional<Accommodation> findById(Long accomNum);
+    @EntityGraph(attributePaths = {"accomCategory","region","accommodationImage"})
+    Slice<Accommodation> findByAccomCategory_Name(String category_name, Pageable pageable);
+
 }
 
 
