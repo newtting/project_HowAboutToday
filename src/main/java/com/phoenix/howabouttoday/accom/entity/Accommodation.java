@@ -27,9 +27,13 @@ public class Accommodation {
     @Column(length = 50)
     private String accomTel;//숙소 전화번호
 
-    @Column(length = 50)
-    @Convert(converter = AccomCategoryConverter.class)
-    private AccomCategory accomCategory;//숙소 카테고리 번호
+//    @Column(length = 50)
+//    @Convert(converter = AccomCategoryConverter.class)
+//    private AccomCategory accomCategory;//숙소 카테고리 번호
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "accom_category_num")
+    private AccomCategory accomCategory;
 
     //    @OneToMany() 추후에 지역 카테고리 entity 만든 후에 매핑필요
 

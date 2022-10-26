@@ -1,17 +1,16 @@
 package com.phoenix.howabouttoday.member.controller;
 
 
-import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
-import com.phoenix.howabouttoday.member.entity.Member;
-import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,12 +20,14 @@ import java.util.List;
 public class MemberController {
 
     private final MemberService memberService;
-    private final MemberRepository memberRepository;
+
+
 
     @GetMapping("/member/join")
     public String join() {
         return "home";
     }
+
 
 
     @PostMapping("/member/join")
@@ -42,16 +43,11 @@ public class MemberController {
         return "redirect:" + url;
     }
 
-//    @GetMapping("/loginProc")
-//    public String login(@RequestHeader("referer") String referer) {
-//        String url = referer.substring(21);
-//        System.out.println("aaa");
-//        return "/member/member-login";
-
     @GetMapping("/loginProc")
-    public String login() {
-        return "/home";
-
+    public String login(@RequestHeader("referer") String referer) {
+        String url = referer.substring(21);
+        System.out.println("aaa");
+        return "/member/member-login";
 
     }
 
