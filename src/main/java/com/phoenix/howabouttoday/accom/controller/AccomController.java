@@ -31,7 +31,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-
 @Controller
 @RequiredArgsConstructor
 public class AccomController {
@@ -51,7 +50,7 @@ public class AccomController {
     // 메인 화면
     @GetMapping(value = {"/", "home"})
     public String home(@LoginUser SessionDTO sessionDTO, Model model){
-    //가나다라
+
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
@@ -69,7 +68,7 @@ public class AccomController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-        
+
         System.out.println("카테고리호출!!!! = " + category_name);
         List<AccomCategoryDto.ResponseDto> categoryList = accomCategoryService.findAccomList();
 

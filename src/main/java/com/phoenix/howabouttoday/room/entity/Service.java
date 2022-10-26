@@ -17,8 +17,8 @@ public class Service {
     @Column
     private Long serviceNum;//서비스번호
 
-    @Column
-    private String serviceName;//서비스이름
+    @Enumerated(EnumType.STRING)
+    private ServiceNames serviceName;//서비스이름
 
     @Builder
     public Service(Long serviceNum, String serviceName) {
