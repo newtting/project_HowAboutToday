@@ -20,7 +20,7 @@ public class RoomAmenitiesDTO {
 
     public RoomAmenitiesDTO(RoomViewAmenities roomViewAmenities) {
         this.roomNum = roomViewAmenities.getRoom().getRoomNum();
-        this.amenitiesName = roomViewAmenities.getAmenitiesName();
+        this.amenitiesName = roomViewAmenities.getAmenities().getAmenitiesName();
         this.amenitiesNum = roomViewAmenities.getAmenities().getAmenitiesNum();
 
     }
