@@ -361,7 +361,7 @@
                             </div>
                         </div><!-- end filter-bar-filter -->
                         <div class="select-contain">
-                            <select class="select-contain-select">
+                            <select class="select-contain-select" id="sort">
                                 <option value="1">가격: 낮은순</option>
                                 <option value="2">가격: 높은순</option>
                             </select>
@@ -906,6 +906,11 @@
 <!--</body>-->
 <!--</html>-->
     <script>
+
+        $("#sort option:selected").val().click(function () {
+           alert("aaa");
+        });
+
 
 
         function saveWish(accomNum) {
