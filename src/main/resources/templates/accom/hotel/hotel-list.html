@@ -813,9 +813,11 @@
         });
 
         $("#sort").on("change", function(){
-
+           var sortValue = $("#sort").val();
+           alert(sortValue);
            let category_name = $("#cateName").val();
             alert(category_name);
+
 
             $.ajax({
                 url: '/rest/accom/' + category_name,
@@ -828,6 +830,34 @@
                 let newlow = "";
                     for(i=0;i<accom.length; i++){
 
+                        newlow += `<div class="card-item card-item-list">`
+                        newlow +=   `<div class="card-img" id="anchor${i.count}">`
+                        newlow +=       `<a class="d-block" href="/hotel-single?accomNum=${accom[i].accomNum}">`
+                        newlow +=           `<img src="/data/images/${accom[i].accommodationImage.accomOriginFilename}" alt="hotel-img">`
+                        newlow +=      `</a>`
+                        newlow +=      `<a href="javascript:void(0)" onclick="saveWish(${accom[i].accomNum})">`
+                        newlow +=      `<div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist" id="wishList">`
+                        newlow +=       `<i class="la la-heart-o"></i>`
+                        newlow +=       `</div>`
+                        newlow +=       `</a>`
+                        newlow +=   `</div>`
+                        newlow +=   `<div class="card-body">`
+                        newlow +=       `<h3 class="card-title" ><a href="/hotel-single?accomNum=${accom[i].accomNum}">${accom[i].accomName}</a></h3>`
+                        newlow +=           `<p class="card-meta">${accom[i].accomAddress}</p>`
+                        newlow +=       `<div class="card-rating">`
+                        newlow +=           `<span class="badge text-white">${accom[i].accomRating}</span>`
+                        newlow +=           `<span class="review__text">Average</span>`
+                        newlow +=           `<span class="rating__text">${accom[i].totalReviewNum}</span>`
+                        newlow +=       `</div>`
+                        newlow +=        `<div class="card-price d-flex align-items-center justify-content-between">`
+                        newlow +=           `<p>`
+                        newlow +=           `<span class="price__from">최소 가격 :</span>`
+                        newlow +=           `<span class="price__num">${accom[i].lowPrice}~</span>`
+                        newlow +=           `</p>`
+                        newlow +=           `<a href="/hotel-single?accomNum=${accom[i].accomNum}" class="btn-text" >방 정보<i class="la la-angle-right"></i></a>`
+                        newlow +=        `</div>`
+                        newlow +=   `</div>`
+                        newlow += `</div>`
 
                     }
 
