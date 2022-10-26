@@ -38,6 +38,7 @@ public class AccomodationService {
 
         Slice<Accommodation> page = accommodationRepository.findByAccomCategory_Name(category_name,pageable);
 
+
         Slice<AccomDto.ResponsePageDto> accomPageList = page.map(accom -> new AccomDto.ResponsePageDto(accom));
 
         return accomPageList;
