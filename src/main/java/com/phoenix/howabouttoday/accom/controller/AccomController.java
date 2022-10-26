@@ -134,7 +134,7 @@ public class AccomController {
         }
 
         List<RoomImageDTO> iList = roomService.findAll_Image(roomNum);
-        model.addAttribute("ilist",iList); //객실 이미지 리스트
+        model.addAttribute("ilist",iList); //객실 이미지
 
         List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
         model.addAttribute("roomlist",roomList); //객실 리스트

@@ -10,7 +10,6 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Builder
-@AllArgsConstructor
 public class Service {
 
     @Id
@@ -20,6 +19,12 @@ public class Service {
 
     @Column
     private String serviceName;//서비스이름
+
+    @Builder
+    public Service(Long serviceNum, String serviceName) {
+        this.serviceNum = serviceNum;
+        this.serviceName = serviceName;
+    }
 
 
 }

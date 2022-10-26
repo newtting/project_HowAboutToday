@@ -13,6 +13,8 @@ import com.phoenix.howabouttoday.payment.dto.OrdersDeleteDTO;
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailVO;
 import com.phoenix.howabouttoday.payment.dto.OrdersCreateDTO;
 import com.phoenix.howabouttoday.payment.service.OrdersService;
+import com.phoenix.howabouttoday.room.dto.RoomDetailDTO;
+import com.phoenix.howabouttoday.room.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +31,18 @@ public class OrdersController {
 
     private final OrdersService orderService;
     private final MemberService memberService;
+    private final RoomService roomService;
 
+    // 객실 상세 -> 결제 페이지
+    @GetMapping("/")
+    public String roomView(Model model, @RequestParam("roomNum") Long roomNum) {
+
+        RoomDetailDTO room = roomService.findOne_Room(roomNum);
+        model.addAttribute("room",room);
+
+        return "reserve/checkout";
+
+    }
 
     /* 카드 -> 결제페이지 */
     @GetMapping("/payment")
@@ -53,6 +66,9 @@ public class OrdersController {
         }
 
         //1. 시큐리티를 사용해서 principal 객체에서 user정보를 가져와서 memberNum을 알 수 있다.
+
+
+//        MemberDTO customer = memberService.getCustomer(1L);
 
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
         List<OrdersDetailVO> infoList = orderService.getCartData(cartNum);

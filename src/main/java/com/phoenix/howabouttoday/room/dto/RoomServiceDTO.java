@@ -18,7 +18,7 @@ public class RoomServiceDTO {
 
     public RoomServiceDTO(RoomViewService roomViewService) {
         this.roomNum = roomViewService.getRoom().getRoomNum();
-        this.serviceName = roomViewService.getServiceName();
+        this.serviceName = roomViewService.getService().getServiceName();
         this.serviceNum = roomViewService.getService().getServiceNum();
     }
 
