@@ -23,7 +23,6 @@ public class Room {
     @JoinColumn(name="accommodation_accomNum", referencedColumnName = "accomNum")
     private Accommodation accommodation;
 
-    @NotNull
     @Column(length = 50)
     private String roomName; //객실 이름
 
@@ -54,7 +53,6 @@ public class Room {
     private List<RoomImage> roomImageList = new ArrayList<>();
 
     //양방향 매핑을 위해 추가
-    @Setter
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<AvailableDate> availableDate = new ArrayList<>();
 

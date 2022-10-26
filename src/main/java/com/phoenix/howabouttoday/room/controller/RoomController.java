@@ -26,6 +26,8 @@ public class RoomController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
+        roomNum = 1L;
+
         List<RoomImageDTO> iList = roomService.findAll_Image(roomNum);
         model.addAttribute("ilist",iList); //객실 이미지
 
@@ -35,7 +37,10 @@ public class RoomController {
         List<RoomServiceDTO> sList = roomService.findAll_Service(roomNum);
         model.addAttribute("slist",sList); //객실 서비스 리스트
 
+//        RoomDetailDTO roomDetailDTO = roomService.findOne_Room(roomNum);
         RoomDetailDTO roomDetailDTO = roomService.findOne_Room(roomNum);
+
+
         model.addAttribute("roomDetailDTO",roomDetailDTO); //객실 디테일
 
         return "accom/room/room-details";

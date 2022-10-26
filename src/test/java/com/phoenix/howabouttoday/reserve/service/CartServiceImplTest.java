@@ -44,7 +44,7 @@ class CartServiceImplTest {
     @Test
     public void 장바구니저장_테스트() throws Exception{
         //given
-        ReserveForm rsForm = new ReserveForm();
+        ReserveForm rsForm = new ReserveForm(LocalDate.now(),LocalDate.now(), 2, 0);
         rsForm.setReserveUseStartDate(LocalDate.now());
         rsForm.setReserveUseEndDate(LocalDate.now());
         rsForm.setReserveAdultCount(2);
@@ -55,6 +55,11 @@ class CartServiceImplTest {
         Cart findCart = byId.get();
 
         assertThat(saveCart.getReserveNum()).isEqualTo(findCart.getReserveNum());
+
+    }
+    public void 장바구니_한줄삭제() throws Exception{
+        //given
+        cartService.deleteByNum(5L);
 
     }
     
@@ -73,15 +78,9 @@ class CartServiceImplTest {
     }
 
 
-    @Test
-    public void 장바구니_한줄삭제() throws Exception{
-        //given
-        cartService.deleteByNum(5L);
-
-    }
-
-
-
-
-
 }
+
+
+
+
+

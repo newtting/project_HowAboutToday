@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.room.service;
 import com.phoenix.howabouttoday.room.dto.*;
+import com.phoenix.howabouttoday.room.entity.Room;
 import com.phoenix.howabouttoday.room.repository.RoomImageRepository;
 import com.phoenix.howabouttoday.room.repository.RoomRepository;
 import com.phoenix.howabouttoday.room.repository.RoomViewAmenitiesRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -64,11 +66,9 @@ public class RoomServiceImpl implements RoomService {
     //객실 디테일
     @Override
     public RoomDetailDTO findOne_Room(Long roomNum) {
-
         return roomRepository.findByRoomNum(roomNum)
                 .map(RoomDetailDTO::new)
                 .orElse(null);
 
     }
-
 }
