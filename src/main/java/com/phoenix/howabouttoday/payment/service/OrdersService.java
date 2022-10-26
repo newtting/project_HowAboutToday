@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.payment.service;
 
+import com.phoenix.howabouttoday.global.OrdersStatus;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.payment.dto.OrdersDeleteDTO;
@@ -26,6 +27,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,6 +41,7 @@ public class OrdersService {
     private final AvailableDateRepository availableDateRepository;
     private final MemberRepository memberRepository;
     private final OrdersRepository ordersRepository;
+
 
     /** 장바구니에서 넘어오는 카트정보를 보여줌. **/
     public List<OrdersDetailVO> getCartData(List<Long> cartNum){
@@ -80,13 +83,13 @@ public class OrdersService {
                 .member(member)
                 .ordersName(ordersRequestDTO.getName())
                 .ordersTel(ordersRequestDTO.getTel())
-                .ordersDate(LocalDate.now())
+                .ordersDate(LocalDateTime.now())
                 .ordersPrice(getTotalPrice(cartList
-                    .stream()
-                    .map(cart -> cart.getReserveNum())
-                    .collect(Collectors.toList())))
+                        .stream()
+                        .map(cart -> cart.getReserveNum())
+                        .collect(Collectors.toList())))
                 .ordersType(ordersRequestDTO.getOrdersType())
-                .ordersStatus(ReserveStatus.READY.getValue())
+                .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                 .merchantId(ordersRequestDTO.getMerchantId())
                 .impUid(ordersRequestDTO.getImp_uid())
                 .build();
@@ -101,7 +104,7 @@ public class OrdersService {
                 .mapToInt(Cart::getReservePrice)
                 .sum();
     }
-    
+
     /** 결제 완료시 cart에 있는 정보를 orderDetail로 변환해서 저장 **/
     private OrdersDetail ordersNumberMapping(Cart cart, Orders order){
 
@@ -110,7 +113,7 @@ public class OrdersService {
         LocalDate endDate =  cart.getReserveUseEndDate();
 
         Period period = Period.between(startDate, endDate);
-        System.out.println("날짜차이: " + period.getDays());
+        System.out.println("날짜차이: " + period.getMonths() * 30 + period.getDays());
 
         OrdersDetail od = OrdersDetail.builder()
                 .member(order.getMember())
@@ -124,7 +127,7 @@ public class OrdersService {
                 .reserveChildCount(cart.getReserveChildCount())
                 .build();
 
-        for (int i = 0; i < period.getDays(); i++) {
+        for (int i = 0; i < period.getMonths() * 30 + period.getDays(); i++) {
             AvailableDate ad = AvailableDate.builder()
                     .date(startDate.plusDays(i))
                     .room(od.getRoom())
@@ -134,22 +137,34 @@ public class OrdersService {
         return od;
     }
 
+    public void changeStatusOrders(Long ordersNum){
+        if (ordersNum != -1){
 
-    public void cancelOrders(OrdersDeleteDTO ordersDeleteDTO){
-        String accessToken = getToken();
+            Orders orders = ordersRepository.findById(ordersNum).orElseThrow(()->new IllegalArgumentException("해당 Orders가 없습니다."));
+            orders.getReservation()
+                    .forEach(orderDetail -> {
+                        LocalDate startDate = orderDetail.getReserveUseStartDate();
+                        LocalDate endDate = orderDetail.getReserveUseEndDate().minusDays(1);
+                        availableDateRepository.deleteAllByRoom_RoomNumAndOneDayBetween(orderDetail.getRoom().getRoomNum(), startDate, endDate);
+                        System.out.println("췍");
+                    });
+            orders.changeToReadyState();
+        }
+    }
+    public Long cancelOrders(OrdersDeleteDTO ordersDeleteDTO){
 
         Orders orders = ordersRepository.findByMerchantId(ordersDeleteDTO.getMerchant_uid()).orElseThrow(() -> new IllegalArgumentException("uid가 없습니다."));
 
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add("reason", "단순변심");
+        body.add("reason", ordersDeleteDTO.getReason());
         body.add("imp_uid", orders.getImpUid());
         body.add("amount", ordersDeleteDTO.getCancel_request_amount().toString());
         body.add("checksum", ordersDeleteDTO.getCancel_request_amount().toString());
-        
+
         /** 가상계좌를 위한 환불 계좌. 등록이 필요하기 때문에 가상계좌는 삭제 예정 **/
-        body.add("refund_holder", "김영운");
-        body.add("refund_bank", "88");
-        body.add("refund_account", "110218317400");
+//        body.add("refund_holder", "김영운");
+//        body.add("refund_bank", "88");
+//        body.add("refund_account", "110218317400");
 
         Mono<String> result = WebClient.create() //생성방법
                 .post() //요청방식
@@ -157,11 +172,12 @@ public class OrdersService {
                 .contentType(MediaType.APPLICATION_JSON)  //보내는 데이터의 형식
                 .bodyValue(body)    //body에 담을 데이터. 이것 말고도 다른 형식도 있다.
                 .accept(MediaType.APPLICATION_JSON) //받을 데이터의 형식
-                .header("Authorization", accessToken)
+                .header("Authorization", getToken())
                 .retrieve() //이게 실제로 요청을 보내는 메서드인듯
                 .bodyToMono(String.class);  //여기는 응답을 받아서 처리해주는 부분인듯
 
-       // System.out.println(result.block());
+
+        // System.out.println(result.block());
         JSONParser jsonParser = new JSONParser();
         JSONObject jsonObject = null;
 
@@ -171,18 +187,19 @@ public class OrdersService {
         catch (ParseException e){
             System.out.println(e.toString());
         }
-         System.out.println(jsonObject.get("message"));
+        System.out.println(jsonObject.get("code"));
 
-//        ordersRepository.deleteById(ordersNum);
+        return ((Long)jsonObject.get("code") == 0) ? orders.getOrdersNum() : -1;
     }
 
 
     public String getToken(){
+        String IMP_KEY = "3220511523750621";
+        String IMP_SECRET = "Wlbixtnz3pYJ6wegOQ7FCJ0RRC3DGwDYsspAVKWWPv8z3mFEi5mlI663orvNeIm15VaypSopH8ujfoe7";
 
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add("imp_key", "3220511523750621");
-        body.add("imp_secret", "Wlbixtnz3pYJ6wegOQ7FCJ0RRC3DGwDYsspAVKWWPv8z3mFEi5mlI663orvNeIm15VaypSopH8ujfoe7");
-
+        body.add("imp_key", IMP_KEY);
+        body.add("imp_secret", IMP_SECRET);
 
         Mono<String> result = WebClient.create() //생성방법
                 .post() //요청방식
@@ -192,6 +209,8 @@ public class OrdersService {
                 .accept(MediaType.APPLICATION_JSON) //받을 데이터의 형식
                 .retrieve() //이게 실제로 요청을 보내는 메서드인듯
                 .bodyToMono(String.class);  //여기는 응답을 받아서 처리해주는 부분인듯
+
+
         JSONParser jsonParser = new JSONParser();
         JSONObject jsonObject = null;
         try {
@@ -200,7 +219,7 @@ public class OrdersService {
         catch (ParseException e){
             System.out.println(e.toString());
         }
-        JSONObject response = (JSONObject)jsonObject.get("response");
+        JSONObject response = ((JSONObject)jsonObject.get("response"));
         return (String)response.get("access_token");
     }
 }
