@@ -82,16 +82,29 @@
                                         <div class="file-upload-wrap file-upload-wrap-3">
                                             <input type="file" th:field="*{eventImageList}" class="multi file-upload-input with-preview" multiple>
                                             <span class="file-upload-text">
-
-                                                <th:block th:if="${lists.isEmpty()}">
                                                     <i class="la la-upload mr-2"></i>파일을 선택하세요.
-                                                </th:block>
-
-                                                <th:block th:each="dto: ${lists}">
-                                                    
-                                                </th:block>
-
                                             </span>
+
+                                            <th:block th:if="${!eventImageList.isEmpty()}">
+                                                <span class="file-upload-text event-file">
+                                                    <div class="MultiFile-list" id="MultiFile1_list">
+                                                        <th:block th:each="eventImage: ${eventImageList}">
+                                                            <div class="MultiFile-label">
+                                                                <a class="MultiFile-remove event-remove" th:href="@{|/admin/event-edit/${eventImage.eventNum}/${eventImage.eventImageNum}|}">x
+                                                                </a>
+                                                                <span>
+                                                                    <span class="MultiFile-label" title="File selected: ${eventImage.saveFileName}">
+                                                                        <span class="MultiFile-title" th:value="${eventImage.saveFileName}"
+                                                                              th:text="${eventImage.saveFileName}"></span>
+                                                                        <img class="MultiFile-preview" style="max-height:100px; max-width:100px;"
+                                                                             th:src="@{|/images/hwt/event/${eventDetailDTO.eventNum}/${eventImage.saveFileName}|}">
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                        </th:block>
+                                                    </div>
+                                                </span>
+                                            </th:block>
                                         </div>
                                     </div><!-- end form-content -->
                                 </div><!-- end form-box -->

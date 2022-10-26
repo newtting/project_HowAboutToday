@@ -124,6 +124,14 @@ public class EventController {
         return "redirect:/event/{eventNum}";
     }
 
+    // 이벤트 이미지 개별 삭제
+    @GetMapping("admin/event-edit/{eventNum}/{eventImageNum}")
+    public String eventImageDelete(@PathVariable("eventImageNum") Long eventImageNum, Long eventNum) {
+
+        eventImageService.deleteImage(eventImageNum);
+        return "redirect:/admin/event-edit/{eventNum}";
+    }
+
     // 이벤트 삭제
     @GetMapping("admin/event-delete/{eventNum}")
     public String eventDelete(@PathVariable Long eventNum) {

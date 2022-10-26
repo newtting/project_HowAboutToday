@@ -114,3 +114,15 @@
 .event-date {
     width: 40%;
 }
+
+// Edit Board
+.event-file {
+    position: unset!important;
+    text-align: left!important;
+}
+
+.event-remove{
+    line-height: 28px;
+    cursor: pointer;
+    pointer-events: auto;
+}
