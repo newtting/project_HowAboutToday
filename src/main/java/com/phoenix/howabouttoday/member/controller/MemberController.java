@@ -8,12 +8,17 @@ import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
+
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,13 +30,39 @@ public class MemberController {
 
     @GetMapping("/member/join")
     public String join() {
-        return "home";
+        return "/member/home";
     }
 
 
 
     @PostMapping("/member/join")
-    public String joinProc(MemberDTO memberDTO, @RequestHeader("referer") String referer) {
+    public String joinProc(@Valid MemberDTO memberDTO, BindingResult result, Model model,
+                           @RequestHeader("referer") String referer) {
+
+
+        System.out.println("호출!!!!!!!!");
+//        if (errors.hasErrors()) {
+//            /* 회원가입 실패시 입력 데이터 값을 유지 */
+//            model.addAttribute("memberDTO", memberDTO);
+//
+//
+//
+//
+//            /* 유효성 통과 못한 필드와 메시지를 핸들링 */
+//            Map<String, String> validatorResult = memberService.validateHandling(errors);
+//            for (String key : validatorResult.keySet()) {
+//                model.addAttribute(key, validatorResult.get(key));
+//            }
+//            /* 회원가입 페이지로 다시 리턴 */
+//            return "redirect:/member/join";
+//        }
+
+        if(result.hasErrors()){
+
+            System.out.println("리턴페이지 호출!!!!!!!");
+
+            return  "/home";
+        }
 
 
         System.out.println("referer = " + referer);
@@ -42,6 +73,37 @@ public class MemberController {
 
         return "redirect:" + url;
     }
+
+
+//    @PostMapping("/member/join")
+//    public String joinProc(@Valid MemberDTO memberDTO, Errors errors, Model model,
+//                           @RequestHeader("referer") String referer) {
+//
+//        if (errors.hasErrors()) {
+//            /* 회원가입 실패시 입력 데이터 값을 유지 */
+//            model.addAttribute("memberDTO", memberDTO);
+//
+//            /* 유효성 통과 못한 필드와 메시지를 핸들링 */
+//            Map<String, String> validatorResult = memberService.validateHandling(errors);
+//            for (String key : validatorResult.keySet()) {
+//                model.addAttribute(key, validatorResult.get(key));
+//            }
+//            String url = referer.substring(21);
+//            /* 회원가입 페이지로 다시 리턴 */
+//            return "redirect:" + url;
+//        }
+//
+//        memberService.join(memberDTO);
+//        String url = referer.substring(21);
+//
+//        return "redirect:" + url;
+//    }
+
+//    @GetMapping("/loginProc")
+//    public String login(@RequestHeader("referer") String referer) {
+//        String url = referer.substring(21);
+//        System.out.println("aaa");
+//        return "/member/member-login";
 
     @GetMapping("/loginProc")
     public String login(@RequestHeader("referer") String referer) {

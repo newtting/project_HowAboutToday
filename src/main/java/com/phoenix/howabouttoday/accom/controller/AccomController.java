@@ -13,6 +13,7 @@ import com.phoenix.howabouttoday.accom.service.AccomodationService;
 
 
 import com.phoenix.howabouttoday.config.auth.LoginUser;
+import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import com.phoenix.howabouttoday.room.dto.RoomImageDTO;
 import com.phoenix.howabouttoday.room.dto.RoomListDTO;
@@ -54,7 +55,8 @@ public class AccomController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("memberDTO",memberDTO);
         return "home";
     }
 
