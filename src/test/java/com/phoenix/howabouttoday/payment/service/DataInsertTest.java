@@ -16,7 +16,6 @@ import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.payment.repository.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.AvailableDateRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
-import com.phoenix.howabouttoday.global.AccomCategory;
 import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
@@ -283,7 +282,7 @@ public class DataInsertTest {
         Accommodation accom = Accommodation.builder()
                 .accomName(randValue[0] + "보령(대천) 너울펜션")
                 .accomTel("050350577805")
-                .accomCategory(AccomCategory.PENSION)
+//                .accomCategory(AccomCategory.PENSION)
                 .region(region)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)

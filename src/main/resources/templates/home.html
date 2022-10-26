@@ -2,6 +2,11 @@
         <html xmlns:th="http://www.thymeleaf.org"
               xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
               layout:decorate="layout/layout">
+        <style>
+            .fieldError {
+              font-color: #bd2130;
+            }
+        </style>
 
         <th:block layout:fragment="content">
 
@@ -129,7 +134,7 @@
                                 <a href="hotel-list">
                                     <div class="info-icon flex-shrink-0 bg-rgb text-color-2 hwt-info-icon">
                                         <!--                        <i class="las la-radiation"></i>-->
-                                        <img src="icon/hotel.png" class="hwt-icon-element">
+                                        <img src="/icon/hotel.png" class="hwt-icon-element">
                                     </div><!-- end info-icon-->
                                     <div class="info-content">
                                         <!--                        <h4 class="info__title">Unique Atmosphere</h4>-->
@@ -632,26 +637,32 @@
                         </div>
                         <div class="modal-body">
                             <div class="contact-form-action">
-                                <form method="post" th:action="@{/member/join}">
+                                <form method="post" th:action="@{/member/join}" th:object="${memberDTO}">
                                     <div class="input-box">
                                         <label class="label-text">닉네임</label>
                                         <div class="form-group">
                                             <span class="la la-user form-icon"></span>
-                                            <input class="form-control" type="text" name="nickname" placeholder="닉네임">
+                                            <input class="form-control" type="text" th:field="*{nickname}" placeholder="닉네임"
+                                              th:class="${#fields.hasErrors('nickname')}? 'form-control fieldError' : 'form-control'">
+                                            <span th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></span>
                                         </div>
                                     </div><!-- end input-box -->
                                     <div class="input-box">
                                         <label class="label-text">이메일 주소</label>
                                         <div class="form-group">
                                             <span class="la la-envelope form-icon"></span>
-                                            <input class="form-control" type="email" name="email" placeholder="이메일 주소">
+                                            <input class="form-control" type="text"  th:field="*{email}" placeholder="이메일 주소"
+                                                   th:class="${#fields.hasErrors('email')}? 'form-control fieldError' : 'form-control'">
+                                            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
                                         </div>
                                     </div><!-- end input-box -->
                                     <div class="input-box">
                                         <label class="label-text">패스워드</label>
                                         <div class="form-group">
                                             <span class="la la-lock form-icon"></span>
-                                            <input class="form-control" type="password" name="pwd" placeholder="패스워드">
+                                            <input class="form-control" type="password" th:field="*{pwd}" placeholder="패스워드"
+                                                   th:class="${#fields.hasErrors('pwd')}? 'form-control fieldError' : 'form-control'">
+                                            <span th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></span>
                                         </div>
                                     </div><!-- end input-box -->
                                     <!--                                    <div class="input-box">-->
@@ -697,7 +708,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="contact-form-action">
-                                    <form method="post" th:action="@{/loginProc}">
+                                    <form method="post" action="/loginProc">
                                         <div class="input-box">
                                             <label class="label-text">이메일</label>
                                             <div class="form-group">

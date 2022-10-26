@@ -54,6 +54,7 @@ public class RoomServiceImpl implements RoomService {
         return slist;
     }
 
+    // 객실 이미지
     public List<RoomImageDTO> findAll_Image(Long roomNum) {
         List<RoomImageDTO> ilist = roomImageRepository.findAllByRoom_RoomNum(roomNum)
                 .stream()

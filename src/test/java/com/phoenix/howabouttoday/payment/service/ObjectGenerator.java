@@ -7,7 +7,6 @@ import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.entity.Member;
-import com.phoenix.howabouttoday.global.AccomCategory;
 import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
@@ -86,7 +85,7 @@ public class ObjectGenerator {
         Accommodation room = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
-                .accomCategory(AccomCategory.PENSION)
+//                .accomCategory(AccomCategory.PENSION)
                 .region(getRandomRegion())
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)

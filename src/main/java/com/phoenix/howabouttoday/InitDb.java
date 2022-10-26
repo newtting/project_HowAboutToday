@@ -84,6 +84,8 @@ public class InitDb {
 //        private final OrdersDetailRepository ordersDetailRepository;
         private final AccommodationImageRepository accommodationImageRepository;
         private final RoomViewAmenitiesRepository roomViewAmenitiesRepository;
+
+        private final AccomCategoryRepository accomCategoryRepository;
         public void dbInit1() {
 
             /**회원등록**/
@@ -100,18 +102,33 @@ public class InitDb {
 
 
             /**지역 등록 **/
-            Region region = regionRepository.save(Region.builder()
+
+            Region save = regionRepository.save(Region.builder()
                     .region(RegionType.SEOUL)
-                    .regionParentNum(RegionType.SEOUL)
                     .build());
+
+            Region region = regionRepository.save(Region.builder()
+                    .region(RegionType.BUSAN)
+                    .parentRegion(save)
+
+                    .build());
+
+            /** 카테고리 등록 **/
+
+            AccomCategory hotel = accomCategoryRepository.save(AccomCategory.builder()
+                    .name("hotel")
+                    .viewName("호텔")
+                    .build());
+
+
+
 
             /**숙소 등록**/
             Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
                     .accomName("보령(대천) 너울펜션")
                     .accomTel("050350577805")
-                    .accomCategory(AccomCategory.PENSION)
+                    .accomCategory(hotel)
                     .region(region)
-                    .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                     .accomRating(4.4)
                     .accomWishlistCount(110)
                     .totalReviewNum(1103)
@@ -125,10 +142,11 @@ public class InitDb {
 
             /** 숙소시설 등록 **/
             facilitiesRepository.save(Facilities.builder()
-                    .facility(Facility.TV)
+                    .facility(Facility.CHARGE)
                     .faciltiesOriginalFileName("image5.jpg")
                     .faciltiesSaveFilename("image7.jpg")
                     .build());
+
 
             /** 숙소이미지 등록 **/
             accommodationImageRepository.save( AccomImage.builder()
@@ -189,16 +207,16 @@ public class InitDb {
 
             /** 객실 오락시설 등록 **/
             Amenities amenities = amenitiesRepository.save(Amenities.builder()
-                    .amenitiesName("흡연장")
+                    .amenitiesName(AmenitiesNames.FREE_WI_FI)
                     .build());
 
             Amenities amenities1 = amenitiesRepository.save(Amenities.builder()
-                    .amenitiesName("풋살장")
+                    .amenitiesName(AmenitiesNames.BATHTUB)
                     .build());
 
             /** 객실 서비스 등록 **/
             serviceRepository.save(Service.builder()
-                    .serviceName("피트니스")
+                    .serviceName(ServiceNames.MASSAGE)
                     .build());
 
             /** 객실과 오락시설 등록 **/
@@ -324,18 +342,38 @@ public class InitDb {
                     .build());
 
             /**지역 등록 **/
+            Region save = regionRepository.save(Region.builder()
+                    .region(RegionType.SEOUL)
+                    .build());
+
             Region region = regionRepository.save(Region.builder()
                     .region(RegionType.BUSAN)
-                    .regionParentNum(RegionType.BUSAN)
+                    .parentRegion(save)
+                    .build());
+
+            AccomCategory motel = accomCategoryRepository.save(AccomCategory.builder()
+                    .name("motel")
+                    .viewName("모텔")
+                    .build());
+
+            AccomCategory penssion = accomCategoryRepository.save(AccomCategory.builder()
+                    .name("penssion")
+                    .viewName("펜션/풀빌라")
+                    .build());
+
+
+            AccomCategory guestHouse = accomCategoryRepository.save(AccomCategory.builder()
+                    .name("guesthouse")
+                    .viewName("게스트하우스")
                     .build());
 
             /**숙소 등록**/
             Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
                     .accomName("서울 아폴로 게스트하우스")
                     .accomTel("050350521568")
-                    .accomCategory(AccomCategory.GUESTHOUSE)
+                    .accomCategory(penssion)
                     .region(region)
-                    .accomAddress("서울특별시 영등포구 영등포로19길 7-1")
+//                    .accomAddress("서울특별시 영등포구 영등포로19길 7-1")
                     .accomRating(5.0)
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
@@ -350,9 +388,9 @@ public class InitDb {
             Accommodation accommodation2 = accommodationRepository.save(Accommodation.builder()
                     .accomName("대구 팔공산 스타탄생 드라이브인")
                     .accomTel("050350521568")
-                    .accomCategory(AccomCategory.GUESTHOUSE)
+                    .accomCategory(guestHouse)
                     .region(region)
-                    .accomAddress("대구광역시 동구 파계로138길 36")
+//                    .accomAddress("대구광역시 동구 파계로138길 36")
                     .accomRating(4.2)
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
@@ -365,9 +403,9 @@ public class InitDb {
             Accommodation accommodation3 = accommodationRepository.save(Accommodation.builder()
                     .accomName("인천(석남동) 뱅크")
                     .accomTel("050350521568")
-                    .accomCategory(AccomCategory.GUESTHOUSE)
+                    .accomCategory(penssion)
                     .region(region)
-                    .accomAddress("인천광역시 서구 염곡로 250")
+//                    .accomAddress("인천광역시 서구 염곡로 250")
                     .accomRating(3.6)
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
@@ -380,9 +418,9 @@ public class InitDb {
             Accommodation accommodation4 = accommodationRepository.save(Accommodation.builder()
                     .accomName("제주 탑아일랜드 호텔")
                     .accomTel("050350521568")
-                    .accomCategory(AccomCategory.GUESTHOUSE)
+//                    .accomCategory(AccomCategory.GUESTHOUSE)
                     .region(region)
-                    .accomAddress("제주특별자치도 제주시 용남1길 47")
+//                    .accomAddress("제주특별자치도 제주시 용남1길 47")
                     .accomRating(2.1)
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
@@ -395,9 +433,9 @@ public class InitDb {
             Accommodation accommodation5 = accommodationRepository.save(Accommodation.builder()
                     .accomName("포항 씨엔스톤펜션")
                     .accomTel("050350521568")
-                    .accomCategory(AccomCategory.GUESTHOUSE)
+//                    .accomCategory(AccomCategory.GUESTHOUSE)
                     .region(region)
-                    .accomAddress("경상북도 포항시 북구 청하면 해안로1918번길34-1")
+//                    .accomAddress("경상북도 포항시 북구 청하면 해안로1918번길34-1")
                     .accomRating(1.2)
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
@@ -411,7 +449,7 @@ public class InitDb {
 
             /** 숙소시설 등록 **/
             facilitiesRepository.save(Facilities.builder()
-                    .facility(Facility.TWOBED)
+                    .facility(Facility.NO_CHARGE)
                     .faciltiesOriginalFileName("image3.jpg")
                     .faciltiesSaveFilename("image3.jpg")
                     .build());
@@ -469,12 +507,12 @@ public class InitDb {
 
             /** 객실 오락시설 등록 **/
             Amenities amenities = amenitiesRepository.save(Amenities.builder()
-                    .amenitiesName("족구장")
+                    .amenitiesName(AmenitiesNames.HAIR_DRYER)
                     .build());
 
             /** 객실 서비스 등록 **/
             serviceRepository.save(Service.builder()
-                    .serviceName("수영장")
+                    .serviceName(ServiceNames.LAUNDRY)
                     .build());
 
 
@@ -484,25 +522,36 @@ public class InitDb {
 //                    .accommodation(accommodation)
 //                    .build());
 
-//            for (int i=0; i < 100; i++){
-//
-//                Accommodation build = Accommodation.builder()
-//                        .accomName("보령(대천) 너울펜션" + i)
-//                        .accomTel("050350577805")
-//                        .accomCategory(AccomCategory.PENSION)
-//                        .region(region)
+            for (int i=0; i < 100; i++) {
+
+                Accommodation build = Accommodation.builder()
+                        .accomName("보령(대천) 너울펜션" + i)
+                        .accomTel("050350577805")
+                        .accomCategory(motel)
+                        .region(region)
 //                        .accomAddress("충청남도 보령시 해수욕장13길 10-20" + i)
-//                        .accomRating(4.4)
-//                        .accomWishlistCount(110)
-//                        .totalReviewNum(1103)
-//                        .latitude(36.3196)
-//                        .longitude(126.5092)
-//                        .lowPrice(45000)
-//                        .reserveRange(60)
-//                        .checkIn(LocalTime.of(15, 0))
-//                        .checkOut(LocalTime.of(11, 0))
-//                        .build();
-//                Accommodation save = accommodationRepository.save(build);
+                        .accomRating(4.4)
+                        .accomWishlistCount(110)
+                        .totalReviewNum(1103)
+                        .latitude(36.3196)
+                        .longitude(126.5092)
+                        .lowPrice(i+(500))
+                        .reserveRange(60)
+                        .checkIn(LocalTime.of(15, 0))
+                        .checkOut(LocalTime.of(11, 0))
+                        .build();
+
+
+                Accommodation save1 = accommodationRepository.save(build);
+
+                AccomImage image = accommodationImageRepository.save(AccomImage.builder()
+                        .accomOriginFilename("image" + i + ".jpg")
+                        .accomSaveFilename("image4.jpg")
+                        .accommodation(save1)
+                        .build());
+
+
+            }
 //
 //                WishList build1 = WishList.builder()
 //                        .member(member)
@@ -622,18 +671,29 @@ public class InitDb {
 
 
             /**지역 등록 **/
-            Region region = regionRepository.save(Region.builder()
-                    .region(RegionType.JEJU)
-                    .regionParentNum(RegionType.JEJU)
+            Region save = regionRepository.save(Region.builder()
+                    .region(RegionType.SEOUL)
                     .build());
+
+            Region region = regionRepository.save(Region.builder()
+                    .region(RegionType.BUSAN)
+                    .parentRegion(save)
+                    .build());
+
+            AccomCategory hotel = accomCategoryRepository.save(AccomCategory.builder()
+                    .name("hotel")
+                    .viewName("호텔")
+                    .build());
+
 
             /**숙소 등록**/
             Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
                     .accomName("제주도 라르고 게스트하우스")
                     .accomTel("01045020614")
-                    .accomCategory(AccomCategory.GUESTHOUSE)
+                    .accomCategory(hotel)
                     .region(region)
-                    .accomAddress("제주도 서귀포시 성산읍 13길 10")
+
+//                    .accomAddress("제주도 서귀포시 성산읍 13길 10")
                     .accomRating(3.9)
                     .accomWishlistCount(100)
                     .totalReviewNum(238)
