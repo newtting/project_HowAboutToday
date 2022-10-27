@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.payment.service;
 
+import com.phoenix.howabouttoday.accom.entity.AccomCategory;
 import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
@@ -8,7 +9,7 @@ import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
-import com.phoenix.howabouttoday.global.AccomCategory;
+
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
@@ -25,6 +26,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -124,7 +126,7 @@ class AccomodationServiceTest {
         Accommodation newMember = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
-                .accomCategory(AccomCategory.PENSION)
+//                .accomCategory(AccomCategory.PENSION)
                 .region(region)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
@@ -191,7 +193,7 @@ class AccomodationServiceTest {
         Accommodation acco = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
-                .accomCategory(AccomCategory.PENSION)
+//                .accomCategory(AccomCategory.PENSION)
                 .region(region)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
@@ -226,7 +228,7 @@ class AccomodationServiceTest {
         Accommodation acco2 = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
-                .accomCategory(AccomCategory.PENSION)
+//                .accomCategory(AccomCategory.PENSION)
                 .region(region)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
@@ -261,10 +263,10 @@ class AccomodationServiceTest {
         Orders newOrder = Orders.builder()
                 .ordersTel("01045020614")
                 .ordersName("김영운")
-                .ordersDate(LocalDate.now())
+                .ordersDate(LocalDateTime.now())
                 .ordersPrice(45000+90000)
                 .ordersType("카드")
-                .ordersStatus("이용 전")
+                .ordersStatus("결제완료")
                 .build();
 
 //        newOrder.getorder().add(cart);
@@ -298,7 +300,7 @@ class AccomodationServiceTest {
         Accommodation acco = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
-                .accomCategory(AccomCategory.PENSION)
+//                .accomCategory(AccomCategory.PENSION)
                 .region(region)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
@@ -352,7 +354,7 @@ class AccomodationServiceTest {
         Orders order1 = Orders.builder()
                 .ordersTel(member.getMemberTel())
                 .ordersName(member.getNickname())
-                .ordersDate(LocalDate.now())
+                .ordersDate(LocalDateTime.now())
                 .ordersPrice(45555)
                 .ordersType("card")
                 .ordersStatus("결제완료")
@@ -364,7 +366,7 @@ class AccomodationServiceTest {
         Orders order2 = Orders.builder()
                 .ordersTel(member.getMemberTel())
                 .ordersName(member.getNickname())
-                .ordersDate(LocalDate.now())
+                .ordersDate(LocalDateTime.now())
                 .ordersPrice(111111)
                 .ordersType("card")
                 .ordersStatus("결제완료")

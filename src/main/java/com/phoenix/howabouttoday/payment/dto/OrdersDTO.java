@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.TextStyle;
 import java.util.List;
 import java.util.Locale;
@@ -30,10 +31,10 @@ public class OrdersDTO {
         this.ordersNum = orders.getOrdersNum();
         this.ordersTel = orders.getOrdersTel();
         this.ordersName = orders.getOrdersName();
-        this.ordersDate = orders.getOrdersDate();
+        this.ordersDate = orders.getOrdersDate().toLocalDate();
         this.ordersPrice = orders.getOrdersPrice();
         this.ordersType = orders.getOrdersType();
-        this.ordersStatus = orders.getOrdersStatus();
+        this.ordersStatus = orders.getOrdersStatus().getValue();
         this.ordersMerchantId = orders.getMerchantId();
         this.ordersDetailDTOList = orders.getReservation().stream().map(OrdersDetailDTO::new).collect(Collectors.toList());
     }

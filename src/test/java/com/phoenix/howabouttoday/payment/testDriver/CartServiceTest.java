@@ -1,6 +1,6 @@
 package com.phoenix.howabouttoday.payment.testDriver;
 
-import com.phoenix.howabouttoday.global.AccomCategory;
+//import com.phoenix.howabouttoday.global.AccomCategory;
 import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
@@ -57,7 +57,7 @@ class CartServiceTest {
         Accommodation acco = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
-                .accomCategory(AccomCategory.PENSION)
+//                .accomCategory(AccomCategory.PENSION)
                 .region(region)
                 .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
