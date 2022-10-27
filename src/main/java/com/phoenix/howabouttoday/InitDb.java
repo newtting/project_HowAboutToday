@@ -526,7 +526,7 @@ public class InitDb {
                         .accomCategory(motel)
                         .region(region)
 //                        .accomAddress("충청남도 보령시 해수욕장13길 10-20" + i)
-                        .accomRating(4.4)
+                        .accomRating(3.1)
                         .accomWishlistCount(110)
                         .totalReviewNum(1103)
                         .latitude(36.3196)

@@ -48,6 +48,7 @@ public class AccomodationService {
     /*리스트 목록 조회*/
     public List<Accommodation> getAccommodationlist() {
         return accommodationRepository.findAll();
+
     }
 
     @Transactional
