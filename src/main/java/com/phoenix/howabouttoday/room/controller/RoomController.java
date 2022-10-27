@@ -26,8 +26,6 @@ public class RoomController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        roomNum = 1L;
-
         List<RoomImageDTO> iList = roomService.findAll_Image(roomNum);
         model.addAttribute("ilist",iList); //객실 이미지
 
