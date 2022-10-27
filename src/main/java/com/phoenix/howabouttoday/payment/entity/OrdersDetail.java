@@ -16,11 +16,15 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+
 @DiscriminatorValue("orderDetail")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @SuperBuilder
 @Entity
 public class OrdersDetail extends Reservation {
+
+
 
 }

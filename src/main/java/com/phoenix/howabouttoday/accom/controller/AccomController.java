@@ -13,6 +13,7 @@ import com.phoenix.howabouttoday.accom.service.AccomodationService;
 
 
 import com.phoenix.howabouttoday.config.auth.LoginUser;
+import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import com.phoenix.howabouttoday.room.dto.RoomImageDTO;
 import com.phoenix.howabouttoday.room.dto.RoomListDTO;
@@ -30,7 +31,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-
 
 @Controller
 @RequiredArgsConstructor
@@ -51,11 +51,12 @@ public class AccomController {
     // 메인 화면
     @GetMapping(value = {"/", "home"})
     public String home(@LoginUser SessionDTO sessionDTO, Model model){
-    //가나다라
+
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("memberDTO",memberDTO);
         return "home";
     }
 
@@ -69,19 +70,16 @@ public class AccomController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-        
+
         System.out.println("카테고리호출!!!! = " + category_name);
         List<AccomCategoryDto.ResponseDto> categoryList = accomCategoryService.findAccomList();
 
         model.addAttribute("categoryList",categoryList);
         String viewName = accomCategoryService.getAccomViewName(category_name);
-        model.addAttribute("viewName",viewName);
-        Slice<AccomDto.ResponsePageDto> accomPageList = accommodationService.getAccomPageList(pageable,category_name);
-        int size = accomPageList.getSize();
 
-        model.addAttribute("size",size);
+
+        model.addAttribute("viewName",viewName);
         model.addAttribute("categoryName",category_name);
-        model.addAttribute("accomPageList",accomPageList);
         model.addAttribute("sessionDTO", sessionDTO);
 
         return "accom/hotel/hotel-list";
@@ -127,14 +125,15 @@ public class AccomController {
 
     //숙소 상세
     @GetMapping("hotel-single")
-    public String getHotelSingle(@LoginUser SessionDTO sessionDTO, Model model,Long accomNum,Long roomNum){
+    public String getHotelSingle(@LoginUser SessionDTO sessionDTO, Model model,
+                                 @RequestParam Long accomNum,Long roomNum){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
         List<RoomImageDTO> iList = roomService.findAll_Image(roomNum);
-        model.addAttribute("ilist",iList); //객실 이미지 리스트
+        model.addAttribute("ilist",iList); //객실 이미지
 
         List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
         model.addAttribute("roomlist",roomList); //객실 리스트

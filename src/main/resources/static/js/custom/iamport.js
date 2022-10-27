@@ -23,7 +23,6 @@ const requestPay = () => {
     }, function (rsp) { // callback
         if (rsp.success) {
             successRequest(rsp.imp_uid, rsp.merchant_uid);
-
         } else {
             alert("실패!!!!!!!!!!!!!!!!!!!")
         }
@@ -65,8 +64,10 @@ const runCancel = () => {
     alert(merchantId);
     /** 위 데이터 3개는 ordersNum으로 서버에서 데이터베이스에서 읽는 방식이 더 올바른 방식일듯 **/
 
-    const header = $("meta[name='_csrf_header']").attr('content');
-    const token = $("meta[name='_csrf']").attr('content');
+
+
+    // const header = $("meta[name='_csrf_header']").attr('content');
+    // const token = $("meta[name='_csrf']").attr('content');
 
     $.ajax({
         type: "POST",
@@ -78,18 +79,19 @@ const runCancel = () => {
             cancel_request_amount: totalPrice,
             reason: "테스트 결제 환불",
         }),
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader(header, token);
-        },
+        // beforeSend: function (xhr) {
+        //     xhr.setRequestHeader(header, token);
+        // },
     }).done((response) => {
-        alert(response.merchant_uid);
-        alert("성공")
+        // alert(response.merchant_uid);
+        alert("예약을 취소했습니다.")
+
+        window.location.href = '/user-dashboard-booking';
     }).fail(function (error) {
         alert("실패")
         alert(JSON.stringify(error));
     });
 }
-
 
 function cancelPay() {
 

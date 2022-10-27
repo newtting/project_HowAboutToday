@@ -14,7 +14,6 @@ import java.util.List;
 
 @Getter
 public class OrdersCreateDTO {
-
     private String name;
     private String tel;
     private String ordersType;
