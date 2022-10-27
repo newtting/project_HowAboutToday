@@ -21,7 +21,7 @@ public class Service {
     private ServiceNames serviceName;//서비스이름
 
     @Builder
-    public Service(Long serviceNum, String serviceName) {
+    public Service(Long serviceNum, ServiceNames serviceName) {
         this.serviceNum = serviceNum;
         this.serviceName = serviceName;
     }

@@ -7,7 +7,6 @@
 package com.phoenix.howabouttoday.payment.entity;
 
 import com.phoenix.howabouttoday.accom.entity.Region;
-import com.phoenix.howabouttoday.global.AccomCategoryConverter;
 import com.phoenix.howabouttoday.global.OrdersStatus;
 import com.phoenix.howabouttoday.global.OrdersStatusConverter;
 import com.phoenix.howabouttoday.member.entity.Member;
