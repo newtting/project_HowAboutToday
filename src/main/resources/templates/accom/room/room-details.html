@@ -1148,7 +1148,7 @@
 
 
         $("#cart-button").click(function(){
-
+            let roomNum = $("#roomNum").val();
             let checkDate = $("#checkDate").val();
             let adultQty = $("#adult-qty").val();
             let childQty = $("#child-qty").val();
@@ -1165,7 +1165,7 @@
 
             $.ajax({
                 type: 'post',
-                url: '/rest/cart',
+                url: '/rest/cart/' + roomNum,
                 data: cartForm,
                 contentType: 'application/json; charset=utf-8',
                 dataType:"text",
