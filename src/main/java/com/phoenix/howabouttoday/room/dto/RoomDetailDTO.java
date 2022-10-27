@@ -36,13 +36,16 @@ public class RoomDetailDTO {
 
     public RoomDetailDTO(Room room) {
         this.roomRating = room.getRoomRating();
-        this.roomReviewNum = room.getRoomReviewNum();
+//        this.roomReviewNum = room.getRoomReviewNum();
         this.roomNum = room.getRoomNum();
         this.roomName = room.getRoomName();
         this.defaultGuest = room.getDefaultGuest();
         this.maxGuest = room.getMaxGuest();
         this.stayStartDate = room.getStayStartDate();
         this.stayEndDate = room.getStayEndDate();
-        this.roomImageList = room.getRoomImageList().stream().map(RoomImageDTO::new).collect(Collectors.toList());
+        this.roomImageList = room.getRoomImageList()
+                .stream()
+                .map(RoomImageDTO::new)
+                .collect(Collectors.toList());
     }
 }

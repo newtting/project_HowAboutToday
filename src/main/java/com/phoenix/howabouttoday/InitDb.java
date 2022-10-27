@@ -109,6 +109,7 @@ public class InitDb {
             Region region = regionRepository.save(Region.builder()
                     .region(RegionType.BUSAN)
                     .parentRegion(save)
+
                     .build());
 
             /** 카테고리 등록 **/
@@ -144,6 +145,7 @@ public class InitDb {
                     .faciltiesOriginalFileName("image5.jpg")
                     .faciltiesSaveFilename("image7.jpg")
                     .build());
+
 
             /** 숙소이미지 등록 **/
             accommodationImageRepository.save( AccomImage.builder()
@@ -520,8 +522,6 @@ public class InitDb {
 //                    .build());
 
             for (int i=0; i < 100; i++) {
-
-
 
                 Accommodation build = Accommodation.builder()
                         .accomName("보령(대천) 너울펜션" + i)
