@@ -30,15 +30,10 @@ public class OrdersController {
 
     private final OrdersService orderService;
     private final MemberService memberService;
-    private final RoomService roomService;
-
-    public String cartDuplCheck(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
-
 
     @GetMapping("/cartDuplCheck")
     @ResponseBody
     public String cartDuplCheck(Model model, @LoginUser SessionDTO sessionDTO, Long roomNum){
-        System.out.println(roomNum);
 
         if (sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
