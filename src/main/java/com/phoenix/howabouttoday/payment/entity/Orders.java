@@ -7,6 +7,9 @@
 package com.phoenix.howabouttoday.payment.entity;
 
 import com.phoenix.howabouttoday.accom.entity.Region;
+import com.phoenix.howabouttoday.global.AccomCategoryConverter;
+import com.phoenix.howabouttoday.global.OrdersStatus;
+import com.phoenix.howabouttoday.global.OrdersStatusConverter;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
@@ -15,6 +18,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +42,7 @@ public class Orders {
     private String ordersName;
 
     @Column(length = 50)
-    private LocalDate ordersDate;
+    private LocalDateTime ordersDate;
 
     private Integer ordersPrice;
 
@@ -46,7 +50,8 @@ public class Orders {
     private String ordersType;
 
     @Column(length = 50)
-    private String ordersStatus;
+    @Convert(converter = OrdersStatusConverter.class)
+    private OrdersStatus ordersStatus;
 
     @Column(length = 500, unique = true)
     private String impUid;
@@ -58,8 +63,14 @@ public class Orders {
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     private List<Reservation> reservation = new ArrayList<>(); //이미지 fk를 위한 매핑
 
+
+    public void changeToReadyState(){
+        this.ordersStatus = OrdersStatus.PAYMENT_CANCEL;
+    }
+
+
     @Builder
-    public Orders(Member member, String ordersTel, String ordersName, LocalDate ordersDate, Integer ordersPrice, String ordersType, String ordersStatus, String impUid, String merchantId) {
+    public Orders(Member member, String ordersTel, String ordersName, LocalDateTime ordersDate, Integer ordersPrice, String ordersType, OrdersStatus ordersStatus, String impUid, String merchantId) {
         this.member = member;
         this.ordersTel = ordersTel;
         this.ordersName = ordersName;
