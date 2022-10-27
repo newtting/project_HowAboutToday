@@ -68,7 +68,7 @@ public class OrdersDetailDTO {
         this.accomName = reservation.getRoom().getAccommodation().getAccomName();
         this.accomRegion = reservation.getRoom().getAccommodation().getRegion().getRegion().getValue();
         this.orderDate = LocalDate.now().toString();
-        this.usePeriod = String.valueOf(period.getDays());
+        this.usePeriod = String.valueOf(period.getMonths() * 30 + period.getDays());
         this.startDate = reservation.getReserveUseStartDate().toString();
         this.endDate = reservation.getReserveUseEndDate().toString();
         this.startWeek = startDay;

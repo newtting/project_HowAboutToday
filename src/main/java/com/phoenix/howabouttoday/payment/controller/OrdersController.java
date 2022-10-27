@@ -8,12 +8,11 @@ import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
-import com.phoenix.howabouttoday.member.entity.Role;
+import com.phoenix.howabouttoday.payment.dto.OrdersDirectDTO;
 import com.phoenix.howabouttoday.payment.dto.OrdersDeleteDTO;
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailVO;
 import com.phoenix.howabouttoday.payment.dto.OrdersCreateDTO;
 import com.phoenix.howabouttoday.payment.service.OrdersService;
-import com.phoenix.howabouttoday.room.dto.RoomDetailDTO;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 
 @RequestMapping("/orders")
@@ -34,19 +34,27 @@ public class OrdersController {
     private final RoomService roomService;
 
     // 객실 상세 -> 결제 페이지
-    @GetMapping("/")
-    public String roomView(Model model, @RequestParam("roomNum") Long roomNum) {
+    @GetMapping("/directPayment")
+    public String roomView(Model model, @LoginUser SessionDTO sessionDTO, Principal principal, OrdersDirectDTO ordersDirectDTO) {
 
-        RoomDetailDTO room = roomService.findOne_Room(roomNum);
-        model.addAttribute("room",room);
+        if (sessionDTO != null) {
+            model.addAttribute("sessionDTO", sessionDTO);
+        }
+
+        MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
+        List<OrdersDetailVO> infoList = orderService.getDirectData(ordersDirectDTO);
+
+        model.addAttribute("totalPrice", infoList.get(0).getPrice());
+        model.addAttribute("customer", customer);
+        model.addAttribute("infoList", infoList);
 
         return "reserve/checkout";
-
     }
+
 
     /* 카드 -> 결제페이지 */
     @GetMapping("/payment")
-    public String paymentView(@LoginUser SessionDTO sessionDTO, Model model, @RequestParam List<Long> cartNum, Principal principal) {
+    public String paymentView(@LoginUser SessionDTO sessionDTO, Principal principal, Model model, @RequestParam List<Long> cartNum) {
 
         /**
          * 객실 -> 결제 이동시 컨트롤러의 처리 순서
@@ -61,9 +69,10 @@ public class OrdersController {
 
         if (sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
-        } else {
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
         }
+//        else {
+//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+//        }
 
         //1. 시큐리티를 사용해서 principal 객체에서 user정보를 가져와서 memberNum을 알 수 있다.
 
@@ -75,7 +84,6 @@ public class OrdersController {
         Integer totalPrice = orderService.getTotalPrice(cartNum);   //얘를 따로 이렇게 하는 게 맞을까??
 
         model.addAttribute("totalPrice", totalPrice);
-
         model.addAttribute("customer", customer);
         model.addAttribute("infoList", infoList);
         return "reserve/checkout";
@@ -94,14 +102,10 @@ public class OrdersController {
 
         System.out.println("잘 들어오니?");
 
-        System.out.println(orderService.getToken());
-        orderService.cancelOrders(data);
-
-
-//        orderService.cancelOrders(ordersNum);
+        Long cancelOrdersNum = orderService.cancelOrders(data);
+        orderService.changeStatusOrders(cancelOrdersNum);
         return data;
     }
-
 
     /* 결제 get방식 요청을 post리다이렉트 */
     @GetMapping("/paymentSuccess")
@@ -111,7 +115,7 @@ public class OrdersController {
 
     /* 결제 성공 */
     @PostMapping("/paymentSuccess")
-    public String postUserPaymentSuccess(@LoginUser SessionDTO sessionDTO, OrdersCreateDTO ordersRequestDTO) {
+    public String postUserPaymentSuccess(@LoginUser SessionDTO sessionDTO, OrdersCreateDTO ordersCreateDTO) {
 
 
         /** 해결 완료! **/
@@ -120,13 +124,14 @@ public class OrdersController {
 
         if (sessionDTO != null) {
 //            model.addAttribute("sessionDTO", sessionDTO);
-        } else {
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
         }
+//        else {
+//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+//        }
 
 //        model.addAttribute("sessionDTO", sessionDTO);
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
-        orderService.savePaymentData(customer.getNum(), ordersRequestDTO);
+        orderService.savePaymentData(customer.getNum(), ordersCreateDTO);
         return "redirect:/home";
     }
 }

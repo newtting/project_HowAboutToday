@@ -7,13 +7,11 @@ import com.phoenix.howabouttoday.board.entity.Reply;
 import com.phoenix.howabouttoday.board.entity.Review;
 import com.phoenix.howabouttoday.board.entity.ReviewImage;
 import com.phoenix.howabouttoday.board.repository.*;
-
+import com.phoenix.howabouttoday.global.OrdersStatus;
 import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
-
-import com.phoenix.howabouttoday.member.wishlist.domain.WishList;
 import com.phoenix.howabouttoday.member.wishlist.domain.WishlistRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
@@ -29,7 +27,6 @@ import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.room.entity.*;
 import com.phoenix.howabouttoday.room.repository.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -260,10 +257,10 @@ public class InitDb {
             Orders order = Orders.builder()
                     .ordersTel(member.getMemberTel())
                     .ordersName(member.getNickname())
-                    .ordersDate(LocalDate.now())
+                    .ordersDate(LocalDateTime.now())
                     .ordersPrice(room.getPrice())
                     .ordersType("card")
-                    .ordersStatus("결제완료")
+                    .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .impUid("abc")
                     .member(member)
                     .build();
@@ -575,10 +572,10 @@ public class InitDb {
             Orders order = Orders.builder()
                     .ordersTel(member.getMemberTel())
                     .ordersName(member.getNickname())
-                    .ordersDate(LocalDate.now())
+                    .ordersDate(LocalDateTime.now())
                     .ordersPrice(room.getPrice())
                     .ordersType("card")
-                    .ordersStatus("결제완료")
+                    .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .member(member)
                     .impUid("def")
                     .build();
@@ -799,10 +796,10 @@ public class InitDb {
             return Orders.builder()
                     .ordersTel(member.getMemberTel())
                     .ordersName(member.getNickname())
-                    .ordersDate(LocalDate.now().plusDays(day))
+                    .ordersDate(LocalDateTime.now().plusDays(day))
                     .ordersPrice(35000)
                     .ordersType("card")
-                    .ordersStatus("결제완료")
+                    .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .member(member)
                     .build();
         }
