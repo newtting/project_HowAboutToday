@@ -735,9 +735,17 @@
     <script>
 
         function roomSubmit(){
-            alert("하아")
-            document.getElementById("roomForm").submit();
-
+            const roomNum = document.querySelector("#roomNum").value;
+            fetch("/orders/cartDuplCheck?roomNum=" + roomNum)
+                .then((response)=>response.json())
+                .then((result)=> {
+                    if (result.data === true){
+                        alert("장바구니에 존재하는 객실입니다.")
+                    }
+                    else{
+                        document.getElementById("roomForm").submit();
+                    }
+                });
         }
 
         $("#cart-button").click(function(){
@@ -754,7 +762,6 @@
                 childQty: childQty,
             });
             // let form = $("#reserve-form").serialize();
-
 
             $.ajax({
                 type: 'post',
