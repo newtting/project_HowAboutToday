@@ -128,7 +128,8 @@ public class AccomController {
 
     //숙소 상세
     @GetMapping("hotel-single")
-    public String getHotelSingle(@LoginUser SessionDTO sessionDTO, Model model,Long accomNum,Long roomNum){
+    public String getHotelSingle(@LoginUser SessionDTO sessionDTO, Model model,
+                                 @RequestParam Long accomNum,Long roomNum){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
