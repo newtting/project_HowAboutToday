@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Builder
 public class Amenities {
 
     @Id
