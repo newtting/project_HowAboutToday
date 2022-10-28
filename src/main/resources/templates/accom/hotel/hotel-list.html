@@ -489,8 +489,8 @@
                                            role="button" aria-expanded="false" th:text="${parentRegion.region.value}">서울</a>
 
                                         <ul class="dropdown-menu">
-                                            <th:block th:each="childRegion : ${parentRegion.childRegions}">
-                                            <li><a class="dropdown-item" href="#" th:text="${childRegion.region.value}">관악구</a></li>
+                                            <th:block th:each="childRegion, i : ${parentRegion.childRegions}">
+                                                <li><a class="dropdown-item" href="#" th:text="${childRegion.region.value}">관악구</a></li>
                                             </th:block>
                                         </ul>
                                     </li>
@@ -713,6 +713,7 @@
         $(document).ready(function (){
 
             load();
+
         });
 
         let sortValue = $("#sort").val() + "/";
@@ -720,7 +721,9 @@
         let listLow = "";
         let listData = "";
         let keyword = "";
-        let priceRange = "";
+        let priceRange = '1만원 - 50만원';
+
+
         const low = function (result){
 
             let accom = result.content;
@@ -772,7 +775,7 @@
           keyword = $("#keyword").val();
 
            $.ajax({
-               url: '/rest/accom/' + sortValue + category_name + '?keyword=' + keyword,
+               url: '/rest/accom/' + sortValue + category_name + '?keyword=' + keyword + '&priceRange=' + priceRange,
                type: 'GET',
                contentType: 'application/json; charset=utf-8',
            }).done(function(result){
@@ -795,21 +798,21 @@
 
             priceRange = $("#amount2").val();
             console.log(priceRange);
-            // $.ajax({
-            //     url: '/rest/accom/' + sortValue + category_name + '?keyword=' + keyword,
-            //     type: 'GET',
-            //     contentType: 'application/json; charset=utf-8',
-            // }).done(function(result){
-            //     console.log(result);
-            //     listLow = low(result);
-            //     listData = result;
-            //
-            //     console.log(listLow);
-            //     document.getElementById("ht").innerHTML = listLow;
-            //
-            // }).fail(function(error){
-            //     alert(JSON.stringify(error));
-            // });
+            $.ajax({
+                url: '/rest/accom/' + sortValue + category_name + '?keyword=' + keyword + '&priceRange=' + priceRange,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+            }).done(function(result){
+
+                listLow = low(result);
+                listData = result;
+
+                console.log(listLow);
+                document.getElementById("ht").innerHTML = listLow;
+
+            }).fail(function(error){
+                alert(JSON.stringify(error));
+            });
 
         })
 
@@ -820,7 +823,7 @@
            sortValue = $("#sort").val() + "/";
 
             $.ajax({
-                url: '/rest/accom/' + sortValue + category_name,
+                url: '/rest/accom/' + sortValue + category_name + "?priceRange=" + priceRange,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
             }).done(function(result){
@@ -839,9 +842,11 @@
 
         //페이지가 로드될때 리스트 가져오는 함수
       const load = function () {
+
+
           let category_name = $("#cateName").val();
           $.ajax({
-              url: '/rest/accom/' + category_name,
+              url: '/rest/accom/' + category_name + '?priceRange=' + priceRange,
               type: 'GET',
               contentType: 'application/json; charset=utf-8',
           }).done(function (result) {
@@ -861,7 +866,7 @@
 
               let category_name = $("#cateName").val();
               $.ajax({
-                  url: '/rest/accom/' + sortValue  + category_name + '?keyword=' + keyword + '&size=' + (listData.size+5),
+                  url: '/rest/accom/' + sortValue  + category_name + '?keyword=' + keyword + '&priceRange=' + priceRange + '&size=' + (listData.size+5),
                   type: 'GET',
                   data: listData,
                   contentType: 'application/json; charset=utf-8',

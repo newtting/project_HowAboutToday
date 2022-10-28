@@ -551,7 +551,7 @@ public class InitDb {
                         .totalReviewNum(1103)
                         .latitude(36.3196)
                         .longitude(126.5092)
-                        .lowPrice(i+(500))
+                        .lowPrice((i*10000)+50000 + i)
                         .reserveRange(60)
                         .checkIn(LocalTime.of(15, 0))
                         .checkOut(LocalTime.of(11, 0))
