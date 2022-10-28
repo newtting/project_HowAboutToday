@@ -56,6 +56,10 @@ public class Room {
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<AvailableDate> availableDate = new ArrayList<>();
 
+    //양방향 매핑을 위해 추가
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Review> reviews = new ArrayList<>();
+
     @Builder
     public Room(String roomName,int defaultGuest,int maxGuest, Double roomRating,Integer roomReviewNum,Integer price, String roomInfo, Accommodation accommodation, LocalDate stayEndDate, LocalDate stayStartDate) {
         this.roomRating = roomRating;
