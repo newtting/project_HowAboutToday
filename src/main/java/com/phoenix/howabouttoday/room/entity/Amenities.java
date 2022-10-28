@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@AllArgsConstructor
 @Builder
 public class Amenities {
 
@@ -21,11 +20,11 @@ public class Amenities {
     @JoinColumn(name="room_roomNum")
     private Room room; //객실 번호
 
-    @Column
-    private String amenitiesName;//시설이름
+    @Enumerated(EnumType.STRING)
+    private AmenitiesNames amenitiesName;//시설이름
 
     @Builder
-    public Amenities(Room room, Long amenitiesNum, String amenitiesName) {
+    public Amenities(Room room, Long amenitiesNum, AmenitiesNames amenitiesName) {
         this.room = room;
         this.amenitiesNum = amenitiesNum;
         this.amenitiesName = amenitiesName;

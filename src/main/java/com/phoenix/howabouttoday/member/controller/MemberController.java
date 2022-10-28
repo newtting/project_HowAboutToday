@@ -26,10 +26,12 @@ public class MemberController {
     private final MemberService memberService;
 
 
+
     @GetMapping("/member/join")
     public String join() {
         return "/home";
     }
+
 
 
     @PostMapping("/member/join")
@@ -110,7 +112,6 @@ public class MemberController {
         model.addAttribute("exception", exception);
 
         return "/home";
-
 
     }
 

@@ -4,7 +4,6 @@ import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,6 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
-@Slf4j
 public class MemberService {
     private final MemberRepository memberRepository;
 
@@ -27,6 +25,7 @@ public class MemberService {
     @Transactional
     public Long join(MemberDTO DTO) {
         DTO.setPwd(encoder.encode(DTO.getPwd()));
+
         return memberRepository.save(DTO.toEntity()).getMemberNum();
     }
     /* 회원가입 시, 유효성 체크 */
