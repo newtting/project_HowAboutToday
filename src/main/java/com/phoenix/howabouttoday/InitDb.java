@@ -4,16 +4,14 @@ package com.phoenix.howabouttoday;
 import com.phoenix.howabouttoday.accom.entity.*;
 import com.phoenix.howabouttoday.accom.repository.*;
 import com.phoenix.howabouttoday.board.entity.Reply;
-import com.phoenix.howabouttoday.board.entity.Review;
-import com.phoenix.howabouttoday.board.entity.ReviewImage;
+import com.phoenix.howabouttoday.room.entity.Review;
+import com.phoenix.howabouttoday.room.entity.ReviewImage;
 import com.phoenix.howabouttoday.board.repository.*;
-
+import com.phoenix.howabouttoday.global.OrdersStatus;
 import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
-
-import com.phoenix.howabouttoday.member.wishlist.domain.WishList;
 import com.phoenix.howabouttoday.member.wishlist.domain.WishlistRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
@@ -29,7 +27,6 @@ import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.room.entity.*;
 import com.phoenix.howabouttoday.room.repository.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -51,7 +48,7 @@ public class InitDb {
     public void init(){
         initService.dbInit1();
         initService.dbInit2();
-
+//        initService.insertReserve();
     }
 
     @Component
@@ -260,10 +257,10 @@ public class InitDb {
             Orders order = Orders.builder()
                     .ordersTel(member.getMemberTel())
                     .ordersName(member.getNickname())
-                    .ordersDate(LocalDate.now())
+                    .ordersDate(LocalDateTime.now())
                     .ordersPrice(room.getPrice())
                     .ordersType("card")
-                    .ordersStatus("결제완료")
+                    .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .impUid("abc")
                     .member(member)
                     .build();
@@ -299,9 +296,11 @@ public class InitDb {
                     .reviewCreatedDate(LocalDateTime.now())
                     .reviewModifyDate(LocalDateTime.now())
                     .reviewRating(3.72)
+                    .room(room)
                     .reviewContent("안녕")
                     .build());
 
+            room.getReviews().add(review);
 
             /** 댓글 이미지 등록 **/
             reviewImageRepository.save(ReviewImage.builder()
@@ -356,7 +355,7 @@ public class InitDb {
                     .build());
 
             AccomCategory penssion = accomCategoryRepository.save(AccomCategory.builder()
-                    .name("penssion")
+                    .name("pension")
                     .viewName("펜션/풀빌라")
                     .build());
 
@@ -529,7 +528,7 @@ public class InitDb {
                         .accomCategory(motel)
                         .region(region)
 //                        .accomAddress("충청남도 보령시 해수욕장13길 10-20" + i)
-                        .accomRating(4.4)
+                        .accomRating(3.1)
                         .accomWishlistCount(110)
                         .totalReviewNum(1103)
                         .latitude(36.3196)
@@ -575,10 +574,10 @@ public class InitDb {
             Orders order = Orders.builder()
                     .ordersTel(member.getMemberTel())
                     .ordersName(member.getNickname())
-                    .ordersDate(LocalDate.now())
+                    .ordersDate(LocalDateTime.now())
                     .ordersPrice(room.getPrice())
                     .ordersType("card")
-                    .ordersStatus("결제완료")
+                    .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .member(member)
                     .impUid("def")
                     .build();
@@ -615,7 +614,10 @@ public class InitDb {
                     .reviewModifyDate(LocalDateTime.now())
                     .reviewRating(2.73)
                     .reviewContent("너무별로에요")
+                    .room(room)
                     .build());
+
+            room.getReviews().add(review);
 
 
             /** 댓글 이미지 등록 **/
@@ -679,9 +681,9 @@ public class InitDb {
                     .parentRegion(save)
                     .build());
 
-            AccomCategory hotel = accomCategoryRepository.save(AccomCategory.builder()
-                    .name("hotel")
-                    .viewName("호텔")
+            AccomCategory guesthouse = accomCategoryRepository.save(AccomCategory.builder()
+                    .name("guesthouse")
+                    .viewName("게스트하우스")
                     .build());
 
 
@@ -689,9 +691,8 @@ public class InitDb {
             Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
                     .accomName("제주도 라르고 게스트하우스")
                     .accomTel("01045020614")
-                    .accomCategory(hotel)
+                    .accomCategory(guesthouse)
                     .region(region)
-
 //                    .accomAddress("제주도 서귀포시 성산읍 13길 10")
                     .accomRating(3.9)
                     .accomWishlistCount(100)
@@ -799,10 +800,10 @@ public class InitDb {
             return Orders.builder()
                     .ordersTel(member.getMemberTel())
                     .ordersName(member.getNickname())
-                    .ordersDate(LocalDate.now().plusDays(day))
+                    .ordersDate(LocalDateTime.now().plusDays(day))
                     .ordersPrice(35000)
                     .ordersType("card")
-                    .ordersStatus("결제완료")
+                    .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .member(member)
                     .build();
         }

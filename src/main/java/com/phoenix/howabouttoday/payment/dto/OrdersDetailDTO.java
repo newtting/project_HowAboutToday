@@ -63,12 +63,12 @@ public class OrdersDetailDTO {
         String endDay = reservation.getReserveUseEndDate().getDayOfWeek().getDisplayName(TextStyle.NARROW, Locale.KOREAN);
 
 
-//        this.accomType = reservation.getRoom().getAccommodation().getAccomCategory().getValue();
-        this.accomTypeIcon = reservation.getRoom().getAccommodation().getAccomCategory().toString().toLowerCase();
+        this.accomType = reservation.getRoom().getAccommodation().getAccomCategory().getViewName();
+        this.accomTypeIcon = reservation.getRoom().getAccommodation().getAccomCategory().getName();
         this.accomName = reservation.getRoom().getAccommodation().getAccomName();
         this.accomRegion = reservation.getRoom().getAccommodation().getRegion().getRegion().getValue();
         this.orderDate = LocalDate.now().toString();
-        this.usePeriod = String.valueOf(period.getDays());
+        this.usePeriod = String.valueOf(period.getMonths() * 30 + period.getDays());
         this.startDate = reservation.getReserveUseStartDate().toString();
         this.endDate = reservation.getReserveUseEndDate().toString();
         this.startWeek = startDay;

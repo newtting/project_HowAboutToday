@@ -83,13 +83,10 @@ public class AccomController {
 
         model.addAttribute("categoryList",categoryList);
         String viewName = accomCategoryService.getAccomViewName(category_name);
-        model.addAttribute("viewName",viewName);
-        Slice<AccomDto.ResponsePageDto> accomPageList = accommodationService.getAccomPageList(pageable,category_name);
-        int size = accomPageList.getSize();
 
-        model.addAttribute("size",size);
+
+        model.addAttribute("viewName",viewName);
         model.addAttribute("categoryName",category_name);
-        model.addAttribute("accomPageList",accomPageList);
         model.addAttribute("sessionDTO", sessionDTO);
 
         return "accom/hotel/hotel-list";
@@ -135,7 +132,8 @@ public class AccomController {
 
     //숙소 상세
     @GetMapping("hotel-single")
-    public String getHotelSingle(@LoginUser SessionDTO sessionDTO, Model model,Long accomNum,Long roomNum){
+    public String getHotelSingle(@LoginUser SessionDTO sessionDTO, Model model,
+                                 @RequestParam Long accomNum,Long roomNum){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);

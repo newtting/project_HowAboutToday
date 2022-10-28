@@ -70,7 +70,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.csrf().disable();
         //인증되지 않은 모든 요청을
         http
                 .csrf().ignoringAntMatchers("/api/**")
@@ -84,7 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/user-dashboard-profile").authenticated()
 				.antMatchers("/user-dashboard-reviews").authenticated()
 				.antMatchers("/user-dashboard-wishlist").authenticated()
-				// .antMatchers("/user-dashboard-booking").authenticated()
+				.antMatchers("/user-dashboard-booking").authenticated()
                 .antMatchers("/user-dashboard-setting").authenticated()
                 .antMatchers("/**" ).permitAll()
                 .and()
