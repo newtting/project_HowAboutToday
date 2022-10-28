@@ -2,17 +2,14 @@
         <html xmlns:th="http://www.thymeleaf.org"
               xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
               layout:decorate="layout/layout">
-        <style>
-            .fieldError {
-              font-color: #bd2130;
-            }
-        </style>
 
         <th:block layout:fragment="content">
+            <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 
-        <!-- ================================
-            START HERO-WRAPPER AREA
-        ================================= -->
+
+            <!-- ================================
+                START HERO-WRAPPER AREA
+            ================================= -->
         <section class="hero-wrapper hero-wrapper2">
             <div class="hero-box pb-0 hwt-hero-box">
                 <div id="fullscreen-slide-contain">
@@ -134,7 +131,7 @@
                                 <a href="hotel-list">
                                     <div class="info-icon flex-shrink-0 bg-rgb text-color-2 hwt-info-icon">
                                         <!--                        <i class="las la-radiation"></i>-->
-                                        <img src="/icon/hotel.png" class="hwt-icon-element">
+                                        <img src="icon/hotel.png" class="hwt-icon-element">
                                     </div><!-- end info-icon-->
                                     <div class="info-content">
                                         <!--                        <h4 class="info__title">Unique Atmosphere</h4>-->
@@ -623,6 +620,7 @@
 
         <!-- end modal-shared -->
         <div class="modal-popup">
+            <input type="hidden" id="memberCheck" th:value="${memberCheck}">
             <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -644,7 +642,7 @@
                                             <span class="la la-user form-icon"></span>
                                             <input class="form-control" type="text" th:field="*{nickname}" placeholder="닉네임"
                                               th:class="${#fields.hasErrors('nickname')}? 'form-control fieldError' : 'form-control'">
-                                            <span th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></span>
+                                            <span th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}" style="color: red; font-size:13px"></span>
                                         </div>
                                     </div><!-- end input-box -->
                                     <div class="input-box">
@@ -653,7 +651,7 @@
                                             <span class="la la-envelope form-icon"></span>
                                             <input class="form-control" type="text"  th:field="*{email}" placeholder="이메일 주소"
                                                    th:class="${#fields.hasErrors('email')}? 'form-control fieldError' : 'form-control'">
-                                            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                                            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red; font-size:13px"></span>
                                         </div>
                                     </div><!-- end input-box -->
                                     <div class="input-box">
@@ -662,16 +660,16 @@
                                             <span class="la la-lock form-icon"></span>
                                             <input class="form-control" type="password" th:field="*{pwd}" placeholder="패스워드"
                                                    th:class="${#fields.hasErrors('pwd')}? 'form-control fieldError' : 'form-control'">
-                                            <span th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></span>
+                                            <span th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}" style="color: red; font-size:13px"></span>
                                         </div>
                                     </div><!-- end input-box -->
-                                    <!--                                    <div class="input-box">-->
-                                    <!--                                        <label class="label-text">패스워드 확인</label>-->
-                                    <!--                                        <div class="form-group">-->
-                                    <!--                                            <span class="la la-lock form-icon"></span>-->
-                                    <!--                                            <input class="form-control" type="password" name="text" placeholder="패스워드 재입력">-->
-                                    <!--                                        </div>-->
-                                    <!--                                    </div>&lt;!&ndash; end input-box &ndash;&gt;-->
+<!--                                     <div class="input-box">-->
+<!--                                         <label class="label-text">패스워드 확인</label>-->
+<!--                                              <div class="form-group">-->
+<!--                                                  <span class="la la-lock form-icon"></span>-->
+<!--                                                  <input class="form-control" type="password" name="text" placeholder="패스워드 재입력">-->
+<!--                                             </div>-->
+<!--                                     </div>&lt;!&ndash; end input-box &ndash;&gt;-->
                                     <div class="btn-box pt-3 pb-4">
                                         <button type="submit" class="theme-btn w-100">회원가입</button>
                                     </div>
@@ -722,6 +720,8 @@
                                                 <span class="la la-lock form-icon"></span>
                                                 <input class="form-control" type="password" name="pwd" id="pwd" placeholder="패스워드">
                                             </div>
+
+
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <!--                                    <div class="custom-checkbox mb-0">-->
                                                 <!--                                        <input type="checkbox" id="rememberchb">-->
@@ -732,6 +732,11 @@
                                                 </p>
                                             </div>
                                         </div><!-- end input-box -->
+
+                                        <th:if test="${not empty error}">
+                                            <p id="valid" class="alert alert-danger" th:value="${exception}"></p>
+                                        </th:if>
+
                                         <div class="btn-box pt-3 pb-4">
                                             <button type="submit" id="login" class="theme-btn w-100">로그인</button>
                                         </div>
@@ -751,7 +756,17 @@
                 </div>
             </div>
         </div><!-- end modal-popup -->
+            <script>
+                $(document).ready(function(){
 
+                  let memberCheck = $("#memberCheck").val();
+
+                  if(memberCheck == "true"){
+                    $("#memberJoin").click();
+                  }
+
+                })
+            </script>
         </th:block>
 
         </html>

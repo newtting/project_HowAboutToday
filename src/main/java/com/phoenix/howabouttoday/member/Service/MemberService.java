@@ -42,6 +42,18 @@ public class MemberService {
         return validatorResult;
     }
 
+    /* 회원수정 (dirty checking) */
+    @Transactional
+    public void modify(MemberDTO memberDTO) {
+        Member member = memberRepository.findById(memberDTO.toEntity().getMemberNum()).orElseThrow(() ->
+                new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
+
+        String encPassword = encoder.encode(memberDTO.getPwd());
+        member.modify(memberDTO.getNickname(),memberDTO.getMemberTel(), encPassword);
+    }
+
+
+
     public MemberDTO getSessionUser(Long memberNum){
         Member member = memberRepository.findById(memberNum).get();
 

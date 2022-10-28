@@ -1,9 +1,7 @@
 package com.phoenix.howabouttoday.accom.controller;
 
-import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Facilities;
-import com.phoenix.howabouttoday.accom.entity.Facility;
 import com.phoenix.howabouttoday.accom.service.AccomodationService;
 
 //import com.phoenix.howabouttoday.payment.AccomCategory;
@@ -17,8 +15,6 @@ import com.phoenix.howabouttoday.room.dto.RoomListDTO;
 import com.phoenix.howabouttoday.accom.service.FacilitiesService;
 import com.phoenix.howabouttoday.room.service.RoomService;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
@@ -50,6 +46,9 @@ public class AccomController {
         }
         MemberDTO memberDTO = new MemberDTO();
         model.addAttribute("memberDTO",memberDTO);
+
+        boolean memberCheck = false;
+        model.addAttribute("memberCheck",memberCheck);
         return "home";
     }
 
