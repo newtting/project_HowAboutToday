@@ -5,6 +5,11 @@ import com.phoenix.howabouttoday.board.service.BoardService;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,13 +26,15 @@ public class AboutUsController {
 
     // 오늘어때 정보 리스트 페이지
     @GetMapping("aboutUs")
-    public String aboutUsList(@LoginUser SessionDTO sessionDTO, Model model){
+    public String aboutUsList(@LoginUser SessionDTO sessionDTO, Model model, @PageableDefault Pageable pageable){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        List<BoardListDTO> boardList = boardService.findAll_Board("오늘어때 정보"); // boardCategoryName = "오늘어때 정보"인 데이터들을 DTO에 저장
+        pageable = PageRequest.of(0, 3);
+        Slice<BoardListDTO> boardList = boardService.findAll_Board("오늘어때 정보", pageable); // boardCategoryName = "오늘어때 정보"인 데이터들을 DTO에 저장
+
         model.addAttribute("lists", boardList);
 
         return "board/aboutUs";
