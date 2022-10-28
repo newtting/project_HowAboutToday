@@ -20,6 +20,9 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
     List<Accommodation> findByAccomNameContaining(String keyword);
 
     @EntityGraph(attributePaths = {"accomCategory","region","accommodationImage"})
+    Slice<Accommodation> findByAccomCategory_NameAndAccomNameContaining(String category_name, Pageable pageable,String keyword);
+
+    @EntityGraph(attributePaths = {"accomCategory","region","accommodationImage"})
     Slice<Accommodation> findByAccomCategory_Name(String category_name, Pageable pageable);
 
 }

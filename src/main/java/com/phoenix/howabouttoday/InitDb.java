@@ -35,6 +35,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.chrono.JapaneseChronology;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
@@ -100,11 +101,17 @@ public class InitDb {
             /**지역 등록 **/
 
             Region save = regionRepository.save(Region.builder()
-                    .region(RegionType.SEOUL)
+                    .region(RegionType.BUSAN)
                     .build());
 
             Region region = regionRepository.save(Region.builder()
-                    .region(RegionType.BUSAN)
+                    .region(RegionType.SAHA)
+                    .parentRegion(save)
+
+                    .build());
+
+            regionRepository.save(Region.builder()
+                    .region(RegionType.DONGNAE)
                     .parentRegion(save)
 
                     .build());
@@ -343,10 +350,23 @@ public class InitDb {
                     .build());
 
             Region region = regionRepository.save(Region.builder()
-                    .region(RegionType.BUSAN)
+                    .region(RegionType.GWANAK)
+                    .parentRegion(save)
+                    .build());
+            regionRepository.save(Region.builder()
+                    .region(RegionType.JONGRO)
                     .parentRegion(save)
                     .build());
 
+            regionRepository.save(Region.builder()
+                    .region(RegionType.SEODEAMOON)
+                    .parentRegion(save)
+                    .build());
+
+            regionRepository.save(Region.builder()
+                    .region(RegionType.SEOCHO)
+                    .parentRegion(save)
+                    .build());
             AccomCategory motel = accomCategoryRepository.save(AccomCategory.builder()
                     .name("motel")
                     .viewName("모텔")
@@ -672,9 +692,15 @@ public class InitDb {
                     .build());
 
             Region region = regionRepository.save(Region.builder()
-                    .region(RegionType.BUSAN)
+                    .region(RegionType.GWANAK)
                     .parentRegion(save)
                     .build());
+
+            regionRepository.save(Region.builder()
+                    .region(RegionType.SEODEAMOON)
+                    .parentRegion(save)
+                    .build());
+
 
             AccomCategory hotel = accomCategoryRepository.save(AccomCategory.builder()
                     .name("hotel")

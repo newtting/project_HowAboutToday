@@ -1,17 +1,16 @@
 package com.phoenix.howabouttoday.accom.controller;
 
 import com.phoenix.howabouttoday.accom.dto.AccomCategoryDto;
-import com.phoenix.howabouttoday.accom.dto.AccomDto;
-import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Facilities;
-import com.phoenix.howabouttoday.accom.entity.Facility;
+import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.service.AccomCategoryService;
 import com.phoenix.howabouttoday.accom.service.AccomodationService;
 
 //import com.phoenix.howabouttoday.payment.AccomCategory;
 
 
+import com.phoenix.howabouttoday.accom.service.RegionService;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
@@ -39,7 +38,7 @@ public class AccomController {
     private final AccomodationService accommodationService;
     private final RoomService roomService;
     private final FacilitiesService facilitiesService;
-
+    private final RegionService regionService;
     private final AccomCategoryService accomCategoryService;
 
 
@@ -55,6 +54,8 @@ public class AccomController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
+
+
         MemberDTO memberDTO = new MemberDTO();
         model.addAttribute("memberDTO",memberDTO);
         return "home";
@@ -71,16 +72,23 @@ public class AccomController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        System.out.println("카테고리호출!!!! = " + category_name);
+        /** 카테고리 리스트 조회 **/
         List<AccomCategoryDto.ResponseDto> categoryList = accomCategoryService.findAccomList();
 
-        model.addAttribute("categoryList",categoryList);
+        /** 화면에 표시할 한글카테고리 이름 조회**/
         String viewName = accomCategoryService.getAccomViewName(category_name);
 
+        /** 화면에 표시할 부모 지역 조회 **/
+        List<Region> parentRegions = regionService.findAllParent();
 
+
+
+        model.addAttribute("categoryList",categoryList);
         model.addAttribute("viewName",viewName);
         model.addAttribute("categoryName",category_name);
         model.addAttribute("sessionDTO", sessionDTO);
+        model.addAttribute("parentRegions", parentRegions);
+
 
         return "accom/hotel/hotel-list";
 

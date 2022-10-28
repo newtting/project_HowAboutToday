@@ -34,9 +34,9 @@ public class AccomodationService {
     private final RegionRepository regionRepository;
     private final AccommodationImageRepository accommodationImageRepository;
 
-    public Slice<AccomDto.ResponsePageDto> getAccomPageList(Pageable pageable,String category_name) {
+    public Slice<AccomDto.ResponsePageDto> getAccomPageList(Pageable pageable,String category_name , String keyword) {
 
-        Slice<Accommodation> page = accommodationRepository.findByAccomCategory_Name(category_name,pageable);
+        Slice<Accommodation> page = accommodationRepository.findByAccomCategory_NameAndAccomNameContaining(category_name,pageable,keyword);
 
 
         Slice<AccomDto.ResponsePageDto> accomPageList = page.map(accom -> new AccomDto.ResponsePageDto(accom));
