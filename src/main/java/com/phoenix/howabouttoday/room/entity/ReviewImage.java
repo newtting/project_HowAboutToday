@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.board.entity;
+package com.phoenix.howabouttoday.room.entity;
 
 
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
