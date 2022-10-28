@@ -1,8 +1,6 @@
 package com.phoenix.howabouttoday.payment.entity;
 
 
-import com.phoenix.howabouttoday.global.OrdersStatusConverter;
-import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.payment.enumType.CouponStatus;
 import com.phoenix.howabouttoday.payment.enumType.CouponStatusConverter;
 import com.phoenix.howabouttoday.payment.enumType.DiscountType;
@@ -17,28 +15,32 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Coupon {
+public class CouponRules {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long couponNum;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "couponRulesNum")
-    private CouponRules couponRules;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "memberNum")
-    private Member member;
-
-    //이것도 enum으로?
-    @Column
-    @Convert(converter = CouponStatusConverter.class)
-    private CouponStatus status;
+    private Long couponRulesNum;
 
     @Column
-    private LocalDate assignedDate; //지급날짜
+    private String couponName;
 
     @Column
-    private LocalDate endDate;      //만료날짜
+    private String couponContent;
+
+    @Column
+    private Integer period; //사용기한
+
+    //이건 아마 enum으로 관리 해야할듯
+    @Column
+    @Convert(converter = DiscountTypeConverter.class)
+    private DiscountType discountType;
+
+    @Column
+    private Integer discountValue;  //할인값 (금액, 비율) 에 따라서 달라진다.
+
+    //최소주문금액
+    private Integer discountMinPrice;
+
+    //최대할인금액
+    private Integer discountMaxPrice;
 }
