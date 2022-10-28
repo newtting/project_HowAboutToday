@@ -4,8 +4,8 @@ package com.phoenix.howabouttoday;
 import com.phoenix.howabouttoday.accom.entity.*;
 import com.phoenix.howabouttoday.accom.repository.*;
 import com.phoenix.howabouttoday.board.entity.Reply;
-import com.phoenix.howabouttoday.board.entity.Review;
-import com.phoenix.howabouttoday.board.entity.ReviewImage;
+import com.phoenix.howabouttoday.room.entity.Review;
+import com.phoenix.howabouttoday.room.entity.ReviewImage;
 import com.phoenix.howabouttoday.board.repository.*;
 import com.phoenix.howabouttoday.global.OrdersStatus;
 import com.phoenix.howabouttoday.global.RegionType;
@@ -48,7 +48,7 @@ public class InitDb {
     public void init(){
         initService.dbInit1();
         initService.dbInit2();
-
+//        initService.insertReserve();
     }
 
     @Component
@@ -296,9 +296,11 @@ public class InitDb {
                     .reviewCreatedDate(LocalDateTime.now())
                     .reviewModifyDate(LocalDateTime.now())
                     .reviewRating(3.72)
+                    .room(room)
                     .reviewContent("안녕")
                     .build());
 
+            room.getReviews().add(review);
 
             /** 댓글 이미지 등록 **/
             reviewImageRepository.save(ReviewImage.builder()
@@ -353,7 +355,7 @@ public class InitDb {
                     .build());
 
             AccomCategory penssion = accomCategoryRepository.save(AccomCategory.builder()
-                    .name("penssion")
+                    .name("pension")
                     .viewName("펜션/풀빌라")
                     .build());
 
@@ -612,7 +614,10 @@ public class InitDb {
                     .reviewModifyDate(LocalDateTime.now())
                     .reviewRating(2.73)
                     .reviewContent("너무별로에요")
+                    .room(room)
                     .build());
+
+            room.getReviews().add(review);
 
 
             /** 댓글 이미지 등록 **/
@@ -676,9 +681,9 @@ public class InitDb {
                     .parentRegion(save)
                     .build());
 
-            AccomCategory hotel = accomCategoryRepository.save(AccomCategory.builder()
-                    .name("hotel")
-                    .viewName("호텔")
+            AccomCategory guesthouse = accomCategoryRepository.save(AccomCategory.builder()
+                    .name("guesthouse")
+                    .viewName("게스트하우스")
                     .build());
 
 
@@ -686,9 +691,8 @@ public class InitDb {
             Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
                     .accomName("제주도 라르고 게스트하우스")
                     .accomTel("01045020614")
-                    .accomCategory(hotel)
+                    .accomCategory(guesthouse)
                     .region(region)
-
 //                    .accomAddress("제주도 서귀포시 성산읍 13길 10")
                     .accomRating(3.9)
                     .accomWishlistCount(100)

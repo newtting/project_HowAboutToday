@@ -15,10 +15,10 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Getter
-public class OrdersDTO {
+public class OrdersDTO implements Comparable<OrdersDTO> {
 
     private Long ordersNum;         //pk값
-    private LocalDate ordersDate;
+    private String ordersDate;
     private Integer ordersPrice;
     private String ordersTel;
     private String ordersName;
@@ -31,7 +31,7 @@ public class OrdersDTO {
         this.ordersNum = orders.getOrdersNum();
         this.ordersTel = orders.getOrdersTel();
         this.ordersName = orders.getOrdersName();
-        this.ordersDate = orders.getOrdersDate().toLocalDate();
+        this.ordersDate = orders.getOrdersDate().toLocalDate().toString();
         this.ordersPrice = orders.getOrdersPrice();
         this.ordersType = orders.getOrdersType();
         this.ordersStatus = orders.getOrdersStatus().getValue();
@@ -40,5 +40,16 @@ public class OrdersDTO {
     }
 
     public OrdersDTO() {
+    }
+
+    @Override
+    public int compareTo(OrdersDTO ordersDTO) {
+
+        if (this.getOrdersNum() > ordersDTO.getOrdersNum()) {
+            return 1;
+        } else if (this.getOrdersNum() < ordersDTO.getOrdersNum()) {
+            return -1;
+        }
+        return 0;
     }
 }

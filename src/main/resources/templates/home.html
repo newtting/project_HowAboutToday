@@ -1,45 +1,44 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/layout">
-<style>
-    .fieldError {
-        font-color: #bd2130;
-    }
-</style>
 
-<th:block layout:fragment="content">
+        <!DOCTYPE html>
+        <html xmlns:th="http://www.thymeleaf.org"
+              xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+              layout:decorate="layout/layout">
 
-    <!-- ================================
-        START HERO-WRAPPER AREA
-    ================================= -->
-    <section class="hero-wrapper hero-wrapper2">
-        <div class="hero-box pb-0 hwt-hero-box">
-            <div id="fullscreen-slide-contain">
-                <ul class="slides-container">
-                    <li><img src="/images/hero-bg2.jpg" alt=""></li>
-                    <li><img src="/images/hero--bg2.jpg" alt=""></li>
-                    <li><img src="/images/hero--bg3.jpg" alt=""></li>
-                </ul>
-            </div><!-- End background slider -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="hero-content pb-5">
-                            <div class="section-heading">
-                                <p class="sec__desc pb-2">호텔, 모텔, 펜션 예약</p>
-                                <h2 class="sec__title">HOW ABOUT TODAY ?</h2>
-                            </div>
-                        </div><!-- end hero-content -->
-                        <div class="search-fields-container hwt-search-container">
-                            <div class="contact-form-action hwt-search">
-                                <form action="#" class="row">
-                                    <div class="col-lg-3 pr-0 hwt-search-element">
-                                        <div class="input-box">
-                                            <label class="label-text">지역 / 숙소 이름</label>
-                                            <div class="form-group">
-                                                <span class="la la-map-marker form-icon"></span>
-                                                <input class="form-control" type="text" placeholder="지역 또는 숙소 이름을 입력하세요.">
+        <th:block layout:fragment="content">
+            <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+
+
+            <!-- ================================
+                START HERO-WRAPPER AREA
+            ================================= -->
+        <section class="hero-wrapper hero-wrapper2">
+            <div class="hero-box pb-0 hwt-hero-box">
+                <div id="fullscreen-slide-contain">
+                    <ul class="slides-container">
+                        <li><img src="/images/hero-bg2.jpg" alt=""></li>
+                        <li><img src="/images/hero--bg2.jpg" alt=""></li>
+                        <li><img src="/images/hero--bg3.jpg" alt=""></li>
+                    </ul>
+                </div><!-- End background slider -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="hero-content pb-5">
+                                <div class="section-heading">
+                                    <p class="sec__desc pb-2">호텔, 모텔, 펜션 예약</p>
+                                    <h2 class="sec__title">HOW ABOUT TODAY ?</h2>
+                                </div>
+                            </div><!-- end hero-content -->
+                            <div class="search-fields-container hwt-search-container">
+                                <div class="contact-form-action hwt-search">
+                                    <form action="#" class="row">
+                                        <div class="col-lg-3 pr-0 hwt-search-element">
+                                            <div class="input-box">
+                                                <label class="label-text">지역 / 숙소 이름</label>
+                                                <div class="form-group">
+                                                    <span class="la la-map-marker form-icon"></span>
+                                                    <input class="form-control" type="text" placeholder="지역 또는 숙소 이름을 입력하세요.">
+                                                </div>
                                             </div>
                                         </div>
                                     </div><!-- end col-lg-3 -->
@@ -105,6 +104,72 @@
                             </div>
                         </div>
                     </div><!-- end col-lg-12 -->
+                </div>
+                <div class="row hwt-row-icon">
+                    <div class="col-lg-3 responsive-column hwt-col-icon">
+                        <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                            <div class="hwt-iconbox-pointer">
+                                <a href="hotel-list">
+                                    <div class="info-icon flex-shrink-0 bg-rgb text-color-2 hwt-info-icon">
+                                        <!--                        <i class="las la-radiation"></i>-->
+                                        <img src="icon/hotel.png" class="hwt-icon-element">
+                                    </div><!-- end info-icon-->
+                                    <div class="info-content">
+                                        <!--                        <h4 class="info__title">Unique Atmosphere</h4>-->
+                                        <p class="info__desc">호텔</p>
+                                    </div><!-- end info-content -->
+                                </a>
+                            </div>
+                        </div><!-- end icon-box -->
+                    </div><!-- end col-lg-3 -->
+                    <div class="col-lg-3 responsive-column hwt-col-icon">
+                        <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                            <div class="hwt-iconbox-pointer">
+                                <a href="motel-list">
+                                    <div class="info-icon flex-shrink-0 bg-rgb-2 text-color-3 hwt-info-icon">
+                                        <!--                        <i class="la la-tree"></i>-->
+                                        <img src="icon/motel2.png" class="hwt-icon-element">
+                                    </div><!-- end info-icon-->
+                                    <div class="info-content">
+                                        <!--                        <h4 class="info__title">Environment</h4>-->
+                                        <p class="info__desc">모텔</p>
+                                    </div><!-- end info-content -->
+                                </a>
+                            </div>
+                        </div><!-- end icon-box -->
+                    </div><!-- end col-lg-3 -->
+                    <div class="col-lg-3 responsive-column hwt-col-icon">
+                        <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                            <div class="hwt-iconbox-pointer">
+                                <a href="pension-PoolVilla-list">
+                                    <div class="info-icon flex-shrink-0 bg-rgb-3 text-color-4 hwt-info-icon">
+                                        <!--                        <i class="las la-map-marked-alt"></i>-->
+                                        <img src="icon/poolvilla.png" class="hwt-icon-element">
+                                    </div><!-- end info-icon-->
+                                    <div class="info-content">
+                                        <!--                        <h4 class="info__title">Great Location</h4>-->
+                                        <p class="info__desc">펜션/풀빌라</p>
+                                    </div><!-- end info-content -->
+                                </a>
+                            </div>
+                        </div><!-- end icon-box -->
+                    </div><!-- end col-lg-3 -->
+                    <div class="col-lg-3 responsive-column hwt-col-icon">
+                        <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
+                            <div class="hwt-iconbox-pointer">
+                                <a href="guestHouse-Hanok-list">
+                                    <div class="info-icon flex-shrink-0 bg-rgb-4 text-color-5 hwt-info-icon">
+                                        <!--                        <i class="las la-bed"></i>-->
+                                        <img src="icon/hostel.png" class="hwt-icon-element">
+                                    </div><!-- end info-icon-->
+                                    <div class="info-content">
+                                        <!--                        <h4 class="info__title">Homey Comfort</h4>-->
+                                        <p class="info__desc">게하/한옥</p>
+                                    </div><!-- end info-content -->
+                                </a>
+                            </div>
+                        </div><!-- end icon-box -->
+                    </div><!-- end col-lg-3 -->
                 </div><!-- end row -->
             </div><!-- end container -->
         </div>
@@ -615,36 +680,60 @@
 
     <th:block th:replace="fragments/bottom-bar::bottom-bar"></th:block>
 
-    <!-- start back-to-top -->
-    <div id="back-to-top">
-        <i class="la la-angle-up" title="Go top"></i>
-    </div>
-    <!-- end back-to-top -->
-
-    <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
-                            <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
+        <!-- end modal-shared -->
+        <div class="modal-popup">
+            <input type="hidden" id="memberCheck" th:value="${memberCheck}">
+            <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div>
+                                <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
+                                <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" class="la la-close"></span>
+                            </button>
                         </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" th:id="joinForm" th:action="@{/member/join}" th:object="${memberDTO}">
-                                <div class="input-box">
-                                    <label class="label-text">닉네임</label>
-                                    <div class="form-group">
-                                        <span class="la la-user form-icon"></span>
-                                        <input class="form-control" type="text" id="inputNickname" th:field="*{nickname}" placeholder="닉네임"
-                                               th:class="${#fields.hasErrors('nickname')}? 'form-control fieldError' : 'form-control'">
-                                        <span th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></span>
+                        <div class="modal-body">
+                            <div class="contact-form-action">
+                                <form method="post" th:action="@{/member/join}" th:object="${memberDTO}">
+                                    <div class="input-box">
+                                        <label class="label-text">닉네임</label>
+                                        <div class="form-group">
+                                            <span class="la la-user form-icon"></span>
+                                            <input class="form-control" type="text" th:field="*{nickname}" placeholder="닉네임"
+                                              th:class="${#fields.hasErrors('nickname')}? 'form-control fieldError' : 'form-control'">
+                                            <span th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}" style="color: red; font-size:13px"></span>
+                                        </div>
+                                    </div><!-- end input-box -->
+                                    <div class="input-box">
+                                        <label class="label-text">이메일 주소</label>
+                                        <div class="form-group">
+                                            <span class="la la-envelope form-icon"></span>
+                                            <input class="form-control" type="text"  th:field="*{email}" placeholder="이메일 주소"
+                                                   th:class="${#fields.hasErrors('email')}? 'form-control fieldError' : 'form-control'">
+                                            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red; font-size:13px"></span>
+                                        </div>
+                                    </div><!-- end input-box -->
+                                    <div class="input-box">
+                                        <label class="label-text">패스워드</label>
+                                        <div class="form-group">
+                                            <span class="la la-lock form-icon"></span>
+                                            <input class="form-control" type="password" th:field="*{pwd}" placeholder="패스워드"
+                                                   th:class="${#fields.hasErrors('pwd')}? 'form-control fieldError' : 'form-control'">
+                                            <span th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}" style="color: red; font-size:13px"></span>
+                                        </div>
+                                    </div><!-- end input-box -->
+<!--                                     <div class="input-box">-->
+<!--                                         <label class="label-text">패스워드 확인</label>-->
+<!--                                              <div class="form-group">-->
+<!--                                                  <span class="la la-lock form-icon"></span>-->
+<!--                                                  <input class="form-control" type="password" name="text" placeholder="패스워드 재입력">-->
+<!--                                             </div>-->
+<!--                                     </div>&lt;!&ndash; end input-box &ndash;&gt;-->
+                                    <div class="btn-box pt-3 pb-4">
+                                        <button type="submit" class="theme-btn w-100">회원가입</button>
                                     </div>
                                 </div><!-- end input-box -->
                                 <div class="input-box">
@@ -692,16 +781,67 @@
             </div>
         </div>
     </div><!-- end modal-popup -->
+            <!-- end modal-shared -->
+            <div class="modal-popup">
+                <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h5 class="modal-title title" id="exampleModalLongTitle2">로그인</h5>
+                                    <p class="font-size-14">안녕하세요! 로그인을 환영합니다.</p>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true" class="la la-close"></span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="contact-form-action">
+                                    <form method="post" action="/loginProc">
+                                        <div class="input-box">
+                                            <label class="label-text">이메일</label>
+                                            <div class="form-group">
+                                                <span class="la la-envelope form-icon"></span>
+                                                <input class="form-control" type="email" name="email" id="email" placeholder="이메일 주소">
+                                            </div>
+                                        </div><!-- end input-box -->
+                                        <div class="input-box">
+                                            <label class="label-text">패스워드</label>
+                                            <div class="form-group mb-2">
+                                                <span class="la la-lock form-icon"></span>
+                                                <input class="form-control" type="password" name="pwd" id="pwd" placeholder="패스워드">
+                                            </div>
 
-    <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle2">로그인</h5>
-                            <p class="font-size-14">안녕하세요! 로그인을 환영합니다.</p>
+
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <!--                                    <div class="custom-checkbox mb-0">-->
+                                                <!--                                        <input type="checkbox" id="rememberchb">-->
+                                                <!--                                        <label for="rememberchb">Remember me</label>-->
+                                                <!--                                    </div>-->
+                                                <p class="forgot-password">
+                                                    <a href="recover">비밀번호를 잊으셨나요?</a>
+                                                </p>
+                                            </div>
+                                        </div><!-- end input-box -->
+
+                                        <th:if test="${not empty error}">
+                                            <p id="valid" class="alert alert-danger" th:value="${exception}"></p>
+                                        </th:if>
+
+                                        <div class="btn-box pt-3 pb-4">
+                                            <button type="submit" id="login" class="theme-btn w-100">로그인</button>
+                                        </div>
+                                        <div class="action-box text-center">
+                                            <p class="font-size-14">SNS를 통한 로그인</p>
+                                            <ul class="social-profile py-3">
+                                                <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
+                                                <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
+                                                <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
+                                                <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </form>
+                                </div><!-- end contact-form-action -->
                         </div>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="la la-close"></span>
@@ -751,9 +891,18 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div><!-- end modal-popup -->
+        </div><!-- end modal-popup -->
+            <script>
+                $(document).ready(function(){
 
-</th:block>
+                  let memberCheck = $("#memberCheck").val();
+
+                  if(memberCheck == "true"){
+                    $("#memberJoin").click();
+                  }
+
+                })
+            </script>
+        </th:block>
 
 </html>
