@@ -8,6 +8,7 @@ import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
+import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.payment.dto.*;
 import com.phoenix.howabouttoday.payment.service.OrdersService;
 import com.phoenix.howabouttoday.room.service.RoomService;
@@ -38,6 +39,9 @@ public class OrdersController {
         if (sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
+        else {
+            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+        }
 
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
 
@@ -55,6 +59,9 @@ public class OrdersController {
         if (sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
+        else {
+            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+        }
 
 
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
@@ -69,6 +76,9 @@ public class OrdersController {
 
         if (sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
+        }
+        else {
+            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
         }
 
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
@@ -117,9 +127,9 @@ public class OrdersController {
         if (sessionDTO != null) {
 //            model.addAttribute("sessionDTO", sessionDTO);
         }
-//        else {
-//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
-//        }
+        else {
+            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+        }
 
 //        model.addAttribute("sessionDTO", sessionDTO);
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
