@@ -2,11 +2,13 @@ package com.phoenix.howabouttoday.accom.controller;
 
 import com.phoenix.howabouttoday.accom.dto.AccomCategoryDto;
 import com.phoenix.howabouttoday.accom.dto.AccomDto;
+import com.phoenix.howabouttoday.accom.dto.AccomReviewDTO;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Facilities;
 import com.phoenix.howabouttoday.accom.entity.Facility;
 import com.phoenix.howabouttoday.accom.service.AccomCategoryService;
+import com.phoenix.howabouttoday.accom.service.AccomReviewService;
 import com.phoenix.howabouttoday.accom.service.AccomodationService;
 
 //import com.phoenix.howabouttoday.payment.AccomCategory;
@@ -39,7 +41,7 @@ public class AccomController {
     private final AccomodationService accommodationService;
     private final RoomService roomService;
     private final FacilitiesService facilitiesService;
-
+    private final AccomReviewService accomReviewService;
     private final AccomCategoryService accomCategoryService;
 
 
@@ -125,8 +127,10 @@ public class AccomController {
 
     //숙소 상세
     @GetMapping("hotel-single")
-    public String getHotelSingle(@LoginUser SessionDTO sessionDTO, Model model,
-                                 @RequestParam Long accomNum,Long roomNum){
+    public String getHotelSingle(@LoginUser SessionDTO sessionDTO,
+                                 @RequestParam Long accomNum,Long roomNum,
+                                 @PathVariable("accom_id") Long review_id,
+                                 Model model){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -143,6 +147,9 @@ public class AccomController {
         model.addAttribute("facilities",facilitiesList);
         model.addAttribute("accommodation",accomList);
 //        model.addAttribute("roomlist", roomService.roomList());
+
+        List<AccomReviewDTO.ResponseDto> reviewlist = accomReviewService.findAllByAccom(review_id);
+        model.addAttribute("reviewlist",reviewlist);//리뷰 리스트 출력
         return "accom/hotel/hotel-single";
 
     }

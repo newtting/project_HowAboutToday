@@ -29,7 +29,6 @@ public class AccomRestController {
     public Slice<AccomDto.ResponsePageDto> accommodations(@PathVariable(required = false) String category_name,
                                                @PageableDefault(page = 0,size = 5,sort = "lowPrice",direction = Sort.Direction.ASC) Pageable pageable) {
 
-
         return accomodationService.getAccomPageList(pageable,category_name);
     }
 
