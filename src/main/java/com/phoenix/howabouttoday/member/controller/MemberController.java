@@ -9,16 +9,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -30,7 +29,7 @@ public class MemberController {
 
     @GetMapping("/member/join")
     public String join() {
-        return "/member/home";
+        return "/home";
     }
 
 
@@ -59,8 +58,8 @@ public class MemberController {
 
         if(result.hasErrors()){
 
-            System.out.println("리턴페이지 호출!!!!!!!");
-
+            boolean memberCheck = true;
+            model.addAttribute("memberCheck",memberCheck);
             return  "/home";
         }
 
@@ -71,7 +70,7 @@ public class MemberController {
         String url = referer.substring(21);
         System.out.println("url = " + url);
 
-        return "redirect:" + url;
+        return "redirect:/home";
     }
 
 
@@ -106,16 +105,30 @@ public class MemberController {
 //        return "/member/member-login";
 
     @GetMapping("/loginProc")
-    public String login(@RequestHeader("referer") String referer) {
-        String url = referer.substring(21);
-        System.out.println("aaa");
-        return "/member/member-login";
+    public String login(@RequestParam(value = "error", required = false)String error,
+                        @RequestParam(value = "exception", required = false)String exception,
+                        Model model) {
+        model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
+
+        return "/home";
 
     }
 
     @GetMapping("/logout")
     public String logout() {
         return "member/logout";
+    }
+
+    /* 회원정보 수정 */
+    @GetMapping("/modify")
+    public String modify(@LoginUser SessionDTO sessionDTO, Model model) {
+        if (sessionDTO != null) {
+            model.addAttribute("member", sessionDTO.getNickname());
+            model.addAttribute("member", sessionDTO.getMemberTel());
+            model.addAttribute("sessionDTO", sessionDTO);
+        }
+        return "/user-dashboard-settings";
     }
 
 

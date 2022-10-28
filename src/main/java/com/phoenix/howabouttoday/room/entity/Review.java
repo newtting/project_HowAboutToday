@@ -1,4 +1,4 @@
-package com.phoenix.howabouttoday.board.entity;
+package com.phoenix.howabouttoday.room.entity;
 
 
 import com.phoenix.howabouttoday.member.entity.Member;
@@ -28,17 +28,17 @@ public class Review {
     @Column
     private Long reviewNum;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_num")
     private Member member;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_num")
+    private Room room;
+
     private LocalDateTime reviewCreatedDate;
     private LocalDateTime reviewModifyDate;
 
-
     private Double reviewRating;
     private String reviewContent;
-
-
 }
