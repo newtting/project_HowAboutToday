@@ -7,14 +7,11 @@ import com.phoenix.howabouttoday.board.entity.Reply;
 import com.phoenix.howabouttoday.board.entity.Review;
 import com.phoenix.howabouttoday.board.entity.ReviewImage;
 import com.phoenix.howabouttoday.board.repository.*;
-import com.phoenix.howabouttoday.global.AccomCategory;
 import com.phoenix.howabouttoday.global.OrdersStatus;
 import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
-
-import com.phoenix.howabouttoday.member.wishlist.domain.WishList;
 import com.phoenix.howabouttoday.member.wishlist.domain.WishlistRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
@@ -30,7 +27,6 @@ import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.room.entity.*;
 import com.phoenix.howabouttoday.room.repository.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -530,7 +526,7 @@ public class InitDb {
                         .accomCategory(motel)
                         .region(region)
 //                        .accomAddress("충청남도 보령시 해수욕장13길 10-20" + i)
-                        .accomRating(4.4)
+                        .accomRating(3.1)
                         .accomWishlistCount(110)
                         .totalReviewNum(1103)
                         .latitude(36.3196)

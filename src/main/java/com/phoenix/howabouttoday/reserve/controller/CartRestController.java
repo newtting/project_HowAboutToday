@@ -28,9 +28,10 @@ public class CartRestController {
     private final MemberRepository memberRepository;//아직 회원이없어서 테스트용 회원조회에 필요
     private final CartRepository cartRepository;
     /** 장바구니 저장 **/
-    @PostMapping
+    @PostMapping("/{roomNum}")
     public boolean save(@LoginUser SessionDTO user,
-                        @RequestBody CartForm cartForm
+                        @RequestBody CartForm cartForm,
+                        @PathVariable Long roomNum
                         ){
 
         /** 회원 조회 로직 **/
@@ -51,12 +52,12 @@ public class CartRestController {
                 .build();
 
 
-        if(cartService.checkCart(memberNum,1L)){
+        if(cartService.checkCart(memberNum,roomNum)){
             /*cart가 존재한다면 */
             return true;
         }else{
             /* cart가 존재하지 않는다면 장바구니에 저장*/
-            cartService.save(memberNum,1L,reserveForm); //임시 룸넘버를 보냈음 테스트하기위함
+            cartService.save(memberNum,roomNum,reserveForm); //임시 룸넘버를 보냈음 테스트하기위함
             return false;
         }
 

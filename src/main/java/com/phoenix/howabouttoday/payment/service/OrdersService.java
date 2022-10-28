@@ -1,11 +1,13 @@
 package com.phoenix.howabouttoday.payment.service;
 
 import com.phoenix.howabouttoday.global.OrdersStatus;
+import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.payment.dto.OrdersDeleteDTO;
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailVO;
 import com.phoenix.howabouttoday.payment.dto.OrdersCreateDTO;
+import com.phoenix.howabouttoday.payment.dto.OrdersDirectDTO;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.payment.repository.AvailableDateRepository;
@@ -13,7 +15,10 @@ import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
+import com.phoenix.howabouttoday.reserve.service.ReserveForm;
 import com.phoenix.howabouttoday.room.entity.AvailableDate;
+import com.phoenix.howabouttoday.room.entity.Room;
+import com.phoenix.howabouttoday.room.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -29,6 +34,8 @@ import reactor.core.publisher.Mono;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,6 +48,55 @@ public class OrdersService {
     private final AvailableDateRepository availableDateRepository;
     private final MemberRepository memberRepository;
     private final OrdersRepository ordersRepository;
+    private final RoomRepository roomRepository;
+
+
+    public Boolean cartDuplCheck(MemberDTO memberDTO, Long roomNum){
+        /** 장바구니에 동일한 내역이 존재한다면. **/
+        if (cartRepository.existsByMember_MemberNumAndRoom_RoomNum(memberDTO.getNum(), roomNum)){
+            return true;
+        }
+        return false;
+    }
+
+
+    /** 객실 -> 바로결제로 넘어오는 정보로 카트 객체만 만들어서 반환해줌. **/
+    public List<OrdersDetailVO> getDirectData(MemberDTO memberDTO, OrdersDirectDTO ordersDirectDTO){
+
+        Member member = memberRepository.findById(memberDTO.getNum()).orElseThrow(() -> new IllegalArgumentException(memberDTO.getNum() + "번 멤버 정보가 없습니다."));
+        Room storeRoom = roomRepository.findById(ordersDirectDTO.getRoomNum()).orElseThrow(() -> new IllegalArgumentException(ordersDirectDTO.getRoomNum() + "번 Room 정보가 없습니다."));
+
+        String[] splitDate = ordersDirectDTO.getDaterange().split("-");
+        String startDate = splitDate[0].strip();
+        String endDate = splitDate[1].strip();
+
+        Cart saveCart = cartRepository.save(Cart.builder()
+                .member(member)
+                .room(storeRoom)
+                .reserveStatus(ReserveStatus.READY)
+                .reserveUseStartDate(StringToParseDate(startDate))
+                .reserveUseEndDate(StringToParseDate(endDate))
+                .reservePrice(storeRoom.getPrice())
+                .reserveAdultCount(ordersDirectDTO.getAdult_qty())
+                .reserveChildCount(ordersDirectDTO.getChild_qty())
+                .build());
+
+        OrdersDetailVO ordersDetailVO = new OrdersDetailVO(saveCart);
+
+        List<OrdersDetailVO> ordersDetailVOList = new ArrayList<>();
+        ordersDetailVOList.add(ordersDetailVO);
+
+        return ordersDetailVOList;
+    }
+
+
+    /** 스트링타입을 LocalDate타입으로 파싱해주는 메서드 **/
+    public LocalDate StringToParseDate(String date){
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate parseDate = LocalDate.parse(date, formatter);
+        return parseDate;
+    }
 
 
     /** 장바구니에서 넘어오는 카트정보를 보여줌. **/
