@@ -36,7 +36,7 @@ public class RoomDetailDTO {
 
     public RoomDetailDTO(Room room) {
         this.roomRating = room.getRoomRating();
-//        this.roomReviewNum = room.getRoomReviewNum();
+        this.roomReviewNum = room.getRoomReviewNum();
         this.roomNum = room.getRoomNum();
         this.roomName = room.getRoomName();
         this.defaultGuest = room.getDefaultGuest();
