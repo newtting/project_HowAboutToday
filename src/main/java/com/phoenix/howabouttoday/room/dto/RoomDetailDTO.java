@@ -34,6 +34,8 @@ public class RoomDetailDTO {
 
     private List<RoomImageDTO> roomImageList; //객실 이미지
 
+
+
     public RoomDetailDTO(Room room) {
         this.roomRating = room.getRoomRating();
         this.roomReviewNum = room.getRoomReviewNum();
