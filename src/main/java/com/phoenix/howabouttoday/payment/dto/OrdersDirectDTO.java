@@ -3,7 +3,6 @@ package com.phoenix.howabouttoday.payment.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
 public class OrdersDirectDTO {
 

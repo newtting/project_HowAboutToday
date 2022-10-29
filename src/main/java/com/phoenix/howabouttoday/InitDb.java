@@ -111,8 +111,9 @@ public class InitDb {
                     .period(60)
                     .discountType(DiscountType.FLAT)
                     .discountValue(10000)
-                    .discountMinPrice(50000)
+                    .discountMinPrice(75000)
                     .discountMaxPrice(10000)
+                    .couponContent("가입축하 쿠폰입니다.")
                     .build());
 
             CouponRules couponRules2 = couponRulesRepository.save(CouponRules.builder()
@@ -120,8 +121,9 @@ public class InitDb {
                     .period(30)
                     .discountType(DiscountType.FIXED)
                     .discountValue(10)
-                    .discountMinPrice(30000)
+                    .discountMinPrice(75100)
                     .discountMaxPrice(100000)
+                    .couponContent("안전한 겨울여행을 위한 쿠폰입니다.")
                     .build());
 
             //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
@@ -130,7 +132,7 @@ public class InitDb {
                     .couponRules(couponRules1)
                     .member(member)
                     .status(CouponStatus.AVAILABLE)
-                    .assignedDate(LocalDate.now())
+                    .startDate(LocalDate.now())
                     .endDate(LocalDate.now().plusDays(couponRules1.getPeriod()))
                     .build());
 
@@ -138,7 +140,7 @@ public class InitDb {
                     .couponRules(couponRules2)
                     .member(member)
                     .status(CouponStatus.AVAILABLE)
-                    .assignedDate(LocalDate.now())
+                    .startDate(LocalDate.now())
                     .endDate(LocalDate.now().plusDays(couponRules2.getPeriod()))
                     .build());
 
@@ -207,7 +209,7 @@ public class InitDb {
                     .roomName("너울펜션 스위트룸")
                     .defaultGuest(2)
                     .maxGuest(10)
-                    .price(50)
+                    .price(35000)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -216,7 +218,7 @@ public class InitDb {
                     .roomName("너울펜션 디럭스룸")
                     .defaultGuest(2)
                     .maxGuest(10)
-                    .price(70)
+                    .price(4000000)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -311,6 +313,7 @@ public class InitDb {
                     .ordersType("card")
                     .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .impUid("abc")
+                    .discountValue(0)
                     .member(member)
                     .build();
 
@@ -393,8 +396,9 @@ public class InitDb {
                     .period(60)
                     .discountType(DiscountType.FLAT)
                     .discountValue(15000)
-                            .discountMinPrice(60000)
-                            .discountMaxPrice(15000)
+                    .discountMinPrice(60000)
+                    .discountMaxPrice(15000)
+                    .couponContent("가입축하를 위한 쿠폰 2번째 입니다.")
                     .build());
 
             CouponRules couponRules4 = couponRulesRepository.save(CouponRules.builder()
@@ -404,6 +408,7 @@ public class InitDb {
                     .discountValue(20)
                     .discountMinPrice(100000)
                     .discountMaxPrice(20000)
+                    .couponContent("건강을 위한 여행 시 사용 가능한 쿠폰입니다.")
                     .build());
 
             //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
@@ -412,7 +417,7 @@ public class InitDb {
                     .couponRules(couponRules3)
                     .member(member)
                     .status(CouponStatus.AVAILABLE)
-                    .assignedDate(LocalDate.now())
+                    .startDate(LocalDate.now())
                     .endDate(LocalDate.now().plusDays(couponRules3.getPeriod()))
                     .build());
 
@@ -420,7 +425,7 @@ public class InitDb {
                     .couponRules(couponRules4)
                     .member(member)
                     .status(CouponStatus.AVAILABLE)
-                    .assignedDate(LocalDate.now())
+                    .startDate(LocalDate.now())
                     .endDate(LocalDate.now().plusDays(couponRules4.getPeriod()))
                     .build());
 
@@ -668,6 +673,7 @@ public class InitDb {
                     .ordersType("card")
                     .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .member(member)
+                    .discountValue(0)
                     .impUid("def")
                     .build();
 
@@ -893,6 +899,7 @@ public class InitDb {
                     .ordersPrice(35000)
                     .ordersType("card")
                     .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
+                    .discountValue(0)
                     .member(member)
                     .build();
         }

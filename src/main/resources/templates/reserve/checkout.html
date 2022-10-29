@@ -3,7 +3,34 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout/layout">
 
+
+
+
 <th:block layout:fragment="content">
+
+    <div class="modal fade" id="exampleModalCenteredScrollable" tabindex="-1" aria-labelledby="exampleModalCenteredScrollableTitle" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenteredScrollableTitle">쿠폰 할인</h5>
+                    <button type="button" name="couponApply" value="0" class="btn btn-secondary float-right">적용 취소</button>
+                </div>
+                <div th:each="coupon : ${couponList}" class="modal-body">
+                    <div th:if="${!coupon.isDone()}"  class="card w-100" style="border: 1px solid black;">
+                        <h5 class="card-title" th:text="${coupon.getCouponName()}">쿠폰명</h5>
+                        <p class="border border-dark text-center" style="width: 150px; position: absolute; right: 0;" th:text="|${#numbers.formatInteger(coupon.getDiscountValue(), 0, 'COMMA')}${coupon.isFixed() ? '%' : '원'}|">30000원
+                            <p th:if="${coupon.isFixed()}" class="card-subtitle mb-2 text-muted text-lg-center" style="width: 150px; position: absolute; top: 25%; right: 0; font-size: 12px;" th:text="|최대 ${#numbers.formatInteger(coupon.getDiscountMaxPrice(), 0, 'COMMA')}원 할인|">30000원</p>
+                        </p>
+                        <p class="card-text" th:text="|${coupon.getStartDate()} ~ ${coupon.getEndDate()}|">2022/10/10 ~ 2022/11/31</p>
+<!--                        <p class="card-text" th:text="${coupon.getperiod}">31일 5시간 1분 남음</p> 여긴 고민해보자. 남은 날짜를 표시할지 말지-->
+                        <p class="card-text" th:text="|${#numbers.formatInteger(coupon.getDiscountMinPrice(), 0, 'COMMA')}원 이상 구매 시|">100,000원 이상 구매 시</p>
+                        <button type="button" name="couponApply" class="btn btn-primary float-right" th:value="${coupon.getCouponNum()}" >적용</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- ================================
         START BREADCRUMB AREA
     ================================= -->
@@ -50,9 +77,6 @@
                                 <tr th:each="info : ${infoList}">
                                     <th scope="row">
                                         <div class="table-content product-content d-flex align-items-center">
-                                            <!--                                    <a href="room-details.html" class="d-block" th:href="@{/room-details}">-->
-                                            <!--                                        <img src="/images/room1.jpg" alt="" class="flex-shrink-0">-->
-                                            <!--                                    </a>-->
                                             <div class="product-content">
                                                 <a href="room-details.html" class="title px-2" th:href="@{/room-details}"
                                                    th:text="${info.getAccomName()}">
@@ -141,14 +165,12 @@
                                 </th>
                                 <td>
                                     <div class="form-select form-select-lg mb-3 float-right">
-                                        <select class="form-select form-select-lg mb-3 float-right" aria-label=".form-select-lg example">
-                                            <option selected>쿠폰을 선택해주세요.</option>
-                                            <option value="1">쿠폰1</option>
-                                            <option value="2">쿠폰2</option>
-                                            <option value="3">쿠폰3</option>
-                                        </select>
-                                        <hr/><hr/>
-                                        <p class="title text-color-1 float-right" th:text="|쿠폰 할인: -20,000|">Order Total</p>
+                                        <button id="couponSelect" class="btn btn-outline-dark float-right" >쿠폰 사용</button>
+                                        <br>
+                                        <hr/>
+                                        <p class="title text-color-1 float-right" id="discountPrice" th:text="|쿠폰 할인: 0원|">Order Total</p>
+                                        <input type="hidden" id="discountValue" th:name="discountValue" th:value="0">
+                                        <input type="hidden" id="useCouponNum" th:name="useCouponNum" th:value="0">
                                     </div>
                                 </td>
                             </tr>
@@ -162,7 +184,7 @@
                                         <input type="text" name="" id="" placeholder="포인트를 입력해주세요.">
                                         <input type="button" value="적용">
                                         <hr/>
-                                        <p class="title text-color-1 float-right" th:text="|사용가능: 10000|">Order Total</p>
+                                        <p class="title text-color-1 float-right" th:text="|사용가능: ${#numbers.formatInteger(10000, 0, 'COMMA')}|">Order Total</p>
                                     </div>
                                 </td>
                             </tr>
@@ -174,7 +196,7 @@
                                 </th>
                                 <td class="bg-light bg-opacity-25">
                                     <div class="table-content px-2">
-                                        <h3 class="title text-color-10 text-lg-right" th:text="#{checkout_monetary_unit(${totalPrice})}">$240</h3>
+                                        <h3 class="title text-color-10 text-lg-right" id="totalPrice" th:value="${totalPrice}" th:text="#{checkout_monetary_unit(${totalPrice})}">$240</h3>
                                     </div>
                                 </td>
                             </tr>
@@ -230,12 +252,6 @@
     <!-- ================================
         END BOOKING AREA
     ================================= -->
-
-    <!-- start back-to-top -->
-    <div id="back-to-top">
-        <i class="la la-angle-up" title="Go top"></i>
-    </div>
-    <!-- end back-to-top -->
 
     <!-- end modal-shared -->
     <div class="modal-popup">
@@ -349,6 +365,13 @@
         </div>
     </div><!-- end modal-popup -->
 
+    <!-- start back-to-top -->
+    <div id="back-to-top">
+        <i class="la la-angle-up" title="Go top"></i>
+    </div>
+    <!-- end back-to-top -->
+
+
     <script th:inline="javascript">
 
         const payTab = document.querySelectorAll(`[name='payment']`);
@@ -363,7 +386,8 @@
         // const buyer_name = [[${customer.getNickname()}]];
         // const buyer_tel = [[${customer.getMemberTel()}]];
         const merchant_uid = [[${customer.getNum()}]] + new Date().getTime().toString();
-        const amount = Number([[${totalPrice}]]);
+        let amount = Number([[${totalPrice}]]);
+        const originPrice= Number([[${totalPrice}]]);
         const buyer_email = [[${customer.getEmail()}]];
 
 
@@ -371,8 +395,6 @@
         const buyer_postcode = '123-456';
 
     </script>
-
-
 
 </th:block>
 </html>
