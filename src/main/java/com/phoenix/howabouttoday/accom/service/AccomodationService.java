@@ -48,6 +48,7 @@ public class AccomodationService {
     /*리스트 목록 조회*/
     public List<Accommodation> getAccommodationlist() {
         return accommodationRepository.findAll();
+
     }
 
     @Transactional
@@ -68,7 +69,7 @@ public class AccomodationService {
         return AccommodationDTO.builder()
                 .accomName(accommodation.getAccomName())
                 .accomTel(accommodation.getAccomTel())
-                .accomAddress(accommodation.getAccomAddress())
+//                .accomAddress(accommodation.getAccomAddress())
                 .accomRating(accommodation.getAccomRating())
                 .accomWishListCount(accommodation.getAccomWishlistCount())
                 .totalreviewNum(accommodation.getTotalReviewNum())

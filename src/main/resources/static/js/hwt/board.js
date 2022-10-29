@@ -1,18 +1,15 @@
-$(document).ready(function() {
+$(function() {
 
-    $(".faq_move").click(function(event){
-
-        event.preventDefault();
-
-        var headerHeight = $("header").outerHeight();
-        var href = $(this).attr("href");
-        var target = $(href == "#" || href == "" ? "body" : href);
-        var position = target.offset().top - headerHeight;
-
-        $('html,body').animate({
-            scrollTop: position
-//            scrollTop: $(this.hash).offset().top + 1000
-//          }, 800);
-          }, 800, "swing");
+    $('#faqAll').click(function(event){
+        $('.col-board').css('display', 'block');
     });
+
+    $('.faq').click(function(){
+
+        $('.col-board').css('display', 'none');
+
+        let id = $(this).attr("id");
+        $('#' + id  + '-content').css('display', 'block');
+    });
+
 });

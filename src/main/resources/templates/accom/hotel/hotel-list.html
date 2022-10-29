@@ -295,7 +295,7 @@
 
 <th:block layout:fragment="content">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- ================================
         START BREADCRUMB AREA
     ================================= -->
@@ -382,7 +382,7 @@
                                             <label class="label-text" th:text="|${viewName} 이름|">호텔 이름</label>
                                             <div class="form-group">
                                                 <span class="la la-map-marker form-icon"></span>
-                                                <input class="form-control" type="text" name="keyword" placeholder="이름을 입력하세요.">
+                                                <input class="form-control" type="text" name="keyword" id="keyword" placeholder="이름을 입력하세요.">
                                             </div>
                                         </div>
                                         <div class="input-box">
@@ -501,72 +501,18 @@
                         <div class="sidebar-widget">
                             <h3 class="title stroke-shape">지역</h3>
                             <div class="sidebar-category">
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="ht1">
-                                    <label for="ht1">서울</label>
-                                </div>
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="ht2">
-                                    <label for="ht2">경기</label>
-                                </div>
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="ht3">
-                                    <label for="ht3">인천</label>
-                                </div>
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="ht4">
-                                    <label for="ht4">원주</label>
-                                </div>
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="ht5">
-                                    <label for="ht5">강릉</label>
-                                </div>
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="ht6">
-                                    <label for="ht6">속초</label>
-                                </div>
-                                <div class="collapse" id="hotelThemeMenu">
-                                    <div class="custom-checkbox">
-                                        <input type="checkbox" id="ht7">
-                                        <label for="ht7">Green</label>
-                                    </div>
-                                    <div class="custom-checkbox">
-                                        <input type="checkbox" id="ht8">
-                                        <label for="ht8">Luxury</label>
-                                    </div>
-                                    <div class="custom-checkbox">
-                                        <input type="checkbox" id="ht9">
-                                        <label for="ht9">Mid-range</label>
-                                    </div>
-                                    <div class="custom-checkbox">
-                                        <input type="checkbox" id="ht10">
-                                        <label for="ht10">Party</label>
-                                    </div>
-                                    <div class="custom-checkbox">
-                                        <input type="checkbox" id="ht11">
-                                        <label for="ht11">Quaint</label>
-                                    </div>
-                                    <div class="custom-checkbox">
-                                        <input type="checkbox" id="ht12">
-                                        <label for="ht12">Quite</label>
-                                    </div>
-                                    <div class="custom-checkbox">
-                                        <input type="checkbox" id="ht14">
-                                        <label for="ht14">Romantic</label>
-                                    </div>
-                                    <div class="custom-checkbox">
-                                        <input type="checkbox" id="ht15">
-                                        <label for="ht15">Standard</label>
-                                    </div>
-                                    <div class="custom-checkbox">
-                                        <input type="checkbox" id="ht16">
-                                        <label for="ht16">Trendy</label>
-                                    </div>
-                                </div>
-                                <a class="btn-text" data-toggle="collapse" href="#hotelThemeMenu" role="button" aria-expanded="false" aria-controls="hotelThemeMenu">
-                                    <span class="show-more">더보기 <i class="la la-angle-down"></i></span>
-                                    <span class="show-less">줄이기 <i class="la la-angle-up"></i></span>
-                                </a>
+                                <ul class="nav flex-column">
+
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">서울</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">관악구</a></li>
+                                            <li><a class="dropdown-item" href="#">은평구</a></li>
+                                            <li><a class="dropdown-item" href="#">서대문구</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
                             </div>
                         </div><!-- end sidebar-widget -->
                     </div><!-- end sidebar -->
@@ -574,44 +520,17 @@
                 <!-- 리스트 목록 시작 -->
                 <input type="hidden" id="cateName" th:value="${categoryName}">
                 <div class="col-lg-8" id="ht">
-                    <div class="card-item card-item-list" th:each="accommodation, i: ${accomPageList}">
-                        <div class="card-img" th:id="|anchor${i.count}|">
-                            <a class="d-block" th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}">
-                                <img th:src="|@{/data/images/{accomImage}(accomImage=${accommodation.accommodationImage.accomOriginFilename})}|" alt="hotel-img">
-                            </a>
-                            <a th:href="|javascript:void(0)|" th:onclick="saveWish([[${accommodation.getAccomNum()}]])">
-                                <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist" id="wishList">
-                                    <i class="la la-heart-o"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title" ><a th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}" th:text="${accommodation.getAccomName()}"></a></h3>
-                            <p class="card-meta" th:text="${accommodation.getAccomAddress()}"></p>
-                            <div class="card-rating">
-                                <span class="badge text-white" th:text="${accommodation.getAccomRating()}"></span>
-                                <span class="review__text">Average</span>
-                                <span class="rating__text" th:text="|(${accommodation.getTotalReviewNum()})|"></span>
-                            </div>
-                            <div class="card-price d-flex align-items-center justify-content-between">
-                                <p>
-                                    <span class="price__from">최소 가격 :</span>
-                                    <span class="price__num" th:text="|${accommodation.getLowPrice()}~|"></span>
-                                </p>
-                                <a th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}" class="btn-text" >방 정보<i class="la la-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- end card-item -->
+
                 </div><!-- end col-lg-8 -->
                 <!-- 여기서 끝남ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
             </div><!-- end row -->
-            <a th:href="|#anchor${size-5}|" id="accomAnchor"></a>
+<!--            <a th:href="|#anchor${size-5}|" id="accomAnchor"></a>-->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="btn-box mt-3 text-center">
-                        <a th:href="|@{/accom/{category_name}/(category_name=${categoryName},size=${accomPageList.size+5})}|">
-                            <button type="button" class="theme-btn"><i class="la la-refresh mr-1"></i>Load More</button>
-                        </a>
+
+                            <button type="button" class="theme-btn" id="loadMore"><i class="la la-refresh mr-1"></i>Load More</button>
+
                     </div><!-- end btn-box -->
                 </div><!-- end col-lg-12 -->
             </div><!-- end row -->
@@ -785,6 +704,7 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" id="mode" name="mode">
     </div><!-- end modal-popup -->
 
     <!-- Template JS Files -->
@@ -808,14 +728,19 @@
 
         $(document).ready(function (){
 
-           document.getElementById("accomAnchor").click();
-
+            load();
         });
 
-        $("#sort").on("change", function(){
+        var listData = "";
 
-           let category_name = $("#cateName").val();
+
+       const sortChange = $("#sort").on("change", function(){
+            var sortValue = $("#sort").val();
+            alert(sortValue);
+            let category_name = $("#cateName").val();
             alert(category_name);
+            alert(listData);
+
 
             $.ajax({
                 url: '/rest/accom/' + category_name,
@@ -826,14 +751,41 @@
                 let accom = result.content;
                 console.log(result)
                 let newlow = "";
-                    for(i=0;i<accom.length; i++){
+                for(i=0;i<accom.length; i++){
+
+                    newlow += `<div class="card-item card-item-list">`
+                    newlow +=   `<div class="card-img" id="anchor${i.count}">`
+                    newlow +=       `<a class="d-block" href="/hotel-single?accomNum=${accom[i].accomNum}">`
+                    newlow +=           `<img src="/data/images/${accom[i].accommodationImage.accomOriginFilename}" alt="hotel-img">`
+                    newlow +=      `</a>`
+                    newlow +=      `<a href="javascript:void(0)" onclick="saveWish(${accom[i].accomNum})">`
+                    newlow +=      `<div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist" id="wishList">`
+                    newlow +=       `<i class="la la-heart-o"></i>`
+                    newlow +=       `</div>`
+                    newlow +=       `</a>`
+                    newlow +=   `</div>`
+                    newlow +=   `<div class="card-body">`
+                    newlow +=       `<h3 class="card-title" ><a href="/hotel-single?accomNum=${accom[i].accomNum}">${accom[i].accomName}</a></h3>`
+                    newlow +=           `<p class="card-meta">${accom[i].accomAddress}</p>`
+                    newlow +=       `<div class="card-rating">`
+                    newlow +=           `<span class="badge text-white">${accom[i].accomRating}</span>`
+                    newlow +=           `<span class="review__text">Average</span>`
+                    newlow +=           `<span class="rating__text">${accom[i].totalReviewNum}</span>`
+                    newlow +=       `</div>`
+                    newlow +=        `<div class="card-price d-flex align-items-center justify-content-between">`
+                    newlow +=           `<p>`
+                    newlow +=           `<span class="price__from">최소 가격 :</span>`
+                    newlow +=           `<span class="price__num">${accom[i].lowPrice}~</span>`
+                    newlow +=           `</p>`
+                    newlow +=           `<a href="/hotel-single?accomNum=${accom[i].accomNum}" class="btn-text" >방 정보<i class="la la-angle-right"></i></a>`
+                    newlow +=        `</div>`
+                    newlow +=   `</div>`
+                    newlow += `</div>`
+
+                    listData = result;
+                }
 
 
-                    }
-
-                alert("result : " + newlow);
-                document.getElementById("ht").innerHTML= newlow;
-                console.log(result)
 
             }).fail(function(error){
                 alert(JSON.stringify(error));
@@ -861,6 +813,85 @@
             });
         }
 
+      const load = function () {
+          let category_name = $("#cateName").val();
+          $.ajax({
+              url: '/rest/accom/' + category_name,
+              type: 'GET',
+              contentType: 'application/json; charset=utf-8',
+          }).done(function (result) {
+
+            let listLow = low(result);
+            listData = result;
+
+            document.getElementById("ht").innerHTML = listLow;
+
+          }).fail(function (error) {
+              alert(JSON.stringify(error));
+          });
+
+
+          $("#loadMore").click(function (){
+
+              let category_name = $("#cateName").val();
+              $.ajax({
+                  url: '/rest/accom/' + category_name + '?size=' + (listData.size+5),
+                  type: 'GET',
+                  data: listData,
+                  contentType: 'application/json; charset=utf-8',
+              }).done(function (result) {
+
+                  let listLow = low(result);
+                  listData = result;
+
+                  document.getElementById("ht").innerHTML = listLow;
+
+              }).fail(function (error) {
+                  alert(JSON.stringify(error));
+              });
+
+          });
+
+
+          const low = function (result){
+
+              let accom = result.content;
+
+              let newlow = "";
+              for (i = 0; i < accom.length; i++) {
+
+                  newlow += `<div class="card-item card-item-list">`
+                  newlow += `<div class="card-img" id="anchor${i.count}">`
+                  newlow += `<a class="d-block" href="/hotel-single?accomNum=${accom[i].accomNum}">`
+                  newlow += `<img src="/data/images/${accom[i].accommodationImage.accomOriginFilename}" alt="hotel-img">`
+                  newlow += `</a>`
+                  newlow += `<a href="javascript:void(0)" onclick="saveWish(${accom[i].accomNum})">`
+                  newlow += `<div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist" id="wishList">`
+                  newlow += `<i class="la la-heart-o"></i>`
+                  newlow += `</div>`
+                  newlow += `</a>`
+                  newlow += `</div>`
+                  newlow += `<div class="card-body">`
+                  newlow += `<h3 class="card-title" ><a href="/hotel-single?accomNum=${accom[i].accomNum}">${accom[i].accomName}</a></h3>`
+                  newlow += `<p class="card-meta">${accom[i].accomAddress}</p>`
+                  newlow += `<div class="card-rating">`
+                  newlow += `<span class="badge text-white">${accom[i].accomRating}</span>`
+                  newlow += `<span class="review__text">Average</span>`
+                  newlow += `<span class="rating__text">${accom[i].totalReviewNum}</span>`
+                  newlow += `</div>`
+                  newlow += `<div class="card-price d-flex align-items-center justify-content-between">`
+                  newlow += `<p>`
+                  newlow += `<span class="price__from">최소 가격 :</span>`
+                  newlow += `<span class="price__num">${accom[i].lowPrice}~</span>`
+                  newlow += `</p>`
+                  newlow += `<a href="/hotel-single?accomNum=${accom[i].accomNum}" class="btn-text" >방 정보<i class="la la-angle-right"></i></a>`
+                  newlow += `</div>`
+                  newlow += `</div>`
+                  newlow += `</div>`
+              }
+              return newlow;
+          }
+      }
     </script>
 </th:block>
 

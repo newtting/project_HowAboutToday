@@ -9,6 +9,7 @@ import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalTime;
@@ -39,6 +40,9 @@ public class AccomDto {
 
         private Integer lowPrice; //숙소의 객실 최저가
 
+        @Setter
+        private String mode = null;
+
         private AccomImageDto.ResponseDto accommodationImage;//숙소의 대표 이미지
 
         public ResponsePageDto(Accommodation accommodation) {
@@ -49,7 +53,6 @@ public class AccomDto {
             this.totalReviewNum = accommodation.getTotalReviewNum();
             this.accomNum = accommodation.getAccomNum();
             this.accommodationImage = new AccomImageDto.ResponseDto(accommodation.getAccommodationImage().get(0));
-
             this.lowPrice = accommodation.getLowPrice();
         }
     }

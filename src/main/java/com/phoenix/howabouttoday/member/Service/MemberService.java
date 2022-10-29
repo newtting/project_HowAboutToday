@@ -7,9 +7,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 
-import javax.transaction.Transactional;
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
+
 
 @RequiredArgsConstructor
 @Service
@@ -24,13 +28,30 @@ public class MemberService {
 
         return memberRepository.save(DTO.toEntity()).getMemberNum();
     }
+    /* 회원가입 시, 유효성 체크 */
+    @Transactional(readOnly = true)
+    public Map<String, String> validateHandling(Errors errors) {
+        Map<String, String> validatorResult = new HashMap<>();
 
-    private void validateDuplicateMember(Member member) {
-        Optional<Member> findMember = memberRepository.findByEmail(member.getEmail());
-        if (findMember != null) {
-            throw new IllegalStateException("이미 가입된 회원입니다.");
+        //유효성 검사에 실패한 필드 목록을 받음
+        for (FieldError error : errors.getFieldErrors()) {
+            String validKeyName = String.format("valid_%s", error.getField());
+            validatorResult.put(validKeyName, error.getDefaultMessage());
         }
+        return validatorResult;
     }
+
+    /* 회원수정 (dirty checking) */
+    @Transactional
+    public void modify(MemberDTO memberDTO) {
+        Member member = memberRepository.findById(memberDTO.toEntity().getMemberNum()).orElseThrow(() ->
+                new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
+
+        String encPassword = encoder.encode(memberDTO.getPwd());
+        member.modify(memberDTO.getNickname(),memberDTO.getMemberTel(), encPassword);
+    }
+
+
 
     public MemberDTO getSessionUser(Long memberNum){
         Member member = memberRepository.findById(memberNum).get();

@@ -52,7 +52,7 @@
         <div class="row hwt-row-faq">
             <div class="col-lg-3 responsive-column">
                 <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#" class="d-block">
+                    <a href="#faq-title" class="d-block" id="faqAll">
                         <img src="icon/categories.png" class="header-icon">
                         <span class="d-block info__title hwt-font-title">전체</span>
                     </a>
@@ -60,7 +60,7 @@
             </div><!-- end col-lg-3 -->
             <div class="col-lg-3 responsive-column">
                 <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#faq" class="d-block">
+                    <a href="#faq-title" class="d-block faq" id="faq1">
                         <img src="icon/sale.png" class="header-icon">
                         <span class="d-block info__title hwt-font-title faq_move">상품 / 서비스</span>
                     </a>
@@ -68,7 +68,7 @@
             </div><!-- end col-lg-3 -->
             <div class="col-lg-3 responsive-column">
                 <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#faq2" class="d-block">
+                    <a href="#faq-title" class="d-block faq" id="faq2">
                         <img src="icon/pay.png" class="header-icon">
                         <span class="d-block info__title hwt-font-title faq_move">예약 / 결제</span>
                     </a>
@@ -76,7 +76,7 @@
             </div><!-- end col-lg-3 -->
             <div class="col-lg-3 responsive-column">
                 <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#faq3" class="d-block">
+                    <a href="#faq-title" class="d-block faq" id="faq3">
                         <img src="icon/book.png" class="header-icon">
                         <span class="d-block info__title hwt-font-title faq_move">변경 / 취소 / 환불</span>
                     </a>
@@ -84,7 +84,7 @@
             </div><!-- end col-lg-3 -->
             <div class="col-lg-3 responsive-column">
                 <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#faq1" class="d-block">
+                    <a href="#faq-title" class="d-block faq" id="faq4">
                         <img src="icon/discount.png" class="header-icon">
                         <span class="d-block info__title hwt-font-title">쿠폰 / 할인</span>
                     </a>
@@ -92,7 +92,7 @@
             </div><!-- end col-lg-3 -->
             <div class="col-lg-3 responsive-column">
                 <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#" class="d-block">
+                    <a href="#faq-title" class="d-block faq" id="faq5">
                         <img src="icon/star.png" class="header-icon">
                         <span class="d-block info__title hwt-font-title">포인트</span>
                     </a>
@@ -100,7 +100,7 @@
             </div><!-- end col-lg-3 -->
             <div class="col-lg-3 responsive-column">
                 <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#" class="d-block">
+                    <a href="#faq-title" class="d-block faq" id="faq6">
                         <img src="icon/write.png" class="header-icon">
                         <span class="d-block info__title hwt-font-title">후기 / 댓글</span>
                     </a>
@@ -108,7 +108,7 @@
             </div><!-- end col-lg-3 -->
             <div class="col-lg-3 responsive-column">
                 <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#" class="d-block">
+                    <a href="#faq-title" class="d-block faq" id="faq7">
                         <img src="icon/love.png" class="header-icon">
                         <span class="d-block info__title hwt-font-title">회원 / 개인정보</span>
                     </a>
@@ -124,7 +124,7 @@
 <!-- ================================
     START FAQ AREA
 ================================= -->
-<section class="faq-area section-bg padding-top-100px padding-bottom-60px">
+<section class="faq-area section-bg padding-top-100px padding-bottom-60px" id="faq-title">
     <div class="container">
         <div class="row hwt-row-faq">
             <div class="col-lg-12">
@@ -140,8 +140,9 @@
             </div>
         </th:block>
 
-        <div class="row padding-top-60px hwt-row-faq" id="faq">
-            <div class="col-lg-6 col-board" >
+        <div class="row padding-top-60px hwt-row-faq">
+
+            <div class="col-lg-6 col-board" id="faq1-content">
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">상품 / 서비스</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
@@ -155,7 +156,7 @@
                                         </a>
                                         <ul class="toggle-drop-menu pt-2">
                                             <li class="line-height-26 hwt-faq-content">
-                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
+                                                <span th:block th:text="${boardDetailDTO.boardContent}"></span>
                                             </li>
 
                                             <!-- Admin -->
@@ -173,7 +174,8 @@
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
-             <div class="col-lg-6 col-board" id="faq2">
+
+             <div class="col-lg-6 col-board" id="faq2-content">
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">예약 / 결제</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
@@ -205,7 +207,8 @@
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
-            <div class="col-lg-6 col-board" id="faq3">
+
+            <div class="col-lg-6 col-board" id="faq3-content">
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">변경 / 취소 / 환불</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
@@ -237,7 +240,8 @@
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
-             <div class="col-lg-6 col-board">
+
+             <div class="col-lg-6 col-board" id="faq4-content">
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">쿠폰 / 할인</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
@@ -269,7 +273,8 @@
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
-            <div class="col-lg-6 col-board" id="faq1">
+
+            <div class="col-lg-6 col-board" id="faq5-content">
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">포인트</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
@@ -301,7 +306,8 @@
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
-             <div class="col-lg-6 col-board">
+
+             <div class="col-lg-6 col-board" id="faq6-content">
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">후기 / 댓글</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
@@ -333,7 +339,8 @@
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
-            <div class="col-lg-6 col-board">
+
+            <div class="col-lg-6 col-board" id="faq7-content">
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">회원 / 개인정보</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
@@ -379,6 +386,10 @@
 </div>
 <!-- end back-to-top -->
 
+</th:block>
+
+<th:block layout:fragment="script">
+    <script src="/js/hwt/board.js"></script>
 </th:block>
 
 </html>

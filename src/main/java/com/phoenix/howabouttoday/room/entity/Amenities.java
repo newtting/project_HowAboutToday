@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Builder
 public class Amenities {
 
     @Id
@@ -16,11 +15,16 @@ public class Amenities {
     @Column
     private Long amenitiesNum;//시설번호
 
-    @Column
-    private String amenitiesName;//시설이름
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="room_roomNum")
+    private Room room; //객실 번호
+
+    @Enumerated(EnumType.STRING)
+    private AmenitiesNames amenitiesName;//시설이름
 
     @Builder
-    public Amenities(Long amenitiesNum, String amenitiesName) {
+    public Amenities(Room room, Long amenitiesNum, AmenitiesNames amenitiesName) {
+        this.room = room;
         this.amenitiesNum = amenitiesNum;
         this.amenitiesName = amenitiesName;
     }
