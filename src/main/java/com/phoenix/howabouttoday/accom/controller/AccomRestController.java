@@ -28,9 +28,10 @@ public class AccomRestController {
     public Slice<AccomDto.ResponsePageDto> accommodations(@PathVariable(required = false) String category_name,
                                                @PageableDefault(page = 0,size = 5,sort = "lowPrice",direction = Sort.Direction.ASC) Pageable pageable,
                                                           @RequestParam(value = "keyword",required = false) String keyword,
-                                                          @RequestParam(required = false) String priceRange) {
+                                                          @RequestParam(required = false) String priceRange,
+                                                          @RequestParam(required = false) String regionNo) {
 
-
+        System.out.println("regionNo!!! = " + regionNo);
 
         /** 검색어가 없을경우 처리 로직 **/
         if(keyword==null || keyword.equals("") ){
@@ -42,12 +43,20 @@ public class AccomRestController {
             priceRange = "1만원 - 50만원";
         }
 
+
         /** 가격정렬에 대한 처리 로직 **/
         String[] splits = priceRange.split("-");
         priceRange = splits[0] + splits[1];
         String[] priceArray = priceRange.split("만원");
         int minPrice = Integer.parseInt(priceArray[0].strip()) * 10000; //최소가격
         int maxPrice = Integer.parseInt(priceArray[1].strip()) * 10000;  //최대가격
+
+
+        /** 지역이 있는경우 처리 로직 **/
+        if(regionNo!=null){
+            Long regionNum = Long.parseLong(regionNo);
+           return  accomodationService.getByRegionAccomPageList(regionNum,pageable,category_name,keyword,maxPrice,minPrice);
+        }
 
         return accomodationService.getAccomPageList(pageable,category_name,keyword,maxPrice,minPrice);
 
@@ -59,12 +68,19 @@ public class AccomRestController {
     public Slice<AccomDto.ResponsePageDto> ascSort(@PathVariable(required = false) String category_name,
                                                           @PageableDefault(page = 0,size = 5,sort = "lowPrice",direction = Sort.Direction.ASC) Pageable pageable,
                                                    @RequestParam(value = "keyword",required = false) String keyword,
-                                                   @RequestParam(required = false) String priceRange) {
+                                                   @RequestParam(required = false) String priceRange,
+                                                   @RequestParam(required = false) String regionNo) {
 
         /** 검색어가 없을경우 처리 로직 **/
         if(keyword==null || keyword.equals("") ){
             keyword = "";
         }
+
+        /** 이름 검색을 했을 경우 지역에대해 초기화하는 로직 **/
+        if(regionNo==null){
+            regionNo = "null";
+        }
+
         //1만원 - 50만원
         /** 가격정렬에 대한 처리 로직 **/
         String[] splits = priceRange.split("-");
@@ -72,6 +88,12 @@ public class AccomRestController {
         String[] priceArray = priceRange.split("만원");
         int minPrice = Integer.parseInt(priceArray[0].strip()) * 10000; //최소가격
         int maxPrice = Integer.parseInt(priceArray[1].strip()) * 10000;  //최대가격
+
+        /** 지역이 있는경우 처리 로직 **/
+        if(regionNo!="null" && (!regionNo.equals("null"))){
+            Long regionNum = Long.parseLong(regionNo);
+            return  accomodationService.getByRegionAccomPageList(regionNum,pageable,category_name,keyword,maxPrice,minPrice);
+        }
 
         return accomodationService.getAccomPageList(pageable,category_name,keyword,maxPrice,minPrice);
 
@@ -82,7 +104,8 @@ public class AccomRestController {
     public Slice<AccomDto.ResponsePageDto> descSort(@PathVariable(required = false) String category_name,
                                                    @PageableDefault(page = 0,size = 5,sort = "lowPrice",direction = Sort.Direction.DESC) Pageable pageable,
                                                     @RequestParam(value = "keyword",required = false) String keyword,
-                                                    @RequestParam(required = false) String priceRange) {
+                                                    @RequestParam(required = false) String priceRange,
+                                                    @RequestParam(required = false) String regionNo) {
 
         /** 검색어가 없을경우 처리 로직 **/
         if(keyword==null || keyword.equals("") ){
@@ -95,6 +118,17 @@ public class AccomRestController {
         String[] priceArray = priceRange.split("만원");
         int minPrice = Integer.parseInt(priceArray[0].strip()) * 10000; //최소가격
         int maxPrice = Integer.parseInt(priceArray[1].strip()) * 10000;  //최대가격
+
+        /** 이름 검색을 했을 경우 지역에대해 초기화하는 로직 **/
+        if(regionNo==null){
+            regionNo = "null";
+        }
+
+        /** 지역이 있는경우 처리 로직 **/
+        if(regionNo!="null" && (!regionNo.equals("null"))){
+            Long regionNum = Long.parseLong(regionNo);
+            return  accomodationService.getByRegionAccomPageList(regionNum,pageable,category_name,keyword,maxPrice,minPrice);
+        }
 
         return accomodationService.getAccomPageList(pageable,category_name,keyword,maxPrice,minPrice);
 

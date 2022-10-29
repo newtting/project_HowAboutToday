@@ -383,6 +383,8 @@ public class InitDb {
                     .viewName("게스트하우스")
                     .build());
 
+
+
             /**숙소 등록**/
             Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
                     .accomName("서울 아폴로 게스트하우스")
@@ -400,6 +402,8 @@ public class InitDb {
                     .lowPrice(12000)
                     .reserveRange(60)
                     .build());
+
+
 
             Accommodation accommodation2 = accommodationRepository.save(Accommodation.builder()
                     .accomName("대구 팔공산 스타탄생 드라이브인")
@@ -545,7 +549,8 @@ public class InitDb {
                         .accomTel("050350577805")
                         .accomCategory(motel)
                         .region(region)
-//                        .accomAddress("충청남도 보령시 해수욕장13길 10-20" + i)
+                        .accomAddress1(save.getRegion().getValue())
+                        .accomAddress2(region.getRegion().getValue())
                         .accomRating(3.1)
                         .accomWishlistCount(110)
                         .totalReviewNum(1103)

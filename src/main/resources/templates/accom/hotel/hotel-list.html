@@ -490,7 +490,8 @@
 
                                         <ul class="dropdown-menu">
                                             <th:block th:each="childRegion, i : ${parentRegion.childRegions}">
-                                                <li><a class="dropdown-item" href="#" th:text="${childRegion.region.value}">관악구</a></li>
+                                                <li><a th:href="|javascript:void(0)|" class="dropdown-item"href="#"
+                                                       th:onclick="searchRegion([[${childRegion.regionNum}]])" th:text="${childRegion.region.value}">관악구</a></li>
                                             </th:block>
                                         </ul>
                                     </li>
@@ -722,7 +723,7 @@
         let listData = "";
         let keyword = "";
         let priceRange = '1만원 - 50만원';
-
+        let regionNum = null;
 
         const low = function (result){
 
@@ -771,7 +772,8 @@
         //키워드 이름검색을 눌렀을때 실행되는 함수
        $("#keyword_Btn").on("click", function (){
 
-
+          /** 이름으로 검색했을떄는 지역이 아닌 이름검색결과만 보이게 지역을 초기화 **/
+          regionNum = null;
           keyword = $("#keyword").val();
 
            $.ajax({
@@ -799,7 +801,7 @@
             priceRange = $("#amount2").val();
             console.log(priceRange);
             $.ajax({
-                url: '/rest/accom/' + sortValue + category_name + '?keyword=' + keyword + '&priceRange=' + priceRange,
+                url: '/rest/accom/' + sortValue + category_name + '?keyword=' + keyword + '&priceRange=' + priceRange + "&regionNo=" + regionNum,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
             }).done(function(result){
@@ -816,6 +818,28 @@
 
         })
 
+        //지역에따른 리스트 조회 함수
+        function searchRegion(regionNo) {
+
+            regionNum = regionNo;
+
+            $.ajax({
+                url: '/rest/accom/' + sortValue + category_name + "?priceRange=" + priceRange + "&keyword=" + keyword + "&regionNo=" + regionNo,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+            }).done(function(result){
+                console.log(result);
+                listLow = low(result);
+                listData = result;
+
+                console.log(listLow);
+                document.getElementById("ht").innerHTML = listLow;
+
+            }).fail(function(error){
+                alert(JSON.stringify(error));
+            });
+
+        }
 
         //높은순 낮은순 조회에 대한 정렬 함수
        $("#sort").on("change", function(){
@@ -823,7 +847,7 @@
            sortValue = $("#sort").val() + "/";
 
             $.ajax({
-                url: '/rest/accom/' + sortValue + category_name + "?priceRange=" + priceRange,
+                url: '/rest/accom/' + sortValue + category_name + "?priceRange=" + priceRange + "&regionNo=" + regionNum,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
             }).done(function(result){
@@ -866,7 +890,7 @@
 
               let category_name = $("#cateName").val();
               $.ajax({
-                  url: '/rest/accom/' + sortValue  + category_name + '?keyword=' + keyword + '&priceRange=' + priceRange + '&size=' + (listData.size+5),
+                  url: '/rest/accom/' + sortValue  + category_name + '?keyword=' + keyword + "&regionNo=" + regionNum + '&priceRange=' + priceRange + '&size=' + (listData.size+5),
                   type: 'GET',
                   data: listData,
                   contentType: 'application/json; charset=utf-8',

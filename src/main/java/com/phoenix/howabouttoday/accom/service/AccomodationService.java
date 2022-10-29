@@ -34,6 +34,7 @@ public class AccomodationService {
     private final RegionRepository regionRepository;
     private final AccommodationImageRepository accommodationImageRepository;
 
+    /** 지역이 없을때 전체조회 **/
     public Slice<AccomDto.ResponsePageDto> getAccomPageList(Pageable pageable,String category_name , String keyword,int maxPrice,int minPrice) {
 
         Slice<Accommodation> page =
@@ -46,6 +47,19 @@ public class AccomodationService {
         return accomPageList;
     }
 
+    /** 지역에 대한 전체조회 **/
+    public Slice<AccomDto.ResponsePageDto> getByRegionAccomPageList(Long regionNum,Pageable pageable,String category_name , String keyword,int maxPrice,int minPrice) {
+
+        Slice<Accommodation> page =
+                accommodationRepository.
+                        findByRegion_RegionNumAndAccomCategory_NameAndLowPriceLessThanEqualAndLowPriceGreaterThanEqualAndAccomNameContaining
+                                (regionNum,category_name,maxPrice,minPrice,pageable,keyword);
+
+
+        Slice<AccomDto.ResponsePageDto> accomPageList = page.map(accom -> new AccomDto.ResponsePageDto(accom));
+
+        return accomPageList;
+    }
 
     /*리스트 목록 조회*/
     public List<Accommodation> getAccommodationlist() {
