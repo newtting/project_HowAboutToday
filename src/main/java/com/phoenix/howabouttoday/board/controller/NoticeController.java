@@ -5,10 +5,7 @@ import com.phoenix.howabouttoday.board.service.BoardService;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +33,18 @@ public class NoticeController {
 
         model.addAttribute("lists", boardList);
 
-        return "board/board";
+        return "board/notice";
+    }
+
+    // 공지사항 리스트 더보기
+    @ResponseBody
+    @GetMapping("notice-more")
+    public Slice<BoardListDTO> noticeList(@PageableDefault Pageable pageable){
+
+        pageable = PageRequest.of(pageable.getPageNumber(), 5, Sort.Direction.DESC, "board_num");
+        Slice<BoardListDTO> boardList = boardService.findAll_Board("공지사항", pageable);
+
+        return boardList;
     }
 
     // 공지사항 디테일 페이지
