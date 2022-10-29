@@ -21,14 +21,16 @@ public class FAQController {
 
     // FAQ 리스트 페이지
     @GetMapping("faq")
-    public String faqList(@LoginUser SessionDTO sessionDTO, Model model){
+    public String faqList(@LoginUser SessionDTO sessionDTO, Model model, @RequestParam(defaultValue = "") String keyword){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        List<List<BoardDetailDTO>> faqList = faqService.findAll_FAQ("FAQ"); // boardCategoryName = "FAQ"인 데이터들을 DTO에 저장
+        List<List<BoardDetailDTO>> faqList = faqService.findAll_FAQ("FAQ", keyword); // boardCategoryName = "FAQ"인 데이터들을 DTO에 저장
+
         model.addAttribute("lists", faqList);
+        model.addAttribute("keyword", keyword);
 
         return "board/faq";
     }

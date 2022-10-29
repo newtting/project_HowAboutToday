@@ -9,8 +9,8 @@ $(function() {
 
         let id = $(this).attr("id");
 
-        $('#' + id  + '-content').css('display', 'block'); // 해당 카테고리 게시글만 보임
         $('.col-board').css('display', 'none'); // 다른 카테고리 게시글 숨김
+        $('#' + id  + '-content').css('display', 'block'); // 해당 카테고리 게시글만 보임
     });
 
 

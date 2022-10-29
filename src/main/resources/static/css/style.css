@@ -2188,9 +2188,9 @@ body {
   opacity: 0;
   visibility: hidden; }
   #back-to-top:hover {
-    background-color: #2273e5;
+    background-color: #566578;
     color: #fff;
-    border-color: #2273e5; }
+    border-color: #566578; }
   #back-to-top.active {
     right: 30px;
     opacity: 1;

@@ -130,3 +130,20 @@
     cursor: pointer;
     pointer-events: auto;
 }
+
+// FAQ Search
+.board-search-wrap {
+    display: flex;
+}
+
+.board-search {
+    flex: 0 0 85%;
+    max-width: 85%;
+    padding-top: 2rem!important;
+}
+
+.search-reset {
+    flex: 0 0 30%;
+    max-width: 30%;
+    padding-top: 2rem!important;
+}
