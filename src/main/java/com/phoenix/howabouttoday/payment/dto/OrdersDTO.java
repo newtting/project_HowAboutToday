@@ -2,6 +2,7 @@
 /* orders 엔티티와 매핑되는 사이트 */
 
 package com.phoenix.howabouttoday.payment.dto;
+import com.phoenix.howabouttoday.global.OrdersStatus;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import lombok.Getter;
@@ -51,5 +52,9 @@ public class OrdersDTO implements Comparable<OrdersDTO> {
             return -1;
         }
         return 0;
+    }
+
+    public Boolean isCanceled(){
+        return getOrdersStatus() == OrdersStatus.PAYMENT_CANCEL.getValue();
     }
 }

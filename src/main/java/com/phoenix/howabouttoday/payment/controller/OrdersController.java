@@ -10,6 +10,7 @@ import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.payment.dto.*;
+import com.phoenix.howabouttoday.payment.service.CouponService;
 import com.phoenix.howabouttoday.payment.service.OrdersService;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import lombok.RequiredArgsConstructor;
@@ -31,26 +32,7 @@ public class OrdersController {
 
     private final OrdersService orderService;
     private final MemberService memberService;
-
-    @GetMapping("/cartDuplCheck")
-    @ResponseBody
-    public String cartDuplCheck(Model model, @LoginUser SessionDTO sessionDTO, Long roomNum){
-
-        if (sessionDTO != null) {
-            model.addAttribute("sessionDTO", sessionDTO);
-        }
-        else {
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
-        }
-
-        MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
-
-        if (orderService.cartDuplCheck(customer, roomNum)){
-            return "{\"data\":true}";
-        }
-
-        return "{\"data\":false}";
-    }
+    private final CouponService couponService;
 
     // 객실 상세 -> 결제 페이지
     @GetMapping("/directPayment")
@@ -84,10 +66,13 @@ public class OrdersController {
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
         List<OrdersDetailVO> infoList = orderService.getCartData(cartNum);
         Integer totalPrice = orderService.getTotalPrice(cartNum);   //얘를 따로 이렇게 하는 게 맞을까??
+        List<CouponDTO> couponDTOList = couponService.getCoupon(customer.getNum());
+
 
         model.addAttribute("totalPrice", totalPrice);
         model.addAttribute("customer", customer);
         model.addAttribute("infoList", infoList);
+        model.addAttribute("couponList", couponDTOList);
         return "reserve/checkout";
     }
 

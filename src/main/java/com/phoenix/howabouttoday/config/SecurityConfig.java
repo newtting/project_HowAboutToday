@@ -83,7 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/user-dashboard-profile").authenticated()
 				.antMatchers("/user-dashboard-reviews").authenticated()
 				.antMatchers("/user-dashboard-wishlist").authenticated()
-				.antMatchers("/user-dashboard-booking").authenticated()
+//				.antMatchers("/user-dashboard-booking").authenticated()
                 .antMatchers("/user-dashboard-setting").authenticated()
                 .antMatchers("/**" ).permitAll()
                 .and()
