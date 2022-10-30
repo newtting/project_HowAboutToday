@@ -57,3 +57,20 @@ function resetKakaoMap(){
     map.setCenter(mapCenter);
     map.setLevel(mapOption.level);
 }
+
+
+/* 카카오톡 채널 채팅 */
+Kakao.init('41285ae46bc998ac5e0756fff1675a3c');
+
+function kakaoChatStart() {
+
+    // 카카오톡 채널 채팅
+    Kakao.Channel.chat({
+        channelPublicId: '_NBxmxjxj'
+    });
+
+    // 카카오톡 채널 추가
+    Kakao.Channel.addChannel({
+      channelPublicId: '_NBxmxjxj'
+    });
+}

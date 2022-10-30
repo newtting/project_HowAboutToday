@@ -40,7 +40,8 @@
             <div class="row hwt-row-board">
                 <div class="col-lg-3 responsive-column">
                     <div class="icon-box faq-icon-box" >
-                        <a href="#" class="d-block">
+<!--                        <a href="http://pf.kakao.com/_NBxmxjxj" class="d-block">-->
+                        <a href='javascript:kakaoChatStart();' class="d-block">
                             <img src="/images/bubble-chat.png" style="width: 50%; height:  auto%;"/>
 <!--                            <svg class="info-svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">-->
 <!--                                <g>-->
@@ -439,7 +440,8 @@
 <th:block layout:fragment="script">
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41285ae46bc998ac5e0756fff1675a3c"></script> <!-- 카카오맵 API -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script> <!-- 카카오맵 라이브러리 -->
-<script src="/js/hwt/map.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script> <!-- Kakao SDK for JavaScript -->
+<script src="/js/hwt/contact.js"></script>
 </th:block>
 
 </html>
