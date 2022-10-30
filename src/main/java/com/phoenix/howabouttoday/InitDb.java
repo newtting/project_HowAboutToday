@@ -351,8 +351,8 @@ public class InitDb {
             /** 댓글 등록 **/
             Review review = reviewRepository.save(Review.builder()
                     .member(member)
-                    .reviewCreatedDate(LocalDateTime.now())
-                    .reviewModifyDate(LocalDateTime.now())
+                    .reviewCreateDate(LocalDate.now())
+                    .reviewModifyDate(LocalDate.now())
                     .reviewRating(3.72)
                     .room(room)
                     .reviewContent("안녕")
@@ -726,8 +726,8 @@ public class InitDb {
             /** 댓글 등록 **/
             Review review = reviewRepository.save(Review.builder()
                     .member(member)
-                    .reviewCreatedDate(LocalDateTime.now())
-                    .reviewModifyDate(LocalDateTime.now())
+                    .reviewCreateDate(LocalDate.now())
+                    .reviewModifyDate(LocalDate.now())
                     .reviewRating(2.73)
                     .reviewContent("너무별로에요")
                     .room(room)
