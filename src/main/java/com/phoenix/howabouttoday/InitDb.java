@@ -4,6 +4,12 @@ package com.phoenix.howabouttoday;
 import com.phoenix.howabouttoday.accom.entity.*;
 import com.phoenix.howabouttoday.accom.repository.*;
 import com.phoenix.howabouttoday.board.entity.Reply;
+import com.phoenix.howabouttoday.payment.entity.Coupon;
+import com.phoenix.howabouttoday.payment.entity.CouponRules;
+import com.phoenix.howabouttoday.payment.enumType.CouponStatus;
+import com.phoenix.howabouttoday.payment.enumType.DiscountType;
+import com.phoenix.howabouttoday.payment.repository.CouponRepository;
+import com.phoenix.howabouttoday.payment.repository.CouponRulesRepository;
 import com.phoenix.howabouttoday.room.entity.Review;
 import com.phoenix.howabouttoday.room.entity.ReviewImage;
 import com.phoenix.howabouttoday.board.repository.*;
@@ -80,6 +86,8 @@ public class InitDb {
 //        private final OrdersDetailRepository ordersDetailRepository;
         private final AccommodationImageRepository accommodationImageRepository;
         private final RoomViewAmenitiesRepository roomViewAmenitiesRepository;
+        private final CouponRepository couponRepository;
+        private final CouponRulesRepository couponRulesRepository;
 
         private final AccomCategoryRepository accomCategoryRepository;
         public void dbInit1() {
@@ -95,6 +103,47 @@ public class InitDb {
                     .joinDate(LocalDate.of(2022,10,27))
                     .role(Role.MEMBER)
                     .build());
+
+
+            /** 쿠폰 생성 **/
+            CouponRules couponRules1 = couponRulesRepository.save(CouponRules.builder()
+                    .couponName("가입축하 쿠폰")
+                    .period(60)
+                    .discountType(DiscountType.FLAT)
+                    .discountValue(10000)
+                    .discountMinPrice(50000)
+                    .discountMaxPrice(10000)
+                    .build());
+
+            CouponRules couponRules2 = couponRulesRepository.save(CouponRules.builder()
+                    .couponName("겨울여행 쿠폰")
+                    .period(30)
+                    .discountType(DiscountType.FIXED)
+                    .discountValue(10)
+                    .discountMinPrice(30000)
+                    .discountMaxPrice(100000)
+                    .build());
+
+            //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
+
+            Coupon coupon1 = couponRepository.save(Coupon.builder()
+                    .couponRules(couponRules1)
+                    .member(member)
+                    .status(CouponStatus.AVAILABLE)
+                    .assignedDate(LocalDate.now())
+                    .endDate(LocalDate.now().plusDays(couponRules1.getPeriod()))
+                    .build());
+
+            Coupon coupon2 = couponRepository.save(Coupon.builder()
+                    .couponRules(couponRules2)
+                    .member(member)
+                    .status(CouponStatus.AVAILABLE)
+                    .assignedDate(LocalDate.now())
+                    .endDate(LocalDate.now().plusDays(couponRules2.getPeriod()))
+                    .build());
+
+            member.getCoupons().add(coupon1);
+            member.getCoupons().add(coupon2);
 
 
             /**지역 등록 **/
@@ -338,6 +387,46 @@ public class InitDb {
                     .joinDate(LocalDate.of(2022,9,27))
                     .role(Role.MEMBER)
                     .build());
+
+            CouponRules couponRules3 = couponRulesRepository.save(CouponRules.builder()
+                    .couponName("가입축하 쿠폰2")
+                    .period(60)
+                    .discountType(DiscountType.FLAT)
+                    .discountValue(15000)
+                            .discountMinPrice(60000)
+                            .discountMaxPrice(15000)
+                    .build());
+
+            CouponRules couponRules4 = couponRulesRepository.save(CouponRules.builder()
+                    .couponName("건강한 여행 쿠폰")
+                    .period(15)
+                    .discountType(DiscountType.FIXED)
+                    .discountValue(20)
+                    .discountMinPrice(100000)
+                    .discountMaxPrice(20000)
+                    .build());
+
+            //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
+
+            Coupon coupon3 = couponRepository.save(Coupon.builder()
+                    .couponRules(couponRules3)
+                    .member(member)
+                    .status(CouponStatus.AVAILABLE)
+                    .assignedDate(LocalDate.now())
+                    .endDate(LocalDate.now().plusDays(couponRules3.getPeriod()))
+                    .build());
+
+            Coupon coupon4 = couponRepository.save(Coupon.builder()
+                    .couponRules(couponRules4)
+                    .member(member)
+                    .status(CouponStatus.AVAILABLE)
+                    .assignedDate(LocalDate.now())
+                    .endDate(LocalDate.now().plusDays(couponRules4.getPeriod()))
+                    .build());
+
+            member.getCoupons().add(coupon3);
+            member.getCoupons().add(coupon4);
+
 
             /**지역 등록 **/
             Region save = regionRepository.save(Region.builder()
