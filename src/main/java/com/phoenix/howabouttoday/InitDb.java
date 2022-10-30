@@ -11,7 +11,6 @@ import com.phoenix.howabouttoday.payment.enumType.DiscountType;
 import com.phoenix.howabouttoday.payment.repository.CouponRepository;
 import com.phoenix.howabouttoday.payment.repository.CouponRulesRepository;
 import com.phoenix.howabouttoday.room.entity.Review;
-import com.phoenix.howabouttoday.room.entity.ReviewImage;
 import com.phoenix.howabouttoday.board.repository.*;
 import com.phoenix.howabouttoday.global.OrdersStatus;
 import com.phoenix.howabouttoday.global.RegionType;
@@ -54,7 +53,6 @@ public class InitDb {
     public void init(){
         initService.dbInit1();
         initService.dbInit2();
-
     }
 
     @Component
@@ -77,7 +75,6 @@ public class InitDb {
         private final RoomImageRepository roomImageRepository;
         private final RoomRepository roomRepository;
         private final ReviewRepository reviewRepository;
-        private final ReviewImageRepository reviewImageRepository;
         private final ReplyRepository replyRepository;
         private final AmenitiesRepository amenitiesRepository;
         private final ServiceRepository serviceRepository;
@@ -360,12 +357,6 @@ public class InitDb {
 
             room.getReviews().add(review);
 
-            /** 댓글 이미지 등록 **/
-            reviewImageRepository.save(ReviewImage.builder()
-                    .review(review)
-                    .reviewOriginalFileName("Original")
-                    .reviewSaveFileName("Svae")
-                    .build());
 
             /** 리플 **/
             replyRepository.save(Reply.builder()
@@ -736,12 +727,7 @@ public class InitDb {
             room.getReviews().add(review);
 
 
-            /** 댓글 이미지 등록 **/
-            reviewImageRepository.save(ReviewImage.builder()
-                    .review(review)
-                    .reviewOriginalFileName("Original1")
-                    .reviewSaveFileName("Svae1")
-                    .build());
+
 
             /** 리플 **/
             replyRepository.save(Reply.builder()
@@ -958,12 +944,7 @@ public class InitDb {
 
         public void 객실예약정보_입력(Long memberId) {
 
-            Optional<Orders> optionOrders = ordersRepository.findById(memberId);
-
-            if (optionOrders.isEmpty()) {
-                new NullPointerException("주문이 없습니다.");
-            }
-            Orders orders = optionOrders.get();
+            Orders orders = ordersRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 주문이 존재하지 않습니다.", memberId)));
 
             for (Reservation reservation : orders.getReservation()) {
                 LocalDate ldStart = reservation.getReserveUseStartDate();
