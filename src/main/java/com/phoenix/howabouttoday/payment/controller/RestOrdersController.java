@@ -32,9 +32,9 @@ public class RestOrdersController {
         if (sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-        else {
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
-        }
+//        else {
+//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+//        }
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
 
         if (orderService.cartDuplCheck(customer, roomNum)){
@@ -49,9 +49,9 @@ public class RestOrdersController {
         if (sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-        else {
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
-        }
+//        else {
+//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+//        }
         CouponResponseDTO couponResponseDTO = couponService.calculateCoupon(sessionDTO.getMemberNum(), couponRequestDTO);
 
         return couponResponseDTO;

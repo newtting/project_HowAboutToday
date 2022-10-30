@@ -53,7 +53,6 @@ public class InitDb {
     public void init(){
         initService.dbInit1();
         initService.dbInit2();
-
     }
 
     @Component
@@ -945,12 +944,7 @@ public class InitDb {
 
         public void 객실예약정보_입력(Long memberId) {
 
-            Optional<Orders> optionOrders = ordersRepository.findById(memberId);
-
-            if (optionOrders.isEmpty()) {
-                new NullPointerException("주문이 없습니다.");
-            }
-            Orders orders = optionOrders.get();
+            Orders orders = ordersRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 주문이 존재하지 않습니다.", memberId)));
 
             for (Reservation reservation : orders.getReservation()) {
                 LocalDate ldStart = reservation.getReserveUseStartDate();

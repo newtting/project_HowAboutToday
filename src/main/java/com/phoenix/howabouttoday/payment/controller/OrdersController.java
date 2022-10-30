@@ -41,9 +41,9 @@ public class OrdersController {
         if (sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-        else {
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
-        }
+//        else {
+//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+//        }
 
 
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
@@ -59,9 +59,9 @@ public class OrdersController {
         if (sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-        else {
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
-        }
+//        else {
+//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+//        }
 
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
         List<OrdersDetailVO> infoList = orderService.getCartData(cartNum);
@@ -112,9 +112,9 @@ public class OrdersController {
         if (sessionDTO != null) {
 //            model.addAttribute("sessionDTO", sessionDTO);
         }
-        else {
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
-        }
+//        else {
+//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+//        }
 
 //        model.addAttribute("sessionDTO", sessionDTO);
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
