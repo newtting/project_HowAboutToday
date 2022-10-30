@@ -1,12 +1,9 @@
 package com.phoenix.howabouttoday.payment.entity;
 
 
-import com.phoenix.howabouttoday.global.OrdersStatusConverter;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.payment.enumType.CouponStatus;
 import com.phoenix.howabouttoday.payment.enumType.CouponStatusConverter;
-import com.phoenix.howabouttoday.payment.enumType.DiscountType;
-import com.phoenix.howabouttoday.payment.enumType.DiscountTypeConverter;
 import lombok.*;
 
 import javax.persistence.*;
@@ -37,8 +34,16 @@ public class Coupon {
     private CouponStatus status;
 
     @Column
-    private LocalDate assignedDate; //지급날짜
+    private LocalDate startDate; //지급날짜
 
     @Column
     private LocalDate endDate;      //만료날짜
+
+    public Boolean isPossible(Integer originPrice){
+        return originPrice >= getCouponRules().getDiscountMinPrice();
+    }
+
+    public void couponUsed(){
+        status = CouponStatus.DONE;
+    }
 }
