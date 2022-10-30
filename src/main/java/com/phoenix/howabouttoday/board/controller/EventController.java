@@ -6,6 +6,11 @@ import com.phoenix.howabouttoday.board.service.EventService;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,16 +29,30 @@ public class EventController {
 
     // 이벤트 리스트 페이지
     @GetMapping("event")
-    public String eventList(@LoginUser SessionDTO sessionDTO, Model model){
+    public String eventList(@LoginUser SessionDTO sessionDTO, Model model,
+                            Long eventNum, @PageableDefault Pageable pageable){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        List<EventListDTO> eventList = eventService.findAll_Event();
+        pageable = PageRequest.of(0, 5, Sort.Direction.DESC, "eventNum");
+        Slice<EventListDTO> eventList = eventService.findAll_Event(pageable);
+
         model.addAttribute("lists", eventList);
 
-        return "board/board";
+        return "board/event";
+    }
+
+    // 이벤트 리스트 더보기
+    @ResponseBody
+    @GetMapping("event-more")
+    public Slice<EventListDTO> eventList(@PageableDefault Pageable pageable){
+
+        pageable = PageRequest.of(pageable.getPageNumber(), 5, Sort.Direction.DESC, "eventNum");
+        Slice<EventListDTO> eventList = eventService.findAll_Event(pageable);
+
+        return eventList;
     }
 
     // 이벤트 디테일 페이지
