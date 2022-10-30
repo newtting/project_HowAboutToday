@@ -158,7 +158,7 @@ public class AccomRestController {
             return  accomodationService.getByRegionAccomPageList(regionNum,pageable,category_name,keyword,maxPrice,minPrice,rating);
         }
 
-        return accomodationService.getAccomPageList(pageable,category_name);
+        return accomodationService.getAccomPageList(pageable,category_name,keyword,maxPrice,minPrice,rating);
     }
 
 
