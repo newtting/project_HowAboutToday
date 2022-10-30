@@ -3,6 +3,7 @@ package com.phoenix.howabouttoday.room.entity;
 
 import com.phoenix.howabouttoday.member.entity.Member;
 
+import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

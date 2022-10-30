@@ -19,14 +19,18 @@ public class OrdersCreateDTO {
     private String ordersType;
     private String imp_uid;
     private String merchantId;
+    private Long useCouponNum;
+    private Integer discountValue;
     private List<Long> cartNum;
 
-    public OrdersCreateDTO(String name, String tel, String ordersType, String imp_uid, String merchantId, List<Long> cartNum) {
+    public OrdersCreateDTO(String name, String tel, String ordersType, String imp_uid, String merchantId, Long useCouponNum, Integer discountValue, List<Long> cartNum) {
         this.name = name;
         this.tel = tel;
         this.ordersType = ordersType;
         this.imp_uid = imp_uid;
         this.merchantId = merchantId;
+        this.useCouponNum = useCouponNum;
+        this.discountValue = discountValue;
         this.cartNum = cartNum;
     }
 }

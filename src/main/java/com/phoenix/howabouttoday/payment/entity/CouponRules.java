@@ -43,4 +43,8 @@ public class CouponRules {
 
     //최대할인금액
     private Integer discountMaxPrice;
+
+    public Boolean isFixed(){
+        return discountType == DiscountType.FIXED;
+    }
 }
