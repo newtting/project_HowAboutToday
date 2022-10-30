@@ -87,7 +87,7 @@ public class ObjectGenerator {
                 .accomTel("050350577805")
 //                .accomCategory(AccomCategory.PENSION)
                 .region(getRandomRegion())
-                .accomAddress("충청남도 보령시 해수욕장13길 10-20")
+//                .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)
                 .totalReviewNum(1103)
@@ -123,7 +123,7 @@ public class ObjectGenerator {
 
         Region region = Region.builder()
                 .region(RegionType.values()[number])
-                .regionParentNum(RegionType.EMPTY)
+//                .regionParentNum(RegionType.EMPTY)
                 .build();
 
         return region;
@@ -177,7 +177,7 @@ public class ObjectGenerator {
                 .ordersDate(LocalDateTime.now())
                 .ordersPrice(45000+90000)
                 .ordersType("카드")
-                .ordersStatus("결제완료")
+//                .ordersStatus("결제완료")
                 .build();
 
         return newOrder;

@@ -32,12 +32,23 @@ public class AboutUsController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        pageable = PageRequest.of(0, 3);
+        pageable = PageRequest.of(0, 3, Sort.Direction.DESC, "board_num");
         Slice<BoardListDTO> boardList = boardService.findAll_Board("오늘어때 정보", pageable); // boardCategoryName = "오늘어때 정보"인 데이터들을 DTO에 저장
 
         model.addAttribute("lists", boardList);
 
         return "board/aboutUs";
+    }
+
+    // 오늘어때 정보 리스트 더보기
+    @ResponseBody
+    @GetMapping("aboutUs-more")
+    public Slice<BoardListDTO> aboutUsList(@PageableDefault Pageable pageable){
+
+        pageable = PageRequest.of(pageable.getPageNumber(), 3, Sort.Direction.DESC, "board_num");
+        Slice<BoardListDTO> boardList = boardService.findAll_Board("오늘어때 정보", pageable);
+
+        return boardList;
     }
 
     // 오늘어때 정보 디테일 페이지

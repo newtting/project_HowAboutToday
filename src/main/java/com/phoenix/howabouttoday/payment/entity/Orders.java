@@ -58,18 +58,25 @@ public class Orders {
     @Column(length = 500, unique = true)
     private String merchantId;
 
+    @Column
+    private Integer discountedPrice;
+
+    @Column
+    private Long couponNum;
+
+    @Column
+    private Integer discountValue;
+
     @NotNull
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     private List<Reservation> reservation = new ArrayList<>(); //이미지 fk를 위한 매핑
-
 
     public void changeToReadyState(){
         this.ordersStatus = OrdersStatus.PAYMENT_CANCEL;
     }
 
-
     @Builder
-    public Orders(Member member, String ordersTel, String ordersName, LocalDateTime ordersDate, Integer ordersPrice, String ordersType, OrdersStatus ordersStatus, String impUid, String merchantId) {
+    public Orders(Member member, String ordersTel, String ordersName, LocalDateTime ordersDate, Integer ordersPrice, String ordersType, OrdersStatus ordersStatus, String impUid, String merchantId, Long couponNum, Integer discountValue) {
         this.member = member;
         this.ordersTel = ordersTel;
         this.ordersName = ordersName;
@@ -79,5 +86,8 @@ public class Orders {
         this.ordersStatus = ordersStatus;
         this.impUid = impUid;
         this.merchantId = merchantId;
+        this.discountedPrice = ordersPrice - discountValue;
+        this.couponNum = couponNum;
+        this.discountValue = discountValue;
     }
 }
