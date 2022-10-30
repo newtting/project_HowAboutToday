@@ -1,16 +1,11 @@
 package com.phoenix.howabouttoday.room.service;
 import com.phoenix.howabouttoday.room.dto.*;
-import com.phoenix.howabouttoday.room.entity.Room;
-import com.phoenix.howabouttoday.room.repository.RoomImageRepository;
-import com.phoenix.howabouttoday.room.repository.RoomRepository;
-import com.phoenix.howabouttoday.room.repository.RoomViewAmenitiesRepository;
-import com.phoenix.howabouttoday.room.repository.RoomViewServiceRepository;
+import com.phoenix.howabouttoday.room.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -21,6 +16,8 @@ public class RoomServiceImpl implements RoomService {
     private final RoomViewAmenitiesRepository roomViewAmenitiesRepository;
     private final RoomViewServiceRepository roomViewServiceRepository;
     private final RoomImageRepository roomImageRepository;
+
+    private final RoomReviewRepository roomReviewRepository;
 
     //객실 리스트
     @Override
@@ -71,4 +68,15 @@ public class RoomServiceImpl implements RoomService {
                 .orElse(null);
 
     }
+
+    @Override
+    public List<RoomReviewDTO> findAll_Review(Long roomNum) {
+        List<RoomReviewDTO> rlist = roomReviewRepository.findAllByRoom_RoomNum(roomNum)
+                .stream()
+                .map(RoomReviewDTO::new)
+                .collect(Collectors.toList());
+
+        return rlist;
+    }
+
 }
