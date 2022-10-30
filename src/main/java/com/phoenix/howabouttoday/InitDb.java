@@ -4,8 +4,14 @@ package com.phoenix.howabouttoday;
 import com.phoenix.howabouttoday.accom.entity.*;
 import com.phoenix.howabouttoday.accom.repository.*;
 import com.phoenix.howabouttoday.board.entity.Reply;
-import com.phoenix.howabouttoday.board.entity.Review;
-import com.phoenix.howabouttoday.board.entity.ReviewImage;
+import com.phoenix.howabouttoday.payment.entity.Coupon;
+import com.phoenix.howabouttoday.payment.entity.CouponRules;
+import com.phoenix.howabouttoday.payment.enumType.CouponStatus;
+import com.phoenix.howabouttoday.payment.enumType.DiscountType;
+import com.phoenix.howabouttoday.payment.repository.CouponRepository;
+import com.phoenix.howabouttoday.payment.repository.CouponRulesRepository;
+import com.phoenix.howabouttoday.room.entity.Review;
+import com.phoenix.howabouttoday.room.entity.ReviewImage;
 import com.phoenix.howabouttoday.board.repository.*;
 import com.phoenix.howabouttoday.global.OrdersStatus;
 import com.phoenix.howabouttoday.global.RegionType;
@@ -35,7 +41,6 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.chrono.JapaneseChronology;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
@@ -81,6 +86,8 @@ public class InitDb {
 //        private final OrdersDetailRepository ordersDetailRepository;
         private final AccommodationImageRepository accommodationImageRepository;
         private final RoomViewAmenitiesRepository roomViewAmenitiesRepository;
+        private final CouponRepository couponRepository;
+        private final CouponRulesRepository couponRulesRepository;
 
         private final AccomCategoryRepository accomCategoryRepository;
         public void dbInit1() {
@@ -98,10 +105,53 @@ public class InitDb {
                     .build());
 
 
+            /** 쿠폰 생성 **/
+            CouponRules couponRules1 = couponRulesRepository.save(CouponRules.builder()
+                    .couponName("가입축하 쿠폰")
+                    .period(60)
+                    .discountType(DiscountType.FLAT)
+                    .discountValue(10000)
+                    .discountMinPrice(75000)
+                    .discountMaxPrice(10000)
+                    .couponContent("가입축하 쿠폰입니다.")
+                    .build());
+
+            CouponRules couponRules2 = couponRulesRepository.save(CouponRules.builder()
+                    .couponName("겨울여행 쿠폰")
+                    .period(30)
+                    .discountType(DiscountType.FIXED)
+                    .discountValue(10)
+                    .discountMinPrice(75100)
+                    .discountMaxPrice(100000)
+                    .couponContent("안전한 겨울여행을 위한 쿠폰입니다.")
+                    .build());
+
+            //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
+
+            Coupon coupon1 = couponRepository.save(Coupon.builder()
+                    .couponRules(couponRules1)
+                    .member(member)
+                    .status(CouponStatus.AVAILABLE)
+                    .startDate(LocalDate.now())
+                    .endDate(LocalDate.now().plusDays(couponRules1.getPeriod()))
+                    .build());
+
+            Coupon coupon2 = couponRepository.save(Coupon.builder()
+                    .couponRules(couponRules2)
+                    .member(member)
+                    .status(CouponStatus.AVAILABLE)
+                    .startDate(LocalDate.now())
+                    .endDate(LocalDate.now().plusDays(couponRules2.getPeriod()))
+                    .build());
+
+            member.getCoupons().add(coupon1);
+            member.getCoupons().add(coupon2);
+
+
             /**지역 등록 **/
 
             Region save = regionRepository.save(Region.builder()
-                    .region(RegionType.BUSAN)
+                    .region(RegionType.SEOUL)
                     .build());
 
             Region region = regionRepository.save(Region.builder()
@@ -165,7 +215,7 @@ public class InitDb {
                     .roomName("너울펜션 스위트룸")
                     .defaultGuest(2)
                     .maxGuest(10)
-                    .price(50)
+                    .price(35000)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -174,7 +224,7 @@ public class InitDb {
                     .roomName("너울펜션 디럭스룸")
                     .defaultGuest(2)
                     .maxGuest(10)
-                    .price(70)
+                    .price(4000000)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -269,6 +319,7 @@ public class InitDb {
                     .ordersType("card")
                     .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .impUid("abc")
+                    .discountValue(0)
                     .member(member)
                     .build();
 
@@ -303,9 +354,11 @@ public class InitDb {
                     .reviewCreatedDate(LocalDateTime.now())
                     .reviewModifyDate(LocalDateTime.now())
                     .reviewRating(3.72)
+                    .room(room)
                     .reviewContent("안녕")
                     .build());
 
+            room.getReviews().add(review);
 
             /** 댓글 이미지 등록 **/
             reviewImageRepository.save(ReviewImage.builder()
@@ -344,6 +397,48 @@ public class InitDb {
                     .role(Role.MEMBER)
                     .build());
 
+            CouponRules couponRules3 = couponRulesRepository.save(CouponRules.builder()
+                    .couponName("가입축하 쿠폰2")
+                    .period(60)
+                    .discountType(DiscountType.FLAT)
+                    .discountValue(15000)
+                    .discountMinPrice(60000)
+                    .discountMaxPrice(15000)
+                    .couponContent("가입축하를 위한 쿠폰 2번째 입니다.")
+                    .build());
+
+            CouponRules couponRules4 = couponRulesRepository.save(CouponRules.builder()
+                    .couponName("건강한 여행 쿠폰")
+                    .period(15)
+                    .discountType(DiscountType.FIXED)
+                    .discountValue(20)
+                    .discountMinPrice(100000)
+                    .discountMaxPrice(20000)
+                    .couponContent("건강을 위한 여행 시 사용 가능한 쿠폰입니다.")
+                    .build());
+
+            //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
+
+            Coupon coupon3 = couponRepository.save(Coupon.builder()
+                    .couponRules(couponRules3)
+                    .member(member)
+                    .status(CouponStatus.AVAILABLE)
+                    .startDate(LocalDate.now())
+                    .endDate(LocalDate.now().plusDays(couponRules3.getPeriod()))
+                    .build());
+
+            Coupon coupon4 = couponRepository.save(Coupon.builder()
+                    .couponRules(couponRules4)
+                    .member(member)
+                    .status(CouponStatus.AVAILABLE)
+                    .startDate(LocalDate.now())
+                    .endDate(LocalDate.now().plusDays(couponRules4.getPeriod()))
+                    .build());
+
+            member.getCoupons().add(coupon3);
+            member.getCoupons().add(coupon4);
+
+
             /**지역 등록 **/
             Region save = regionRepository.save(Region.builder()
                     .region(RegionType.SEOUL)
@@ -367,13 +462,14 @@ public class InitDb {
                     .region(RegionType.SEOCHO)
                     .parentRegion(save)
                     .build());
+
             AccomCategory motel = accomCategoryRepository.save(AccomCategory.builder()
                     .name("motel")
                     .viewName("모텔")
                     .build());
 
             AccomCategory penssion = accomCategoryRepository.save(AccomCategory.builder()
-                    .name("penssion")
+                    .name("pension")
                     .viewName("펜션/풀빌라")
                     .build());
 
@@ -382,8 +478,6 @@ public class InitDb {
                     .name("guesthouse")
                     .viewName("게스트하우스")
                     .build());
-
-
 
             /**숙소 등록**/
             Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
@@ -402,8 +496,6 @@ public class InitDb {
                     .lowPrice(12000)
                     .reserveRange(60)
                     .build());
-
-
 
             Accommodation accommodation2 = accommodationRepository.save(Accommodation.builder()
                     .accomName("대구 팔공산 스타탄생 드라이브인")
@@ -602,6 +694,7 @@ public class InitDb {
                     .ordersType("card")
                     .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .member(member)
+                    .discountValue(0)
                     .impUid("def")
                     .build();
 
@@ -637,7 +730,10 @@ public class InitDb {
                     .reviewModifyDate(LocalDateTime.now())
                     .reviewRating(2.73)
                     .reviewContent("너무별로에요")
+                    .room(room)
                     .build());
+
+            room.getReviews().add(review);
 
 
             /** 댓글 이미지 등록 **/
@@ -706,6 +802,9 @@ public class InitDb {
                     .parentRegion(save)
                     .build());
 
+            AccomCategory guesthouse = accomCategoryRepository.save(AccomCategory.builder()
+                    .name("guesthouse")
+                    .viewName("게스트하우스");
 
             AccomCategory hotel = accomCategoryRepository.save(AccomCategory.builder()
                     .name("hotel")
@@ -717,7 +816,7 @@ public class InitDb {
             Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
                     .accomName("제주도 라르고 게스트하우스")
                     .accomTel("01045020614")
-                    .accomCategory(hotel)
+                    .accomCategory(guesthouse)
                     .region(region)
 
 //                    .accomAddress("제주도 서귀포시 성산읍 13길 10")
@@ -831,6 +930,7 @@ public class InitDb {
                     .ordersPrice(35000)
                     .ordersType("card")
                     .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
+                    .discountValue(0)
                     .member(member)
                     .build();
         }

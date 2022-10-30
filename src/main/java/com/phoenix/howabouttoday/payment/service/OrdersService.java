@@ -8,9 +8,11 @@ import com.phoenix.howabouttoday.payment.dto.OrdersDeleteDTO;
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailVO;
 import com.phoenix.howabouttoday.payment.dto.OrdersCreateDTO;
 import com.phoenix.howabouttoday.payment.dto.OrdersDirectDTO;
+import com.phoenix.howabouttoday.payment.entity.Coupon;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.payment.repository.AvailableDateRepository;
+import com.phoenix.howabouttoday.payment.repository.CouponRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
@@ -49,17 +51,31 @@ public class OrdersService {
     private final MemberRepository memberRepository;
     private final OrdersRepository ordersRepository;
     private final RoomRepository roomRepository;
+    private final CouponRepository couponRepository;
+
+
+
+    public Boolean cartDuplCheck(MemberDTO memberDTO, Long roomNum){
+        /** 장바구니에 동일한 내역이 존재한다면. **/
+        if (cartRepository.existsByMember_MemberNumAndRoom_RoomNum(memberDTO.getNum(), roomNum)){
+            return true;
+        }
+        return false;
+    }
 
 
     /** 객실 -> 바로결제로 넘어오는 정보로 카트 객체만 만들어서 반환해줌. **/
-    public List<OrdersDetailVO> getDirectData(OrdersDirectDTO ordersDirectDTO){
+    public List<OrdersDetailVO> getDirectData(MemberDTO memberDTO, OrdersDirectDTO ordersDirectDTO){
+
+        Member member = memberRepository.findById(memberDTO.getNum()).orElseThrow(() -> new IllegalArgumentException(memberDTO.getNum() + "번 멤버 정보가 없습니다."));
         Room storeRoom = roomRepository.findById(ordersDirectDTO.getRoomNum()).orElseThrow(() -> new IllegalArgumentException(ordersDirectDTO.getRoomNum() + "번 Room 정보가 없습니다."));
 
         String[] splitDate = ordersDirectDTO.getDaterange().split("-");
         String startDate = splitDate[0].strip();
         String endDate = splitDate[1].strip();
 
-        Cart newCart = Cart.builder()
+        Cart saveCart = cartRepository.save(Cart.builder()
+                .member(member)
                 .room(storeRoom)
                 .reserveStatus(ReserveStatus.READY)
                 .reserveUseStartDate(StringToParseDate(startDate))
@@ -67,15 +83,16 @@ public class OrdersService {
                 .reservePrice(storeRoom.getPrice())
                 .reserveAdultCount(ordersDirectDTO.getAdult_qty())
                 .reserveChildCount(ordersDirectDTO.getChild_qty())
-                .build();
+                .build());
 
-        OrdersDetailVO ordersDetailVO = new OrdersDetailVO(newCart);
+        OrdersDetailVO ordersDetailVO = new OrdersDetailVO(saveCart);
 
         List<OrdersDetailVO> ordersDetailVOList = new ArrayList<>();
         ordersDetailVOList.add(ordersDetailVO);
 
         return ordersDetailVOList;
     }
+
 
     /** 스트링타입을 LocalDate타입으로 파싱해주는 메서드 **/
     public LocalDate StringToParseDate(String date){
@@ -95,22 +112,28 @@ public class OrdersService {
     }
 
     /** 결제가 완료되면 해당 결제정보 저장 **/
-    public boolean savePaymentData(Long memberNum, OrdersCreateDTO ordersRequestDTO){
+    public boolean savePaymentData(Long memberNum, OrdersCreateDTO ordersCreateDTO){
         try {
-            Member member = memberRepository.findById(memberNum).get();
-            List<Cart> cartList = cartRepository.findAllById(ordersRequestDTO.getCartNum());
+            Member member = memberRepository.findById(memberNum).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 멤버가 없습니다.", memberNum)));
+            List<Cart> cartList = cartRepository.findAllById(ordersCreateDTO.getCartNum());
 
-            Orders order = getOrder(ordersRequestDTO, member, cartList);
 
+            /** 여기서부터 시작하면 됨. **/
+            //현재 결제 시 할인 해준 가격과 쿠폰pk를 가지고 온다. 할인된(실제 결제된 금액)도 orders테이블에 넣어야 되나 고민이다.
+
+            Orders order = getOrder(ordersCreateDTO, member, cartList);
             List<OrdersDetail> lists = cartList // Entity List
                     .stream() // Entity Stream
                     .map(cart -> ordersNumberMapping(cart, order)) // DTO Stream
                     .collect(Collectors.toList()); // DTO List
 
             order.getReservation().addAll(lists);
+            Coupon coupon = couponRepository.findByCouponNumAndMember_MemberNum(ordersCreateDTO.getUseCouponNum(), memberNum).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 쿠폰 정보가 없습니다.", ordersCreateDTO.getUseCouponNum())));
+            coupon.couponUsed();
+
 
             ordersRepository.save(order);
-            cartRepository.deleteAllById(ordersRequestDTO.getCartNum());
+            cartRepository.deleteAllById(ordersCreateDTO.getCartNum());
         }
         catch (RuntimeException e){
             System.out.println(e.toString());
@@ -121,20 +144,22 @@ public class OrdersService {
 
     /** 결제 저장시 새로운 결제정보를 생성해서 돌려줌. **/
     /** 왠지 이건 orders 클래스 내부에서 해도 될거 같은데... **/
-    private Orders getOrder(OrdersCreateDTO ordersRequestDTO, Member member, List<Cart> cartList) {
+    private Orders getOrder(OrdersCreateDTO ordersCreateDTO, Member member, List<Cart> cartList) {
         Orders order = Orders.builder()
                 .member(member)
-                .ordersName(ordersRequestDTO.getName())
-                .ordersTel(ordersRequestDTO.getTel())
+                .ordersName(ordersCreateDTO.getName())
+                .ordersTel(ordersCreateDTO.getTel())
                 .ordersDate(LocalDateTime.now())
                 .ordersPrice(getTotalPrice(cartList
                         .stream()
-                        .map(cart -> cart.getReserveNum())
+                        .map(Cart::getReserveNum)
                         .collect(Collectors.toList())))
-                .ordersType(ordersRequestDTO.getOrdersType())
+                .ordersType(ordersCreateDTO.getOrdersType())
                 .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
-                .merchantId(ordersRequestDTO.getMerchantId())
-                .impUid(ordersRequestDTO.getImp_uid())
+                .merchantId(ordersCreateDTO.getMerchantId())
+                .impUid(ordersCreateDTO.getImp_uid())
+                .couponNum(ordersCreateDTO.getUseCouponNum())
+                .discountValue(ordersCreateDTO.getDiscountValue())
                 .build();
         return order;
     }
@@ -234,7 +259,6 @@ public class OrdersService {
 
         return ((Long)jsonObject.get("code") == 0) ? orders.getOrdersNum() : -1;
     }
-
 
     public String getToken(){
         String IMP_KEY = "3220511523750621";

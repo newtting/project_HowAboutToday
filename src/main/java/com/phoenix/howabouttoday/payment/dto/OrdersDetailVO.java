@@ -36,7 +36,6 @@ public class OrdersDetailVO {
     private String checkOut;
 
     public OrdersDetailVO(Cart cart) {
-
         Period period = Period.between(cart.getReserveUseStartDate(), cart.getReserveUseEndDate());
         String startDay = cart.getReserveUseStartDate().getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
         String endDay = cart.getReserveUseEndDate().getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
