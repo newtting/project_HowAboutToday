@@ -252,10 +252,10 @@
                                     <h2 class="title font-size-20">후기</h2>
                                 </div><!-- end single-content-item -->
                             </div><!-- end reviews -->
-                            <div class="review-box" th:each=" reviewlists: ${reviewlist}">
+                            <div class="review-box">
                                 <div class="single-content-item padding-top-40px">
-                                    <h3 class="title font-size-20"></h3>
-                                    <div class="comments-list padding-top-50px" >
+                                    <h3 class="title font-size-20" th:text="|총 ${accommodation.totalReviewNum}개의 리뷰|"></h3>
+                                    <div class="comments-list padding-top-50px" th:each=" reviewlists: ${reviewlist}">
                                         <div class="comment">
                                             <div class="comment-avatar">
                                                 <img class="avatar__img" alt="" src="/images/team8.jpg">
@@ -277,12 +277,12 @@
                                                 <p class="comment-content" th:text="${reviewlists.accomReviewContent}">
                                                     후기 내용
                                                 </p>
-                                                <div class="comment-reply d-flex align-items-center justify-content-between">
-                                                    <a class="theme-btn" href="#" data-toggle="modal"
-                                                       data-target="#replayPopupForm">
-                                                        <span class="la la-mail-reply mr-1">답글</span>
-                                                    </a>
-                                                </div>
+<!--                                                <div class="comment-reply d-flex align-items-center justify-content-between">-->
+<!--                                                    <a class="theme-btn" href="#" data-toggle="modal"-->
+<!--                                                       data-target="#replayPopupForm">-->
+<!--                                                        <span class="la la-mail-reply mr-1">답글</span>-->
+<!--                                                    </a>-->
+<!--                                                </div>-->
                                             </div>
                                         </div><!-- end comments -->
                                     </div><!-- end comments-list -->

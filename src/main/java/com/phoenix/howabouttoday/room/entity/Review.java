@@ -1,6 +1,7 @@
 package com.phoenix.howabouttoday.room.entity;
 
 
+import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.member.entity.Member;
 
 import lombok.AllArgsConstructor;
@@ -27,12 +28,13 @@ public class Review {
     private Long reviewNum;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_nickname")
+    @JoinColumn(name = "member_num")
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_num")
     private Room room;
+
 
     private LocalDate reviewCreateDate;
     private LocalDate reviewModifyDate;
