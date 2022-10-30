@@ -48,7 +48,8 @@ public class AccomDto {
         public ResponsePageDto(Accommodation accommodation) {
             this.accomName = accommodation.getAccomName();
             this.accomCategory = new AccomCategoryDto.ResponseDto(accommodation.getAccomCategory());
-//            this.accomAddress = accommodation.getAccomAddress();
+            this.accomAddress = accommodation.getAccomAddress1() +  " "
+                    +  accommodation.getAccomAddress2() + " " + accommodation.getAccomAddress3();
             this.accomRating = accommodation.getAccomRating();
             this.totalReviewNum = accommodation.getTotalReviewNum();
             this.accomNum = accommodation.getAccomNum();

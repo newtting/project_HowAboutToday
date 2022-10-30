@@ -11,7 +11,6 @@ import com.phoenix.howabouttoday.payment.enumType.DiscountType;
 import com.phoenix.howabouttoday.payment.repository.CouponRepository;
 import com.phoenix.howabouttoday.payment.repository.CouponRulesRepository;
 import com.phoenix.howabouttoday.room.entity.Review;
-import com.phoenix.howabouttoday.room.entity.ReviewImage;
 import com.phoenix.howabouttoday.board.repository.*;
 import com.phoenix.howabouttoday.global.OrdersStatus;
 import com.phoenix.howabouttoday.global.RegionType;
@@ -54,7 +53,7 @@ public class InitDb {
     public void init(){
         initService.dbInit1();
         initService.dbInit2();
-//        initService.insertReserve();
+
     }
 
     @Component
@@ -77,7 +76,6 @@ public class InitDb {
         private final RoomImageRepository roomImageRepository;
         private final RoomRepository roomRepository;
         private final ReviewRepository reviewRepository;
-        private final ReviewImageRepository reviewImageRepository;
         private final ReplyRepository replyRepository;
         private final AmenitiesRepository amenitiesRepository;
         private final ServiceRepository serviceRepository;
@@ -151,11 +149,17 @@ public class InitDb {
             /**지역 등록 **/
 
             Region save = regionRepository.save(Region.builder()
-                    .region(RegionType.SEOUL)
+                    .region(RegionType.BUSAN)
                     .build());
 
             Region region = regionRepository.save(Region.builder()
-                    .region(RegionType.BUSAN)
+                    .region(RegionType.SAHA)
+                    .parentRegion(save)
+
+                    .build());
+
+            regionRepository.save(Region.builder()
+                    .region(RegionType.DONGNAE)
                     .parentRegion(save)
 
                     .build());
@@ -345,8 +349,8 @@ public class InitDb {
             /** 댓글 등록 **/
             Review review = reviewRepository.save(Review.builder()
                     .member(member)
-                    .reviewCreatedDate(LocalDateTime.now())
-                    .reviewModifyDate(LocalDateTime.now())
+                    .reviewCreateDate(LocalDate.now())
+                    .reviewModifyDate(LocalDate.now())
                     .reviewRating(3.72)
                     .room(room)
                     .reviewContent("안녕")
@@ -354,12 +358,6 @@ public class InitDb {
 
             room.getReviews().add(review);
 
-            /** 댓글 이미지 등록 **/
-            reviewImageRepository.save(ReviewImage.builder()
-                    .review(review)
-                    .reviewOriginalFileName("Original")
-                    .reviewSaveFileName("Svae")
-                    .build());
 
             /** 리플 **/
             replyRepository.save(Reply.builder()
@@ -439,7 +437,21 @@ public class InitDb {
                     .build());
 
             Region region = regionRepository.save(Region.builder()
-                    .region(RegionType.BUSAN)
+                    .region(RegionType.GWANAK)
+                    .parentRegion(save)
+                    .build());
+            regionRepository.save(Region.builder()
+                    .region(RegionType.JONGRO)
+                    .parentRegion(save)
+                    .build());
+
+            regionRepository.save(Region.builder()
+                    .region(RegionType.SEODEAMOON)
+                    .parentRegion(save)
+                    .build());
+
+            regionRepository.save(Region.builder()
+                    .region(RegionType.SEOCHO)
                     .parentRegion(save)
                     .build());
 
@@ -621,13 +633,14 @@ public class InitDb {
                         .accomTel("050350577805")
                         .accomCategory(motel)
                         .region(region)
-//                        .accomAddress("충청남도 보령시 해수욕장13길 10-20" + i)
+                        .accomAddress1(save.getRegion().getValue())
+                        .accomAddress2(region.getRegion().getValue())
                         .accomRating(3.1)
                         .accomWishlistCount(110)
                         .totalReviewNum(1103)
                         .latitude(36.3196)
                         .longitude(126.5092)
-                        .lowPrice(i+(500))
+                        .lowPrice((i*10000)+50000 + i)
                         .reserveRange(60)
                         .checkIn(LocalTime.of(15, 0))
                         .checkOut(LocalTime.of(11, 0))
@@ -705,8 +718,8 @@ public class InitDb {
             /** 댓글 등록 **/
             Review review = reviewRepository.save(Review.builder()
                     .member(member)
-                    .reviewCreatedDate(LocalDateTime.now())
-                    .reviewModifyDate(LocalDateTime.now())
+                    .reviewCreateDate(LocalDate.now())
+                    .reviewModifyDate(LocalDate.now())
                     .reviewRating(2.73)
                     .reviewContent("너무별로에요")
                     .room(room)
@@ -715,12 +728,7 @@ public class InitDb {
             room.getReviews().add(review);
 
 
-            /** 댓글 이미지 등록 **/
-            reviewImageRepository.save(ReviewImage.builder()
-                    .review(review)
-                    .reviewOriginalFileName("Original1")
-                    .reviewSaveFileName("Svae1")
-                    .build());
+
 
             /** 리플 **/
             replyRepository.save(Reply.builder()
@@ -772,13 +780,23 @@ public class InitDb {
                     .build());
 
             Region region = regionRepository.save(Region.builder()
-                    .region(RegionType.BUSAN)
+                    .region(RegionType.GWANAK)
+                    .parentRegion(save)
+                    .build());
+
+            regionRepository.save(Region.builder()
+                    .region(RegionType.SEODEAMOON)
                     .parentRegion(save)
                     .build());
 
             AccomCategory guesthouse = accomCategoryRepository.save(AccomCategory.builder()
                     .name("guesthouse")
                     .viewName("게스트하우스")
+                    .build());
+
+            AccomCategory hotel = accomCategoryRepository.save(AccomCategory.builder()
+                    .name("hotel")
+                    .viewName("호텔")
                     .build());
 
 
@@ -788,6 +806,7 @@ public class InitDb {
                     .accomTel("01045020614")
                     .accomCategory(guesthouse)
                     .region(region)
+
 //                    .accomAddress("제주도 서귀포시 성산읍 13길 10")
                     .accomRating(3.9)
                     .accomWishlistCount(100)

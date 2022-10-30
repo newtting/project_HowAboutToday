@@ -2,8 +2,7 @@ package com.phoenix.howabouttoday.board.repository;
 
 import com.phoenix.howabouttoday.board.entity.Board;
 import com.phoenix.howabouttoday.board.entity.BoardCategory;
-import com.querydsl.jpa.impl.JPAQueryFactory;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;

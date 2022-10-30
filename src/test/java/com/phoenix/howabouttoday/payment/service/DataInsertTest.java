@@ -195,7 +195,7 @@ public class DataInsertTest {
                 .ordersDate(LocalDateTime.now())
                 .ordersPrice(totalPrice)
                 .ordersType("card")
-                .ordersStatus("결제완료")
+//                .ordersStatus("결제완료")
                 .member(member)
                 .build();
 
@@ -265,7 +265,7 @@ public class DataInsertTest {
         for (int i = 0; i < REGION_COUNT + 1; i++) {
             region.add(Region.builder()
                     .region(RegionType.values()[i])
-                    .regionParentNum(RegionType.EMPTY)
+//                    .regionParentNum(RegionType.EMPTY)
                     .build());
         }
 
@@ -284,7 +284,7 @@ public class DataInsertTest {
                 .accomTel("050350577805")
 //                .accomCategory(AccomCategory.PENSION)
                 .region(region)
-                .accomAddress("충청남도 보령시 해수욕장13길 10-20")
+//                .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)
                 .totalReviewNum(1103)
