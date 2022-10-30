@@ -31,15 +31,13 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping
 public class AccomController {
 
     private final AccomodationService accommodationService;
@@ -94,19 +92,19 @@ public class AccomController {
         return "accom/hotel/hotel-list";
 
     }
-    @GetMapping("hotel-list")
-    public String getHotelList(@LoginUser SessionDTO sessionDTO, Model model){
-
-        if(sessionDTO != null) {
-            model.addAttribute("sessionDTO", sessionDTO);
-        }
-
-        List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
-
-        model.addAttribute("accommodationList",accommodationList);
-
-        return "accom/hotel/hotel-list";
-    }
+//    @GetMapping("hotel-list")
+//    public String getHotelList(@LoginUser SessionDTO sessionDTO, Model model){
+//
+//        if(sessionDTO != null) {
+//            model.addAttribute("sessionDTO", sessionDTO);
+//        }
+//
+//        List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
+//
+//        model.addAttribute("accommodationList",accommodationList);
+//
+//        return "accom/hotel/hotel-list";
+//    }
 
     @PostMapping("hotel-list")
     public String postHotelList(){
@@ -133,11 +131,13 @@ public class AccomController {
 //    }
 
     //숙소 상세
-    @GetMapping("hotel-single")
+
+    @GetMapping("/hotel-single")
     public String getHotelSingle(@LoginUser SessionDTO sessionDTO,
                                  @RequestParam Long accomNum,Long roomNum,
-                                 @PathVariable("accom_id") Long review_id,
                                  Model model){
+
+        System.out.println("aaaaaaaaa!!!! = " + accomNum);
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -155,7 +155,10 @@ public class AccomController {
         model.addAttribute("accommodation",accomList);
 //        model.addAttribute("roomlist", roomService.roomList());
 
-        List<AccomReviewDTO.ResponseDto> reviewlist = accomReviewService.findAllByAccom(review_id);
+        List<AccomReviewDTO.ResponseDto> reviewlist = accomReviewService.findAllByAccom(accomNum);
+        for (AccomReviewDTO.ResponseDto responseDto : reviewlist) {
+            System.out.println("responseDto.getAccomReviewRating() = " + responseDto.getAccomReviewRating());
+        }
         model.addAttribute("reviewlist",reviewlist);//리뷰 리스트 출력
         return "accom/hotel/hotel-single";
 

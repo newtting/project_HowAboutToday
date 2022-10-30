@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface AccomReviewService {
 
-    List<AccomReviewDTO.ResponseDto> findAllByAccom(Long review_id);
+    List<AccomReviewDTO.ResponseDto> findAllByAccom(Long accomNum);
 }

@@ -27,7 +27,7 @@ public class Review {
     private Long reviewNum;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_num")
+    @JoinColumn(name = "member_nickname")
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)

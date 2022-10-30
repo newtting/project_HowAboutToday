@@ -21,7 +21,6 @@ public class AccomReviewDTO {
     @NoArgsConstructor
     public static class ResponseDto {
         private Long accomReviewNum;//리뷰 번호
-
         private Member accomMember;//작성자
         private double accomReviewRating;//리뷰 평점
         private LocalDate accomReviewCreate;//리뷰 작성일
@@ -33,7 +32,6 @@ public class AccomReviewDTO {
             this.accomReviewRating = review.getReviewRating();
             this.accomReviewCreate = review.getReviewCreateDate();
             this.accomReviewContent = review.getReviewContent();
-
 
         }
     }
