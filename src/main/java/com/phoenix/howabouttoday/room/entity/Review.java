@@ -6,6 +6,7 @@ import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 
 
 import com.phoenix.howabouttoday.payment.entity.Orders;
+import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
