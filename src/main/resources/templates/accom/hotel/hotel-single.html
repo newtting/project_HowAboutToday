@@ -210,8 +210,6 @@
                                                     <div class="card-body d-flex">
                                                         <p>파손이 발생하면 현장에서 호스트와 함께 확인하시고 사진을 반드시 찍어주세요.
 
-
-
                                                             호스트가 수리 견적을 전달해 드리면 배상 절차를 진행하여 주시기 바랍니다.</p>
                                                     </div>
                                                 </div>
@@ -254,168 +252,110 @@
                                     <h2 class="title font-size-20">후기</h2>
                                 </div><!-- end single-content-item -->
                             </div><!-- end reviews -->
-                            <div class="review-box">
+                            <div class="review-box" th:each=" reviewlists: ${reviewlist}">
                                 <div class="single-content-item padding-top-40px">
-                                    <h3 class="title font-size-20">3개의 리뷰</h3>
-                                    <div class="comments-list padding-top-50px">
+                                    <h3 class="title font-size-20"></h3>
+                                    <div class="comments-list padding-top-50px" >
                                         <div class="comment">
                                             <div class="comment-avatar">
                                                 <img class="avatar__img" alt="" src="/images/team8.jpg">
                                             </div>
                                             <div class="comment-body">
                                                 <div class="meta-data">
-                                                    <h3 class="comment__author">투숙객 이름</h3>
+                                                    <h3 class="comment__author" th:text="${reviewlists.accomMember}">멤버 이름</h3>
                                                     <div class="meta-data-inner d-flex">
-                                                    <span class="ratings d-flex align-items-center mr-1">
+                                                    <span class="ratings d-flex align-items-center mr-1" th:text="|${reviewlists.accomReviewRating} /|">
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                     </span>
-                                                        <p class="comment__date">2022.10.03</p>
+                                                        <p class="comment__date" th:text="${reviewlists.accomReviewCreate}">2022.10.03</p>
                                                     </div>
                                                 </div>
-                                                <p class="comment-content">
+                                                <p class="comment-content" th:text="${reviewlists.accomReviewContent}">
                                                     후기 내용
                                                 </p>
                                                 <div class="comment-reply d-flex align-items-center justify-content-between">
                                                     <a class="theme-btn" href="#" data-toggle="modal"
                                                        data-target="#replayPopupForm">
-                                                        <span class="la la-mail-reply mr-1"></span>답글
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div><!-- end comments -->
-                                        <div class="comment">
-                                            <div class="comment-avatar">
-                                                <img class="avatar__img" alt="" src="/images/team8.jpg">
-                                            </div>
-                                            <div class="comment-body">
-                                                <div class="meta-data">
-                                                    <h3 class="comment__author">투숙객 이름</h3>
-                                                    <div class="meta-data-inner d-flex">
-                                                    <span class="ratings d-flex align-items-center mr-1">
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                    </span>
-                                                        <p class="comment__date">2022.10.03</p>
-                                                    </div>
-                                                </div>
-                                                <p class="comment-content">
-                                                    후기 내용
-                                                </p>
-                                                <div class="comment-reply d-flex align-items-center justify-content-between">
-                                                    <a class="theme-btn" href="#" data-toggle="modal"
-                                                       data-target="#replayPopupForm">
-                                                        <span class="la la-mail-reply mr-1"></span>답글
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div><!-- end comments -->
-                                        <div class="comment">
-                                            <div class="comment-avatar">
-                                                <img class="avatar__img" alt="" src="/images/team10.jpg">
-                                            </div>
-                                            <div class="comment-body">
-                                                <div class="meta-data">
-                                                    <h3 class="comment__author">투숙객 이름</h3>
-                                                    <div class="meta-data-inner d-flex">
-                                                    <span class="ratings d-flex align-items-center mr-1">
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                    </span>
-                                                        <p class="comment__date">2022.11.13</p>
-                                                    </div>
-                                                </div>
-                                                <p class="comment-content">
-                                                    후기 내용
-                                                </p>
-                                                <div class="comment-reply d-flex align-items-center justify-content-between">
-                                                    <a class="theme-btn" href="#" data-toggle="modal"
-                                                       data-target="#replayPopupForm">
-                                                        <span class="la la-mail-reply mr-1"></span>답글
+                                                        <span class="la la-mail-reply mr-1">답글</span>
                                                     </a>
                                                 </div>
                                             </div>
                                         </div><!-- end comments -->
                                     </div><!-- end comments-list -->
-
-                                    <!-- 후기 작성 -->
-                                    <div class="comment-forum padding-top-40px">
-                                        <div class="form-box">
-                                            <div class="form-title-wrap">
-                                                <h3 class="title">후기 작성</h3>
-                                            </div><!-- form-title-wrap -->
-                                            <div class="form-content">
-                                                <div class="contact-form-action">
-                                                    <form method="post">
-                                                        <div class="form-content">
-                                                            <div class="rate-option p-2">
-                                                                <div class="row">
-                                                                    <div class="col-lg-4 responsive-column">
-                                                                        <div class="rate-option-item">
-                                                                            <label>평점</label>
-                                                                            <div class="rate-stars-option">
-                                                                                <input type="checkbox" id="lst1" value="1">
-                                                                                <label for="lst1"></label>
-                                                                                <input type="checkbox" id="lst2" value="2">
-                                                                                <label for="lst2"></label>
-                                                                                <input type="checkbox" id="lst3" value="3">
-                                                                                <label for="lst3"></label>
-                                                                                <input type="checkbox" id="lst4" value="4">
-                                                                                <label for="lst4"></label>
-                                                                                <input type="checkbox" id="lst5" value="5">
-                                                                                <label for="lst5"></label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div><!-- col-lg-4 -->
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-lg-6 responsive-column">
-                                                                        <div class="input-box">
-                                                                            <label class="label-text">성함</label>
-                                                                            <div class="form-group">
-                                                                                <span class="la la-user form-icon"></span>
-                                                                                <input class="form-control" type="text"
-                                                                                       name="text" placeholder="투숙객 성함">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-12">
-                                                                        <div class="input-box">
-                                                                            <label class="label-text">내용</label>
-                                                                            <div class="form-group">
-                                                                                <span class="la la-pencil form-icon"></span>
-                                                                                <textarea class="message-control form-control"
-                                                                                          name="message"
-                                                                                          placeholder="후기 내용을 작성해주세요"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-12">
-                                                                        <div class="btn-box">
-                                                                            <button type="button"
-                                                                                    class="theme-btn hwt-btn-gray">작성하기
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div><!-- end contact-form-action -->
-                                            </div><!-- end form-content -->
-                                        </div><!-- end form-box -->
-                                    </div><!-- end comment-forum -->
                                 </div><!-- end single-content-item -->
                             </div><!-- end review-box -->
+<!--                                    &lt;!&ndash; 후기 작성 &ndash;&gt;-->
+<!--                                    <div class="comment-forum padding-top-40px">-->
+<!--                                        <div class="form-box">-->
+<!--                                            <div class="form-title-wrap">-->
+<!--                                                <h3 class="title">후기 작성</h3>-->
+<!--                                            </div>&lt;!&ndash; form-title-wrap &ndash;&gt;-->
+<!--                                            <div class="form-content">-->
+<!--                                                <div class="contact-form-action">-->
+<!--                                                    <form method="post">-->
+<!--                                                        <div class="form-content">-->
+<!--                                                            <div class="rate-option p-2">-->
+<!--                                                                <div class="row">-->
+<!--                                                                    <div class="col-lg-4 responsive-column">-->
+<!--                                                                        <div class="rate-option-item">-->
+<!--                                                                            <label>평점</label>-->
+<!--                                                                            <div class="rate-stars-option">-->
+<!--                                                                                <input type="checkbox" id="lst1" value="1">-->
+<!--                                                                                <label for="lst1"></label>-->
+<!--                                                                                <input type="checkbox" id="lst2" value="2">-->
+<!--                                                                                <label for="lst2"></label>-->
+<!--                                                                                <input type="checkbox" id="lst3" value="3">-->
+<!--                                                                                <label for="lst3"></label>-->
+<!--                                                                                <input type="checkbox" id="lst4" value="4">-->
+<!--                                                                                <label for="lst4"></label>-->
+<!--                                                                                <input type="checkbox" id="lst5" value="5">-->
+<!--                                                                                <label for="lst5"></label>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>&lt;!&ndash; col-lg-4 &ndash;&gt;-->
+<!--                                                                </div>-->
+<!--                                                                <div class="row">-->
+<!--                                                                    <div class="col-lg-6 responsive-column">-->
+<!--                                                                        <div class="input-box">-->
+<!--                                                                            <label class="label-text">성함</label>-->
+<!--                                                                            <div class="form-group">-->
+<!--                                                                                <span class="la la-user form-icon"></span>-->
+<!--                                                                                <input class="form-control" type="text"-->
+<!--                                                                                       name="text" placeholder="투숙객 성함">-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="col-lg-12">-->
+<!--                                                                        <div class="input-box">-->
+<!--                                                                            <label class="label-text">내용</label>-->
+<!--                                                                            <div class="form-group">-->
+<!--                                                                                <span class="la la-pencil form-icon"></span>-->
+<!--                                                                                <textarea class="message-control form-control"-->
+<!--                                                                                          name="message"-->
+<!--                                                                                          placeholder="후기 내용을 작성해주세요"></textarea>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="col-lg-12">-->
+<!--                                                                        <div class="btn-box">-->
+<!--                                                                            <button type="button"-->
+<!--                                                                                    class="theme-btn hwt-btn-gray">작성하기-->
+<!--                                                                            </button>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </form>-->
+<!--                                                </div>&lt;!&ndash; end contact-form-action &ndash;&gt;-->
+<!--                                            </div>&lt;!&ndash; end form-content &ndash;&gt;-->
+<!--                                        </div>&lt;!&ndash; end form-box &ndash;&gt;-->
+<!--                                    </div>&lt;!&ndash; end comment-forum &ndash;&gt;-->
+
                         </div><!-- end single-content-wrap -->
                     </div><!-- end col-lg-8 -->
                     <div class="col-lg-4">
