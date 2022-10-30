@@ -736,7 +736,7 @@
 
         function roomSubmit(){
             const roomNum = document.querySelector("#roomNum").value;
-            fetch("/orders/cartDuplCheck?roomNum=" + roomNum)
+            fetch("/cartDuplCheck?roomNum=" + roomNum)
                 .then((response)=>response.json())
                 .then((result)=> {
                     if (result.data === true){
