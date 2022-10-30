@@ -42,6 +42,8 @@ dependencies {
 	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa" // QueryDSL
 	annotationProcessor "jakarta.persistence:jakarta.persistence-api" // QueryDSL
 	annotationProcessor "jakarta.annotation:jakarta.annotation-api" // QueryDSL
+	implementation 'org.springframework.boot:spring-boot-starter-mail' // mail
+	implementation 'org.apache.commons:commons-email:1.5' // commons-email
 
 	//오라클로 테스트 하기 위한 dependencies
 //	implementation 'com.oracle.database.jdbc:ojdbc8'
