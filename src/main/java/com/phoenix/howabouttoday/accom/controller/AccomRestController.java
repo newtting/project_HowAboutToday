@@ -29,9 +29,10 @@ public class AccomRestController {
                                                @PageableDefault(page = 0,size = 5,sort = "lowPrice",direction = Sort.Direction.ASC) Pageable pageable,
                                                           @RequestParam(value = "keyword",required = false) String keyword,
                                                           @RequestParam(required = false) String priceRange,
-                                                          @RequestParam(required = false) String regionNo) {
+                                                          @RequestParam(required = false) String regionNo,
+                                                          @RequestParam(required = false) String accomRating) {
 
-        System.out.println("regionNo!!! = " + regionNo);
+
 
         /** 검색어가 없을경우 처리 로직 **/
         if(keyword==null || keyword.equals("") ){
@@ -42,6 +43,14 @@ public class AccomRestController {
         if(priceRange==null || keyword.equals("")){
             priceRange = "1만원 - 50만원";
         }
+
+        /** 평점정렬이 null일때 처리 로직 **/
+        if(accomRating==null || accomRating.equals("")){
+           accomRating = "5";
+        }
+        /** 파라미터로 온 string을 double로 형변환 **/
+        Double rating = Double.parseDouble(accomRating);
+        System.out.println("rating = " + rating);
 
 
         /** 가격정렬에 대한 처리 로직 **/
@@ -55,10 +64,10 @@ public class AccomRestController {
         /** 지역이 있는경우 처리 로직 **/
         if(regionNo!=null){
             Long regionNum = Long.parseLong(regionNo);
-           return  accomodationService.getByRegionAccomPageList(regionNum,pageable,category_name,keyword,maxPrice,minPrice);
+           return  accomodationService.getByRegionAccomPageList(regionNum,pageable,category_name,keyword,maxPrice,minPrice,rating);
         }
 
-        return accomodationService.getAccomPageList(pageable,category_name,keyword,maxPrice,minPrice);
+        return accomodationService.getAccomPageList(pageable,category_name,keyword,maxPrice,minPrice,rating);
 
 
     }
@@ -69,7 +78,8 @@ public class AccomRestController {
                                                           @PageableDefault(page = 0,size = 5,sort = "lowPrice",direction = Sort.Direction.ASC) Pageable pageable,
                                                    @RequestParam(value = "keyword",required = false) String keyword,
                                                    @RequestParam(required = false) String priceRange,
-                                                   @RequestParam(required = false) String regionNo) {
+                                                   @RequestParam(required = false) String regionNo,
+                                                   @RequestParam(required = false) String accomRating) {
 
         /** 검색어가 없을경우 처리 로직 **/
         if(keyword==null || keyword.equals("") ){
@@ -80,6 +90,14 @@ public class AccomRestController {
         if(regionNo==null){
             regionNo = "null";
         }
+
+        /** 평점정렬이 null일때 처리 로직 **/
+        if(accomRating==null || accomRating.equals("")){
+            accomRating = "5";
+        }
+        /** 파라미터로 온 string을 double로 형변환 **/
+        Double rating = Double.parseDouble(accomRating);
+        System.out.println("rating = " + rating);
 
         //1만원 - 50만원
         /** 가격정렬에 대한 처리 로직 **/
@@ -92,10 +110,11 @@ public class AccomRestController {
         /** 지역이 있는경우 처리 로직 **/
         if(regionNo!="null" && (!regionNo.equals("null"))){
             Long regionNum = Long.parseLong(regionNo);
-            return  accomodationService.getByRegionAccomPageList(regionNum,pageable,category_name,keyword,maxPrice,minPrice);
+            return  accomodationService.getByRegionAccomPageList(regionNum,pageable,category_name,keyword,maxPrice,minPrice,rating);
         }
 
-        return accomodationService.getAccomPageList(pageable,category_name,keyword,maxPrice,minPrice);
+
+        return accomodationService.getAccomPageList(pageable,category_name,keyword,maxPrice,minPrice,rating);
 
     }
 
@@ -105,7 +124,8 @@ public class AccomRestController {
                                                    @PageableDefault(page = 0,size = 5,sort = "lowPrice",direction = Sort.Direction.DESC) Pageable pageable,
                                                     @RequestParam(value = "keyword",required = false) String keyword,
                                                     @RequestParam(required = false) String priceRange,
-                                                    @RequestParam(required = false) String regionNo) {
+                                                    @RequestParam(required = false) String regionNo,
+                                                    @RequestParam(required = false) String accomRating) {
 
         /** 검색어가 없을경우 처리 로직 **/
         if(keyword==null || keyword.equals("") ){
@@ -124,13 +144,21 @@ public class AccomRestController {
             regionNo = "null";
         }
 
+        /** 평점정렬이 null일때 처리 로직 **/
+        if(accomRating==null || accomRating.equals("")){
+            accomRating = "5";
+        }
+        /** 파라미터로 온 string을 double로 형변환 **/
+        Double rating = Double.parseDouble(accomRating);
+        System.out.println("rating = " + rating);
+
         /** 지역이 있는경우 처리 로직 **/
         if(regionNo!="null" && (!regionNo.equals("null"))){
             Long regionNum = Long.parseLong(regionNo);
-            return  accomodationService.getByRegionAccomPageList(regionNum,pageable,category_name,keyword,maxPrice,minPrice);
+            return  accomodationService.getByRegionAccomPageList(regionNum,pageable,category_name,keyword,maxPrice,minPrice,rating);
         }
 
-        return accomodationService.getAccomPageList(pageable,category_name,keyword,maxPrice,minPrice);
+        return accomodationService.getAccomPageList(pageable,category_name,keyword,maxPrice,minPrice,rating);
 
     }
 
