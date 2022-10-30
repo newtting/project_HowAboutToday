@@ -544,10 +544,18 @@
 <!--</html>-->
     <script>
 
-     function roomSubmit(){
-
-            document.getElementById("roomForm").submit();
-
+        function roomSubmit(){
+            const roomNum = document.querySelector("#roomNum").value;
+            fetch("/cartDuplCheck?roomNum=" + roomNum)
+                .then((response)=>response.json())
+                .then((result)=> {
+                    if (result.data === true){
+                        alert("장바구니에 존재하는 객실입니다.")
+                    }
+                    else{
+                        document.getElementById("roomForm").submit();
+                    }
+                });
         }
 
 

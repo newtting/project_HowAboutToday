@@ -53,7 +53,7 @@ public class InitDb {
     public void init(){
         initService.dbInit1();
         initService.dbInit2();
-//        initService.insertReserve();
+
     }
 
     @Component
@@ -109,8 +109,9 @@ public class InitDb {
                     .period(60)
                     .discountType(DiscountType.FLAT)
                     .discountValue(10000)
-                    .discountMinPrice(50000)
+                    .discountMinPrice(75000)
                     .discountMaxPrice(10000)
+                    .couponContent("가입축하 쿠폰입니다.")
                     .build());
 
             CouponRules couponRules2 = couponRulesRepository.save(CouponRules.builder()
@@ -118,8 +119,9 @@ public class InitDb {
                     .period(30)
                     .discountType(DiscountType.FIXED)
                     .discountValue(10)
-                    .discountMinPrice(30000)
+                    .discountMinPrice(75100)
                     .discountMaxPrice(100000)
+                    .couponContent("안전한 겨울여행을 위한 쿠폰입니다.")
                     .build());
 
             //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
@@ -128,7 +130,7 @@ public class InitDb {
                     .couponRules(couponRules1)
                     .member(member)
                     .status(CouponStatus.AVAILABLE)
-                    .assignedDate(LocalDate.now())
+                    .startDate(LocalDate.now())
                     .endDate(LocalDate.now().plusDays(couponRules1.getPeriod()))
                     .build());
 
@@ -136,7 +138,7 @@ public class InitDb {
                     .couponRules(couponRules2)
                     .member(member)
                     .status(CouponStatus.AVAILABLE)
-                    .assignedDate(LocalDate.now())
+                    .startDate(LocalDate.now())
                     .endDate(LocalDate.now().plusDays(couponRules2.getPeriod()))
                     .build());
 
@@ -147,11 +149,17 @@ public class InitDb {
             /**지역 등록 **/
 
             Region save = regionRepository.save(Region.builder()
-                    .region(RegionType.SEOUL)
+                    .region(RegionType.BUSAN)
                     .build());
 
             Region region = regionRepository.save(Region.builder()
-                    .region(RegionType.BUSAN)
+                    .region(RegionType.SAHA)
+                    .parentRegion(save)
+
+                    .build());
+
+            regionRepository.save(Region.builder()
+                    .region(RegionType.DONGNAE)
                     .parentRegion(save)
 
                     .build());
@@ -205,7 +213,7 @@ public class InitDb {
                     .roomName("너울펜션 스위트룸")
                     .defaultGuest(2)
                     .maxGuest(10)
-                    .price(50)
+                    .price(35000)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -214,7 +222,7 @@ public class InitDb {
                     .roomName("너울펜션 디럭스룸")
                     .defaultGuest(2)
                     .maxGuest(10)
-                    .price(70)
+                    .price(4000000)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -309,6 +317,7 @@ public class InitDb {
                     .ordersType("card")
                     .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .impUid("abc")
+                    .discountValue(0)
                     .member(member)
                     .build();
 
@@ -340,8 +349,8 @@ public class InitDb {
             /** 댓글 등록 **/
             Review review = reviewRepository.save(Review.builder()
                     .member(member)
-                    .reviewCreatedDate(LocalDateTime.now())
-                    .reviewModifyDate(LocalDateTime.now())
+                    .reviewCreateDate(LocalDate.now())
+                    .reviewModifyDate(LocalDate.now())
                     .reviewRating(3.72)
                     .room(room)
                     .reviewContent("안녕")
@@ -385,8 +394,9 @@ public class InitDb {
                     .period(60)
                     .discountType(DiscountType.FLAT)
                     .discountValue(15000)
-                            .discountMinPrice(60000)
-                            .discountMaxPrice(15000)
+                    .discountMinPrice(60000)
+                    .discountMaxPrice(15000)
+                    .couponContent("가입축하를 위한 쿠폰 2번째 입니다.")
                     .build());
 
             CouponRules couponRules4 = couponRulesRepository.save(CouponRules.builder()
@@ -396,6 +406,7 @@ public class InitDb {
                     .discountValue(20)
                     .discountMinPrice(100000)
                     .discountMaxPrice(20000)
+                    .couponContent("건강을 위한 여행 시 사용 가능한 쿠폰입니다.")
                     .build());
 
             //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
@@ -404,7 +415,7 @@ public class InitDb {
                     .couponRules(couponRules3)
                     .member(member)
                     .status(CouponStatus.AVAILABLE)
-                    .assignedDate(LocalDate.now())
+                    .startDate(LocalDate.now())
                     .endDate(LocalDate.now().plusDays(couponRules3.getPeriod()))
                     .build());
 
@@ -412,7 +423,7 @@ public class InitDb {
                     .couponRules(couponRules4)
                     .member(member)
                     .status(CouponStatus.AVAILABLE)
-                    .assignedDate(LocalDate.now())
+                    .startDate(LocalDate.now())
                     .endDate(LocalDate.now().plusDays(couponRules4.getPeriod()))
                     .build());
 
@@ -426,7 +437,21 @@ public class InitDb {
                     .build());
 
             Region region = regionRepository.save(Region.builder()
-                    .region(RegionType.BUSAN)
+                    .region(RegionType.GWANAK)
+                    .parentRegion(save)
+                    .build());
+            regionRepository.save(Region.builder()
+                    .region(RegionType.JONGRO)
+                    .parentRegion(save)
+                    .build());
+
+            regionRepository.save(Region.builder()
+                    .region(RegionType.SEODEAMOON)
+                    .parentRegion(save)
+                    .build());
+
+            regionRepository.save(Region.builder()
+                    .region(RegionType.SEOCHO)
                     .parentRegion(save)
                     .build());
 
@@ -608,13 +633,14 @@ public class InitDb {
                         .accomTel("050350577805")
                         .accomCategory(motel)
                         .region(region)
-//                        .accomAddress("충청남도 보령시 해수욕장13길 10-20" + i)
+                        .accomAddress1(save.getRegion().getValue())
+                        .accomAddress2(region.getRegion().getValue())
                         .accomRating(3.1)
                         .accomWishlistCount(110)
                         .totalReviewNum(1103)
                         .latitude(36.3196)
                         .longitude(126.5092)
-                        .lowPrice(i+(500))
+                        .lowPrice((i*10000)+50000 + i)
                         .reserveRange(60)
                         .checkIn(LocalTime.of(15, 0))
                         .checkOut(LocalTime.of(11, 0))
@@ -660,6 +686,7 @@ public class InitDb {
                     .ordersType("card")
                     .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .member(member)
+                    .discountValue(0)
                     .impUid("def")
                     .build();
 
@@ -691,8 +718,8 @@ public class InitDb {
             /** 댓글 등록 **/
             Review review = reviewRepository.save(Review.builder()
                     .member(member)
-                    .reviewCreatedDate(LocalDateTime.now())
-                    .reviewModifyDate(LocalDateTime.now())
+                    .reviewCreateDate(LocalDate.now())
+                    .reviewModifyDate(LocalDate.now())
                     .reviewRating(2.73)
                     .reviewContent("너무별로에요")
                     .room(room)
@@ -753,13 +780,23 @@ public class InitDb {
                     .build());
 
             Region region = regionRepository.save(Region.builder()
-                    .region(RegionType.BUSAN)
+                    .region(RegionType.GWANAK)
+                    .parentRegion(save)
+                    .build());
+
+            regionRepository.save(Region.builder()
+                    .region(RegionType.SEODEAMOON)
                     .parentRegion(save)
                     .build());
 
             AccomCategory guesthouse = accomCategoryRepository.save(AccomCategory.builder()
                     .name("guesthouse")
                     .viewName("게스트하우스")
+                    .build());
+
+            AccomCategory hotel = accomCategoryRepository.save(AccomCategory.builder()
+                    .name("hotel")
+                    .viewName("호텔")
                     .build());
 
 
@@ -769,6 +806,7 @@ public class InitDb {
                     .accomTel("01045020614")
                     .accomCategory(guesthouse)
                     .region(region)
+
 //                    .accomAddress("제주도 서귀포시 성산읍 13길 10")
                     .accomRating(3.9)
                     .accomWishlistCount(100)
@@ -880,6 +918,7 @@ public class InitDb {
                     .ordersPrice(35000)
                     .ordersType("card")
                     .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
+                    .discountValue(0)
                     .member(member)
                     .build();
         }
