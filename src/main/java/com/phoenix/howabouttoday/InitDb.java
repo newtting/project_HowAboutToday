@@ -151,7 +151,7 @@ public class InitDb {
             /**지역 등록 **/
 
             Region save = regionRepository.save(Region.builder()
-                    .region(RegionType.SEOUL)
+                    .region(RegionType.BUSAN)
                     .build());
 
             Region region = regionRepository.save(Region.builder()
@@ -804,7 +804,8 @@ public class InitDb {
 
             AccomCategory guesthouse = accomCategoryRepository.save(AccomCategory.builder()
                     .name("guesthouse")
-                    .viewName("게스트하우스");
+                    .viewName("게스트하우스")
+                    .build());
 
             AccomCategory hotel = accomCategoryRepository.save(AccomCategory.builder()
                     .name("hotel")
