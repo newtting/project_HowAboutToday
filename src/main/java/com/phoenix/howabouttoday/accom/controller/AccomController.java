@@ -11,9 +11,7 @@ import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Facilities;
 import com.phoenix.howabouttoday.accom.entity.Region;
-import com.phoenix.howabouttoday.accom.service.AccomCategoryService;
-import com.phoenix.howabouttoday.accom.service.AccomReviewService;
-import com.phoenix.howabouttoday.accom.service.AccomodationService;
+import com.phoenix.howabouttoday.accom.service.*;
 
 //import com.phoenix.howabouttoday.payment.AccomCategory;
 
@@ -23,7 +21,6 @@ import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import com.phoenix.howabouttoday.room.dto.RoomImageDTO;
 import com.phoenix.howabouttoday.room.dto.RoomListDTO;
-import com.phoenix.howabouttoday.accom.service.FacilitiesService;
 import com.phoenix.howabouttoday.room.service.RoomService;
 
 
@@ -46,6 +43,7 @@ public class AccomController {
     private final FacilitiesService facilitiesService;
     private final AccomReviewService accomReviewService;
     private final AccomCategoryService accomCategoryService;
+    private final RegionService regionService;
 
 
 //    public AccomController(AccomodationService accomodationService, RoomService roomService) {

@@ -44,10 +44,10 @@ public class PaymentHistoryController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-        else{
-            sessionDTO = new SessionDTO(1l, "a@com", "123", "토에이", "010-9876-5432", Role.MEMBER);
-            model.addAttribute("sessionDTO", sessionDTO);
-        }
+//        else{
+//            sessionDTO = new SessionDTO(1l, "a@com", "123", "토에이", "010-9876-5432", Role.MEMBER);
+//            model.addAttribute("sessionDTO", sessionDTO);
+//        }
 
         Integer curPage = page.orElse(1);
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
@@ -71,10 +71,10 @@ public class PaymentHistoryController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-        else{
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
-            model.addAttribute("sessionDTO", sessionDTO);
-        }
+//        else{
+//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+//            model.addAttribute("sessionDTO", sessionDTO);
+//        }
 
         /**
          * 1. get방식
