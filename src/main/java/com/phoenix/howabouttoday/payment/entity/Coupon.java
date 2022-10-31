@@ -1,48 +1,49 @@
 package com.phoenix.howabouttoday.payment.entity;
 
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.payment.enumType.CouponStatus;
+import com.phoenix.howabouttoday.payment.enumType.CouponStatusConverter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-
-@Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
+@Entity
 public class Coupon {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long couponNum;
 
-    private Integer code;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "couponRulesNum")
+    private CouponRules couponRules;
 
-    //이건 아마 enum으로 관리 해야할듯
-    private String discountType;
-
-    private Integer discountValue;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "memberNum")
+    private Member member;
 
     //이것도 enum으로?
-    private String status;
+    @Column
+    @Convert(converter = CouponStatusConverter.class)
+    private CouponStatus status;
 
-    private LocalDate createdDate;  //생성날짜
-    private LocalDate updateDate;   //변경날짜
+    @Column
+    private LocalDate startDate; //지급날짜
+
+    @Column
     private LocalDate endDate;      //만료날짜
-    private LocalDate assignedDate; //지급날짜
 
+    public Boolean isPossible(Integer originPrice){
+        return originPrice >= getCouponRules().getDiscountMinPrice();
+    }
 
+    public void couponUsed(){
+        status = CouponStatus.DONE;
+    }
 }
-
-
-//    CREATE TABLE COUPON (
-//        couponNum int auto_increment,
-//        couponName varchar(50) NOT NULL,
-//  discountPrice int NOT NULL, --  고정 할인 금액
-//          couponStartDate datetime NOT NULL,
-//          couponEndDate datetime NOT NULL,
-//          useTerms int NOT NULL,  --  사용 조건(ex. 40,000원 이상)
-//          PRIMARY KEY (`couponNum`)
-//          )AUTO_INCREMENT=1;

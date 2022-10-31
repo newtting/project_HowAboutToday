@@ -5,12 +5,13 @@ import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Facilities;
 import com.phoenix.howabouttoday.accom.dto.AccomCategoryDto;
 import com.phoenix.howabouttoday.accom.dto.AccomDto;
+import com.phoenix.howabouttoday.accom.dto.AccomReviewDTO;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
+
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Facilities;
-import com.phoenix.howabouttoday.accom.entity.Facility;
-import com.phoenix.howabouttoday.accom.service.AccomCategoryService;
-import com.phoenix.howabouttoday.accom.service.AccomodationService;
+import com.phoenix.howabouttoday.accom.entity.Region;
+import com.phoenix.howabouttoday.accom.service.*;
 
 //import com.phoenix.howabouttoday.payment.AccomCategory;
 
@@ -20,7 +21,6 @@ import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import com.phoenix.howabouttoday.room.dto.RoomImageDTO;
 import com.phoenix.howabouttoday.room.dto.RoomListDTO;
-import com.phoenix.howabouttoday.accom.service.FacilitiesService;
 import com.phoenix.howabouttoday.room.service.RoomService;
 
 
@@ -29,22 +29,21 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping
 public class AccomController {
 
     private final AccomodationService accommodationService;
     private final RoomService roomService;
     private final FacilitiesService facilitiesService;
-
+    private final AccomReviewService accomReviewService;
     private final AccomCategoryService accomCategoryService;
+    private final RegionService regionService;
 
 
 //    public AccomController(AccomodationService accomodationService, RoomService roomService) {
@@ -59,6 +58,8 @@ public class AccomController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
+
+
         MemberDTO memberDTO = new MemberDTO();
         model.addAttribute("memberDTO",memberDTO);
 
@@ -83,13 +84,19 @@ public class AccomController {
         System.out.println("카테고리호출!!!! = " + category_name);
         List<AccomCategoryDto.ResponseDto> categoryList = accomCategoryService.findAccomList();
 
-        model.addAttribute("categoryList",categoryList);
+        /** 화면에 표시할 한글카테고리 이름 조회**/
         String viewName = accomCategoryService.getAccomViewName(category_name);
 
+        /** 화면에 표시할 부모 지역 조회 **/
+        List<Region> parentRegions = regionService.findAllParent();
 
+
+
+        model.addAttribute("categoryList",categoryList);
         model.addAttribute("viewName",viewName);
         model.addAttribute("categoryName",category_name);
         model.addAttribute("sessionDTO", sessionDTO);
+        model.addAttribute("parentRegions", parentRegions);
 
         return "accom/hotel/hotel-list";
 
@@ -117,7 +124,21 @@ public class AccomController {
         model.addAttribute("accommodationList",accommodationList);
 
         return "accom/hotel/hotel-list";
+
     }
+//    @GetMapping("hotel-list")
+//    public String getHotelList(@LoginUser SessionDTO sessionDTO, Model model){
+//
+//        if(sessionDTO != null) {
+//            model.addAttribute("sessionDTO", sessionDTO);
+//        }
+//
+//        List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
+//
+//        model.addAttribute("accommodationList",accommodationList);
+//
+//        return "accom/hotel/hotel-list";
+//    }
 
     @PostMapping("hotel-list")
     public String postHotelList(){
@@ -146,9 +167,13 @@ public class AccomController {
 //    }
 
     //숙소 상세
-    @GetMapping("hotel-single")
-    public String getHotelSingle(@LoginUser SessionDTO sessionDTO, Model model,
-                                 @RequestParam Long accomNum,Long roomNum){
+
+    @GetMapping("/hotel-single")
+    public String getHotelSingle(@LoginUser SessionDTO sessionDTO,
+                                 @RequestParam Long accomNum,Long roomNum,
+                                 Model model){
+
+        System.out.println("aaaaaaaaa!!!! = " + accomNum);
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -167,6 +192,12 @@ public class AccomController {
         model.addAttribute("facilities",facilitiesList);
         model.addAttribute("accommodation",accomList);
 //        model.addAttribute("roomlist", roomService.roomList());
+
+        List<AccomReviewDTO.ResponseDto> reviewlist = accomReviewService.findAllByAccom(accomNum);
+        for (AccomReviewDTO.ResponseDto responseDto : reviewlist) {
+            System.out.println("responseDto.getAccomReviewRating() = " + responseDto.getAccomReviewRating());
+        }
+        model.addAttribute("reviewlist",reviewlist);//리뷰 리스트 출력
         return "accom/hotel/hotel-single";
 
     }

@@ -8,7 +8,9 @@ import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
+import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.payment.dto.*;
+import com.phoenix.howabouttoday.payment.service.CouponService;
 import com.phoenix.howabouttoday.payment.service.OrdersService;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import lombok.RequiredArgsConstructor;
@@ -30,32 +32,18 @@ public class OrdersController {
 
     private final OrdersService orderService;
     private final MemberService memberService;
-
-    @GetMapping("/cartDuplCheck")
-    @ResponseBody
-    public String cartDuplCheck(Model model, @LoginUser SessionDTO sessionDTO, Long roomNum){
-
-        if (sessionDTO != null) {
-            model.addAttribute("sessionDTO", sessionDTO);
-        }
-
-        MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
-
-        if (orderService.cartDuplCheck(customer, roomNum)){
-            return "{\"data\":true}";
-        }
-
-        return "{\"data\":false}";
-    }
+    private final CouponService couponService;
 
     // 객실 상세 -> 결제 페이지
     @GetMapping("/directPayment")
-    public String roomView(Model model, @LoginUser SessionDTO sessionDTO, Principal principal, OrdersDirectDTO ordersDirectDTO, RedirectAttributes redirectAttributes) {
+    public String roomView(Model model, @LoginUser SessionDTO sessionDTO, Principal principal, OrdersDirectDTO ordersDirectDTO) {
 
         if (sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-
+//        else {
+//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+//        }
 
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
         List<OrdersDetailVO> infoList = orderService.getDirectData(customer, ordersDirectDTO);
@@ -70,14 +58,20 @@ public class OrdersController {
         if (sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
+//        else {
+//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+//        }
 
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
         List<OrdersDetailVO> infoList = orderService.getCartData(cartNum);
         Integer totalPrice = orderService.getTotalPrice(cartNum);   //얘를 따로 이렇게 하는 게 맞을까??
+        List<CouponDTO> couponDTOList = couponService.getCoupon(customer.getNum());
+
 
         model.addAttribute("totalPrice", totalPrice);
         model.addAttribute("customer", customer);
         model.addAttribute("infoList", infoList);
+        model.addAttribute("couponList", couponDTOList);
         return "reserve/checkout";
     }
 
@@ -107,7 +101,7 @@ public class OrdersController {
 
     /* 결제 성공 */
     @PostMapping("/paymentSuccess")
-    public String postUserPaymentSuccess(@LoginUser SessionDTO sessionDTO, OrdersCreateDTO ordersCreateDTO) {
+    public String postUserPaymentSuccess(Model model, @LoginUser SessionDTO sessionDTO, OrdersCreateDTO ordersCreateDTO) {
 
 
         /** 해결 완료! **/
@@ -115,7 +109,7 @@ public class OrdersController {
         /** 이것만 제대로 되면 결제 취소도 가능할듯. **/
 
         if (sessionDTO != null) {
-//            model.addAttribute("sessionDTO", sessionDTO);
+            model.addAttribute("sessionDTO", sessionDTO);
         }
 //        else {
 //            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);

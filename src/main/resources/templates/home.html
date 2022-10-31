@@ -1,44 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/layout">
 
-        <!DOCTYPE html>
-        <html xmlns:th="http://www.thymeleaf.org"
-              xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-              layout:decorate="layout/layout">
-
-        <th:block layout:fragment="content">
-            <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<th:block layout:fragment="content">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 
-            <!-- ================================
+    <!-- ================================
                 START HERO-WRAPPER AREA
             ================================= -->
-        <section class="hero-wrapper hero-wrapper2">
-            <div class="hero-box pb-0 hwt-hero-box">
-                <div id="fullscreen-slide-contain">
-                    <ul class="slides-container">
-                        <li><img src="/images/hero-bg2.jpg" alt=""></li>
-                        <li><img src="/images/hero--bg2.jpg" alt=""></li>
-                        <li><img src="/images/hero--bg3.jpg" alt=""></li>
-                    </ul>
-                </div><!-- End background slider -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="hero-content pb-5">
-                                <div class="section-heading">
-                                    <p class="sec__desc pb-2">호텔, 모텔, 펜션 예약</p>
-                                    <h2 class="sec__title">HOW ABOUT TODAY ?</h2>
-                                </div>
-                            </div><!-- end hero-content -->
-                            <div class="search-fields-container hwt-search-container">
-                                <div class="contact-form-action hwt-search">
-                                    <form action="#" class="row">
-                                        <div class="col-lg-3 pr-0 hwt-search-element">
-                                            <div class="input-box">
-                                                <label class="label-text">지역 / 숙소 이름</label>
-                                                <div class="form-group">
-                                                    <span class="la la-map-marker form-icon"></span>
-                                                    <input class="form-control" type="text" placeholder="지역 또는 숙소 이름을 입력하세요.">
-                                                </div>
+    <section class="hero-wrapper hero-wrapper2">
+        <div class="hero-box pb-0 hwt-hero-box">
+            <div id="fullscreen-slide-contain">
+                <ul class="slides-container">
+                    <li><img src="/images/hero-bg2.jpg" alt=""></li>
+                    <li><img src="/images/hero--bg2.jpg" alt=""></li>
+                    <li><img src="/images/hero--bg3.jpg" alt=""></li>
+                </ul>
+            </div><!-- End background slider -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="hero-content pb-5">
+                            <div class="section-heading">
+                                <p class="sec__desc pb-2">호텔, 모텔, 펜션 예약</p>
+                                <h2 class="sec__title">HOW ABOUT TODAY ?</h2>
+                            </div>
+                        </div><!-- end hero-content -->
+                        <div class="search-fields-container hwt-search-container">
+                            <div class="contact-form-action hwt-search">
+                                <form action="#" class="row">
+                                    <div class="col-lg-3 pr-0 hwt-search-element">
+                                        <div class="input-box">
+                                            <label class="label-text">지역 / 숙소 이름</label>
+                                            <div class="form-group">
+                                                <span class="la la-map-marker form-icon"></span>
+                                                <input class="form-control" type="text" placeholder="지역 또는 숙소 이름을 입력하세요.">
                                             </div>
                                         </div>
                                     </div><!-- end col-lg-3 -->
@@ -104,85 +100,19 @@
                             </div>
                         </div>
                     </div><!-- end col-lg-12 -->
-                </div>
-                <div class="row hwt-row-icon">
-                    <div class="col-lg-3 responsive-column hwt-col-icon">
-                        <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
-                            <div class="hwt-iconbox-pointer">
-                                <a href="hotel-list">
-                                    <div class="info-icon flex-shrink-0 bg-rgb text-color-2 hwt-info-icon">
-                                        <!--                        <i class="las la-radiation"></i>-->
-                                        <img src="icon/hotel.png" class="hwt-icon-element">
-                                    </div><!-- end info-icon-->
-                                    <div class="info-content">
-                                        <!--                        <h4 class="info__title">Unique Atmosphere</h4>-->
-                                        <p class="info__desc">호텔</p>
-                                    </div><!-- end info-content -->
-                                </a>
-                            </div>
-                        </div><!-- end icon-box -->
-                    </div><!-- end col-lg-3 -->
-                    <div class="col-lg-3 responsive-column hwt-col-icon">
-                        <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
-                            <div class="hwt-iconbox-pointer">
-                                <a href="motel-list">
-                                    <div class="info-icon flex-shrink-0 bg-rgb-2 text-color-3 hwt-info-icon">
-                                        <!--                        <i class="la la-tree"></i>-->
-                                        <img src="icon/motel2.png" class="hwt-icon-element">
-                                    </div><!-- end info-icon-->
-                                    <div class="info-content">
-                                        <!--                        <h4 class="info__title">Environment</h4>-->
-                                        <p class="info__desc">모텔</p>
-                                    </div><!-- end info-content -->
-                                </a>
-                            </div>
-                        </div><!-- end icon-box -->
-                    </div><!-- end col-lg-3 -->
-                    <div class="col-lg-3 responsive-column hwt-col-icon">
-                        <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
-                            <div class="hwt-iconbox-pointer">
-                                <a href="pension-PoolVilla-list">
-                                    <div class="info-icon flex-shrink-0 bg-rgb-3 text-color-4 hwt-info-icon">
-                                        <!--                        <i class="las la-map-marked-alt"></i>-->
-                                        <img src="icon/poolvilla.png" class="hwt-icon-element">
-                                    </div><!-- end info-icon-->
-                                    <div class="info-content">
-                                        <!--                        <h4 class="info__title">Great Location</h4>-->
-                                        <p class="info__desc">펜션/풀빌라</p>
-                                    </div><!-- end info-content -->
-                                </a>
-                            </div>
-                        </div><!-- end icon-box -->
-                    </div><!-- end col-lg-3 -->
-                    <div class="col-lg-3 responsive-column hwt-col-icon">
-                        <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
-                            <div class="hwt-iconbox-pointer">
-                                <a href="guestHouse-Hanok-list">
-                                    <div class="info-icon flex-shrink-0 bg-rgb-4 text-color-5 hwt-info-icon">
-                                        <!--                        <i class="las la-bed"></i>-->
-                                        <img src="icon/hostel.png" class="hwt-icon-element">
-                                    </div><!-- end info-icon-->
-                                    <div class="info-content">
-                                        <!--                        <h4 class="info__title">Homey Comfort</h4>-->
-                                        <p class="info__desc">게하/한옥</p>
-                                    </div><!-- end info-content -->
-                                </a>
-                            </div>
-                        </div><!-- end icon-box -->
-                    </div><!-- end col-lg-3 -->
                 </div><!-- end row -->
             </div><!-- end container -->
         </div>
     </section><!-- end hero-wrapper -->
     <!-- ================================
-        END HERO-WRAPPER AREA
-    ================================= -->
+            END HERO-WRAPPER AREA
+        ================================= -->
 
     <div class="section-block"></div>
 
     <!-- ================================
-        START INFO AREA
-    ================================= -->
+            START INFO AREA
+        ================================= -->
     <section class="info-area info-bg info-area2 padding-top-40px padding-bottom-60px hwt-info">
         <div class="container">
             <div class="row hwt-row-board">
@@ -196,7 +126,7 @@
                 <div class="col-lg-3 responsive-column hwt-col-icon">
                     <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
                         <div class="hwt-iconbox-pointer">
-                            <a href="hotel-list">
+                            <a href="/accom/hotel">
                                 <div class="info-icon flex-shrink-0 bg-rgb text-color-2 hwt-info-icon">
                                     <!--                        <i class="las la-radiation"></i>-->
                                     <img src="/icon/hotel.png" class="hwt-icon-element">
@@ -212,7 +142,7 @@
                 <div class="col-lg-3 responsive-column hwt-col-icon">
                     <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
                         <div class="hwt-iconbox-pointer">
-                            <a href="motel-list">
+                            <a href="/accom/motel">
                                 <div class="info-icon flex-shrink-0 bg-rgb-2 text-color-3 hwt-info-icon">
                                     <!--                        <i class="la la-tree"></i>-->
                                     <img src="icon/motel2.png" class="hwt-icon-element">
@@ -228,7 +158,7 @@
                 <div class="col-lg-3 responsive-column hwt-col-icon">
                     <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
                         <div class="hwt-iconbox-pointer">
-                            <a href="pension-PoolVilla-list">
+                            <a href="/accom/pension">
                                 <div class="info-icon flex-shrink-0 bg-rgb-3 text-color-4 hwt-info-icon">
                                     <!--                        <i class="las la-map-marked-alt"></i>-->
                                     <img src="icon/poolvilla.png" class="hwt-icon-element">
@@ -244,7 +174,7 @@
                 <div class="col-lg-3 responsive-column hwt-col-icon">
                     <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
                         <div class="hwt-iconbox-pointer">
-                            <a href="guestHouse-Hanok-list">
+                            <a href="/accom/guesthouse">
                                 <div class="info-icon flex-shrink-0 bg-rgb-4 text-color-5 hwt-info-icon">
                                     <!--                        <i class="las la-bed"></i>-->
                                     <img src="icon/hostel.png" class="hwt-icon-element">
@@ -261,14 +191,14 @@
         </div><!-- end container -->
     </section><!-- end info-area -->
     <!-- ================================
-        END INFO AREA
-    ================================= -->
+            END INFO AREA
+        ================================= -->
 
     <div class="section-block hwt-section-block"></div>
 
     <!-- ================================
-        START INFO AREA 2
-    ================================= -->
+            START INFO AREA 2
+        ================================= -->
     <section class="info-area info-bg info-area2 padding-top-80px padding-bottom-45px hwt-info2">
         <div class="container">
             <div class="row hwt-row-icon">
@@ -340,14 +270,14 @@
         </div><!-- end container -->
     </section><!-- end info-area -->
     <!-- ================================
-        END INFO AREA
-    ================================= -->
+            END INFO AREA
+        ================================= -->
 
     <div class="section-block"></div>
 
     <!-- ================================
-        START HOTEL AREA 2
-    ================================= -->
+            START HOTEL AREA 2
+        ================================= -->
     <section class="hotel-area section-bg padding-top-100px padding-bottom-100px overflow-hidden">
         <div class="container">
             <div class="row">
@@ -518,12 +448,12 @@
         </div><!-- end container-fluid -->
     </section><!-- end hotel-area -->
     <!-- ================================
-        END HOTEL AREA
-    ================================= -->
+            END HOTEL AREA
+        ================================= -->
 
     <!-- ================================
-        START DESTINATION AREA
-    ================================= -->
+            START DESTINATION AREA
+        ================================= -->
     <section class="destination-area padding-top-130px padding-bottom-80px">
         <div class="container">
             <div class="row align-items-center">
@@ -634,12 +564,12 @@
         </div><!-- end container -->
     </section><!-- end destination-area -->
     <!-- ================================
-        END DESTINATION AREA
-    ================================= -->
+            END DESTINATION AREA
+        ================================= -->
 
     <!-- ================================
-        START DISCOUNT AREA
-    ================================= -->
+            START DISCOUNT AREA
+        ================================= -->
     <section class="discount-area padding-top-120px padding-bottom-120px hwt-banner-wrap">
         <div class="container">
             <div class="row">
@@ -673,13 +603,12 @@
         </div><!-- end container -->
     </section><!-- end discount-area -->
     <!-- ================================
-        END DISCOUNT AREA
-    ================================= -->
+            END DISCOUNT AREA
+        ================================= -->
 
     <div class="section-block"></div>
 
     <th:block th:replace="fragments/bottom-bar::bottom-bar"></th:block>
-
             <!-- start back-to-top -->
             <div id="back-to-top">
                 <i class="la la-angle-up" title="Go top"></i>
@@ -699,14 +628,14 @@
             <script>
                 $(document).ready(function(){
 
-                  let memberCheck = $("#memberCheck").val();
+            let memberCheck = $("#memberCheck").val();
 
-                  if(memberCheck == "true"){
-                    $("#memberJoin").click();
-                  }
+            if (memberCheck == "true") {
+                $("#memberJoin").click();
+            }
 
-                })
-            </script>
-        </th:block>
+        })
+    </script>
+</th:block>
 
 </html>

@@ -55,9 +55,11 @@ const successRequest = (imp_uid, merchant_uid) => {
 
 const cancelConfirm = () => {
     confirm("정말 취소하시겠습니까") && runCancel();
+
 }
 
 const runCancel = () => {
+    LoadingWithMask();
     const merchantId = document.querySelector("#merchantId").value;
     const totalPrice = document.querySelector("#totalPrice").value;
     // const imp_uid = document.querySelector("#imp_uid").value;
@@ -84,9 +86,11 @@ const runCancel = () => {
         // },
     }).done((response) => {
         alert("예약을 취소했습니다.")
+        closeLoadingWithMask();
         window.location.href = '/user-dashboard-booking';
     }).fail(function (error) {
         alert("실패")
+        closeLoadingWithMask();
         alert(JSON.stringify(error));
     });
 }

@@ -30,6 +30,8 @@ public class Region {
   @JoinColumn(name = "region_parent_num",referencedColumnName = "regionNum")
   private Region parentRegion;
 
+  @OneToMany(mappedBy = "parentRegion", cascade = CascadeType.ALL)
+  private List<Region> childRegions = new ArrayList<>();
 
   //양방향 매핑을 위해 추가
   @JsonIgnore

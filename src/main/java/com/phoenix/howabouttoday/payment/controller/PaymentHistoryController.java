@@ -36,7 +36,7 @@ public class PaymentHistoryController {
     private final MemberService memberService;
     private final PaymentHistoryService paymentHistoryService;
 
-    /* 마이페이지-예약탭  */
+    /* 마이페이지-결제내역  */
     @GetMapping(value = {"user-dashboard-booking/{page}", "user-dashboard-booking"})
     public String getUserBooking(@LoginUser SessionDTO sessionDTO,  @PathVariable(required = false, name = "page") Optional<Integer> page, Model model) {
 //
