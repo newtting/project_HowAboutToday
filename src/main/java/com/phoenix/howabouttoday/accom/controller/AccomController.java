@@ -78,6 +78,12 @@ public class AccomController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("memberDTO",memberDTO);
+
+        boolean memberCheck = false;
+        model.addAttribute("memberCheck",memberCheck);
+
         System.out.println("카테고리호출!!!! = " + category_name);
         List<AccomCategoryDto.ResponseDto> categoryList = accomCategoryService.findAccomList();
 
@@ -99,6 +105,12 @@ public class AccomController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("memberDTO",memberDTO);
+
+        boolean memberCheck = false;
+        model.addAttribute("memberCheck",memberCheck);
+
         List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
 
         model.addAttribute("accommodationList",accommodationList);
@@ -119,6 +131,12 @@ public class AccomController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("memberDTO",memberDTO);
+
+        boolean memberCheck = false;
+        model.addAttribute("memberCheck",memberCheck);
+
         List<Accommodation> accommodationList = accommodationService.searchResults(keyword);
 
         model.addAttribute("accommodationList", accommodationList);
@@ -138,6 +156,12 @@ public class AccomController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
+
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("memberDTO",memberDTO);
+
+        boolean memberCheck = false;
+        model.addAttribute("memberCheck",memberCheck);
 
         List<RoomImageDTO> iList = roomService.findAll_Image(roomNum);
         model.addAttribute("ilist",iList); //객실 이미지
@@ -162,6 +186,12 @@ public class AccomController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
+
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("memberDTO",memberDTO);
+
+        boolean memberCheck = false;
+        model.addAttribute("memberCheck",memberCheck);
 
         System.out.println("accomNum!!!!!!!!!!!!! = " + accomNum);
         Accommodation accomList= accommodationService.findAccom(accomNum);//숙소 정보
