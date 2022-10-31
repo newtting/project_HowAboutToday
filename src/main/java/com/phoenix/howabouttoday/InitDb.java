@@ -331,6 +331,7 @@ public class InitDb {
                     .reservePrice(cart.getReservePrice())
                     .reserveAdultCount(cart.getReserveAdultCount())
                     .reserveChildCount(cart.getReserveChildCount())
+                    .isReviewWrited(false)
                     .build();
 
             order.getReservation().add(ordersDetail);

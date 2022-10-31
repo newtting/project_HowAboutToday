@@ -21,13 +21,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.List;
 
-@RequestMapping("/orders")
 @RequiredArgsConstructor
 @Controller
+@RequestMapping("/orders")
 public class OrdersController {
 
     private final OrdersService orderService;
