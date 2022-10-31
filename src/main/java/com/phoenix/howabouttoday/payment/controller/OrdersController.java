@@ -51,7 +51,7 @@ public class OrdersController {
         return "redirect:/orders/payment?cartNum=" + infoList.get(0).getCartNum();
     }
 
-    /* 카드 -> 결제페이지 */
+    /* 카트 -> 결제페이지 */
     @GetMapping("/payment")
     public String paymentView(@LoginUser SessionDTO sessionDTO, Principal principal, Model model, @RequestParam List<Long> cartNum) {
 

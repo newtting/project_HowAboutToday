@@ -46,7 +46,6 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <!--                    <form action="/orders/payment" method="get" id="roomForm">-->
-                        <form>
                             <div class="single-content-wrap padding-top-60px">
                                 <div id="description" class="page-scroll">
                                     <div class="single-content-item pb-4">
@@ -145,61 +144,55 @@
                                                 </div><!-- form-title-wrap -->
                                                 <div class="form-content">
                                                     <div class="contact-form-action">
-                                                        <form method="post">
-                                                            <div class="form-content">
-                                                                <div class="rate-option p-2">
-                                                                    <div class="row">
-                                                                        <div class="col-lg-4 responsive-column">
-                                                                            <div class="rate-option-item">
-                                                                                <label>평점</label>
-                                                                                <div class="rate-stars-option">
-                                                                                    <input type="checkbox" id="lst1" value="1">
-                                                                                    <label for="lst1"></label>
-                                                                                    <input type="checkbox" id="lst2" value="2">
-                                                                                    <label for="lst2"></label>
-                                                                                    <input type="checkbox" id="lst3" value="3">
-                                                                                    <label for="lst3"></label>
-                                                                                    <input type="checkbox" id="lst4" value="4">
-                                                                                    <label for="lst4"></label>
-                                                                                    <input type="checkbox" id="lst5" value="5">
-                                                                                    <label for="lst5"></label>
-                                                                                </div>
+                                                        <div class="form-content">
+                                                            <div class="rate-option p-2">
+                                                                <div class="row">
+                                                                    <div class="col-lg-4 responsive-column">
+                                                                        <div class="rate-option-item">
+                                                                            <label>평점</label>
+                                                                            <div class="rate-stars-option">
+                                                                                <input type="checkbox" id="lst5" name="ratingStar" value="5">
+                                                                                <label for="lst5"></label>
+                                                                                <input type="checkbox" id="lst4" name="ratingStar" value="4">
+                                                                                <label for="lst4"></label>
+                                                                                <input type="checkbox" id="lst3" name="ratingStar" value="3">
+                                                                                <label for="lst3"></label>
+                                                                                <input type="checkbox" id="lst2" name="ratingStar" value="2">
+                                                                                <label for="lst2"></label>
+                                                                                <input type="checkbox" id="lst1" checked="checked" name="ratingStar" value="1">
+                                                                                <label for="lst1"></label>
                                                                             </div>
-                                                                        </div><!-- col-lg-4 -->
+                                                                        </div>
+                                                                    </div><!-- col-lg-4 -->
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6 responsive-column">
+                                                                        <div class="input-box">
+                                                                            <label class="label-text">성함</label>
+                                                                            <div class="form-group">
+                                                                                <span class="la la-user form-icon"></span>
+                                                                                <input class="form-control" type="text" name="text" id="reviewMemberName" placeholder="투숙객 성함">
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="row">
-                                                                        <div class="col-lg-6 responsive-column">
-                                                                            <div class="input-box">
-                                                                                <label class="label-text">성함</label>
-                                                                                <div class="form-group">
-                                                                                    <span class="la la-user form-icon"></span>
-                                                                                    <input class="form-control" type="text"
-                                                                                           name="text" placeholder="투숙객 성함">
-                                                                                </div>
+                                                                    <div class="col-lg-12">
+                                                                        <div class="input-box">
+                                                                            <label class="label-text">내용</label>
+                                                                            <div class="form-group">
+                                                                                <span class="la la-pencil form-icon"></span>
+                                                                                <textarea class="message-control form-control" name="reviewContent" placeholder="후기 내용을 작성해주세요"></textarea>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-lg-12">
-                                                                            <div class="input-box">
-                                                                                <label class="label-text">내용</label>
-                                                                                <div class="form-group">
-                                                                                    <span class="la la-pencil form-icon"></span>
-                                                                                    <textarea class="message-control form-control"
-                                                                                              name="message"
-                                                                                              placeholder="후기 내용을 작성해주세요"></textarea>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-lg-12">
-                                                                            <div class="btn-box">
-                                                                                <button type="button"
-                                                                                        class="theme-btn hwt-btn-gray">작성하기
-                                                                                </button>
-                                                                            </div>
+                                                                    </div>
+                                                                    <div class="col-lg-12">
+                                                                        <div class="btn-box">
+                                                                            <button type="button" id="reviewWrite" class="theme-btn hwt-btn-gray">작성하기
+                                                                            </button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </form>
+                                                        </div>
                                                     </div><!-- end contact-form-action -->
                                                 </div><!-- end form-content -->
                                             </div><!-- end form-box -->
@@ -207,7 +200,6 @@
                                     </div><!-- end single-content-item -->
                                 </div><!-- end review-box -->
                             </div><!-- end single-content-wrap -->
-                        </form>
                     </div><!-- end col-lg-8 -->
 
                     <!-- 오른쪽 네비바 -->
@@ -225,7 +217,7 @@
                                                     <label class="label-text">Check in - Check out</label>
                                                     <div class="form-group">
                                                         <span class="la la-calendar form-icon"></span>
-                                                        <input class="date-picker-multiple form-control" type="text" name="daterange" id="checkDate" readonly>
+                                                        <input class="date-picker-multiple form-control" type="text" minDate="2022-11-01" maxDate="2022-11-03" name="daterange" id="checkDate" readonly>
                                                         <input type="hidden" id="roomNum" th:name="roomNum" th:value="${roomDetailDTO.roomNum}" />
                                                     </div>
                                                 </div>
@@ -496,51 +488,12 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="copy-to-clipboard-wrap">
-                            <div class="copy-to-clipboard">
-                                <div class="contact-form-action d-flex align-items-center">
-                                    <span class="text-success-message">Copied!</span>
-                                    <input type="text" class="form-control copy-input" value="https://www.tripstar.com/share/101WxMB0oac1hVQQ==/">
-                                    <div class="btn-box">
-                                        <button class="theme-btn theme-btn-light copy-text">Copy</button>
-                                    </div>
-                                </div>
-                            </div><!-- end copy-to-clipboard -->
-                            <ul class="social-profile text-center">
-                                <li><a href="#"><i class="lab la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="lab la-twitter"></i></a></li>
-                                <li><a href="#"><i class="lab la-instagram"></i></a></li>
-                                <li><a href="#"><i class="lab la-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
+                        <div class="copy-to-clipboard-wrap">156</div>
                     </div>
                 </div>
             </div>
         </div>
     </div><!-- end modal-popup -->
-
-
-    <!-- Template JS Files -->
-    <!--<script src="js/jquery-3.4.1.min.js"></script>-->
-    <!--<script src="js/jquery-ui.js"></script>-->
-    <!--<script src="js/popper.min.js"></script>-->
-    <!--<script src="js/bootstrap.min.js"></script>-->
-    <!--<script src="js/bootstrap-select.min.js"></script>-->
-    <!--<script src="js/moment.min.js"></script>-->
-    <!--<script src="js/daterangepicker.js"></script>-->
-    <!--<script src="js/owl.carousel.min.js"></script>-->
-    <!--<script src="js/jquery.fancybox.min.js"></script>-->
-    <!--<script src="js/jquery.countTo.min.js"></script>-->
-    <!--<script src="js/animated-headline.js"></script>-->
-    <!--<script src="js/jquery.ripples-min.js"></script>-->
-    <!--<script src="js/quantity-input.js"></script>-->
-    <!--<script src="js/navbar-sticky.js"></script>-->
-    <!--<script src="js/total-price.js"></script>-->
-    <!--<script src="js/leaflet.js"></script>-->
-    <!--<script src="js/map.js"></script>-->
-    <!--<script src="js/main.js"></script>-->
-    <!--</body>-->
-    <!--</html>-->
     <script>
 
         function roomSubmit(){

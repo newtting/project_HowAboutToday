@@ -81,7 +81,7 @@ public class CartServiceImpl implements CartService{
                 .member(member)
                 .room(room)
                 .reserveStatus(ReserveStatus.READY)
-                .reservePrice(50000)
+                .reservePrice(room.getPrice())
                 .reserveUseStartDate(reserveForm.getReserveUseStartDate())
                 .reserveUseEndDate(reserveForm.getReserveUseEndDate())
                 .reserveAdultCount(reserveForm.getReserveAdultCount())

@@ -940,8 +940,6 @@ public class InitDb {
             return od;
         }
 
-
-
         public void 객실예약정보_입력(Long memberId) {
 
             Orders orders = ordersRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 주문이 존재하지 않습니다.", memberId)));
