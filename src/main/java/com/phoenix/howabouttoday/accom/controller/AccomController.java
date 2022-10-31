@@ -78,11 +78,7 @@ public class AccomController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        MemberDTO memberDTO = new MemberDTO();
-        model.addAttribute("memberDTO",memberDTO);
-
-        boolean memberCheck = false;
-        model.addAttribute("memberCheck",memberCheck);
+        extracted(model);
 
         System.out.println("카테고리호출!!!! = " + category_name);
         List<AccomCategoryDto.ResponseDto> categoryList = accomCategoryService.findAccomList();
@@ -98,6 +94,15 @@ public class AccomController {
         return "accom/hotel/hotel-list";
 
     }
+
+    private static void extracted(Model model) {
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("memberDTO",memberDTO);
+
+        boolean memberCheck = false;
+        model.addAttribute("memberCheck",memberCheck);
+    }
+
     @GetMapping("hotel-list")
     public String getHotelList(@LoginUser SessionDTO sessionDTO, Model model){
 
@@ -105,11 +110,7 @@ public class AccomController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        MemberDTO memberDTO = new MemberDTO();
-        model.addAttribute("memberDTO",memberDTO);
-
-        boolean memberCheck = false;
-        model.addAttribute("memberCheck",memberCheck);
+        extracted(model);
 
         List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
 
@@ -131,11 +132,7 @@ public class AccomController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        MemberDTO memberDTO = new MemberDTO();
-        model.addAttribute("memberDTO",memberDTO);
-
-        boolean memberCheck = false;
-        model.addAttribute("memberCheck",memberCheck);
+        extracted(model);
 
         List<Accommodation> accommodationList = accommodationService.searchResults(keyword);
 
@@ -157,11 +154,7 @@ public class AccomController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        MemberDTO memberDTO = new MemberDTO();
-        model.addAttribute("memberDTO",memberDTO);
-
-        boolean memberCheck = false;
-        model.addAttribute("memberCheck",memberCheck);
+        extracted(model);
 
         List<RoomImageDTO> iList = roomService.findAll_Image(roomNum);
         model.addAttribute("ilist",iList); //객실 이미지
@@ -186,12 +179,8 @@ public class AccomController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-
-        MemberDTO memberDTO = new MemberDTO();
-        model.addAttribute("memberDTO",memberDTO);
-
-        boolean memberCheck = false;
-        model.addAttribute("memberCheck",memberCheck);
+//
+        extracted(model);
 
         System.out.println("accomNum!!!!!!!!!!!!! = " + accomNum);
         Accommodation accomList= accommodationService.findAccom(accomNum);//숙소 정보
