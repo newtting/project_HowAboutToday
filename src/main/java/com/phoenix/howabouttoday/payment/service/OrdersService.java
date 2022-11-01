@@ -11,6 +11,7 @@ import com.phoenix.howabouttoday.payment.dto.OrdersDirectDTO;
 import com.phoenix.howabouttoday.payment.entity.Coupon;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
+import com.phoenix.howabouttoday.payment.enumType.ReviewStatus;
 import com.phoenix.howabouttoday.payment.repository.AvailableDateRepository;
 import com.phoenix.howabouttoday.payment.repository.CouponRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
@@ -197,6 +198,7 @@ public class OrdersService {
                 .reservePrice(cart.getReservePrice())
                 .reserveAdultCount(cart.getReserveAdultCount())
                 .reserveChildCount(cart.getReserveChildCount())
+                .isReviewWrited(ReviewStatus.PRE_WRITE)
                 .build();
 
         for (int i = 0; i < period.getMonths() * 30 + period.getDays(); i++) {
