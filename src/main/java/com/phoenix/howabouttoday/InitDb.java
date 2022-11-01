@@ -470,7 +470,7 @@ public class InitDb {
                     .viewName("모텔")
                     .build());
 
-            AccomCategory penssion = accomCategoryRepository.save(AccomCategory.builder()
+            AccomCategory pension = accomCategoryRepository.save(AccomCategory.builder()
                     .name("pension")
                     .viewName("펜션/풀빌라")
                     .build());
@@ -485,7 +485,7 @@ public class InitDb {
             Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
                     .accomName("서울 아폴로 게스트하우스")
                     .accomTel("050350521568")
-                    .accomCategory(penssion)
+                    .accomCategory(pension)
                     .region(region)
 //                    .accomAddress("서울특별시 영등포구 영등포로19길 7-1")
                     .accomRating(5.0)
@@ -517,7 +517,7 @@ public class InitDb {
             Accommodation accommodation3 = accommodationRepository.save(Accommodation.builder()
                     .accomName("인천(석남동) 뱅크")
                     .accomTel("050350521568")
-                    .accomCategory(penssion)
+                    .accomCategory(pension)
                     .region(region)
 //                    .accomAddress("인천광역시 서구 염곡로 250")
                     .accomRating(3.6)
