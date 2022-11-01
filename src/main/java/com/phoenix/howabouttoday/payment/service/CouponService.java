@@ -25,12 +25,15 @@ public class CouponService {
         return null;
     }
 
-    public List<CouponDTO> getCoupon(Long memberNum){
+    public List<CouponDTO> findAll_Coupon(Long memberNum){
         
-        List<CouponDTO> couponDTOList = couponRepository.findAllByMember_MemberNum(memberNum).stream()
+        List<CouponDTO> clist = couponRepository.findAllByMember_MemberNum(memberNum)
+                .stream()
                 .map(CouponDTO::new)
                 .collect(Collectors.toList());
-        return couponDTOList;
+
+        return clist;
+
     }
 
     /**
