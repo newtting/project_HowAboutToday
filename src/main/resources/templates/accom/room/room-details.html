@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout/layout">
+
 <th:block layout:fragment="content">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 
@@ -214,7 +215,8 @@
 
 
                     <div class="col-lg-4">
-                        <form th:action="@{/orders/directPayment}" method="get" th:name="roomForm">
+
+                        <form th:action="@{/orders/directPayment}" method="get" th:name="roomForm" id="roomForm" th:object="${searchForm}">
                             <div class="sidebar single-content-sidebar mb-0">
                                 <div class="sidebar-widget single-content-widget">
                                     <h3 class="title stroke-shape">숙박 예약</h3>
@@ -225,8 +227,8 @@
                                                     <label class="label-text">Check in - Check out</label>
                                                     <div class="form-group">
                                                         <span class="la la-calendar form-icon"></span>
-                                                        <input class="date-picker-multiple form-control" type="text" name="daterange" id="checkDate" readonly>
-                                                        <input type="hidden" id="roomNum" th:name="roomNum" th:value="${roomDetailDTO.roomNum}" />
+                                                        <input class="date-picker-multiple form-control" type="text" name="daterange" id="checkDate" th:field="*{daterange}" readonly>
+                                                        <input type="hidden" id="roomNum" name="roomNum" th:value="${roomDetailDTO.roomNum}" />
                                                     </div>
                                                 </div>
                                             </form>
@@ -237,7 +239,7 @@
                                             <label class="font-size-16">성인 </label>
                                             <div class="qtyBtn d-flex align-items-center">
                                                 <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                <input id="adult_qty" type="text" th:name="adult_qty" th:value="2">
+                                                <input id="adult_qty" type="text" th:field="*{adult_number}" >
                                                 <div class="qtyInc"><i class="la la-plus"></i></div>
                                             </div>
                                         </div><!-- end qty-box -->
@@ -245,7 +247,7 @@
                                             <label class="font-size-16">아동 </label>
                                             <div class="qtyBtn d-flex align-items-center">
                                                 <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                <input type="text" id="child_qty"  class="reserve-qty" th:name="child_qty" th:value="0">
+                                                <input type="text" id="child_qty"  class="reserve-qty" th:field="*{child_number}">
                                                 <div class="qtyInc"><i class="la la-plus"></i></div>
                                             </div>
                                         </div><!-- end qty-box -->
@@ -404,33 +406,10 @@
         </div>
     </div><!-- end modal-popup -->
 
-
-    <!-- Template JS Files -->
-    <!--<script src="js/jquery-3.4.1.min.js"></script>-->
-    <!--<script src="js/jquery-ui.js"></script>-->
-    <!--<script src="js/popper.min.js"></script>-->
-    <!--<script src="js/bootstrap.min.js"></script>-->
-    <!--<script src="js/bootstrap-select.min.js"></script>-->
-    <!--<script src="js/moment.min.js"></script>-->
-    <!--<script src="js/daterangepicker.js"></script>-->
-    <!--<script src="js/owl.carousel.min.js"></script>-->
-    <!--<script src="js/jquery.fancybox.min.js"></script>-->
-    <!--<script src="js/jquery.countTo.min.js"></script>-->
-    <!--<script src="js/animated-headline.js"></script>-->
-    <!--<script src="js/jquery.ripples-min.js"></script>-->
-    <!--<script src="js/quantity-input.js"></script>-->
-    <!--<script src="js/navbar-sticky.js"></script>-->
-    <!--<script src="js/total-price.js"></script>-->
-    <!--<script src="js/leaflet.js"></script>-->
-    <!--<script src="js/map.js"></script>-->
-    <!--<script src="js/main.js"></script>-->
-    <!--</body>-->
-    <!--</html>-->
     <script>
 
         function roomSubmit(){
             const roomNum = document.querySelector("#roomNum").value;
-            alert(roomNum)
             fetch("/cartDuplCheck?roomNum=" + roomNum)
                 .then((response)=>response.json())
                 .then((result)=> {
@@ -447,16 +426,12 @@
         }
 
         $("#cart-button").click(function(){
+            let roomNum = $("#roomNum").val();
+            let checkDate = $("#checkDate").val();
+            let adultQty = $("#adult_qty").val();
+            let childQty = $("#child_qty").val();
 
-            const checkDate = $("#checkDate").val();
-            const adultQty = $("#adult_qty").val();
-            const childQty = $("#child_qty").val();
-            const roomNum = $("#roomNum").val();
-            console.log(checkDate)
-            console.log(adultQty)
-            console.log(childQty)
-
-            const cartForm = JSON.stringify({
+            cartForm = JSON.stringify({
                 // check_in: check_in,
                 // check_out: check_out,
                 checkDate : checkDate,
@@ -465,7 +440,6 @@
             });
             // let form = $("#reserve-form").serialize();
 
-
             $.ajax({
                 type: 'post',
                 url: '/rest/cart/' + roomNum,
@@ -473,6 +447,7 @@
                 contentType: 'application/json; charset=utf-8',
                 dataType:"text",
             }).done(function(result){
+
                 if(result == "true"){
                     alert("장바구니에 존재하는 객실입니다.");
                 } else{
@@ -480,8 +455,7 @@
                     window.location.href = '/cart/';
                 }
             }).fail(function (error){
-                alert("요청 실패")
-                console.log(JSON.stringify(error));
+                alert(JSON.stringify(error));
             });
         });
 

@@ -357,6 +357,10 @@
 
                                 <h3 class="title stroke-shape" th:text="|${viewName} 검색|">호텔 검색</h3>
                                 <div class="sidebar-widget-item">
+                                    <form id="searchForm" th:object="${searchForm}" method="get">
+                                        <input type="hidden" id="hiddenNum" name="accomNum" value="">
+                                        <input type="hidden" th:field="*{adult_number}">
+                                        <input type="hidden" th:field="*{child_number}">
                                     <div class="contact-form-action">
                                         <div class="input-box">
                                             <label class="label-text" th:text="|${viewName} 이름|">호텔 이름</label>
@@ -369,10 +373,11 @@
                                             <label class="label-text">날짜 선택</label>
                                             <div class="form-group">
                                                 <span class="la la-calendar form-icon"></span>
-                                                <input class="date-picker-multiple form-control" type="text" fi name="date" readonly>
+                                                <input class="date-picker-multiple form-control" type="text" fi th:field="*{daterange}" readonly>
                                             </div>
                                         </div>
                                     </div>
+                                    </form>
                                 </div><!-- end sidebar-widget-item -->
                                 <!--                            <div class="sidebar-widget-item">-->
                                 <!--                                <div class="qty-box mb-2 d-flex align-items-center justify-content-between">-->
@@ -572,7 +577,6 @@
     </div>
     <!-- end back-to-top -->
 
-    <!-- end modal-shared -->
     <!-- 회원가입 모달 -->
     <th:block th:replace="fragments/signUp::signUp"></th:block>
 
@@ -626,7 +630,7 @@
 
                 newlow += `<div class="card-item card-item-list">`
                 newlow += `<div class="card-img" id="anchor${i.count}">`
-                newlow += `<a class="d-block" href="/hotel-single?accomNum=${accom[i].accomNum}">`
+                newlow += `<a class="d-block" href="javascript:void(0)" onclick="accomSingle(${accom[i].accomNum})">`
                 newlow += `<img src="/data/images/${accom[i].accommodationImage.accomOriginFilename}" alt="hotel-img">`
                 newlow += `</a>`
                 newlow += `<a href="javascript:void(0)" onclick="saveWish(${accom[i].accomNum})">`
@@ -640,8 +644,8 @@
                 newlow += `<p class="card-meta">${accom[i].accomAddress}</p>`
                 newlow += `<div class="card-rating">`
                 newlow += `<span class="badge text-white">${accom[i].accomRating}</span>`
-                newlow += `<span class="review__text">Average</span>`
-                newlow += `<span class="rating__text">${accom[i].totalReviewNum}</span>`
+                newlow += `<span class="review__text">Average</span>&nbsp;`
+                newlow += `<span class="rating__text">${accom[i].totalReviewNum}개의&nbsp;리뷰</span>`
                 newlow += `</div>`
                 newlow += `<div class="card-price d-flex align-items-center justify-content-between">`
                 newlow += `<p>`
@@ -655,6 +659,16 @@
             }
             return newlow;
         }
+
+        function accomSingle(accomNum){
+            $("#hiddenNum").attr("value",accomNum);
+            var searchForm = document.getElementById("searchForm")
+            searchForm.action = '/hotel-single?'
+
+            searchForm.submit();
+
+        }
+
         //평점에 따른 리스트를 가져오는 함수
         $(".star").on("change",function (){
 

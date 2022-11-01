@@ -85,6 +85,7 @@ public class InitDb {
         private final RoomViewAmenitiesRepository roomViewAmenitiesRepository;
         private final CouponRepository couponRepository;
         private final CouponRulesRepository couponRulesRepository;
+        private final AccomViewFaciltiesRepository accomViewFaciltiesRepository;
 
         private final AccomCategoryRepository accomCategoryRepository;
         public void dbInit1() {
@@ -190,11 +191,18 @@ public class InitDb {
                     .reserveRange(60)
                     .build());
 
+
+
             /** 숙소시설 등록 **/
-            facilitiesRepository.save(Facilities.builder()
-                    .facility(Facility.CHARGE)
+            Facilities saveFac = facilitiesRepository.save(Facilities.builder()
+                    .facility(Facility.TELEVISION)
                     .faciltiesOriginalFileName("image5.jpg")
                     .faciltiesSaveFilename("image7.jpg")
+                    .build());
+
+            accomViewFaciltiesRepository.save(AccomViewFacilities.builder()
+                    .accommodation(accommodation)
+                    .facilities(saveFac)
                     .build());
 
 
@@ -551,11 +559,13 @@ public class InitDb {
                     .build());
 
             /** 숙소시설 등록 **/
-            facilitiesRepository.save(Facilities.builder()
-                    .facility(Facility.NO_CHARGE)
+            Facilities saveFac = facilitiesRepository.save(Facilities.builder()
+                    .facility(Facility.PETS_ALLOWED)
                     .faciltiesOriginalFileName("image3.jpg")
                     .faciltiesSaveFilename("image3.jpg")
                     .build());
+
+
 
             /** 숙소이미지 등록 **/
             accommodationImageRepository.save( AccomImage.builder()
