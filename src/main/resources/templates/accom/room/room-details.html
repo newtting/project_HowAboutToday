@@ -137,13 +137,18 @@
                                         </div><!-- end comments-list -->
 
                                         <!-- 후기 작성 -->
-                                        <div class="comment-forum padding-top-40px">
+                                        <div th:if="${ordersDetailDTOList.size() != 0}" class="comment-forum padding-top-40px">
                                             <div class="form-box">
                                                 <div class="form-title-wrap">
                                                     <h3 class="title">후기 작성</h3>
                                                 </div><!-- form-title-wrap -->
+
                                                 <div class="form-content">
                                                     <div class="contact-form-action">
+                                                        <select class="select-contain-select w-50">
+<!--                                                            <option value="0">예약 선택</option>-->
+                                                            <option th:each="ordersDetail  : ${ordersDetailDTOList}" th:value="${ordersDetail.getOrdersNum()}"  th:text="|${ordersDetail.getStartDate()} ~ ${ordersDetail.getEndDate()}|">객실 선택</option>
+                                                        </select>
                                                         <div class="form-content">
                                                             <div class="rate-option p-2">
                                                                 <div class="row">

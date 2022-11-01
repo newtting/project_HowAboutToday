@@ -21,6 +21,7 @@ ratingStar.forEach((star) => {
 })
 
 reviewWrite.addEventListener('click', (event) => {
+    const roomNum = document.querySelector("#roomNum").value;
     const reviewMemberName = document.querySelector("#reviewMemberName");
     const reviewContent = document.querySelectorAll("textarea[name='reviewContent']")[0];
 
@@ -32,8 +33,10 @@ reviewWrite.addEventListener('click', (event) => {
         return;
     }
     const data = {
+        roomNum : roomNum,
         name: name,
-        content: content
+        content: content,
+        rating: clickRate
     }
 
     fetch("/roomReview/save", {
@@ -43,14 +46,43 @@ reviewWrite.addEventListener('click', (event) => {
         },
         body:JSON.stringify(data)
     })
-        .then(() => {
-            alert("리뷰 저장 성공")
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data.code);
+            console.log(typeof data.code);
+            checkReview(data.code);
         })
         .catch(() => {
             alert("리뷰 저장 실패");
         })
 })
 
-const writeReview = () => {
+const REVIEW_RESPONSE_CODE = {
+    NOT_MEMBER : "NOT_MEMBER",
+    NOT_RESERVE:"NOT_RESERVE",
+    OVER_TWO_WEEKS:"OVER_TWO_WEEKS",
+    WRITE_POSSIBLE:"WRITE_POSSIBLE"
+}
 
+
+const checkReview = (code) => {
+    let message = '작성 완료.';
+
+    switch (code){
+        case REVIEW_RESPONSE_CODE.NOT_MEMBER:
+            message = '회원가입이 필요합니다.'
+            break;
+        case REVIEW_RESPONSE_CODE.NOT_RESERVE:
+            message = '예약하지 않은 객실입니다.'
+            break;
+        case REVIEW_RESPONSE_CODE.OVER_TWO_WEEKS:
+            message = '리뷰 작성 기간은 이용 후 2주 이내입니다.'
+            break;
+        default:
+        // REVIEW_RESPONSE_CODE.WRITE_POSSIBLE
+    }
+
+    return message;
 }

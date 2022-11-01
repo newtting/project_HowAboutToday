@@ -9,6 +9,7 @@ import com.phoenix.howabouttoday.payment.dto.CouponRequestDTO;
 import com.phoenix.howabouttoday.payment.dto.CouponResponseDTO;
 import com.phoenix.howabouttoday.payment.dto.RoomReviewCreateRequestDTO;
 import com.phoenix.howabouttoday.payment.dto.RoomReviewCreateResponseDTO;
+import com.phoenix.howabouttoday.payment.enumType.ReviewResponseCode;
 import com.phoenix.howabouttoday.payment.service.CouponService;
 import com.phoenix.howabouttoday.payment.service.OrdersService;
 import com.phoenix.howabouttoday.room.service.ReviewService;
@@ -27,19 +28,14 @@ public class RestReviewController {
     public RoomReviewCreateResponseDTO postReviewSave(Model model, @LoginUser SessionDTO sessionDTO,@RequestBody RoomReviewCreateRequestDTO roomReviewCreateRequestDTO){
         System.out.println("실행");
 
-        RoomReviewCreateResponseDTO roomReviewCreateResponseDTO = new RoomReviewCreateResponseDTO();
+//        1. 회원확인
+//        2. 객실 예약완료 후 이용하고 난 뒤 14일 이내인가?
+//        if(sessionDTO == null){
+//            return new RoomReviewCreateResponseDTO(ReviewResponseCode.NOT_MEMBER);
+//        }
 
-        //1. 회원이 아니면
-        if(sessionDTO == null){
-            return roomReviewCreateResponseDTO;
-        }
-
-        //2. 객실 구매를 했는가?
-
-        //3 객실 이용 후 14일 이내인가?
-
-
-        return null;
+        // 객실 이용 후 14일 이내라면 code
+        return reviewService.isPossibleWrite(sessionDTO, roomReviewCreateRequestDTO);
     }
 
     @PatchMapping("/update/{reviewNum}")
