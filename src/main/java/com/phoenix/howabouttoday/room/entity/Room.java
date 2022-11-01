@@ -64,6 +64,7 @@ public class Room {
     public Room(String roomName,int defaultGuest,int maxGuest, Double roomRating,Integer roomReviewNum,Integer price, String roomInfo, Accommodation accommodation, LocalDate stayEndDate, LocalDate stayStartDate) {
         this.roomRating = roomRating;
         this.roomReviewNum = roomReviewNum;
+
         this.roomName = roomName;
         this.defaultGuest = defaultGuest;
         this.maxGuest = maxGuest;

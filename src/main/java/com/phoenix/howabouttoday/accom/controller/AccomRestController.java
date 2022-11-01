@@ -159,7 +159,6 @@ public class AccomRestController {
         }
 
         return accomodationService.getAccomPageList(pageable,category_name,keyword,maxPrice,minPrice,rating);
-
     }
 
 

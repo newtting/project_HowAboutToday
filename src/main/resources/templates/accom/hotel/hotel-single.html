@@ -4,7 +4,6 @@
       layout:decorate="layout/layout">
 
 <th:block layout:fragment="content">
-    <script src="https://kit.fontawesome.com/b5f47a576f.js" crossorigin="anonymous"></script>
 
     <!-- ================================
         START BREADCRUMB AREA
@@ -37,7 +36,6 @@
             </div><!-- end container -->
         </div><!-- end breadcrumb-wrap -->
     </section><!-- end breadcrumb-area -->
-
     <!-- ================================
         END BREADCRUMB AREA
     ================================= -->
@@ -237,168 +235,110 @@
                                     <h2 class="title font-size-20">후기</h2>
                                 </div><!-- end single-content-item -->
                             </div><!-- end reviews -->
-                            <div class="review-box">
+                            <div class="review-box" th:each=" reviewlists: ${reviewlist}">
                                 <div class="single-content-item padding-top-40px">
-                                    <h3 class="title font-size-20">3개의 리뷰</h3>
-                                    <div class="comments-list padding-top-50px">
+                                    <h3 class="title font-size-20"></h3>
+                                    <div class="comments-list padding-top-50px" >
                                         <div class="comment">
                                             <div class="comment-avatar">
                                                 <img class="avatar__img" alt="" src="/images/team8.jpg">
                                             </div>
                                             <div class="comment-body">
                                                 <div class="meta-data">
-                                                    <h3 class="comment__author">투숙객 이름</h3>
+                                                    <h3 class="comment__author" th:text="${reviewlists.accomMember}">멤버 이름</h3>
                                                     <div class="meta-data-inner d-flex">
-                                                    <span class="ratings d-flex align-items-center mr-1">
+                                                    <span class="ratings d-flex align-items-center mr-1" th:text="|${reviewlists.accomReviewRating} /|">
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                     </span>
-                                                        <p class="comment__date">2022.10.03</p>
+                                                        <p class="comment__date" th:text="${reviewlists.accomReviewCreate}">2022.10.03</p>
                                                     </div>
                                                 </div>
-                                                <p class="comment-content">
+                                                <p class="comment-content" th:text="${reviewlists.accomReviewContent}">
                                                     후기 내용
                                                 </p>
                                                 <div class="comment-reply d-flex align-items-center justify-content-between">
                                                     <a class="theme-btn" href="#" data-toggle="modal"
                                                        data-target="#replayPopupForm">
-                                                        <span class="la la-mail-reply mr-1"></span>답글
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div><!-- end comments -->
-                                        <div class="comment">
-                                            <div class="comment-avatar">
-                                                <img class="avatar__img" alt="" src="/images/team8.jpg">
-                                            </div>
-                                            <div class="comment-body">
-                                                <div class="meta-data">
-                                                    <h3 class="comment__author">투숙객 이름</h3>
-                                                    <div class="meta-data-inner d-flex">
-                                                    <span class="ratings d-flex align-items-center mr-1">
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                    </span>
-                                                        <p class="comment__date">2022.10.03</p>
-                                                    </div>
-                                                </div>
-                                                <p class="comment-content">
-                                                    후기 내용
-                                                </p>
-                                                <div class="comment-reply d-flex align-items-center justify-content-between">
-                                                    <a class="theme-btn" href="#" data-toggle="modal"
-                                                       data-target="#replayPopupForm">
-                                                        <span class="la la-mail-reply mr-1"></span>답글
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div><!-- end comments -->
-                                        <div class="comment">
-                                            <div class="comment-avatar">
-                                                <img class="avatar__img" alt="" src="/images/team10.jpg">
-                                            </div>
-                                            <div class="comment-body">
-                                                <div class="meta-data">
-                                                    <h3 class="comment__author">투숙객 이름</h3>
-                                                    <div class="meta-data-inner d-flex">
-                                                    <span class="ratings d-flex align-items-center mr-1">
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                    </span>
-                                                        <p class="comment__date">2022.11.13</p>
-                                                    </div>
-                                                </div>
-                                                <p class="comment-content">
-                                                    후기 내용
-                                                </p>
-                                                <div class="comment-reply d-flex align-items-center justify-content-between">
-                                                    <a class="theme-btn" href="#" data-toggle="modal"
-                                                       data-target="#replayPopupForm">
-                                                        <span class="la la-mail-reply mr-1"></span>답글
+                                                        <span class="la la-mail-reply mr-1">답글</span>
                                                     </a>
                                                 </div>
                                             </div>
                                         </div><!-- end comments -->
                                     </div><!-- end comments-list -->
-
-                                    <!-- 후기 작성 -->
-                                    <div class="comment-forum padding-top-40px">
-                                        <div class="form-box">
-                                            <div class="form-title-wrap">
-                                                <h3 class="title">후기 작성</h3>
-                                            </div><!-- form-title-wrap -->
-                                            <div class="form-content">
-                                                <div class="contact-form-action">
-                                                    <form method="post">
-                                                        <div class="form-content">
-                                                            <div class="rate-option p-2">
-                                                                <div class="row">
-                                                                    <div class="col-lg-4 responsive-column">
-                                                                        <div class="rate-option-item">
-                                                                            <label>평점</label>
-                                                                            <div class="rate-stars-option">
-                                                                                <input type="checkbox" id="lst1" value="1">
-                                                                                <label for="lst1"></label>
-                                                                                <input type="checkbox" id="lst2" value="2">
-                                                                                <label for="lst2"></label>
-                                                                                <input type="checkbox" id="lst3" value="3">
-                                                                                <label for="lst3"></label>
-                                                                                <input type="checkbox" id="lst4" value="4">
-                                                                                <label for="lst4"></label>
-                                                                                <input type="checkbox" id="lst5" value="5">
-                                                                                <label for="lst5"></label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div><!-- col-lg-4 -->
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-lg-6 responsive-column">
-                                                                        <div class="input-box">
-                                                                            <label class="label-text">성함</label>
-                                                                            <div class="form-group">
-                                                                                <span class="la la-user form-icon"></span>
-                                                                                <input class="form-control" type="text"
-                                                                                       name="text" placeholder="투숙객 성함">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-12">
-                                                                        <div class="input-box">
-                                                                            <label class="label-text">내용</label>
-                                                                            <div class="form-group">
-                                                                                <span class="la la-pencil form-icon"></span>
-                                                                                <textarea class="message-control form-control"
-                                                                                          name="message"
-                                                                                          placeholder="후기 내용을 작성해주세요"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-12">
-                                                                        <div class="btn-box">
-                                                                            <button type="button"
-                                                                                    class="theme-btn hwt-btn-gray">작성하기
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div><!-- end contact-form-action -->
-                                            </div><!-- end form-content -->
-                                        </div><!-- end form-box -->
-                                    </div><!-- end comment-forum -->
                                 </div><!-- end single-content-item -->
                             </div><!-- end review-box -->
+<!--                                    &lt;!&ndash; 후기 작성 &ndash;&gt;-->
+<!--                                    <div class="comment-forum padding-top-40px">-->
+<!--                                        <div class="form-box">-->
+<!--                                            <div class="form-title-wrap">-->
+<!--                                                <h3 class="title">후기 작성</h3>-->
+<!--                                            </div>&lt;!&ndash; form-title-wrap &ndash;&gt;-->
+<!--                                            <div class="form-content">-->
+<!--                                                <div class="contact-form-action">-->
+<!--                                                    <form method="post">-->
+<!--                                                        <div class="form-content">-->
+<!--                                                            <div class="rate-option p-2">-->
+<!--                                                                <div class="row">-->
+<!--                                                                    <div class="col-lg-4 responsive-column">-->
+<!--                                                                        <div class="rate-option-item">-->
+<!--                                                                            <label>평점</label>-->
+<!--                                                                            <div class="rate-stars-option">-->
+<!--                                                                                <input type="checkbox" id="lst1" value="1">-->
+<!--                                                                                <label for="lst1"></label>-->
+<!--                                                                                <input type="checkbox" id="lst2" value="2">-->
+<!--                                                                                <label for="lst2"></label>-->
+<!--                                                                                <input type="checkbox" id="lst3" value="3">-->
+<!--                                                                                <label for="lst3"></label>-->
+<!--                                                                                <input type="checkbox" id="lst4" value="4">-->
+<!--                                                                                <label for="lst4"></label>-->
+<!--                                                                                <input type="checkbox" id="lst5" value="5">-->
+<!--                                                                                <label for="lst5"></label>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>&lt;!&ndash; col-lg-4 &ndash;&gt;-->
+<!--                                                                </div>-->
+<!--                                                                <div class="row">-->
+<!--                                                                    <div class="col-lg-6 responsive-column">-->
+<!--                                                                        <div class="input-box">-->
+<!--                                                                            <label class="label-text">성함</label>-->
+<!--                                                                            <div class="form-group">-->
+<!--                                                                                <span class="la la-user form-icon"></span>-->
+<!--                                                                                <input class="form-control" type="text"-->
+<!--                                                                                       name="text" placeholder="투숙객 성함">-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="col-lg-12">-->
+<!--                                                                        <div class="input-box">-->
+<!--                                                                            <label class="label-text">내용</label>-->
+<!--                                                                            <div class="form-group">-->
+<!--                                                                                <span class="la la-pencil form-icon"></span>-->
+<!--                                                                                <textarea class="message-control form-control"-->
+<!--                                                                                          name="message"-->
+<!--                                                                                          placeholder="후기 내용을 작성해주세요"></textarea>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="col-lg-12">-->
+<!--                                                                        <div class="btn-box">-->
+<!--                                                                            <button type="button"-->
+<!--                                                                                    class="theme-btn hwt-btn-gray">작성하기-->
+<!--                                                                            </button>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </form>-->
+<!--                                                </div>&lt;!&ndash; end contact-form-action &ndash;&gt;-->
+<!--                                            </div>&lt;!&ndash; end form-content &ndash;&gt;-->
+<!--                                        </div>&lt;!&ndash; end form-box &ndash;&gt;-->
+<!--                                    </div>&lt;!&ndash; end comment-forum &ndash;&gt;-->
+
                         </div><!-- end single-content-wrap -->
                     </div><!-- end col-lg-8 -->
                     <div class="col-lg-4">
@@ -530,130 +470,14 @@
     <!-- end back-to-top -->
 
     <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
-                            <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" action="/member/join">
-                                <div class="input-box">
-                                    <label class="label-text">닉네임</label>
-                                    <div class="form-group">
-                                        <span class="la la-user form-icon"></span>
-                                        <input class="form-control" type="text" name="nickname" placeholder="닉네임">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">이메일 주소</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="email" name="email" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" name="pwd" placeholder="패스워드">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <!--                                    <div class="input-box">-->
-                                <!--                                        <label class="label-text">패스워드 확인</label>-->
-                                <!--                                        <div class="form-group">-->
-                                <!--                                            <span class="la la-lock form-icon"></span>-->
-                                <!--                                            <input class="form-control" type="password" name="text" placeholder="패스워드 재입력">-->
-                                <!--                                        </div>-->
-                                <!--                                    </div>&lt;!&ndash; end input-box &ndash;&gt;-->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" class="theme-btn w-100">회원가입</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 회원가입</p>
-                                    <ul class="social-profile py-3">
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end modal-popup -->
+    <!-- 회원가입 모달 -->
+    <th:block th:replace="fragments/signUp::signUp"></th:block>
+
 
     <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle2">로그인</h5>
-                            <p class="font-size-14">안녕하세요! 로그인을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
+    <!-- 로그인 모달 -->
+    <th:block th:replace="fragments/signIn::signIn"></th:block>
 
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" action="/loginProc">
-                                <div class="input-box">
-                                    <label class="label-text">이메일</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="email" name="email" id="email" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group mb-2">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" name="pwd" id="pwd" placeholder="패스워드">
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <!--                                    <div class="custom-checkbox mb-0">-->
-                                        <!--                                        <input type="checkbox" id="rememberchb">-->
-                                        <!--                                        <label for="rememberchb">Remember me</label>-->
-                                        <!--                                    </div>-->
-                                        <p class="forgot-password">
-                                            <a href="recover">비밀번호를 잊으셨나요?</a>
-                                        </p>
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" id="login" class="theme-btn w-100">로그인</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 로그인</p>
-                                    <ul class="social-profile py-3">
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end modal-popup -->
 
     <!-- end modal-shared -->
     <div class="modal-popup">
@@ -759,6 +583,5 @@
 </script>
 
 </th:block>
-
 
 </html>

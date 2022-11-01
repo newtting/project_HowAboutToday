@@ -18,10 +18,10 @@
                     <div class="contact-form-action">
                         <form method="post" th:action="@{/member/join}" th:object="${memberDTO}">
                             <div class="input-box">
-                                <label class="label-text">닉네임</label>
+                                <label class="label-text">이름</label>
                                 <div class="form-group">
                                     <span class="la la-user form-icon"></span>
-                                    <input class="form-control" type="text" th:field="*{nickname}" placeholder="닉네임"
+                                    <input class="form-control" type="text" th:field="*{nickname}" placeholder="이름"
                                            th:class="${#fields.hasErrors('nickname')}? 'form-control fieldError' : 'form-control'">
                                     <span th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}" style="color: red; font-size:13px"></span>
                                 </div>

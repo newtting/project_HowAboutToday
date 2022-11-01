@@ -64,7 +64,7 @@
                                         <h3 class="title font-size-20">이용규칙</h3>
                                         <p class="py-3"></p>
                                         <ul class="list-items">
-                                            <li><i class="la la-dot-circle mr-2"></i>최대 2인 이용 가능</li>
+                                            <li><i class="la la-dot-circle mr-2" th:text="| 최대 ${roomDetailDTO.maxGuest}인 이용 가능|"></i></li>
                                             <li><i class="la la-dot-circle mr-2"></i>금연 객실</li>
                                         </ul>
                                     </div><!-- end single-content-item -->
@@ -112,179 +112,28 @@
                                 </div><!-- end itinerary -->
 
                                 <!-- 후기 리스트 -->
-                                <div id="reviews" class="page-scroll">
-                                    <div class="single-content-item padding-top-40px padding-bottom-40px">
-                                        <h3 class="title font-size-20">후기</h3>
-                                        <div class="review-container padding-top-30px">
-                                            <div class="row align-items-center">
-                                                <div class="col-lg-4">
-                                                    <div class="review-summary">
-                                                        <h2>4.5<span>/5</span></h2>
-                                                        <span>4개의 리뷰</span>
-                                                    </div>
-                                                </div><!-- end col-lg-4 -->
-                                                <div class="col-lg-8">
-                                                    <div class="review-bars">
-                                                        <div class="row">
-                                                            <div class="col-lg-6">
-                                                                <div class="progress-item">
-                                                                    <h3 class="progressbar-title">친절도</h3>
-                                                                    <div class="progressbar-content line-height-20 d-flex align-items-center justify-content-between">
-                                                                        <div class="progressbar-box flex-shrink-0">
-                                                                            <div class="progressbar-line" data-percent="70%">
-                                                                                <div class="progressbar-line-item bar-bg-1"></div>
-                                                                            </div> <!-- End Skill Bar -->
-                                                                        </div>
-                                                                        <div class="bar-percent">4.6</div>
-                                                                    </div>
-                                                                </div><!-- end progress-item -->
-                                                            </div><!-- end col-lg-6 -->
-                                                            <div class="col-lg-6">
-                                                                <div class="progress-item">
-                                                                    <h3 class="progressbar-title">위치만족도</h3>
-                                                                    <div class="progressbar-content line-height-20 d-flex align-items-center justify-content-between">
-                                                                        <div class="progressbar-box flex-shrink-0">
-                                                                            <div class="progressbar-line" data-percent="55%">
-                                                                                <div class="progressbar-line-item bar-bg-2"></div>
-                                                                            </div> <!-- End Skill Bar -->
-                                                                        </div>
-                                                                        <div class="bar-percent">4.7</div>
-                                                                    </div>
-                                                                </div><!-- end progress-item -->
-                                                            </div><!-- end col-lg-6 -->
-                                                            <div class="col-lg-6">
-                                                                <div class="progress-item">
-                                                                    <h3 class="progressbar-title">청결도</h3>
-                                                                    <div class="progressbar-content line-height-20 d-flex align-items-center justify-content-between">
-                                                                        <div class="progressbar-box flex-shrink-0">
-                                                                            <div class="progressbar-line" data-percent="40%">
-                                                                                <div class="progressbar-line-item bar-bg-3"></div>
-                                                                            </div> <!-- End Skill Bar -->
-                                                                        </div>
-                                                                        <div class="bar-percent">2.6</div>
-                                                                    </div>
-                                                                </div><!-- end progress-item -->
-                                                            </div><!-- end col-lg-6 -->
-                                                            <div class="col-lg-6">
-                                                                <div class="progress-item">
-                                                                    <h3 class="progressbar-title">편의성</h3>
-                                                                    <div class="progressbar-content line-height-20 d-flex align-items-center justify-content-between">
-                                                                        <div class="progressbar-box flex-shrink-0">
-                                                                            <div class="progressbar-line" data-percent="60%">
-                                                                                <div class="progressbar-line-item bar-bg-4"></div>
-                                                                            </div> <!-- End Skill Bar -->
-                                                                        </div>
-                                                                        <div class="bar-percent">3.6</div>
-                                                                    </div>
-                                                                </div><!-- end progress-item -->
-                                                            </div><!-- end col-lg-6 -->
-                                                            <div class="col-lg-6">
-                                                                <div class="progress-item">
-                                                                    <h3 class="progressbar-title">시설</h3>
-                                                                    <div class="progressbar-content line-height-20 d-flex align-items-center justify-content-between">
-                                                                        <div class="progressbar-box flex-shrink-0">
-                                                                            <div class="progressbar-line" data-percent="50%">
-                                                                                <div class="progressbar-line-item bar-bg-5"></div>
-                                                                            </div> <!-- End Skill Bar -->
-                                                                        </div>
-                                                                        <div class="bar-percent">2.6</div>
-                                                                    </div>
-                                                                </div><!-- end progress-item -->
-                                                            </div><!-- end col-lg-6 -->
-                                                        </div><!-- end row -->
-                                                    </div>
-                                                </div><!-- end col-lg-8 -->
-                                            </div>
-                                        </div>
-                                    </div><!-- end single-content-item -->
-                                    <div class="section-block"></div>
-                                </div><!-- end reviews -->
                                 <div class="review-box">
                                     <div class="single-content-item padding-top-40px">
-                                        <h3 class="title font-size-20">3개의 리뷰</h3>
+                                        <h3 class="title font-size-20" th:text="|${roomDetailDTO.roomReviewNum}개의 리뷰|"></h3>
                                         <div class="comments-list padding-top-50px">
-                                            <div class="comment">
-                                                <div class="comment-avatar">
-                                                    <img class="avatar__img" alt="" src="/images/team8.jpg">
-                                                </div>
+                                            <div class="comment" th:each="reviewList : ${rlist}">
                                                 <div class="comment-body">
                                                     <div class="meta-data">
-                                                        <h3 class="comment__author">투숙객 이름</h3>
+                                                        <h3 class="comment__author" th:text="${reviewList.nickname}">투숙객 이름</h3>
                                                         <div class="meta-data-inner d-flex">
-                                                    <span class="ratings d-flex align-items-center mr-1">
+                                                    <span class="ratings d-flex align-items-center mr-1" th:text="|${reviewList.reviewRating} /|">
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                     </span>
-                                                            <p class="comment__date">2022.10.03</p>
+                                                            <p class="comment__date" th:text="${reviewList.reviewCreatedDate}">2022.11.13</p>
                                                         </div>
                                                     </div>
-                                                    <p class="comment-content">
+                                                    <p class="comment-content" th:text="${reviewList.reviewContent}">
                                                         후기 내용
                                                     </p>
-                                                    <div class="comment-reply d-flex align-items-center justify-content-between">
-                                                        <a class="theme-btn" href="#" data-toggle="modal" data-target="#replayPopupForm">
-                                                            <span class="la la-mail-reply mr-1"></span>답글
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div><!-- end comments -->
-                                            <div class="comment">
-                                                <div class="comment-avatar">
-                                                    <img class="avatar__img" alt="" src="/images/team8.jpg">
-                                                </div>
-                                                <div class="comment-body">
-                                                    <div class="meta-data">
-                                                        <h3 class="comment__author">투숙객 이름</h3>
-                                                        <div class="meta-data-inner d-flex">
-                                                    <span class="ratings d-flex align-items-center mr-1">
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                    </span>
-                                                            <p class="comment__date">2022.10.03</p>
-                                                        </div>
-                                                    </div>
-                                                    <p class="comment-content">
-                                                        후기 내용
-                                                    </p>
-                                                    <div class="comment-reply d-flex align-items-center justify-content-between">
-                                                        <a class="theme-btn" href="#" data-toggle="modal" data-target="#replayPopupForm">
-                                                            <span class="la la-mail-reply mr-1"></span>답글
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div><!-- end comments -->
-                                            <div class="comment">
-                                                <div class="comment-avatar">
-                                                    <img class="avatar__img" alt="" src="/images/team10.jpg">
-                                                </div>
-                                                <div class="comment-body">
-                                                    <div class="meta-data">
-                                                        <h3 class="comment__author">투숙객 이름</h3>
-                                                        <div class="meta-data-inner d-flex">
-                                                    <span class="ratings d-flex align-items-center mr-1">
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                    </span>
-                                                            <p class="comment__date">2022.11.13</p>
-                                                        </div>
-                                                    </div>
-                                                    <p class="comment-content">
-                                                        후기 내용
-                                                    </p>
-                                                    <div class="comment-reply d-flex align-items-center justify-content-between">
-                                                        <a class="theme-btn" href="#" data-toggle="modal" data-target="#replayPopupForm">
-                                                            <span class="la la-mail-reply mr-1"></span>답글
-                                                        </a>
-                                                    </div>
                                                 </div>
                                             </div><!-- end comments -->
                                         </div><!-- end comments-list -->
@@ -296,119 +145,58 @@
                                                     <h3 class="title">후기 작성</h3>
                                                 </div><!-- form-title-wrap -->
                                                 <div class="form-content">
-                                                    <div class="rate-option p-2">
-                                                        <div class="row">
-                                                            <div class="col-lg-4 responsive-column">
-                                                                <div class="rate-option-item">
-                                                                    <label>친절도</label>
-                                                                    <div class="rate-stars-option">
-                                                                        <input type="checkbox" id="lst1" value="1">
-                                                                        <label for="lst1"></label>
-                                                                        <input type="checkbox" id="lst2" value="2">
-                                                                        <label for="lst2"></label>
-                                                                        <input type="checkbox" id="lst3" value="3">
-                                                                        <label for="lst3"></label>
-                                                                        <input type="checkbox" id="lst4" value="4">
-                                                                        <label for="lst4"></label>
-                                                                        <input type="checkbox" id="lst5" value="5">
-                                                                        <label for="lst5"></label>
-                                                                    </div>
-                                                                </div>
-                                                            </div><!-- col-lg-4 -->
-                                                            <div class="col-lg-4 responsive-column">
-                                                                <div class="rate-option-item">
-                                                                    <label>위치만족도</label>
-                                                                    <div class="rate-stars-option">
-                                                                        <input type="checkbox" id="l1" value="1">
-                                                                        <label for="l1"></label>
-                                                                        <input type="checkbox" id="l2" value="2">
-                                                                        <label for="l2"></label>
-                                                                        <input type="checkbox" id="l3" value="3">
-                                                                        <label for="l3"></label>
-                                                                        <input type="checkbox" id="l4" value="4">
-                                                                        <label for="l4"></label>
-                                                                        <input type="checkbox" id="l5" value="5">
-                                                                        <label for="l5"></label>
-                                                                    </div>
-                                                                </div>
-                                                            </div><!-- col-lg-4 -->
-                                                            <div class="col-lg-4 responsive-column">
-                                                                <div class="rate-option-item">
-                                                                    <label>청결도</label>
-                                                                    <div class="rate-stars-option">
-                                                                        <input type="checkbox" id="vm1" value="1">
-                                                                        <label for="vm1"></label>
-                                                                        <input type="checkbox" id="vm2" value="2">
-                                                                        <label for="vm2"></label>
-                                                                        <input type="checkbox" id="vm3" value="3">
-                                                                        <label for="vm3"></label>
-                                                                        <input type="checkbox" id="vm4" value="4">
-                                                                        <label for="vm4"></label>
-                                                                        <input type="checkbox" id="vm5" value="5">
-                                                                        <label for="vm5"></label>
-                                                                    </div>
-                                                                </div>
-                                                            </div><!-- col-lg-4 -->
-                                                            <div class="col-lg-4 responsive-column">
-                                                                <div class="rate-option-item">
-                                                                    <label>편의성</label>
-                                                                    <div class="rate-stars-option">
-                                                                        <input type="checkbox" id="cln1" value="1">
-                                                                        <label for="cln1"></label>
-                                                                        <input type="checkbox" id="cln2" value="2">
-                                                                        <label for="cln2"></label>
-                                                                        <input type="checkbox" id="cln3" value="3">
-                                                                        <label for="cln3"></label>
-                                                                        <input type="checkbox" id="cln4" value="4">
-                                                                        <label for="cln4"></label>
-                                                                        <input type="checkbox" id="cln5" value="5">
-                                                                        <label for="cln5"></label>
-                                                                    </div>
-                                                                </div>
-                                                            </div><!-- col-lg-4 -->
-                                                            <div class="col-lg-4 responsive-column">
-                                                                <div class="rate-option-item">
-                                                                    <label>시설</label>
-                                                                    <div class="rate-stars-option">
-                                                                        <input type="checkbox" id="f1" value="1">
-                                                                        <label for="f1"></label>
-                                                                        <input type="checkbox" id="f2" value="2">
-                                                                        <label for="f2"></label>
-                                                                        <input type="checkbox" id="f3" value="3">
-                                                                        <label for="f3"></label>
-                                                                        <input type="checkbox" id="f4" value="4">
-                                                                        <label for="f4"></label>
-                                                                        <input type="checkbox" id="f5" value="5">
-                                                                        <label for="f5"></label>
-                                                                    </div>
-                                                                </div>
-                                                            </div><!-- col-lg-4 -->
-                                                        </div><!-- end row -->
-                                                    </div><!-- end rate-option -->
                                                     <div class="contact-form-action">
                                                         <form method="post">
-                                                            <div class="row">
-                                                                <div class="col-lg-6 responsive-column">
-                                                                    <div class="input-box">
-                                                                        <label class="label-text">성함</label>
-                                                                        <div class="form-group">
-                                                                            <span class="la la-user form-icon"></span>
-                                                                            <input class="form-control" type="text" name="text" placeholder="투숙객 성함">
-                                                                        </div>
+                                                            <div class="form-content">
+                                                                <div class="rate-option p-2">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-4 responsive-column">
+                                                                            <div class="rate-option-item">
+                                                                                <label>평점</label>
+                                                                                <div class="rate-stars-option">
+                                                                                    <input type="checkbox" id="lst1" value="1">
+                                                                                    <label for="lst1"></label>
+                                                                                    <input type="checkbox" id="lst2" value="2">
+                                                                                    <label for="lst2"></label>
+                                                                                    <input type="checkbox" id="lst3" value="3">
+                                                                                    <label for="lst3"></label>
+                                                                                    <input type="checkbox" id="lst4" value="4">
+                                                                                    <label for="lst4"></label>
+                                                                                    <input type="checkbox" id="lst5" value="5">
+                                                                                    <label for="lst5"></label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div><!-- col-lg-4 -->
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-lg-12">
-                                                                    <div class="input-box">
-                                                                        <label class="label-text">내용</label>
-                                                                        <div class="form-group">
-                                                                            <span class="la la-pencil form-icon"></span>
-                                                                            <textarea class="message-control form-control" name="message" placeholder="후기 내용을 작성해주세요"></textarea>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-6 responsive-column">
+                                                                            <div class="input-box">
+                                                                                <label class="label-text">성함</label>
+                                                                                <div class="form-group">
+                                                                                    <span class="la la-user form-icon"></span>
+                                                                                    <input class="form-control" type="text"
+                                                                                           name="text" placeholder="투숙객 성함">
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-12">
-                                                                    <div class="btn-box">
-                                                                        <button type="button" class="theme-btn hwt-btn-gray">작성하기</button>
+                                                                        <div class="col-lg-12">
+                                                                            <div class="input-box">
+                                                                                <label class="label-text">내용</label>
+                                                                                <div class="form-group">
+                                                                                    <span class="la la-pencil form-icon"></span>
+                                                                                    <textarea class="message-control form-control"
+                                                                                              name="message"
+                                                                                              placeholder="후기 내용을 작성해주세요"></textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12">
+                                                                            <div class="btn-box">
+                                                                                <button type="button"
+                                                                                        class="theme-btn hwt-btn-gray">작성하기
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -427,7 +215,8 @@
 
 
                     <div class="col-lg-4">
-                        <form action="/orders/directPayment" method="get" id="roomForm" th:object="${searchForm}">
+
+                        <form th:action="@{/orders/directPayment}" method="get" th:name="roomForm" id="roomForm" th:object="${searchForm}">
                             <div class="sidebar single-content-sidebar mb-0">
                                 <div class="sidebar-widget single-content-widget">
                                     <h3 class="title stroke-shape">숙박 예약</h3>
@@ -541,129 +330,14 @@
     <!-- end back-to-top -->
 
     <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
-                            <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" action="/member/join">
-                                <div class="input-box">
-                                    <label class="label-text">닉네임</label>
-                                    <div class="form-group">
-                                        <span class="la la-user form-icon"></span>
-                                        <input class="form-control" type="text" name="nickname" placeholder="닉네임">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">이메일 주소</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="email" name="email" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" name="pwd" placeholder="패스워드">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <!--                                    <div class="input-box">-->
-                                <!--                                        <label class="label-text">패스워드 확인</label>-->
-                                <!--                                        <div class="form-group">-->
-                                <!--                                            <span class="la la-lock form-icon"></span>-->
-                                <!--                                            <input class="form-control" type="password" name="text" placeholder="패스워드 재입력">-->
-                                <!--                                        </div>-->
-                                <!--                                    </div>&lt;!&ndash; end input-box &ndash;&gt;-->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" class="theme-btn w-100">회원가입</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 회원가입</p>
-                                    <ul class="social-profile py-3">
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end modal-popup -->
+    <!-- 회원가입 모달 -->
+    <th:block th:replace="fragments/signUp::signUp"></th:block>
+
 
     <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle2">로그인</h5>
-                            <p class="font-size-14">안녕하세요! 로그인을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" action="/loginProc">
-                                <div class="input-box">
-                                    <label class="label-text">이메일</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="email" name="email" id="email" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group mb-2">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" name="pwd" id="pwd" placeholder="패스워드">
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <!--                                    <div class="custom-checkbox mb-0">-->
-                                        <!--                                        <input type="checkbox" id="rememberchb">-->
-                                        <!--                                        <label for="rememberchb">Remember me</label>-->
-                                        <!--                                    </div>-->
-                                        <p class="forgot-password">
-                                            <a href="recover">비밀번호를 잊으셨나요?</a>
-                                        </p>
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" id="login" class="theme-btn w-100">로그인</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 로그인</p>
-                                    <ul class="social-profile py-3">
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end modal-popup -->
+    <!-- 로그인 모달 -->
+    <th:block th:replace="fragments/signIn::signIn"></th:block>
+
 
     <!-- end modal-shared -->
     <div class="modal-popup">
@@ -743,7 +417,10 @@
                         alert("장바구니에 존재하는 객실입니다.")
                     }
                     else{
-                        document.getElementById("roomForm").submit();
+                        alert("서밋")
+                        const roomForm = document.querySelector("form[name='roomForm']");
+                        console.log(roomForm)
+                        roomForm.submit();
                     }
                 });
         }

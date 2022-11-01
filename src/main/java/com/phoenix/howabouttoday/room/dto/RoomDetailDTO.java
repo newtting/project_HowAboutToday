@@ -36,9 +36,11 @@ public class RoomDetailDTO {
     private List<RoomImageDTO> roomImageList; //객실 이미지
     private String roomImage; // 객실 대표이미지
 
+
+
     public RoomDetailDTO(Room room) {
         this.roomRating = room.getRoomRating();
-//        this.roomReviewNum = room.getRoomReviewNum();
+        this.roomReviewNum = room.getRoomReviewNum();
         this.roomNum = room.getRoomNum();
         this.roomName = room.getRoomName();
         this.defaultGuest = room.getDefaultGuest();

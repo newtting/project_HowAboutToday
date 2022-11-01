@@ -6,6 +6,10 @@ import com.phoenix.howabouttoday.accom.dto.SearchForm;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Facilities;
 import com.phoenix.howabouttoday.accom.dto.AccomCategoryDto;
+import com.phoenix.howabouttoday.accom.dto.AccomDto;
+import com.phoenix.howabouttoday.accom.dto.AccomReviewDTO;
+import com.phoenix.howabouttoday.accom.entity.AccomImage;
+
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Facilities;
 import com.phoenix.howabouttoday.accom.entity.Region;
@@ -30,10 +34,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -45,8 +46,9 @@ public class AccomController {
     private final AccomodationService accommodationService;
     private final RoomService roomService;
     private final FacilitiesService facilitiesService;
-    private final RegionService regionService;
+    private final AccomReviewService accomReviewService;
     private final AccomCategoryService accomCategoryService;
+    private final RegionService regionService;
 
     // 메인 화면
     @GetMapping(value = {"/", "home"})
@@ -66,7 +68,6 @@ public class AccomController {
         model.addAttribute("searchForm",searchForm);
 
         return "home";
-
     }
 
     // 숙소유형별 리스트 출력
@@ -82,12 +83,6 @@ public class AccomController {
         }
 
 
-        System.out.println("searchForm.getDaterange() = " + searchForm.getDaterange());
-        System.out.println("searchForm.getAdult_number() = " + searchForm.getAdult_number());
-        System.out.println("searchForm.getChild_number() = " + searchForm.getChild_number());
-        
-        /** 카테고리 리스트 조회 **/
-        List<AccomCategoryDto.ResponseDto> categoryList = accomCategoryService.findAccomList();
 
         /** 화면에 표시할 한글카테고리 이름 조회**/
         String viewName = accomCategoryService.getAccomViewName(category_name);
@@ -102,7 +97,6 @@ public class AccomController {
         boolean memberCheck = false;
         model.addAttribute("memberCheck",memberCheck);
 
-        model.addAttribute("categoryList",categoryList);
         model.addAttribute("viewName",viewName);
         model.addAttribute("categoryName",category_name);
         model.addAttribute("sessionDTO", sessionDTO);
@@ -131,6 +125,9 @@ public class AccomController {
         AccommodationDTO findAccom = accommodationService.findByAccomNum(accomNum, searchForm);
         model.addAttribute("accom",findAccom);
 
+
+       
+
         /** 해당 숙소의 숙소시설 리스트  **/
 
         /** 회원 Object 반환하는 로직 **/
@@ -142,9 +139,22 @@ public class AccomController {
         /** searchForm 반환 **/
         model.addAttribute("searchForm",searchForm);
 
+        Accommodation accomList= accommodationService.findAccom(accomNum);//숙소 정보
+        List<Facilities> facilitiesList = facilitiesService.getFacilitiesList();//숙소 시설
+        model.addAttribute("facilities",facilitiesList);
+        model.addAttribute("accommodation",accomList);
+//        model.addAttribute("roomlist", roomService.roomList());
+
+        List<AccomReviewDTO.ResponseDto> reviewlist = accomReviewService.findAllByAccom(accomNum);
+        for (AccomReviewDTO.ResponseDto responseDto : reviewlist) {
+            System.out.println("responseDto.getAccomReviewRating() = " + responseDto.getAccomReviewRating());
+        }
+        model.addAttribute("reviewlist",reviewlist);//리뷰 리스트 출력
         return "accom/hotel/hotel-single";
 
     }
+    @PostMapping("hotel-single")
+    public String postHotelSingle(){return "accom/hotel/hotel-single";}
 
     @GetMapping("singleSearch")
     public String getHotelSingleSearch(@LoginUser SessionDTO sessionDTO, Model model,Long accomNum) {
@@ -152,6 +162,7 @@ public class AccomController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
+
 
         System.out.println("accomNum!!!!!!!!!!!!! = " + accomNum);
         Accommodation accomList= accommodationService.findAccom(accomNum);//숙소 정보

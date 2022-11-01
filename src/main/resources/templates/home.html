@@ -33,11 +33,15 @@
                                 <form th:action="@{/accom/hotel}" id="searchForm" th:object="${searchForm}" class="row">
                                     <div class="col-lg-3 pr-0 hwt-search-element">
                                         <div class="input-box">
-                                            <label class="label-text">지역 / 숙소 이름</label>
-                                            <div class="form-group">
-                                                <span class="la la-map-marker form-icon"></span>
-                                                <input class="form-control" name="keword" type="text" placeholder="지역 또는 숙소 이름을 입력하세요.">
-                                            </div>
+                                            <label class="label-text">카테고리</label>
+                                            <div class="select-contain home-select-category">
+                                                <select class="select-contain-select">
+                                                    <option value="1">호텔</option>
+                                                    <option value="2">모텔</option>
+                                                    <option value="3">펜션/풀빌라</option>
+                                                    <option value="4">게하/한옥</option>
+                                                </select>
+                                            </div><!-- end select-contain -->
                                         </div>
                                     </div><!-- end col-lg-3 -->
                                     <div class="col-lg-3 pr-0 hwt-search-element">
@@ -128,10 +132,10 @@
                 <div class="col-lg-3 responsive-column hwt-col-icon">
                     <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
                         <div class="hwt-iconbox-pointer">
-                            <a href="hotel-list">
+                            <a href="/accom/hotel">
                                 <div class="info-icon flex-shrink-0 bg-rgb text-color-2 hwt-info-icon">
                                     <!--                        <i class="las la-radiation"></i>-->
-                                    <img src="icon/hotel.png" class="hwt-icon-element">
+                                    <img src="/icon/hotel.png" class="hwt-icon-element">
                                 </div><!-- end info-icon-->
                                 <div class="info-content">
                                     <!--                        <h4 class="info__title">Unique Atmosphere</h4>-->
@@ -144,7 +148,7 @@
                 <div class="col-lg-3 responsive-column hwt-col-icon">
                     <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
                         <div class="hwt-iconbox-pointer">
-                            <a href="motel-list">
+                            <a href="/accom/motel">
                                 <div class="info-icon flex-shrink-0 bg-rgb-2 text-color-3 hwt-info-icon">
                                     <!--                        <i class="la la-tree"></i>-->
                                     <img src="icon/motel2.png" class="hwt-icon-element">
@@ -160,7 +164,7 @@
                 <div class="col-lg-3 responsive-column hwt-col-icon">
                     <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
                         <div class="hwt-iconbox-pointer">
-                            <a href="pension-PoolVilla-list">
+                            <a href="/accom/penssion">
                                 <div class="info-icon flex-shrink-0 bg-rgb-3 text-color-4 hwt-info-icon">
                                     <!--                        <i class="las la-map-marked-alt"></i>-->
                                     <img src="icon/poolvilla.png" class="hwt-icon-element">
@@ -176,7 +180,7 @@
                 <div class="col-lg-3 responsive-column hwt-col-icon">
                     <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
                         <div class="hwt-iconbox-pointer">
-                            <a href="guestHouse-Hanok-list">
+                            <a href="/accom/guesthouse">
                                 <div class="info-icon flex-shrink-0 bg-rgb-4 text-color-5 hwt-info-icon">
                                     <!--                        <i class="las la-bed"></i>-->
                                     <img src="icon/hostel.png" class="hwt-icon-element">
@@ -611,21 +615,21 @@
     <div class="section-block"></div>
 
     <th:block th:replace="fragments/bottom-bar::bottom-bar"></th:block>
+            <!-- start back-to-top -->
+            <div id="back-to-top">
+                <i class="la la-angle-up" title="Go top"></i>
+            </div>
+            <!-- end back-to-top -->
 
-    <!-- start back-to-top -->
-    <div id="back-to-top">
-        <i class="la la-angle-up" title="Go top"></i>
-    </div>
-    <!-- end back-to-top -->
-
-    <!-- end modal-shared -->
-    <!-- 회원가입 모달 -->
-    <th:block th:replace="fragments/signUp::signUp"></th:block>
+            <!-- end modal-shared -->
+            <!-- 회원가입 모달 -->
+            <th:block th:replace="fragments/signUp::signUp"></th:block>
 
 
-    <!-- end modal-shared -->
-    <!-- 로그인 모달 -->
-    <th:block th:replace="fragments/signIn::signIn"></th:block>
+            <!-- end modal-shared -->
+            <!-- 로그인 모달 -->
+            <th:block th:replace="fragments/signIn::signIn"></th:block>
+
 
     <script>
         $(document).ready(function(){

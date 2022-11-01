@@ -39,6 +39,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -128,9 +129,12 @@ public class OrdersService {
                     .collect(Collectors.toList()); // DTO List
 
             order.getReservation().addAll(lists);
-            Coupon coupon = couponRepository.findByCouponNumAndMember_MemberNum(ordersCreateDTO.getUseCouponNum(), memberNum).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 쿠폰 정보가 없습니다.", ordersCreateDTO.getUseCouponNum())));
-            coupon.couponUsed();
 
+            Coupon coupon = couponRepository.findByCouponNumAndMember_MemberNum(ordersCreateDTO.getUseCouponNum(), memberNum).orElse(null);
+
+            if(coupon != null){
+                coupon.couponUsed();
+            }
 
             ordersRepository.save(order);
             cartRepository.deleteAllById(ordersCreateDTO.getCartNum());

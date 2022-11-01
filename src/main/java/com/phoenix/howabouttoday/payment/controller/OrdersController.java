@@ -36,15 +36,14 @@ public class OrdersController {
 
     // 객실 상세 -> 결제 페이지
     @GetMapping("/directPayment")
-    public String roomView(Model model, @LoginUser SessionDTO sessionDTO, Principal principal, OrdersDirectDTO ordersDirectDTO, RedirectAttributes redirectAttributes) {
+    public String roomView(Model model, @LoginUser SessionDTO sessionDTO, Principal principal, OrdersDirectDTO ordersDirectDTO) {
 
         if (sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-        else {
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
-        }
-
+//        else {
+//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+//        }
 
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
         List<OrdersDetailVO> infoList = orderService.getDirectData(customer, ordersDirectDTO);
@@ -59,9 +58,9 @@ public class OrdersController {
         if (sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-        else {
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
-        }
+//        else {
+//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+//        }
 
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
         List<OrdersDetailVO> infoList = orderService.getCartData(cartNum);
@@ -102,7 +101,7 @@ public class OrdersController {
 
     /* 결제 성공 */
     @PostMapping("/paymentSuccess")
-    public String postUserPaymentSuccess(@LoginUser SessionDTO sessionDTO, OrdersCreateDTO ordersCreateDTO) {
+    public String postUserPaymentSuccess(Model model, @LoginUser SessionDTO sessionDTO, OrdersCreateDTO ordersCreateDTO) {
 
 
         /** 해결 완료! **/
@@ -110,11 +109,11 @@ public class OrdersController {
         /** 이것만 제대로 되면 결제 취소도 가능할듯. **/
 
         if (sessionDTO != null) {
-//            model.addAttribute("sessionDTO", sessionDTO);
+            model.addAttribute("sessionDTO", sessionDTO);
         }
-        else {
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
-        }
+//        else {
+//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+//        }
 
 //        model.addAttribute("sessionDTO", sessionDTO);
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
