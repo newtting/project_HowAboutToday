@@ -21,13 +21,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.List;
 
-@RequestMapping("/orders")
 @RequiredArgsConstructor
 @Controller
+@RequestMapping("/orders")
 public class OrdersController {
 
     private final OrdersService orderService;
@@ -51,7 +50,7 @@ public class OrdersController {
         return "redirect:/orders/payment?cartNum=" + infoList.get(0).getCartNum();
     }
 
-    /* 카드 -> 결제페이지 */
+    /* 카트 -> 결제페이지 */
     @GetMapping("/payment")
     public String paymentView(@LoginUser SessionDTO sessionDTO, Principal principal, Model model, @RequestParam List<Long> cartNum) {
 

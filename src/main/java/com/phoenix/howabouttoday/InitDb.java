@@ -8,6 +8,7 @@ import com.phoenix.howabouttoday.payment.entity.Coupon;
 import com.phoenix.howabouttoday.payment.entity.CouponRules;
 import com.phoenix.howabouttoday.payment.enumType.CouponStatus;
 import com.phoenix.howabouttoday.payment.enumType.DiscountType;
+import com.phoenix.howabouttoday.payment.enumType.ReviewStatus;
 import com.phoenix.howabouttoday.payment.repository.CouponRepository;
 import com.phoenix.howabouttoday.payment.repository.CouponRulesRepository;
 import com.phoenix.howabouttoday.room.entity.Review;
@@ -339,6 +340,7 @@ public class InitDb {
                     .reservePrice(cart.getReservePrice())
                     .reserveAdultCount(cart.getReserveAdultCount())
                     .reserveChildCount(cart.getReserveChildCount())
+                    .isReviewWrited(ReviewStatus.PRE_WRITE)
                     .build();
 
             order.getReservation().add(ordersDetail);
@@ -361,6 +363,7 @@ public class InitDb {
                     .reviewRating(3.72)
                     .room(room)
                     .reviewContent("안녕")
+                    .memberName("이동우")
                     .build());
 
             room.getReviews().add(review);
@@ -730,6 +733,7 @@ public class InitDb {
                     .reviewCreateDate(LocalDate.now())
                     .reviewModifyDate(LocalDate.now())
                     .reviewRating(2.73)
+                    .memberName("안수언")
                     .reviewContent("너무별로에요")
                     .room(room)
                     .build());
@@ -949,8 +953,6 @@ public class InitDb {
             orders.getReservation().add(od);
             return od;
         }
-
-
 
         public void 객실예약정보_입력(Long memberId) {
 
