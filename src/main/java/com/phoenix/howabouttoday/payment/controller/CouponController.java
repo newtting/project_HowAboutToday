@@ -1,6 +1,7 @@
 package com.phoenix.howabouttoday.payment.controller;
 
 import com.phoenix.howabouttoday.config.auth.LoginUser;
+import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import com.phoenix.howabouttoday.payment.dto.CouponDTO;
 import com.phoenix.howabouttoday.payment.service.CouponService;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+
+import static com.phoenix.howabouttoday.payment.MemberDTOCHECK.doCheck;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,7 +28,15 @@ public class CouponController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        List<CouponDTO> cList = couponService.findAll_Coupon(memberNum);
+        doCheck(model);
+
+        /** 회원 Object 반환하는 로직 **/
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("memberDTO",memberDTO);
+        boolean memberCheck = false;
+        model.addAttribute("memberCheck",memberCheck);
+
+        List<CouponDTO> cList = couponService.getCoupon(memberNum);
         model.addAttribute("clist",cList);
 
         return "member/userdashboard/user-dashboard-coupon";

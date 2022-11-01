@@ -66,7 +66,7 @@ public class AccomodationService {
     }
 
     /** accomNum에 해당하는 숙소 조회 **/
-    public AccommodationDTO findByAccomNum(Long accomNum, SearchForm searchForm ){
+    public AccommodationDTO findByAccomNum(Long accomNum, SearchForm searchForm){
 
         Accommodation findAccom = accommodationRepository.findById(accomNum).orElseThrow(() ->
                 new IllegalArgumentException("해당 숙소는 현재 존재하지 않습니다"));
