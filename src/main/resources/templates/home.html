@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/layout">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/layout">
 
 <th:block layout:fragment="content">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 
 
     <!-- ================================
-                START HERO-WRAPPER AREA
-            ================================= -->
+        START HERO-WRAPPER AREA
+    ================================= -->
     <section class="hero-wrapper hero-wrapper2">
         <div class="hero-box pb-0 hwt-hero-box">
             <div id="fullscreen-slide-contain">
@@ -28,79 +30,98 @@
                         </div><!-- end hero-content -->
                         <div class="search-fields-container hwt-search-container">
                             <div class="contact-form-action hwt-search">
-                                <form action="#" class="row">
+                                <form th:action="@{/accom/hotel}" id="searchForm" th:object="${searchForm}" class="row">
                                     <div class="col-lg-3 pr-0 hwt-search-element">
                                         <div class="input-box">
                                             <label class="label-text">지역 / 숙소 이름</label>
                                             <div class="form-group">
                                                 <span class="la la-map-marker form-icon"></span>
-                                                <input class="form-control" type="text" placeholder="지역 또는 숙소 이름을 입력하세요.">
+                                                <input class="form-control" name="keword" type="text" placeholder="지역 또는 숙소 이름을 입력하세요.">
                                             </div>
                                         </div>
-                                    </div>
-                                </form>
-                            </div><!-- end col-lg-3 -->
-                            <div class="col-lg-3 pr-0 hwt-search-element">
-                                <div class="input-box">
-                                    <label class="label-text">체크인 - 체크아웃</label>
-                                    <div class="form-group">
-                                        <span class="la la-calendar form-icon"></span>
-                                        <input class="date-picker-multiple form-control" type="text" name="daterange" readonly>
-                                    </div>
-                                </div>
-                            </div><!-- end col-lg-3 -->
-                            <div class="col-lg-3 hwt-search-element2">
-                                <div class="input-box">
-                                    <label class="label-text">인원수</label>
-                                    <div class="form-group">
-                                        <div class="dropdown dropdown-contain gty-container">
-                                            <a class="dropdown-toggle dropdown-btn" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                                                <span class="adult" data-text="성인" data-text-multi="성인">성인 0</span>
-                                                -
-                                                <span class="children" data-text="아동" data-text-multi="아동">아동 0</span>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-wrap">
-                                                <!--                                                    <div class="dropdown-item">-->
-                                                <!--                                                        <div class="qty-box d-flex align-items-center justify-content-between">-->
-                                                <!--                                                            <label>Rooms</label>-->
-                                                <!--                                                            <div class="qtyBtn d-flex align-items-center">-->
-                                                <!--                                                                <div class="qtyDec"><i class="la la-minus"></i></div>-->
-                                                <!--                                                                <input type="text" name="room_number" value="0" class="qty-input">-->
-                                                <!--                                                                <div class="qtyInc"><i class="la la-plus"></i></div>-->
-                                                <!--                                                            </div>-->
-                                                <!--                                                        </div>-->
-                                                <!--                                                    </div>-->
-                                                <div class="dropdown-item">
-                                                    <div class="qty-box d-flex align-items-center justify-content-between">
-                                                        <label>성인</label>
-                                                        <div class="qtyBtn d-flex align-items-center">
-                                                            <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                            <input type="text" name="adult_number" value="0">
-                                                            <div class="qtyInc"><i class="la la-plus"></i></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="dropdown-item">
-                                                    <div class="qty-box d-flex align-items-center justify-content-between">
-                                                        <label>아동</label>
-                                                        <div class="qtyBtn d-flex align-items-center">
-                                                            <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                            <input type="text" name="child_number" value="0">
-                                                            <div class="qtyInc"><i class="la la-plus"></i></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    </div><!-- end col-lg-3 -->
+                                    <div class="col-lg-3 pr-0 hwt-search-element">
+                                        <div class="input-box">
+                                            <label class="label-text">체크인 - 체크아웃</label>
+                                            <div class="form-group">
+                                                <span class="la la-calendar form-icon"></span>
+                                                <input class="date-picker-multiple form-control" type="text" name="daterange" th:field="*{daterange}" readonly>
                                             </div>
-                                        </div><!-- end dropdown -->
-                                    </div>
+                                        </div>
+                                    </div><!-- end col-lg-3 -->
+                                    <div class="col-lg-3 hwt-search-element2">
+                                        <div class="input-box">
+                                            <label class="label-text">인원수</label>
+                                            <div class="form-group">
+                                                <div class="dropdown dropdown-contain gty-container">
+                                                    <a class="dropdown-toggle dropdown-btn" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                                        <span class="adult" data-text="성인" data-text-multi="성인">성인 0</span>
+                                                        -
+                                                        <span class="children" data-text="아동" data-text-multi="아동">아동 0</span>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-wrap">
+                                                        <!--                                                    <div class="dropdown-item">-->
+                                                        <!--                                                        <div class="qty-box d-flex align-items-center justify-content-between">-->
+                                                        <!--                                                            <label>Rooms</label>-->
+                                                        <!--                                                            <div class="qtyBtn d-flex align-items-center">-->
+                                                        <!--                                                                <div class="qtyDec"><i class="la la-minus"></i></div>-->
+                                                        <!--                                                                <input type="text" name="room_number" value="0" class="qty-input">-->
+                                                        <!--                                                                <div class="qtyInc"><i class="la la-plus"></i></div>-->
+                                                        <!--                                                            </div>-->
+                                                        <!--                                                        </div>-->
+                                                        <!--                                                    </div>-->
+                                                        <div class="dropdown-item">
+                                                            <div class="qty-box d-flex align-items-center justify-content-between">
+                                                                <label>성인</label>
+                                                                <div class="qtyBtn d-flex align-items-center">
+                                                                    <div class="qtyDec"><i class="la la-minus"></i></div>
+                                                                    <input type="text" th:field="*{adult_number}">
+                                                                    <div class="qtyInc"><i class="la la-plus"></i></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dropdown-item">
+                                                            <div class="qty-box d-flex align-items-center justify-content-between">
+                                                                <label>아동</label>
+                                                                <div class="qtyBtn d-flex align-items-center">
+                                                                    <div class="qtyDec"><i class="la la-minus"></i></div>
+                                                                    <input type="text" th:field="*{child_number}">
+                                                                    <div class="qtyInc"><i class="la la-plus"></i></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- end dropdown -->
+                                            </div>
+                                        </div>
+                                    </div><!-- end col-lg-3 -->
+                                </form>
+                                <div class="btn-box pt-2 hwt-search-btn">
+                                    <a th:href="|javascript:void(0)|" class="theme-btn hwt-btn-gray" th:onclick="searchSubmit()">검색</a>
                                 </div>
-                            </div><!-- end col-lg-3 -->
-                            </form>
-                            <div class="btn-box pt-2 hwt-search-btn">
-                                <a href="room-search-result.html" class="theme-btn hwt-btn-gray">검색</a>
                             </div>
                         </div>
-                    </div>
+                    </div><!-- end col-lg-12 -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div>
+    </section><!-- end hero-wrapper -->
+    <!-- ================================
+        END HERO-WRAPPER AREA
+    ================================= -->
+
+    <div class="section-block"></div>
+
+    <!-- ================================
+        START INFO AREA
+    ================================= -->
+    <section class="info-area info-bg info-area2 padding-top-40px padding-bottom-60px hwt-info">
+        <div class="container">
+            <div class="row hwt-row-board">
+                <div class="col-lg-12">
+                    <div class="section-heading hwt-title">
+                        <p class="sec__title">바로가기</p>
+                    </div><!-- end section-heading -->
                 </div><!-- end col-lg-12 -->
             </div>
             <div class="row hwt-row-icon">
@@ -156,93 +177,6 @@
                     <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
                         <div class="hwt-iconbox-pointer">
                             <a href="guestHouse-Hanok-list">
-                                <div class="info-icon flex-shrink-0 bg-rgb-4 text-color-5 hwt-info-icon">
-                                    <!--                        <i class="las la-bed"></i>-->
-                                    <img src="icon/hostel.png" class="hwt-icon-element">
-                                </div><!-- end info-icon-->
-                                <div class="info-content">
-                                    <!--                        <h4 class="info__title">Homey Comfort</h4>-->
-                                    <p class="info__desc">게하/한옥</p>
-                                </div><!-- end info-content -->
-                            </a>
-                        </div>
-                    </div><!-- end icon-box -->
-                </div><!-- end col-lg-3 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-        </div>
-    </section><!-- end hero-wrapper -->
-    <!-- ================================
-        END HERO-WRAPPER AREA
-    ================================= -->
-
-    <div class="section-block"></div>
-
-    <!-- ================================
-        START INFO AREA
-    ================================= -->
-    <section class="info-area info-bg info-area2 padding-top-40px padding-bottom-60px hwt-info">
-        <div class="container">
-            <div class="row hwt-row-board">
-                <div class="col-lg-12">
-                    <div class="section-heading hwt-title">
-                        <p class="sec__title">바로가기</p>
-                    </div><!-- end section-heading -->
-                </div><!-- end col-lg-12 -->
-            </div>
-            <div class="row hwt-row-icon">
-                <div class="col-lg-3 responsive-column hwt-col-icon">
-                    <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
-                        <div class="hwt-iconbox-pointer">
-                            <a href="/accom/hotel">
-                                <div class="info-icon flex-shrink-0 bg-rgb text-color-2 hwt-info-icon">
-                                    <!--                        <i class="las la-radiation"></i>-->
-                                    <img src="/icon/hotel.png" class="hwt-icon-element">
-                                </div><!-- end info-icon-->
-                                <div class="info-content">
-                                    <!--                        <h4 class="info__title">Unique Atmosphere</h4>-->
-                                    <p class="info__desc">호텔</p>
-                                </div><!-- end info-content -->
-                            </a>
-                        </div>
-                    </div><!-- end icon-box -->
-                </div><!-- end col-lg-3 -->
-                <div class="col-lg-3 responsive-column hwt-col-icon">
-                    <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
-                        <div class="hwt-iconbox-pointer">
-                            <a href="/accom/motel">
-                                <div class="info-icon flex-shrink-0 bg-rgb-2 text-color-3 hwt-info-icon">
-                                    <!--                        <i class="la la-tree"></i>-->
-                                    <img src="icon/motel2.png" class="hwt-icon-element">
-                                </div><!-- end info-icon-->
-                                <div class="info-content">
-                                    <!--                        <h4 class="info__title">Environment</h4>-->
-                                    <p class="info__desc">모텔</p>
-                                </div><!-- end info-content -->
-                            </a>
-                        </div>
-                    </div><!-- end icon-box -->
-                </div><!-- end col-lg-3 -->
-                <div class="col-lg-3 responsive-column hwt-col-icon">
-                    <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
-                        <div class="hwt-iconbox-pointer">
-                            <a href="/accom/penssion">
-                                <div class="info-icon flex-shrink-0 bg-rgb-3 text-color-4 hwt-info-icon">
-                                    <!--                        <i class="las la-map-marked-alt"></i>-->
-                                    <img src="icon/poolvilla.png" class="hwt-icon-element">
-                                </div><!-- end info-icon-->
-                                <div class="info-content">
-                                    <!--                        <h4 class="info__title">Great Location</h4>-->
-                                    <p class="info__desc">펜션/풀빌라</p>
-                                </div><!-- end info-content -->
-                            </a>
-                        </div>
-                    </div><!-- end icon-box -->
-                </div><!-- end col-lg-3 -->
-                <div class="col-lg-3 responsive-column hwt-col-icon">
-                    <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
-                        <div class="hwt-iconbox-pointer">
-                            <a href="/accom/guesthouse">
                                 <div class="info-icon flex-shrink-0 bg-rgb-4 text-color-5 hwt-info-icon">
                                     <!--                        <i class="las la-bed"></i>-->
                                     <img src="icon/hostel.png" class="hwt-icon-element">
@@ -678,106 +612,39 @@
 
     <th:block th:replace="fragments/bottom-bar::bottom-bar"></th:block>
 
-    <!-- end modal-shared -->
-    <div class="modal-popup">
-        <input type="hidden" id="memberCheck" th:value="${memberCheck}">
-        <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
-                            <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" th:action="@{/member/join}" th:object="${memberDTO}">
-                                <div class="input-box">
-                                    <label class="label-text">닉네임</label>
-                                    <div class="form-group">
-                                        <span class="la la-user form-icon"></span>
-                                        <input class="form-control" type="text" th:field="*{nickname}" placeholder="닉네임" th:class="${#fields.hasErrors('nickname')}? 'form-control fieldError' : 'form-control'">
-                                        <span th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}" style="color: red; font-size:13px"></span>
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">이메일 주소</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="text" th:field="*{email}" placeholder="이메일 주소" th:class="${#fields.hasErrors('email')}? 'form-control fieldError' : 'form-control'">
-                                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red; font-size:13px"></span>
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" th:field="*{pwd}" placeholder="패스워드" th:class="${#fields.hasErrors('pwd')}? 'form-control fieldError' : 'form-control'">
-                                        <span th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}" style="color: red; font-size:13px"></span>
-                                    </div>
-                                </div><!-- end input-box -->
-                                <!--                                     <div class="input-box">-->
-                                <!--                                         <label class="label-text">패스워드 확인</label>-->
-                                <!--                                              <div class="form-group">-->
-                                <!--                                                  <span class="la la-lock form-icon"></span>-->
-                                <!--                                                  <input class="form-control" type="password" name="text" placeholder="패스워드 재입력">-->
-                                <!--                                             </div>-->
-                                <!--                                     </div>&lt;!&ndash; end input-box &ndash;&gt;-->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" class="theme-btn w-100">회원가입</button>
-                                </div>
-                            </form>
-                        </div><!-- end input-box -->
-<!--                        <div class="input-box">-->
-<!--                            <label class="label-text">이메일 주소</label>-->
-<!--                            <div class="form-group">-->
-<!--                                <span class="la la-envelope form-icon"></span>-->
-<!--                                <input class="form-control" type="text" th:field="*{email}" placeholder="이메일 주소" th:class="${#fields.hasErrors('email')}? 'form-control fieldError' : 'form-control'">-->
-<!--                                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
-<!--                            </div>-->
-<!--                        </div>&lt;!&ndash; end input-box &ndash;&gt;-->
-<!--                        <div class="input-box">-->
-<!--                            <label class="label-text">패스워드</label>-->
-<!--                            <div class="form-group">-->
-<!--                                <span class="la la-lock form-icon"></span>-->
-<!--                                <input class="form-control" type="password" id="inputPassword" th:field="*{pwd}" placeholder="패스워드" th:class="${#fields.hasErrors('pwd')}? 'form-control fieldError' : 'form-control'">-->
-<!--                                <span th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></span>-->
-<!--                            </div>-->
-<!--                        </div>&lt;!&ndash; end input-box &ndash;&gt;-->
-                        <div class="btn-box pt-3 pb-4">
-                            <button type="submit" class="theme-btn w-100">회원가입</button>
-                        </div>
-                        <div class="action-box text-center">
-                            <p class="font-size-14">SNS를 통한 회원가입</p>
-                            <ul class="social-profile py-3">
-                                <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                        <button type="button" th:onclick="autoJoin()" class="theme-btn w-100">자동가입</button>
-                        </form>
-                    </div><!-- end contact-form-action -->
-                </div>
-            </div>
-        </div>
+    <!-- start back-to-top -->
+    <div id="back-to-top">
+        <i class="la la-angle-up" title="Go top"></i>
     </div>
-    </div><!-- end modal-popup -->
+    <!-- end back-to-top -->
+
+    <!-- end modal-shared -->
+    <!-- 회원가입 모달 -->
+    <th:block th:replace="fragments/signUp::signUp"></th:block>
+
+
+    <!-- end modal-shared -->
+    <!-- 로그인 모달 -->
+    <th:block th:replace="fragments/signIn::signIn"></th:block>
+
     <script>
-        $(document).ready(function () {
+        $(document).ready(function(){
 
             let memberCheck = $("#memberCheck").val();
 
-            if (memberCheck == "true") {
+            if(memberCheck == "true"){
                 $("#memberJoin").click();
             }
 
         })
+
+
+        function searchSubmit(){
+            var searchForm = document.getElementById("searchForm")
+            searchForm.submit();
+
+
+        }
     </script>
 </th:block>
 

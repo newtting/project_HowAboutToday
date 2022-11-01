@@ -1,6 +1,8 @@
 package com.phoenix.howabouttoday.accom.controller;
 
 
+import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
+import com.phoenix.howabouttoday.accom.dto.SearchForm;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Facilities;
 import com.phoenix.howabouttoday.accom.dto.AccomCategoryDto;
@@ -33,6 +35,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -44,12 +47,6 @@ public class AccomController {
     private final FacilitiesService facilitiesService;
     private final RegionService regionService;
     private final AccomCategoryService accomCategoryService;
-
-
-//    public AccomController(AccomodationService accomodationService, RoomService roomService) {
-//        this.accomodationService = accomodationService;
-//        this.roomService = roomService;
-//    }
 
     // 메인 화면
     @GetMapping(value = {"/", "home"})
@@ -65,7 +62,11 @@ public class AccomController {
 
         boolean memberCheck = false;
         model.addAttribute("memberCheck",memberCheck);
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm",searchForm);
+
         return "home";
+
     }
 
     // 숙소유형별 리스트 출력
@@ -73,12 +74,18 @@ public class AccomController {
     public String readAccom(@PathVariable(required = false) String category_name,
                             @PageableDefault(page = 0,size = 5,sort = "accomNum",direction = Sort.Direction.DESC) Pageable pageable,
                             @LoginUser SessionDTO sessionDTO,
+                            SearchForm searchForm,
                             Model model) {
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
+
+        System.out.println("searchForm.getDaterange() = " + searchForm.getDaterange());
+        System.out.println("searchForm.getAdult_number() = " + searchForm.getAdult_number());
+        System.out.println("searchForm.getChild_number() = " + searchForm.getChild_number());
+        
         /** 카테고리 리스트 조회 **/
         List<AccomCategoryDto.ResponseDto> categoryList = accomCategoryService.findAccomList();
 
@@ -89,6 +96,11 @@ public class AccomController {
         List<Region> parentRegions = regionService.findAllParent();
 
 
+        /** 회원 Object 반환하는 로직 **/
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("memberDTO",memberDTO);
+        boolean memberCheck = false;
+        model.addAttribute("memberCheck",memberCheck);
 
         model.addAttribute("categoryList",categoryList);
         model.addAttribute("viewName",viewName);
@@ -96,73 +108,43 @@ public class AccomController {
         model.addAttribute("sessionDTO", sessionDTO);
         model.addAttribute("parentRegions", parentRegions);
 
+        /** 검색한 날짜와 인원수 폼 반환 **/
+        model.addAttribute("searchForm",searchForm);
 
         return "accom/hotel/hotel-list";
 
     }
-    @GetMapping("hotel-list")
-    public String getHotelList(@LoginUser SessionDTO sessionDTO, Model model){
-
-        if(sessionDTO != null) {
-            model.addAttribute("sessionDTO", sessionDTO);
-        }
-
-        List<Accommodation> accommodationList = accommodationService.getAccommodationlist();
-
-        model.addAttribute("accommodationList",accommodationList);
-
-        return "accom/hotel/hotel-list";
-    }
-
-    @PostMapping("hotel-list")
-    public String postHotelList(){
-        return "accom/hotel/hotel-list";
-    }
-
-    @GetMapping("hotel-listSearch")
-    public String getHotelSearchResult(@RequestParam(value = "keyword") String keyword,
-                                       @LoginUser SessionDTO sessionDTO, Model model, String date){
-
-        if(sessionDTO != null) {
-            model.addAttribute("sessionDTO", sessionDTO);
-        }
-
-        List<Accommodation> accommodationList = accommodationService.searchResults(keyword);
-
-        model.addAttribute("accommodationList", accommodationList);
-        return "accom/hotel/hotel-list";
-    }
-
-//    @PostMapping("hotel-search-result")
-//    public String postHotelSearchResult(){
-//        return "accom/hotel/hotel-search-result";
-//    }
 
     //숙소 상세
     @GetMapping("hotel-single")
     public String getHotelSingle(@LoginUser SessionDTO sessionDTO, Model model,
-                                 @RequestParam Long accomNum,Long roomNum){
+                                 @RequestParam Long accomNum,
+                                 SearchForm searchForm){
+
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        List<RoomImageDTO> iList = roomService.findAll_Image(roomNum);
-        model.addAttribute("ilist",iList); //객실 이미지
 
-        List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
-        model.addAttribute("roomlist",roomList); //객실 리스트
+        /** 숙소반환 로직 **/
+        AccommodationDTO findAccom = accommodationService.findByAccomNum(accomNum, searchForm);
+        model.addAttribute("accom",findAccom);
 
-        Accommodation accomList= accommodationService.findAccom(accomNum);//숙소 정보
-        List<Facilities> facilitiesList = facilitiesService.getFacilitiesList();//숙소 시설
-        model.addAttribute("facilities",facilitiesList);
-        model.addAttribute("accommodation",accomList);
-//        model.addAttribute("roomlist", roomService.roomList());
+        /** 해당 숙소의 숙소시설 리스트  **/
+
+        /** 회원 Object 반환하는 로직 **/
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("memberDTO",memberDTO);
+        boolean memberCheck = false;
+        model.addAttribute("memberCheck",memberCheck);
+
+        /** searchForm 반환 **/
+        model.addAttribute("searchForm",searchForm);
+
         return "accom/hotel/hotel-single";
 
     }
-    @PostMapping("hotel-single")
-    public String postHotelSingle(){return "accom/hotel/hotel-single";}
 
     @GetMapping("singleSearch")
     public String getHotelSingleSearch(@LoginUser SessionDTO sessionDTO, Model model,Long accomNum) {
@@ -181,132 +163,7 @@ public class AccomController {
         return "accom/hotel/hotel-single";
     }
 
-//    @GetMapping("motel-list")
-//    public String getMotelList(@LoginUser SessionDTO sessionDTO, Model model){
-//
-//        if(sessionDTO != null) {
-//            model.addAttribute("sessionDTO", sessionDTO);
-//        }
-//
-//        return "accom/hotel/motel-list";
-//    }
-//    @PostMapping("motel-list")
-//    public String postMotelList(){
-//        return "accom/hotel/motel-list";
-//    }
-//
-//    @GetMapping("motel-search-result")
-//    public String getMotelSearchResult(@LoginUser SessionDTO sessionDTO, Model model){
-//
-//        if(sessionDTO != null) {
-//            model.addAttribute("sessionDTO", sessionDTO);
-//        }
-//
-//        return "accom/hotel/motel-search-result";
-//    }
-//    @PostMapping("motel-search-result")
-//    public String postMotelSearchResult(){
-//        return "accom/hotel/motel-search-result";
-//    }
-//
-//    @GetMapping("motel-single")
-//    public String getMotelSingle(@LoginUser SessionDTO sessionDTO, Model model,Long accomNum){
-//
-//        if(sessionDTO != null) {
-//            model.addAttribute("sessionDTO", sessionDTO);
-//        }
-//
-//        return "accom/hotel/motel-single";
-//
-//    }
-//    @PostMapping("motel-single")
-//    public String postMotelSingle(){
-//        return "accom/hotel/motel-single";
-//    }
-//
-//    @GetMapping("pension-PoolVilla-list")
-//    public String getPensionPoolVillaList(@LoginUser SessionDTO sessionDTO, Model model){
-//
-//        if(sessionDTO != null) {
-//            model.addAttribute("sessionDTO", sessionDTO);
-//        }
-//
-//        return "accom/hotel/pension-PoolVilla-list";
-//    }
-//    @PostMapping("pension-PoolVilla-list")
-//    public String postPensionPoolVillaList(){
-//        return "accom/hotel/pension-PoolVilla-list";
-//    }
-//
-//    @GetMapping("pension-PoolVilla-single")
-//    public String getPensionPoolVillaSingle(@LoginUser SessionDTO sessionDTO, Model model,Long accomNum){
-//
-//        if(sessionDTO != null) {
-//            model.addAttribute("sessionDTO", sessionDTO);
-//        }
-//
-//        List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
-//        model.addAttribute("roomlist",roomList);
-//        return "accom/hotel/pension-PoolVilla-single";
-//
-//    }
-//    @PostMapping("pension-PoolVilla-single")
-//    public String postPensionPoolVillaSingle(){
-//        return "accom/hotel/pension-PoolVilla-single";
-//    }
-//
-//    @GetMapping("pension-PoolVilla-result")
-//    public String getPensionPoolVillaResult(@LoginUser SessionDTO sessionDTO, Model model){
-//
-//        if(sessionDTO != null) {
-//            model.addAttribute("sessionDTO", sessionDTO);
-//        }
-//
-//        return "accom/hotel/pension-PoolVilla-result";
-//    }
-//    @PostMapping("pension-PoolVilla-result")
-//    public String postPensionPoolVillaResult(){
-//        return "accom/hotel/pension-PoolVilla-result";
-//    }
-//
-//    @GetMapping("guestHouse-Hanok-list")
-//    public String getGuestHouseList(@LoginUser SessionDTO sessionDTO, Model model){
-//
-//        if(sessionDTO != null) {
-//            model.addAttribute("sessionDTO", sessionDTO);
-//        }
-//
-//        return "accom/hotel/guestHouse-Hanok-list";
-//    }
-//    @PostMapping("guestHouse-Hanok-list")
-//    public String postGuestHouseList(){ return "accom/hotel/guestHouse-Hanok-list";}
-//
-//    @GetMapping("guestHouse-Hanok-result")
-//    public String getGuestHouseSingle(@LoginUser SessionDTO sessionDTO, Model model){
-//
-//        if(sessionDTO != null) {
-//            model.addAttribute("sessionDTO", sessionDTO);
-//        }
-//
-//        return "accom/hotel/guestHouse-Hanok-result";
-//    }
-//    @PostMapping("guesthouse-Hanok-result")
-//    public String postGuestHouseSingle(){ return "accom/hotel/guestHouse-Hanok-result";}
-//
-//    @GetMapping("guestHouse-Hanok-single")
-//    public String getGuestHouseResult(@LoginUser SessionDTO sessionDTO, Model model,Long accomNum){
-//
-//        if(sessionDTO != null) {
-//            model.addAttribute("sessionDTO", sessionDTO);
-//        }
-//
-//        List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
-//        model.addAttribute("roomlist",roomList);
-//        return "accom/hotel/guestHouse-Hanok-single";
-//
-//    }
-//    @PostMapping("guestHouse-Hanok-single")
-//    public String postGuestHouseResult(){ return "accom/hotel/guestHouse-Hanok-single";}
+
 
 
 }
