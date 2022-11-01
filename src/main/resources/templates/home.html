@@ -30,16 +30,15 @@
                         </div><!-- end hero-content -->
                         <div class="search-fields-container hwt-search-container">
                             <div class="contact-form-action hwt-search">
-                                <form th:action="@{/accom/hotel}" id="searchForm" th:object="${searchForm}" class="row">
+                                <form id="searchForm" th:object="${searchForm}" class="row">
                                     <div class="col-lg-3 pr-0 hwt-search-element">
                                         <div class="input-box">
                                             <label class="label-text">카테고리</label>
                                             <div class="select-contain home-select-category">
-                                                <select class="select-contain-select">
-                                                    <option value="1">호텔</option>
-                                                    <option value="2">모텔</option>
-                                                    <option value="3">펜션/풀빌라</option>
-                                                    <option value="4">게하/한옥</option>
+                                                <select class="select-contain-select" id="categoryValue">
+                                                    <th:block  th:each="category : ${accomCategorys}">
+                                                    <option th:value="${category.name}" th:text="${category.viewName}">호텔</option>
+                                                    </th:block>
                                                 </select>
                                             </div><!-- end select-contain -->
                                         </div>
@@ -645,6 +644,8 @@
 
         function searchSubmit(){
             var searchForm = document.getElementById("searchForm")
+            let category_name = $("#categoryValue").val();
+            searchForm.action = '/accom/' + category_name
             searchForm.submit();
 
 

@@ -13,19 +13,16 @@ import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Facilities;
 import com.phoenix.howabouttoday.accom.entity.Region;
-import com.phoenix.howabouttoday.accom.service.AccomCategoryService;
-import com.phoenix.howabouttoday.accom.service.AccomodationService;
+import com.phoenix.howabouttoday.accom.service.*;
 
 //import com.phoenix.howabouttoday.payment.AccomCategory;
 
 
-import com.phoenix.howabouttoday.accom.service.RegionService;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import com.phoenix.howabouttoday.room.dto.RoomImageDTO;
 import com.phoenix.howabouttoday.room.dto.RoomListDTO;
-import com.phoenix.howabouttoday.accom.service.FacilitiesService;
 import com.phoenix.howabouttoday.room.service.RoomService;
 
 
@@ -58,6 +55,9 @@ public class AccomController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
+        /**화면에 표시할 숙소카테고리 조회 **/
+        List<AccomCategoryDto.ResponseDto> accomCategorys = accomCategoryService.findAccomList();
+        model.addAttribute("accomCategorys",accomCategorys);
 
         MemberDTO memberDTO = new MemberDTO();
         model.addAttribute("memberDTO",memberDTO);
@@ -115,18 +115,13 @@ public class AccomController {
                                  @RequestParam Long accomNum,
                                  SearchForm searchForm){
 
-
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-
         /** 숙소반환 로직 **/
         AccommodationDTO findAccom = accommodationService.findByAccomNum(accomNum, searchForm);
         model.addAttribute("accom",findAccom);
-
-
-       
 
         /** 해당 숙소의 숙소시설 리스트  **/
 
@@ -138,12 +133,6 @@ public class AccomController {
 
         /** searchForm 반환 **/
         model.addAttribute("searchForm",searchForm);
-
-        Accommodation accomList= accommodationService.findAccom(accomNum);//숙소 정보
-        List<Facilities> facilitiesList = facilitiesService.getFacilitiesList();//숙소 시설
-        model.addAttribute("facilities",facilitiesList);
-        model.addAttribute("accommodation",accomList);
-//        model.addAttribute("roomlist", roomService.roomList());
 
         List<AccomReviewDTO.ResponseDto> reviewlist = accomReviewService.findAllByAccom(accomNum);
         for (AccomReviewDTO.ResponseDto responseDto : reviewlist) {
