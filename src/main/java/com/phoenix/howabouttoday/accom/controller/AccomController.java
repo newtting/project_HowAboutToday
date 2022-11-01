@@ -64,7 +64,9 @@ public class AccomController {
         model.addAttribute("memberDTO",memberDTO);
 
         boolean memberCheck = false;
+        boolean loginCheck = false;
         model.addAttribute("memberCheck",memberCheck);
+        model.addAttribute("loginCheck",loginCheck);
         return "home";
     }
 
