@@ -5,25 +5,33 @@ import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
+import com.phoenix.howabouttoday.member.validator.CustomValidators;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
+    private final CustomValidators.EmailValidator EmailValidator;
+
+    /* 커스텀 유효성 검증을 위해 추가 */
+    @InitBinder
+    public void validatorBinder(WebDataBinder binder) {
+        binder.addValidators(EmailValidator);
+
+    }
 
 
 
@@ -60,6 +68,12 @@ public class MemberController {
 
             boolean memberCheck = true;
             model.addAttribute("memberCheck",memberCheck);
+            model.addAttribute("memberDTO",memberDTO);
+
+//            Map<String, String> validatorResult = memberService.validateHandling(errors);
+//            for (String key : validatorResult.keySet()) {
+//                model.addAttribute(key, validatorResult.get(key));
+
             return  "/home";
         }
 
@@ -114,6 +128,13 @@ public class MemberController {
 
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
+
+
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("memberDTO",memberDTO);
+
+        boolean loginCheck = true;
+        model.addAttribute("loginCheck",loginCheck);
 
         return "/home";
 

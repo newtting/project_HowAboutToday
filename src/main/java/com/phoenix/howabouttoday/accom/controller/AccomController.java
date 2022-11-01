@@ -63,10 +63,12 @@ public class AccomController {
         model.addAttribute("memberDTO",memberDTO);
 
         boolean memberCheck = false;
+        boolean loginCheck = false;
         model.addAttribute("memberCheck",memberCheck);
+
         SearchForm searchForm = new SearchForm();
         model.addAttribute("searchForm",searchForm);
-
+        model.addAttribute("loginCheck",loginCheck);
         return "home";
     }
 
