@@ -52,7 +52,7 @@ public class Accommodation {
     @Column(precision = 1, scale = 2)
     private Double accomRating;//숙소 평점
 
-    private Integer totalReviewNum;//숙소의 평점 수
+    private Integer totalReviewNum;//숙소의 리뷰 갯수
 
     private Integer accomWishlistCount; //즐겨찾기 버튼 갯수
 
@@ -77,6 +77,10 @@ public class Accommodation {
     //양방향 매핑을 위해 추가
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
     private List<Room> room = new ArrayList<>();    //이미지 fk를 위한 매핑
+
+    //숙소의 시설
+    @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
+    private List<AccomViewFacilities> accomViewFacilities = new ArrayList<>();
 
     @Builder
     public Accommodation(Long accomNum, String accomName, String accomTel, AccomCategory accomCategory, Region region, String accomAddress1,String accomAddress2,String accomAddress3, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange, LocalTime checkIn, LocalTime checkOut) {

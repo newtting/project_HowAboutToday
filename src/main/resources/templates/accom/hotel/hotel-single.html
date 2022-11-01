@@ -8,7 +8,8 @@
     <!-- ================================
         START BREADCRUMB AREA
     ================================= -->
-    <section class="breadcrumb-area bread-bg-7">
+
+    <section class="breadcrumb-area bread-bg-7" th:style="|background-image: url(@{data/images/{originFileName}(originFileName=${accom.accomOriginFileName})})|">
         <div class="breadcrumb-wrap">
             <div class="container">
                 <div class="row">
@@ -51,7 +52,7 @@
                             <ul>
                                 <li><a data-scroll="availability" href="#availability" class="scroll-link">객실 선택</a>
                                 </li>
-                                <li><a data-scroll="amenities" href="#amenities" class="scroll-link">시설</a></li>
+                                <li><a data-scroll="amenities" href="#amenities" class="scroll-link">숙소 정보</a></li>
                                 <li><a data-scroll="faq" href="#faq" class="scroll-link">자주 묻는 질문</a></li>
                                 <li><a data-scroll="location-map" href="#location-map" class="scroll-link">위치</a></li>
                                 <li><a data-scroll="reviews" href="#reviews" class="scroll-link">후기</a></li>
@@ -69,14 +70,14 @@
                         <div class="single-content-wrap padding-top-60px">
                             <div class="page-scroll">
                                 <div class="single-content-item pb-4">
-                                    <h3 class="title font-size-26" th:text="${accommodation.accomName}">Hilton Hotel and
+                                    <h3 class="title font-size-26" th:text="${accom.accomName}" >Hilton Hotel and
                                         Resorts</h3>
                                     <div class="d-flex align-items-center pt-2">
-                                        <p class="mr-2" th:text="${accommodation.accomAddress1}">Boston, MA, USA</p>
+                                        <p class="mr-2" th:text="${accom.accomAddress}">Boston, MA, USA</p>
                                         <p>
                                             <span class="badge badge-warning text-white font-size-16"
-                                                  th:text="${accommodation.accomRating}">4.7</span>
-                                            <span th:text="|(${accommodation.totalReviewNum})|">(4,209 Reviews)</span>
+                                                  th:text="${accom.accomRating}">4.7</span>&nbsp;
+                                            <span th:text="|(${accom.totalReviewNum}개의 리뷰)|">(4,209 Reviews)</span>
                                         </p>
                                     </div>
                                 </div><!-- end single-content-item -->
@@ -85,13 +86,13 @@
                             <div id="availability" class="page-scroll">
                                 <div class="single-content-item padding-top-40px padding-bottom-30px">
                                     <h3 class="title font-size-20">이용가능한 객실</h3>
-                                    <div class="cabin-type padding-top-30px">
-                                        <div class="cabin-type-item seat-selection-item d-flex mb-3" th:each="roomList : ${roomlist}">
-                                            <div class="cabin-type-img flex-shrink-0" th:each="imageList : ${ilist}">
-                                                <a th:href="room-details"><img th:src="${imageList.getRoomSaveFileName()}" alt=""></a>
+                                    <div class="cabin-type padding-top-30px" th:each="room : ${accom.room}">
+                                        <div class="cabin-type-item seat-selection-item d-flex mb-3">
+                                            <div class="cabin-type-img flex-shrink-0" >
+                                                <a th:href="|javascript:void(0)|" th:onclick="roomDetails([[*{room.roomNum}]])"><img th:src="@{/data/images/{roomImage}(roomImage=${room.roomImage})}" src="" alt=""></a>
                                             </div>
                                             <div class="cabin-type-detail">
-                                                <h3 class="title"><a th:href="@{/room-details(roomNum=${roomList.roomNum})}" th:text="|${roomList.roomName}|">Standard Family room</a></h3>
+                                                <h3 class="title"><a th:href="|javascript:void(0)|" th:onclick="roomDetails([[*{room.roomNum}]])" th:text="${room.roomName}">Standard Family room</a></h3>
                                                 <div class="row padding-top-20px">
                                                     <div class="col-lg-6 responsive-column">
                                                         <div class="single-tour-feature d-flex align-items-center mb-3">
@@ -99,38 +100,18 @@
                                                                 <i class="la la-check"></i>
                                                             </div>
                                                             <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">2
+                                                                <h3 class="title font-size-15 font-weight-medium"
+                                                                    th:text="|최대 ${room.defaultGuest}인 가능|">2
                                                                     Single beds</h3>
                                                             </div>
                                                         </div>
                                                     </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-check"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">15
-                                                                    m²</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-check"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">Shower
-                                                                    and bathtub</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
+
                                                 </div><!-- end row -->
                                             </div>
                                             <div class="cabin-price">
                                                 <p class="text-uppercase font-size-14">1박<strong
-                                                        class="mt-n1 text-black font-size-18 font-weight-black d-block" th:text="${roomList.price}">$121</strong>
+                                                        class="mt-n1 text-black font-size-18 font-weight-black d-block" th:text="|${room.price}원|">$121</strong>
                                                 </p>
                                             </div>
                                         </div>
@@ -139,18 +120,18 @@
                             </div><!-- end single-content-item -->
                             <div class="section-block"></div>
                         </div><!-- end location-map -->
-                        <div id="amenities" class="page-scroll">
+                        <div id="amenities" class="page-scroll" >
                             <div class="single-content-item padding-top-40px padding-bottom-20px">
                                 <h3 class="title font-size-20">편의 시설</h3>
                                 <div class="amenities-feature-item pt-4">
                                     <div class="row">
-                                        <div class="col-lg-4 responsive-column" th:each="facility : ${facilities}">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
+                                        <div class="col-lg-4 responsive-column" >
+                                            <div class="single-tour-feature d-flex align-items-center mb-3" th:each="fac : ${accom.accomViewFacilities}">
                                                 <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-wifi"></i>
+                                                    <i class="fa-duotone fa-tv-retro"></i>
                                                 </div>
                                                 <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium" th:text="${facility.facility.krName}">WI-FI</h3>
+                                                    <h3 class="title font-size-15 font-weight-medium" th:text="${fac.facilities.facility.krName}">WI-FI</h3>
                                                 </div>
                                             </div><!-- end single-tour-feature -->
                                         </div><!-- end col-lg-4 -->
@@ -209,6 +190,8 @@
                                                 <div id="faqCollapseSix" class="collapse" aria-labelledby="faqHeadingSix" data-parent="#accordionExample2">
                                                     <div class="card-body d-flex">
                                                         <p>파손이 발생하면 현장에서 호스트와 함께 확인하시고 사진을 반드시 찍어주세요.
+
+
 
                                                             호스트가 수리 견적을 전달해 드리면 배상 절차를 진행하여 주시기 바랍니다.</p>
                                                     </div>
@@ -360,8 +343,9 @@
                     </div><!-- end col-lg-8 -->
                     <div class="col-lg-4">
                         <div class="sidebar single-content-sidebar mb-0">
-                            <form th:action="@{/singleSearch}" method="get">
-                                <input type="hidden" name="accomNum" th:value="${accommodation.accomNum}">
+                            <form th:action="@{/hotel-single}" id="searchForm" method="get" th:object="${searchForm}" >
+                                <input type="hidden" name="accomNum" th:value="${accom.accomNum}" >
+                                <input type="hidden" id="hiddenNum" name="roomNum" value="">
                                 <div class="sidebar-widget single-content-widget">
                                     <div class="sidebar-widget-item">
                                         <div class="sidebar-book-title-wrap mb-3">
@@ -377,7 +361,7 @@
                                                 <div class="form-group">
                                                     <span class="la la-calendar form-icon"></span>
                                                     <input class="date-picker-multiple form-control" type="text"
-                                                           name="daterange" readonly>
+                                                           name="daterange" readonly th:field="*{daterange}">
                                                 </div>
                                             </div>
                                         </div>
@@ -387,7 +371,7 @@
                                             <label class="font-size-16">성인</label>
                                             <div class="qtyBtn d-flex align-items-center">
                                                 <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                <input type="text" name="qtyInput" value="0">
+                                                <input type="text" th:field="*{adult_number}" >
                                                 <div class="qtyInc"><i class="la la-plus"></i></div>
                                             </div>
                                         </div><!-- end qty-box -->
@@ -395,7 +379,7 @@
                                             <label class="font-size-16">어린이</label>
                                             <div class="qtyBtn d-flex align-items-center">
                                                 <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                <input type="text" name="qtyInput" value="0">
+                                                <input type="text" th:field="*{child_number}" >
                                                 <div class="qtyInc"><i class="la la-plus"></i></div>
                                             </div>
                                         </div><!-- end qty-box -->
@@ -586,6 +570,17 @@
     <!--<script src="js/main.js"></script>-->
     <!--</body>-->
     <!--</html>-->
+<script>
+    function roomDetails(roomNum){
+        $("#hiddenNum").attr("value",roomNum);
+        var searchForm = document.getElementById("searchForm")
+        searchForm.action = '/room-details'
+
+        searchForm.submit();
+
+
+    }
+</script>
 
 </th:block>
 
