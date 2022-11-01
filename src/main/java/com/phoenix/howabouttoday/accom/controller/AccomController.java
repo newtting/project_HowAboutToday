@@ -90,6 +90,12 @@ public class AccomController {
 
 
 
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("memberDTO",memberDTO);
+
+        boolean memberCheck = false;
+        model.addAttribute("memberCheck",memberCheck);
+
         model.addAttribute("categoryList",categoryList);
         model.addAttribute("viewName",viewName);
         model.addAttribute("categoryName",category_name);
@@ -168,6 +174,7 @@ public class AccomController {
             System.out.println("responseDto.getAccomReviewRating() = " + responseDto.getAccomReviewRating());
         }
         model.addAttribute("reviewlist",reviewlist);//리뷰 리스트 출력
+
         return "accom/hotel/hotel-single";
 
     }
