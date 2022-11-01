@@ -13,3 +13,4 @@ public class MemberDTOCHECK {
         model.addAttribute("memberCheck",memberCheck);
     }
 }
+
