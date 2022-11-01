@@ -105,8 +105,8 @@
                                                                 <i class="la la-check"></i>
                                                             </div>
                                                             <div class="single-feature-titles">
-                                                               <!-- <h3 class="title font-size-15 font-weight-medium" th:text="|최대 ${room.defaultGuest}인 가능|">2 -->
-                                                                <h3 class="title font-size-15 font-weight-medium" th:text="| 최대 ${roomList.maxGuest}인 이용 가능|">2
+                                                                <h3 class="title font-size-15 font-weight-medium" th:text="|최대 ${room.defaultGuest}인 가능|">2
+<!--                                                                <h3 class="title font-size-15 font-weight-medium" th:text="| 최대 ${roomList.maxGuest}인 이용 가능|">2-->
                                                                     Single beds</h3>
                                                             </div>
                                                         </div>
@@ -241,7 +241,7 @@
                             </div><!-- end reviews -->
                             <div class="review-box">
                                 <div class="single-content-item padding-top-40px">
-                                    <h3 class="title font-size-20" th:text="|총 ${accommodation.totalReviewNum}개의 리뷰|"></h3>
+                                    <h3 class="title font-size-20" th:text="|총 ${accom.getTotalReviewNum()}개의 리뷰|"></h3>
                                     <div class="comments-list padding-top-50px" th:each=" reviewlists: ${reviewlist}">
                                         <div class="comment">
                                             <div class="comment-avatar">

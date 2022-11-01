@@ -24,6 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
 
+import static com.phoenix.howabouttoday.payment.MemberDTOCHECK.doCheck;
+
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/orders")
@@ -44,6 +46,8 @@ public class OrdersController {
 //            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
 //        }
 
+        doCheck(model);
+
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
         List<OrdersDetailVO> infoList = orderService.getDirectData(customer, ordersDirectDTO);
 
@@ -60,6 +64,8 @@ public class OrdersController {
 //        else {
 //            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
 //        }
+
+        doCheck(model);
 
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
         List<OrdersDetailVO> infoList = orderService.getCartData(cartNum);
@@ -113,6 +119,8 @@ public class OrdersController {
 //        else {
 //            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
 //        }
+
+        doCheck(model);
 
 //        model.addAttribute("sessionDTO", sessionDTO);
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
