@@ -37,6 +37,7 @@ public class CartRestController {
         /** 회원 조회 로직 **/
         Long memberNum = user.getMemberNum();
 
+
         /** 멀티데이트를 스플릿해서 reserveForm에 넘겨주기위한 준비작업 **/
         String[] splitDate = cartForm.getCheckDate().split("-");
         //날짜 패턴에 공백이 있어서 양쪽 공백제거 작업
