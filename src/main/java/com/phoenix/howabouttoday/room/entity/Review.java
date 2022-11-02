@@ -4,6 +4,7 @@ package com.phoenix.howabouttoday.room.entity;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.member.entity.Member;
 
+import com.phoenix.howabouttoday.payment.dto.RoomReviewCreateRequestDTO;
 import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,11 +36,11 @@ public class Review {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_num")
     private Room room;
-
-
+    private String memberName;
     private LocalDate reviewCreateDate;
     private LocalDate reviewModifyDate;
 
     private Double reviewRating;
     private String reviewContent;
+
 }

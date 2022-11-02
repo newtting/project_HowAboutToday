@@ -63,7 +63,6 @@ public class CartRestController {
 
     }
 
-
     /** 장바구니 페이지에서 특정 객실 삭제 **/
     @DeleteMapping("/{cartNum}")
     public ResponseEntity deleteByNum(@PathVariable Long cartNum){
@@ -82,6 +81,4 @@ public class CartRestController {
         LocalDate parseDate = LocalDate.parse(date, formatter);
         return parseDate;
     }
-
-
 }
