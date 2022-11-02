@@ -1,6 +1,7 @@
 package com.phoenix.howabouttoday.member.controller;
 
 
+import com.phoenix.howabouttoday.accom.dto.SearchForm;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
@@ -63,7 +64,8 @@ public class MemberController {
 //            /* 회원가입 페이지로 다시 리턴 */
 //            return "redirect:/member/join";
 //        }
-
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchForm",searchForm);
         if(result.hasErrors()){
 
             boolean memberCheck = true;
