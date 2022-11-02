@@ -59,8 +59,27 @@ tasks.named('test') {
 }
 
 bootJar{
-	destinationDirectory = file("./out/artifacts/howabouttoday_main_jar")
+	destinationDirectory = file("target/howabouttoday.main.jar")
 	archivesBaseName = 'howabouttoday'
 	archiveFileName = 'howabouttoday.main.jar'
 	archiveVersion = "0.0.1"
+}
+
+tasks.withType<Jar>() {
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes["Main-Class"] = "MainKt"
+    }
+
+    configurations["compileClasspath"].forEach { file: File ->
+        from(zipTree(file.absoluteFile))
+    }
+}
+
+
+
+test {
+	exclude '**/*'
 }
